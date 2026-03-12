@@ -302,6 +302,7 @@ void typotek::doConnect()
 	connect(FMScriptConsole::getInstance(),SIGNAL(finished()), this, SLOT(slotUpdateScriptConsoleStatus()));
 #endif
 	connect(toggleMainViewButton, SIGNAL(toggled(bool)), this, SLOT(toggleMainView(bool)));
+	connect(this, SIGNAL(newFontsArrived()), theMainView, SLOT(slotFontDbChanged()));
 }
 
 void typotek::closeEvent ( QCloseEvent *event )

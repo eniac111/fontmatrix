@@ -93,6 +93,7 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 		FMPreviewModel * previewModel;
 
 	public slots:
+		void slotFontDbChanged();
 		void slotOrderingChanged ( QString s );
 		bool slotFontSelectedByName(const QString& fname);
 		void slotPreviewUpdateSize(int w);

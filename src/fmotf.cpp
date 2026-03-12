@@ -266,11 +266,11 @@ const HB_FontClass hb_fontClass =
 QString
 OTF_tag_name ( HB_UInt tag )
 {
-	QString name;
-	name[0] = ( char ) ( tag >> 24 );
-	name[1] = ( char ) ( ( tag >> 16 ) & 0xFF );
-	name[2] = ( char ) ( ( tag >> 8 ) & 0xFF );
-	name[3] = ( char ) ( tag & 0xFF );
+	QString name(4, QChar(' '));
+	name[0] = QChar( ( char ) ( tag >> 24 ) );
+	name[1] = QChar( ( char ) ( ( tag >> 16 ) & 0xFF ) );
+	name[2] = QChar( ( char ) ( ( tag >> 8 ) & 0xFF ) );
+	name[3] = QChar( ( char ) ( tag & 0xFF ) );
 //   qDebug(QString("OTF_tag_name (%1) -> %2").arg(tag).arg(name));
 	return name;
 }
@@ -278,8 +278,8 @@ OTF_tag_name ( HB_UInt tag )
 HB_UInt
 OTF_name_tag ( QString s )
 {
-
-	HB_UInt ret = FT_MAKE_TAG ( s[0].unicode (), s[1].unicode (), ( s[2].isNull() ? ' ' :s[2].unicode () ), ( s[3].isNull() ? ' ' :s[3].unicode () ) );
+	while ( s.length() < 4 ) s += ' ';
+	HB_UInt ret = FT_MAKE_TAG ( s[0].unicode (), s[1].unicode (), s[2].unicode(), s[3].unicode() );
 //   qDebug(QString("OTF_name_tag (%1) -> %2").arg(s).arg(ret));
 	return ret;
 }
@@ -325,10 +325,11 @@ FMOtf::FMOtf ( FT_Face f , double scale )
 			_memgdef.resize ( length );
 			FT_Load_Sfnt_Table ( _face, OTF_name_tag ( "GDEF" ), 0,
 			                     ( FT_Byte * ) _memgdef.data (), &length );
-			gdefstream = new ( HB_StreamRec );
+			gdefstream = new HB_StreamRec;
 			gdefstream->base = ( HB_Byte * ) _memgdef.data ();
 			gdefstream->size = _memgdef.size ();
 			gdefstream->pos = 0;
+			gdefstream->cursor = NULL;
 
 
 			HB_New_GDEF_Table ( &_gdef );
@@ -352,10 +353,11 @@ FMOtf::FMOtf ( FT_Face f , double scale )
 			_memgsub.resize ( length );
 			FT_Load_Sfnt_Table ( _face, OTF_name_tag ( "GSUB" ), 0,
 			                     ( FT_Byte * ) _memgsub.data (), &length );
-			gsubstream = new ( HB_StreamRec );
+			gsubstream = new HB_StreamRec;
 			gsubstream->base = ( HB_Byte * ) _memgsub.data ();
 			gsubstream->size = _memgsub.size ();
 			gsubstream->pos = 0;
+			gsubstream->cursor = NULL;
 
 			if ( GDEF ? !HB_Load_GSUB_Table ( gsubstream, &_gsub, _gdef, gdefstream ) :
 			        !HB_Load_GSUB_Table ( gsubstream, &_gsub, NULL, NULL ) )
@@ -382,11 +384,11 @@ FMOtf::FMOtf ( FT_Face f , double scale )
 			_memgpos.resize ( length );
 			FT_Load_Sfnt_Table ( _face, OTF_name_tag ( "GPOS" ), 0,
 			                     ( FT_Byte * ) _memgpos.data (), &length );
-			gposstream = new ( HB_StreamRec );
+			gposstream = new HB_StreamRec;
 			gposstream->base = ( HB_Byte * ) _memgpos.data ();
 			gposstream->size = _memgpos.size ();
 			gposstream->pos = 0;
-
+			gposstream->cursor = NULL;
 			if ( GDEF ? !HB_Load_GPOS_Table ( gposstream, &_gpos, _gdef, gdefstream ) :
 			        !HB_Load_GPOS_Table ( gposstream, &_gpos, NULL, NULL ) )
 				GPOS = 1;
@@ -437,9 +439,12 @@ QList<RenderedGlyph> FMOtf::procstring ( QString s, OTFSet set )
 	int sCount(ret.count());
 	for(int si(0);si < sCount; ++si)
 	{
-		ret[si].lChar = s.at(ret[si].log).unicode();
+		if (ret[si].log < s.length())
+			ret[si].lChar = s.at(ret[si].log).unicode();
+		else
+			ret[si].lChar = 0;
 	}
-	
+
 	hb_buffer_free ( _buffer );
 	_buffer = 0;
 	
@@ -565,9 +570,12 @@ QList< RenderedGlyph > FMOtf::procstring( QList<Character> shaped , QString scri
 	int sCount(ret.count());
 	for(int si(0);si < sCount; ++si)
 	{
-		ret[si].lChar = shaped.at(ret[si].log).unicode();
+		if (ret[si].log < shaped.count())
+			ret[si].lChar = shaped.at(ret[si].log).unicode();
+		else
+			ret[si].lChar = 0;
 	}
-	
+
 	return ret;
 	
 }

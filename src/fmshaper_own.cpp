@@ -403,11 +403,11 @@ void MatchSequence::SetMatch(const QString &b)
 			if(!ok)
 				qDebug()<<"Oops";
 			idx += 4;
-			if(ref[idx] == '(')// property list
+			if(idx < ref.count() && ref[idx] == '(')// property list
 			{
 				QStringList pList;
 				int countChars(0);
-				while(ref[idx + countChars] != ')')
+				while(idx + countChars < ref.count() && ref[idx + countChars] != ')')
 				{
 					++countChars;
 				}
@@ -419,11 +419,11 @@ void MatchSequence::SetMatch(const QString &b)
 				idx += countChars;
 				Properties << Character(unicode, pList);
 			}
-			else if(ref[idx] == '[')// property list with exact match
+			else if(idx < ref.count() && ref[idx] == '[')// property list with exact match
 			{
 				QStringList pList;
 				int countChars(0);
-				while(ref[idx + countChars] != ']')
+				while(idx + countChars < ref.count() && ref[idx + countChars] != ']')
 				{
 					++countChars;
 				}
@@ -448,12 +448,12 @@ void MatchSequence::SetMatch(const QString &b)
 		{
 			int unicode = 0 ;
 			++idx;
-			
-			if(ref[idx] == '(')// property list
+
+			if(idx < ref.count() && ref[idx] == '(')// property list
 			{
 				QStringList pList;
 				int countChars(0);
-				while(ref[idx + countChars] != ')')
+				while(idx + countChars < ref.count() && ref[idx + countChars] != ')')
 				{
 					++countChars;
 				}
@@ -465,11 +465,11 @@ void MatchSequence::SetMatch(const QString &b)
 				idx += countChars;
 				Properties << Character(unicode, pList);
 			}
-			else if(ref[idx] == '[')// property list with exact match
+			else if(idx < ref.count() && ref[idx] == '[')// property list with exact match
 			{
 				QStringList pList;
 				int countChars(0);
-				while(ref[idx + countChars] != ']')
+				while(idx + countChars < ref.count() && ref[idx + countChars] != ']')
 				{
 					++countChars;
 				}
@@ -511,7 +511,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 			if(!ok)
 				qDebug()<<"Oops";
 			idx += 4;
-			if(ref[idx] != '(')
+			if(idx >= ref.count() || ref[idx] != '(')
 			{
 				--idx;
 				Properties << Character(unicode);
@@ -520,7 +520,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 			{
 				QStringList pList;
 				int countChars(0);
-				while(ref[idx + countChars] != ')')
+				while(idx + countChars < ref.count() && ref[idx + countChars] != ')')
 				{
 					++countChars;
 				}
@@ -546,16 +546,16 @@ void ReplaceSequence::SetReplace(const QString& b)
 			Properties.last().GroupIndex = group;
 			++idx;
 			
-			if(ref[idx] != '(')
+			if(idx >= ref.count() || ref[idx] != '(')
 			{
 				--idx;
-				
+
 			}
 			else // property list
 			{
 				QStringList pList;
 				int countChars(0);
-				while(ref[idx + countChars] != ')')
+				while(idx + countChars < ref.count() && ref[idx + countChars] != ')')
 				{
 					++countChars;
 				}

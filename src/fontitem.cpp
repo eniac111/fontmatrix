@@ -1442,8 +1442,7 @@ double FontItem::renderLine ( QString script, QGraphicsScene * scene, QString sp
 	//		default : shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::FONTMATRIX );
 	//	}
 
-	/// Let's do it only with ICU atm.
-	shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::ICU );
+	shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::FONTMATRIX );
 
 	GlyphList refGlyph ( shaperfactory->doShape( spec ) );
 	delete shaperfactory;
@@ -3699,29 +3698,13 @@ GlyphList FontItem::glyphs(QString spec, double fsize, QString script)
 		return Gret;
 	}
 	FMShaperFactory *shaperfactory = 0;
-//	switch(m_shaperType)
-//	{
-//		case FMShaperFactory::FONTMATRIX : shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::FONTMATRIX );
-//		break;
-//		case FMShaperFactory::HARFBUZZ : shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::HARFBUZZ );
-//		break;
-//		case FMShaperFactory::ICU : shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::ICU );
-//		break;
-//		case FMShaperFactory::M17N : shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::M17N );
-//		break;
-//		case FMShaperFactory::PANGO : shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::PANGO );
-//		break;
-//		case FMShaperFactory::OMEGA : shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::OMEGA);
-//		break;
-//		default : shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::FONTMATRIX );
-//	}
-	shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::ICU );
-	
-	
-	/// HYPHENATION 
-	
+	shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::FONTMATRIX );
+
+
+	/// HYPHENATION
+
 	QStringList stl(spec.split(' ',Qt::SkipEmptyParts));
-	
+
 	double scalefactor = fsize / m_face->units_per_EM  ;
 	QGraphicsPathItem *glyph = itemFromChar ( QChar(' ').unicode() , fsize );
 	RenderedGlyph wSpace(glyph->data(GLYPH_DATA_GLYPH).toInt(),0, glyph->data(GLYPH_DATA_HADVANCE).toDouble() * scalefactor ,0,0,0,' ',false);

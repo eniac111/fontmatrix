@@ -257,16 +257,14 @@ const void * IcuFontImpl::getFontTable ( LETag tableTag, size_t &length_sz ) con
 	{
 		if ( length > 0 )
 		{
-// 			qDebug()<<"Table len"<< length;
 			FT_Byte * bA = new FT_Byte[length];
-			
 			FT_Load_Sfnt_Table ( face, tableTag, 0, bA, &length );
-			
 			regTables( tableTag,  bA );
+			length_sz = length;
 			return  (const void*) tables.value(tableTag);
 		}
-
 	}
+	length_sz = 0;
 	return 0;
 }
 
