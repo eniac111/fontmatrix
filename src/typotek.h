@@ -210,6 +210,7 @@ private:
 
 	QFile ResourceFile;
 	QDir ownDir;
+	QDir configDir;
 	QDir managedDir;
 
 	DataLoader * dataLoader;
@@ -397,6 +398,7 @@ public:
 	double getPreviewInfoFontSize() const{return previewInfoFontSize;}
 
 	QDir getOwnDir() const{return ownDir;}
+	QDir getConfigDir() const{return configDir;}
 
 	void setInfoStyle ( const QString& theValue );
 	QString getInfoStyle() const{ return infoStyle; }

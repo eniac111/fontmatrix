@@ -47,12 +47,33 @@ bool __FM_SHOW_FONTLOADED;
  */
 int main ( int argc, char *argv[] )
 {
-	QCoreApplication::setOrganizationName ( "Undertype" );
+	QCoreApplication::setOrganizationName ( "Fontmatrix" );
+	QCoreApplication::setOrganizationDomain ( "io.fontmatrix" );
 	QCoreApplication::setApplicationName ( "fontmatrix" );
 
 	Q_INIT_RESOURCE ( application );
 	QApplication app ( argc, argv );
 	app.setWindowIcon ( QIcon ( ":/fontmatrix_icon.png" ) );
+	app.setApplicationVersion ( QString ( "%1.%2.%3" )
+	                            .arg ( FONTMATRIX_VERSION_MAJOR )
+	                            .arg ( FONTMATRIX_VERSION_MINOR )
+	                            .arg ( FONTMATRIX_VERSION_PATCH ) );
+
+	// Migrate QSettings from the old "Undertype" organization name.
+	// Only copies if the new location is empty and the old one has data.
+	{
+		QSettings newSettings;
+		if ( newSettings.allKeys().isEmpty() )
+		{
+			QSettings oldSettings ( QSettings::defaultFormat(), QSettings::UserScope,
+			                        QLatin1String ( "Undertype" ), QLatin1String ( "fontmatrix" ) );
+			const QStringList keys = oldSettings.allKeys();
+			for ( const QString &key : keys )
+				newSettings.setValue ( key, oldSettings.value ( key ) );
+			if ( !keys.isEmpty() )
+				newSettings.sync();
+		}
+	}
 
 	QTranslator translator;
 	if ( translator.load ( FMPaths::LocalizedFilePath( FMPaths::TranslationsDir() + "fontmatrix-"  , ".qm" ) ) )

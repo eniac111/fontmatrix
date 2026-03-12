@@ -13,6 +13,7 @@
 #include "typotek.h"
 
 #include <QApplication>
+#include <QStandardPaths>
 // #include <QDebug>
 
 FMPaths *FMPaths::instance = 0;
@@ -82,22 +83,21 @@ QString FMPaths::ResourcesDir()
 QString FMPaths::ScriptsDir()
 {
 	QString sep(QDir::separator());
-	return typotek::getInstance()->getOwnDir().absolutePath() + sep + "Scripts"+ sep;
+	return typotek::getInstance()->getOwnDir().absolutePath() + sep + "Scripts" + sep;
 }
 
 QString FMPaths::SamplesDir()
 {
 	QString sep(QDir::separator());
-	return typotek::getInstance()->getOwnDir().absolutePath() + sep + "Samples"+ sep;
+	return typotek::getInstance()->getOwnDir().absolutePath() + sep + "Samples" + sep;
 }
 
 QString FMPaths::FiltersDir()
 {
 	QString sep(QDir::separator());
-	QDir bdir(typotek::getInstance()->getOwnDir().absolutePath());
-	if (!bdir.exists(QString("Filters")))
-		bdir.mkdir(QString("Filters"));
-	return typotek::getInstance()->getOwnDir().absolutePath() + sep + "Filters"+ sep;
+	QString dir = typotek::getInstance()->getConfigDir().absolutePath() + sep + "Filters" + sep;
+	QDir().mkpath(dir);
+	return dir;
 }
 
 QString FMPaths::LocalizedDirPath(const QString & base, const QString& fallback )
