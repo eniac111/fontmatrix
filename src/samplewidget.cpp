@@ -39,6 +39,7 @@
 #include <QDebug>
 #include <QTimer>
 #include <QDataStream>
+#include <QElapsedTimer>
 #include <QSettings>
 #include <QStyledItemDelegate>
 #include <QKeyEvent>
@@ -354,7 +355,7 @@ void SampleWidget::slotView()
 {
 	qDebug()<<"SampleWidget::slotView "<< fontIdentifier;
 //	disconnect(textLayoutFT, SIGNAL(drawBaselineForMe(double)), this, SLOT(drawBaseline(double)));
-	QTime t;
+	QElapsedTimer t;
 	t.start();
 	FontItem *f(FMFontDb::DB()->Font( fontIdentifier ));
 	if ( !f )
@@ -555,7 +556,7 @@ void SampleWidget::fillOTTree()
 		ui->OpenTypeTree->resizeColumnToContents ( 0 ) ;
 		theVeryFont->releaseOTFInstance ( otf );
 	}
-	scripts = scripts.toSet().toList();
+	scripts = QStringList(QSet<QString>(scripts.begin(), scripts.end()).values());
 	// 	scripts.removeAll ( "latn" );
 //	if ( !scripts.isEmpty() )
 	{

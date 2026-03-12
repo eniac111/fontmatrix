@@ -27,7 +27,7 @@
 // #include <QProgressBar>
 #include <QDebug>
 #include <QApplication>
-#include <QTime>
+#include <QElapsedTimer>
 #include <QAction>
 #include <QMenu>
 // #include <QMutexLocker>
@@ -520,7 +520,7 @@ void FMLayout::stopLayout()
 void FMLayout::doGraph() // Has became doBreaks
 {
 	// 	qDebug() <<"FMLayout::doGraph()";
-	QTime t;
+	QElapsedTimer t;
 	t.start();
 	/**
 	I hit a power issue with my graph thing as in its initial state.
@@ -552,7 +552,7 @@ void FMLayout::doGraph() // Has became doBreaks
 void FMLayout::doLines()
 {
 	// 	qDebug() <<"FMLayout::doLines()";
-	QTime t;
+	QElapsedTimer t;
 	t.start();
 	// Run through the graph and find the shortest path
 	indices.clear();
@@ -807,7 +807,7 @@ void FMLayout::doDraw()
 	// Ask paths or pixmaps to theFont for each glyph and draw it on theScene
 	// 	qDebug() <<"FMLayout::doDraw()";
 	resetScene();
-	QTime t;
+	QElapsedTimer t;
 	t.start();
 	drawnLines = 0;
 	TextProgression *tp = TextProgression::getInstance();
@@ -1327,7 +1327,7 @@ void FMLayout::resetScene()
 			pixList[i] = 0;
 		}
 	}
-	pixList.removeAll(0);
+	pixList.removeAll(nullptr);
 	
 	int gCount ( glyphList.count() );
 	// 	QMap<QGraphicsScene*,int> ss;
@@ -1341,7 +1341,7 @@ void FMLayout::resetScene()
 			glyphList[i] = 0;
 		}
 	}
-	glyphList.removeAll(0);
+	glyphList.removeAll(nullptr);
 	// 	QString dbs;
 	// 	foreach(QGraphicsScene* qgs, ss)
 	// 	{

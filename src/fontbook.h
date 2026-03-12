@@ -15,10 +15,10 @@
 #include <QDomDocument>
 #include <QColor>
 #include <QPrinter>
+#include <QPageSize>
 #include <QMap>
 #include <QPainter>
 #include <QRectF>
-#include <QPrinter>
 #include <QObject>
 
 
@@ -124,7 +124,7 @@ private:
 	ProgressBarDuo * progress;
 
 	QString outputFilePath;
-	QMap<QString, QPrinter::PageSize > mapPSize;
+	QMap<QString, QPageSize::PageSizeId > mapPSize;
 	void doBookFromTemplate ( const QDomDocument &aTemplate );
 };
 

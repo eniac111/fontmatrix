@@ -14,13 +14,13 @@
 
 #include <QDebug>
 #include <QStringList>
-#include <QTextCodec>
+#include <QStringEncoder>
 #include <QFile>
 
 FMHyphenator::FMHyphenator()
 {
-	dict = 0;
-	textCodec = 0;
+	dict = nullptr;
+	textEncoder = nullptr;
 }
 
 bool FMHyphenator::loadDict(const QString & dictPath, int leftMin, int rightMin)
@@ -48,9 +48,14 @@ bool FMHyphenator::loadDict(const QString & dictPath, int leftMin, int rightMin)
 	{
 		QFile df(dictPath);
 		if( df.open(QIODevice::ReadOnly) )
-			textCodec = QTextCodec::codecForName(df.readLine());
+		{
+			QByteArray codecName = df.readLine().trimmed();
+			delete textEncoder;
+			textEncoder = new QStringEncoder(codecName.constData());
+			if (!textEncoder->isValid()) { delete textEncoder; textEncoder = nullptr; }
+		}
 		else
-			textCodec = 0;
+			textEncoder = nullptr;
 		df.close();
 		dict->lhmin = leftMin;
 		dict->rhmin = rightMin;
@@ -63,6 +68,7 @@ FMHyphenator::~FMHyphenator()
 {
 	if(dict)
 		hnj_hyphen_free (dict);
+	delete textEncoder;
 }
 
 
@@ -88,7 +94,7 @@ HyphList FMHyphenator::hyphenate(const QString & word) const
 	char ** rep = NULL;
 	int * pos = NULL;
 	int * cut = NULL;
-	QByteArray hw( textCodec ? textCodec->fromUnicode( word.toLower().remove('.') ) :  word.toLower().remove('.').toLocal8Bit() );
+	QByteArray hw( textEncoder ? textEncoder->encode( word.toLower().remove('.') ) :  word.toLower().remove('.').toLocal8Bit() );
 	QByteArray ht( hw.count() + 5, '0' );
 	char *lcword = hw.data();
 	char *hyphens = ht.data();

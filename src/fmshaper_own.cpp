@@ -411,7 +411,7 @@ void MatchSequence::SetMatch(const QString &b)
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", QString::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
 				foreach(QString prop, pl)
 				{
 					pList << prop.trimmed();
@@ -427,7 +427,7 @@ void MatchSequence::SetMatch(const QString &b)
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", QString::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
 				foreach(QString prop, pl)
 				{
 					pList << prop.trimmed();
@@ -457,7 +457,7 @@ void MatchSequence::SetMatch(const QString &b)
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", QString::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
 				foreach(QString prop, pl)
 				{
 					pList << prop.trimmed();
@@ -473,7 +473,7 @@ void MatchSequence::SetMatch(const QString &b)
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", QString::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
 				foreach(QString prop, pl)
 				{
 					pList << prop.trimmed();
@@ -524,7 +524,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", QString::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
 				foreach(QString prop, pl)
 				{
 					pList << prop.trimmed();
@@ -559,7 +559,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", QString::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
 				foreach(QString prop, pl)
 				{
 					pList << prop.trimmed();

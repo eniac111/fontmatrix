@@ -551,7 +551,7 @@ void PrefsPanelDialog::keyPressEvent ( QKeyEvent *k )
 		QStringList tl;
 		if ( !shortcutLabel->text().isEmpty() )
 		{
-			tl = shortcutLabel->text().split ( "+", QString::SkipEmptyParts );
+			tl = shortcutLabel->text().split ( "+", Qt::SkipEmptyParts );
 			Part4 = tl[tl.count()-1];
 			if ( Part4 == tr ( "Alt" ) || Part4 == tr ( "Ctrl" ) || Part4 == tr ( "Shift" ) || Part4 == tr ( "Meta" ) )
 				Part4 = "";
@@ -597,7 +597,7 @@ void PrefsPanelDialog::keyReleaseEvent ( QKeyEvent *k )
 		if ( !shortcutLabel->text().isEmpty() )
 		{
 			QStringList tl;
-			tl = shortcutLabel->text().split ( "+", QString::SkipEmptyParts );
+			tl = shortcutLabel->text().split ( "+", Qt::SkipEmptyParts );
 			Part4 = tl[tl.count()-1];
 			if ( Part4 == tr ( "Alt" ) || Part4 == tr ( "Ctrl" ) || Part4 == tr ( "Shift" ) || Part4 == tr ( "Meta" ) )
 				Part4 = "";

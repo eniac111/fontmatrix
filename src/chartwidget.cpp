@@ -506,8 +506,8 @@ void ChartWidget::slotDoPrinting()
 	QPainter aPainter ( printer );
 
 
-	double pWidth(printer->paperRect().width());
-	double pHeight(printer->paperRect().height());
+	double pWidth(printer->pageRect(QPrinter::DevicePixel).width());
+	double pHeight(printer->pageRect(QPrinter::DevicePixel).height());
 	double pFactor(printer->resolution() );
 
 	qDebug()<<"Paper :"<<pWidth<<pHeight;

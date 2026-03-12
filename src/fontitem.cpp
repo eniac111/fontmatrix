@@ -45,7 +45,7 @@
 #include <QApplication>
 #include <QPainter>
 #include <QLocale>
-#include <QTextCodec>
+#include <QStringDecoder>
 
 #include <QProgressDialog>
 
@@ -2636,8 +2636,8 @@ FontInfoMap FontItem::moreInfo_sfnt()
 		if ( tname.platform_id ==TT_PLATFORM_MICROSOFT && tname.encoding_id == TT_MS_ID_UNICODE_CS ) // Corresponds to a Microsoft WGL4 charmap, matching Unicode.
 		{
 			QByteArray array ( ( const char* ) tname.string, tname.string_len );
-			QTextCodec *codec = QTextCodec::codecForName ( "UTF-16BE" );
-			avalue = codec->toUnicode ( array );
+			QStringDecoder decoder(QStringDecoder::Utf16BE);
+			avalue = decoder(array);
 		}
 		else if ( tname.platform_id ==TT_PLATFORM_MICROSOFT && tname.encoding_id == TT_MS_ID_SYMBOL_CS ) // Corresponds to Microsoft symbol encoding. PM - don(t understand what it does here? seen in StandardSym.ttf
 		{
@@ -2646,27 +2646,27 @@ FontInfoMap FontItem::moreInfo_sfnt()
 		else if ( tname.platform_id == TT_PLATFORM_MACINTOSH  && tname.encoding_id == TT_APPLE_ID_DEFAULT ) // Unicode version 1.0
 		{
 			QByteArray array ( ( const char* ) tname.string, tname.string_len );
-			QTextCodec *codec = QTextCodec::codecForName ( "ISO 8859-15" ); // ### give better result than UTF ???
-			avalue = codec->toUnicode ( array );
+			QStringDecoder decoder("ISO-8859-1"); // ### give better result than UTF ???
+			avalue = decoder(array);
 		}
 		else if ( tname.platform_id == TT_PLATFORM_APPLE_UNICODE  && tname.encoding_id == TT_APPLE_ID_DEFAULT ) // Unicode version 1.0
 		{
 			QByteArray array ( ( const char* ) tname.string, tname.string_len );
-			QTextCodec *codec = QTextCodec::codecForName ( "ISO 8859-15" ); // ### give better result than UTF ???
-			avalue = codec->toUnicode ( array );
+			QStringDecoder decoder("ISO-8859-1"); // ### give better result than UTF ???
+			avalue = decoder(array);
 		}
 		// from  Pajarico, pajarico chez gmail point com
 		else if ( tname.platform_id == TT_PLATFORM_APPLE_UNICODE  && tname.encoding_id == TT_APPLE_ID_UNICODE_2_0 )
 		{
 			QByteArray array ( ( const char* ) tname.string, tname.string_len );
-			QTextCodec *codec = QTextCodec::codecForName ( "UTF-16" );
-			avalue = codec->toUnicode ( array );
+			QStringDecoder decoder(QStringDecoder::Utf16);
+			avalue = decoder(array);
 		}
 		else if ( tname.platform_id == TT_PLATFORM_MACINTOSH   /*&& tname.encoding_id == TT_MAC_ID_TRADITIONAL_CHINESE*/ )
 		{
 			QByteArray array ( ( const char* ) tname.string, tname.string_len );
-			QTextCodec *codec = QTextCodec::codecForName ( "Apple Roman" );
-			avalue = codec->toUnicode ( array );
+			QStringDecoder decoder(QStringDecoder::Latin1); // Apple Roman approximation
+			avalue = decoder(array);
 		}
 		else
 		{
@@ -2921,7 +2921,7 @@ int FontItem::showFancyGlyph ( QGraphicsView *view, int charcode , bool charcode
 	painter.setRenderHint(QPainter::Antialiasing, true);
 	painter.setBrush ( Qt::white );
 	painter.setPen ( QPen ( QBrush( QColor ( 0,0,0,255 ) ), 3/*, Qt::DashLine*/ ) );
-	painter.drawRoundRect ( subRect,5,5 );
+	painter.drawRoundedRect ( subRect,5,5 );
 	painter.setPen ( QPen ( QColor ( 0,0,255,120 ) ) );
 
 	ft_error = FT_Set_Pixel_Sizes ( m_face, 0, qRound(subRect.height() * 0.8) );
@@ -3049,13 +3049,17 @@ int FontItem::showFancyGlyph ( QGraphicsView *view, int charcode , bool charcode
 			QGraphicsPixmapItem *gpi ( itemFromGindexPix ( alts.at ( a ), altSize ) );
 			fancyAlternates[ref] << gpi;
 
-			QImage altI ( gpi->pixmap().toImage().alphaChannel() );
+			QImage tmp_ ( gpi->pixmap().toImage() );
+		QImage altI ( tmp_.width(), tmp_.height(), QImage::Format_Grayscale8 );
+		for (int ay = 0; ay < tmp_.height(); ++ay)
+			for (int ax = 0; ax < tmp_.width(); ++ax)
+				altI.setPixel(ax, ay, qGray(qAlpha(tmp_.pixel(ax,ay)), qAlpha(tmp_.pixel(ax,ay)), qAlpha(tmp_.pixel(ax,ay))));
 			QPixmap altP ( altI.width() * 2, altI.height() * 2 );
 			altP.fill ( Qt::transparent );
 			QPainter altPainter ( &altP );
 			altPainter.setRenderHint ( QPainter::Antialiasing,true );
 			altPainter.setBrush ( Qt::black );
-			altPainter.drawRoundRect ( 5,
+			altPainter.drawRoundedRect ( 5,
 			                           5,
 			                           altP.width() - 10,
 			                           altP.height()  - 10,
@@ -3482,7 +3486,7 @@ GlyphList FontItem::glyphs ( QString spec, double fsize )
 		}
 	}
 	
-	QStringList stl(spec.split(spaceChar, QString::SkipEmptyParts));
+	QStringList stl(spec.split(spaceChar, Qt::SkipEmptyParts));
 	
 	QGraphicsPathItem *glyph = itemFromChar ( spaceChar.unicode() , fsize );
 	RenderedGlyph wSpace(glyph->data(GLYPH_DATA_GLYPH).toInt(),0, glyph->data(GLYPH_DATA_HADVANCE).toDouble() * scalefactor ,0,0,0,' ',false);
@@ -3603,7 +3607,7 @@ GlyphList FontItem::glyphs(QString spec, double fsize, OTFSet set)
 //	FMAltContext * actx ( FMAltContextLib::GetCurrentContext());
 //	int cword(0);
 //	int cchunk(0);
-	QStringList stl(spec.split(' ',QString::SkipEmptyParts));
+	QStringList stl(spec.split(' ',Qt::SkipEmptyParts));
 	
 	double scalefactor = fsize / m_face->units_per_EM  ;
 	
@@ -3716,7 +3720,7 @@ GlyphList FontItem::glyphs(QString spec, double fsize, QString script)
 	
 	/// HYPHENATION 
 	
-	QStringList stl(spec.split(' ',QString::SkipEmptyParts));
+	QStringList stl(spec.split(' ',Qt::SkipEmptyParts));
 	
 	double scalefactor = fsize / m_face->units_per_EM  ;
 	QGraphicsPathItem *glyph = itemFromChar ( QChar(' ').unicode() , fsize );

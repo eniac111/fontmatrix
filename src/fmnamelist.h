@@ -13,7 +13,7 @@
 #ifndef FMNAMELIST_H
 #define FMNAMELIST_H
 
-#include <QTime>
+#include <QElapsedTimer>
 #include <QTreeWidget>
 #include <QString>
 
@@ -43,7 +43,7 @@ class FMNameList : public QTreeWidget
 		bool findBelow(QTreeWidgetItem *current, const QString &role);
 		
 		QString m_keyString;
-		QTime m_keyTime;
+		QElapsedTimer m_keyTime;
 		const int m_waitKey;
 };
 

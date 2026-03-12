@@ -111,8 +111,8 @@ void PlayWidget::print()
 	thePrinter.setFullPage ( true );
 	QPainter aPainter ( &thePrinter );
 
-	double pWidth(thePrinter.paperRect().width());
-	double pHeight(thePrinter.paperRect().height());
+	double pWidth(thePrinter.pageRect(QPrinter::DevicePixel).width());
+	double pHeight(thePrinter.pageRect(QPrinter::DevicePixel).height());
 
 	QRectF targetR( pWidth * 0.1, pHeight * 0.1, pWidth * 0.8, pHeight * 0.8 );
 	QRectF sourceR( PlayWidget::getInstance()->getMaxRect());

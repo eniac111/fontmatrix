@@ -27,35 +27,37 @@
 #include <QGraphicsSvgItem>
 #include <QPrintDialog>
 #include <QFile>
-#include <QTime>
+#include <QElapsedTimer>
 #include <QGraphicsTextItem>
+#include <QPageSize>
+#include <QRandomGenerator>
 
 FontBook::FontBook()
 {
-	mapPSize[ "A0" ] = QPrinter::A0 ;
-	mapPSize[ "A1" ] = QPrinter::A1 ;
-	mapPSize[ "A2" ] = QPrinter::A2 ;
-	mapPSize[ "A3" ] = QPrinter::A3 ;
-	mapPSize[ "A4" ] = QPrinter::A4 ;
-	mapPSize[ "A5" ] = QPrinter::A5 ;
-	mapPSize[ "A6" ] = QPrinter::A6 ;
-	mapPSize[ "A7" ] = QPrinter::A7 ;
-	mapPSize[ "A8" ] = QPrinter::A8 ;
-	mapPSize[ "A9" ] = QPrinter::A9 ;
-	mapPSize[ "B0" ] = QPrinter::B0 ;
-	mapPSize[ "B1" ] = QPrinter::B1 ;
-	mapPSize[ "B10" ] = QPrinter::B10 ;
-	mapPSize[ "B2" ] = QPrinter::B2 ;
-	mapPSize[ "B3" ] = QPrinter::B3 ;
-	mapPSize[ "B4" ] = QPrinter::B4 ;
-	mapPSize[ "B5" ] = QPrinter::B5 ;
-	mapPSize[ "B6" ] = QPrinter::B6 ;
-	mapPSize[ "B7" ] = QPrinter::B7 ;
-	mapPSize[ "B8" ] = QPrinter::B8 ;
-	mapPSize[ "B9" ] = QPrinter::B9 ;
-	mapPSize[ "Letter" ] = QPrinter::Letter ;
-	mapPSize[ "Tabloid" ] = QPrinter::Tabloid ;
-	mapPSize[ "Custom" ] = QPrinter::Custom ;
+	mapPSize[ "A0" ] = QPageSize::A0 ;
+	mapPSize[ "A1" ] = QPageSize::A1 ;
+	mapPSize[ "A2" ] = QPageSize::A2 ;
+	mapPSize[ "A3" ] = QPageSize::A3 ;
+	mapPSize[ "A4" ] = QPageSize::A4 ;
+	mapPSize[ "A5" ] = QPageSize::A5 ;
+	mapPSize[ "A6" ] = QPageSize::A6 ;
+	mapPSize[ "A7" ] = QPageSize::A7 ;
+	mapPSize[ "A8" ] = QPageSize::A8 ;
+	mapPSize[ "A9" ] = QPageSize::A9 ;
+	mapPSize[ "B0" ] = QPageSize::B0 ;
+	mapPSize[ "B1" ] = QPageSize::B1 ;
+	mapPSize[ "B10" ] = QPageSize::B10 ;
+	mapPSize[ "B2" ] = QPageSize::B2 ;
+	mapPSize[ "B3" ] = QPageSize::B3 ;
+	mapPSize[ "B4" ] = QPageSize::B4 ;
+	mapPSize[ "B5" ] = QPageSize::B5 ;
+	mapPSize[ "B6" ] = QPageSize::B6 ;
+	mapPSize[ "B7" ] = QPageSize::B7 ;
+	mapPSize[ "B8" ] = QPageSize::B8 ;
+	mapPSize[ "B9" ] = QPageSize::B9 ;
+	mapPSize[ "Letter" ] = QPageSize::Letter ;
+	mapPSize[ "Tabloid" ] = QPageSize::Tabloid ;
+	mapPSize[ "Custom" ] = QPageSize::Custom ;
 
 
 
@@ -63,7 +65,7 @@ FontBook::FontBook()
 	if(sf.open(QIODevice::ReadOnly))
 	{
 		QString ss(QString::fromUtf8(sf.readAll()));
-		stringList = ss.split("\n", QString::SkipEmptyParts);
+		stringList = ss.split("\n", Qt::SkipEmptyParts);
 	}
 	else
 	{
@@ -87,7 +89,7 @@ FontBook::~FontBook()
 void FontBook::doBook(FontBook::Style s)
 {
 	printer = new QPrinter( QPrinter::HighResolution );
-	printerRect = printer->paperRect(QPrinter::Point);
+	printerRect = printer->pageLayout().fullRectPoints();
 	QPrintDialog dialog(printer);
 	dialog.setWindowTitle("Fontmatrix - " + tr("Print Fontbook"));
 
@@ -155,14 +157,14 @@ void FontBook::doFullBookCover()
 	int module(250);
 	double x(0);
 	double y(0);
-	double fsize(qrand() % module);
-	int gray(qrand() % 160);
+	double fsize(QRandomGenerator::global()->bounded(module));
+	int gray(QRandomGenerator::global()->bounded(160));
 	foreach(FontItem * f, FMFontDb::DB()->getFilteredFonts())
 	{
 		int lc(f->lastChar());
-		int charcode(qrand() % lc);
+		int charcode(QRandomGenerator::global()->bounded(lc));
 		while(!f->hasCharcode(charcode))
-			charcode = qrand() % lc;
+			charcode = QRandomGenerator::global()->bounded(lc);
 
 		QGraphicsPathItem *p(f->itemFromChar(charcode, fsize));
 		if(p->data(GLYPH_DATA_ERROR).toBool())
@@ -171,14 +173,14 @@ void FontBook::doFullBookCover()
 			continue;
 		}
 		pScene.addItem(p);
-		p->setPos(x + (qrand() % qRound(printerRect.width())), y + (qrand() % qRound(printerRect.height())));
+		p->setPos(x + QRandomGenerator::global()->bounded(qRound(printerRect.width())), y + QRandomGenerator::global()->bounded(qRound(printerRect.height())));
 		p->setBrush(QColor(gray,  gray,  gray));
 		p->setPen(Qt::NoPen);
-		gray = qrand() % 160;
-		fsize = qrand() % module;
+		gray = QRandomGenerator::global()->bounded(160);
+		fsize = QRandomGenerator::global()->bounded(module);
 	}
 
-	pScene.render(painter, printer->paperRect(), printerRect);
+	pScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
 }
 
 void FontBook::doFullBookPageRight(const QString &family)
@@ -205,8 +207,8 @@ void FontBook::doFullBookPageRight(const QString &family)
 	if(familyFonts.count() > 1)
 	{
 		int module(familyFonts.count() * 2);
-		int idxS( qrand() %  qMax(1, iString.count() / 3) );
-		int idxE( qMax( qMax(2,familyFonts.count()), qrand() % module) );
+		int idxS( QRandomGenerator::global()->bounded( qMax(1, iString.count() / 3) ));
+		int idxE( qMax( qMax(2,familyFonts.count()), QRandomGenerator::global()->bounded(module) ));
 		while(stl.count() < familyFonts.count())
 		{
 			if((idxS + idxE) < iString.count())
@@ -222,12 +224,12 @@ void FontBook::doFullBookPageRight(const QString &family)
 					stl << t;
 				}
 				idxS = idxE;
-				idxE = qMax( familyFonts.count(), qrand() % module);
+				idxE = qMax( familyFonts.count(), (int)QRandomGenerator::global()->bounded(module));
 			}
 			else
 			{
-				idxS = qrand() %  (qMax(1, iString.count() / 3));
-				idxE = qMax( familyFonts.count(), qrand() % module);
+				idxS = QRandomGenerator::global()->bounded( qMax(1, iString.count() / 3));
+				idxE = qMax( familyFonts.count(), (int)QRandomGenerator::global()->bounded(module));
 			}
 		}
 	}
@@ -235,7 +237,7 @@ void FontBook::doFullBookPageRight(const QString &family)
 	{
 		QStringList monoList;
 		monoList << "Ab" << "Cd" << "Ef" << "Gh" << "Ij" << "Kl" << "Mn" << "Op" << "Qr" << "St" << "Uv" << "Xy" << "Za";
-		stl << monoList.at(qrand() % monoList.count());
+		stl << monoList.at(QRandomGenerator::global()->bounded(monoList.count()));
 	}
 	int diff ( familyFonts.count()  );
 	for (int i(0); i < diff; ++i)
@@ -306,7 +308,7 @@ void FontBook::doFullBookPageRight(const QString &family)
 		yPos += nameText->boundingRect().height();
 	}
 	pScene.addLine(QLineF(QPointF(xOff, defHeight + 30.0), QPointF(xOff + defWidth,  defHeight + 30.0)));
-	pScene.render(painter, printer->paperRect(), printerRect);
+	pScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
 
 	/** END OF decorative multi sized samples */
 
@@ -359,13 +361,13 @@ void FontBook::doFullBookPageRight(const QString &family)
 	rFont->setFTRaster(rasterState);
 
 //	qDebug()<<"R"<<colRectLayout<<colLeftRect<<layoutLeft->getRect()<<printerRect;
-	layoutLeftScene.render(painter, printer->paperRect(), printerRect);
-	layoutRightScene.render(painter, printer->paperRect(), printerRect);
+	layoutLeftScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
+	layoutRightScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
 	/** END of paragraph preview */
 
 
 	// DEBUG
-//	QImage image(printer->paperRect(QPrinter::Point).size().toSize(), QImage::Format_ARGB32);
+//	QImage image(printer->pageLayout().fullRectPoints().size().toSize(), QImage::Format_ARGB32);
 //	QPainter debugPainter(&image);
 //	pScene.render(&debugPainter);
 //	layoutLeftScene.render(&debugPainter);
@@ -483,7 +485,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 		// OpenType
 
 
-		pScene.render(painter, printer->paperRect(), printerRect);
+		pScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
 		return true;
 	}
 	else // think Kepler :)
@@ -499,7 +501,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 				{
 					if(fidx == (4 * colBreak))
 					{
-						pScene.render(painter, printer->paperRect(), printerRect);
+						pScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
 						pScene.clear();
 						printer->newPage();
 						more = true;
@@ -533,7 +535,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 
 			yPos +=  12.0 ;
 		}
-		pScene.render(painter, printer->paperRect(), printerRect);
+		pScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
 		return (!more);
 	}
 

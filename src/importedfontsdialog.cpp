@@ -38,7 +38,7 @@ ImportedFontsDialog::ImportedFontsDialog(QWidget * parent, QStringList fontlist)
 			++buggyFonts;
 		}
 		QListWidgetItem *it=new QListWidgetItem(s);
-		it->setTextColor(success ? Qt::black : Qt::red);
+		it->setForeground(success ? Qt::black : Qt::red);
 		fontList->addItem(it);
 	}
 	label->setText(tr("Number of Imported Fonts ") + QString::number(fontList->count() - buggyFonts));

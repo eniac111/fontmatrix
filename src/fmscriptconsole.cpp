@@ -177,49 +177,43 @@ SyntaxHighlighter::SyntaxHighlighter(QTextDocument *doc) : QSyntaxHighlighter(do
 	numberFormat.setForeground(colors.numberColor);
 	operatorFormat.setForeground(colors.signColor);
 
-	foreach (QString kw, keywords)
+	for (const QString &kw : keywords)
 	{
-		rule.pattern = QRegExp("\\b" + kw + "\\b", Qt::CaseInsensitive);
+		rule.pattern = QRegularExpression("\\b" + kw + "\\b", QRegularExpression::CaseInsensitiveOption);
 		rule.format = keywordFormat;
 		highlightingRules.append(rule);
 	}
 
-	rule.pattern = QRegExp("#[^\n]*");
+	rule.pattern = QRegularExpression("#[^\n]*");
 	rule.format = singleLineCommentFormat;
 	highlightingRules.append(rule);
 
-	rule.pattern = QRegExp("\'.*\'");
-	rule.pattern.setMinimal(true);
+	rule.pattern = QRegularExpression("\'.*?\'");
 	rule.format = quotationFormat;
 	highlightingRules.append(rule);
 
-	rule.pattern = QRegExp("\".*\"");
-	rule.pattern.setMinimal(true);
+	rule.pattern = QRegularExpression("\".*?\"");
 	rule.format = quotationFormat;
 	highlightingRules.append(rule);
 
-	rule.pattern = QRegExp("\\b\\d+\\b");
-	rule.pattern.setMinimal(true);
+	rule.pattern = QRegularExpression("\\b\\d+\\b");
 	rule.format = numberFormat;
 	highlightingRules.append(rule);
 
-	rule.pattern = QRegExp("[\\\\|\\<|\\>|\\=|\\!|\\+|\\-|\\*|\\/|\\%]+");
-	rule.pattern.setMinimal(true);
+	rule.pattern = QRegularExpression("[\\\\<>=!+\\-*/%]+");
 	rule.format = operatorFormat;
 	highlightingRules.append(rule);
 }
 
 void SyntaxHighlighter::highlightBlock(const QString &text)
 {
-	foreach (HighlightingRule rule, highlightingRules)
+	for (const HighlightingRule &rule : highlightingRules)
 	{
-		QRegExp expression(rule.pattern);
-		int index = text.indexOf(expression);
-		while (index >= 0)
+		QRegularExpressionMatchIterator it = rule.pattern.globalMatch(text);
+		while (it.hasNext())
 		{
-			int length = expression.matchedLength();
-			setFormat(index, length, rule.format);
-			index = text.indexOf(expression, index + length);
+			QRegularExpressionMatch match = it.next();
+			setFormat(match.capturedStart(), match.capturedLength(), rule.format);
 		}
 	}
 	setCurrentBlockState(0);

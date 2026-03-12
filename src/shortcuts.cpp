@@ -72,7 +72,7 @@ QString Shortcuts::cleanName(const QString &s)
 
 QString Shortcuts::isReserved(const QString &shortcut, const QString &actionText)
 {
-	QString isTaken = QString::null;
+	QString isTaken;
 	if (actions.contains(cleanName(actionText))) {
 		QList<QAction*> alist = actions.values();
 		foreach(QAction *act, alist) {

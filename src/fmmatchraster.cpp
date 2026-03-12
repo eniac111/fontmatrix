@@ -18,7 +18,7 @@
 #include "fontitem.h"
 #include "fmfontdb.h"
 
-#include <QDesktopWidget>
+#include <QScreen>
 #include <QFileDialog>
 #include <QFile>
 #include <QDir>
@@ -311,7 +311,7 @@ void FMMatchRaster::grabScreen()
 		   wr.y() + vr.y() + sampleBox->geometry().y(),
 		   vr.width()	/ ratio,
 		   vr.height()	/ ratio);
-	iView->setImage(QPixmap::grabWindow ( QApplication::desktop()->winId(), absr.x(), absr.y(), absr.width(), absr.height()));
+	iView->setImage(QApplication::primaryScreen()->grabWindow(0, absr.x(), absr.y(), absr.width(), absr.height()));
 	//		qDebug()<<"iView"<<iView->geometry()<<"this"<<geometry();
 
 }

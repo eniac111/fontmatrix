@@ -10,4 +10,4 @@ fmhyphenator.cpp
 
 add_library(hyphenate
 STATIC ${HYPHENATE_SRCS})
-target_link_libraries(hyphenate Qt5::Core)
+target_link_libraries(hyphenate Qt6::Core)

@@ -135,16 +135,17 @@ void FMPlayGround::mouseMoveEvent ( QMouseEvent * e )
 
 void FMPlayGround::wheelEvent ( QWheelEvent * e )
 {
-	if ( e->modifiers().testFlag ( Qt::ControlModifier ) && e->orientation() == Qt::Vertical )
+	QPoint angleDelta = e->angleDelta();
+	if ( e->modifiers().testFlag ( Qt::ControlModifier ) && angleDelta.y() != 0 )
 	{
-		emit pleaseZoom ( e->delta() );
+		emit pleaseZoom ( angleDelta.y() );
 	}
 	else
 	{
-		if ( e->orientation() == Qt::Vertical )
-			verticalScrollBar()->setValue ( verticalScrollBar()->value() - e->delta() );
-		if ( e->orientation() == Qt::Horizontal )
-			horizontalScrollBar()->setValue ( horizontalScrollBar()->value() - e->delta() );
+		if ( angleDelta.y() != 0 )
+			verticalScrollBar()->setValue ( verticalScrollBar()->value() - angleDelta.y() );
+		if ( angleDelta.x() != 0 )
+			horizontalScrollBar()->setValue ( horizontalScrollBar()->value() - angleDelta.x() );
 	}
 }
 

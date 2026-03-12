@@ -57,7 +57,7 @@
 #include "typotek.h"
 #include "winutils.h"
 
-#include <QDesktopWidget>
+#include <QScreen>
 #include <QtGui>
 #include <QTextEdit>
 #include <QTextStream>
@@ -83,7 +83,7 @@
 #define MAX_RECENT_PYSCRIPTS 10
 #endif // HAVE_PYTHONQT
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include <ApplicationServices/ApplicationServices.h>
 #endif
 
@@ -161,9 +161,9 @@ typotek::typotek()
 	dataLoader = 0;
 	playVisible = false;
 
-	m_dpiX = ( double ) QApplication::desktop()->physicalDpiX();
-	m_dpiY = ( double ) QApplication::desktop()->physicalDpiY();
-#ifdef Q_WS_MAC
+	m_dpiX = ( double ) QApplication::primaryScreen()->physicalDotsPerInchX();
+	m_dpiY = ( double ) QApplication::primaryScreen()->physicalDotsPerInchY();
+#ifdef Q_OS_MAC
 	CGDirectDisplayID macDId = CGMainDisplayID();
 	CGRect macDRect = CGDisplayBounds(macDId);
 	CGSize macDSize = CGDisplayScreenSize(macDId);
@@ -657,13 +657,13 @@ void typotek::createActions()
 	Shortcuts *scuts = Shortcuts::getInstance();
 
 	openAct = new QAction ( QIcon ( ":/fontmatrix_import_icon" ), tr ( "&Import Directory..." ), this );
-	openAct->setShortcut ( Qt::CTRL + Qt::Key_O );
+	openAct->setShortcut ( QKeySequence(Qt::CTRL | Qt::Key_O) );
 	openAct->setToolTip( tr ( "Import a directory" ) );
 	scuts->add(openAct);
 	connect ( openAct, SIGNAL ( triggered() ), this, SLOT ( open() ) );
 
 	importFilesAction = new QAction(QIcon ( ":/fontmatrix_import_icon" ), tr ( "Import &Files..." ), this );
-	importFilesAction->setShortcut( Qt::CTRL + Qt::SHIFT + Qt::Key_O );
+	importFilesAction->setShortcut( QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_O) );
 	importFilesAction->setToolTip(tr("Import Files"));
 	scuts->add(importFilesAction);
 	connect(importFilesAction, SIGNAL(triggered()), this, SLOT(importFiles()));
@@ -684,7 +684,7 @@ void typotek::createActions()
 	connect(dumpInfoAct, SIGNAL(triggered()), this, SLOT(slotDumpInfo()));
 
 	exitAct = new QAction ( tr ( "E&xit" ), this );
-	exitAct->setShortcut ( Qt::CTRL + Qt::Key_Q );
+	exitAct->setShortcut ( QKeySequence(Qt::CTRL | Qt::Key_Q) );
 	exitAct->setStatusTip ( tr ( "Exit the application" ) );
         exitAct->setMenuRole(QAction::QuitRole);
 	scuts->add(exitAct);
@@ -780,7 +780,7 @@ void typotek::createActions()
 
 
 	playAction = new QAction(tr("Playground"), this);
-	playAction->setShortcut(Qt::CTRL + Qt::Key_G);
+	playAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_G));
 	playAction->setToolTip(tr("Show/Hide Playground"));
 	playAction->setCheckable(true);
 	playAction->setChecked(false);
@@ -788,7 +788,7 @@ void typotek::createActions()
 	connect(playAction, SIGNAL(triggered(bool)), PlayWidget::getInstance(), SLOT(setVisible(bool)));
 
 	compareAction = new QAction(tr("Compare"), this);
-	compareAction->setShortcut(Qt::CTRL + Qt::Key_R);
+	compareAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R));
 	compareAction->setToolTip(tr("Show/Hide Compare glyphs"));
 	compareAction->setCheckable(true);
 	compareAction->setChecked(false);
@@ -978,8 +978,8 @@ void typotek::readSettings()
 
 	defaultOTFScript = settings.value("OTF/Script").toString();
 	defaultOTFLang = settings.value("OTF/Lang").toString();
-	defaultOTFGPOS = settings.value("OTF/GPOS").toString().split(";",QString::SkipEmptyParts);
-	defaultOTFGSUB = settings.value("OTF/GSUB").toString().split(";",QString::SkipEmptyParts);
+	defaultOTFGPOS = settings.value("OTF/GPOS").toString().split(";",Qt::SkipEmptyParts);
+	defaultOTFGSUB = settings.value("OTF/GSUB").toString().split(";",Qt::SkipEmptyParts);
 	chartInfoFontSize = settings.value("ChartInfoFontSize", 8).toInt();
 	chartInfoFontName = settings.value("ChartInfoFontFamily", QFont().family() ).toString();
 
@@ -1643,7 +1643,7 @@ QString typotek::defaultSampleName()
 	else
 	{
 		const QMap<QString, QMap<QString,QString> >& ss(dataLoader->systemSamples());
-		QString l(QLocale::system().language());
+		QString l(QLocale::languageToString(QLocale::system().language()));
 		if((ss.contains(l)) && (ss[l].count() > 0))
 			return l + QString("::") + ss[l].keys().first();
 		else

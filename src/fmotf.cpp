@@ -24,7 +24,7 @@
 
 #include <QDebug>
 #include <QLibrary>
-#include <QTextCodec>
+#include <QStringEncoder>
 
 QList<int> FMOtf::altGlyphs;
 
@@ -38,18 +38,18 @@ HB_LineBreakClass HB_GetLineBreakClass ( HB_UChar32 ch )
 
 void HB_GetUnicodeCharProperties ( HB_UChar32 ch, HB_CharCategory *category, int *combiningClass )
 {
-	*category = ( HB_CharCategory ) QChar::Category ( ch );
-	*combiningClass = QChar::CombiningClass ( ch );
+	*category = ( HB_CharCategory ) QChar::category ( char32_t(ch) );
+	*combiningClass = QChar::combiningClass ( char32_t(ch) );
 }
 
 HB_CharCategory HB_GetUnicodeCharCategory ( HB_UChar32 ch )
 {
-	return ( HB_CharCategory ) QChar::Category ( ch );
+	return ( HB_CharCategory ) QChar::category ( char32_t(ch) );
 }
 
 int HB_GetUnicodeCharCombiningClass ( HB_UChar32 ch )
 {
-	return QChar::CombiningClass ( ch );
+	return QChar::combiningClass ( char32_t(ch) );
 }
 
 HB_UChar16 HB_GetMirroredChar ( HB_UChar16 ch )
@@ -199,15 +199,41 @@ void *HB_Library_Resolve(const char *library, const char *symbol)
 	return (void*)QLibrary::resolve(library, symbol); // Not very clean cast
 }
 
+// Simple MIB-to-encoding-name lookup for HarfBuzz codec bridge
+static const struct { int mib; const char* name; } s_mibTable[] = {
+	{ 3,    "US-ASCII"    },
+	{ 4,    "ISO-8859-1"  },
+	{ 5,    "ISO-8859-2"  },
+	{ 111,  "ISO-8859-15" },
+	{ 106,  "UTF-8"       },
+	{ 1013, "UTF-16BE"    },
+	{ 1014, "UTF-16LE"    },
+	{ 1015, "UTF-16"      },
+	{ 1018, "UTF-32BE"    },
+	{ 1019, "UTF-32LE"    },
+	{ 0,    nullptr       }
+};
+
+struct FMCodecBridge {
+	QStringEncoder encoder;
+	explicit FMCodecBridge(const char* name) : encoder(name) {}
+};
+
 void *HB_TextCodecForMib(int mib)
 {
-	return QTextCodec::codecForMib(mib);
+	for (int i = 0; s_mibTable[i].name != nullptr; ++i) {
+		if (s_mibTable[i].mib == mib)
+			return new FMCodecBridge(s_mibTable[i].name);
+	}
+	return nullptr;
 }
 
 char *HB_TextCodec_ConvertFromUnicode(void *codec, const HB_UChar16 *unicode, hb_uint32 length, hb_uint32 *outputLength)
 {
-	QByteArray data = reinterpret_cast<QTextCodec *>(codec)->fromUnicode((const QChar *)unicode, length);
-    // ### suboptimal
+	if (!codec) { if (outputLength) *outputLength = 0; return nullptr; }
+	FMCodecBridge *bridge = reinterpret_cast<FMCodecBridge*>(codec);
+	QString str = QString::fromRawData(reinterpret_cast<const QChar*>(unicode), length);
+	QByteArray data = bridge->encoder.encode(str);
 	char *output = (char *)malloc(data.length() + 1);
 	memcpy(output, data.constData(), data.length() + 1);
 	if (outputLength)
@@ -218,6 +244,11 @@ char *HB_TextCodec_ConvertFromUnicode(void *codec, const HB_UChar16 *unicode, hb
 void HB_TextCodec_FreeResult(char *string)
 {
 	free(string);
+}
+
+void HB_TextCodec_Destroy(void *codec)
+{
+	delete reinterpret_cast<FMCodecBridge*>(codec);
 }
 /// END OF HB Externals //////////////////////////////////////////////////////////////////////////////////////
 

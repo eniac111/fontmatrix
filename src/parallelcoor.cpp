@@ -20,6 +20,7 @@
 #endif
 #include <QApplication>
 #include <QDebug>
+#include <QElapsedTimer>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsItemGroup>
 #include <QFontMetricsF>
@@ -319,7 +320,7 @@ void ParallelCoorView::drawVertices()
 // 	qDebug()<<this<<"::drawVertices"<<m_dataSet->getData().count();
 	int tc, td, ta, to;
 	tc = td = ta = to = 0;
-	QTime t;
+	QElapsedTimer t;
 	t.start();
 	const int N ( m_dataSet->getData().count() );
 	QMap<int, QMap< int, QPointF> > placeCoords;

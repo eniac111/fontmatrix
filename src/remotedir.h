@@ -12,6 +12,7 @@
 #ifndef REMOTEDIR_H
 #define REMOTEDIR_H
 
+#include <QObject>
 #include <QString>
 #include <QStringList>
 #include <QMap>

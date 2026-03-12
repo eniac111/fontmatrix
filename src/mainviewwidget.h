@@ -24,7 +24,7 @@
 
 #include <QStringList>
 #include <QIcon>
-#include <QTime>
+#include <QElapsedTimer>
 
 
 
@@ -36,7 +36,7 @@ class QGridLayout;
 class QTreeWidgetItem;
 class QGraphicsRectItem;
 class QButtonGroup;
-class QWebView;
+class QWebEngineView;
 //class ListDockWidget;
 struct OTFSet;
 class FMLayout;
@@ -73,7 +73,7 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 		bool activateByFamilyOnly;
 		bool m_forceReloadSelection;
 		QString quickSearchString;
-		QTime quickSearchTime;
+		QElapsedTimer quickSearchTime;
 		QTimer *quickSearchTimer;
 		int quickSearchWait;
 
@@ -123,7 +123,7 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 		QString sampleName();
 //		void displayWelcomeMessage();
 		
-		QWebView *info();
+		QWebEngineView *info();
 		
 		void addFilterToCrumb(QString filter);
 		void setCrumb(QString text = QString());

@@ -53,7 +53,7 @@ TTTableView::TTTableView(FontItem * font, QWidget * parent)
 	
 	if(hasTable)
 	{
-		tView->setItemSelected(first,true);
+		first->setSelected(true);
 		updateHexView();
 	}
 	

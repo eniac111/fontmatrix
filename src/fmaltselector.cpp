@@ -158,7 +158,7 @@ int FMAltSelectorModel::columnCount ( const QModelIndex & parent  ) const
 Qt::ItemFlags FMAltSelectorModel::flags(const QModelIndex &index) const
 {
 	if (!index.isValid())
-		return 0;
+		return Qt::NoItemFlags;
 
 	return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 
