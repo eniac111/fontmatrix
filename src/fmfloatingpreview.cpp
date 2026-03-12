@@ -35,9 +35,6 @@
 #include <QCursor>
 #include <QLineEdit>
 
-#if defined(Q_WS_X11)
-#include <QX11Info>
-#endif
 
 #include <QDebug>
 
@@ -128,15 +125,13 @@ FMFloatingPreview::FMFloatingPreview(QWidget * parent, FontItem * item)
 {
 	hasMouseGrab = false;
 	setWindowFlags( Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
-#if QT_VERSION >= 0x040500
 	if(canTransparent())
 		setAttribute(Qt::WA_TranslucentBackground, true);
 	setAttribute(Qt::WA_DeleteOnClose, true);
-#endif
 
 
 	mainLayout = new QVBoxLayout(this);
-	mainLayout->setMargin(0);
+	mainLayout->setContentsMargins(0, 0, 0, 0);
 	menuWidget = new FMFloatingMenu(this, item);
 	previewLabel = new QLabel(this);
 	mainLayout->addWidget(menuWidget, Qt::AlignHCenter);
@@ -186,7 +181,7 @@ void FMFloatingPreview::mousePressEvent(QMouseEvent * e)
 {
 	if (!(e->buttons() & Qt::LeftButton))
 		return;
-	refPoint = e->globalPos() - geometry().topLeft();
+	refPoint = e->globalPosition().toPoint() - geometry().topLeft();
 	QApplication::setOverrideCursor(Qt::SizeAllCursor);
 }
 
@@ -203,7 +198,7 @@ void FMFloatingPreview::mouseMoveEvent(QMouseEvent * e)
 	if (!(e->buttons() & Qt::LeftButton))
 		return;
 	QRect r(geometry());
-	QPoint delta( e->globalPos() - refPoint);
+	QPoint delta( e->globalPosition().toPoint() - refPoint);
 	r.moveTo(delta);
 	setGeometry(r);
 }
@@ -224,9 +219,6 @@ void FMFloatingPreview::leaveEvent(QEvent * e)
 
 bool FMFloatingPreview::canTransparent()
 {
-#if defined(Q_WS_X11)
-	return QX11Info::isCompositingManagerRunning();
-#endif
 	return true;
 }
 

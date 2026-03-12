@@ -29,7 +29,7 @@
 #include "chartwidget.h"
 #include "typotek.h"
 
-#include <QDirModel>
+#include <QFileSystemModel>
 #include <QDir>
 #include <QSettings>
 #include <QFileSystemWatcher>
@@ -49,8 +49,11 @@ BrowserWidget::BrowserWidget(QWidget *parent) :
 	currentPage = BROWSER_VIEW_SAMPLE;
 	sample = chart = 0;
 	ffilter << "*.otf" << "*.ttf" << "*.ttc" << "*.pfb";
-	theDirModel = new QDirModel(ffilter, QDir::AllDirs | QDir::Files | QDir::Drives | QDir::NoDotAndDotDot, QDir::DirsFirst | QDir::Name);
-	theDirModel->setLazyChildCount(true);
+	theDirModel = new QFileSystemModel(this);
+	theDirModel->setNameFilters(ffilter);
+	theDirModel->setNameFilterDisables(false);
+	theDirModel->setFilter(QDir::AllDirs | QDir::Files | QDir::Drives | QDir::NoDotAndDotDot);
+	theDirModel->setRootPath(QString());
 	ui->browserView->setModel(theDirModel);
 	ui->browserView->hideColumn(1);
 	ui->browserView->hideColumn(2);
@@ -62,7 +65,7 @@ BrowserWidget::BrowserWidget(QWidget *parent) :
 	QDir d(lastUsedDir);
 	if (!d.exists())
 		lastUsedDir = QDir::homePath();
-	QModelIndex luIdx(theDirModel->index(lastUsedDir, 0));
+	QModelIndex luIdx(theDirModel->index(lastUsedDir));
 	ui->browserView->setCurrentIndex(luIdx);
 	QModelIndexList hierarchy;
 	while(luIdx.isValid())
@@ -128,7 +131,7 @@ void BrowserWidget::slotFolderItemclicked(QModelIndex mIdx)
 		ui->sampleButton->setEnabled(true);
 		ui->chartButton->setEnabled(true);
 	}
-	QString path(theDirModel->data(mIdx,QDirModel::FilePathRole).toString());
+	QString path(theDirModel->filePath(mIdx));
 	QFileInfo pf(path);
 	if(!pf.isDir())
 	{
@@ -174,7 +177,8 @@ void BrowserWidget::slotFolderRefresh(const QString &dirPath)
 	if(ui->browserView->isVisible())
 	{
 		qDebug()<<"Refresh"<<dirPath;
-		theDirModel->refresh(theDirModel->index(dirPath, 0 ));
+		// QFileSystemModel refreshes automatically via file system monitoring
+		Q_UNUSED(dirPath);
 	}
 }
 
@@ -273,7 +277,7 @@ void BrowserWidget::slotDetachSample()
 void BrowserWidget::slotFolderViewContextMenu(const QPoint &p)
 {
 	qDebug()<<"P"<<p;
-	QDirModel *dm = static_cast<QDirModel*>(ui->browserView->model());
+	QFileSystemModel *dm = static_cast<QFileSystemModel*>(ui->browserView->model());
 	if (!dm)
 		return;
 

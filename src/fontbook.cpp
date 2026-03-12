@@ -27,35 +27,37 @@
 #include <QGraphicsSvgItem>
 #include <QPrintDialog>
 #include <QFile>
-#include <QTime>
+#include <QElapsedTimer>
 #include <QGraphicsTextItem>
+#include <QPageSize>
+#include <QRandomGenerator>
 
 FontBook::FontBook()
 {
-	mapPSize[ "A0" ] = QPrinter::A0 ;
-	mapPSize[ "A1" ] = QPrinter::A1 ;
-	mapPSize[ "A2" ] = QPrinter::A2 ;
-	mapPSize[ "A3" ] = QPrinter::A3 ;
-	mapPSize[ "A4" ] = QPrinter::A4 ;
-	mapPSize[ "A5" ] = QPrinter::A5 ;
-	mapPSize[ "A6" ] = QPrinter::A6 ;
-	mapPSize[ "A7" ] = QPrinter::A7 ;
-	mapPSize[ "A8" ] = QPrinter::A8 ;
-	mapPSize[ "A9" ] = QPrinter::A9 ;
-	mapPSize[ "B0" ] = QPrinter::B0 ;
-	mapPSize[ "B1" ] = QPrinter::B1 ;
-	mapPSize[ "B10" ] = QPrinter::B10 ;
-	mapPSize[ "B2" ] = QPrinter::B2 ;
-	mapPSize[ "B3" ] = QPrinter::B3 ;
-	mapPSize[ "B4" ] = QPrinter::B4 ;
-	mapPSize[ "B5" ] = QPrinter::B5 ;
-	mapPSize[ "B6" ] = QPrinter::B6 ;
-	mapPSize[ "B7" ] = QPrinter::B7 ;
-	mapPSize[ "B8" ] = QPrinter::B8 ;
-	mapPSize[ "B9" ] = QPrinter::B9 ;
-	mapPSize[ "Letter" ] = QPrinter::Letter ;
-	mapPSize[ "Tabloid" ] = QPrinter::Tabloid ;
-	mapPSize[ "Custom" ] = QPrinter::Custom ;
+	mapPSize[ "A0" ] = QPageSize::A0 ;
+	mapPSize[ "A1" ] = QPageSize::A1 ;
+	mapPSize[ "A2" ] = QPageSize::A2 ;
+	mapPSize[ "A3" ] = QPageSize::A3 ;
+	mapPSize[ "A4" ] = QPageSize::A4 ;
+	mapPSize[ "A5" ] = QPageSize::A5 ;
+	mapPSize[ "A6" ] = QPageSize::A6 ;
+	mapPSize[ "A7" ] = QPageSize::A7 ;
+	mapPSize[ "A8" ] = QPageSize::A8 ;
+	mapPSize[ "A9" ] = QPageSize::A9 ;
+	mapPSize[ "B0" ] = QPageSize::B0 ;
+	mapPSize[ "B1" ] = QPageSize::B1 ;
+	mapPSize[ "B10" ] = QPageSize::B10 ;
+	mapPSize[ "B2" ] = QPageSize::B2 ;
+	mapPSize[ "B3" ] = QPageSize::B3 ;
+	mapPSize[ "B4" ] = QPageSize::B4 ;
+	mapPSize[ "B5" ] = QPageSize::B5 ;
+	mapPSize[ "B6" ] = QPageSize::B6 ;
+	mapPSize[ "B7" ] = QPageSize::B7 ;
+	mapPSize[ "B8" ] = QPageSize::B8 ;
+	mapPSize[ "B9" ] = QPageSize::B9 ;
+	mapPSize[ "Letter" ] = QPageSize::Letter ;
+	mapPSize[ "Tabloid" ] = QPageSize::Tabloid ;
+	mapPSize[ "Custom" ] = QPageSize::Custom ;
 
 
 
@@ -63,7 +65,7 @@ FontBook::FontBook()
 	if(sf.open(QIODevice::ReadOnly))
 	{
 		QString ss(QString::fromUtf8(sf.readAll()));
-		stringList = ss.split("\n", QString::SkipEmptyParts);
+		stringList = ss.split("\n", Qt::SkipEmptyParts);
 	}
 	else
 	{
@@ -87,7 +89,7 @@ FontBook::~FontBook()
 void FontBook::doBook(FontBook::Style s)
 {
 	printer = new QPrinter( QPrinter::HighResolution );
-	printerRect = printer->paperRect(QPrinter::Point);
+	printerRect = printer->pageLayout().fullRectPoints();
 	QPrintDialog dialog(printer);
 	dialog.setWindowTitle("Fontmatrix - " + tr("Print Fontbook"));
 
@@ -123,7 +125,7 @@ void FontBook::doFullBook()
 
 	progress->setLabel(QString("-"), 0);
 	progress->setLabel(QString("-"), 1);
-	progress->setMax(FMFontDb::DB()->getFilteredFonts(true).count(), 0);
+	progress->setMax(FMFontDb::DB()->getFilteredFonts(true).size(), 0);
 	progress->setMax(0, 1);
 	progress->show();
 
@@ -155,14 +157,14 @@ void FontBook::doFullBookCover()
 	int module(250);
 	double x(0);
 	double y(0);
-	double fsize(qrand() % module);
-	int gray(qrand() % 160);
+	double fsize(QRandomGenerator::global()->bounded(module));
+	int gray(QRandomGenerator::global()->bounded(160));
 	foreach(FontItem * f, FMFontDb::DB()->getFilteredFonts())
 	{
 		int lc(f->lastChar());
-		int charcode(qrand() % lc);
+		int charcode(QRandomGenerator::global()->bounded(lc));
 		while(!f->hasCharcode(charcode))
-			charcode = qrand() % lc;
+			charcode = QRandomGenerator::global()->bounded(lc);
 
 		QGraphicsPathItem *p(f->itemFromChar(charcode, fsize));
 		if(p->data(GLYPH_DATA_ERROR).toBool())
@@ -171,14 +173,14 @@ void FontBook::doFullBookCover()
 			continue;
 		}
 		pScene.addItem(p);
-		p->setPos(x + (qrand() % qRound(printerRect.width())), y + (qrand() % qRound(printerRect.height())));
+		p->setPos(x + QRandomGenerator::global()->bounded(qRound(printerRect.width())), y + QRandomGenerator::global()->bounded(qRound(printerRect.height())));
 		p->setBrush(QColor(gray,  gray,  gray));
 		p->setPen(Qt::NoPen);
-		gray = qrand() % 160;
-		fsize = qrand() % module;
+		gray = QRandomGenerator::global()->bounded(160);
+		fsize = QRandomGenerator::global()->bounded(module);
 	}
 
-	pScene.render(painter, printer->paperRect(), printerRect);
+	pScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
 }
 
 void FontBook::doFullBookPageRight(const QString &family)
@@ -202,32 +204,32 @@ void FontBook::doFullBookPageRight(const QString &family)
 	QString iString(stringList.join(" "));
 	QStringList stl;
 	QList<int> sizes;
-	if(familyFonts.count() > 1)
+	if(familyFonts.size() > 1)
 	{
-		int module(familyFonts.count() * 2);
-		int idxS( qrand() %  qMax(1, iString.count() / 3) );
-		int idxE( qMax( qMax(2,familyFonts.count()), qrand() % module) );
-		while(stl.count() < familyFonts.count())
+		int module(familyFonts.size() * 2);
+		int idxS( QRandomGenerator::global()->bounded( qMax(1, iString.size() / 3) ));
+		int idxE( qMax( qMax(2,familyFonts.size()), QRandomGenerator::global()->bounded(module) ));
+		while(stl.size() < familyFonts.size())
 		{
-			if((idxS + idxE) < iString.count())
+			if((idxS + idxE) < iString.size())
 			{
 				QString t(iString.mid(idxS,idxE).simplified());
 
-				if((t.count() >= 2)
+				if((t.size() >= 2)
 					&& !stl.contains(t)
-					&& !sizes.contains(t.count()))
+					&& !sizes.contains(t.size()))
 					{
 					qDebug()<<"\t"<<t;
-					sizes << t.count();
+					sizes << t.size();
 					stl << t;
 				}
 				idxS = idxE;
-				idxE = qMax( familyFonts.count(), qrand() % module);
+				idxE = qMax( familyFonts.size(), (int)QRandomGenerator::global()->bounded(module));
 			}
 			else
 			{
-				idxS = qrand() %  (qMax(1, iString.count() / 3));
-				idxE = qMax( familyFonts.count(), qrand() % module);
+				idxS = QRandomGenerator::global()->bounded( qMax(1, iString.size() / 3));
+				idxE = qMax( familyFonts.size(), (int)QRandomGenerator::global()->bounded(module));
 			}
 		}
 	}
@@ -235,16 +237,16 @@ void FontBook::doFullBookPageRight(const QString &family)
 	{
 		QStringList monoList;
 		monoList << "Ab" << "Cd" << "Ef" << "Gh" << "Ij" << "Kl" << "Mn" << "Op" << "Qr" << "St" << "Uv" << "Xy" << "Za";
-		stl << monoList.at(qrand() % monoList.count());
+		stl << monoList.at(QRandomGenerator::global()->bounded(monoList.size()));
 	}
-	int diff ( familyFonts.count()  );
+	int diff ( familyFonts.size()  );
 	for (int i(0); i < diff; ++i)
 	{
-		sampleString[i] = stl[ i/* % stl.count() */];
+		sampleString[i] = stl[ i/* % stl.size() */];
 	}
 
 	// first we’ll get widths for font size 1000
-	for(int fidx(0); fidx < familyFonts.count(); ++fidx)
+	for(int fidx(0); fidx < familyFonts.size(); ++fidx)
 	{
 		sampleFont[fidx] = familyFonts[fidx];
 		bool rasterState(sampleFont[fidx]->rasterFreetype());
@@ -271,7 +273,7 @@ void FontBook::doFullBookPageRight(const QString &family)
 	QFont nameFont;
 	nameFont.setPointSizeF(5.0);
 
-	for(int fidx(0); fidx < familyFonts.count(); ++fidx)
+	for(int fidx(0); fidx < familyFonts.size(); ++fidx)
 	{
 		double fSize( (defWidth * 1000.0) /  logWidth[fidx]);
 		double fAscend(logAscend[fidx] * fSize / 1000.0);
@@ -306,7 +308,7 @@ void FontBook::doFullBookPageRight(const QString &family)
 		yPos += nameText->boundingRect().height();
 	}
 	pScene.addLine(QLineF(QPointF(xOff, defHeight + 30.0), QPointF(xOff + defWidth,  defHeight + 30.0)));
-	pScene.render(painter, printer->paperRect(), printerRect);
+	pScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
 
 	/** END OF decorative multi sized samples */
 
@@ -359,13 +361,13 @@ void FontBook::doFullBookPageRight(const QString &family)
 	rFont->setFTRaster(rasterState);
 
 //	qDebug()<<"R"<<colRectLayout<<colLeftRect<<layoutLeft->getRect()<<printerRect;
-	layoutLeftScene.render(painter, printer->paperRect(), printerRect);
-	layoutRightScene.render(painter, printer->paperRect(), printerRect);
+	layoutLeftScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
+	layoutRightScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
 	/** END of paragraph preview */
 
 
 	// DEBUG
-//	QImage image(printer->paperRect(QPrinter::Point).size().toSize(), QImage::Format_ARGB32);
+//	QImage image(printer->pageLayout().fullRectPoints().size().toSize(), QImage::Format_ARGB32);
 //	QPainter debugPainter(&image);
 //	pScene.render(&debugPainter);
 //	layoutLeftScene.render(&debugPainter);
@@ -391,14 +393,14 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 	double yPos(printerRect.height() * 0.20);
 	double maxYPos(0);
 	int colBreak(0);
-	if(familyFonts.count() <= 60)
+	if(familyFonts.size() <= 60)
 	{
-		if((familyFonts.count() % 4) == 0)
-			colBreak = familyFonts.count() / 4;
+		if((familyFonts.size() % 4) == 0)
+			colBreak = familyFonts.size() / 4;
 		else
-			colBreak = qMax( 1, familyFonts.count() / 3);
+			colBreak = qMax( 1, familyFonts.size() / 3);
 		double colunit(100);
-		for(int fidx(0); fidx < familyFonts.count(); ++fidx)
+		for(int fidx(0); fidx < familyFonts.size(); ++fidx)
 		{
 			if((fidx >= colBreak) && ((fidx % colBreak) == 0))
 			{
@@ -469,7 +471,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 			}
 		}
 
-		if(llist.count() > 0)
+		if(llist.size() > 0)
 		{
 			nameFont.setPointSizeF(6.0);
 			QGraphicsSimpleTextItem * uniText( pScene.addSimpleText(tr("Unicode coverage") , nameFont) );
@@ -483,7 +485,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 		// OpenType
 
 
-		pScene.render(painter, printer->paperRect(), printerRect);
+		pScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
 		return true;
 	}
 	else // think Kepler :)
@@ -491,7 +493,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 		colBreak = 20;
 		double colunit(100);
 		bool more(false);
-		for(int fidx(0); fidx < familyFonts.count(); ++fidx)
+		for(int fidx(0); fidx < familyFonts.size(); ++fidx)
 		{
 			if((fidx >= colBreak))
 			{
@@ -499,7 +501,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 				{
 					if(fidx == (4 * colBreak))
 					{
-						pScene.render(painter, printer->paperRect(), printerRect);
+						pScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
 						pScene.clear();
 						printer->newPage();
 						more = true;
@@ -533,7 +535,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 
 			yPos +=  12.0 ;
 		}
-		pScene.render(painter, printer->paperRect(), printerRect);
+		pScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
 		return (!more);
 	}
 
@@ -666,13 +668,13 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 
 //	QList<FontItem*> localFontMap = FMFontDb::DB()->getFilteredFonts();
 //	QMap<QString, QList<FontItem*> > keyList;
-//	for ( int i=0; i < localFontMap.count();++i )
+//	for ( int i=0; i < localFontMap.size();++i )
 //	{
 //		keyList[localFontMap[i]->family() ].append ( localFontMap[i] );
 //	}
 
 //	QMap<QString, QList<FontItem*> >::const_iterator kit;
-//	QProgressDialog progress ( QObject::tr ( "Creating font book... " ), QObject::tr ( "cancel" ), 0, keyList.count(), typotek::getInstance() );
+//	QProgressDialog progress ( QObject::tr ( "Creating font book... " ), QObject::tr ( "cancel" ), 0, keyList.size(), typotek::getInstance() );
 //	progress.setWindowModality ( Qt::WindowModal );
 //	int progressindex=0;
 
@@ -698,7 +700,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //		SUBFAMILY_TEXT 100000
 //	*/
 
-//	for ( int pIndex = 0; pIndex < conPage.count(); ++pIndex )
+//	for ( int pIndex = 0; pIndex < conPage.size(); ++pIndex )
 //	{
 //		// 		qDebug()<<"PI"<<pIndex;
 //		if ( conPage[pIndex].textElement.valid )
@@ -708,7 +710,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //			pageReplace["##PAGENUMBER##"] = pageNumStr;
 //			pageReplace["##FAMILY##"] = currentFamily;
 //			pageReplace["##SUBFAMILY##"] = currentSubfamily;
-//			for ( int t = 0; t < tmplines.count(); ++t )
+//			for ( int t = 0; t < tmplines.size(); ++t )
 //			{
 
 //				QString place = tmplines[t];
@@ -717,7 +719,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //				pagelines << place;
 //			}
 //			// 			QFont pFont ( conPage[pIndex].textStyle.font, conPage[pIndex].textStyle.fontsize );
-//			for ( int pl = 0; pl < pagelines.count(); ++pl )
+//			for ( int pl = 0; pl < pagelines.size(); ++pl )
 //			{
 //				QGraphicsTextItem * ti = theScene.addText ( pagelines[pl], qfontCache[conPage[pIndex].textStyle.name] );
 //				renderedText << ti;
@@ -749,12 +751,12 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //			progress.setValue ( ++progressindex );
 //		}
 //		currentFamily = kit.key();
-//		for ( int elemIndex = 0; elemIndex < conFamily.count() ; ++elemIndex )
+//		for ( int elemIndex = 0; elemIndex < conFamily.size() ; ++elemIndex )
 //		{
 //			QStringList familylines;
 //			QStringList tmplines = conFamily[elemIndex].textElement.e.split ( "\n" );
 //			familyReplace["##FAMILY##"] = kit.key();
-//			for ( int t = 0; t < tmplines.count(); ++t )
+//			for ( int t = 0; t < tmplines.size(); ++t )
 //			{
 
 //				QString place = tmplines[t];
@@ -765,7 +767,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //			}
 
 //			double available = ( precty + precth ) - thePos.y();
-//			double needed = ( familylines.count() * conFamily[elemIndex].textStyle.lineheight )
+//			double needed = ( familylines.size() * conFamily[elemIndex].textStyle.lineheight )
 //			                + conFamily[elemIndex].textStyle.margin_top
 //			                + conFamily[elemIndex].textStyle.margin_bottom;
 
@@ -777,11 +779,11 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //				theScene.render ( &thePainter );
 
 //				thePos.ry() = precty;
-//				// 				for ( int  d = 0; d <  renderedFont.count() ; ++d )
+//				// 				for ( int  d = 0; d <  renderedFont.size() ; ++d )
 //				// 					renderedFont[d]->deRenderAll();
-//				for ( int  d = 0; d < renderedGraphic.count(); ++d )
+//				for ( int  d = 0; d < renderedGraphic.size(); ++d )
 //					delete renderedGraphic[d];
-//				for ( int  d = 0; d < renderedText.count(); ++d )
+//				for ( int  d = 0; d < renderedText.size(); ++d )
 //					delete renderedText[d];
 //				renderedFont.clear();
 //				renderedGraphic.clear();
@@ -792,14 +794,14 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //				pageNumStr.setNum ( ++pageNumber );
 
 //				//
-//				for ( int pIndex = 0; pIndex < conPage.count(); ++pIndex )
+//				for ( int pIndex = 0; pIndex < conPage.size(); ++pIndex )
 //				{
 //					QStringList pagelines ;
 //					QStringList tmplines = conPage[pIndex].textElement.e.split ( "\n" );
 //					pageReplace["##PAGENUMBER##"] = pageNumStr;
 //					pageReplace["##FAMILY##"] = currentFamily;
 //					pageReplace["##SUBFAMILY##"] = currentSubfamily;
-//					for ( int t = 0; t < tmplines.count(); ++t )
+//					for ( int t = 0; t < tmplines.size(); ++t )
 //					{
 
 //						QString pageplace = tmplines[t];
@@ -808,7 +810,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //						pagelines << pageplace;
 //					}
 //					// 						QFont pFont ( conPage[pIndex].textStyle.font, conPage[pIndex].textStyle.fontsize );
-//					for ( int pl = 0; pl < pagelines.count(); ++pl )
+//					for ( int pl = 0; pl < pagelines.size(); ++pl )
 //					{
 //						QGraphicsTextItem * ti = theScene.addText ( pagelines[pl], qfontCache[conPage[pIndex].textStyle.name] );
 //						renderedText << ti;
@@ -829,7 +831,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //			}
 
 			
-//			for ( int fl = 0; fl < familylines.count(); ++fl )
+//			for ( int fl = 0; fl < familylines.size(); ++fl )
 //			{
 //				QGraphicsTextItem * ti = theScene.addText ( familylines[fl], qfontCache[conFamily[elemIndex].textStyle.name] );
 //				renderedText << ti;
@@ -851,13 +853,13 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //		} // end of FAMILY level elements
 		
 //		/// Looping through all faces for the current family
-//		for ( int fontIndex = 0;fontIndex < kit.value().count(); ++fontIndex )
+//		for ( int fontIndex = 0;fontIndex < kit.value().size(); ++fontIndex )
 //		{
 //			FontItem * theFont = kit.value() [fontIndex];
 //			FMLayout *alay = new  FMLayout(&theScene , theFont);
 //			/// We are in a SUBFAMILY context
 //			currentSubfamily = theFont->variant();
-//			for ( int elemIndex = 0; elemIndex < conSubfamily.count() ; ++elemIndex )
+//			for ( int elemIndex = 0; elemIndex < conSubfamily.size() ; ++elemIndex )
 //			{
 //				// First, is there enough room for this element
 //				QStringList sublines;
@@ -871,7 +873,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //				subfamilyReplace["##TYPE##"]= theFont->type();
 //				subfamilyReplace["##CHARSETS##"]=theFont->charmaps().join ( ";" );
 
-//				for ( int t = 0; t < tmplines.count(); ++t )
+//				for ( int t = 0; t < tmplines.size(); ++t )
 //				{
 
 //					QString subplace = tmplines[t];
@@ -882,7 +884,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //				}
 
 //				double available = ( precty + precth ) - thePos.y();
-//				double needed (0);/*= ( sublines.count() * conSubfamily[elemIndex].textStyle.lineheight )
+//				double needed (0);/*= ( sublines.size() * conSubfamily[elemIndex].textStyle.lineheight )
 //				                + conSubfamily[elemIndex].textStyle.margin_top
 //				                + conSubfamily[elemIndex].textStyle.margin_bottom;*/
 //				double mwidth( conSubfamily[elemIndex].textStyle.margin_right  - (conSubfamily[elemIndex].textStyle.margin_left + prectx) );
@@ -898,7 +900,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //					if ( conSubfamily[elemIndex].textStyle.font == "_FONTMATRIX_" ) // We’ll use the current font
 //					{
 //						QList<GlyphList> gl;
-//						for ( int sl = 0; sl < sublines.count(); ++sl )
+//						for ( int sl = 0; sl < sublines.size(); ++sl )
 //						{
 //							gl << theFont->glyphs ( sublines[sl].trimmed(), conSubfamily[elemIndex].textStyle.fontsize );
 //						}
@@ -919,7 +921,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //					}
 //					else
 //					{
-//						for ( int sl = 0; sl < sublines.count(); ++sl )
+//						for ( int sl = 0; sl < sublines.size(); ++sl )
 //						{
 							
 //							QGraphicsTextItem gti( sublines[sl]);
@@ -937,11 +939,11 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //					theScene.render ( &thePainter );
 
 //					thePos.ry() = precty;
-//					// 					for ( int  d = 0; d <  renderedFont.count() ; ++d )
+//					// 					for ( int  d = 0; d <  renderedFont.size() ; ++d )
 //					// 						renderedFont[d]->deRenderAll();
-//					for ( int  d = 0; d < renderedGraphic.count(); ++d )
+//					for ( int  d = 0; d < renderedGraphic.size(); ++d )
 //						delete renderedGraphic[d];
-//					for ( int  d = 0; d < renderedText.count(); ++d )
+//					for ( int  d = 0; d < renderedText.size(); ++d )
 //						delete renderedText[d];
 //					renderedFont.clear();
 //					renderedGraphic.clear();
@@ -952,14 +954,14 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //					pageNumStr.setNum ( ++pageNumber );
 
 //					//
-//					for ( int pIndex = 0; pIndex < conPage.count(); ++pIndex )
+//					for ( int pIndex = 0; pIndex < conPage.size(); ++pIndex )
 //					{
 //						QStringList pagelines ;
 //						QStringList tmplines = conPage[pIndex].textElement.e.split ( "\n" );
 //						pageReplace["##PAGENUMBER##"] = pageNumStr;
 //						pageReplace["##FAMILY##"] = currentFamily;
 //						pageReplace["##SUBFAMILY##"] = currentSubfamily;
-//						for ( int t = 0; t < tmplines.count(); ++t )
+//						for ( int t = 0; t < tmplines.size(); ++t )
 //						{
 
 //							QString pageplace = tmplines[t];
@@ -968,7 +970,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //							pagelines << pageplace;
 //						}
 //						// 							QFont pFont ( conPage[pIndex].textStyle.font, conPage[pIndex].textStyle.fontsize );
-//						for ( int pl = 0; pl < pagelines.count(); ++pl )
+//						for ( int pl = 0; pl < pagelines.size(); ++pl )
 //						{
 //							QGraphicsTextItem * ti = theScene.addText ( pagelines[pl], qfontCache[conPage[pIndex].textStyle.name] );
 //							renderedText << ti;
@@ -1005,7 +1007,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //					{
 
 //						QList<GlyphList> gl;
-//						for ( int sl = 0; sl < sublines.count(); ++sl )
+//						for ( int sl = 0; sl < sublines.size(); ++sl )
 //						{
 //							gl << theFont->glyphs ( sublines[sl].trimmed(), conSubfamily[elemIndex].textStyle.fontsize );
 //						}
@@ -1015,7 +1017,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //								 conSubfamily[elemIndex].textStyle.margin_right,
 //								 precth - thePos.y() );
 //						alay->setRect(parRect);
-//						if(renderedFont.count() > 0)
+//						if(renderedFont.size() > 0)
 //						{
 //							alay->setPersistentScene(true);
 //							// 							FMLayout::getLayout()->resetScene();
@@ -1023,7 +1025,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //						else
 //							alay->setPersistentScene(false);
 
-//						//						qDebug()<<"PAR("+theFont->fancyName()+")("<< gl.count() <<")"<<parRect ;
+//						//						qDebug()<<"PAR("+theFont->fancyName()+")("<< gl.size() <<")"<<parRect ;
 //						//						FMLayout::getLayout()->setTheScene ( );
 //						//						FMLayout::getLayout()->setTheFont ( theFont );
 //						alay->setAdjustedSampleInter ( conSubfamily[elemIndex].textStyle.lineheight );
@@ -1038,7 +1040,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //					else
 //					{
 //						// 						QFont aFont ( conSubfamily[elemIndex].textStyle.font,conSubfamily[elemIndex].textStyle.fontsize );
-//						for ( int sl = 0; sl < sublines.count(); ++sl )
+//						for ( int sl = 0; sl < sublines.size(); ++sl )
 //						{
 //							QGraphicsTextItem * ti = theScene.addText ( sublines[sl], qfontCache[ conSubfamily[elemIndex].textStyle.name] );
 //							renderedText << ti;
@@ -1056,17 +1058,17 @@ void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
 //			delete alay;
 //		}
 //	}
-//	if ( renderedFont.count() )
+//	if ( renderedFont.size() )
 //	{
 //		theScene.render ( &thePainter );
-//		for ( int  d = 0; d <  renderedFont.count() ; ++d )
+//		for ( int  d = 0; d <  renderedFont.size() ; ++d )
 //		{
 //			renderedFont[d]->deRenderAll();
 
 //		}
-//		for ( int  d = 0; d < renderedGraphic.count(); ++d )
+//		for ( int  d = 0; d < renderedGraphic.size(); ++d )
 //			delete renderedGraphic[d];
-//		for ( int  d = 0; d < renderedText.count(); ++d )
+//		for ( int  d = 0; d < renderedText.size(); ++d )
 //			delete renderedText[d];
 //		renderedFont.clear();
 //		renderedGraphic.clear();

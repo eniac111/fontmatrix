@@ -49,9 +49,9 @@ for which a new license (GPL+exception) is in place.
 #include <QPushButton>
 #include <QString>
 #include <QStandardItem>
+#include <QDomDocument>
 #include <QTextEdit>
 #include <QTreeView>
-#include <QXmlDefaultHandler>
 
 #include <QDebug>
 
@@ -59,77 +59,6 @@ for which a new license (GPL+exception) is in place.
 #include "typotek.h"
 #include "fmpaths.h"
 
-/*! \brief XML parsef for documantation history.
-This is small helper class which reads saved bookmarks configuration
-from ~/.scribus/doc/history.xml file.
-The reference to historyBrowser is a reference to the dialog.
-\author Petr Vanek <petr@yarpen.cz>
-*/
-class HistoryParser2 : public QXmlDefaultHandler
-{
-	public:
-		HelpBrowser *helpBrowser;
-
-		bool startDocument()
-		{
-			return true;
-		}
-
-		bool startElement(const QString&, const QString&, const QString& qName, const QXmlAttributes& attrs)
-		{
-			if (qName == "item")
-			{
-				struct histd2 his;
-				his.title = attrs.value(0);
-				his.url = attrs.value(1);
-				helpBrowser->mHistory[helpBrowser->histMenu->addAction(his.title)] = his;
-			}
-			return true;
-		}
-
-		bool endElement(const QString&, const QString&, const QString&)
-		{
-			return true;
-		}
-};
-
-/*! \brief XML parsef for documantation bookmarks.
-This is small helper class which reads saved bookmarks configuration
-from ~/.scribus/doc/bookmarks.xml file.
-The reference to QListView *view is a reference to the list view with bookmarks
-\author Petr Vanek <petr@yarpen.cz>
-*/
-class BookmarkParser2 : public QXmlDefaultHandler
-{
-	public:
-		QTreeWidget* view;
-		QMap<QString, QString>* quickHelpIndex;
-		QMap<QString, QPair<QString, QString> >* bookmarkIndex;
-
-		bool startDocument()
-		{
-			return true;
-		}
-
-		bool startElement(const QString&, const QString&, const QString& qName, const QXmlAttributes& attrs)
-		{
-			if (qName == "item")
-			{
-				//TODO : This will dump items if bookmarks get loaded into a different GUI language
-				if (quickHelpIndex->contains(attrs.value(1)))
-				{
-					bookmarkIndex->insert(attrs.value(0), qMakePair(attrs.value(1), attrs.value(2)));
-					view->addTopLevelItem(new QTreeWidgetItem(view, QStringList() << attrs.value(0)));
-				}
-			}
-			return true;
-		}
-
-		bool endElement(const QString&, const QString&, const QString&)
-		{
-			return true;
-		}
-};
 
 bool HelpBrowser::firstRun=true;
 
@@ -179,7 +108,6 @@ void HelpBrowser::closeEvent(QCloseEvent * event)
 	if (bookFile.open(QIODevice::WriteOnly))
 	{
 		QTextStream stream(&bookFile);
-		stream.setCodec("UTF-8");
 		stream << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 		stream << "<bookmarks>\n";
 		QTreeWidgetItemIterator it(bookmarksView);
@@ -201,7 +129,6 @@ void HelpBrowser::closeEvent(QCloseEvent * event)
 	if (histFile.open(QIODevice::WriteOnly))
 	{
 		QTextStream stream(&histFile);
-		stream.setCodec("UTF-8");
 		stream << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 		stream << "<history>\n";
 		for (QMap<QAction*,histd2>::Iterator it = mHistory.begin() ; it != mHistory.end(); ++it)
@@ -226,13 +153,13 @@ void HelpBrowser::setupLocalUI()
 	histMenu=new QMenu(this);
 
 	//Add Menu items
-	filePrint=fileMenu->addAction(QIcon(":/help/document-print.png"), "", this, SLOT(print()), Qt::CTRL+Qt::Key_P);
+	filePrint=fileMenu->addAction(QIcon(":/help/document-print.png"), "", QKeySequence(Qt::CTRL | Qt::Key_P), this, SLOT(print()));
 	fileMenu->addSeparator();
 	fileExit=fileMenu->addAction(QIcon(":/help/exit.png"), "", this, SLOT(close()));
-	editFind=editMenu->addAction(QIcon(":/help/find.png"), "", this, SLOT(find()), Qt::CTRL+Qt::Key_F);
-	editFindNext=editMenu->addAction( "", this, SLOT(findNext()), Qt::Key_F3);
-	editFindPrev=editMenu->addAction( "", this, SLOT(findPrevious()), Qt::SHIFT+Qt::Key_F3);
-	bookAdd=bookMenu->addAction( "", this, SLOT(bookmarkButton_clicked()), Qt::CTRL+Qt::Key_D);
+	editFind=editMenu->addAction(QIcon(":/help/find.png"), "", QKeySequence(Qt::CTRL | Qt::Key_F), this, SLOT(find()));
+	editFindNext=editMenu->addAction( "", QKeySequence(Qt::Key_F3), this, SLOT(findNext()));
+	editFindPrev=editMenu->addAction( "", QKeySequence(Qt::SHIFT | Qt::Key_F3), this, SLOT(findPrevious()));
+	bookAdd=bookMenu->addAction( "", QKeySequence(Qt::CTRL | Qt::Key_D), this, SLOT(bookmarkButton_clicked()));
 	bookDel=bookMenu->addAction( "", this, SLOT(deleteBookmarkButton_clicked()));
 	bookDelAll=bookMenu->addAction( "", this, SLOT(deleteAllBookmarkButton_clicked()));
 
@@ -392,7 +319,7 @@ void HelpBrowser::findNext()
 		return;
 	}
 	// find it. finally
-	textBrowser->findText(findText, 0);
+	textBrowser->findText(findText, QWebEnginePage::FindFlags());
 }
 
 void HelpBrowser::findPrevious()
@@ -556,26 +483,46 @@ void HelpBrowser::loadMenu()
 
 void HelpBrowser::readBookmarks()
 {
-	BookmarkParser2 handler;
-	handler.view = bookmarksView;
-	handler.quickHelpIndex=&quickHelpIndex;
-	handler.bookmarkIndex=&bookmarkIndex;
 	QFile xmlFile(bookmarkFile());
-	QXmlInputSource source(&xmlFile);
-	QXmlSimpleReader reader;
-	reader.setContentHandler(&handler);
-	reader.parse(source);
+	if (!xmlFile.open(QIODevice::ReadOnly))
+		return;
+	QDomDocument doc;
+	if (!doc.setContent(&xmlFile))
+		return;
+	xmlFile.close();
+	QDomNodeList items = doc.elementsByTagName("item");
+	for (int i = 0; i < items.count(); ++i)
+	{
+		QDomElement el = items.at(i).toElement();
+		QString title = el.attribute("title");
+		QString pagetitle = el.attribute("pagetitle");
+		QString url = el.attribute("url");
+		if (quickHelpIndex.contains(pagetitle))
+		{
+			bookmarkIndex.insert(title, qMakePair(pagetitle, url));
+			bookmarksView->addTopLevelItem(new QTreeWidgetItem(bookmarksView, QStringList() << title));
+		}
+	}
 }
 
 void HelpBrowser::readHistory()
 {
- 	HistoryParser2 handler;
- 	handler.helpBrowser = this;
- 	QFile xmlFile(historyFile());
- 	QXmlInputSource source(&xmlFile);
- 	QXmlSimpleReader reader;
- 	reader.setContentHandler(&handler);
- 	reader.parse(source);
+	QFile xmlFile(historyFile());
+	if (!xmlFile.open(QIODevice::ReadOnly))
+		return;
+	QDomDocument doc;
+	if (!doc.setContent(&xmlFile))
+		return;
+	xmlFile.close();
+	QDomNodeList items = doc.elementsByTagName("item");
+	for (int i = 0; i < items.count(); ++i)
+	{
+		QDomElement el = items.at(i).toElement();
+		struct histd2 his;
+		his.title = el.attribute("title");
+		his.url = el.attribute("url");
+		mHistory[histMenu->addAction(his.title)] = his;
+	}
 }
 
 void HelpBrowser::setText(const QString& str)
@@ -587,10 +534,9 @@ void HelpBrowser::itemSelected(const QItemSelection & selected, const QItemSelec
 {
 	Q_UNUSED(deselected);
 
-	QModelIndex index;
 	QModelIndexList items = selected.indexes();
 	int i=0;
-	foreach (index, items)
+	for (const QModelIndex &index : items)
 	{
 		if (i==1) // skip 0, as this is always the rootitem, even if we are selecting the rootitem. hmm
 		{

@@ -1,7 +1,11 @@
 # Fontmatrix ./CMakeLists.txt v1
 
-PROJECT(fontmatrix) # the name of your project
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
+PROJECT(fontmatrix)
+
+if(POLICY CMP0177)
+  cmake_policy(SET CMP0177 NEW)
+endif()
 
 SET (VERSION_MAJOR "0")
 SET (VERSION_MINOR "9")
@@ -106,20 +110,16 @@ ELSE(CMAKE_BUILD_TYPE STREQUAL "Debug")
 ENDIF(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
 # A lot from Scribus
-#<< Qt 
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Svg REQUIRED)
-find_package(Qt5Sql REQUIRED)
-find_package(Qt5Xml REQUIRED)
-find_package(Qt5PrintSupport REQUIRED)
-find_package(Qt5WebKitWidgets REQUIRED)
-find_package(Qt5LinguistTools REQUIRED)
+#<< Qt
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Svg SvgWidgets Sql Xml PrintSupport WebEngineWidgets LinguistTools)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 #>> Qt
 
 SET(HARFBUZZ_DIR harfbuzz/src)
 ADD_SUBDIRECTORY(${HARFBUZZ_DIR})
-MESSAGE(STATUS "Adding "${CMAKE_SOURCE_DIR}/${HARFBUZZ_DIR})
+MESSAGE(STATUS "Adding ${CMAKE_SOURCE_DIR}/${HARFBUZZ_DIR}")
 SET(HARFBUZZ_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/${HARFBUZZ_DIR})
 
 # SET(PUZZLE_DIR libpuzzle/src)
@@ -150,7 +150,6 @@ IF(WANT_PYTHONQT)
 ENDIF(WANT_PYTHONQT)
 
 IF(UNIX AND NOT APPLE)
-	SET(FONTCONFIG_DIR ${CMAKE_MODULE_PATH})
 	FIND_PACKAGE(FONTCONFIG)
 	IF(FONTCONFIG_FOUND)
 		MESSAGE(STATUS "FontConfig Found OK")

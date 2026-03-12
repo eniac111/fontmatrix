@@ -32,7 +32,7 @@
 #define BROWSER_VIEW_SAMPLE	1
 #define BROWSER_VIEW_CHART	2
 
-class QDirModel;
+class QFileSystemModel;
 class QFileSystemWatcher;
 class FloatingWidget;
 class FolderViewMenu;
@@ -62,7 +62,7 @@ private:
 	unsigned int currentPage;
 	QString uniBlock;
 
-	QDirModel *theDirModel;
+	QFileSystemModel *theDirModel;
 	QStringList ffilter;
 	QFileSystemWatcher *dirWatcher;
 	QModelIndex currentFIndex;

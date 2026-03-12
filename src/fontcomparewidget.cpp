@@ -142,7 +142,7 @@ void FontCompareWidget::addFont()
 	witem->setData(Qt::UserRole, f->path());
 	witem->setToolTip(f->path()); // Here we say: « Deux fois valent mieux qu’une !»
 	compareList->addItem(witem);
-	compareList->setItemSelected(witem, true);
+	witem->setSelected(true);
 	
 	int r(compareList->row(witem));
 	compareView->changeFont(compareList->row(witem), f);

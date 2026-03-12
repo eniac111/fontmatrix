@@ -55,12 +55,9 @@
     </widget>
    </item>
   </layout>
-  <zorder>listWidget</zorder>
-  <zorder>tableView</zorder>
-  <zorder>pushButton</zorder>
-  <zorder>horizontalSpacer</zorder>
   <zorder>label</zorder>
   <zorder>errorTable</zorder>
+  <zorder>pushButton</zorder>
  </widget>
  <resources/>
  <connections>

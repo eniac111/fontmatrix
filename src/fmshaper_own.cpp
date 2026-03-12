@@ -88,7 +88,7 @@ int FMOwnShaper::loadRules(QString lang)
 			continue;
 		
 		QList<QByteArray> elems = line.split ( '|' );
-		if(elems.count() > 0)
+		if(elems.size() > 0)
 		{
 			bool ok;
 			int unicode = elems.takeFirst().mid(0,4).toInt(&ok,16) ;
@@ -105,7 +105,7 @@ int FMOwnShaper::loadRules(QString lang)
 			continue;
 		
 		QList<QString> elems = line.split ( '|' );
-		if(elems.count() == 2)
+		if(elems.size() == 2)
 		{
 			Matches.append(MatchSequence());
 			Replacements.append(ReplaceSequence());
@@ -122,7 +122,7 @@ void FMOwnShaper::fillIn(const QString& s)
 {
 	QStringList debug;
 	In.clear();
-	for(int i(0); i < s.count(); ++i)
+	for(int i(0); i < s.size(); ++i)
 	{
 		if(Dictionnary.contains(s[i].unicode()))
 		{
@@ -152,11 +152,11 @@ void FMOwnShaper::Op()
 	QList< QPair< int, QList< Character > > > chunks;
 	int idx(0);
 	bool matched;
-	while( idx < In.count() )
+	while( idx < In.size() )
 	{
 		matched = false;
 		// We begin at 1 since index 0 is NOOP
-		for(int nm(1); nm < Matches.count(); ++nm)
+		for(int nm(1); nm < Matches.size(); ++nm)
 		{
 			int rc = Compare( idx , nm);
 			if(rc > 0)
@@ -201,10 +201,10 @@ void FMOwnShaper::Op()
 /// Return 0 if not matched and number of consumed positions if it matched 
 int FMOwnShaper::Compare(int inIndex, int matchIndex)
 {
-	int matchLen = Matches.at(matchIndex).Properties.count();
+	int matchLen = Matches.at(matchIndex).Properties.size();
 	// We need to keep track of matched chars over "."
 	QList<int> matchedGroup;
-	if(matchLen > (In.count() - inIndex))
+	if(matchLen > (In.size() - inIndex))
 		return 0;
 	for(int i(0); i < matchLen; ++i)
 	{
@@ -326,7 +326,7 @@ void FMOwnShaper::Replace(int repIndex, QList< Character > chunk)
 void FMOwnShaper::DumpOut()
 {
 // 	qDebug()<<"FMOwnShaper::DumpOut()";
-	for(int i(0); i < Out.count(); ++i)
+	for(int i(0); i < Out.size(); ++i)
 	{
 		qDebug()<<"Unicode("<< QString::number(Out[i].unicode(), 16 ) <<").["<< Out[i].DumpCustom() <<"]";
 	}
@@ -340,7 +340,7 @@ void FMOwnShaper::DumpOut()
 Character::Character(int unicode, QList< QByteArray > tokens)
 	:QChar(unicode),MatchAll(false),isMatchedGroup(false)
 {
-	for(int i(0); i < tokens.count(); ++i)
+	for(int i(0); i < tokens.size(); ++i)
 		AddProperty( QString(tokens[i].trimmed()));
 }
 
@@ -348,7 +348,7 @@ Character::Character(int unicode, QList< QByteArray > tokens)
 Character::Character(int unicode, QStringList tokens)
 	:QChar(unicode),MatchAll(false),isMatchedGroup(false)
 {
-	for(int i(0); i < tokens.count(); ++i)
+	for(int i(0); i < tokens.size(); ++i)
 		AddProperty( QString(tokens[i].trimmed()));
 }
 
@@ -392,7 +392,7 @@ void MatchSequence::SetMatch(const QString &b)
 	
 	QString ref(b);
 // 	qDebug()<<"SetMatch("+ref+")";
-	for(int idx(0); idx < ref.count(); ++idx)
+	for(int idx(0); idx < ref.size(); ++idx)
 	{
 		QChar current(ref[idx]);
 		if(current == 'U') // a code point
@@ -403,15 +403,15 @@ void MatchSequence::SetMatch(const QString &b)
 			if(!ok)
 				qDebug()<<"Oops";
 			idx += 4;
-			if(ref[idx] == '(')// property list
+			if(idx < ref.size() && ref[idx] == '(')// property list
 			{
 				QStringList pList;
 				int countChars(0);
-				while(ref[idx + countChars] != ')')
+				while(idx + countChars < ref.size() && ref[idx + countChars] != ')')
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", QString::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
 				foreach(QString prop, pl)
 				{
 					pList << prop.trimmed();
@@ -419,15 +419,15 @@ void MatchSequence::SetMatch(const QString &b)
 				idx += countChars;
 				Properties << Character(unicode, pList);
 			}
-			else if(ref[idx] == '[')// property list with exact match
+			else if(idx < ref.size() && ref[idx] == '[')// property list with exact match
 			{
 				QStringList pList;
 				int countChars(0);
-				while(ref[idx + countChars] != ']')
+				while(idx + countChars < ref.size() && ref[idx + countChars] != ']')
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", QString::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
 				foreach(QString prop, pl)
 				{
 					pList << prop.trimmed();
@@ -448,16 +448,16 @@ void MatchSequence::SetMatch(const QString &b)
 		{
 			int unicode = 0 ;
 			++idx;
-			
-			if(ref[idx] == '(')// property list
+
+			if(idx < ref.size() && ref[idx] == '(')// property list
 			{
 				QStringList pList;
 				int countChars(0);
-				while(ref[idx + countChars] != ')')
+				while(idx + countChars < ref.size() && ref[idx + countChars] != ')')
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", QString::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
 				foreach(QString prop, pl)
 				{
 					pList << prop.trimmed();
@@ -465,15 +465,15 @@ void MatchSequence::SetMatch(const QString &b)
 				idx += countChars;
 				Properties << Character(unicode, pList);
 			}
-			else if(ref[idx] == '[')// property list with exact match
+			else if(idx < ref.size() && ref[idx] == '[')// property list with exact match
 			{
 				QStringList pList;
 				int countChars(0);
-				while(ref[idx + countChars] != ']')
+				while(idx + countChars < ref.size() && ref[idx + countChars] != ']')
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", QString::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
 				foreach(QString prop, pl)
 				{
 					pList << prop.trimmed();
@@ -500,7 +500,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 {
 	QString ref(b);
 // 	qDebug()<<"SetReplace("+ref+")";
-	for(int idx(0); idx < ref.count(); ++idx)
+	for(int idx(0); idx < ref.size(); ++idx)
 	{
 		QChar current(ref[idx]);
 		if(current == 'U') // a code point
@@ -511,7 +511,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 			if(!ok)
 				qDebug()<<"Oops";
 			idx += 4;
-			if(ref[idx] != '(')
+			if(idx >= ref.size() || ref[idx] != '(')
 			{
 				--idx;
 				Properties << Character(unicode);
@@ -520,11 +520,11 @@ void ReplaceSequence::SetReplace(const QString& b)
 			{
 				QStringList pList;
 				int countChars(0);
-				while(ref[idx + countChars] != ')')
+				while(idx + countChars < ref.size() && ref[idx + countChars] != ')')
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", QString::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
 				foreach(QString prop, pl)
 				{
 					pList << prop.trimmed();
@@ -546,20 +546,20 @@ void ReplaceSequence::SetReplace(const QString& b)
 			Properties.last().GroupIndex = group;
 			++idx;
 			
-			if(ref[idx] != '(')
+			if(idx >= ref.size() || ref[idx] != '(')
 			{
 				--idx;
-				
+
 			}
 			else // property list
 			{
 				QStringList pList;
 				int countChars(0);
-				while(ref[idx + countChars] != ')')
+				while(idx + countChars < ref.size() && ref[idx + countChars] != ')')
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", QString::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
 				foreach(QString prop, pl)
 				{
 					pList << prop.trimmed();
@@ -586,7 +586,7 @@ QList< Character > FMOwnShaper::GetShaped()
 QString FMOwnShaper::CleanRule(QString rule)
 {
 	QString ret;
-	int len( rule.count() );
+	int len( rule.size() );
 	for(int i(0); i < len; ++i)
 	{
 		if(!rule[i].isSpace())

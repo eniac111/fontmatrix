@@ -12,7 +12,7 @@
   <property name="windowTitle" >
    <string>Database repair</string>
   </property>
-  <layout class="QGridLayout" >
+  <layout class="QGridLayout" name="gridLayout_2">
    <item row="1" column="0" >
     <layout class="QHBoxLayout" >
      <item>
@@ -46,7 +46,7 @@
       <attribute name="title" >
        <string>Dead links</string>
       </attribute>
-      <layout class="QGridLayout" >
+      <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0" colspan="3" >
         <widget class="QListWidget" name="deadList" >
          <property name="sizePolicy" >
@@ -90,7 +90,7 @@
       <attribute name="title" >
        <string>Activated Not Linked</string>
       </attribute>
-      <layout class="QGridLayout" >
+      <layout class="QGridLayout" name="gridLayout_4">
        <item row="0" column="0" colspan="4" >
         <widget class="QListWidget" name="actNotLinkList" >
          <property name="sizePolicy" >
@@ -141,7 +141,7 @@
       <attribute name="title" >
        <string>Deactivated Linked</string>
       </attribute>
-      <layout class="QGridLayout" >
+      <layout class="QGridLayout" name="gridLayout_5">
        <item row="0" column="0" colspan="4" >
         <widget class="QListWidget" name="deactLinkList" >
          <property name="sizePolicy" >

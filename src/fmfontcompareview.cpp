@@ -476,19 +476,20 @@ void FMFontCompareView::mouseMoveEvent(QMouseEvent * e)
 
 void FMFontCompareView::wheelEvent(QWheelEvent * e)
 {
-	if ( e->modifiers().testFlag ( Qt::ControlModifier ) && e->orientation() == Qt::Vertical )
+	QPoint angleDelta = e->angleDelta();
+	if ( e->modifiers().testFlag ( Qt::ControlModifier ) && angleDelta.y() != 0 )
 	{
-		double d(  1.0 + ( static_cast<double>(e->delta()) / 1000.0 ) );
+		double d(  1.0 + ( static_cast<double>(angleDelta.y()) / 1000.0 ) );
 		QTransform trans;
 		trans.scale ( d,d );
 		setTransform(trans,true);
 	}
 	else
 	{
-		if ( e->orientation() == Qt::Vertical )
-			verticalScrollBar()->setValue ( verticalScrollBar()->value() - e->delta() );
-		if ( e->orientation() == Qt::Horizontal )
-			horizontalScrollBar()->setValue ( horizontalScrollBar()->value() - e->delta() );
+		if ( angleDelta.y() != 0 )
+			verticalScrollBar()->setValue ( verticalScrollBar()->value() - angleDelta.y() );
+		if ( angleDelta.x() != 0 )
+			horizontalScrollBar()->setValue ( horizontalScrollBar()->value() - angleDelta.x() );
 	}
 	updateGlyphs();
 }
@@ -510,10 +511,10 @@ void FMFontCompareView::fitGlyphsView()
 	double shape_ratio(qMin(hratio, vratio) * 0.9);
 	double view_ratio(qMin(hratio, vratio) * 1.5);
 	
-	setMatrix(QMatrix(),false);
+	setTransform(QTransform());
 	scale(shape_ratio, shape_ratio);
-		
-	QMatrix m;
+
+	QTransform m;
 	m.scale(view_ratio, view_ratio );
 	QRectF vr(m.mapRect(maxrect));
 	ensureVisible(vr);

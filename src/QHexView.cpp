@@ -86,12 +86,7 @@ void QHexView::setShowAddressSeparator(bool value) {
 // Desc: destructor
 //------------------------------------------------------------------------------
 QString QHexView::formatAddress(address_t address) {
-	QString ret;
-#if QT_POINTER_SIZE == 4
-	ret.sprintf(m_AddressFormatString, (address >> 16) & 0xffff, address & 0xffff);
-#elif QT_POINTER_SIZE == 8
-	ret.sprintf(m_AddressFormatString, (address >> 32) & 0xffffffff, address & 0xffffffff);
-#endif
+	QString ret = QString::asprintf(m_AddressFormatString, (address >> 16) & 0xffff, address & 0xffff);
 	return ret;
 }
 
@@ -587,8 +582,8 @@ int QHexView::pixelToWord(int x, int y) const {
 //------------------------------------------------------------------------------
 void QHexView::mouseDoubleClickEvent(QMouseEvent * event) {
 	if(event->button() == Qt::LeftButton) {
-		const int x = event->x();
-		const int y = event->y();
+		const int x = event->position().x();
+		const int y = event->position().y();
 		if(x >= line1() && x < line2()) {
 
 			m_Highlighting = Highlighting_Data;
@@ -613,8 +608,8 @@ void QHexView::mouseDoubleClickEvent(QMouseEvent * event) {
 //------------------------------------------------------------------------------
 void QHexView::mousePressEvent(QMouseEvent *event) {
 	if(event->button() == Qt::LeftButton) {
-		const int x = event->x();
-		const int y = event->y();
+		const int x = event->position().x();
+		const int y = event->position().y();
 
 		if(x < line2()) {
 			m_Highlighting = Highlighting_Data;
@@ -644,8 +639,8 @@ void QHexView::mousePressEvent(QMouseEvent *event) {
 //------------------------------------------------------------------------------
 void QHexView::mouseMoveEvent(QMouseEvent *event) {
 	if(m_Highlighting != Highlighting_None) {
-		const int x = event->x();
-		const int y = event->y();
+		const int x = event->position().x();
+		const int y = event->position().y();
 
 		const int offset = pixelToWord(x, y);
 
@@ -788,19 +783,19 @@ void QHexView::drawHexDump(QPainter &painter, unsigned int offset, unsigned int 
 			switch(m_WordWidth) {
 			case 1:
 				value.b |= dataRef[index + 0];
-				byteBuffer.sprintf("%02x", value.b);
+				byteBuffer = QString::asprintf("%02x", value.b);
 				break;
 			case 2:
 				value.w |= dataRef[index + 0];
 				value.w |= dataRef[index + 1] << 8;
-				byteBuffer.sprintf("%04x", value.w);
+				byteBuffer = QString::asprintf("%04x", value.w);
 				break;
 			case 4:
 				value.d |= dataRef[index + 0];
 				value.d |= dataRef[index + 1] << 8;
 				value.d |= dataRef[index + 2] << 16;
 				value.d |= dataRef[index + 3] << 24;
-				byteBuffer.sprintf("%08x", value.d);
+				byteBuffer = QString::asprintf("%08x", value.d);
 				break;
 			case 8:
 				// we need the cast to ensure that it won't assume 32-bit
@@ -813,7 +808,7 @@ void QHexView::drawHexDump(QPainter &painter, unsigned int offset, unsigned int 
 				value.q |= static_cast<quint64>(dataRef[index + 5]) << 40;
 				value.q |= static_cast<quint64>(dataRef[index + 6]) << 48;
 				value.q |= static_cast<quint64>(dataRef[index + 7]) << 56;
-				byteBuffer.sprintf("%016llx", value.q);
+				byteBuffer = QString::asprintf("%016llx", value.q);
 				break;
 			}
 

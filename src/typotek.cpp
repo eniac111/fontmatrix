@@ -57,7 +57,9 @@
 #include "typotek.h"
 #include "winutils.h"
 
-#include <QDesktopWidget>
+#include <cstdio>
+#include <QScreen>
+#include <QStandardPaths>
 #include <QtGui>
 #include <QTextEdit>
 #include <QTextStream>
@@ -83,7 +85,7 @@
 #define MAX_RECENT_PYSCRIPTS 10
 #endif // HAVE_PYTHONQT
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 #include <ApplicationServices/ApplicationServices.h>
 #endif
 
@@ -161,9 +163,9 @@ typotek::typotek()
 	dataLoader = 0;
 	playVisible = false;
 
-	m_dpiX = ( double ) QApplication::desktop()->physicalDpiX();
-	m_dpiY = ( double ) QApplication::desktop()->physicalDpiY();
-#ifdef Q_WS_MAC
+	m_dpiX = ( double ) QApplication::primaryScreen()->physicalDotsPerInchX();
+	m_dpiY = ( double ) QApplication::primaryScreen()->physicalDotsPerInchY();
+#ifdef Q_OS_MAC
 	CGDirectDisplayID macDId = CGMainDisplayID();
 	CGRect macDRect = CGDisplayBounds(macDId);
 	CGSize macDSize = CGDisplayScreenSize(macDId);
@@ -302,6 +304,7 @@ void typotek::doConnect()
 	connect(FMScriptConsole::getInstance(),SIGNAL(finished()), this, SLOT(slotUpdateScriptConsoleStatus()));
 #endif
 	connect(toggleMainViewButton, SIGNAL(toggled(bool)), this, SLOT(toggleMainView(bool)));
+	connect(this, SIGNAL(newFontsArrived()), theMainView, SLOT(slotFontDbChanged()));
 }
 
 void typotek::closeEvent ( QCloseEvent *event )
@@ -657,13 +660,13 @@ void typotek::createActions()
 	Shortcuts *scuts = Shortcuts::getInstance();
 
 	openAct = new QAction ( QIcon ( ":/fontmatrix_import_icon" ), tr ( "&Import Directory..." ), this );
-	openAct->setShortcut ( Qt::CTRL + Qt::Key_O );
+	openAct->setShortcut ( QKeySequence(Qt::CTRL | Qt::Key_O) );
 	openAct->setToolTip( tr ( "Import a directory" ) );
 	scuts->add(openAct);
 	connect ( openAct, SIGNAL ( triggered() ), this, SLOT ( open() ) );
 
 	importFilesAction = new QAction(QIcon ( ":/fontmatrix_import_icon" ), tr ( "Import &Files..." ), this );
-	importFilesAction->setShortcut( Qt::CTRL + Qt::SHIFT + Qt::Key_O );
+	importFilesAction->setShortcut( QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_O) );
 	importFilesAction->setToolTip(tr("Import Files"));
 	scuts->add(importFilesAction);
 	connect(importFilesAction, SIGNAL(triggered()), this, SLOT(importFiles()));
@@ -684,7 +687,7 @@ void typotek::createActions()
 	connect(dumpInfoAct, SIGNAL(triggered()), this, SLOT(slotDumpInfo()));
 
 	exitAct = new QAction ( tr ( "E&xit" ), this );
-	exitAct->setShortcut ( Qt::CTRL + Qt::Key_Q );
+	exitAct->setShortcut ( QKeySequence(Qt::CTRL | Qt::Key_Q) );
 	exitAct->setStatusTip ( tr ( "Exit the application" ) );
         exitAct->setMenuRole(QAction::QuitRole);
 	scuts->add(exitAct);
@@ -780,7 +783,7 @@ void typotek::createActions()
 
 
 	playAction = new QAction(tr("Playground"), this);
-	playAction->setShortcut(Qt::CTRL + Qt::Key_G);
+	playAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_G));
 	playAction->setToolTip(tr("Show/Hide Playground"));
 	playAction->setCheckable(true);
 	playAction->setChecked(false);
@@ -788,7 +791,7 @@ void typotek::createActions()
 	connect(playAction, SIGNAL(triggered(bool)), PlayWidget::getInstance(), SLOT(setVisible(bool)));
 
 	compareAction = new QAction(tr("Compare"), this);
-	compareAction->setShortcut(Qt::CTRL + Qt::Key_R);
+	compareAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R));
 	compareAction->setToolTip(tr("Show/Hide Compare glyphs"));
 	compareAction->setCheckable(true);
 	compareAction->setChecked(false);
@@ -978,15 +981,30 @@ void typotek::readSettings()
 
 	defaultOTFScript = settings.value("OTF/Script").toString();
 	defaultOTFLang = settings.value("OTF/Lang").toString();
-	defaultOTFGPOS = settings.value("OTF/GPOS").toString().split(";",QString::SkipEmptyParts);
-	defaultOTFGSUB = settings.value("OTF/GSUB").toString().split(";",QString::SkipEmptyParts);
+	defaultOTFGPOS = settings.value("OTF/GPOS").toString().split(";",Qt::SkipEmptyParts);
+	defaultOTFGSUB = settings.value("OTF/GSUB").toString().split(";",Qt::SkipEmptyParts);
 	chartInfoFontSize = settings.value("ChartInfoFontSize", 8).toInt();
 	chartInfoFontName = settings.value("ChartInfoFontFamily", QFont().family() ).toString();
 
 
 	databaseDriver = settings.value("Database/Driver","QSQLITE").toString();
 	databaseHostname = settings.value("Database/Hostname","").toString();
-	databaseDbName = settings.value("Database/DbName", ownDir.absolutePath()+ QDir::separator() + "Data.sql").toString();
+	{
+		QString sep(QDir::separator());
+		QString newDefault = ownDir.absolutePath() + sep + "Data.sql";
+#if !defined(PLATFORM_APPLE) && !defined(_WIN32)
+		// If QSettings still holds any known pre-migration default, clear it so
+		// the database is found at the current location.
+		QString xdgData = qEnvironmentVariable("XDG_DATA_HOME",
+		                      QDir::homePath() + "/.local/share");
+		QStringList oldDefaults;
+		oldDefaults << QDir::homePath() + "/.Fontmatrix/Data.sql"
+		            << xdgData + "/Undertype/fontmatrix/Data.sql";
+		if (oldDefaults.contains(settings.value("Database/DbName").toString()))
+			settings.remove("Database/DbName");
+#endif
+		databaseDbName = settings.value("Database/DbName", newDefault).toString();
+	}
 	databaseUser = settings.value("Database/User","").toString();
 	databasePassword = settings.value("Database/Password","").toString();
 	if( !QSqlDatabase::drivers().contains(databaseDriver) )
@@ -1051,43 +1069,163 @@ void typotek::fillTagsList()
 
 }
 
+// Move a file or directory from src to dst.
+// Skips if src does not exist or dst already exists.
+// Returns true on success or when there is nothing to do.
+static bool migrateItem(const QString& src, const QString& dst)
+{
+	if (!QFileInfo::exists(src))
+		return true;
+	if (QFileInfo::exists(dst))
+		return true;
+	QDir().mkpath(QFileInfo(dst).absolutePath());
+	if (QFileInfo(src).isDir()) {
+#ifdef _WIN32
+		// rename() does not move directories on Windows
+		qWarning() << "fontmatrix: cannot auto-migrate directory" << src
+		           << "on Windows; please move it manually to" << dst;
+		return false;
+#else
+		// rename(2) moves directories atomically on the same filesystem
+		if (::rename(src.toLocal8Bit().constData(), dst.toLocal8Bit().constData()) == 0)
+			return true;
+		qWarning() << "fontmatrix: could not migrate" << src << "->" << dst
+		           << "(different filesystems? please move it manually)";
+		return false;
+#endif
+	}
+	return QFile::rename(src, dst);
+}
+
 void typotek::checkOwnDir()
 {
 	relayStartingStepIn(tr("Check for Fontmatrix own dir"));
 	QString sep(QDir::separator());
 
 #ifdef PLATFORM_APPLE
+	{
+		// ~/Library/Application Support/fontmatrix  (QStandardPaths on macOS ignores org name)
+		QString newDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+		QString oldRootPath = QDir::homePath() + sep + "Library" + sep + "Fontmatrix";
 
-	QString rootDir(QDir::homePath() + sep + "Library" + sep + "Fontmatrix" + sep);
-	managedDir.setPath(QDir::homePath() + sep + "Library" + sep + "Fonts");
-	ownDir.setPath(rootDir);
-	if ( !managedDir.exists() )
-		managedDir.mkpath ( QDir::homePath() + sep + "Library" + sep + "Fonts" );
-	if(!ownDir.exists())
-		ownDir.mkpath (rootDir);
+		ownDir.setPath(newDataPath);
+		configDir = ownDir; // macOS has no config/data split
+		// ~/Library/Fonts is the standard per-user font directory on macOS
+		managedDir.setPath(QDir::homePath() + sep + "Library" + sep + "Fonts");
 
-	ResourceFile.setFileName ( rootDir + "Resource.xml" );
+		QDir().mkpath(newDataPath);
+		if (!managedDir.exists())
+			managedDir.mkpath(managedDir.absolutePath());
 
+		// Migrate from old ~/Library/Fontmatrix/
+		QDir oldDir(oldRootPath);
+		if (oldDir.exists()) {
+			migrateItem(oldRootPath + sep + "Data.sql",          newDataPath + sep + "Data.sql");
+			migrateItem(oldRootPath + sep + "Scripts",           newDataPath + sep + "Scripts");
+			migrateItem(oldRootPath + sep + "Samples",           newDataPath + sep + "Samples");
+			migrateItem(oldRootPath + sep + "Filters",           newDataPath + sep + "Filters");
+			migrateItem(oldRootPath + sep + "HelpBookmarks.xml", newDataPath + sep + "HelpBookmarks.xml");
+			migrateItem(oldRootPath + sep + "HelpHistory.xml",   newDataPath + sep + "HelpHistory.xml");
+			migrateItem(oldRootPath + sep + "Resource.xml",      newDataPath + sep + "Resource.xml");
+			oldDir.rmdir(oldRootPath);
+		}
+
+		ResourceFile.setFileName(newDataPath + sep + "Resource.xml");
+	}
 #elif _WIN32
-	// For win we do not hide things because it does
-	// not work yet. So if you need to debug it will be simpler.
-	QString fontmanaged ( sep + "fontmatrix" );
-	managedDir.setPath ( QDir::homePath() + fontmanaged );
-	if ( !managedDir.exists() )
-		managedDir.mkpath ( QDir::homePath() + fontmanaged );
-	ownDir = managedDir;
-	ResourceFile.setFileName ( QDir::homePath() + sep +"fontmatrix.data" );
+	{
+		// %LOCALAPPDATA%\Fontmatrix\fontmatrix
+		QString newDataPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+		QString oldRootPath = QDir::homePath() + sep + "fontmatrix";
+
+		ownDir.setPath(newDataPath);
+		configDir = ownDir;
+		// On Windows 10/11 fonts can be installed per-user without admin privileges
+		QString localAppData = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+		managedDir.setPath(localAppData + sep + "Microsoft" + sep + "Windows" + sep + "Fonts");
+
+		QDir().mkpath(newDataPath);
+		if (!managedDir.exists())
+			managedDir.mkpath(managedDir.absolutePath());
+
+		// Migrate from old ~/fontmatrix/
+		QDir oldDir(oldRootPath);
+		if (oldDir.exists()) {
+			migrateItem(oldRootPath + sep + "Data.sql",          newDataPath + sep + "Data.sql");
+			migrateItem(oldRootPath + sep + "HelpBookmarks.xml", newDataPath + sep + "HelpBookmarks.xml");
+			migrateItem(oldRootPath + sep + "HelpHistory.xml",   newDataPath + sep + "HelpHistory.xml");
+			oldDir.rmdir(oldRootPath);
+		}
+
+		ResourceFile.setFileName(newDataPath + sep + "Resource.xml");
+	}
 #else
-	QString rootDir(QDir::homePath() + sep + ".Fontmatrix" + sep);
-	ownDir.setPath(rootDir);
-	// Where activated fonts are sym-linked
-	managedDir.setPath ( rootDir + "Activated" );
-	if ( !managedDir.exists() )
-		managedDir.mkpath ( rootDir + "Activated"  );
+	// XDG Base Directory compliant paths
+	QString newDataPath  = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+	QString newConfigPath = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
+	QString oldRootPath  = QDir::homePath() + sep + ".Fontmatrix";
 
-	addFcDirItem( managedDir.absolutePath() );
+	ownDir.setPath(newDataPath);
+	configDir.setPath(newConfigPath);
+	managedDir.setPath(newDataPath + sep + "Activated");
 
-	ResourceFile.setFileName ( rootDir + "Resource.xml" );
+	QDir().mkpath(newDataPath);
+	QDir().mkpath(newConfigPath);
+
+	// Backward compatibility: migrate from old locations before creating
+	// subdirectories, so migrateItem can detect non-existent destinations.
+
+	// Order matters: process the most-recent intermediate location first so
+	// that the newest data wins when both old sources exist simultaneously.
+
+	// 2nd step: intermediate location from when org was still "Undertype"
+	QString xdgData   = qEnvironmentVariable("XDG_DATA_HOME",
+	                        QDir::homePath() + "/.local/share");
+	QString xdgConfig = qEnvironmentVariable("XDG_CONFIG_HOME",
+	                        QDir::homePath() + "/.config");
+	QString oldUndertypeData   = xdgData   + "/Undertype/fontmatrix";
+	QString oldUndertypeConfig = xdgConfig + "/Undertype/fontmatrix";
+	{
+		QDir d(oldUndertypeData);
+		if (d.exists()) {
+			migrateItem(oldUndertypeData + sep + "Activated",         newDataPath   + sep + "Activated");
+			migrateItem(oldUndertypeData + sep + "Scripts",           newDataPath   + sep + "Scripts");
+			migrateItem(oldUndertypeData + sep + "Samples",           newDataPath   + sep + "Samples");
+			migrateItem(oldUndertypeData + sep + "Data.sql",          newDataPath   + sep + "Data.sql");
+			migrateItem(oldUndertypeData + sep + "HelpBookmarks.xml", newDataPath   + sep + "HelpBookmarks.xml");
+			migrateItem(oldUndertypeData + sep + "HelpHistory.xml",   newDataPath   + sep + "HelpHistory.xml");
+			migrateItem(oldUndertypeData + sep + "Filters",           newConfigPath + sep + "Filters");
+			d.rmdir(oldUndertypeData);
+		}
+	}
+	{
+		QDir d(oldUndertypeConfig);
+		if (d.exists()) {
+			migrateItem(oldUndertypeConfig + sep + "Filters", newConfigPath + sep + "Filters");
+			d.rmdir(oldUndertypeConfig);
+		}
+	}
+
+	// 1st step: original ~/.Fontmatrix location
+	QDir oldDir(oldRootPath);
+	if (oldDir.exists()) {
+		migrateItem(oldRootPath + sep + "Activated",         newDataPath  + sep + "Activated");
+		migrateItem(oldRootPath + sep + "Scripts",           newDataPath  + sep + "Scripts");
+		migrateItem(oldRootPath + sep + "Samples",           newDataPath  + sep + "Samples");
+		migrateItem(oldRootPath + sep + "Data.sql",          newDataPath  + sep + "Data.sql");
+		migrateItem(oldRootPath + sep + "HelpBookmarks.xml", newDataPath  + sep + "HelpBookmarks.xml");
+		migrateItem(oldRootPath + sep + "HelpHistory.xml",   newDataPath  + sep + "HelpHistory.xml");
+		migrateItem(oldRootPath + sep + "Filters",           newConfigPath + sep + "Filters");
+		migrateItem(oldRootPath + sep + "Resource.xml",      newConfigPath + sep + "Resource.xml");
+		// Remove old root only if it is now empty
+		oldDir.rmdir(oldRootPath);
+	}
+
+	if (!managedDir.exists())
+		managedDir.mkpath(newDataPath + sep + "Activated");
+
+	ResourceFile.setFileName(newConfigPath + sep + "Resource.xml");
+	addFcDirItem(managedDir.absolutePath());
 #endif
 }
 
@@ -1643,7 +1781,7 @@ QString typotek::defaultSampleName()
 	else
 	{
 		const QMap<QString, QMap<QString,QString> >& ss(dataLoader->systemSamples());
-		QString l(QLocale::system().language());
+		QString l(QLocale::languageToString(QLocale::system().language()));
 		if((ss.contains(l)) && (ss[l].count() > 0))
 			return l + QString("::") + ss[l].keys().first();
 		else

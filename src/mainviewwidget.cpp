@@ -513,6 +513,11 @@ void MainViewWidget::disConnect()
 //}
 
 
+void MainViewWidget::slotFontDbChanged()
+{
+	previewModel->dataChanged();
+}
+
 void MainViewWidget::slotOrderingChanged ( QString s )
 {
 	//Update "m_lists->fontTree"

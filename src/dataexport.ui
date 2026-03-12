@@ -64,7 +64,6 @@
   <zorder>listWidget</zorder>
   <zorder>label</zorder>
   <zorder>widget</zorder>
-  <zorder>horizontalSpacer</zorder>
  </widget>
  <resources/>
  <connections/>

@@ -84,7 +84,7 @@ void FMUniBlocks::recordLine(const QString& line)
 	
 	QString rs(line);
 	rs.replace("..",";");
-	QStringList rl(rs.split(";",QString::SkipEmptyParts));
+	QStringList rl(rs.split(";",Qt::SkipEmptyParts));
 	if(rl.count() != 3)
 	{
 		qDebug()<<"ERROR: spliting a block record in"<<rl.count()<<"lines";
@@ -93,7 +93,7 @@ void FMUniBlocks::recordLine(const QString& line)
 	bool ok;
 	int ss(rl[0].toInt(&ok, 16));
 	int ll(rl[1].toInt(&ok, 16));
-	p[qMakePair<int,int>(ss,ll)] = rl[2].trimmed();
+	p[qMakePair(ss,ll)] = rl[2].trimmed();
 }
 
 

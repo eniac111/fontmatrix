@@ -17,6 +17,7 @@
 
 #include <QSyntaxHighlighter>
 #include <QMap>
+#include <QRegularExpression>
 
 class FMScriptConsole : public QWidget, private Ui::ScriptConsole
 {
@@ -67,7 +68,7 @@ class SyntaxHighlighter : public QSyntaxHighlighter
 
 		struct HighlightingRule
 		{
-			QRegExp pattern;
+			QRegularExpression pattern;
 			QTextCharFormat format;
 		};
 		QVector<HighlightingRule> highlightingRules;

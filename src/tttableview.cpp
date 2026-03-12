@@ -53,7 +53,7 @@ TTTableView::TTTableView(FontItem * font, QWidget * parent)
 	
 	if(hasTable)
 	{
-		tView->setItemSelected(first,true);
+		first->setSelected(true);
 		updateHexView();
 	}
 	
@@ -69,14 +69,14 @@ TTTableView::~ TTTableView()
 
 void TTTableView::updateHexView()
 {
-	if(!tView->selectedItems().count())
+	if(!tView->selectedItems().size())
 		return;
 	
 	QString table(tView->selectedItems()[0]->text(NAME));
 	curTable = m_font->tableData(table);
 	
 	m_data.clear();
-	for(int i(0);i<curTable.count();++i)
+	for(int i(0);i<curTable.size();++i)
 	{
 		m_data << curTable.at(i);
 	}

@@ -45,7 +45,7 @@ void FilterMeta::operate()
 		QList<FontItem*> tl;
 		int startC(0xFFFFFFFF);
 		int endC(0);
-		int patCount(fs.count());
+		int patCount(fs.size());
 		for(int a(0); a < patCount; ++a)
 		{
 			unsigned int ca(fs[a].unicode());
@@ -55,7 +55,7 @@ void FilterMeta::operate()
 				endC = ca;
 		}
 
-		int superSetCount(allList.count());
+		int superSetCount(allList.size());
 		for ( int i =0; i < superSetCount; ++i )
 		{
 			int cc(allList[i]->countCoverage ( startC, endC ) );
@@ -72,7 +72,7 @@ void FilterMeta::operate()
 		FMFontDb::InfoItem k;
 		QList<FontItem*> tmpList;
 		tmpList.clear();
-		for(int gIdx(0); gIdx < FontStrings::Names().keys().count() ; ++gIdx)
+		for(int gIdx(0); gIdx < FontStrings::Names().keys().size() ; ++gIdx)
 		{
 			k = FontStrings::Names().keys()[gIdx];
 			if(k !=  FMFontDb::AllInfo)

@@ -21,7 +21,7 @@
 
 #include <QMap>
 #include <QObject>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStringList>
 
 #include <QFile>
@@ -200,7 +200,7 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 // 	if ( !moreInfo.isEmpty() ) // moreInfo.isNotEmpty
 	{
 		QString sysLang = QLocale::languageToString ( QLocale::system ().language() ).toUpper();
-		QString sysCountry = QLocale::countryToString ( QLocale::system ().country() ).toUpper();
+		QString sysCountry = QLocale::territoryToString ( QLocale::system ().territory() ).toUpper();
 		QString sysLoc = sysLang + "_"+ sysCountry;
 
 		//We must iter once to find localized strings and ensure default ones are _not_ shown in these cases
@@ -323,14 +323,13 @@ QString FMInfoDisplay::writePanose(FontItem * font)
  */
 QString FMInfoDisplay::url2href (QString value )
 {
-	QString punctuationAfter = "\\.\\,;:!?)�\"'";
-	value.replace ( QRegExp ( "([^/])(www\\.[\\w\\d])" ), "\\1http://\\2" ); // add an http to www. without it
-	QRegExp rx = QRegExp("(http[s]?://\\S+)(["+punctuationAfter+"](?:\\s|$))"); // prepare a regexp to 
-	rx.setMinimal(true);
+	QString punctuationAfter = "\\.\\,;:!?)\"'";
+	value.replace ( QRegularExpression( "([^/])(www\\.[\\w\\d])" ), "\\1http://\\2" ); // add an http to www. without it
+	QRegularExpression rx("(http[s]?://\\S+?)([" + punctuationAfter + "](?:\\s|$))"); // prepare a regexp (non-greedy)
 	value.replace(rx, "\\1 \\2"); // add a space before  punctuation "attached" to url
 	value.replace(rx, "\\1 \\2"); // run the prepared regexp twice for ")."
-	value.replace ( QRegExp ( "(http[s]?://\\S+)[\\.]?" ), "<a href=\"\\1\">\\1</a>" ); // Make HTTP links
-	value.replace ( QRegExp ( "(</a>)\\s(["+punctuationAfter+"])" ), "\\1\\2" ); // remove extra space after </a>
+	value.replace ( QRegularExpression( "(http[s]?://\\S+?)[\\.]?" ), "<a href=\"\\1\">\\1</a>" ); // Make HTTP links
+	value.replace ( QRegularExpression( "(</a>)\\s([" + punctuationAfter + "])" ), "\\1\\2" ); // remove extra space after </a>
 	return value;
 } // url2href
 

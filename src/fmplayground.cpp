@@ -135,16 +135,17 @@ void FMPlayGround::mouseMoveEvent ( QMouseEvent * e )
 
 void FMPlayGround::wheelEvent ( QWheelEvent * e )
 {
-	if ( e->modifiers().testFlag ( Qt::ControlModifier ) && e->orientation() == Qt::Vertical )
+	QPoint angleDelta = e->angleDelta();
+	if ( e->modifiers().testFlag ( Qt::ControlModifier ) && angleDelta.y() != 0 )
 	{
-		emit pleaseZoom ( e->delta() );
+		emit pleaseZoom ( angleDelta.y() );
 	}
 	else
 	{
-		if ( e->orientation() == Qt::Vertical )
-			verticalScrollBar()->setValue ( verticalScrollBar()->value() - e->delta() );
-		if ( e->orientation() == Qt::Horizontal )
-			horizontalScrollBar()->setValue ( horizontalScrollBar()->value() - e->delta() );
+		if ( angleDelta.y() != 0 )
+			verticalScrollBar()->setValue ( verticalScrollBar()->value() - angleDelta.y() );
+		if ( angleDelta.x() != 0 )
+			horizontalScrollBar()->setValue ( horizontalScrollBar()->value() - angleDelta.x() );
 	}
 }
 
@@ -167,7 +168,7 @@ void FMPlayGround::keyReleaseEvent(QKeyEvent * e)
 	}
 	else if(e->key() == Qt::Key_Backspace)
 	{
-		if(curString.count() > 0)
+		if(curString.size() > 0)
 		{
 			curString.chop(1);
 			updateLine();
@@ -227,7 +228,7 @@ void FMPlayGround::leaveEvent(QEvent *e)
 void FMPlayGround::displayGlyphs ( const QString & spec, FontItem * fontI, double fontS )
 {
 
-	ensureVisible ( CursorPos.x(), CursorPos.y(), spec.count(), fontS * 1.5 );
+	ensureVisible ( CursorPos.x(), CursorPos.y(), spec.size(), fontS * 1.5 );
 	bool backedR ( fontI->rasterFreetype() );
 	fontI->setFTRaster ( false );
 	// We deactivate "non-latin" layout atm
@@ -281,7 +282,7 @@ void FMPlayGround::updateLine()
 void FMPlayGround::closeLine()
 {
 	CursorTimer->stop();
-	if(curLine.count() > 0)
+	if(curLine.size() > 0)
 	{
 		QGraphicsItemGroup *git(scene()->createItemGroup(curLine));
 		CursorPos.ry() += PlayWidget::getInstance()->playFontSize() * 1.5;
@@ -310,7 +311,7 @@ QStringList FMPlayGround::fontnameList()
 {
 	QStringList ret;
 	QList< QGraphicsItem* > itemList ( scene()->items() );
-	for ( int i ( 0 ); i < itemList.count(); ++i )
+	for ( int i ( 0 ); i < itemList.size(); ++i )
 	{
 		if ( itemList[i]->data ( GLYPH_DATA_GLYPH ).toString() == "glyph" )
 		{
@@ -332,7 +333,7 @@ QRectF FMPlayGround::getMaxRect()
 {
 	QRectF allrect(0,0,0,0);
 	QList<QGraphicsItemGroup*> lit = glyphLines;
-	for ( int i = 0 ; i <lit.count() ; ++i )
+	for ( int i = 0 ; i <lit.size() ; ++i )
 	{
 		// 		qDebug()<< lit.at(i)->data(GLYPH_DATA_FONTNAME).toString();
 		//

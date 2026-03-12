@@ -19,6 +19,7 @@
 #include <QSqlError>
 #include <QSqlDriver>
 #include <QDebug>
+#include <QElapsedTimer>
 
 
 
@@ -171,7 +172,7 @@ void FMFontDb::setInfoMap ( const QString & id, const QMap< int, QMap < int , QS
 	// Here is the interesting part :-s)
 
 	// id | lang | key | value
-	QTime t;
+	QElapsedTimer t;
 	t.start();
 	int c ( 0 );
 	int nId ( getId ( id ) );

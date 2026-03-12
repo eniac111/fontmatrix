@@ -85,7 +85,7 @@ TagsWidget* FamilyWidget::tagWidget()
 	return ui->tagsWidget;
 }
 
-QWebView* FamilyWidget::info()
+QWebEngineView* FamilyWidget::info()
 {
 	return ui->webView;
 }

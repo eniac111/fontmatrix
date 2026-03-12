@@ -23,6 +23,7 @@
 #include "filteritem.h"
 
 #include <QDataStream>
+#include <QIODevice>
 
 #include <QBitArray>
 #include <QBitmap>
@@ -31,12 +32,10 @@
 #include <QIcon>
 #include <QImage>
 #include <QLocale>
-#include <QMatrix>
 #include <QTransform>
 #include <QPixmap>
 #include <QPointF>
 #include <QRectF>
-#include <QRegExp>
 #include <QSizeF>
 #include <QString>
 #include <QTime>
@@ -147,36 +146,34 @@ QByteArray FilterData::toByteArray() const
 {
 	QByteArray ba;
 	QDataStream ds(&ba, QIODevice::WriteOnly);
-	foreach(int idx, vData.keys())
+	for (int idx : vData.keys())
 	{
-		QVariant::Type t(vData.value(idx).type());
+		int t = vData.value(idx).typeId();
 		QVariant v(vData[idx]);
 		ds << idx << t;
 		switch(t)
 		{
 			// We keep a large subset of supported types, but well, it's rather optimistic.
-		case QVariant::BitArray : { ds <<  v.value<QBitArray>(); break; }
-		case QVariant::Bool : { ds <<  v.value<bool>(); break; }
-		case QVariant::ByteArray : { ds <<  v.value<QByteArray>(); break; }
-		case QVariant::Char : { ds <<  v.value<QChar>(); break; }
-		case QVariant::Double : { ds <<  v.value<double>(); break; }
-		case QVariant::Icon : { ds <<  v.value<QIcon>(); break; }
-		case QVariant::Image : { ds <<  v.value<QImage>(); break; }
-		case QVariant::Int : { ds <<  v.value<int>(); break; }
-		case QVariant::Locale : { ds <<  v.value<QLocale>(); break; }
-		case QVariant::LongLong : { ds <<  v.value<qlonglong>(); break; }
-		case QVariant::Matrix : { ds <<  v.value<QMatrix>(); break; }
-		case QVariant::Transform : { ds <<  v.value<QTransform>(); break; }
-		case QVariant::Pixmap : { ds <<  v.value<QPixmap>(); break; }
-		case QVariant::PointF : { ds <<  v.value<QPointF>(); break; }
-		case QVariant::RectF : { ds <<  v.value<QRectF>(); break; }
-		case QVariant::RegExp : { ds <<  v.value<QRegExp>(); break; }
-		case QVariant::SizeF : { ds <<  v.value<QSizeF>(); break; }
-		case QVariant::String : { ds <<  v.value<QString>(); break; }
-		case QVariant::Time : { ds <<  v.value<QTime>(); break; }
-		case QVariant::UInt : { ds <<  v.value<uint>(); break; }
-		case QVariant::ULongLong : { ds <<  v.value<qulonglong>(); break; }
-		case QVariant::Url : { ds <<  v.value<QUrl>(); break; }
+		case QMetaType::QBitArray : { ds <<  v.value<QBitArray>(); break; }
+		case QMetaType::Bool : { ds <<  v.value<bool>(); break; }
+		case QMetaType::QByteArray : { ds <<  v.value<QByteArray>(); break; }
+		case QMetaType::QChar : { ds <<  v.value<QChar>(); break; }
+		case QMetaType::Double : { ds <<  v.value<double>(); break; }
+		case QMetaType::QIcon : { ds <<  v.value<QIcon>(); break; }
+		case QMetaType::QImage : { ds <<  v.value<QImage>(); break; }
+		case QMetaType::Int : { ds <<  v.value<int>(); break; }
+		case QMetaType::QLocale : { ds <<  v.value<QLocale>(); break; }
+		case QMetaType::LongLong : { ds <<  v.value<qlonglong>(); break; }
+		case QMetaType::QTransform : { ds <<  v.value<QTransform>(); break; }
+		case QMetaType::QPixmap : { ds <<  v.value<QPixmap>(); break; }
+		case QMetaType::QPointF : { ds <<  v.value<QPointF>(); break; }
+		case QMetaType::QRectF : { ds <<  v.value<QRectF>(); break; }
+		case QMetaType::QSizeF : { ds <<  v.value<QSizeF>(); break; }
+		case QMetaType::QString : { ds <<  v.value<QString>(); break; }
+		case QMetaType::QTime : { ds <<  v.value<QTime>(); break; }
+		case QMetaType::UInt : { ds <<  v.value<uint>(); break; }
+		case QMetaType::ULongLong : { ds <<  v.value<qulonglong>(); break; }
+		case QMetaType::QUrl : { ds <<  v.value<QUrl>(); break; }
 		}
 
 	}
@@ -190,34 +187,32 @@ void FilterData::fromByteArray(const QByteArray &ba)
 	ds >> idx;
 	while(idx != 0)
 	{
-		QVariant::Type t;
+		int t;
 		ds >> t;
-		QVariant v(t);
+		QVariant v;
 		switch(t)
 		{
-		case QVariant::BitArray : { QBitArray data; ds >> data ; v.setValue(data); break; }
-		case QVariant::Bitmap : { QBitmap data; ds >> data ; v.setValue(data); break; }
-		case QVariant::Bool : { bool data; ds >> data ; v.setValue(data); break; }
-		case QVariant::ByteArray : { QByteArray data; ds >> data ; v.setValue(data); break; }
-		case QVariant::Char : { QChar data; ds >> data ; v.setValue(data); break; }
-		case QVariant::Double : { double data; ds >> data ; v.setValue(data); break; }
-		case QVariant::Icon : { QIcon data; ds >> data ; v.setValue(data); break; }
-		case QVariant::Image : { QImage data; ds >> data ; v.setValue(data); break; }
-		case QVariant::Int : { int data; ds >> data ; v.setValue(data); break; }
-		case QVariant::Locale : { QLocale data; ds >> data ; v.setValue(data); break; }
-		case QVariant::LongLong : { qlonglong data; ds >> data ; v.setValue(data); break; }
-		case QVariant::Matrix : { QMatrix data; ds >> data ; v.setValue(data); break; }
-		case QVariant::Transform : { QTransform data; ds >> data ; v.setValue(data); break; }
-		case QVariant::Pixmap : { QPixmap data; ds >> data ; v.setValue(data); break; }
-		case QVariant::PointF : { QPointF data; ds >> data ; v.setValue(data); break; }
-		case QVariant::RectF : { QRectF data; ds >> data ; v.setValue(data); break; }
-		case QVariant::RegExp : { QRegExp data; ds >> data ; v.setValue(data); break; }
-		case QVariant::SizeF : { QSizeF data; ds >> data ; v.setValue(data); break; }
-		case QVariant::String : { QString data; ds >> data ; v.setValue(data); break; }
-		case QVariant::Time : { QTime data; ds >> data ; v.setValue(data); break; }
-		case QVariant::UInt : { uint data; ds >> data ; v.setValue(data); break; }
-		case QVariant::ULongLong : { qulonglong data; ds >> data ; v.setValue(data); break; }
-		case QVariant::Url : { QUrl data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QBitArray : { QBitArray data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QBitmap : { QBitmap data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::Bool : { bool data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QByteArray : { QByteArray data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QChar : { QChar data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::Double : { double data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QIcon : { QIcon data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QImage : { QImage data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::Int : { int data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QLocale : { QLocale data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::LongLong : { qlonglong data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QTransform : { QTransform data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QPixmap : { QPixmap data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QPointF : { QPointF data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QRectF : { QRectF data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QSizeF : { QSizeF data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QString : { QString data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QTime : { QTime data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::UInt : { uint data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::ULongLong : { qulonglong data; ds >> data ; v.setValue(data); break; }
+		case QMetaType::QUrl : { QUrl data; ds >> data ; v.setValue(data); break; }
 
 		}
 		vData.insert(idx, v);

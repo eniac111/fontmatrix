@@ -14,13 +14,13 @@
 
 #include <QDebug>
 #include <QStringList>
-#include <QTextCodec>
+#include <QStringEncoder>
 #include <QFile>
 
 FMHyphenator::FMHyphenator()
 {
-	dict = 0;
-	textCodec = 0;
+	dict = nullptr;
+	textEncoder = nullptr;
 }
 
 bool FMHyphenator::loadDict(const QString & dictPath, int leftMin, int rightMin)
@@ -48,9 +48,14 @@ bool FMHyphenator::loadDict(const QString & dictPath, int leftMin, int rightMin)
 	{
 		QFile df(dictPath);
 		if( df.open(QIODevice::ReadOnly) )
-			textCodec = QTextCodec::codecForName(df.readLine());
+		{
+			QByteArray codecName = df.readLine().trimmed();
+			delete textEncoder;
+			textEncoder = new QStringEncoder(codecName.constData());
+			if (!textEncoder->isValid()) { delete textEncoder; textEncoder = nullptr; }
+		}
 		else
-			textCodec = 0;
+			textEncoder = nullptr;
 		df.close();
 		dict->lhmin = leftMin;
 		dict->rhmin = rightMin;
@@ -63,6 +68,7 @@ FMHyphenator::~FMHyphenator()
 {
 	if(dict)
 		hnj_hyphen_free (dict);
+	delete textEncoder;
 }
 
 
@@ -79,7 +85,7 @@ HyphList FMHyphenator::hyphenate(const QString & word) const
 		return ret;
 	
 // 	QMap<int,QChar> upperLog;
-// 	for(int i(0);i<word.count();++i)
+// 	for(int i(0);i<word.size();++i)
 // 	{
 // 		if(word[i].isUpper())
 // 			upperLog[i] = word[i];
@@ -88,13 +94,13 @@ HyphList FMHyphenator::hyphenate(const QString & word) const
 	char ** rep = NULL;
 	int * pos = NULL;
 	int * cut = NULL;
-	QByteArray hw( textCodec ? textCodec->fromUnicode( word.toLower().remove('.') ) :  word.toLower().remove('.').toLocal8Bit() );
-	QByteArray ht( hw.count() + 5, '0' );
+	QByteArray hw( textEncoder ? textEncoder->encode( word.toLower().remove('.') ) :  word.toLower().remove('.').toLocal8Bit() );
+	QByteArray ht( hw.size() + 5, '0' );
 	char *lcword = hw.data();
 	char *hyphens = ht.data();
 	
 	
-	if(hnj_hyphen_hyphenate2(dict, lcword, hw.count(), hyphens, 0, &rep, &pos, &cut))
+	if(hnj_hyphen_hyphenate2(dict, lcword, hw.size(), hyphens, 0, &rep, &pos, &cut))
 	{
 		qDebug()<<"Hyphenate("<<word<<") failed";
 		delete hyphens;
@@ -102,7 +108,7 @@ HyphList FMHyphenator::hyphenate(const QString & word) const
 	}
 	
 	QString ref(word/*.toLower().remove('.')*/);
-	for(int i(0); i < ref.count(); ++i)
+	for(int i(0); i < ref.size(); ++i)
 	{
 		if(ht[i] & 1)
 		{
@@ -116,14 +122,14 @@ HyphList FMHyphenator::hyphenate(const QString & word) const
 				int posI(pos ? pos[i] : 0);
 				int cutI(cut ? cut[i] : 0);
 				
-// 				if(repList.count() != 2)
+// 				if(repList.size() != 2)
 // 				{
-// 					qDebug()<<"OOPS - repList =="<<repList.count() ;
+// 					qDebug()<<"OOPS - repList =="<<repList.size() ;
 // 					continue;
 // 				}
 				
-				left = ref2.mid(0 , left.count() + posI);
-				right = ref2.mid(left.count()  + cutI);
+				left = ref2.mid(0 , left.size() + posI);
+				right = ref2.mid(left.size()  + cutI);
 				
 				qDebug()<<"L R S C P"<< left<<"=" <<right<<(cut?QString::number( cut[i] ):"-")<<(pos?QString::number( pos[i] ):"-");
 			}

@@ -46,14 +46,14 @@ FMFreetypeLib * FMFreetypeLib::that()
 FT_Library FMFreetypeLib::lib(QThread *t)
 {
 //	return that()->libraries.value(that()->thread());
-	QMutexLocker(that()->mutex);
+	QMutexLocker lock(that()->mutex);
 	if(that()->libraries.contains(t))
 		return that()->libraries.value(t);
 
 	FTLibFactory ff;
 	ff.moveToThread(t);
 	that()->libraries.insert(t, ff.createLib());
-	connect(t, SIGNAL(terminated()), that(), SLOT(releaseLibrary()));
+	connect(t, SIGNAL(finished()), that(), SLOT(releaseLibrary()));
 	return that()->libraries.value(t);
 }
 

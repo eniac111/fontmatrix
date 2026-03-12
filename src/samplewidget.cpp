@@ -39,6 +39,7 @@
 #include <QDebug>
 #include <QTimer>
 #include <QDataStream>
+#include <QElapsedTimer>
 #include <QSettings>
 #include <QStyledItemDelegate>
 #include <QKeyEvent>
@@ -354,7 +355,7 @@ void SampleWidget::slotView()
 {
 	qDebug()<<"SampleWidget::slotView "<< fontIdentifier;
 //	disconnect(textLayoutFT, SIGNAL(drawBaselineForMe(double)), this, SLOT(drawBaseline(double)));
-	QTime t;
+	QElapsedTimer t;
 	t.start();
 	FontItem *f(FMFontDb::DB()->Font( fontIdentifier ));
 	if ( !f )
@@ -381,7 +382,7 @@ void SampleWidget::slotView()
 	{
 		if(!layoutForPrint && !textLayoutFT->isLayoutFinished())
 		{
-			connect(textLayoutFT, SIGNAL(layoutFinished()), this, SLOT(slotView()));
+			connect(textLayoutFT, SIGNAL(layoutFinished()), this, SLOT(slotView()), Qt::UniqueConnection);
 			textLayoutFT->stopLayout();
 			qDebug()<<"\tLayout stopped";
 			layoutSwitch = false;
@@ -437,12 +438,21 @@ void SampleWidget::slotView()
 			if(!layoutForPrint)
 			{
 				layoutThread->setLayout(textLayout, list, fSize, f, hinting());
-				connect(textLayout, SIGNAL(drawPixmapForMe(int,double,double,double)), this, SLOT(drawPixmap(int,double,double,double)));
+				connect(textLayout, SIGNAL(drawPixmapForMe(int,double,double,double)), this, SLOT(drawPixmap(int,double,double,double)), Qt::UniqueConnection);
 //				connect(textLayoutFT, SIGNAL(drawBaselineForMe(double)), this, SLOT(drawBaseline(double)));
-				connect(textLayout, SIGNAL(layoutFinished()), this, SLOT(endLayout()));
+				connect(textLayout, SIGNAL(layoutFinished()), this, SLOT(endLayout()), Qt::UniqueConnection);
 				layoutSwitch = true;
 				pixmapDrawn = 0;
-				layoutThread->start();
+				if(layoutThread->isRunning())
+				{
+					// Thread hasn't fully exited yet (still cleaning up after previous run).
+					// QThread::start() silently does nothing on a running thread, so defer.
+					connect(layoutThread, SIGNAL(finished()), this, SLOT(slotView()), Qt::UniqueConnection);
+				}
+				else
+				{
+					layoutThread->start();
+				}
 			}
 			else
 			{
@@ -555,7 +565,7 @@ void SampleWidget::fillOTTree()
 		ui->OpenTypeTree->resizeColumnToContents ( 0 ) ;
 		theVeryFont->releaseOTFInstance ( otf );
 	}
-	scripts = scripts.toSet().toList();
+	scripts = QStringList(QSet<QString>(scripts.begin(), scripts.end()).values());
 	// 	scripts.removeAll ( "latn" );
 //	if ( !scripts.isEmpty() )
 	{
