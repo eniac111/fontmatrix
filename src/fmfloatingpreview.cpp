@@ -181,7 +181,7 @@ void FMFloatingPreview::mousePressEvent(QMouseEvent * e)
 {
 	if (!(e->buttons() & Qt::LeftButton))
 		return;
-	refPoint = e->globalPos() - geometry().topLeft();
+	refPoint = e->globalPosition().toPoint() - geometry().topLeft();
 	QApplication::setOverrideCursor(Qt::SizeAllCursor);
 }
 
@@ -198,7 +198,7 @@ void FMFloatingPreview::mouseMoveEvent(QMouseEvent * e)
 	if (!(e->buttons() & Qt::LeftButton))
 		return;
 	QRect r(geometry());
-	QPoint delta( e->globalPos() - refPoint);
+	QPoint delta( e->globalPosition().toPoint() - refPoint);
 	r.moveTo(delta);
 	setGeometry(r);
 }

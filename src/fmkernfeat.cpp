@@ -98,7 +98,7 @@ void FMKernFeature::makeCoverage()
 	// Extract offsets of lookup tables for feature kern
 	QList<quint16> LookupTables;
 	QList<quint16> PairAdjustmentSubTables;
-	for ( int i ( 0 ); i < LookupListIndex.count(); ++i )
+	for ( int i ( 0 ); i < LookupListIndex.size(); ++i )
 	{
 		int rawIdx ( LookupList_Offset + 2 + ( LookupListIndex[i] * 2 ) );
 		quint16 Lookup ( toUint16 ( rawIdx )  + LookupList_Offset );
@@ -149,7 +149,7 @@ void FMKernFeature::makeCoverage()
 				qDebug() <<"Unknow Coverage Format:"<<CoverageFormat;
 
 			if(out)
-				qDebug()<<"\t\t**Built a coverage array of length:"<<coverages[SubTable].count();
+				qDebug()<<"\t\t**Built a coverage array of length:"<<coverages[SubTable].size();
 			makePairs ( SubTable );
 		}
 
@@ -287,7 +287,7 @@ void FMKernFeature::makePairs ( quint16 subtableOffset )
 
 quint16 FMKernFeature::toUint16 ( quint16 index )
 {
-	if ( ( index + 2 ) >= GPOSTableRaw.count() )
+	if ( ( index + 2 ) >= GPOSTableRaw.size() )
 	{
 		return 0;
 	}
@@ -302,7 +302,7 @@ quint16 FMKernFeature::toUint16 ( quint16 index )
 
 qint16 FMKernFeature::toInt16 ( quint16 index )
 {
-	if ( ( index + 2 ) > GPOSTableRaw.count() )
+	if ( ( index + 2 ) > GPOSTableRaw.size() )
 	{
 		return 0;
 	}
@@ -385,10 +385,10 @@ FMKernFeature::ClassDefTable FMKernFeature::getClass ( quint16 classDefOffset, q
 // 			if(!dl.contains("noname"))
 // 				qDebug()<<"\t"<< c <<dl.join(";");
 // 			else
-// 				qDebug()<<"ERROR nonames"<<dl.count();
+// 				qDebug()<<"ERROR nonames"<<dl.size();
 // 		}
 // 		else
-// 			qDebug()<<"\t"<< c <<ret[c].count();
+// 			qDebug()<<"\t"<< c <<ret[c].size();
 // 	}
 
 	return ret;

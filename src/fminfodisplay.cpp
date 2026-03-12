@@ -200,7 +200,7 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 // 	if ( !moreInfo.isEmpty() ) // moreInfo.isNotEmpty
 	{
 		QString sysLang = QLocale::languageToString ( QLocale::system ().language() ).toUpper();
-		QString sysCountry = QLocale::countryToString ( QLocale::system ().country() ).toUpper();
+		QString sysCountry = QLocale::territoryToString ( QLocale::system ().territory() ).toUpper();
 		QString sysLoc = sysLang + "_"+ sysCountry;
 
 		//We must iter once to find localized strings and ensure default ones are _not_ shown in these cases

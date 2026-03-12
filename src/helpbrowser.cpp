@@ -153,13 +153,13 @@ void HelpBrowser::setupLocalUI()
 	histMenu=new QMenu(this);
 
 	//Add Menu items
-	filePrint=fileMenu->addAction(QIcon(":/help/document-print.png"), "", this, SLOT(print()), QKeySequence(Qt::CTRL | Qt::Key_P));
+	filePrint=fileMenu->addAction(QIcon(":/help/document-print.png"), "", QKeySequence(Qt::CTRL | Qt::Key_P), this, SLOT(print()));
 	fileMenu->addSeparator();
 	fileExit=fileMenu->addAction(QIcon(":/help/exit.png"), "", this, SLOT(close()));
-	editFind=editMenu->addAction(QIcon(":/help/find.png"), "", this, SLOT(find()), QKeySequence(Qt::CTRL | Qt::Key_F));
-	editFindNext=editMenu->addAction( "", this, SLOT(findNext()), QKeySequence(Qt::Key_F3));
-	editFindPrev=editMenu->addAction( "", this, SLOT(findPrevious()), QKeySequence(Qt::SHIFT | Qt::Key_F3));
-	bookAdd=bookMenu->addAction( "", this, SLOT(bookmarkButton_clicked()), QKeySequence(Qt::CTRL | Qt::Key_D));
+	editFind=editMenu->addAction(QIcon(":/help/find.png"), "", QKeySequence(Qt::CTRL | Qt::Key_F), this, SLOT(find()));
+	editFindNext=editMenu->addAction( "", QKeySequence(Qt::Key_F3), this, SLOT(findNext()));
+	editFindPrev=editMenu->addAction( "", QKeySequence(Qt::SHIFT | Qt::Key_F3), this, SLOT(findPrevious()));
+	bookAdd=bookMenu->addAction( "", QKeySequence(Qt::CTRL | Qt::Key_D), this, SLOT(bookmarkButton_clicked()));
 	bookDel=bookMenu->addAction( "", this, SLOT(deleteBookmarkButton_clicked()));
 	bookDelAll=bookMenu->addAction( "", this, SLOT(deleteAllBookmarkButton_clicked()));
 

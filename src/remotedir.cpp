@@ -35,7 +35,7 @@ RemoteDir::RemoteDir(const QStringList &dirs)
 void RemoteDir::run()
 {
 	qDebug()<<"RemoteDir::run()";
-	for(int ridx(0); ridx < argDirs.count(); ++ridx)
+	for(int ridx(0); ridx < argDirs.size(); ++ridx)
 	{
 		QByteArray *ba = new QByteArray;
 		QBuffer *buffer = new QBuffer;
@@ -92,7 +92,7 @@ void RemoteDir::slotEndPreviews(int id, bool error)
 	
 	int pendingReqs(0);
 #if 0 // TODO Replace this code
-	for(int i(0);i < https.count(); ++i)
+	for(int i(0);i < https.size(); ++i)
 	{
 		if (https[i]->hasPendingRequests())
 		{
@@ -126,7 +126,7 @@ void RemoteDir::slotEndReq(int id, bool error)
 	int ih(0);
 	bool hFound = false;
 #if 0 // TODO Replace this code
-	for(;ih < https.count();++ih)
+	for(;ih < https.size();++ih)
 	{
 		if(sender() == https[ih])
 		{
@@ -145,7 +145,7 @@ void RemoteDir::slotEndReq(int id, bool error)
 #endif
 	int pendingReqs(0);
 #if 0 // TODO Replace this code
-	for(int i(0);i < https.count(); ++i)
+	for(int i(0);i < https.size(); ++i)
 	{
 		if (https[i]->hasPendingRequests())
 		{
@@ -193,7 +193,7 @@ void RemoteDir::eventEndDownload()
 			fi.info = col.namedItem ( "info" ).toElement().text();
 			if(pixmaps.contains(basename))
 			{
-				fi.pix = QPixmap::fromImage (QImage::fromData( (const uchar*)pixmaps[basename]->data(), pixmaps[basename]->count() ));
+				fi.pix = QPixmap::fromImage (QImage::fromData( (const uchar*)pixmaps[basename]->data(), pixmaps[basename]->size() ));
 			}
 			else
 			{
@@ -203,7 +203,7 @@ void RemoteDir::eventEndDownload()
 
 			QDomNodeList taglist = col.toElement().elementsByTagName ( "tag" );
 			fi.tags.clear();
-			for(int ti = 0; ti < taglist.count(); ++ti)
+			for(int ti = 0; ti < taglist.size(); ++ti)
 			{
 				if(!fi.tags.contains(taglist.at(ti).toElement().text()))
 					fi.tags  << taglist.at(ti).toElement().text();
@@ -258,7 +258,7 @@ void RemoteDir::slotProgress(int done, int total)
 	int ih(0);
 	bool hFound = false;
 #if 0 // TODO Replace this code
-	for(;ih < https.count();++ih)
+	for(;ih < https.size();++ih)
 	{
 		if(sender() == https[ih])
 		{

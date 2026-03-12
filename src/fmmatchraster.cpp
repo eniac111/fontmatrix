@@ -85,7 +85,7 @@ void FMMatchRaster::addImage ( const QString & text )
 		return;
 
 	bool ok;
-	refCodepoint = ( letter->text().count() != 4 ) ? letter->text().at ( 0 ).unicode() : letter->text().toUInt ( &ok, 16 );
+	refCodepoint = ( letter->text().size() != 4 ) ? letter->text().at ( 0 ).unicode() : letter->text().toUInt ( &ok, 16 );
 	refImage = iView->getPixmap().toImage().copy ( curRect );
 	const unsigned int iw(refImage.width());
 	const unsigned int ih(refImage.height());
@@ -121,7 +121,7 @@ void FMMatchRaster::search()
 	if ( !m_waitingForButton )
 	{
 		remainFonts = compFonts =  FMFontDb::DB()->getFilteredFonts();
-		progressBar->setRange ( 0, compFonts.count() );
+		progressBar->setRange ( 0, compFonts.size() );
 		stackedWidget->setCurrentIndex ( 1 );
 
 		if ( !checkInteractive->isChecked() )
@@ -207,7 +207,7 @@ void FMMatchRaster::slotStop()
 {
 	if ( (waitingFont != 0) && (!filteredFonts.contains ( waitingFont )) )
 		filteredFonts << waitingFont;
-	if ( filteredFonts.count() > 0 )
+	if ( filteredFonts.size() > 0 )
 	{
 		typotek::getInstance()->getTheMainView()->setCurFonts ( filteredFonts );
 	}

@@ -974,7 +974,7 @@ GlyphList FMOtf::get_position ( HB_Buffer abuffer )
 		_buffer = abuffer;
 	}
 	GlyphList renderedString;
-	bool wantPos = true;
+	bool wantPos = GPOS && _buffer->positions;
 	for ( uint bIndex = 0 ; bIndex < _buffer->in_length; ++bIndex )
 	{
 // 		qDebug() << "bIndex = "<< bIndex;

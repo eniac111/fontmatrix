@@ -86,12 +86,7 @@ void QHexView::setShowAddressSeparator(bool value) {
 // Desc: destructor
 //------------------------------------------------------------------------------
 QString QHexView::formatAddress(address_t address) {
-	QString ret;
-#if QT_POINTER_SIZE == 4
-	ret = QString::asprintf(m_AddressFormatString, (address >> 16) & 0xffff, address & 0xffff);
-#elif QT_POINTER_SIZE == 8
-	ret = QString::asprintf(m_AddressFormatString, (address >> 32) & 0xffffffff, address & 0xffffffff);
-#endif
+	QString ret = QString::asprintf(m_AddressFormatString, (address >> 16) & 0xffff, address & 0xffff);
 	return ret;
 }
 
@@ -587,8 +582,8 @@ int QHexView::pixelToWord(int x, int y) const {
 //------------------------------------------------------------------------------
 void QHexView::mouseDoubleClickEvent(QMouseEvent * event) {
 	if(event->button() == Qt::LeftButton) {
-		const int x = event->x();
-		const int y = event->y();
+		const int x = event->position().x();
+		const int y = event->position().y();
 		if(x >= line1() && x < line2()) {
 
 			m_Highlighting = Highlighting_Data;
@@ -613,8 +608,8 @@ void QHexView::mouseDoubleClickEvent(QMouseEvent * event) {
 //------------------------------------------------------------------------------
 void QHexView::mousePressEvent(QMouseEvent *event) {
 	if(event->button() == Qt::LeftButton) {
-		const int x = event->x();
-		const int y = event->y();
+		const int x = event->position().x();
+		const int y = event->position().y();
 
 		if(x < line2()) {
 			m_Highlighting = Highlighting_Data;
@@ -644,8 +639,8 @@ void QHexView::mousePressEvent(QMouseEvent *event) {
 //------------------------------------------------------------------------------
 void QHexView::mouseMoveEvent(QMouseEvent *event) {
 	if(m_Highlighting != Highlighting_None) {
-		const int x = event->x();
-		const int y = event->y();
+		const int x = event->position().x();
+		const int y = event->position().y();
 
 		const int offset = pixelToWord(x, y);
 

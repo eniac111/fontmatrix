@@ -102,14 +102,14 @@ QVector<QRgb> FMPreviewIconEngine::actualSelPalette(const QVector<QRgb>& orig)
 	bool DarkOnLight(fgColor.rgb() < bgColor.rgb());
 	// order is dark first, light last
 	QMap<QRgb, int> order;
-	for(int i(0); i < orig.count(); ++i)
+	for(int i(0); i < orig.size(); ++i)
 		order[orig[i]] = i;
 	QList<int> oIdx(order.values());
 	if(DarkOnLight)
 	{
 		// oIdx has background values at the end
 		int v(0);
-		for(int c(oIdx.count() - 1); c >= 0 ; --c)
+		for(int c(oIdx.size() - 1); c >= 0 ; --c)
 		{
 			ret [oIdx[c]] =  m_selPalette[v];
 			++v;
@@ -118,7 +118,7 @@ QVector<QRgb> FMPreviewIconEngine::actualSelPalette(const QVector<QRgb>& orig)
 	else
 	{
 		int v(0);
-		for(int c(0); c < oIdx.count() ; c++)
+		for(int c(0); c < oIdx.size() ; c++)
 		{
 			ret [oIdx[c]] =  m_selPalette[v];
 			++v;
@@ -285,7 +285,7 @@ QVariant FMPreviewModel::data(const QModelIndex & index, int role) const
 		{
 			QList<FontItem*> fam(FMFontDb::DB()->FamilySet(fit->family()));
 			QString sRet;
-			sRet+= "<div style=\"" + styleTooltipName + "\">" + fit->family() + " ("+QString::number(fam.count())+")</div>";
+			sRet+= "<div style=\"" + styleTooltipName + "\">" + fit->family() + " ("+QString::number(fam.size())+")</div>";
 			sRet+= "<div style=\"" + styleTooltipTags + "\">" + fit->tags().join(QString(", ")) + "</div>";
 
 			foreach(FontItem* ffi, fam)
@@ -328,9 +328,9 @@ int FMPreviewModel::rowCount(const QModelIndex & parent) const
 		return 0;
 	int cl(0);
 	if(base.isEmpty())
-		cl = FMFontDb::DB()->getFilteredFonts(true).count();
+		cl = FMFontDb::DB()->getFilteredFonts(true).size();
 	else
-		cl = base.count();
+		cl = base.size();
 	return cl;
 }
 
@@ -373,12 +373,12 @@ bool FMPreviewView::moveTo(const QString &fname)
 	QList<FontItem*> fl(reinterpret_cast<FMPreviewModel*>(model())->getBase());
 
 	QString uname(fname.toUpper());
-	const int fl_count(fl.count());
+	const int fl_count(fl.size());
 	int rFont(fl_count);
 	for(int i(0); i < fl_count ; ++i)
 	{
 		QString pname(fl[i]->fancyName().toUpper());
-		pname.truncate(uname.count());
+		pname.truncate(uname.size());
 		if(uname == pname)
 		{
 			rFont = i;
@@ -460,7 +460,7 @@ void FMPreviewView::mouseMoveEvent(QMouseEvent * event)
 		{
 			FontItem * sf(FMFontDb::DB()->Font(fname));
 			if(sf)
-				FMFloatingPreview::create(sf, QRect(event->globalPos(), QSize(width() ,1) ));
+				FMFloatingPreview::create(sf, QRect(event->globalPosition().toPoint(), QSize(width() ,1) ));
 		}
 	}
 
@@ -484,7 +484,7 @@ void FMPreviewView::setCurrentFont(const QString & name)
 {
 	QList<FontItem*> fl(reinterpret_cast<FMPreviewModel*>(model())->getBase());
 
-	const int fl_count(fl.count());
+	const int fl_count(fl.size());
 	int rFont(fl_count);
 	for(int i(0); i < fl_count ; ++i)
 	{
