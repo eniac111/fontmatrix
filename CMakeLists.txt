@@ -268,7 +268,7 @@ IF(WIN32)
 	install(CODE "
 		if(EXISTS \"${_qt_bin_dir}/windeployqt6.exe\")
 			execute_process(COMMAND
-				\"${_qt_bin_dir}/windeployqt6.exe\" --release
+				\"${_qt_bin_dir}/windeployqt6.exe\" --release --compiler-runtime
 				\"\${CMAKE_INSTALL_PREFIX}/fontmatrix.exe\"
 			)
 		else()
@@ -314,8 +314,29 @@ IF(WIN32)
 	SET(CPACK_PACKAGE_EXECUTABLES "fontmatrix" "Fontmatrix")
 	SET(CPACK_WIX_PROGRAM_MENU_FOLDER "Fontmatrix")
 	SET(CPACK_WIX_PROPERTY_ARPURLINFOABOUT "https://github.com/eniac111/fontmatrix/")
-	configure_file("${CMAKE_SOURCE_DIR}/COPYING" "${CMAKE_BINARY_DIR}/COPYING.txt" COPYONLY)
-	SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_BINARY_DIR}/COPYING.txt")
+	# Build a combined license file: copyright header + GPL text + VC++ runtime notice.
+	# file(READ) + file(WRITE) runs at configure time; the original COPYING is not touched.
+	file(READ "${CMAKE_SOURCE_DIR}/COPYING" _gpl_text)
+	file(WRITE "${CMAKE_BINARY_DIR}/LICENSE.txt"
+"Fontmatrix ${VERSION} - Font Management Application\n\
+Copyright (C) 2007 Pierre Marchand and contributors\n\
+https://github.com/eniac111/fontmatrix/\n\
+\n\
+This program is free software: you can redistribute it and/or modify\n\
+it under the terms of the GNU General Public License as published below.\n\
+\n\
+Third-party components included in this installer:\n\
+  Microsoft Visual C++ Runtime Libraries\n\
+    Copyright (C) Microsoft Corporation. All rights reserved.\n\
+    Redistributed under the Microsoft Visual C++ Runtime Library License.\n\
+    See: https://learn.microsoft.com/en-us/legal/vc-redist-license-terms\n\
+\n\
+------------------------------------------------------------------------\n\
+GNU GENERAL PUBLIC LICENSE\n\
+------------------------------------------------------------------------\n\
+\n\
+${_gpl_text}")
+	SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_BINARY_DIR}/LICENSE.txt")
 ENDIF(WIN32)
 
 INCLUDE(CPack)
