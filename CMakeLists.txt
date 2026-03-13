@@ -309,6 +309,9 @@ IF(WIN32)
 	SET(CPACK_PACKAGE_EXECUTABLES "fontmatrix" "Fontmatrix")
 	SET(CPACK_WIX_PROGRAM_MENU_FOLDER "Fontmatrix")
 	SET(CPACK_WIX_PROPERTY_ARPURLINFOABOUT "https://github.com/fontmatrix/fontmatrix")
+	# Suppress ICE validation: large Qt/WebEngine packages routinely trigger
+	# spurious ICE warnings that cause light.exe to abort after a long run.
+	SET(CPACK_WIX_LIGHT_EXTRA_FLAGS "-sval")
 ENDIF(WIN32)
 
 INCLUDE(CPack)

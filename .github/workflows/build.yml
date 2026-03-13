@@ -62,6 +62,7 @@ jobs:
         run: Compress-Archive -Path dist\* -DestinationPath fontmatrix-windows.zip
 
       - name: Build MSI installer
+        id: msi
         shell: pwsh
         run: |
           # WiX 3.x is pre-installed on windows-latest; ensure it is on PATH.
@@ -70,6 +71,18 @@ jobs:
           if ($wixDir) { $env:PATH = "$wixDir\bin;$env:PATH" }
           cd build
           cpack -G WIX -C Release
+          if ($LASTEXITCODE -ne 0) {
+            $log = "_CPack_Packages/win64/WIX/wix.log"
+            if (Test-Path $log) { Write-Host "=== wix.log ==="; Get-Content $log }
+            exit $LASTEXITCODE
+          }
+
+      - name: Upload wix.log on failure
+        if: failure() && steps.msi.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: wix-log
+          path: build/_CPack_Packages/win64/WIX/wix.log
 
       - name: Upload Windows ZIP artifact
         uses: actions/upload-artifact@v4
