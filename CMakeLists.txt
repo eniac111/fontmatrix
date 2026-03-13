@@ -268,13 +268,20 @@ IF(WIN32)
 	install(CODE "
 		if(EXISTS \"${_qt_bin_dir}/windeployqt6.exe\")
 			execute_process(COMMAND
-				\"${_qt_bin_dir}/windeployqt6.exe\" --release --compiler-runtime
+				\"${_qt_bin_dir}/windeployqt6.exe\" --release
 				\"\${CMAKE_INSTALL_PREFIX}/fontmatrix.exe\"
 			)
 		else()
 			message(WARNING \"windeployqt6.exe not found at ${_qt_bin_dir} — Qt DLLs will not be bundled.\")
 		endif()
 	")
+
+	# Install MSVC runtime DLLs (vcruntime140.dll, msvcp140.dll, etc.) alongside the exe.
+	# InstallRequiredSystemLibraries locates them via CMake's knowledge of the MSVC toolchain,
+	# which is reliable at configure time — unlike windeployqt6 --compiler-runtime which runs
+	# at install time without the full Visual Studio environment.
+	set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ".")
+	include(InstallRequiredSystemLibraries)
 
 	# Copy FreeType DLL from vcpkg (resolved at configure time via VCPKG_INSTALLATION_ROOT).
 	# Use file(TO_CMAKE_PATH) to convert Windows backslashes (e.g. C:\vcpkg) to forward
