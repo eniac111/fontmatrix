@@ -13,7 +13,12 @@
         "--socket=fallback-x11",
         "--socket=wayland",
         "--device=dri",
-        "--persist=.Fontmatrix"
+        "--filesystem=/usr/share/fonts:ro",
+        "--filesystem=/usr/local/share/fonts:ro",
+        "--filesystem=xdg-data/fonts",
+        "--filesystem=home/.fonts:ro",
+        "--filesystem=xdg-config/fontconfig",
+        "--filesystem=tmp"
     ],
     "cleanup": [
         "/share/man"
