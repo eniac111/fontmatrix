@@ -301,7 +301,12 @@ SET(CPACK_PACKAGE_VENDOR "Fontmatrix")
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Font management application")
 
 IF(WIN32)
-	# MSI installer via CPack WiX generator (requires WiX Toolset 3.x).
+	# MSI installer via CPack WiX generator using WiX Toolset 6 (wix.exe).
+	# CPACK_WIX_VERSION=4 selects the WiX 4+ code-path in CMake's CPack generator,
+	# which invokes `wix.exe` (WiX 4/5/6) instead of the legacy candle.exe/light.exe
+	# (WiX 3). WiX 6 uses UTF-8 throughout and avoids the LGHT0311 code-page error
+	# that WiX 3 raises for file names containing non-Latin-1 characters.
+	SET(CPACK_WIX_VERSION 4)
 	SET(CPACK_GENERATOR "WIX")
 	SET(CPACK_PACKAGE_INSTALL_DIRECTORY "Fontmatrix")
 	# UPGRADE_GUID must remain constant across all versions of this product.
