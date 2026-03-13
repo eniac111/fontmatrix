@@ -62,7 +62,9 @@ jobs:
         run: Compress-Archive -Path dist\* -DestinationPath fontmatrix-windows.zip
 
       - name: Install WiX toolset
-        run: dotnet tool install --global wix --version 6.0.2
+        run: |
+          dotnet tool install --global wix --version 6.0.2
+          wix extension add --global WixToolset.UI.wixext/6.0.2
 
       - name: Build MSI installer
         id: msi
@@ -70,6 +72,14 @@ jobs:
         run: |
           cd build
           cpack -G WIX -C Release
+
+      - name: Upload WiX log on failure
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: wix-log
+          path: build/_CPack_Packages/win64/WIX/wix.log
+          if-no-files-found: ignore
 
       - name: Upload Windows ZIP artifact
         uses: actions/upload-artifact@v7
