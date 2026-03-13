@@ -61,28 +61,15 @@ jobs:
         shell: pwsh
         run: Compress-Archive -Path dist\* -DestinationPath fontmatrix-windows.zip
 
+      - name: Install WiX toolset
+        run: dotnet tool install --global wix --version 6.0.2
+
       - name: Build MSI installer
         id: msi
         shell: pwsh
         run: |
-          # WiX 3.x is pre-installed on windows-latest; ensure it is on PATH.
-          $wixDir = Get-ChildItem "C:\Program Files (x86)" -Filter "WiX Toolset*" -Directory |
-            Sort-Object Name -Descending | Select-Object -First 1 -ExpandProperty FullName
-          if ($wixDir) { $env:PATH = "$wixDir\bin;$env:PATH" }
           cd build
           cpack -G WIX -C Release
-          if ($LASTEXITCODE -ne 0) {
-            $log = "_CPack_Packages/win64/WIX/wix.log"
-            if (Test-Path $log) { Write-Host "=== wix.log ==="; Get-Content $log }
-            exit $LASTEXITCODE
-          }
-
-      - name: Upload wix.log on failure
-        if: failure() && steps.msi.outcome == 'failure'
-        uses: actions/upload-artifact@v4
-        with:
-          name: wix-log
-          path: build/_CPack_Packages/win64/WIX/wix.log
 
       - name: Upload Windows ZIP artifact
         uses: actions/upload-artifact@v4
