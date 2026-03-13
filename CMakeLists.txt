@@ -30,7 +30,7 @@ ENDIF(APPLE)
 IF(WIN32)
 	SET (CMAKE_INSTALL_PREFIX c:/fontmatrix CACHE PATH "Installation path")
 	SET (FONTMATRIX_BIN "")
-	SET (FONTMATRIX_QMDIR "qm" )
+	SET (FONTMATRIX_QMDIR "share/qm" )
 ENDIF(WIN32)
 
 ADD_DEFINITIONS(-DPREFIX="${CMAKE_INSTALL_PREFIX}")
@@ -255,12 +255,37 @@ IF(WIN32)
 	${FM_HELP_FILES}
 	DESTINATION "${RESOURCESDIR}"
 	)
-	
+
 	INSTALL(FILES
 	${UNICODE_RESOURCES}
 	DESTINATION "${RESOURCESDIR}/Unicode/"
 	)
-	
+
+	# Bundle Qt runtime DLLs alongside the installed executable.
+	# windeployqt6 path is resolved from Qt6::Core's location at configure time.
+	get_target_property(_qt_core_loc Qt6::Core IMPORTED_LOCATION)
+	get_filename_component(_qt_bin_dir "${_qt_core_loc}" DIRECTORY)
+	install(CODE "
+		if(EXISTS \"${_qt_bin_dir}/windeployqt6.exe\")
+			execute_process(COMMAND
+				\"${_qt_bin_dir}/windeployqt6.exe\" --release
+				\"\${CMAKE_INSTALL_PREFIX}/fontmatrix.exe\"
+			)
+		else()
+			message(WARNING \"windeployqt6.exe not found at ${_qt_bin_dir} — Qt DLLs will not be bundled.\")
+		endif()
+	")
+
+	# Copy FreeType DLL from vcpkg (resolved at configure time via VCPKG_INSTALLATION_ROOT).
+	if(DEFINED ENV{VCPKG_INSTALLATION_ROOT})
+		file(GLOB _freetype_dlls
+			"$ENV{VCPKG_INSTALLATION_ROOT}/installed/x64-windows/bin/freetype*.dll"
+		)
+		foreach(_dll ${_freetype_dlls})
+			install(FILES "${_dll}" DESTINATION ".")
+		endforeach()
+	endif()
+
 ENDIF(WIN32)
 
 ADD_SUBDIRECTORY(help)
@@ -269,5 +294,19 @@ ADD_SUBDIRECTORY(samples)
 SET(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
 SET(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
 SET(CPACK_PACKAGE_VERSION_PATCH ${VERSION_PATCH})
+SET(CPACK_PACKAGE_NAME "Fontmatrix")
+SET(CPACK_PACKAGE_VENDOR "Fontmatrix")
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Font management application")
+
+IF(WIN32)
+	# MSI installer via CPack WiX generator (requires WiX Toolset 3.x).
+	SET(CPACK_GENERATOR "WIX")
+	SET(CPACK_PACKAGE_INSTALL_DIRECTORY "Fontmatrix")
+	# UPGRADE_GUID must remain constant across all versions of this product.
+	SET(CPACK_WIX_UPGRADE_GUID "5D8B1A2F-C3E4-4F56-8901-2B3C4D5E6F78")
+	SET(CPACK_PACKAGE_EXECUTABLES "fontmatrix" "Fontmatrix")
+	SET(CPACK_WIX_PROGRAM_MENU_FOLDER "Fontmatrix")
+	SET(CPACK_WIX_PROPERTY_ARPURLINFOABOUT "https://github.com/fontmatrix/fontmatrix")
+ENDIF(WIN32)
 
 INCLUDE(CPack)
