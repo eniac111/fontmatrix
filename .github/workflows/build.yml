@@ -55,7 +55,7 @@ jobs:
 
       - name: Deploy
         shell: pwsh
-        run: cmake --install build --config Release --prefix dist
+        run: cmake --install build --config Release --prefix (Join-Path $PWD "dist")
 
       - name: Create ZIP archive
         shell: pwsh

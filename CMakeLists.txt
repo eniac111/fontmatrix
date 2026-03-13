@@ -277,10 +277,12 @@ IF(WIN32)
 	")
 
 	# Copy FreeType DLL from vcpkg (resolved at configure time via VCPKG_INSTALLATION_ROOT).
+	# Use file(TO_CMAKE_PATH) to convert Windows backslashes (e.g. C:\vcpkg) to forward
+	# slashes so the path is safe to embed in the generated cmake_install.cmake script.
 	if(DEFINED ENV{VCPKG_INSTALLATION_ROOT})
-		file(GLOB _freetype_dlls
-			"$ENV{VCPKG_INSTALLATION_ROOT}/installed/x64-windows/bin/freetype*.dll"
-		)
+		set(_vcpkg_root "$ENV{VCPKG_INSTALLATION_ROOT}")
+		file(TO_CMAKE_PATH "${_vcpkg_root}" _vcpkg_root)
+		file(GLOB _freetype_dlls "${_vcpkg_root}/installed/x64-windows/bin/freetype*.dll")
 		foreach(_dll ${_freetype_dlls})
 			install(FILES "${_dll}" DESTINATION ".")
 		endforeach()
