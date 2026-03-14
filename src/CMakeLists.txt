@@ -442,6 +442,7 @@ IF(WIN32)
 	${fontmatrix_UIS_H}
 	${fontmatrix_RCC_SRCS}
 	${PODOFO_SRCS}
+	fontmatrix.rc
 	)
 
 	target_link_libraries(fontmatrix harfbuzz hyphenate

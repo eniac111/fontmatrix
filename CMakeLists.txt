@@ -29,8 +29,8 @@ ENDIF(APPLE)
 
 IF(WIN32)
 	SET (CMAKE_INSTALL_PREFIX c:/fontmatrix CACHE PATH "Installation path")
-	SET (FONTMATRIX_BIN "")
-	SET (FONTMATRIX_QMDIR "qm" )
+	SET (FONTMATRIX_BIN ".")
+	SET (FONTMATRIX_QMDIR "share/qm" )
 ENDIF(WIN32)
 
 ADD_DEFINITIONS(-DPREFIX="${CMAKE_INSTALL_PREFIX}")
@@ -255,12 +255,54 @@ IF(WIN32)
 	${FM_HELP_FILES}
 	DESTINATION "${RESOURCESDIR}"
 	)
-	
+
 	INSTALL(FILES
 	${UNICODE_RESOURCES}
 	DESTINATION "${RESOURCESDIR}/Unicode/"
 	)
-	
+
+	# Bundle Qt runtime DLLs alongside the installed executable.
+	# windeployqt6 path is resolved from Qt6::Core's location at configure time.
+	get_target_property(_qt_core_loc Qt6::Core IMPORTED_LOCATION)
+	get_filename_component(_qt_bin_dir "${_qt_core_loc}" DIRECTORY)
+	install(CODE "
+		if(EXISTS \"${_qt_bin_dir}/windeployqt6.exe\")
+			execute_process(COMMAND
+				\"${_qt_bin_dir}/windeployqt6.exe\" --release
+				\"\${CMAKE_INSTALL_PREFIX}/fontmatrix.exe\"
+			)
+		else()
+			message(WARNING \"windeployqt6.exe not found at ${_qt_bin_dir} — Qt DLLs will not be bundled.\")
+		endif()
+	")
+
+	# Install MSVC runtime DLLs (vcruntime140.dll, msvcp140.dll, etc.) alongside the exe.
+	# InstallRequiredSystemLibraries locates them via CMake's knowledge of the MSVC toolchain,
+	# which is reliable at configure time — unlike windeployqt6 --compiler-runtime which runs
+	# at install time without the full Visual Studio environment.
+	set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ".")
+	include(InstallRequiredSystemLibraries)
+
+	# Copy FreeType DLL from vcpkg (resolved at configure time via VCPKG_INSTALLATION_ROOT).
+	# Use file(TO_CMAKE_PATH) to convert Windows backslashes (e.g. C:\vcpkg) to forward
+	# slashes so the path is safe to embed in the generated cmake_install.cmake script.
+	if(DEFINED ENV{VCPKG_INSTALLATION_ROOT})
+		set(_vcpkg_root "$ENV{VCPKG_INSTALLATION_ROOT}")
+		file(TO_CMAKE_PATH "${_vcpkg_root}" _vcpkg_root)
+		# freetype and its transitive vcpkg dependencies (brotli, bzip2, libpng, zlib).
+		file(GLOB _vcpkg_dlls
+			"${_vcpkg_root}/installed/x64-windows/bin/freetype*.dll"
+			"${_vcpkg_root}/installed/x64-windows/bin/zlib1.dll"
+			"${_vcpkg_root}/installed/x64-windows/bin/bz2.dll"
+			"${_vcpkg_root}/installed/x64-windows/bin/libpng16.dll"
+			"${_vcpkg_root}/installed/x64-windows/bin/brotlidec.dll"
+			"${_vcpkg_root}/installed/x64-windows/bin/brotlicommon.dll"
+		)
+		foreach(_dll ${_vcpkg_dlls})
+			install(FILES "${_dll}" DESTINATION ".")
+		endforeach()
+	endif()
+
 ENDIF(WIN32)
 
 ADD_SUBDIRECTORY(help)
@@ -269,5 +311,47 @@ ADD_SUBDIRECTORY(samples)
 SET(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
 SET(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
 SET(CPACK_PACKAGE_VERSION_PATCH ${VERSION_PATCH})
+SET(CPACK_PACKAGE_NAME "Fontmatrix")
+SET(CPACK_PACKAGE_VENDOR "Fontmatrix")
+SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Font management application")
+
+IF(WIN32)
+	# MSI installer via CPack WiX generator using WiX Toolset 6 (wix.exe).
+	# CPACK_WIX_VERSION=4 selects the WiX 4+ code-path in CMake's CPack generator,
+	# which invokes `wix.exe` (WiX 4/5/6) instead of the legacy candle.exe/light.exe
+	# (WiX 3). WiX 6 uses UTF-8 throughout and avoids the LGHT0311 code-page error
+	# that WiX 3 raises for file names containing non-Latin-1 characters.
+	SET(CPACK_WIX_VERSION 4)
+	SET(CPACK_GENERATOR "WIX")
+	SET(CPACK_PACKAGE_INSTALL_DIRECTORY "Fontmatrix")
+	# UPGRADE_GUID must remain constant across all versions of this product.
+	SET(CPACK_WIX_UPGRADE_GUID "5D8B1A2F-C3E4-4F56-8901-2B3C4D5E6F78")
+	SET(CPACK_PACKAGE_EXECUTABLES "fontmatrix" "Fontmatrix")
+	SET(CPACK_WIX_PROGRAM_MENU_FOLDER "Fontmatrix")
+	SET(CPACK_WIX_PROPERTY_ARPURLINFOABOUT "https://github.com/eniac111/fontmatrix/")
+	# Build a combined license file: copyright header + GPL text + VC++ runtime notice.
+	# file(READ) + file(WRITE) runs at configure time; the original COPYING is not touched.
+	file(READ "${CMAKE_SOURCE_DIR}/COPYING" _gpl_text)
+	file(WRITE "${CMAKE_BINARY_DIR}/LICENSE.txt"
+"Fontmatrix ${VERSION} - Font Management Application\n\
+Copyright (C) 2007 Pierre Marchand and contributors\n\
+https://github.com/eniac111/fontmatrix/\n\
+\n\
+This program is free software: you can redistribute it and/or modify\n\
+it under the terms of the GNU General Public License as published below.\n\
+\n\
+Third-party components included in this installer:\n\
+  Microsoft Visual C++ Runtime Libraries\n\
+    Copyright (C) Microsoft Corporation. All rights reserved.\n\
+    Redistributed under the Microsoft Visual C++ Runtime Library License.\n\
+    See: https://learn.microsoft.com/en-us/legal/vc-redist-license-terms\n\
+\n\
+------------------------------------------------------------------------\n\
+GNU GENERAL PUBLIC LICENSE\n\
+------------------------------------------------------------------------\n\
+\n\
+${_gpl_text}")
+	SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_BINARY_DIR}/LICENSE.txt")
+ENDIF(WIN32)
 
 INCLUDE(CPack)
