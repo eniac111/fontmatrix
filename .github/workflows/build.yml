@@ -26,6 +26,13 @@ jobs:
           bundle: fontmatrix.flatpak
           manifest-path: com.github.fontmatrix.Fontmatrix.json
           cache-key: flatpak-builder-${{ github.sha }}
+          upload-artifact: false
+
+      - name: Upload Flatpak artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: fontmatrix.flatpak
+          path: fontmatrix.flatpak
 
   windows:
     name: Build Windows
