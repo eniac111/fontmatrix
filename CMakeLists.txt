@@ -289,8 +289,16 @@ IF(WIN32)
 	if(DEFINED ENV{VCPKG_INSTALLATION_ROOT})
 		set(_vcpkg_root "$ENV{VCPKG_INSTALLATION_ROOT}")
 		file(TO_CMAKE_PATH "${_vcpkg_root}" _vcpkg_root)
-		file(GLOB _freetype_dlls "${_vcpkg_root}/installed/x64-windows/bin/freetype*.dll")
-		foreach(_dll ${_freetype_dlls})
+		# freetype and its transitive vcpkg dependencies (brotli, bzip2, libpng, zlib).
+		file(GLOB _vcpkg_dlls
+			"${_vcpkg_root}/installed/x64-windows/bin/freetype*.dll"
+			"${_vcpkg_root}/installed/x64-windows/bin/zlib1.dll"
+			"${_vcpkg_root}/installed/x64-windows/bin/bz2.dll"
+			"${_vcpkg_root}/installed/x64-windows/bin/libpng16.dll"
+			"${_vcpkg_root}/installed/x64-windows/bin/brotlidec.dll"
+			"${_vcpkg_root}/installed/x64-windows/bin/brotlicommon.dll"
+		)
+		foreach(_dll ${_vcpkg_dlls})
 			install(FILES "${_dll}" DESTINATION ".")
 		endforeach()
 	endif()
