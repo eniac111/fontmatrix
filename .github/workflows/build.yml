@@ -23,7 +23,7 @@ jobs:
 
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
-          bundle: fontmatrix.flatpak
+          bundle: fontmatrix-x86_64.flatpak
           manifest-path: com.github.fontmatrix.Fontmatrix.json
           cache-key: flatpak-builder-${{ github.sha }}
           upload-artifact: false
@@ -31,8 +31,8 @@ jobs:
       - name: Upload Flatpak artifact
         uses: actions/upload-artifact@v7
         with:
-          name: fontmatrix.flatpak
-          path: fontmatrix.flatpak
+          name: fontmatrix-x86_64.flatpak
+          path: fontmatrix-x86_64.flatpak
 
   windows:
     name: Build Windows
@@ -128,7 +128,7 @@ jobs:
         if: steps.check-branch.outputs.on_master == 'true'
         uses: actions/download-artifact@v8
         with:
-          name: fontmatrix.flatpak
+          name: fontmatrix-x86_64.flatpak
           path: release-artifacts/
 
       - name: Download Windows ZIP artifact
@@ -145,11 +145,19 @@ jobs:
           name: fontmatrix-windows-msi
           path: release-artifacts/
 
+      - name: Rename artifacts to include version
+        if: steps.check-branch.outputs.on_master == 'true'
+        run: |
+          VERSION="${{ github.ref_name }}"
+          mv "release-artifacts/fontmatrix-x86_64.flatpak" "release-artifacts/fontmatrix-${VERSION}-x86_64.flatpak"
+          mv "release-artifacts/fontmatrix-windows.zip" "release-artifacts/fontmatrix-${VERSION}-windows-x64.zip"
+          mv release-artifacts/fontmatrix-*.msi "release-artifacts/fontmatrix-${VERSION}-windows-x64.msi"
+
       - name: Upload artifacts to GitHub Release
         if: steps.check-branch.outputs.on_master == 'true'
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            release-artifacts/fontmatrix.flatpak
-            release-artifacts/fontmatrix-windows.zip
-            release-artifacts/fontmatrix-*.msi
+            release-artifacts/fontmatrix-${{ github.ref_name }}-x86_64.flatpak
+            release-artifacts/fontmatrix-${{ github.ref_name }}-windows-x64.zip
+            release-artifacts/fontmatrix-${{ github.ref_name }}-windows-x64.msi
