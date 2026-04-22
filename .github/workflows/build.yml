@@ -62,6 +62,12 @@ jobs:
           manifest-path: com.github.fontmatrix.Fontmatrix.json
           cache-key: flatpak-builder-${{ github.sha }}
 
+      - name: Upload Flatpak artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: fontmatrix-flatpak
+          path: fontmatrix-${{ steps.version.outputs.version }}.flatpak
+
   windows:
     name: Build Windows
     runs-on: windows-latest
@@ -186,21 +192,21 @@ jobs:
 
       - name: Download Flatpak artifact
         if: steps.check-branch.outputs.on_master == 'true'
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v7
         with:
-          name: fontmatrix-${{ steps.version.outputs.version }}.flatpak
+          name: fontmatrix-flatpak
           path: release-artifacts/
 
       - name: Download Windows ZIP artifact
         if: steps.check-branch.outputs.on_master == 'true'
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v7
         with:
           name: fontmatrix-windows
           path: release-artifacts/
 
       - name: Download Windows MSI artifact
         if: steps.check-branch.outputs.on_master == 'true'
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v7
         with:
           name: fontmatrix-windows-msi
           path: release-artifacts/
