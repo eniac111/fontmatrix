@@ -16,7 +16,7 @@ jobs:
     permissions:
       contents: read
     container:
-      image: ghcr.io/flathub-infra/flatpak-github-actions:kde-6.8
+      image: ghcr.io/flathub-infra/flatpak-github-actions:kde-6.10
       options: --privileged
     steps:
       - uses: actions/checkout@v6
@@ -96,7 +96,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: '6.8.*'
+          version: '6.10.*'
           arch: win64_msvc2022_64
           modules: 'qtwebengine qtpositioning qtwebchannel'
 
