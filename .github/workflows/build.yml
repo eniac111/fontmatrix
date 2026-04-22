@@ -16,14 +16,49 @@ jobs:
     permissions:
       contents: read
     container:
-      image: ghcr.io/flathub-infra/flatpak-github-actions:kde-6.8
+      image: ghcr.io/flathub-infra/flatpak-github-actions:kde-6.10
       options: --privileged
     steps:
       - uses: actions/checkout@v6
 
+      - name: Determine version
+        id: version
+        run: |
+          if echo "${{ github.ref }}" | grep -qE '^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$'; then
+            VER="${{ github.ref_name }}"
+            VER="${VER#v}"
+            MAJOR=$(echo $VER | cut -d. -f1)
+            MINOR=$(echo $VER | cut -d. -f2)
+            PATCH=$(echo $VER | cut -d. -f3)
+            echo "version=$VER"         >> "$GITHUB_OUTPUT"
+            echo "is_release=true"      >> "$GITHUB_OUTPUT"
+          else
+            SHORT="${{ github.sha }}"
+            SHORT="${SHORT:0:7}"
+            MAJOR=0; MINOR=0; PATCH=0
+            echo "version=git-${SHORT}" >> "$GITHUB_OUTPUT"
+            echo "is_release=false"     >> "$GITHUB_OUTPUT"
+          fi
+          echo "major=$MAJOR"           >> "$GITHUB_OUTPUT"
+          echo "minor=$MINOR"           >> "$GITHUB_OUTPUT"
+          echo "patch=$PATCH"           >> "$GITHUB_OUTPUT"
+
+      - name: Inject version into Flatpak manifest
+        run: |
+          python3 -c "
+          import json
+          m = json.load(open('com.github.fontmatrix.Fontmatrix.json'))
+          m['modules'][0]['config-opts'] = [
+            '-DVERSION_MAJOR=${{ steps.version.outputs.major }}',
+            '-DVERSION_MINOR=${{ steps.version.outputs.minor }}',
+            '-DVERSION_PATCH=${{ steps.version.outputs.patch }}',
+          ]
+          json.dump(m, open('com.github.fontmatrix.Fontmatrix.json', 'w'), indent=4)
+          "
+
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
-          bundle: fontmatrix.flatpak
+          bundle: fontmatrix-${{ steps.version.outputs.version }}.flatpak
           manifest-path: com.github.fontmatrix.Fontmatrix.json
           cache-key: flatpak-builder-${{ github.sha }}
 
@@ -35,10 +70,33 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - name: Determine version
+        id: version
+        shell: bash
+        run: |
+          if echo "${{ github.ref }}" | grep -qE '^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+$'; then
+            VER="${{ github.ref_name }}"
+            VER="${VER#v}"
+            MAJOR=$(echo $VER | cut -d. -f1)
+            MINOR=$(echo $VER | cut -d. -f2)
+            PATCH=$(echo $VER | cut -d. -f3)
+            echo "version=$VER"         >> "$GITHUB_OUTPUT"
+            echo "is_release=true"      >> "$GITHUB_OUTPUT"
+          else
+            SHORT="${{ github.sha }}"
+            SHORT="${SHORT:0:7}"
+            MAJOR=0; MINOR=0; PATCH=0
+            echo "version=git-${SHORT}" >> "$GITHUB_OUTPUT"
+            echo "is_release=false"     >> "$GITHUB_OUTPUT"
+          fi
+          echo "major=$MAJOR"           >> "$GITHUB_OUTPUT"
+          echo "minor=$MINOR"           >> "$GITHUB_OUTPUT"
+          echo "patch=$PATCH"           >> "$GITHUB_OUTPUT"
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: '6.8.*'
+          version: '6.10.*'
           arch: win64_msvc2022_64
           modules: 'qtwebengine qtpositioning qtwebchannel'
 
@@ -48,6 +106,9 @@ jobs:
       - name: Configure CMake
         run: >
           cmake -B build -DCMAKE_BUILD_TYPE=Release
+          -DVERSION_MAJOR=${{ steps.version.outputs.major }}
+          -DVERSION_MINOR=${{ steps.version.outputs.minor }}
+          -DVERSION_PATCH=${{ steps.version.outputs.patch }}
           "-DCMAKE_TOOLCHAIN_FILE=$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
 
       - name: Build
@@ -59,7 +120,7 @@ jobs:
 
       - name: Create ZIP archive
         shell: pwsh
-        run: Compress-Archive -Path dist\* -DestinationPath fontmatrix-windows.zip
+        run: Compress-Archive -Path dist\* -DestinationPath fontmatrix-windows-${{ steps.version.outputs.version }}.zip
 
       - name: Install WiX toolset
         run: |
@@ -85,7 +146,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: fontmatrix-windows
-          path: fontmatrix-windows.zip
+          path: fontmatrix-windows-${{ steps.version.outputs.version }}.zip
 
       - name: Upload Windows MSI artifact
         uses: actions/upload-artifact@v7
@@ -106,6 +167,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Extract version from tag
+        id: version
+        run: |
+          VERSION="${{ github.ref_name }}"
+          echo "version=${VERSION#v}" >> "$GITHUB_OUTPUT"
+
       - name: Check if tag commit is on master branch
         id: check-branch
         run: |
@@ -121,7 +188,7 @@ jobs:
         if: steps.check-branch.outputs.on_master == 'true'
         uses: actions/download-artifact@v8
         with:
-          name: fontmatrix.flatpak
+          name: fontmatrix-${{ steps.version.outputs.version }}.flatpak
           path: release-artifacts/
 
       - name: Download Windows ZIP artifact
@@ -143,6 +210,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            release-artifacts/fontmatrix.flatpak
-            release-artifacts/fontmatrix-windows.zip
-            release-artifacts/fontmatrix-*.msi
+            release-artifacts/fontmatrix-*.flatpak
+            release-artifacts/fontmatrix-windows-*.zip
+            release-artifacts/*.msi
