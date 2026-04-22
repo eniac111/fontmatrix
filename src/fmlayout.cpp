@@ -849,8 +849,6 @@ void FMLayout::doDraw()
 		{
 			for ( int i=0; i < refGlyph.count(); ++i )
 			{
-				if ( !refGlyph[i].glyph )
-					continue;
 				QGraphicsItem *glyph;
 				if(contextIsMainThread)
 					glyph =  theFont->itemFromGindexPix ( refGlyph[i].glyph , fontSize );
@@ -907,8 +905,6 @@ void FMLayout::doDraw()
 		{
 			for ( int i=0; i < refGlyph.count(); ++i )
 			{
-				if ( !refGlyph[i].glyph )
-					continue;
 				QGraphicsPathItem *glyph = theFont->itemFromGindex ( refGlyph[i].glyph , fontSize );
 
 				if ( tp->inLine() == TextProgression::INLINE_RTL )

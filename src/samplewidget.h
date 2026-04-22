@@ -159,6 +159,7 @@ private:
 
 private slots:
 	void slotView();
+	void doRender();
 	void drawPixmap(int index, double fontsize, double x, double y);
 	void drawBaseline(double y);
 	void clearFTScene();

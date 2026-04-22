@@ -511,7 +511,7 @@ bool FontItem::ensureFace()
 		return true;
 	}
 	QString trueFile ( m_remote ? remoteHerePath : m_path );
-	ft_error = FT_New_Face ( ftlib, trueFile.toLocal8Bit() , 0, &m_face );
+	ft_error = FT_New_Face ( ftlib, trueFile.toUtf8().constData() , 0, &m_face );
 	if ( ft_error )
 	{
 		qDebug() << "Error loading face [" << trueFile <<"]";
@@ -767,7 +767,10 @@ QGraphicsPixmapItem * FontItem::itemFromGindexPix ( int index, double size )
 	else
 	{
 #ifndef PLATFORM_APPLE
-		glyph->setPixmap ( QPixmap::fromImage ( img ) );
+		// Convert from Format_Indexed8 (with ARGB color table) to ARGB32 so
+		// that the alpha channel is preserved correctly on all Qt6 backends,
+		// including the Windows Direct3D / RHI backend.
+		glyph->setPixmap ( QPixmap::fromImage ( img.convertToFormat(QImage::Format_ARGB32) ) );
 #else
 		QPixmap aPix ( img.width(), img.height() );
 		aPix.fill ( QColor ( 0,0,0,0 ) );
