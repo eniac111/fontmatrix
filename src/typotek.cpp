@@ -1781,15 +1781,23 @@ QString typotek::defaultSampleName()
 	else
 	{
 		const QMap<QString, QMap<QString,QString> >& ss(dataLoader->systemSamples());
-		QString l(QLocale::languageToString(QLocale::system().language()));
+		// QLocale::system().name() returns e.g. "en_US", "de_DE" — take the 2-letter ISO code
+		// which matches the sample group directory names (de, fr, ru, etc.)
+		QString l(QLocale::system().name().left(2));
 		if((ss.contains(l)) && (ss[l].count() > 0))
 			return l + QString("::") + ss[l].keys().first();
 		else
 		{
+			// Prefer Latin-script samples as fallback so the widget shows something on first use
+			for(const QString& preferred : QStringList{"de", "fr", "ru"})
+			{
+				if(ss.contains(preferred) && ss[preferred].count() > 0)
+					return preferred + QString("::") + ss[preferred].keys().first();
+			}
 			foreach(QString k, ss.keys())
 			{
 				if(ss[k].count() > 0)
-					return k +  QString("::") +ss[k].keys().first();
+					return k + QString("::") + ss[k].keys().first();
 			}
 		}
 	}
