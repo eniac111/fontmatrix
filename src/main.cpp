@@ -26,7 +26,9 @@
 #include <QPixmap>
 #include <QBitmap>
 #include <QDebug>
+#include <QElapsedTimer>
 #include <QLocale>
+#include <QThread>
 #include <QTranslator>
 #include <QSettings>
 
@@ -126,8 +128,12 @@ int main ( int argc, char *argv[] )
 		                   Qt::DirectConnection );
 	}
 
+	QElapsedTimer splashTimer;
 	if ( splash )
+	{
 		theSplash.show();
+		splashTimer.start();
+	}
 
 	mw->initMatrix();
 
@@ -151,7 +157,13 @@ int main ( int argc, char *argv[] )
 	mw->postInit();
 
 	if ( splash )
+	{
+		const int minSplashMs = 1500;
+		qint64 remaining = minSplashMs - splashTimer.elapsed();
+		if ( remaining > 0 )
+			QThread::msleep ( static_cast<unsigned long>( remaining ) );
 		theSplash.finish ( mw );
+	}
 
 	return app.exec();
 }
