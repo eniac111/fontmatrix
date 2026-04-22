@@ -173,6 +173,19 @@ SampleWidget::SampleWidget(const QString& fid, QWidget *parent) :
 SampleWidget::~SampleWidget()
 {
 	removeConnections();
+
+	// Disconnect all signals from layoutThread and textLayoutFT before waiting,
+	// so that layoutFinished() / finished() cannot invoke slotView() on a
+	// partially destroyed object.
+	layoutThread->disconnect();
+	textLayoutFT->disconnect();
+
+	// Ask the running layout to stop and wait for the thread to exit cleanly.
+	// textLayoutFT->stopLayout() sets stopIt=true; the layout loop checks it.
+	textLayoutFT->stopLayout();
+	layoutThread->wait();
+	delete layoutThread;
+
 	delete ui;
 	delete loremScene;
 	delete ftScene;
@@ -465,21 +478,20 @@ void SampleWidget::slotView()
 
 void SampleWidget::drawPixmap(int index, double fontsize, double x, double y)
 {
-//	qDebug()<<"SampleWidget::drawPixmap index:"<<index<< "Y:"<<y;
-	if(index < 0)
+	if(index < 0) {
 		disconnect(textLayoutFT, SIGNAL(drawPixmapForMe(int,double,double,double)), this, SLOT(drawPixmap(int,double,double,double)));
+		return;
+	}
 	FontItem * f( FMFontDb::DB()->Font( fontIdentifier ) );
 	if(!f)
 		return;
 	++pixmapDrawn;
 	QGraphicsPixmapItem *glyph = f->itemFromGindexPix ( index , fontsize );
-//	qDebug()<<"SampleWidget::drawPixmap index:"<<index<< y << glyph->data(GLYPH_DATA_BITMAPTOP).toDouble();
+	if(!glyph)
+		return;
 	ftScene->addItem ( glyph );
 	glyph->setZValue ( 100.0 );
 	glyph->setPos ( x,y );
-//	QGraphicsLineItem * l = ftScene->addLine(x,y,x,y + glyph->data(GLYPH_DATA_BITMAPTOP).toDouble());
-//	l->setData(GLYPH_DATA_GLYPH, 1);
-//	glyph->pixmap().toImage().save(QString("/tmp/%1.png").arg(index));
 }
 
 void SampleWidget::drawBaseline(double y)
