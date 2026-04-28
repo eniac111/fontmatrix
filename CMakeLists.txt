@@ -36,34 +36,41 @@ MESSAGE(STATUS "Fontmatrix will be installed under ${CMAKE_INSTALL_PREFIX}")
 
 
 
-find_package(ECM 6.0 REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
+# ECM and KDE Frameworks are Linux-only — not available via vcpkg on Windows.
+IF(UNIX AND NOT APPLE)
+    find_package(ECM 6.0 REQUIRED NO_MODULE)
+    set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
+ELSE()
+    set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
+ENDIF()
 
 # Set before KDECompilerSettings so it doesn't override us.
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include(KDEInstallDirs)
-include(KDECMakeSettings)
-include(KDECompilerSettings NO_POLICY_SCOPE)
-# These Qt strictness flags require mass codebase changes — deferred to later phases:
-#   QT_NO_CAST_FROM_ASCII / TO_ASCII / FROM_BYTEARRAY  → Phase 5 (i18n migration)
-#   QT_NO_KEYWORDS (signals/slots/foreach)             → Phase 2 (main window refactor)
-remove_definitions(
-    -DQT_NO_CAST_FROM_ASCII
-    -DQT_NO_CAST_TO_ASCII
-    -DQT_NO_CAST_FROM_BYTEARRAY
-    -DQT_NO_KEYWORDS
-    -DQT_NO_FOREACH
-    -DQT_USE_QSTRINGBUILDER
-)
+IF(UNIX AND NOT APPLE)
+    include(KDEInstallDirs)
+    include(KDECMakeSettings)
+    include(KDECompilerSettings NO_POLICY_SCOPE)
+    # These Qt strictness flags require mass codebase changes — deferred to later phases:
+    #   QT_NO_CAST_FROM_ASCII / TO_ASCII / FROM_BYTEARRAY  → Phase 5 (i18n migration)
+    #   QT_NO_KEYWORDS (signals/slots/foreach)             → Phase 2 (main window refactor)
+    remove_definitions(
+        -DQT_NO_CAST_FROM_ASCII
+        -DQT_NO_CAST_TO_ASCII
+        -DQT_NO_CAST_FROM_BYTEARRAY
+        -DQT_NO_KEYWORDS
+        -DQT_NO_FOREACH
+        -DQT_USE_QSTRINGBUILDER
+    )
+ENDIF()
+
 include(FeatureSummary)
 
-find_package(KF6 REQUIRED COMPONENTS
-    CoreAddons
-)
-
 IF(UNIX AND NOT APPLE)
+    find_package(KF6 REQUIRED COMPONENTS
+        CoreAddons
+    )
     SET(FONTMATRIX_BIN ${KDE_INSTALL_BINDIR})
     SET(FONTMATRIX_QMDIR "${KDE_INSTALL_DATADIR}/fontmatrix/qm")
 ENDIF(UNIX AND NOT APPLE)
