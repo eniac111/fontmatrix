@@ -18,7 +18,7 @@
 #include <QAction>
 #include <QDebug>
 #include <QToolTip>
-#include <QSettings>
+#include "fmconfig.h"
 #include <QFileDialog>
 #include <QStandardItemModel>
 #include <QMessageBox>
@@ -44,9 +44,8 @@ PrefsPanelDialog::PrefsPanelDialog ( QWidget *parent )
 	chartFontCombo->setCurrentFont ( QFont(typotek::getInstance()->getChartInfoFontName()) );
 	chartFontSpin->setValue( typotek::getInstance()->getChartInfoFontSize() );
 
-	QSettings settings;
-// 	qDebug()<< "ss" << settings.value("SplashScreen",false).toBool();
-	splashCheck->setChecked ( settings.value ( "SplashScreen", true ).toBool() );
+// 	qDebug()<< "ss" << FMConfig::value("SplashScreen",false).toBool();
+	splashCheck->setChecked ( FMConfig::value ( QStringLiteral("SplashScreen"), true ).toBool() );
 
 	namedSampleTextText->setText ( tr ( "Please select an item in the list or create a new one." ) );
 	namedSampleTextText->setEnabled ( false );
@@ -93,9 +92,8 @@ void PrefsPanelDialog::initSystrayPrefs ( bool hasSystray, bool isVisible, bool 
 	activateAllFrame->setChecked ( hasActivateAll );
 	activateAllConfirmation->setChecked ( allConfirmation );
 	tagsConfirmation->setChecked ( tagConfirmation );
-	QSettings settings ;
-	closeToSystray->setChecked ( settings.value ( "Systray/CloseToTray", true ).toBool() );
-	startToSystemTray->setChecked ( settings.value ( "Systray/StartToTray", false ).toBool() );
+	closeToSystray->setChecked ( FMConfig::value ( QStringLiteral("Systray/CloseToTray"), true ).toBool() );
+	startToSystemTray->setChecked ( FMConfig::value ( QStringLiteral("Systray/StartToTray"), false ).toBool() );
 	previewSizeSpin->setValue ( typotek::getInstance()->getPreviewSize() );
 
 }
@@ -104,19 +102,17 @@ void PrefsPanelDialog::initSampleTextPrefs()
 {
 	//At least fill the sampletext list :)
 	sampleTextNamesList->addItems ( typotek::getInstance()->namedSamplesNames().value(QString("User")) );
-	QSettings settings;
-	fontSizeSpin->setValue ( settings.value ( "Sample/FontSize",14.0 ).toDouble() );
-	interLineSpin->setValue ( settings.value ( "Sample/Interline",18.0 ).toDouble() );
-	dictEdit->setText ( settings.value ( "Sample/HyphenationDict", "" ).toString() );
-	leftBox->setValue ( settings.value ( "Sample/HyphLeft", 2 ).toInt() );
-	rightBox->setValue ( settings.value ( "Sample/HyphRight", 3 ).toInt() );
+	fontSizeSpin->setValue ( FMConfig::value ( QStringLiteral("Sample/FontSize"), 14.0 ).toDouble() );
+	interLineSpin->setValue ( FMConfig::value ( QStringLiteral("Sample/Interline"), 18.0 ).toDouble() );
+	dictEdit->setText ( FMConfig::value ( QStringLiteral("Sample/HyphenationDict"), QLatin1String("") ).toString() );
+	leftBox->setValue ( FMConfig::value ( QStringLiteral("Sample/HyphLeft"), 2 ).toInt() );
+	rightBox->setValue ( FMConfig::value ( QStringLiteral("Sample/HyphRight"), 3 ).toInt() );
 }
 
 void PrefsPanelDialog::initFilesAndFolders()
 {
-	QSettings settings;
 	templatesFolder->setText ( typotek::getInstance()->getTemplatesDir() );
-	QStringList remoteDirV ( settings.value ( "RemoteDirectories" ).toStringList() );
+	QStringList remoteDirV ( FMConfig::value ( QStringLiteral("RemoteDirectories") ).toStringList() );
 	remoteDirList->addItems ( remoteDirV );
 	localStorageLine->setText ( typotek::getInstance()->remoteTmpDir() );
 
@@ -208,22 +204,21 @@ void PrefsPanelDialog::applySampleText()
 	typotek::getInstance()->changeFontSizeSettings ( fontSizeSpin->value(), interLineSpin->value() );
 	typotek::getInstance()->forwardUpdateView();
 	FMHyphenator *hyphenator = typotek::getInstance()->getHyphenator();
-	QSettings s;
 	if ( hyphenator->loadDict ( dictEdit->text(), leftBox->value(), rightBox->value() ) )
 	{
-		s.setValue ( "Sample/HyphenationDict", dictEdit->text() );
-		s.setValue ( "Sample/HyphLeft", leftBox->value() );
-		s.setValue ( "Sample/HyphRight", rightBox->value() );
+		FMConfig::setValue ( QStringLiteral("Sample/HyphenationDict"), dictEdit->text() );
+		FMConfig::setValue ( QStringLiteral("Sample/HyphLeft"), leftBox->value() );
+		FMConfig::setValue ( QStringLiteral("Sample/HyphRight"), rightBox->value() );
 
 	}
 	else   // use the previous values
 	{
-		dictEdit->setText ( s.value ( "Sample/HyphenationDict", "" ).toString() );
-		leftBox->setValue ( s.value ( "Sample/HyphLeft", 2 ).toInt() );
-		rightBox->setValue ( s.value ( "Sample/HyphRight", 3 ).toInt() );
-		s.setValue ( "Sample/HyphenationDict", "" );
-		s.setValue ( "Sample/HyphLeft", 2 );
-		s.setValue ( "Sample/HyphRight", 3 );
+		dictEdit->setText ( FMConfig::value ( QStringLiteral("Sample/HyphenationDict"), QLatin1String("") ).toString() );
+		leftBox->setValue ( FMConfig::value ( QStringLiteral("Sample/HyphLeft"), 2 ).toInt() );
+		rightBox->setValue ( FMConfig::value ( QStringLiteral("Sample/HyphRight"), 3 ).toInt() );
+		FMConfig::setValue ( QStringLiteral("Sample/HyphenationDict"), QLatin1String("") );
+		FMConfig::setValue ( QStringLiteral("Sample/HyphLeft"), 2 );
+		FMConfig::setValue ( QStringLiteral("Sample/HyphRight"), 3 );
 	}
 }
 
@@ -315,8 +310,7 @@ void PrefsPanelDialog::updateWord ( QString s )
 void PrefsPanelDialog::updateWordSize ( double d )
 {
 
-	QSettings settings;
-	settings.setValue ( "Preview/Size", d );
+	FMConfig::setValue ( QStringLiteral("Preview/Size"), d );
 	typotek::getInstance()->setPreviewSize ( d );
 	typotek::getInstance()->setWord ( previewWord->text(), true );
 }
@@ -325,16 +319,14 @@ void PrefsPanelDialog::updateWordSize ( double d )
 void PrefsPanelDialog::updateWordRTL ( int rtl )
 {
 	bool booleanState = ( rtl == Qt::Checked ) ? true : false;
-	QSettings settings;
-	settings.setValue ( "Preview/RTL", booleanState );
+	FMConfig::setValue ( QStringLiteral("Preview/RTL"), booleanState );
 	typotek::getInstance()->setPreviewRTL ( booleanState );
 }
 
 void PrefsPanelDialog::updateWordSubtitled(int sub )
 {
 	bool booleanState = ( sub == Qt::Checked ) ? true : false;
-	QSettings settings;
-	settings.setValue ( "Preview/Subtitled", booleanState );
+	FMConfig::setValue ( QStringLiteral("Preview/Subtitled"), booleanState );
 	typotek::getInstance()->setPreviewSubtitled ( booleanState );
 }
 
@@ -377,16 +369,13 @@ void PrefsPanelDialog::addAndSelectWebBrowser()
 
 void PrefsPanelDialog::selectWebBrowser(const QString & text)
 {
-	QSettings settings;
-	settings.setValue("Info/Browser",text);
+	FMConfig::setValue(QStringLiteral("Info/Browser"), text);
 	typotek::getInstance()->setWebBrowser(text);
 }
 
 void PrefsPanelDialog::setupWebBrowserOptions(const QString & text)
 {
-	
-	QSettings settings;
-	settings.setValue("Info/BrowserOptions",text);
+	FMConfig::setValue(QStringLiteral("Info/BrowserOptions"), text);
 	typotek::getInstance()->setWebBrowserOptions(text);
 }
 
@@ -432,11 +421,9 @@ void PrefsPanelDialog::slotAddRemote()
 {
 	QString rem ( newUrlText->text() );
 	remoteDirList->addItem ( rem );
-	QStringList remList;
-	QSettings settings;
-	QList<QVariant> tmpL ( settings.value ( "RemoteDirectories" ).toList() );
+	QList<QVariant> tmpL ( FMConfig::value ( QStringLiteral("RemoteDirectories") ).toList() );
 	tmpL << rem;
-	settings.setValue ( "RemoteDirectories",tmpL );
+	FMConfig::setValue ( QStringLiteral("RemoteDirectories"), tmpL );
 	newUrlText->clear();
 }
 
@@ -451,8 +438,7 @@ void PrefsPanelDialog::slotRemoveRemote()
 			if ( remoteDirList->item ( i )->text() == url )
 				remoteDirList->takeItem ( i );
 		}
-		QSettings settings;
-		QStringList tmpL ( settings.value ( "RemoteDirectories" ).toStringList() );
+		QStringList tmpL ( FMConfig::value ( QStringLiteral("RemoteDirectories") ).toStringList() );
 		QStringList remoteDirStrings;
 		for (const auto& s : tmpL)
 		{
@@ -462,7 +448,7 @@ void PrefsPanelDialog::slotRemoveRemote()
 				qDebug() << "Exclude "<<url<< " from remote dirs";
 		}
 		qDebug() <<"RemoteDirectories : "<<remoteDirStrings.join ( ", " );
-		settings.setValue ( "RemoteDirectories", remoteDirStrings );
+		FMConfig::setValue ( QStringLiteral("RemoteDirectories"), remoteDirStrings );
 
 	}
 }
@@ -730,8 +716,7 @@ void PrefsPanelDialog::setSelected ( const QString &actionText )
 void PrefsPanelDialog::slotSplashScreen ( bool state )
 {
 // 	qDebug() <<"slotSplashScreen("<< state <<")";
-	QSettings settings;
-	settings.setValue ( "SplashScreen", state );
+	FMConfig::setValue ( QStringLiteral("SplashScreen"), state );
 }
 
 void PrefsPanelDialog::slotDictDialog()
@@ -749,8 +734,7 @@ void PrefsPanelDialog::slotClose()
 
 void PrefsPanelDialog::updateChartFontFamily(const QFont & font)
 {
-	QSettings settings;
-	settings.setValue("ChartInfoFontFamily" , font.family());
+	FMConfig::setValue(QStringLiteral("ChartInfoFontFamily"), font.family());
 
 	typotek::getInstance()->setChartInfoFontName(font.family());
 
@@ -758,8 +742,7 @@ void PrefsPanelDialog::updateChartFontFamily(const QFont & font)
 
 void PrefsPanelDialog::updateChartFontSize(int s)
 {
-	QSettings settings;
-	settings.setValue("ChartInfoFontSize" , s);
+	FMConfig::setValue(QStringLiteral("ChartInfoFontSize"), s);
 
 	typotek::getInstance()->setChartInfoFontSize(s);
 }

@@ -28,11 +28,11 @@
 #include "fmlayout.h"
 #include "textprogression.h"
 #include "opentypetags.h"
+#include "fmconfig.h"
 
 #include <QApplication>
 #include <QMap>
 #include <QTreeWidgetItem>
-#include <QSettings>
 #include <QPrintDialog>
 #include <QPrinter>
 #include <QFileSystemWatcher>
@@ -40,7 +40,6 @@
 #include <QTimer>
 #include <QDataStream>
 #include <QElapsedTimer>
-#include <QSettings>
 #include <QStyledItemDelegate>
 #include <QKeyEvent>
 #include <QDateTime>
@@ -159,10 +158,9 @@ SampleWidget::SampleWidget(const QString& fid, QWidget *parent) :
 	textLayoutFT =  new FMLayout(ftScene);
 
 
-	QSettings settings;
 	State s;
 	s.fontSize = 14;
-	QByteArray bs = settings.value("Sample/state", s.toByteArray()).toByteArray();
+	QByteArray bs = FMConfig::value(QStringLiteral("Sample/state"), s.toByteArray()).toByteArray();
 	setState(s.fromByteArray(bs));
 	sampleRatio = 1.2;
 	sampleInterSize = sampleFontSize * sampleRatio;
@@ -874,10 +872,9 @@ void SampleWidget::slotScriptChange()
 
 void SampleWidget::saveState()
 {
-	QSettings settings;
 	State s(state());
 	QByteArray bs(s.toByteArray());
-	settings.setValue("Sample/state", bs);
+	FMConfig::setValue(QStringLiteral("Sample/state"), bs);
 }
 
 void SampleWidget::slotShowSamples(bool b)

@@ -12,8 +12,6 @@
 
 #include "fmbrowser.h"
 
-#include <QSettings>
-
 FMBrowser * FMBrowser::instance = nullptr;
 FMBrowser::FMBrowser()
 	:QProcess()

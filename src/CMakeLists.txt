@@ -46,6 +46,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmmatchraster.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmmissingfonthelper.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmnamelist.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmotf.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmconfig.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmpaths.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmplayground.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmpreviewlist.cpp
@@ -333,8 +334,9 @@ IF(UNIX AND NOT APPLE)
 	${PODOFO_LINK_LIBS}
 	KF6::CoreAddons
 	KF6::I18n
+	KF6::ConfigCore
 	)
-	target_compile_definitions(fontmatrix-ng PRIVATE HAVE_KF6_COREADDONS)
+	target_compile_definitions(fontmatrix-ng PRIVATE HAVE_KF6_COREADDONS HAVE_KF6_CONFIG)
 
 	INSTALL(TARGETS fontmatrix-ng
 	RUNTIME DESTINATION ${FONTMATRIX_BIN}

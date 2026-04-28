@@ -42,6 +42,7 @@
 #include "tagswidget.h"
 #include "fmutils.h"
 #include "panosewidget.h"
+#include "fmconfig.h"
 
 #include <cstdlib>
 
@@ -62,7 +63,6 @@
 #include <QProgressDialog>
 #include <QMenu>
 #include <QMessageBox>
-#include <QSettings>
 #include <QStringListModel>
 #include <QTime>
 #include <QTimer>
@@ -116,8 +116,7 @@ MainViewWidget::MainViewWidget ( QWidget *parent )
 	FMFontDb::DB()->filterAllFonts();
 	fontsetHasChanged = true;
 
-	QSettings settings;
-	activateByFamilyOnly = settings.value("ActivateOnlyFamily", false).toBool();
+	activateByFamilyOnly = FMConfig::value(QStringLiteral("ActivateOnlyFamily"), false).toBool();
 
 	currentOrdering = "family" ;
 	doConnect();
@@ -1197,16 +1196,14 @@ QString MainViewWidget::sampleName()
 
 void MainViewWidget::saveSplitterState()
 {
-	QSettings settings;
-	//	settings.setValue( "WState/SplitterViewState", splitter_2->saveState());
+	//	FMConfig::setValue(QStringLiteral("WState/SplitterViewState"), splitter_2->saveState());
 //	settings.setValue( "WState/SplitterList1", ListDockWidget::getInstance()->listSplit1->saveState());
 //	settings.setValue( "WState/SplitterList2", ListDockWidget::getInstance()->listSplit2->saveState());
 }
 
 void MainViewWidget::restoreSplitterState()
 {
-	QSettings settings;
-	//	splitter_2->restoreState(settings.value("WState/SplitterViewState").toByteArray());
+	//	splitter_2->restoreState(FMConfig::value(QStringLiteral("WState/SplitterViewState")).toByteArray());
 //	ListDockWidget::getInstance()->listSplit1->restoreState(settings.value("WState/SplitterList1").toByteArray());
 //	ListDockWidget::getInstance()->listSplit2->restoreState(settings.value("WState/SplitterList2").toByteArray());
 }

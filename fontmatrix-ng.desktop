@@ -1,0 +1,20 @@
+[Desktop Entry]
+
+Version=1.0
+Type=Application
+Name=FontMatrix-NG
+Comment=A font management application
+Comment[ru]=Программа для управления шрифтами
+Comment[fi]=Työkalu fonttien hallintaan
+Categories=Graphics;VectorGraphics;
+Exec=fontmatrix-ng
+Icon=fontmatrix-ng
+Terminal=false
+GenericName=Font Manager
+GenericName[fr]=Gestion des Polices
+GenericName[ru]=Управление шрифтами
+GenericName[fi]=Fonttien hallinta
+TryExec=fontmatrix-ng
+X-StandardInstall=false
+StartupWMClass=fontmatrix-ng
+X-KDE-SubstituteUID=false

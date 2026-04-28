@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "systray.h"
+#include "fmconfig.h"
 #include "mainviewwidget.h"
 #include "typotek.h"
 #include "fontitem.h"
@@ -38,15 +39,13 @@ Systray::Systray()
             this, SLOT(trayIconClicked(QSystemTrayIcon::ActivationReason)));
 	connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(slotPrepareMenu()));
 
-	settings = new QSettings;
+	showAllConfirmation = FMConfig::value(QStringLiteral("Systray/AllConfirmation"), true).toBool();
+	showTagsConfirmation = FMConfig::value(QStringLiteral("Systray/TagsConfirmation"), false).toBool();
 
-	showAllConfirmation = settings->value("Systray/AllConfirmation", true).toBool();
-	showTagsConfirmation = settings->value("Systray/TagsConfirmation", false).toBool();
-
-	slotSetActivateAll(settings->value("Systray/ActivateAllVisible", false).toBool());
+	slotSetActivateAll(FMConfig::value(QStringLiteral("Systray/ActivateAllVisible"), false).toBool());
 
 	trayIcon->setIcon(QIcon(":/fontmatrix_systray_icon.png"));
-	if (settings->value("Systray/Visible", false).toBool())
+	if (FMConfig::value(QStringLiteral("Systray/Visible"), false).toBool())
 		trayIcon->show();
 	else
 		trayIcon->hide();
@@ -64,14 +63,14 @@ void Systray::slotSetVisible(bool isVisible)
 	else
 		trayIcon->hide();
 
-	settings->setValue("Systray/Visible", isVisible);
+	FMConfig::setValue(QStringLiteral("Systray/Visible"), isVisible);
 }
 
 void Systray::slotSetActivateAll(bool isVisible)
 {
 	activateAllAction->setVisible(isVisible);
 	deactivateAllAction->setVisible(isVisible);
-	settings->setValue("Systray/ActivateAllVisible", isVisible);
+	FMConfig::setValue(QStringLiteral("Systray/ActivateAllVisible"), isVisible);
 }
 
 void Systray::show()
@@ -327,13 +326,13 @@ bool Systray::tagsConfirmation()
 void Systray::requireAllConfirmation(bool doRequire)
 {
 	showAllConfirmation = doRequire;
-	settings->setValue("Systray/AllConfirmation", doRequire);
+	FMConfig::setValue(QStringLiteral("Systray/AllConfirmation"), doRequire);
 }
 
 void Systray::requireTagsConfirmation(bool doRequire)
 {
 	showTagsConfirmation = doRequire;
-	settings->setValue("Systray/TagsConfirmation", doRequire);
+	FMConfig::setValue(QStringLiteral("Systray/TagsConfirmation"), doRequire);
 }
 
 void Systray::updateTagMenu(const QStringList& nameOfFontWhichCausedThisUpdate)

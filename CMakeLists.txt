@@ -71,6 +71,7 @@ IF(UNIX AND NOT APPLE)
     find_package(KF6 REQUIRED COMPONENTS
         CoreAddons
         I18n
+        Config
     )
     SET(FONTMATRIX_BIN ${KDE_INSTALL_BINDIR})
     SET(FONTMATRIX_QMDIR "${KDE_INSTALL_DATADIR}/fontmatrix-ng/qm")

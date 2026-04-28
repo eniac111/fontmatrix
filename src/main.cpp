@@ -38,9 +38,15 @@
 #include <KLocalizedString>
 #endif
 
+#ifdef HAVE_KF6_CONFIG
+#include <KSharedConfig>
+#include <KConfigGroup>
+#endif
+
 #include "typotek.h"
 #include "mainviewwidget.h"
 //#include "listdockwidget.h"
+#include "fmconfig.h"
 #include "fmpaths.h"
 #include "systray.h"
 
@@ -142,8 +148,15 @@ int main ( int argc, char *argv[] )
 	// Migrate QSettings forward through the rename history:
 	//   Undertype/fontmatrix  →  Fontmatrix/fontmatrix  →  FontMatrix-NG/fontmatrix-ng
 	// Each step only runs when the destination scope is empty.
+	// On Linux, newSettings is just a staging area; KConfig imports it below.
+	// On Windows/macOS, newSettings IS the live store and must match FMConfig::sharedSettings() (IniFormat).
 	{
+#ifdef HAVE_KF6_CONFIG
 		QSettings newSettings;
+#else
+		QSettings newSettings ( QSettings::IniFormat, QSettings::UserScope,
+		                        QStringLiteral ( "FontMatrix-NG" ), QStringLiteral ( "fontmatrix-ng" ) );
+#endif
 		if ( newSettings.allKeys().isEmpty() )
 		{
 			// Try the most recent old scope first (pre-rename "Fontmatrix").
@@ -170,6 +183,27 @@ int main ( int argc, char *argv[] )
 		}
 	}
 
+#ifdef HAVE_KF6_CONFIG
+	// One-time import from QSettings into KConfig on the first launch of a KConfig-enabled build.
+	{
+		KSharedConfig::Ptr kconf = KSharedConfig::openConfig();
+		if (!kconf->group(QStringLiteral("Migration")).hasKey(QStringLiteral("QSettingsImported")))
+		{
+			QSettings qst;
+			const QStringList allKeys = qst.allKeys();
+			for (const QString &fullKey : allKeys)
+			{
+				const int slash = fullKey.indexOf(QLatin1Char('/'));
+				const QString group = (slash != -1) ? fullKey.left(slash) : QString{};
+				const QString key   = (slash != -1) ? fullKey.mid(slash + 1) : fullKey;
+				kconf->group(group).writeEntry(key, qst.value(fullKey));
+			}
+			kconf->group(QStringLiteral("Migration")).writeEntry(QStringLiteral("QSettingsImported"), true);
+			kconf->sync();
+		}
+	}
+#endif
+
 	QTranslator translator;
 	if ( translator.load ( FMPaths::LocalizedFilePath( FMPaths::TranslationsDir() + "fontmatrix-"  , ".qm" ) ) )
 	{
@@ -194,11 +228,9 @@ int main ( int argc, char *argv[] )
 	typotek * mw = typotek::getInstance();
 
 
-	QSettings settings;
-
 	QSplashScreen theSplash;
 	QPixmap theSplashPix ( ":/fontmatrix_splash.png" );
-	bool splash = settings.value ( "SplashScreen", true ).toBool();
+	bool splash = FMConfig::value ( QStringLiteral("SplashScreen"), true ).toBool();
 	if ( app.arguments().contains ( "splash" ) || splash )
 	{
 		QFont spFont;
@@ -232,9 +264,9 @@ int main ( int argc, char *argv[] )
 
 	if (	( typotek::getInstance()->getSystray() )
 	        && ( typotek::getInstance()->getSystray()->isVisible() )
-	        && ( settings.value ( "Systray/CloseToTray", true ).toBool() ) )
+	        && ( FMConfig::value ( QStringLiteral("Systray/CloseToTray"), true ).toBool() ) )
 	{
-		if ( ! settings.value ( "Systray/StartToTray", false ).toBool() )
+		if ( ! FMConfig::value ( QStringLiteral("Systray/StartToTray"), false ).toBool() )
 			mw->show();
 		else
 			mw->hide();

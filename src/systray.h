@@ -25,7 +25,6 @@
 #include <QObject>
 #include <QMap>
 
-class QSettings;
 class QAction;
 class typotek;
 
@@ -88,8 +87,6 @@ private:
 
 	bool showAllConfirmation;
 	bool showTagsConfirmation;
-
-	QSettings *settings;
 
 	Systray(const Systray&) = delete;
 	Systray& operator=(const Systray&) = delete;

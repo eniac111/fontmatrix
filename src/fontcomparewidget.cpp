@@ -21,7 +21,8 @@
 #include <QPainter>
 #endif
 
-#include <QSettings>
+#include "fmconfig.h"
+
 #include <QDebug>
 
 FontCompareWidget* FontCompareWidget::instance = nullptr;
@@ -30,9 +31,8 @@ FontCompareWidget::FontCompareWidget(QWidget * parent)
 	:QWidget(parent),neverUsed(true)
 {
 	setupUi(this);
-	QSettings settings;
-	int maxOffset(settings.value("Compare/MaxOffset", 2000).toInt());
-	settings.setValue("Compare/MaxOffset",maxOffset);
+	int maxOffset(FMConfig::value(QStringLiteral("Compare/MaxOffset"), 2000).toInt());
+	FMConfig::setValue(QStringLiteral("Compare/MaxOffset"), maxOffset);
 	compareOffset->setRange(0, maxOffset);
 	initColors();
 	doconnect();
@@ -55,7 +55,6 @@ FontCompareWidget* FontCompareWidget::getInstance()
 
 void FontCompareWidget::initColors()
 {
-	QSettings settings;
 	QStringList defaultColors;
 	defaultColors << "aqua" 
 			<< "brown" 
@@ -74,15 +73,15 @@ void FontCompareWidget::initColors()
 	QString colorN("Compare/color%1");
 	for(int i(0); i < 12; ++i)
 	{
-		QString colStr(settings.value(colorN.arg(i), defaultColors[i]).toString());
+		QString colStr(FMConfig::value(colorN.arg(i), defaultColors[i]).toString());
 		QColor col(colStr);
 		px.fill(col);
 		compareFillColor->addItem(QIcon(px), colStr, col.name());
 	}
 	for(int i(0); i < 12; ++i)
 	{
-		QString colStr(settings.value(colorN.arg(i), defaultColors[i]).toString());
-		settings.setValue(colorN.arg(i), colStr);// as usual, we write it back to settings so user (me as well ;)) can see it if he opens the config file
+		QString colStr(FMConfig::value(colorN.arg(i), defaultColors[i]).toString());
+		FMConfig::setValue(colorN.arg(i), colStr);// as usual, we write it back to settings so user (me as well ;)) can see it if he opens the config file
 	}
 }
 

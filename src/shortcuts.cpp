@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "shortcuts.h"
+#include "fmconfig.h"
 
 #include <QAction>
 
@@ -43,8 +44,8 @@ void Shortcuts::add(QAction *a)
 		return;
 
 	QString key = settingsKey(a);
-	if (settings.contains(key))
-		a->setShortcut(QKeySequence(settings.value(key).toString()));
+	if (FMConfig::contains(key))
+		a->setShortcut(QKeySequence(FMConfig::value(key).toString()));
 	actions[cleanName(a)] = a;
 }
 
@@ -89,7 +90,7 @@ void Shortcuts::setShortcut(const QString &shortcut, const QString &actionText)
 {
 	if (actions.contains(cleanName(actionText))) {
 		actions[cleanName(actionText)]->setShortcut(shortcut);
-		settings.setValue(settingsKey(actions[cleanName(actionText)]), shortcut);
+		FMConfig::setValue(settingsKey(actions[cleanName(actionText)]), shortcut);
 	}
 }
 
@@ -97,7 +98,7 @@ void Shortcuts::clearShortcut(const QString &actionText)
 {
 	if (actions.contains(cleanName(actionText))) {
 		actions[cleanName(actionText)]->setShortcut(QString(""));
-		settings.setValue(settingsKey(actions[cleanName(actionText)]), QString(""));
+		FMConfig::setValue(settingsKey(actions[cleanName(actionText)]), QString(""));
 	}
 }
 

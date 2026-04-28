@@ -31,7 +31,7 @@
 
 #include <QFileSystemModel>
 #include <QDir>
-#include <QSettings>
+#include "fmconfig.h"
 #include <QFileSystemWatcher>
 #include <QDebug>
 
@@ -60,8 +60,7 @@ BrowserWidget::BrowserWidget(QWidget *parent) :
 	ui->browserView->hideColumn(3);
 	ui->browserView->setContextMenuPolicy(Qt::CustomContextMenu);
 
-	QSettings settings;
-	QString lastUsedDir = settings.value("Places/LastUsedFolder", QDir::homePath()).toString();
+	QString lastUsedDir = FMConfig::value(QStringLiteral("Places/LastUsedFolder"), QDir::homePath()).toString();
 	QDir d(lastUsedDir);
 	if (!d.exists())
 		lastUsedDir = QDir::homePath();
@@ -199,8 +198,7 @@ void BrowserWidget::settingsDir(const QString &path)
 	if (fi.isFile())
 		dirPath = fi.absoluteDir().absolutePath();
 
-	QSettings settings;
-	settings.setValue("Places/LastUsedFolder", dirPath);
+	FMConfig::setValue(QStringLiteral("Places/LastUsedFolder"), dirPath);
 
 	s = path;
 }

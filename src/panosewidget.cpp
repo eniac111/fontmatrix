@@ -24,9 +24,10 @@
 #include "fmfontstrings.h"
 #include "fmpaths.h"
 
+#include "fmconfig.h"
+
 #include <QTreeWidgetItem>
 #include <QDir>
-#include <QSettings>
 #include <QIcon>
 #include <QColor>
 #include <QPalette>
@@ -46,9 +47,8 @@ PanoseWidget::PanoseWidget(QWidget *parent) :
 	m_ui->pTree->setPalette(palette);
 
 	const QMap< FontStrings::PanoseKey, QMap<int, QString> >& p(FontStrings::Panose());
-	QSettings settings;
 	QString defaultDir(FMPaths::ResourcesDir() + "Panose/Icons");
-	QString pDir(settings.value("Panose/IconDir", defaultDir).toString() + QDir::separator());
+	QString pDir(FMConfig::value(QStringLiteral("Panose/IconDir"), defaultDir).toString() + QDir::separator());
 
 	for (const auto& k : p.keys())
 	{

@@ -14,7 +14,7 @@
 
 #include <QDebug>
 #include <QFile>
-#include <QSettings>
+#include "fmconfig.h"
 #include <QDir>
 
 FMOwnShaper::FMOwnShaper(QString s, QString lang)
@@ -55,9 +55,8 @@ FMOwnShaper::~ FMOwnShaper()
 
 int FMOwnShaper::loadRules(QString lang)
 {
-	QSettings stg;
 	QString actualSDir;
-	QString ShaperDir(stg.value("Places/ShaperDataDir").toString());
+	QString ShaperDir(FMConfig::value(QStringLiteral("Places/ShaperDataDir")).toString());
 	if(ShaperDir.isEmpty())
 	{
 		actualSDir = ":/shapers/";

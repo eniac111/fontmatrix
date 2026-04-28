@@ -27,7 +27,7 @@
 
 #include <QImage>
 #include <QDebug>
-#include <QSettings>
+#include "fmconfig.h"
 #include <QScrollBar>
 //#include <QDrag>
 //#include <QMimeData>
@@ -206,14 +206,13 @@ FMPreviewModel::FMPreviewModel( QObject * pa , FMPreviewView * wPa,  QList<FontI
 	: QAbstractListModel(pa) , m_view(wPa), base(db)
 {
 	familyMode = false;
-	QSettings settings;
-	styleTooltipName = settings.value("Preview/StyleTooltipName","font-weight:bold;").toString();
-	styleTooltipPath = settings.value("Preview/StyleTooltipPath","font-weight:normal;font-size:small;").toString();
-	styleTooltipTags = settings.value("Preview/StyleTooltipTags","text-align:right;font-weight:normal;font-size:small;font-style:italic;").toString();
-	
-	settings.setValue("Preview/StyleTooltipName", styleTooltipName);
-	settings.setValue("Preview/StyleTooltipPath", styleTooltipPath);
-	settings.setValue("Preview/StyleTooltipTags", styleTooltipTags);
+	styleTooltipName = FMConfig::value(QStringLiteral("Preview/StyleTooltipName"), QStringLiteral("font-weight:bold;")).toString();
+	styleTooltipPath = FMConfig::value(QStringLiteral("Preview/StyleTooltipPath"), QStringLiteral("font-weight:normal;font-size:small;")).toString();
+	styleTooltipTags = FMConfig::value(QStringLiteral("Preview/StyleTooltipTags"), QStringLiteral("text-align:right;font-weight:normal;font-size:small;font-style:italic;")).toString();
+
+	FMConfig::setValue(QStringLiteral("Preview/StyleTooltipName"), styleTooltipName);
+	FMConfig::setValue(QStringLiteral("Preview/StyleTooltipPath"), styleTooltipPath);
+	FMConfig::setValue(QStringLiteral("Preview/StyleTooltipTags"), styleTooltipTags);
 }
 
 QVariant FMPreviewModel::data(const QModelIndex & index, int role) const

@@ -45,7 +45,7 @@
 #include <QPixmap>
 #include <QPainter>
 #include <QRect>
-#include <QSettings>
+#include "fmconfig.h"
 
 QString FilterBar::andOpString = FilterBar::tr("And");
 QString FilterBar::notOpString = FilterBar::tr("Not");
@@ -262,20 +262,18 @@ FilterBar::FilterBar(QWidget *parent) :
 	connect(ui->panoseArrow, SIGNAL(openChanged(bool)), this, SLOT(slotTogglePano(bool)));
 	connect(ui->filtersArrow, SIGNAL(openChanged(bool)), this, SLOT(slotToggleFilter(bool)));
 
-	QSettings settings;
-	ui->tagsArrow->changeOpen(settings.value("FilterBar/TagsOpen", true).toBool());
-	ui->metadataArrow->changeOpen(settings.value("FilterBar/MetaOpen", false).toBool());
-	ui->panoseArrow->changeOpen(settings.value("FilterBar/PanoseOpen", false).toBool());
-	ui->filtersArrow->changeOpen(settings.value("FilterBar/FiltersOpen", true).toBool());
+	ui->tagsArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/TagsOpen"), true).toBool());
+	ui->metadataArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/MetaOpen"), false).toBool());
+	ui->panoseArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/PanoseOpen"), false).toBool());
+	ui->filtersArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/FiltersOpen"), true).toBool());
 }
 
 FilterBar::~FilterBar()
 {
-	QSettings settings;
-	settings.setValue("FilterBar/TagsOpen", ui->tagsArrow->isOpen());
-	settings.setValue("FilterBar/MetaOpen", ui->metadataArrow->isOpen());
-	settings.setValue("FilterBar/PanoseOpen", ui->panoseArrow->isOpen());
-	settings.setValue("FilterBar/FiltersOpen", ui->filtersArrow->isOpen());
+	FMConfig::setValue(QStringLiteral("FilterBar/TagsOpen"), ui->tagsArrow->isOpen());
+	FMConfig::setValue(QStringLiteral("FilterBar/MetaOpen"), ui->metadataArrow->isOpen());
+	FMConfig::setValue(QStringLiteral("FilterBar/PanoseOpen"), ui->panoseArrow->isOpen());
+	FMConfig::setValue(QStringLiteral("FilterBar/FiltersOpen"), ui->filtersArrow->isOpen());
 	delete ui;
 }
 

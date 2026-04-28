@@ -18,7 +18,6 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsSimpleTextItem>
 #include <QGraphicsEllipseItem>
-#include <QSettings>
 #include <QWheelEvent>
 #include <QScrollBar>
 #include <QApplication>

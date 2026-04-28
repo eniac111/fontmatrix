@@ -24,7 +24,7 @@
 #include <QDir>
 #include <QImage>
 #include <QString>
-#include <QSettings>
+#include "fmconfig.h"
 
 #include <QDebug>
 #include <QMessageBox>
@@ -34,10 +34,9 @@ FMMatchRaster::FMMatchRaster ( QWidget * parent )
 		:QDialog ( parent )
 {
 	setupUi ( this );
-	QSettings settings;
-	m_compsize = settings.value ( "MatchRaster/CompareSize", 120 ).toInt();
-	m_matchLimit = settings.value ( "MatchRaster/Limit", 800.0 ).toDouble();
-	m_minRefSize = settings.value ( "MatchRaster/ReferenceSize", 160 ).toInt();
+	m_compsize = FMConfig::value(QStringLiteral("MatchRaster/CompareSize"), 120).toInt();
+	m_matchLimit = FMConfig::value(QStringLiteral("MatchRaster/Limit"), 800.0).toDouble();
+	m_minRefSize = FMConfig::value(QStringLiteral("MatchRaster/ReferenceSize"), 160).toInt();
 
 	m_progressValue = 0;
 	m_waitingForButton = false;

@@ -24,7 +24,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsItemGroup>
 #include <QFontMetricsF>
-#include <QSettings>
+#include "fmconfig.h"
 #include <QVariant>
 #include <QColor>
 
@@ -202,16 +202,15 @@ void ParallelCoorView::initPensAndBrushes()
 	pens["debug-1"] = QPen(Qt::blue, 5.0);
 	
 	QString cat("Panose/color-%1");
-	QSettings settings;
 	for (const auto& attr : pens.keys())
 	{
-		pens[attr].setColor( QColor(settings.value(cat.arg(attr),pens[attr].color().name()).toString()) );
-		settings.setValue(cat.arg(attr),pens[attr].color().name());
+		pens[attr].setColor( QColor(FMConfig::value(cat.arg(attr), pens[attr].color().name()).toString()) );
+		FMConfig::setValue(cat.arg(attr), pens[attr].color().name());
 	}
 	for (const auto& attr : brushes.keys())
 	{
-		brushes[attr].setColor( QColor(settings.value(cat.arg(attr),brushes[attr].color().name()).toString()) );
-		settings.setValue(cat.arg(attr),pens[attr].color().name());
+		brushes[attr].setColor( QColor(FMConfig::value(cat.arg(attr), brushes[attr].color().name()).toString()) );
+		FMConfig::setValue(cat.arg(attr), pens[attr].color().name());
 	}
 }
 

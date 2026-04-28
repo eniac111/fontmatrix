@@ -23,7 +23,7 @@
 #include "fmpaths.h"
 #include "fmfontstrings.h"
 
-#include <QSettings>
+#include "fmconfig.h"
 #include <QDir>
 #include <QFile>
 
@@ -33,9 +33,8 @@ PanoseAttributeModel::PanoseAttributeModel(QObject * parent)
 		:QAbstractListModel(parent)
 {
 	const QMap< FontStrings::PanoseKey, QMap<int, QString> >& p(FontStrings::Panose());
-	QSettings settings;
 	QString defaultDir(FMPaths::ResourcesDir() + "Panose/Icons");
-	QString pDir(settings.value("Panose/IconDir", defaultDir).toString() + QDir::separator());
+	QString pDir(FMConfig::value(QStringLiteral("Panose/IconDir"), defaultDir).toString() + QDir::separator());
 	for (const auto& k : p.keys())
 	{
 		QString fn(pDir + QString::number(k) + QDir::separator() + "attribute.png");
@@ -80,9 +79,8 @@ PanoseValueModel::PanoseValueModel( QObject * parent)
 		:QAbstractListModel(parent)
 {
 	const QMap< FontStrings::PanoseKey, QMap<int, QString> >& p(FontStrings::Panose());
-	QSettings settings;
 	QString defaultDir(FMPaths::ResourcesDir() + "Panose/Icons");
-	QString pDir(settings.value("Panose/IconDir", defaultDir).toString() + QDir::separator());
+	QString pDir(FMConfig::value(QStringLiteral("Panose/IconDir"), defaultDir).toString() + QDir::separator());
 
 	for (const auto& k : p.keys())
 	{
