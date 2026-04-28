@@ -87,15 +87,22 @@ IF(WANT_M17N)
 ENDIF(WANT_M17N)
 #>> m17n
 
-IF(WANT_PODOFO)
-# 	SET(LIBPODOFO_DIR ${CMAKE_MODULE_PATH})
-	FIND_PACKAGE(LIBPODOFO)
+find_package(podofo CONFIG QUIET)
+IF(podofo_FOUND)
+	MESSAGE(STATUS "PoDoFo Library Found OK (CMake config)")
+	ADD_DEFINITIONS(-DHAVE_PODOFO)
+	SET(PODOFO 1)
+	SET(LIBPODOFO_FOUND TRUE CACHE BOOLEAN "Was libpodofo found")
+ELSE()
+	FIND_PACKAGE(LIBPODOFO REQUIRED)
 	IF(LIBPODOFO_FOUND)
 		MESSAGE(STATUS "PoDoFo Library Found OK")
 		ADD_DEFINITIONS(-DHAVE_PODOFO)
 		SET(PODOFO 1)
-	ENDIF(LIBPODOFO_FOUND)
-ENDIF(WANT_PODOFO)
+	ELSE()
+		MESSAGE(FATAL_ERROR "PoDoFo library not found. Install libpodofo-dev (or equivalent) to build Fontmatrix.")
+	ENDIF()
+ENDIF()
 
 
 # I can’t remember what it does :|
