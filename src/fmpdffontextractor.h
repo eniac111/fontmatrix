@@ -12,6 +12,7 @@
 #ifndef FMPDFFONTEXTRACTOR
 #define FMPDFFONTEXTRACTOR
 
+#include <memory>
 #include <QMap>
 
 #include "fmfontextractorbase.h"
@@ -23,20 +24,20 @@ class FMPDFFontExtractor : public FMFontExtractorBase
 	public:
 		FMPDFFontExtractor();
 		~FMPDFFontExtractor();
-		
+
 		bool loadFile(const QString& filePath);
 		QStringList extensions();
-		
+
 		QStringList list();
 		QString fontType(const QString& name);
 		bool write(const QString& name, QIODevice * openedDevice);
-	
+
 	private:
 		bool cachedList;
-		PoDoFo::PdfMemDocument * document;
+		std::unique_ptr<PoDoFo::PdfMemDocument> document;
 		QMap<QString, PoDoFo::PdfObject*> mfont;
 		QMap<QString, QString> mType;
-		
+
 };
 
 #endif // FMPDFFONTEXTRACTOR

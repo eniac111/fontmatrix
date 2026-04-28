@@ -28,6 +28,22 @@
     ],
     "modules": [
         {
+            "name": "podofo",
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DPODOFO_BUILD_TEST=OFF",
+                "-DPODOFO_BUILD_EXAMPLES=OFF",
+                "-DPODOFO_BUILD_UNSUPPORTED_TOOLS=OFF"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/podofo/podofo/archive/refs/tags/1.0.3.tar.gz",
+                    "sha256": "02815b21a51632c2849d41b067597e9356bbc54bad0efcd84c902b555c203ce7"
+                }
+            ]
+        },
+        {
             "name": "fontmatrix",
             "buildsystem": "cmake-ninja",
             "post-install": [
