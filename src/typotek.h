@@ -90,11 +90,7 @@ private slots:
 	void slotReloadFiltered();
 	void slotReloadSingle();
 
-	void slotExecScript();
-	void slotExecLastScript();
-	void slotExecRecentScript();
-	void slotSwitchScriptConsole();
-	void slotUpdateScriptConsoleStatus();
+	void slotExportXeTeX();
 
 	void slotExtractFont();
 	void slotMatchRaster();
@@ -150,9 +146,6 @@ private:
 	QMenu *editMenu;
 	QMenu *servicesMenu;
 	QMenu *viewMenu;
-#ifdef HAVE_PYTHONQT
-	QMenu *scriptMenu;
-#endif
 	QMenu *helpMenu;
 	QToolBar *fileToolBar;
 	QToolBar *editToolBar;
@@ -179,14 +172,7 @@ private:
 	QAction *dumpInfoAct;
 	QAction *reloadAct;
 	QAction *reloadSingleAct;
-#ifdef HAVE_PYTHONQT
-	QAction *execScriptAct;
-	QAction *execLastScriptAct;
-	QString lastScript;
-	QMap<QAction*, QString> recentScripts;
-	QAction *scriptConsoleAct;
-#endif
-
+	QAction *exportXeTeXAct;
 	QAction *extractFontAction;
 	QAction *matchRasterAct;
 
