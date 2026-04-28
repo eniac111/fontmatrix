@@ -316,7 +316,7 @@ ${LIBPODOFO_INCLUDE_DIR}
 
 
 IF(UNIX AND NOT APPLE)
-	add_executable(fontmatrix
+	add_executable(fontmatrix-ng
 	${fontmatrix_SRCS}
 	${SHAPERS_SRCS}
 	${fontmatrix_MOC_SRCS}
@@ -325,22 +325,25 @@ IF(UNIX AND NOT APPLE)
 	${PODOFO_SRCS}
 	)
 
-	target_link_libraries(fontmatrix harfbuzz hyphenate
+	target_link_libraries(fontmatrix-ng harfbuzz hyphenate
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	${FONTCONFIG_LIBRARIES}
 	${SHAPERS_LIBRARIES}
 	${PODOFO_LINK_LIBS}
+	KF6::CoreAddons
+	KF6::I18n
 	)
+	target_compile_definitions(fontmatrix-ng PRIVATE HAVE_KF6_COREADDONS)
 
-	INSTALL(TARGETS fontmatrix
+	INSTALL(TARGETS fontmatrix-ng
 	RUNTIME DESTINATION ${FONTMATRIX_BIN}
 	)
 	INSTALL ( FILES ${fontmatrix_QMS} DESTINATION ${FONTMATRIX_QMDIR} )
 ENDIF(UNIX AND NOT APPLE)
 
 IF(APPLE)
-	add_executable(fontmatrix MACOSX_BUNDLE
+	add_executable(fontmatrix-ng MACOSX_BUNDLE
 	${fontmatrix_SRCS}
 	${SHAPERS_SRCS}
 	${fontmatrix_MOC_SRCS}
@@ -349,7 +352,7 @@ IF(APPLE)
 	${PODOFO_SRCS}
 	)
 
-	target_link_libraries(fontmatrix harfbuzz hyphenate
+	target_link_libraries(fontmatrix-ng harfbuzz hyphenate
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	${SHAPERS_LIBRARIES}
@@ -360,7 +363,7 @@ IF(APPLE)
 	# here we’ll poupulate the bundle in order to make it
 	# self containing regarding external libs (Qt4 & Freetype)
 	# and resources such as QM files.
-	# NOTE: Mac users are not expected to build Fontmatrix
+	# NOTE: Mac users are not expected to build FontMatrix-NG
 	# themselves, thus paths are hard coded because it works on the Mac
 	# where we use to build it, period.
 
@@ -368,15 +371,15 @@ IF(APPLE)
 	# http://doc.trolltech.com/4.4/deployment-mac.html
 	# http://developer.apple.com/documentation/CoreFoundation/Conceptual/CFBundles/CFBundles.html
 
-	SET(PROGNAME fontmatrix)
+	SET(PROGNAME fontmatrix-ng)
 
-	SET(MACOSX_BUNDLE_BUNDLE_NAME "fontmatrix")
+	SET(MACOSX_BUNDLE_BUNDLE_NAME "FontMatrix-NG")
 	SET(MACOSX_BUNDLE_ICON_FILE "fontmatrix.icns")
-	SET(MACOSX_BUNDLE_GUI_IDENTIFIER "org.undertype.fontmatrix")
+	SET(MACOSX_BUNDLE_GUI_IDENTIFIER "io.github.eniac111.fontmatrix-ng")
 	SET(MACOSX_BUNDLE_LONG_VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 	SET(MACOSX_BUNDLE_SHORT_VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}")
 	SET(MACOSX_BUNDLE_BUNDLE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
-	SET(MACOSX_BUNDLE_COPYRIGHT "© Fontmatrix team - 2007, 2008")
+	SET(MACOSX_BUNDLE_COPYRIGHT "© 2007–2026 FontMatrix-NG contributors")
 
 	SET(BUNDLE_RESOURCES_DIR	"${CMAKE_CURRENT_BINARY_DIR}/${PROGNAME}.app/Contents/Resources/")
 	SET(BUNDLE_LOCALES_DIR		"${CMAKE_CURRENT_BINARY_DIR}/${PROGNAME}.app/Contents/Resources/Locales/")
@@ -408,7 +411,7 @@ SET(APPLE_LIBS
 	${PODOFO_LINK_LIBS}
 )
 SET(APPLE_DIRS "${QT_PLUGINS_DIR}/sqldrivers")
-SET(APPLE_APPS "\${CMAKE_INSTALL_PREFIX}/fontmatrix.app")
+SET(APPLE_APPS "\${CMAKE_INSTALL_PREFIX}/fontmatrix-ng.app")
 INSTALL(CODE "
     include(BundleUtilities)
     fixup_bundle(\"${APPLE_APPS}\" \"${APPLE_LIBS}\" \"${APPLE_DIRS}\")
@@ -417,7 +420,7 @@ INSTALL(CODE "
 ENDIF(APPLE)
 
 IF(WIN32)
-	add_executable(fontmatrix WIN32
+	add_executable(fontmatrix-ng WIN32
 	${fontmatrix_SRCS}
 	${SHAPERS_SRCS}
 	${fontmatrix_MOC_SRCS}
@@ -427,14 +430,14 @@ IF(WIN32)
 	fontmatrix.rc
 	)
 
-	target_link_libraries(fontmatrix harfbuzz hyphenate
+	target_link_libraries(fontmatrix-ng harfbuzz hyphenate
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	${SHAPERS_LIBRARIES}
 	${PODOFO_LINK_LIBS}
 	)
 
-	INSTALL(TARGETS fontmatrix
+	INSTALL(TARGETS fontmatrix-ng
 	RUNTIME DESTINATION ${FONTMATRIX_BIN}
 	)
 	INSTALL ( FILES ${fontmatrix_QMS} DESTINATION ${FONTMATRIX_QMDIR} )

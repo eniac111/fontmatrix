@@ -1,7 +1,7 @@
-# Fontmatrix ./CMakeLists.txt v1
+# FontMatrix-NG ./CMakeLists.txt v1
 
 CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
-PROJECT(fontmatrix)
+PROJECT(fontmatrix-ng)
 
 if(POLICY CMP0177)
   cmake_policy(SET CMP0177 NEW)
@@ -12,7 +12,7 @@ SET(VERSION_MINOR "11" CACHE STRING "")
 SET(VERSION_PATCH "0" CACHE STRING "")
 SET (VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
 ADD_DEFINITIONS(-DFONTMATRIX_VERSION_MAJOR=${VERSION_MAJOR} -DFONTMATRIX_VERSION_MINOR=${VERSION_MINOR} -DFONTMATRIX_VERSION_PATCH=${VERSION_PATCH})
-MESSAGE(STATUS "Building Fontmatrix ${VERSION}")
+MESSAGE(STATUS "Building FontMatrix-NG ${VERSION}")
 
 
 IF(UNIX AND NOT APPLE)
@@ -26,13 +26,13 @@ IF(APPLE)
 ENDIF(APPLE)
 
 IF(WIN32)
-	SET (CMAKE_INSTALL_PREFIX c:/fontmatrix CACHE PATH "Installation path")
+	SET (CMAKE_INSTALL_PREFIX c:/fontmatrix-ng CACHE PATH "Installation path")
 	SET (FONTMATRIX_BIN ".")
 	SET (FONTMATRIX_QMDIR "share/qm" )
 ENDIF(WIN32)
 
 ADD_DEFINITIONS(-DPREFIX="${CMAKE_INSTALL_PREFIX}")
-MESSAGE(STATUS "Fontmatrix will be installed under ${CMAKE_INSTALL_PREFIX}")
+MESSAGE(STATUS "FontMatrix-NG will be installed under ${CMAKE_INSTALL_PREFIX}")
 
 
 
@@ -70,9 +70,10 @@ include(FeatureSummary)
 IF(UNIX AND NOT APPLE)
     find_package(KF6 REQUIRED COMPONENTS
         CoreAddons
+        I18n
     )
     SET(FONTMATRIX_BIN ${KDE_INSTALL_BINDIR})
-    SET(FONTMATRIX_QMDIR "${KDE_INSTALL_DATADIR}/fontmatrix/qm")
+    SET(FONTMATRIX_QMDIR "${KDE_INSTALL_DATADIR}/fontmatrix-ng/qm")
 ENDIF(UNIX AND NOT APPLE)
 
 # Very generic definition, mainly to sort out bugs reported by mrdocs
@@ -239,17 +240,19 @@ ADD_SUBDIRECTORY(src)
 
 IF(UNIX AND NOT APPLE)
 	INSTALL(FILES
-	fontmatrix.desktop
+	fontmatrix-ng.desktop
 	DESTINATION ${KDE_INSTALL_APPDIR}
 	)
 
 	INSTALL(FILES
 	fontmatrix.png
+	RENAME fontmatrix-ng.png
 	DESTINATION "${KDE_INSTALL_ICONDIR}/hicolor/48x48/apps"
 	)
 
 	INSTALL(FILES
 	fontmatrix.1
+	RENAME fontmatrix-ng.1
 	DESTINATION "${KDE_INSTALL_MANDIR}/man1"
 	)
 
@@ -257,12 +260,12 @@ IF(UNIX AND NOT APPLE)
 	${FM_TEMPLATES_FILES}
 	${FM_STYLE_FILES}
 	${FM_WELCOME_FILES}
-	DESTINATION "${KDE_INSTALL_DATADIR}/fontmatrix/resources"
+	DESTINATION "${KDE_INSTALL_DATADIR}/fontmatrix-ng/resources"
 	)
 
 	INSTALL(FILES
 	${FM_HELP_FILES}
-	DESTINATION "${KDE_INSTALL_DATADIR}/fontmatrix/help"
+	DESTINATION "${KDE_INSTALL_DATADIR}/fontmatrix-ng/help"
 	)
 ENDIF(UNIX AND NOT APPLE)
 
@@ -294,7 +297,7 @@ IF(WIN32)
 		if(EXISTS \"${_qt_bin_dir}/windeployqt6.exe\")
 			execute_process(COMMAND
 				\"${_qt_bin_dir}/windeployqt6.exe\" --release
-				\"\${CMAKE_INSTALL_PREFIX}/fontmatrix.exe\"
+				\"\${CMAKE_INSTALL_PREFIX}/fontmatrix-ng.exe\"
 			)
 		else()
 			message(WARNING \"windeployqt6.exe not found at ${_qt_bin_dir} — Qt DLLs will not be bundled.\")
@@ -336,8 +339,8 @@ ADD_SUBDIRECTORY(samples)
 SET(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
 SET(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
 SET(CPACK_PACKAGE_VERSION_PATCH ${VERSION_PATCH})
-SET(CPACK_PACKAGE_NAME "Fontmatrix")
-SET(CPACK_PACKAGE_VENDOR "Fontmatrix")
+SET(CPACK_PACKAGE_NAME "FontMatrix-NG")
+SET(CPACK_PACKAGE_VENDOR "FontMatrix-NG")
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Font management application")
 
 IF(WIN32)
@@ -348,17 +351,17 @@ IF(WIN32)
 	# that WiX 3 raises for file names containing non-Latin-1 characters.
 	SET(CPACK_WIX_VERSION 4)
 	SET(CPACK_GENERATOR "WIX")
-	SET(CPACK_PACKAGE_INSTALL_DIRECTORY "Fontmatrix")
+	SET(CPACK_PACKAGE_INSTALL_DIRECTORY "FontMatrix-NG")
 	# UPGRADE_GUID must remain constant across all versions of this product.
 	SET(CPACK_WIX_UPGRADE_GUID "5D8B1A2F-C3E4-4F56-8901-2B3C4D5E6F78")
-	SET(CPACK_PACKAGE_EXECUTABLES "fontmatrix" "Fontmatrix")
-	SET(CPACK_WIX_PROGRAM_MENU_FOLDER "Fontmatrix")
+	SET(CPACK_PACKAGE_EXECUTABLES "fontmatrix-ng" "FontMatrix-NG")
+	SET(CPACK_WIX_PROGRAM_MENU_FOLDER "FontMatrix-NG")
 	SET(CPACK_WIX_PROPERTY_ARPURLINFOABOUT "https://github.com/eniac111/fontmatrix/")
 	# Build a combined license file: copyright header + GPL text + VC++ runtime notice.
 	# file(READ) + file(WRITE) runs at configure time; the original COPYING is not touched.
 	file(READ "${CMAKE_SOURCE_DIR}/COPYING" _gpl_text)
 	file(WRITE "${CMAKE_BINARY_DIR}/LICENSE.txt"
-"Fontmatrix ${VERSION} - Font Management Application\n\
+"FontMatrix-NG ${VERSION} - Font Management Application\n\
 Copyright (C) 2007 Pierre Marchand and contributors\n\
 https://github.com/eniac111/fontmatrix/\n\
 \n\

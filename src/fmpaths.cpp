@@ -43,7 +43,7 @@ QString FMPaths::TranslationsDir()
 #else
 	dir = QApplication::applicationDirPath()
 	      + dirsep + QStringLiteral("..") + dirsep + QStringLiteral("share")
-	      + dirsep + QStringLiteral("fontmatrix") + dirsep + QStringLiteral("qm") + dirsep;
+	      + dirsep + QStringLiteral("fontmatrix-ng") + dirsep + QStringLiteral("qm") + dirsep;
 #endif
 	getThis()->FMPathsDB[QStringLiteral("TranslationsDir")] = dir;
 	return dir;
@@ -65,7 +65,7 @@ QString FMPaths::HelpDir()
 #else
 	hf = LocalizedDirPath(QApplication::applicationDirPath()
 	                      + dirsep + QStringLiteral("..") + dirsep + QStringLiteral("share")
-	                      + dirsep + QStringLiteral("fontmatrix") + dirsep + QStringLiteral("help") + dirsep);
+	                      + dirsep + QStringLiteral("fontmatrix-ng") + dirsep + QStringLiteral("help") + dirsep);
 #endif
 	getThis()->FMPathsDB[QStringLiteral("HelpDir")] = hf;
 	return hf;
@@ -90,7 +90,7 @@ QString FMPaths::ResourcesDir()
 	// a build directory (build/bin/fontmatrix → build/share/fontmatrix/resources/).
 	dir = QApplication::applicationDirPath()
 	      + dirsep + QStringLiteral("..") + dirsep + QStringLiteral("share")
-	      + dirsep + QStringLiteral("fontmatrix") + dirsep + QStringLiteral("resources") + dirsep;
+	      + dirsep + QStringLiteral("fontmatrix-ng") + dirsep + QStringLiteral("resources") + dirsep;
 #endif
 	getThis()->FMPathsDB[QStringLiteral("ResourcesDir")] = dir;
 	return dir;
