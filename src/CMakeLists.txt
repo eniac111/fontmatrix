@@ -136,21 +136,6 @@ ${ICU_LIBRARIES}
 ${M17N_LIBRARIES}
 )
 
-IF(WANT_PYTHONQT)
-	SET(PYTHONQT_SCRIPTER_SRCS
-	${CMAKE_CURRENT_SOURCE_DIR}/fmpython_w.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/fmscriptconsole.cpp
-	)
-	SET(PYTHONQT_SCRIPTER_MOC_HDRS
-	fmpython_w.h
-	fmscriptconsole.h
-	)
-	SET(PYTHONQT_SCRIPTER_UIS
-	${CMAKE_CURRENT_SOURCE_DIR}/scriptconsole.ui
-	)
-	SET(PYTHONQT_LIB PythonQt)
-ENDIF(WANT_PYTHONQT)
-
 
 SET(fontmatrix_MOC_HDRS
 aboutwidget.h
@@ -220,8 +205,7 @@ tttableview.h
 typotek.h
 )
 qt_wrap_cpp(fontmatrix_MOC_SRCS
-${fontmatrix_MOC_HDRS}
-${PYTHONQT_SCRIPTER_MOC_HDRS})
+${fontmatrix_MOC_HDRS})
 
 
 SET(fontmatrix_UIS
@@ -267,7 +251,6 @@ ${CMAKE_CURRENT_SOURCE_DIR}/tttablewidget.ui
 )
 qt_wrap_ui(fontmatrix_UIS_H
 ${fontmatrix_UIS}
-${PYTHONQT_SCRIPTER_UIS}
 )
 
 # extra translation files
@@ -318,8 +301,6 @@ ${FONTCONFIG_INCLUDE_DIR}
 ${ICU_INCLUDE_DIR}
 ${M17N_INCLUDE_DIR}
 ${HYPHENATE_INCLUDE_DIR}
-${PYTHON_INCLUDE_PATH}
-${PYTHONQT_INCLUDE_DIRS}
 ${LIBPODOFO_INCLUDE_DIR}
 )
 
@@ -328,20 +309,17 @@ IF(UNIX AND NOT APPLE)
 	add_executable(fontmatrix
 	${fontmatrix_SRCS}
 	${SHAPERS_SRCS}
-	${PYTHONQT_SCRIPTER_SRCS}
 	${fontmatrix_MOC_SRCS}
 	${fontmatrix_UIS_H}
 	${fontmatrix_RCC_SRCS}
 	${PODOFO_SRCS}
 	)
 
-	target_link_libraries(fontmatrix harfbuzz hyphenate 
-	${PYTHONQT_LIB}
+	target_link_libraries(fontmatrix harfbuzz hyphenate
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	${FONTCONFIG_LIBRARIES}
 	${SHAPERS_LIBRARIES}
-	${PYTHON_LIBRARIES}
 	${LIBPODOFO_LIBRARY}
 	)
 
@@ -355,7 +333,6 @@ IF(APPLE)
 	add_executable(fontmatrix MACOSX_BUNDLE
 	${fontmatrix_SRCS}
 	${SHAPERS_SRCS}
-	${PYTHONQT_SCRIPTER_SRCS}
 	${fontmatrix_MOC_SRCS}
 	${fontmatrix_UIS_H}
 	${fontmatrix_RCC_SRCS}
@@ -363,11 +340,9 @@ IF(APPLE)
 	)
 
 	target_link_libraries(fontmatrix harfbuzz hyphenate
-	${PYTHONQT_LIB}
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	${SHAPERS_LIBRARIES}
-	${PYTHON_LIBRARIES}
 	${LIBPODOFO_LIBRARY}
 	"-framework ApplicationServices"
 	)
@@ -417,11 +392,9 @@ INSTALL(TARGETS ${PROGNAME}
     )
 
 SET(APPLE_LIBS
-	${PYTHONQT_LIB}
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	${SHAPERS_LIBRARIES}
-	${PYTHON_LIBRARIES}
 	${LIBPODOFO_LIBRARY}
 )
 SET(APPLE_DIRS "${QT_PLUGINS_DIR}/sqldrivers")
@@ -437,7 +410,6 @@ IF(WIN32)
 	add_executable(fontmatrix WIN32
 	${fontmatrix_SRCS}
 	${SHAPERS_SRCS}
-	${PYTHONQT_SCRIPTER_SRCS}
 	${fontmatrix_MOC_SRCS}
 	${fontmatrix_UIS_H}
 	${fontmatrix_RCC_SRCS}
@@ -446,11 +418,9 @@ IF(WIN32)
 	)
 
 	target_link_libraries(fontmatrix harfbuzz hyphenate
-	${PYTHONQT_LIB}
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	${SHAPERS_LIBRARIES}
-	${PYTHON_LIBRARIES}
 	${LIBPODOFO_LIBRARY}
 	)
 

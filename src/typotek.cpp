@@ -79,11 +79,6 @@
 #endif
 
 
-#ifdef HAVE_PYTHONQT
-#include "fmpython_w.h"
-#include "fmscriptconsole.h"
-#define MAX_RECENT_PYSCRIPTS 10
-#endif // HAVE_PYTHONQT
 
 #ifdef Q_OS_MAC
 #include <ApplicationServices/ApplicationServices.h>
@@ -300,9 +295,6 @@ void typotek::doConnect()
 		connect ( FMActivate::getInstance() ,SIGNAL ( activationEvent ( const QStringList& ) ), getSystray(),SLOT ( updateTagMenu ( const QStringList& ) ) );
 
 //	connect(FMLayout::getLayout()->optionDialog,SIGNAL(finished( int )),this,SLOT(slotUpdateLayOptStatus()));
-#ifdef HAVE_PYTHONQT
-	connect(FMScriptConsole::getInstance(),SIGNAL(finished()), this, SLOT(slotUpdateScriptConsoleStatus()));
-#endif
 	connect(toggleMainViewButton, SIGNAL(toggled(bool)), this, SLOT(toggleMainView(bool)));
 	connect(this, SIGNAL(newFontsArrived()), theMainView, SLOT(slotFontDbChanged()));
 }
@@ -826,26 +818,11 @@ void typotek::createActions()
 	matchRasterAct->setStatusTip ( tr ( "Find a font using a raster sample of a letter" ) );
 	scuts->add(matchRasterAct);
 	connect(matchRasterAct,SIGNAL(triggered()),this,SLOT(slotMatchRaster()));
-	
-	
-#ifdef HAVE_PYTHONQT
-	execScriptAct = new QAction(tr("Execute Script..."),this);
-	execScriptAct->setStatusTip ( tr ( "Execute a Python script" ) );
-	scuts->add(execScriptAct);
-	connect(execScriptAct,SIGNAL(triggered()),this,SLOT(slotExecScript()));
-	
-	execLastScriptAct = new QAction(tr("Execute Last Script"),this);
-	execLastScriptAct->setStatusTip ( tr ( "Execute the last chosen Python script" ) );
-	scuts->add(execLastScriptAct);
-	connect(execLastScriptAct,SIGNAL(triggered()),this,SLOT(slotExecLastScript()));
-	
-	scriptConsoleAct = new QAction(tr("Script Console..."), this);
-	scriptConsoleAct->setStatusTip ( tr ( "Open Python scripting console" ) );
-	scriptConsoleAct->setCheckable(true);
-	scuts->add(scriptConsoleAct);
-	connect(scriptConsoleAct, SIGNAL(triggered()), this, SLOT(slotSwitchScriptConsole()));
 
-#endif
+	exportXeTeXAct = new QAction(tr("Export font list as XeTeX..."), this);
+	exportXeTeXAct->setStatusTip(tr("Export the current filtered font list as a XeTeX source file"));
+	scuts->add(exportXeTeXAct);
+	connect(exportXeTeXAct, SIGNAL(triggered()), this, SLOT(slotExportXeTeX()));
 }
 
 void typotek::createMenus()
@@ -883,16 +860,10 @@ void typotek::createMenus()
 	viewMenu->addSeparator();
 	connect(viewMenu, SIGNAL(aboutToShow()), this,SLOT(updateFloatingStatus()));
 
-#ifdef HAVE_PYTHONQT
-	scriptMenu = menuBar()->addMenu ( tr ( "&Scripts" ) );;
-	scriptMenu->addAction(execScriptAct);
-	scriptMenu->addAction(scriptConsoleAct);
-	scriptMenu->addAction(execLastScriptAct);
-#endif
-		
 	servicesMenu =  menuBar()->addMenu ( tr ( "&Service" ) );
 	servicesMenu->addAction(extractFontAction);
 	servicesMenu->addAction(matchRasterAct);
+	servicesMenu->addAction(exportXeTeXAct);
 #ifdef PLATFORM_APPLE
 	// TODO
 #elif _WIN32
@@ -2161,27 +2132,32 @@ FMHyphenator* typotek::getHyphenator() const
 //		layOptAct->setChecked(false);
 //}
 
-#ifdef HAVE_PYTHONQT
-void typotek::slotSwitchScriptConsole()
+void typotek::slotExportXeTeX()
 {
-	if(FMScriptConsole::getInstance()->isVisible())
-		FMScriptConsole::getInstance()->setVisible(false);
-	else
-		FMScriptConsole::getInstance()->setVisible(true);
-	slotUpdateScriptConsoleStatus();
-}
+	const QList<FontItem*> fonts = FMFontDb::DB()->getFilteredFonts();
+	if (fonts.isEmpty())
+		return;
 
-void typotek::slotUpdateScriptConsoleStatus()
-{
-	if(FMScriptConsole::getInstance()->isVisible())
-		scriptConsoleAct->setChecked(true);
-	else
-		scriptConsoleAct->setChecked(false);
+	QString path = QFileDialog::getSaveFileName(this, tr("Export font list as XeTeX"),
+	                                             QDir::homePath(), tr("TeX files (*.tex)"));
+	if (path.isEmpty())
+		return;
+
+	QFile file(path);
+	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+		return;
+
+	QTextStream out(&file);
+	out << "\\hsize=360pt\n\\vsize=580pt\n";
+	out << "\\baselineskip=14.5pt\n\\parindent=8pt\n";
+	out << "\\frenchspacing\n\\overfullrule=6pt\n\n";
+	for (FontItem *fi : fonts) {
+		out << "\\font\\lafonte=\"[" << fi->path() << "]\" at 11pt\n";
+		out << "\\lafonte\n";
+		out << fi->family() << " " << fi->variant() << "\n\n";
+	}
+	out << "\\end\n";
 }
-#else
-void typotek::slotSwitchScriptConsole(){}
-void typotek::slotUpdateScriptConsoleStatus(){}
-#endif
 
 QString typotek::getDefaultOTFScript() const
 {
@@ -2400,55 +2376,6 @@ void typotek::slotMatchRaster()
 	mr.exec();
 }
 
-
-#ifdef HAVE_PYTHONQT
-void typotek::slotExecScript()
-{
-	lastScript = QFileDialog::getOpenFileName(this,"Fontmatrix",QDir::homePath(),tr("Python scripts (*.py)"));
-	if(!lastScript.isEmpty())
-	{
-		if((recentScripts.count() < MAX_RECENT_PYSCRIPTS) && (!recentScripts.values().contains(lastScript)))
-		{
-			QFileInfo fInfo(lastScript);
-			QAction * sca (new QAction(fInfo.baseName(), this));
-			recentScripts[sca] = lastScript;
-			connect(sca, SIGNAL(triggered()), this, SLOT(slotExecRecentScript()));
-			scriptMenu->addAction(sca);
-		}
-		FMPythonW::getInstance()->runFile(lastScript);
-	}
-	else
-		qDebug()<<"Error: Script path empty";
-}
-void typotek::slotExecLastScript()
-{
-	if(!lastScript.isEmpty())
-	{
-		FMPythonW::getInstance()->runFile(lastScript);
-	}
-	else
-		qDebug()<<"Error: Script path empty";
-}
-void typotek::slotExecRecentScript()
-{
-	if(sender())
-	{
-		QAction * sca = reinterpret_cast<QAction*>(sender());
-		if(sca)
-		{
-			if(recentScripts.contains(sca))
-			{
-				lastScript = recentScripts[sca];
-				FMPythonW::getInstance()->runFile(lastScript);
-			}
-		}
-	}
-}
-#else
-void typotek::slotExecScript(){}
-void typotek::slotExecLastScript(){}
-void typotek::slotExecRecentScript(){}
-#endif
 
 void typotek::showToltalFilteredFonts()
 {
