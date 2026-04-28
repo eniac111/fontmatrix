@@ -28,19 +28,19 @@ FloatingWidget::FloatingWidget(const QString &f, const QString& typ, QWidget *pa
 		QWidget(parent),
 		fName(f),
 		fType(typ),
-		printer(0),
-		printDialog(0)
+		printer(nullptr),
+		printDialog(nullptr)
 {
 	setAttribute(Qt::WA_DeleteOnClose);
 	QString fn;
 	FontItem *fi(FMFontDb::DB()->Font(fName));
-	if(fi != 0)
+	if(fi != nullptr)
 		fn = fi->fancyName();
 	else
 		fn = f;
 	actionName =  QString("[%1]").arg(fType) + QString(" ") + fn;
 	wTitle =  fn + QString(" - Fontmatrix");
-	if(0 == parent)
+	if(nullptr == parent)
 	{
 		ddetach();
 	}
@@ -82,8 +82,8 @@ void FloatingWidget::activate(bool a)
 
 void FloatingWidget::ddetach()
 {
-	if(0 != parent())
-		setParent(0, Qt::Window);
+	if(nullptr != parent())
+		setParent(nullptr, Qt::Window);
 	setWindowTitle(wTitle);
 	FloatingWidgetsRegister::Register(this, fName, fType);
 	show();

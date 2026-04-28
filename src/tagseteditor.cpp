@@ -102,7 +102,7 @@ void TagSetEditor::slotAddTagToSet()
 			sel << it->text();
 	}
 	
-	foreach(QString it, sel)
+	for (const auto& it : sel)
 	{
 		if(!m_typo->tagsOfSet(curSet).contains(it))
 		{
@@ -135,7 +135,7 @@ void TagSetEditor::slotRemoveToSet()
 		else
 			rest << it->text();
 	}
-	foreach(QListWidgetItem * it, sel)
+	for (auto* it : sel)
 	{	
 			m_typo->removeTagFromSet(curSet, it->text());
 	}

@@ -21,7 +21,7 @@ class FmRepair : public QDialog, private Ui::repairDialog
 	Q_OBJECT
 	public:
 		FmRepair(QWidget *parent);
-		~FmRepair();
+		~FmRepair() override;
 	private:
 		void fillDeadLink();
 		void fillActNotLinked();

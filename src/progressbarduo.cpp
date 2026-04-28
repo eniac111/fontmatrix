@@ -49,7 +49,7 @@ void ProgressBarDuo::changeEvent(QEvent *e)
 
 void ProgressBarDuo::setLabel(const QString &s, int n)
 {
-	QLabel *l = 0;
+	QLabel *l = nullptr;
 
 	switch(n)
 	{
@@ -66,7 +66,7 @@ void ProgressBarDuo::setLabel(const QString &s, int n)
 
 void ProgressBarDuo::setValue(int value, int n)
 {
-	QProgressBar *p = 0;
+	QProgressBar *p = nullptr;
 	switch(n)
 	{
 	case 0: p = ui->Bar0;
@@ -81,7 +81,7 @@ void ProgressBarDuo::setValue(int value, int n)
 
 void ProgressBarDuo::setMax(int max, int n)
 {
-	QProgressBar *p = 0;
+	QProgressBar *p = nullptr;
 	switch(n)
 	{
 	case 0: p = ui->Bar0;

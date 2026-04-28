@@ -86,7 +86,7 @@ MainViewWidget::MainViewWidget ( QWidget *parent )
 	quickSearchWidget->setVisible(false);
 
 	quickSearchWait = 4000;
-	quickSearchTimer = 0;
+	quickSearchTimer = nullptr;
 	m_forceReloadSelection = false;
 	FMFontDb::DB()->clearFilteredFonts();
 
@@ -109,7 +109,7 @@ MainViewWidget::MainViewWidget ( QWidget *parent )
 	iconOTF =  QIcon(":/icon-OTF");
 
 	
-	theVeryFont = 0;
+	theVeryFont = nullptr;
 	typo = typotek::getInstance();
 //	m_lists = ListDockWidget::getInstance();
 	// 	currentFonts = typo->getAllFonts();
@@ -917,7 +917,7 @@ void MainViewWidget::slotShowFamily(const QModelIndex& familyIdx)
 		return;
 	}
 	QList<FontItem*> fl(FMFontDb::DB()->FamilySet(fItem->family()));
-	foreach(FontItem* f,fl)
+	for (auto* f : fl)
 	{
 		qDebug() <<"F"<< f->fancyName();
 	}
@@ -998,7 +998,7 @@ void MainViewWidget::slotQuitFamily()
 //	{
 //		if(queue)
 //		{
-//			foreach(FontItem* f, negList)
+//			for (auto* f : negList)
 //			{
 //				if(!fmdb->isFiltered(f) && !tmpList.contains(f) && queList.contains(f))
 //					fmdb->insertFilteredFont(f);
@@ -1006,7 +1006,7 @@ void MainViewWidget::slotQuitFamily()
 //		}
 //		else // not queue
 //		{
-//			foreach(FontItem* f, negList)
+//			for (auto* f : negList)
 //			{
 //				if(!fmdb->isFiltered(f) && !tmpList.contains(f))
 //					fmdb->insertFilteredFont(f);
@@ -1017,7 +1017,7 @@ void MainViewWidget::slotQuitFamily()
 //	{
 //		if(queue)
 //		{
-//			foreach(FontItem* f, tmpList)
+//			for (auto* f : tmpList)
 //			{
 //				if(!fmdb->isFiltered(f) && queList.contains(f))
 //					fmdb->insertFilteredFont(f);
@@ -1025,7 +1025,7 @@ void MainViewWidget::slotQuitFamily()
 //		}
 //		else // not queue
 //		{
-//			foreach(FontItem* f, tmpList)
+//			for (auto* f : tmpList)
 //			{
 //				if(!fmdb->isFiltered(f))
 //					fmdb->insertFilteredFont(f);
@@ -1177,7 +1177,7 @@ void MainViewWidget::slotRemoveCurrentItem()
 	{
 		theVeryFont->deRenderAll();
 		FMFontDb::DB()->removeFilteredFont(theVeryFont);
-		theVeryFont  = 0 ;
+		theVeryFont  = nullptr ;
 		typo->removeFontItem(curItemName);
 		curItemName = lastIndex = faceIndex = "";
 		fontsetHasChanged = true;

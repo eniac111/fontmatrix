@@ -67,12 +67,12 @@ void RemoteDir::run()
 RemoteDir::~RemoteDir()
 {
 #if 0 // TODO Replace this code
-	foreach(QHttp *h, https)
+	for (auto* h : https)
 	{
 		delete h;
 	}
 #endif
-	foreach(QBuffer *b, buffers)
+	for (auto* b : buffers)
 	{
 		delete b;
 	}
@@ -123,9 +123,9 @@ void RemoteDir::slotEndReq(int id, bool error)
 	else
 		httpRequests[id] = 2;
 	
-	int ih(0);
 	bool hFound = false;
 #if 0 // TODO Replace this code
+	int ih(0);
 	for(;ih < https.size();++ih)
 	{
 		if(sender() == https[ih])
@@ -252,10 +252,9 @@ void RemoteDir::getPreviews()
 }
 
 
-void RemoteDir::slotProgress(int done, int total)
+void RemoteDir::slotProgress(int , int )
 {
 // 	qDebug()<<"RemoteDir::slotProgress(int done, int total)";
-	int ih(0);
 	bool hFound = false;
 #if 0 // TODO Replace this code
 	for(;ih < https.size();++ih)

@@ -24,16 +24,8 @@ RenderedGlyph::RenderedGlyph(int g, int l, double xa, double ya, double xo, doub
 
 RenderedGlyph::~RenderedGlyph()
 {
-	foreach(RenderedGlyph* rg, hyphen.first)
-	{
-		if(rg)
-			delete rg;
-	}
-	foreach(RenderedGlyph* rg, hyphen.second)
-	{
-		if(rg)
-			delete rg;
-	}
+	// hyphen.first/.second are QList<RenderedGlyph> (value types);
+	// QList destructor handles element cleanup automatically.
 }
 
 GlyphList RenderedGlyph::BeforeBreak()
@@ -46,13 +38,9 @@ GlyphList RenderedGlyph::AfterBreak()
 	return hyphen.second;
 }
 
-void cleanupGlyphList(const GlyphList & list)
+void cleanupGlyphList(const GlyphList & /*list*/)
 {
-	foreach(RenderedGlyph* rg, list)
-	{
-		if(rg)
-			delete rg;
-	}
+	// GlyphList is QList<RenderedGlyph> (value types); no manual cleanup needed.
 }
 
 

@@ -59,10 +59,10 @@ class HelpBrowser : public QMainWindow, Ui::HelpBrowser
 public:
 	HelpBrowser(QWidget* parent);
 	HelpBrowser(QWidget* parent, const QString& caption, const QString& guiLangage="en", const QString& jumpToSection="", const QString& jumpToFile="");
-	~HelpBrowser();
+	~HelpBrowser() override;
 	
 	
-	virtual void changeEvent(QEvent *e);
+	void changeEvent(QEvent *e) override;
 
 	/*! \brief History menu. It's public because of history reader - separate class */
 	QMenu* histMenu;
@@ -75,7 +75,7 @@ public:
 	static bool firstRun;
 
 protected:
-	void closeEvent(QCloseEvent * event);
+	void closeEvent(QCloseEvent * event) override;
 
 	void setupLocalUI();
 	/*! \brief Reads saved bookmarks from external file */

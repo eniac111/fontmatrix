@@ -39,7 +39,7 @@ bool FMHyphenator::loadDict(const QString & dictPath, int leftMin, int rightMin)
 		}
 	}
 
-	if (( dict = hnj_hyphen_load( dictPath.toLocal8Bit().constData() ) ) == 0)
+	if (( dict = hnj_hyphen_load( dictPath.toLocal8Bit().constData() ) ) == nullptr)
 	{
 		qDebug()<<"Unable to load dict file:"<<dictPath;
 		return false;
@@ -91,16 +91,16 @@ HyphList FMHyphenator::hyphenate(const QString & word) const
 // 			upperLog[i] = word[i];
 // 	}
 	
-	char ** rep = NULL;
-	int * pos = NULL;
-	int * cut = NULL;
+	char ** rep = nullptr;
+	int * pos = nullptr;
+	int * cut = nullptr;
 	QByteArray hw( textEncoder ? textEncoder->encode( word.toLower().remove('.') ) :  word.toLower().remove('.').toLocal8Bit() );
 	QByteArray ht( hw.size() + 5, '0' );
 	char *lcword = hw.data();
 	char *hyphens = ht.data();
 	
 	
-	if(hnj_hyphen_hyphenate2(dict, lcword, hw.size(), hyphens, 0, &rep, &pos, &cut))
+	if(hnj_hyphen_hyphenate2(dict, lcword, hw.size(), hyphens, nullptr, &rep, &pos, &cut))
 	{
 		qDebug()<<"Hyphenate("<<word<<") failed";
 		delete hyphens;

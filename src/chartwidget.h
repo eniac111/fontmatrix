@@ -37,14 +37,14 @@ class ChartWidget : public FloatingWidget
 
 public:
 	static const QString Name;
-    explicit ChartWidget(const QString& fid, const QString& block, QWidget *parent = 0);
-    ~ChartWidget();
+    explicit ChartWidget(const QString& fid, const QString& block, QWidget *parent = nullptr);
+    ~ChartWidget() override;
 
     QString currentBlock();
     void selectBlock(const QString& uname);
 
 protected:
-    void changeEvent(QEvent *e);
+    void changeEvent(QEvent *e) override;
 
 private:
     Ui::ChartWidget *ui;

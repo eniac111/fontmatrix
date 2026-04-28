@@ -24,7 +24,7 @@
 
 
 
-FMActivate* FMActivate::instance = 0;
+FMActivate* FMActivate::instance = nullptr;
 
 FMActivate::FMActivate()
 {
@@ -64,7 +64,7 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 	// TODO insert error messages.
 	QMap<FontItem*, bool> stack;
 	typotek *T(typotek::getInstance());
-	foreach(FontItem * fit , fitList)
+	for (auto* fit : fitList)
 	{
 		qDebug() << "Activation of " << fit->path() << act;
 		if ( act ) // Activation
@@ -157,7 +157,7 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 
 	QStringList aList;
 	FMFontDb::DB()->TransactionBegin();
-	foreach(FontItem* f, stack.keys())
+	for (auto* f : stack.keys())
 	{
 		f->setActivated(stack[f]);
 		aList << f->path();
@@ -180,7 +180,7 @@ void FMActivate::activate(QList< FontItem * > fitList, bool act)
 {
 	QMap<FontItem*, bool> stack;
 	typotek *T(typotek::getInstance());
-	foreach(FontItem * fit , fitList)
+	for (auto* fit : fitList)
 	{
 		if ( act ) // Activation
 		{
@@ -270,7 +270,7 @@ void FMActivate::activate(QList< FontItem * > fitList, bool act)
 	
 	QStringList aList;
 	FMFontDb::DB()->TransactionBegin();
-	foreach(FontItem* f, stack.keys())
+	for (auto* f : stack.keys())
 	{
 		f->setActivated(stack[f]);
 		aList << f->path();

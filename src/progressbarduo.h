@@ -32,15 +32,15 @@ class ProgressBarDuo : public QDialog
     Q_OBJECT
 
 public:
-    explicit ProgressBarDuo(QWidget *parent = 0);
-    ~ProgressBarDuo();
+    explicit ProgressBarDuo(QWidget *parent = nullptr);
+    ~ProgressBarDuo() override;
 
     void setLabel(const QString& s, int n);
     void setValue(int value, int n);
     void setMax(int max, int n);
 
 protected:
-    void changeEvent(QEvent *e);
+    void changeEvent(QEvent *e) override;
 
 private:
     Ui::ProgressBarDuo *ui;

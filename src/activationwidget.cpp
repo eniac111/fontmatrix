@@ -38,7 +38,7 @@ ActivationWidget::ActivationWidget(const QString& familyName, QWidget *parent) :
 {
 	ui->setupUi(this);
 	QList<FontItem*> fl(FMVariants::Order(FMFontDb::DB()->FamilySet(family)));
-	foreach(FontItem* f, fl)
+	for (auto* f : fl)
 	{
 		ActivationWidgetItem * i(new ActivationWidgetItem(f->path(), this));
 		ui->listLayout->addWidget(i);
@@ -88,7 +88,7 @@ void ActivationWidget::activateAll(bool c)
 		FMActivationReport ar(this, actErr);
 		ar.exec();
 	}
-	foreach(ActivationWidgetItem *i, items)
+	for (auto* i : items)
 	{
 		i->changeState(c);
 	}

@@ -35,7 +35,7 @@ class Systray : public QObject
 
 public:
 	Systray();
-	~Systray();
+	~Systray() override;
 
 	bool isVisible();
 	bool hasActivateAll();
@@ -91,9 +91,8 @@ private:
 
 	QSettings *settings;
 
-	/*** hide these systray is not ment to be copied ***/
-	Systray(const Systray&) {};
-	void operator= (const Systray&) {};
+	Systray(const Systray&) = delete;
+	Systray& operator=(const Systray&) = delete;
 	
 // 	protected:
 // 		bool eventFilter ( QObject * watched, QEvent * event ) ;

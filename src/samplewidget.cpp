@@ -336,7 +336,7 @@ void SampleWidget::setState(const SampleWidget::State &s)
 //		}
 //	}
 
-	QTreeWidgetItem * targetItem = 0;
+	QTreeWidgetItem * targetItem = nullptr;
 	for(int i(0); i < ui->sampleTextTree->topLevelItemCount(); ++i)
 	{
 		QTreeWidgetItem * tli(ui->sampleTextTree->topLevelItem(i));
@@ -349,11 +349,11 @@ void SampleWidget::setState(const SampleWidget::State &s)
 				break;
 			}
 		}
-		if(targetItem != 0)
+		if(targetItem != nullptr)
 			break;
 	}
 //	qDebug()<<"TI"<<targetItem;
-	if(targetItem != 0)
+	if(targetItem != nullptr)
 		ui->sampleTextTree->setCurrentItem(targetItem, 0, QItemSelectionModel::SelectCurrent);
 
 //	if(!s.shaper.isEmpty())
@@ -455,7 +455,7 @@ void SampleWidget::clearFTScene()
 	qDebug()<<"SampleWidget::clearFTScene"<< layoutSwitch;
 //	if(layoutSwitch)
 //		return;
-	foreach(QGraphicsItem* gi, ftScene->items())
+	for (auto* gi : ftScene->items())
 	{
 		if(gi->data(GLYPH_DATA_GLYPH).toInt() > 0)
 			delete gi;
@@ -484,23 +484,23 @@ void SampleWidget::fillOTTree()
 	if ( theVeryFont && theVeryFont->isOpenType() )
 	{
 		FMOtf * otf = theVeryFont->takeOTFInstance();
-		foreach ( QString table, otf->get_tables() )
+		for (const auto& table : otf->get_tables())
 		{
 			otf->set_table ( table );
 			QTreeWidgetItem *tab_item = new QTreeWidgetItem ( ui->OpenTypeTree,QStringList ( table ) );
 			tab_item->setExpanded ( true );
-			foreach ( QString script, otf->get_scripts() )
+			for (const auto& script : otf->get_scripts())
 			{
 				scripts << script;
 				otf->set_script ( script );
 				QTreeWidgetItem *script_item = new QTreeWidgetItem ( tab_item, QStringList ( script ) );
 				script_item->setExpanded ( true );
-				foreach ( QString lang, otf->get_langs() )
+				for (const auto& lang : otf->get_langs())
 				{
 					otf->set_lang ( lang );
 					QTreeWidgetItem *lang_item = new QTreeWidgetItem ( script_item, QStringList ( lang ) );
 					lang_item->setExpanded ( true );
-					foreach ( QString feature, otf->get_features() )
+					for (const auto& feature : otf->get_features())
 					{
 						QStringList f ( feature );
 						f << OTTagMeans ( feature );
@@ -639,7 +639,7 @@ OTFSet SampleWidget::deFillOTTree()
 //	pmap[ "openTypeButton" ] = VIEW_PAGE_OPENTYPE;
 //	pmap[ "sampleButton" ] = VIEW_PAGE_SAMPLES;
 
-//	foreach(QString pk, bmap.keys())
+//	for (const auto& pk : bmap.keys())
 //	{
 //		if(butName == pk)
 //		{
@@ -761,7 +761,7 @@ void SampleWidget::refillSampleList()
 {
 	ui->sampleTextTree->clear();
 
-	QTreeWidgetItem * curIt = 0;
+	QTreeWidgetItem * curIt = nullptr;
 	QMap<QString, QList<QString> > sl = typotek::getInstance()->namedSamplesNames();
 	QList<QString> ul( sl.take(QString("User")) );
 	uRoot = new QTreeWidgetItem(ui->sampleTextTree);
@@ -771,7 +771,7 @@ void SampleWidget::refillSampleList()
 	{
 
 		bool first(true);
-		foreach(QString uk, ul)
+		for (const auto& uk : ul)
 		{
 			if(first)
 			{
@@ -785,12 +785,12 @@ void SampleWidget::refillSampleList()
 			uRoot->addChild(it);
 		}
 	}
-	foreach(QString k, sl.keys())
+	for (const auto& k : sl.keys())
 	{
 		QTreeWidgetItem * kRoot = new QTreeWidgetItem(ui->sampleTextTree);
 		kRoot->setText(0, k);
 		bool first(true);
-		foreach(QString n, sl[k])
+		for (const auto& n : sl[k])
 		{
 			if(first)
 			{
@@ -826,9 +826,9 @@ void SampleWidget::slotPrint()
 	if(!font)
 		return;
 
-	if(printer == 0)
+	if(printer == nullptr)
 		printer = new QPrinter(QPrinter::HighResolution);
-	if(printDialog == 0)
+	if(printDialog == nullptr)
 		printDialog = new QPrintDialog(printer, this);
 
 	printDialog->setWindowTitle("Fontmatrix - " + tr("Print Sample") +" - " + font->fancyName() );
@@ -936,7 +936,7 @@ void SampleWidget::slotAddSample()
 	ui->sampleTextTree->setCurrentItem(newSampleName);
 }
 
-void SampleWidget::slotSampleNameEdited(QWidget *w)
+void SampleWidget::slotSampleNameEdited(QWidget *)
 {
 	ui->sampleTextTree->closePersistentEditor(newSampleName);
 	newSampleName->setData(0, Qt::UserRole , QString("User::") + newSampleName->text(0));

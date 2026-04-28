@@ -84,7 +84,7 @@
 #include <ApplicationServices/ApplicationServices.h>
 #endif
 
-typotek* typotek::instance = 0;
+typotek* typotek::instance = nullptr;
 bool typotek::matrix = false;
 QString typotek::fonteditorPath = "/usr/bin/fontforge";
 extern bool __FM_SHOW_FONTLOADED;
@@ -111,7 +111,7 @@ namespace fontmatrix
 			retDirList.clear();
 		retDirList << dir.absolutePath();
 		QStringList localEntries ( dir.entryList ( QDir::AllDirs | QDir::NoDotAndDotDot ) );
-		foreach ( QString dirEntry, localEntries )
+		for (const auto& dirEntry : localEntries)
 		{
 // 			qDebug() << "[exploreDirs] - " + dir.absolutePath() + "/" + dirEntry;
 			QDir d ( dir.absolutePath() + "/" + dirEntry );
@@ -152,10 +152,10 @@ typotek::typotek()
 {
 	setWindowTitle ( "Fontmatrix" );
 	setupDrop();
-	theMainView = 0;
-	hyphenator = 0;
-	theHelp = 0;
-	dataLoader = 0;
+	theMainView = nullptr;
+	hyphenator = nullptr;
+	theHelp = nullptr;
+	dataLoader = nullptr;
 	playVisible = false;
 
 	m_dpiX = ( double ) QApplication::primaryScreen()->physicalDotsPerInchX();
@@ -201,7 +201,7 @@ void typotek::initMatrix()
 	if ( QSystemTrayIcon::isSystemTrayAvailable() )
 		systray = new Systray();
 	else
-		systray = 0;
+		systray = nullptr;
 
 	setDockOptions(QMainWindow::AnimatedDocks | QMainWindow::ForceTabbedDocks);
 
@@ -321,7 +321,7 @@ void typotek::closeEvent ( QCloseEvent *event )
 		}
 	}
 
-	foreach(FloatingWidget *f, FloatingWidgetsRegister::AllWidgets())
+	for (auto* f : FloatingWidgetsRegister::AllWidgets())
 	{
 		f->close();
 	}
@@ -383,11 +383,11 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 
 		QStringList filters;
 		filters << "*.otf" << "*.pfb" << "*.ttf" << "*.ttc";
-		foreach ( QString dr, dirList )
+		for (const auto& dr : dirList)
 		{
 			QDir d ( dr );
 			QFileInfoList fil= d.entryInfoList ( filters );
-			foreach ( QFileInfo fp, fil )
+			for (const auto& fp : fil)
 			{
 				if ( ( !yetHereFonts.contains ( fp.absoluteFilePath() ) ) )
 				{
@@ -483,10 +483,10 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 	}
 
 	QStringList tl;
-	foreach ( QString tag, tali )
+	for (const auto& tag : tali)
 	{
 		tl.clear();
-		foreach ( FontItem* f, nf )
+		for (auto* f : nf)
 		{
 			tl << f->path();
 		}
@@ -540,7 +540,7 @@ void typotek::openList ( QStringList files )
 
 	FMFontDb *DB ( FMFontDb::DB() );
 	QStringList fontMap ( DB->AllFontNames() );
-	foreach ( QString file, files )
+	for (const auto& file : files)
 	{
 		QFileInfo fp ( file );
 		if ( ( !fontMap.contains ( fp.absoluteFilePath() ) ) )
@@ -590,10 +590,10 @@ void typotek::openList ( QStringList files )
 		}
 	}
 	QStringList tl;
-	foreach ( QString tag, tali )
+	for (const auto& tag : tali)
 	{
 		tl.clear();
-		foreach ( FontItem* f, nf )
+		for (auto* f : nf)
 		{
 			tl << f->path();
 		}
@@ -930,7 +930,7 @@ void typotek::readSettings()
 
 //	QStringList dl;
 //	dl << "Main" << "Tags" << "Panose";
-//	foreach(const QString & ds, dl)
+//	for (const auto& ds : dl)
 //	{
 //		dockArea[ds] =  settings.value("Docks/"+ds+"Pos", "Left").toString();
 //		dockVisible[ds] = settings.value("Docks/"+ds+"Visible", true).toBool();
@@ -994,7 +994,7 @@ void typotek::writeSettings()
 
 //	QStringList dl;
 //	dl << "Main" << "Tags" << "Panose";
-//	foreach(const QString & ds, dl)
+//	for (const auto& ds : dl)
 //	{
 //		if(dockWidget[ds]->isFloating())
 //		{
@@ -1255,7 +1255,7 @@ QStringList typotek::getSystemFontDirs()
 #ifdef HAVE_FONTCONFIG // For Unices (OSX excluded)
 	QStringList tmpList;
 	FcConfig* FcInitLoadConfig();
-	FcStrList *sysDirList = FcConfigGetFontDirs(0);
+	FcStrList *sysDirList = FcConfigGetFontDirs(nullptr);
 	QString sysDir( (char*)FcStrListNext(sysDirList) );
 	while(!sysDir.isEmpty())
 	{
@@ -1266,11 +1266,11 @@ QStringList typotek::getSystemFontDirs()
 		sysDir = ( (char*)FcStrListNext(sysDirList) );
 	}
 	// Because we will go recursivly through these directories, we just want to list the top most ones.
-	foreach(QString path, tmpList)
+	for (const auto& path : tmpList)
 	{
 // 		qDebug()<< "PATH"<<path;
 		bool root(true);
-		foreach(QString ref, tmpList)
+		for (const auto& ref : tmpList)
 		{
 			if(path != ref)
 			{
@@ -1337,11 +1337,11 @@ void typotek::initDir()
 			QStringList dirList ( fontmatrix::exploreDirs ( theDir,0 ) );
 			QStringList filters;
 			filters << "*.otf" << "*.pfb" << "*.ttf" << "*.ttc";
-			foreach ( QString dr, dirList )
+			for (const auto& dr : dirList)
 			{
 				QDir d ( dr );
 				QFileInfoList fil= d.entryInfoList ( filters );
-				foreach ( QFileInfo fp, fil )
+				for (const auto& fp : fil)
 				{
 					if ( !yetHereFonts.contains ( fp.absoluteFilePath() ) )
 						syspathList <<  fp.absoluteFilePath();
@@ -1383,7 +1383,7 @@ void typotek::initDir()
 
 		// So much complicated only because otherwise, tags were added twice with SQLite ???
 		QStringList tl;
-		foreach(FontItem* sfp, sysFontPtrs)
+		for (auto* sfp : sysFontPtrs)
 		{
 			tl << sfp->path();
 		}
@@ -1430,7 +1430,7 @@ void typotek::slotRemoteIsReady()
 // 		fontMap.append ( fi );
 // 		realFontMap[fi->path() ] = fi;
 		fi->setTags ( listInfo[rf].tags );
-		foreach(QString tag, listInfo[rf].tags)
+		for (const auto& tag : listInfo[rf].tags)
 		{
 			if(!tag.isEmpty() && !tagsList.contains(tag))
 			{
@@ -1670,7 +1670,7 @@ QString typotek::namedSample ( QString name )
 		dataLoader = new DataLoader();
 
 	const QMap<QString,QString>& us(dataLoader->userSamples());
-	foreach(const QString& k, us.keys())
+	for (const auto& k : us.keys())
 	{
 		QString id(QString("User::") + k);
 //		qDebug()<<"\t"<<id;
@@ -1681,9 +1681,9 @@ QString typotek::namedSample ( QString name )
 	}
 
 	const QMap<QString, QMap<QString,QString> >& ss(dataLoader->systemSamples());
-	foreach(const QString& pk, ss.keys())
+	for (const auto& pk : ss.keys())
 	{
-		foreach(const QString& sk, ss[pk].keys())
+		for (const auto& sk : ss[pk].keys())
 		{
 			QString id(pk + QString("::") + sk);
 //			qDebug()<<"\t"<<id;
@@ -1704,7 +1704,7 @@ QMap<QString,QList<QString> > typotek::namedSamplesNames()
 	QMap<QString,QList<QString> > ret;
 	const QMap<QString,QString>& us(dataLoader->userSamples());
 	const QMap<QString, QMap<QString,QString> >& ss(dataLoader->systemSamples());
-	foreach(const QString& key, ss.keys())
+	for (const auto& key : ss.keys())
 	{
 		ret[key] << ss[key].keys();
 	}
@@ -1765,7 +1765,7 @@ QString typotek::defaultSampleName()
 				if(ss.contains(preferred) && ss[preferred].count() > 0)
 					return preferred + QString("::") + ss[preferred].keys().first();
 			}
-			foreach(QString k, ss.keys())
+			for (const auto& k : ss.keys())
 			{
 				if(ss[k].count() > 0)
 					return k + QString("::") + ss[k].keys().first();
@@ -1775,7 +1775,7 @@ QString typotek::defaultSampleName()
 	return QString();
 }
 
-void typotek::setWord ( QString s, bool updateView )
+void typotek::setWord ( QString s, bool )
 {
 	if(s == m_theWord)
 		return;
@@ -1899,7 +1899,7 @@ void typotek::removeFontItem(QString key)
 
 void typotek::removeFontItem(QStringList keyList)
 {
-	foreach(QString key, keyList)
+	for (const auto& key : keyList)
 	{
 		removeFontItem(key);
 	}
@@ -2029,7 +2029,7 @@ void typotek::slotTagAll()
 //		logDescend[fidx] = tmpScene.itemsBoundingRect().bottom() - 1000.0;
 //		qDebug()<< sampleString[fidx] << logWidth[fidx];
 //		QList<QGraphicsItem*> lgit(tmpScene.items());
-//		foreach(QGraphicsItem* git, lgit)
+//		for (auto* git : lgit)
 //		{
 //			tmpScene.removeItem(git);
 //			delete git;
@@ -2055,7 +2055,7 @@ void typotek::slotTagAll()
 //			pScene.render(&aPainter);
 //			thePrinter.newPage();
 //			QList<QGraphicsItem*> lgit(pScene.items());
-//			foreach(QGraphicsItem* git, lgit)
+//			for (auto* git : lgit)
 //			{
 //				pScene.removeItem(git);
 //				delete git;
@@ -2308,14 +2308,14 @@ void typotek::slotReloadFiltered()
 	QApplication::changeOverrideCursor(Qt::WaitCursor);
 	QMap<QString, QStringList> tagsRec;
 	FMFontDb *db(FMFontDb::DB());
-	foreach(FontItem* f, theMainView->curFonts())
+	for (auto* f : theMainView->curFonts())
 	{
 		toReload << f->path();
 		tagsRec[f->path()] = f->tags();
 		db->Remove(f->path());
 	}
 	QList<FontItem*> renewedFonts;
-	foreach(QString p, toReload)
+	for (const auto& p : toReload)
 	{
 		FontItem * it(db->Font(p, true));
 		if(it)
@@ -2324,7 +2324,7 @@ void typotek::slotReloadFiltered()
 		}
 	}
 	db->TransactionBegin();
-	foreach(FontItem* it, renewedFonts)
+	for (auto* it : renewedFonts)
 	{
 		it->setTags(tagsRec[it->path()]);
 	}
@@ -2427,13 +2427,13 @@ void typotek::setWebBrowserOptions ( const QString& theValue )
 
 void typotek::hide()
 {
-	foreach(const QString& k, dockWidget.keys())
+	for (const auto& k : dockWidget.keys())
 	{
 		dockVisible[k] = dockWidget[k]->isVisible();
 		dockWidget[k]->hide();
 	}
 	visibleFloatingWidgets.clear();
-	foreach(FloatingWidget* f, FloatingWidgetsRegister::AllWidgets())
+	for (auto* f : FloatingWidgetsRegister::AllWidgets())
 	{
 		visibleFloatingWidgets[f] = f->isVisible();
 		f->setVisible(false);
@@ -2446,11 +2446,11 @@ void typotek::hide()
 
 void typotek::show()
 {
-	foreach(const QString& k, dockWidget.keys())
+	for (const auto& k : dockWidget.keys())
 	{
 		dockWidget[k]->setVisible(dockVisible[k]);
 	}
-	foreach(FloatingWidget *f, visibleFloatingWidgets.keys())
+	for (auto* f : visibleFloatingWidgets.keys())
 	{
 		f->setVisible(visibleFloatingWidgets[f]);
 	}
@@ -2493,7 +2493,7 @@ void typotek::updateFloatingStatus()
 	viewMenu->removeAction(floatSep);
 
 	QList<FloatingWidget*> fwl(FloatingWidgetsRegister::AllWidgets());
-	foreach(FloatingWidget* f, floatingWidgets.keys())
+	for (auto* f : floatingWidgets.keys())
 	{
 		if(!fwl.contains(f))
 		{
@@ -2502,7 +2502,7 @@ void typotek::updateFloatingStatus()
 		}
 	}
 
-	foreach(FloatingWidget* f, fwl)
+	for (auto* f : fwl)
 	{
 		if(floatingWidgets.contains(f))
 		{
@@ -2534,7 +2534,7 @@ void typotek::updateFloatingStatus()
 
 void typotek::closeAllFloatings()
 {
-	foreach(FloatingWidget* f, floatingWidgets.keys())
+	for (auto* f : floatingWidgets.keys())
 	{
 		f->close();
 	}
@@ -2542,7 +2542,7 @@ void typotek::closeAllFloatings()
 
 void typotek::showAllFloatings()
 {
-	foreach(FloatingWidget* f, floatingWidgets.keys())
+	for (auto* f : floatingWidgets.keys())
 	{
 		f->setVisible(true);
 	}
@@ -2550,7 +2550,7 @@ void typotek::showAllFloatings()
 
 void typotek::hideAllFloatings()
 {
-	foreach(FloatingWidget* f, floatingWidgets.keys())
+	for (auto* f : floatingWidgets.keys())
 	{
 		f->setVisible(false);
 	}

@@ -32,7 +32,7 @@ class AboutWidget : public QDialog, private Ui::About
 	public:
 		AboutWidget (QWidget *parent );
 
-		~AboutWidget();
+		~AboutWidget() override;
 
 };
 

@@ -24,7 +24,7 @@
 #include <QSettings>
 #include <QDebug>
 
-FontCompareWidget* FontCompareWidget::instance = 0;
+FontCompareWidget* FontCompareWidget::instance = nullptr;
 
 FontCompareWidget::FontCompareWidget(QWidget * parent)
 	:QWidget(parent),neverUsed(true)
@@ -45,9 +45,9 @@ FontCompareWidget::~ FontCompareWidget()
 
 FontCompareWidget* FontCompareWidget::getInstance()
 {
-	if(instance == 0)
+	if(instance == nullptr)
 	{
-		instance = new FontCompareWidget(0);
+		instance = new FontCompareWidget(nullptr);
 		Q_ASSERT(instance);
 	}
 	return instance;
@@ -344,7 +344,7 @@ void FontCompareWidget::characterBoxChange(int i)
 	}
 }
 
-void FontCompareWidget::fontChange(QListWidgetItem * witem, QListWidgetItem * olditem)
+void FontCompareWidget::fontChange(QListWidgetItem * witem, QListWidgetItem * )
 {
 	if(!witem)
 	{

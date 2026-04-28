@@ -64,7 +64,7 @@
 
 int fm_num_face_opened = 0;
 
-QGraphicsScene *FontItem::theOneLineScene = 0;
+QGraphicsScene *FontItem::theOneLineScene = nullptr;
 
 
 
@@ -216,13 +216,13 @@ FontItem::FontItem ( QString path , bool remote, bool faststart )
 	m_remote = remote;
 	remoteCached = false;
 	stopperDownload = false;
-	m_face = 0;
-	lastFace = 0;
+	m_face = nullptr;
+	lastFace = nullptr;
 	m_glyphsPerRow = 5;
 	m_isEncoded = false;
 	currentChar = -1;
 	m_isOpenType = false;
-	otf = 0;
+	otf = nullptr;
 	m_rasterFreetype = false;
 	m_progression = PROGRESSION_LTR;
 	m_shaperType = 1;
@@ -342,13 +342,13 @@ FontItem::FontItem(QString path, QString family, QString variant, QString type,b
 	m_remote = false;
 	remoteCached = false;
 	stopperDownload = false;
-	m_face = 0;
-	lastFace = 0;
+	m_face = nullptr;
+	lastFace = nullptr;
 	m_glyphsPerRow = 5;
 	m_isEncoded = false;
 	currentChar = -1;
 	m_isOpenType = false;
-	otf = 0;
+	otf = nullptr;
 	m_rasterFreetype = false;
 	m_progression = PROGRESSION_LTR;
 	m_shaperType = 1;
@@ -454,7 +454,7 @@ void FontItem::encodeFace()
 		return;
 	
 	m_charsets.clear();
-	m_unicodeBuiltIn = (m_face->charmap == NULL) ? false : true ;
+	m_unicodeBuiltIn = (m_face->charmap == nullptr) ? false : true ;
 	if(QString(FT_Get_X11_Font_Format(m_face)) == QString("Type 1"))
 		m_unicodeBuiltIn = false;
 	
@@ -483,7 +483,7 @@ void FontItem::encodeFace()
 // 		cmaps.remove(FT_ENCODING_UNICODE);
 // 		m_isEncoded = true;
 // 	}
-	foreach(FT_Encoding e, cmaps.keys())
+	for (const auto& e : cmaps.keys())
 	{
 // 		QString cs(FontStrings::Encoding(e));
 // 		if(isType1 && (e == FT_ENCODING_UNICODE))
@@ -545,7 +545,7 @@ void FontItem::releaseFace()
 		if ( facesRef == 0 )
 		{
 			FT_Done_Face ( m_face );
-			m_face = 0;
+			m_face = nullptr;
 			--fm_num_face_opened;
 		}
 	}
@@ -609,7 +609,7 @@ QGraphicsPathItem * FontItem::itemFromChar ( int charcode, double size )
 {
 
 	if(!ensureFace())
-		return 0;
+		return nullptr;
 	uint glyphIndex = 0;
 	currentChar = charcode;
 	glyphIndex = FT_Get_Char_Index ( m_face, charcode );
@@ -623,7 +623,7 @@ QGraphicsPathItem * FontItem::itemFromChar ( int charcode, double size )
 QGraphicsPathItem * FontItem::itemFromGindex ( int index, double size )
 {
 	if(!ensureFace())
-		return 0;
+		return nullptr;
 	int charcode = index ;
 	double scalefactor = size / m_face->units_per_EM;
 	ft_error = FT_Load_Glyph ( m_face, charcode  , FT_LOAD_NO_SCALE );
@@ -684,7 +684,7 @@ QGraphicsPathItem * FontItem::itemFromGindex ( int index, double size )
 QGraphicsPixmapItem * FontItem::itemFromCharPix ( int charcode, double size )
 {
 	if(!ensureFace())
-		return 0;
+		return nullptr;
 	uint glyphIndex = 0;
 	currentChar = charcode;
 	glyphIndex = FT_Get_Char_Index ( m_face, charcode );
@@ -698,7 +698,7 @@ QGraphicsPixmapItem * FontItem::itemFromCharPix ( int charcode, double size )
 QGraphicsPixmapItem * FontItem::itemFromGindexPix ( int index, double size )
 {
 	if ( !ensureFace() )
-		return 0;
+		return nullptr;
 	int charcode = index ;
 
 	double scaleFactor = size / m_face->units_per_EM;
@@ -793,7 +793,7 @@ QGraphicsPixmapItem * FontItem::itemFromGindexPix ( int index, double size )
 MetaGlyphItem * FontItem::itemFromGindexPix_mt(int index, double size)
 {
 	if ( !ensureFace() )
-		return 0;
+		return nullptr;
 	int charcode = index ;
 //	qDebug()<<"FontItem::itemFromGindexPix_mt"<< thread();
 	MetaGlyphItem * glyph = new MetaGlyphItem;
@@ -953,7 +953,7 @@ double FontItem::renderLine ( QGraphicsScene * scene,
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPixmapItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -971,7 +971,7 @@ double FontItem::renderLine ( QGraphicsScene * scene,
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPixmapItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -988,7 +988,7 @@ double FontItem::renderLine ( QGraphicsScene * scene,
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPixmapItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1005,7 +1005,7 @@ double FontItem::renderLine ( QGraphicsScene * scene,
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPixmapItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1066,7 +1066,7 @@ double FontItem::renderLine ( QGraphicsScene * scene,
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPathItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1084,7 +1084,7 @@ double FontItem::renderLine ( QGraphicsScene * scene,
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPathItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1101,7 +1101,7 @@ double FontItem::renderLine ( QGraphicsScene * scene,
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPathItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1118,7 +1118,7 @@ double FontItem::renderLine ( QGraphicsScene * scene,
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPathItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1183,7 +1183,7 @@ double FontItem::renderLine ( OTFSet set, QGraphicsScene * scene, QString spec, 
 	QList<RenderedGlyph> refGlyph = otf->procstring ( spec, set );
 // 	qDebug() << "Get line "<<spec;
 	delete otf;
-	otf = 0;
+	otf = nullptr;
 // 	qDebug() << "Deleted OTF";
 	if ( refGlyph.size() == 0 )
 	{
@@ -1214,7 +1214,7 @@ double FontItem::renderLine ( OTFSet set, QGraphicsScene * scene, QString spec, 
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPixmapItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1232,7 +1232,7 @@ double FontItem::renderLine ( OTFSet set, QGraphicsScene * scene, QString spec, 
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPixmapItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1249,7 +1249,7 @@ double FontItem::renderLine ( OTFSet set, QGraphicsScene * scene, QString spec, 
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPixmapItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1266,7 +1266,7 @@ double FontItem::renderLine ( OTFSet set, QGraphicsScene * scene, QString spec, 
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPixmapItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1321,7 +1321,7 @@ double FontItem::renderLine ( OTFSet set, QGraphicsScene * scene, QString spec, 
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPathItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1339,7 +1339,7 @@ double FontItem::renderLine ( OTFSet set, QGraphicsScene * scene, QString spec, 
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPathItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1356,7 +1356,7 @@ double FontItem::renderLine ( OTFSet set, QGraphicsScene * scene, QString spec, 
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPathItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1373,7 +1373,7 @@ double FontItem::renderLine ( OTFSet set, QGraphicsScene * scene, QString spec, 
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPathItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1427,7 +1427,7 @@ double FontItem::renderLine ( QString script, QGraphicsScene * scene, QString sp
 	if ( !otf )
 		return 0;
 	
-	FMShaperFactory *shaperfactory = 0;
+	FMShaperFactory *shaperfactory = nullptr;
 	//	switch(m_shaperType)
 	//	{
 	//		case FMShaperFactory::FONTMATRIX : shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::FONTMATRIX );
@@ -1460,7 +1460,7 @@ double FontItem::renderLine ( QString script, QGraphicsScene * scene, QString sp
 
 // 	qDebug() << "Get line "<<spec;
 	delete otf;
-	otf = 0;
+	otf = nullptr;
 // 	qDebug() << "Deleted OTF";
 	if ( refGlyph.size() == 0 )
 	{
@@ -1490,7 +1490,7 @@ double FontItem::renderLine ( QString script, QGraphicsScene * scene, QString sp
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPixmapItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1508,7 +1508,7 @@ double FontItem::renderLine ( QString script, QGraphicsScene * scene, QString sp
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPixmapItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1525,7 +1525,7 @@ double FontItem::renderLine ( QString script, QGraphicsScene * scene, QString sp
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPixmapItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1542,7 +1542,7 @@ double FontItem::renderLine ( QString script, QGraphicsScene * scene, QString sp
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPixmapItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1597,7 +1597,7 @@ double FontItem::renderLine ( QString script, QGraphicsScene * scene, QString sp
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPathItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1615,7 +1615,7 @@ double FontItem::renderLine ( QString script, QGraphicsScene * scene, QString sp
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPathItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1632,7 +1632,7 @@ double FontItem::renderLine ( QString script, QGraphicsScene * scene, QString sp
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPathItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1649,7 +1649,7 @@ double FontItem::renderLine ( QString script, QGraphicsScene * scene, QString sp
 					delete glyph;
 					
 					retValue -= mayBeRemoved.size() - 1;
-					foreach(QGraphicsPathItem *rm, mayBeRemoved)
+					for (auto* rm : mayBeRemoved)
 					{
 						scene->removeItem( rm );
 						delete rm;
@@ -1869,7 +1869,7 @@ bool FontItem::hasChars(const QString & s)
 		return false;
 	bool ret(true);
 	
-	foreach(QChar c, s)
+	for (const auto& c : s)
 	{
 		if( !FT_Get_Char_Index( m_face, c.unicode() ) )
 		{
@@ -1887,7 +1887,7 @@ void FontItem::renderAll ( QGraphicsScene * scene , int begin_code, int end_code
 
 	ensureFace();
 
-	FMGlyphsView *allView(0);
+	FMGlyphsView *allView(nullptr);
 	if(scene->views().size() > 0)
 		allView = reinterpret_cast<FMGlyphsView*> ( scene->views() [0] );
 	else
@@ -2289,7 +2289,7 @@ QGraphicsPathItem * FontItem::hasCodepointLoaded ( int code )
 		if ( glyphList.at ( i )->data ( 3 ).toInt() == code )
 			return glyphList.at ( i );
 	}
-	return 0;
+	return nullptr;
 }
 
 
@@ -2532,7 +2532,7 @@ int FontItem::table(const QString & tableName)
 	
 	uint tag(OTF_name_tag(tableName));
 	FT_ULong length( 0 );
-	FT_Load_Sfnt_Table ( m_face, tag , 0, NULL, &length );
+	FT_Load_Sfnt_Table ( m_face, tag , 0, nullptr, &length );
 	
 	releaseFace();
 	
@@ -2553,7 +2553,7 @@ QByteArray FontItem::tableData(const QString & tableName)
 	
 	uint tag(OTF_name_tag(tableName));
 	FT_ULong length( 0 );
-	if ( !FT_Load_Sfnt_Table ( m_face, tag, 0, NULL, &length ) )
+	if ( !FT_Load_Sfnt_Table ( m_face, tag, 0, nullptr, &length ) )
 	{
 		if ( length > 0 )
 		{
@@ -2865,7 +2865,7 @@ void FontItem::releaseOTFInstance ( FMOtf * rotf )
 	if ( rotf == otf )
 	{
 		delete otf;
-		otf = 0;
+		otf = nullptr;
 	}
 	releaseFace();
 }
@@ -2879,16 +2879,16 @@ QStringList FontItem::features()
 		return ret;
 	}
 	
-	foreach ( QString table, otf->get_tables() )
+	for (const auto& table : otf->get_tables())
 	{
 		otf->set_table ( table );
-		foreach ( QString script, otf->get_scripts() )
+		for (const auto& script : otf->get_scripts())
 		{
 			otf->set_script ( script );
-			foreach ( QString lang, otf->get_langs() )
+			for (const auto& lang : otf->get_langs())
 			{
 				otf->set_lang ( lang );
-				foreach ( QString feature, otf->get_features() )
+				for (const auto& feature : otf->get_features())
 				{
 					if(ret.contains(feature))
 						ret << feature;
@@ -3328,10 +3328,10 @@ QList< int > FontItem::getAlternates ( int ccode )
 	setList.clear();
 
 	otf->set_table ( "GSUB" );
-	foreach ( QString script, otf->get_scripts() )
+	for (const auto& script : otf->get_scripts())
 	{
 		otf->set_script ( script );
-		foreach ( QString lang, otf->get_langs() )
+		for (const auto& lang : otf->get_langs())
 		{
 			otf->set_lang ( lang );
 			QStringList fl ( otf->get_features() );
@@ -3351,7 +3351,7 @@ QList< int > FontItem::getAlternates ( int ccode )
 	QString spec;
 	spec = QChar ( ccode );
 
-	foreach ( OTFSet set, setList )
+	for (const auto& set : setList)
 	{
 		QList<RenderedGlyph> rendered ( otf->procstring ( spec, set ) );
 		if(rendered.isEmpty())
@@ -3364,7 +3364,7 @@ QList< int > FontItem::getAlternates ( int ccode )
 		if ( !otf->altGlyphs.isEmpty() )
 		{
 			QList<int> l ( otf->altGlyphs );
-			foreach ( int g, l )
+			for (const auto& g : l)
 			{
 				if ( !ret.contains ( g ) && g != glyphIndex )
 					ret << g;
@@ -3373,7 +3373,7 @@ QList< int > FontItem::getAlternates ( int ccode )
 	}
 
 	delete otf;
-	otf = 0;
+	otf = nullptr;
 
 	releaseFace();
 	return ret;
@@ -3679,7 +3679,7 @@ GlyphList FontItem::glyphs(QString spec, double fsize, OTFSet set)
 		
 	}
 	delete otf;
-	otf = 0;
+	otf = nullptr;
 	releaseFace();
 	return Gret;
 }
@@ -3699,7 +3699,7 @@ GlyphList FontItem::glyphs(QString spec, double fsize, QString script)
 		releaseFace();
 		return Gret;
 	}
-	FMShaperFactory *shaperfactory = 0;
+	FMShaperFactory *shaperfactory = nullptr;
 	shaperfactory = new FMShaperFactory(otf,script, FMShaperFactory::FONTMATRIX );
 
 
@@ -3778,9 +3778,9 @@ GlyphList FontItem::glyphs(QString spec, double fsize, QString script)
 	
 	delete shaperfactory;
 	delete otf;
-	otf = 0;
+	otf = nullptr;
 	releaseFace();
-// 	foreach(RenderedGlyph g, Gret)
+// 	for (const auto& g : Gret)
 // 	{
 // 		g.dump();
 // 	}
@@ -3845,7 +3845,7 @@ void FontItem::dumpIntoDB()
 QStringList FontItem::charmaps()
 {
 	QStringList ret;
-	foreach(FT_Encoding e, m_charsets)
+	for (const auto& e : m_charsets)
 	{
 		ret << FontStrings::Encoding(e);
 	}
@@ -3866,7 +3866,7 @@ QString FontItem::renderSVG(const QString & s, const double& size)
 	double horOffset ( 0 );
 	tf.translate ( horOffset , vertOffset );
 
-	foreach (const QChar& c, s )
+	for (const auto& c : s)
 	{
 		{
 			QGraphicsPathItem * gpi ( itemFromChar ( c.unicode(), pifs ) );

@@ -85,7 +85,7 @@ FMPreviewIconEngine::FMPreviewIconEngine()
 QIconEngine *FMPreviewIconEngine::clone() const
 {
 	// TODO Implement this function
-	return 0;
+	return nullptr;
 }
 
 QVector<QRgb> FMPreviewIconEngine::actualSelPalette(const QVector<QRgb>& orig)
@@ -134,7 +134,7 @@ FMPreviewIconEngine::~FMPreviewIconEngine()
 	//		delete m_p;
 }
 
-void FMPreviewIconEngine::paint ( QPainter * painter, const QRect & rect, QIcon::Mode mode, QIcon::State state )
+void FMPreviewIconEngine::paint ( QPainter * painter, const QRect & rect, QIcon::Mode mode, QIcon::State )
 {
 	if(!m_p.isNull())
 	{
@@ -196,7 +196,7 @@ void FMPreviewIconEngine::paint ( QPainter * painter, const QRect & rect, QIcon:
 	}
 }
 
-void FMPreviewIconEngine::addPixmap ( const QPixmap & pixmap, QIcon::Mode mode, QIcon::State state )
+void FMPreviewIconEngine::addPixmap ( const QPixmap & pixmap, QIcon::Mode , QIcon::State )
 {
 	m_p = pixmap;
 }
@@ -258,7 +258,7 @@ QVariant FMPreviewModel::data(const QModelIndex & index, int role) const
 		{
 			bool hasActive(false);
 			bool hasNotActive(false);
-			foreach(FontItem * f, FMFontDb::DB()->FamilySet(fit->family()))
+			for (auto* f : FMFontDb::DB()->FamilySet(fit->family()))
 			{
 				if(f->isActivated())
 					hasActive = true;
@@ -288,7 +288,7 @@ QVariant FMPreviewModel::data(const QModelIndex & index, int role) const
 			sRet+= "<div style=\"" + styleTooltipName + "\">" + fit->family() + " ("+QString::number(fam.size())+")</div>";
 			sRet+= "<div style=\"" + styleTooltipTags + "\">" + fit->tags().join(QString(", ")) + "</div>";
 
-			foreach(FontItem* ffi, fam)
+			for (auto* ffi : fam)
 			{
 				sRet += "<div style=\"" + styleTooltipPath + "\">" + ffi->variant() + "</div>";
 			}
@@ -317,7 +317,7 @@ QVariant FMPreviewModel::data(const QModelIndex & index, int role) const
 	
 }
 
-Qt::ItemFlags FMPreviewModel::flags(const QModelIndex & index) const
+Qt::ItemFlags FMPreviewModel::flags(const QModelIndex & ) const
 {
 	return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 }

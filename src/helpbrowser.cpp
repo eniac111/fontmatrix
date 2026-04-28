@@ -77,9 +77,9 @@ HelpBrowser::HelpBrowser( QWidget* parent, const QString& /*caption*/, const QSt
 	language = guiLanguage.isEmpty() ? QString("en") : guiLanguage.left(2);
 	finalBaseDir = FMPaths::HelpDir();
 	textBrowser->setHome( QUrl::fromLocalFile( finalBaseDir + "index.html" ));
-	menuModel=NULL;
+	menuModel=nullptr;
 	loadMenu();
-	if (menuModel!=NULL)
+	if (menuModel!=nullptr)
 	{
 		readBookmarks();
 		readHistory();
@@ -98,7 +98,7 @@ HelpBrowser::~HelpBrowser()
 	firstRun=true;
 }
 
-void HelpBrowser::closeEvent(QCloseEvent * event)
+void HelpBrowser::closeEvent(QCloseEvent * )
 {
 	delete menuModel;
 
@@ -305,7 +305,7 @@ void HelpBrowser::searchingInDirectory(const QString& aDir)
 
 void HelpBrowser::find()
 {
-	findText = QInputDialog::getText( this, tr("Find"), tr("Search Term:"), QLineEdit::Normal, findText, 0);
+	findText = QInputDialog::getText( this, tr("Find"), tr("Search Term:"), QLineEdit::Normal, findText, nullptr);
 	if (findText.isNull())
 		return;
 	findNext();
@@ -337,7 +337,7 @@ void HelpBrowser::bookmarkButton_clicked()
 {
 	QString title = textBrowser->title();
 	QString fname(QDir::cleanPath(textBrowser->url().toLocalFile()));
- 	title = QInputDialog::getText(this, tr("New Bookmark"), tr("New Bookmark's Title:"), QLineEdit::Normal, title, 0);
+ 	title = QInputDialog::getText(this, tr("New Bookmark"), tr("New Bookmark's Title:"), QLineEdit::Normal, title, nullptr);
 	// user cancel
  	if (title.isNull())
  		return;
@@ -359,7 +359,7 @@ void HelpBrowser::bookmarkButton_clicked()
 void HelpBrowser::deleteBookmarkButton_clicked()
 {
 	QTreeWidgetItem *twi=bookmarksView->currentItem();
-	if (twi!=NULL)
+	if (twi!=nullptr)
 	{
 		if (bookmarkIndex.contains(twi->text(0)))
 			bookmarkIndex.remove(twi->text(0));
@@ -462,7 +462,7 @@ void HelpBrowser::loadMenu()
 	finalBaseDir=baseFi.path();
 	if (baseFi.exists())
 	{
-		if (menuModel!=NULL)
+		if (menuModel!=nullptr)
 			delete menuModel;
 		menuModel=new ScHelpTreeModel(toLoad, "Topic", "Location", &quickHelpIndex);
 	
@@ -477,7 +477,7 @@ void HelpBrowser::loadMenu()
 	else
 	{
 		qDebug()<<"Help menu does not exist:"<<baseHelpMenuFile;
-		menuModel=NULL;
+		menuModel=nullptr;
 	}
 }
 

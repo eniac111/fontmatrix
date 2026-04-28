@@ -45,11 +45,11 @@ QHexView::QHexView(QWidget * parent) : QAbstractScrollArea(parent),
 		m_RowWidth(16), m_WordWidth(1), m_AddressColor(Qt::red), 
 		m_ShowHex(true), m_ShowAscii(true), 
 		m_ShowAddress(true), m_ShowComments(true), m_Origin(0), m_AddressOffset(0), 
-		m_SelectionStart(-1), m_SelectionEnd(-1), m_Data(0),
+		m_SelectionStart(-1), m_SelectionEnd(-1), m_Data(nullptr),
 		m_Highlighting(Highlighting_None),
 		m_EvenWord(Qt::blue), m_NonPrintableText(Qt::red), 
 		m_UnprintableChar('.'), m_ShowLine1(true), m_ShowLine2(true), 
-		m_ShowLine3(true), m_CommentServer(0) {
+		m_ShowLine3(true), m_CommentServer(nullptr) {
 
 	setShowAddressSeparator(true);
 	
@@ -103,7 +103,7 @@ void QHexView::repaint() {
 // Desc: returns how much data we are viewing
 //------------------------------------------------------------------------------
 int QHexView::dataSize() const {
-	return m_Data != 0 ? m_Data->size() : 0;
+	return m_Data != nullptr ? m_Data->size() : 0;
 }
 
 //------------------------------------------------------------------------------
@@ -218,7 +218,7 @@ void QHexView::mnuCopy() {
 // Desc: slot used to set the font of the widget based on dialog selector
 //------------------------------------------------------------------------------
 void QHexView::mnuSetFont() {
-    setFont(QFontDialog::getFont(0, font(), this));
+    setFont(QFontDialog::getFont(nullptr, font(), this));
 }
 
 //------------------------------------------------------------------------------
@@ -226,7 +226,7 @@ void QHexView::mnuSetFont() {
 // Desc: clears all data from the view
 //------------------------------------------------------------------------------
 void QHexView::clear() {
-	if(m_Data != 0) {
+	if(m_Data != nullptr) {
 		m_Data->clear();
 	}
 

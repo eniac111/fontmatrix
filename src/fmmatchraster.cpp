@@ -41,7 +41,7 @@ FMMatchRaster::FMMatchRaster ( QWidget * parent )
 
 	m_progressValue = 0;
 	m_waitingForButton = false;
-	waitingFont = 0;
+	waitingFont = nullptr;
 	refCodepoint = 0;
 
 
@@ -79,7 +79,7 @@ void FMMatchRaster::loadImage()
 		iView->setImage ( ifile );
 }
 
-void FMMatchRaster::addImage ( const QString & text )
+void FMMatchRaster::addImage ( const QString & )
 {
 	if ( letter->text().isEmpty() )
 		return;
@@ -134,7 +134,7 @@ void FMMatchRaster::search()
 
 	PuzzleViewImp ref ( refImage , curCol );
 
-	foreach ( FontItem* fit, compFonts )
+	for (auto* fit : compFonts)
 	{
 		progressBar->setValue ( ++m_progressValue );
 		remainFonts.removeAll ( fit );
@@ -193,19 +193,19 @@ void FMMatchRaster::slotAcceptFont()
 {
 	if ( !filteredFonts.contains ( waitingFont ) )
 		filteredFonts << waitingFont;
-	waitingFont = 0;
+	waitingFont = nullptr;
 	search();
 }
 
 void FMMatchRaster::slotRefuseFont()
 {
-	waitingFont = 0;
+	waitingFont = nullptr;
 	search();
 }
 
 void FMMatchRaster::slotStop()
 {
-	if ( (waitingFont != 0) && (!filteredFonts.contains ( waitingFont )) )
+	if ( (waitingFont != nullptr) && (!filteredFonts.contains ( waitingFont )) )
 		filteredFonts << waitingFont;
 	if ( filteredFonts.size() > 0 )
 	{

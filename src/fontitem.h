@@ -92,8 +92,8 @@ class MetaGlyphItem : public QGraphicsItem
 {
 	QMap<int, QVariant> m_Data;
 public:
-	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){}
-	QRectF boundingRect() const {return QRectF();}
+	void paint(QPainter *, const QStyleOptionGraphicsItem *, QWidget *) override{}
+	QRectF boundingRect() const override {return QRectF();}
 	void setMetaData(int key, const QVariant &value)
 	{
 		m_Data.insert(key,value);
@@ -131,7 +131,7 @@ class FontItem : public QObject
 		FontItem * Clone();
 		/** Needed when the item has been instantiate with "faststart=true" */
 		void updateItem();
-		~FontItem();
+		~FontItem() override;
 		
 		
 		static QList<int> legitimateNonPathChars;

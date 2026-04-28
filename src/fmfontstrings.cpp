@@ -15,7 +15,7 @@
 
 #include <QFile>
 
-FontStrings * FontStrings::instance = 0;
+FontStrings * FontStrings::instance = nullptr;
 FontStrings::FontStrings()
 {
 	fillNamesMeaning();
@@ -248,7 +248,7 @@ void FontStrings::fillPanoseMap()
 
 }
 
-void FontStrings::panoseFromFile(const QString & path)
+void FontStrings::panoseFromFile(const QString & )
 {
 	return;
 }

@@ -89,9 +89,9 @@ class FMLayout : public QObject
 	Q_OBJECT
 
 	public:
-		explicit FMLayout ( QGraphicsScene* scene, FontItem* font = 0, QRectF rect = QRectF());
-		~FMLayout();
-		void doLayout(const QList<GlyphList>& spec , double fs, FontItem* font = 0 );
+		explicit FMLayout ( QGraphicsScene* scene, FontItem* font = nullptr, QRectF rect = QRectF());
+		~FMLayout() override;
+		void doLayout(const QList<GlyphList>& spec , double fs, FontItem* font = nullptr );
 		
 	private://methods
 		/// Build a graph on node

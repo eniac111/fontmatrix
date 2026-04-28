@@ -30,10 +30,10 @@ class FloatingWidget : public QWidget
 {
 	Q_OBJECT
 
-	explicit FloatingWidget(QWidget *parent = 0){}
+	explicit FloatingWidget(QWidget * = nullptr){}
 public:
-	explicit FloatingWidget(const QString &f, const QString& typ, QWidget *parent = 0);
-	~FloatingWidget();
+	explicit FloatingWidget(const QString &f, const QString& typ, QWidget *parent = nullptr);
+	~FloatingWidget() override;
 
 	QString getActionName()const{return actionName;}
 
@@ -46,7 +46,7 @@ private:
 protected:
 	QPrinter * printer;
 	QPrintDialog * printDialog;
-	virtual bool event( QEvent * e );
+	bool event( QEvent * e ) override;
 
 signals:
 	void visibilityChange();

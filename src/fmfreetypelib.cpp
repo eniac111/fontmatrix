@@ -24,7 +24,7 @@
 #include <QMutexLocker>
 #include <QDebug>
 
-FMFreetypeLib *FMFreetypeLib::instance = 0;
+FMFreetypeLib *FMFreetypeLib::instance = nullptr;
 
 FMFreetypeLib::FMFreetypeLib(QObject *parent) :
     QObject(parent)
@@ -38,7 +38,7 @@ FMFreetypeLib::FMFreetypeLib(QObject *parent) :
 
 FMFreetypeLib * FMFreetypeLib::that()
 {
-	if(0 == instance)
+	if(nullptr == instance)
 		instance = new FMFreetypeLib;
 	return instance;
 }

@@ -28,7 +28,7 @@ class FMHyphenator : public QObject
 {
 	public:
 		FMHyphenator (  );
-		~FMHyphenator();
+		~FMHyphenator() override;
 		
 		bool loadDict ( const QString& dictPath, int leftMin = 2, int rightMin = 3);
 		HyphList hyphenate ( const QString& word ) const;

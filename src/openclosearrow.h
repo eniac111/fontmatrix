@@ -11,8 +11,8 @@ class OpenCloseArrow : public QLabel
 	QString baseText;
 
 public:
-	explicit OpenCloseArrow(QWidget *parent = 0, bool open = true);
-	~OpenCloseArrow();
+	explicit OpenCloseArrow(QWidget *parent = nullptr, bool open = true);
+	~OpenCloseArrow() override;
 
 	bool isOpen() const {return openingState;}
 
@@ -21,7 +21,7 @@ private:
 	void setOpText();
 
 protected:
-	void mouseReleaseEvent( QMouseEvent * ev );
+	void mouseReleaseEvent( QMouseEvent * ev ) override;
 
 signals:
 	void openChanged(bool);

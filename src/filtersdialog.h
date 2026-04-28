@@ -38,8 +38,8 @@ class FiltersDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit FiltersDialog(const QList<FilterItem*>& currentFilter, QWidget *parent = 0);
-    ~FiltersDialog();
+    explicit FiltersDialog(const QList<FilterItem*>& currentFilter, QWidget *parent = nullptr);
+    ~FiltersDialog() override;
 
 private:
     Ui::FiltersDialog *ui;

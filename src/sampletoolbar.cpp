@@ -90,7 +90,7 @@ void SampleToolBar::enableButton(Button b, bool c)
 void SampleToolBar::setScripts(const QStringList &ll)
 {
 	ui->languageCombo->addItem(tr("Select language"), QString("NOSHAPER"));
-	foreach(QString l, ll)
+	for (const auto& l : ll)
 	{
 		ui->languageCombo->addItem(FontStrings::scriptTagName(l), l);
 	}

@@ -42,7 +42,7 @@ int fm_layout_total_nod_dbg;
 int fm_layout_total_skip_nod_dbg;
 int fm_layout_total_leaves_dbg;
 
-Node::ListItem::ListItem() :n ( 0 ), distance ( 0.0 )
+Node::ListItem::ListItem() :n ( nullptr ), distance ( 0.0 )
 {
 	// 	qDebug()<<"CV empty";
 }
@@ -58,7 +58,7 @@ Node::ListItem::~ListItem()
 	if(n)
 	{
 		delete n;
-		n = 0;
+		n = nullptr;
 	}
 }
 
@@ -134,7 +134,7 @@ int Node::deepCount()
 void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, double & theScore )
 {
 	// 	QList<int> debugL;
-	// 	foreach(ListItem v, nodes)
+	// 	for (const auto& v : nodes)
 	// 	{debugL << v.n->index;}
 	// 	qDebug()<<"Node::sPath(" <<dist<< ", "<<curList<<", "<<theList<<", "<<theScore<<")"<< "I L"<<index<<debugL;
 	int deep ( curList.count() + 1 );
@@ -177,7 +177,7 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 					// 						qDebug()<<"["<<cIdx<<","<<soon<<"]spaceWidth("<<spaceWidth<<") disN("<<disN<<") compressValue("<<compressValue<<")";
 					
 					
-					Node* sN = 0;
+					Node* sN = nullptr;
 					sN = new Node (lyt, soon );
 					if ( lyt->hyphenList.contains ( soon ) )
 						disN *= lyt->FM_LAYOUT_HYPHEN_PENALTY;
@@ -202,7 +202,7 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 					{
 						// 						qDebug()<<"["<<cIdx<<","<<fit<<"]("<< lyt->sepCount(cIdx, fit ,lyt->theString) <<") spaceWidth("<<spaceWidth<<") disF("<<disF<<") compressValue("<<compressValue<<")";
 
-						Node* sF = 0;
+						Node* sF = nullptr;
 						sF = new Node (lyt,  fit );
 						if ( lyt->hyphenList.contains ( fit ) )
 							disF *= lyt->FM_LAYOUT_HYPHEN_PENALTY;
@@ -232,7 +232,7 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 					// 					else
 					// 						qDebug()<<"["<<cIdx<<","<<late<<"]spaceWidth("<<spaceWidth<<") disL("<<disL<<") compressValue("<<compressValue<<")";
 					
-					Node* sL = 0;
+					Node* sL = nullptr;
 					sL = new Node (lyt,  late );
 					if ( lyt->hyphenList.contains ( late ) )
 						disL *= lyt->FM_LAYOUT_HYPHEN_PENALTY;
@@ -259,7 +259,7 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 			if ( soon != cIdx && !hasNode ( soon ) )
 			{
 
-				Node* sN = 0;
+				Node* sN = nullptr;
 				sN = new Node (lyt,  soon );
 				double disN = lyt->lineWidth ( deep ) - lyt->distance ( cIdx, soon,lyt->theString );
 
@@ -310,10 +310,10 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 
 //FMLayout *FMLayout::instance = 0;
 FMLayout::FMLayout ( QGraphicsScene * scene, FontItem * font , QRectF rect )
-	:theScene(scene),
+	:contextIsMainThread(true),
+	theScene(scene),
 	theFont(font),
-	layoutIsFinished(true),
-	contextIsMainThread(true)
+	layoutIsFinished(true)
 {
 	if(rect.isNull())
 	{
@@ -329,7 +329,7 @@ FMLayout::FMLayout ( QGraphicsScene * scene, FontItem * font , QRectF rect )
 	else
 		theRect = rect;
 	rules = new QGraphicsRectItem;
-	node = 0;
+	node = nullptr;
 	//	layoutMutex = new QMutex;
 	optionHasChanged = true;
 	persistentScene = false;
@@ -605,7 +605,7 @@ void FMLayout::doLines()
 
 		QString dStr;
 		QString dBk;
-		foreach ( RenderedGlyph rg, inList )
+		for (const auto& rg : inList)
 		{
 			dStr += QChar ( rg.lChar );
 			dBk += rg.isBreak ? "#" : "_";
@@ -817,7 +817,6 @@ void FMLayout::doDraw()
 	if( tp->inBlock() == TextProgression::BLOCK_RTL )
 		pen.rx() -= adjustedSampleInter;
 	
-	double pageTop(theRect.top());
 	double pageRight(theRect.right());
 	double pageBottom ( theRect.bottom() );
 	double pageLeft(theRect.left());
@@ -1026,8 +1025,6 @@ double FMLayout::distance ( int start, int end, const GlyphList& gl, bool strip 
 				return stripCache[start][end];
 		}
 	}
-	int storeStart(start);
-	int storeEnd(end);
 	bool hasHyph(false);
 	GlyphList hyphList;
 	if(start>0 && gl[start - 1].isBreak)
@@ -1320,7 +1317,7 @@ void FMLayout::resetScene()
 		{
 			pixList[i]->scene()->removeItem ( pixList[i] );
 			delete pixList[i];
-			pixList[i] = 0;
+			pixList[i] = nullptr;
 		}
 	}
 	pixList.removeAll(nullptr);
@@ -1334,12 +1331,12 @@ void FMLayout::resetScene()
 		{
 			glyphList[i]->scene()->removeItem ( glyphList[i] );
 			delete glyphList[i];
-			glyphList[i] = 0;
+			glyphList[i] = nullptr;
 		}
 	}
 	glyphList.removeAll(nullptr);
 	// 	QString dbs;
-	// 	foreach(QGraphicsScene* qgs, ss)
+	// 	for (auto* qgs : ss)
 	// 	{
 	// 		dbs += "["+ QString::number(reinterpret_cast<unsigned int>(qgs)) +"]";
 	// 	}
@@ -1376,10 +1373,9 @@ void FMLayout::resetScene()
 //	optionHasChanged = true;
 //}
 
-double FMLayout::lineWidth ( int l )
+double FMLayout::lineWidth ( int )
 {
 	TextProgression *tp = TextProgression::getInstance();
-	double offset ( ( double ) l * adjustedSampleInter ) ;
 	if ( tp->inBlock() == TextProgression::BLOCK_TTB )
 	{
 		// 		if ( theRect.top() + offset >  theRect.bottom() )

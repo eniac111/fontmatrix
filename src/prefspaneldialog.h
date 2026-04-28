@@ -26,7 +26,7 @@ class PrefsPanelDialog : public QDialog, private Ui::PrefsPanel
 	public:
 		PrefsPanelDialog ( QWidget *parent );
 
-		~PrefsPanelDialog();
+		~PrefsPanelDialog() override;
 
 		enum PAGE{PAGE_GENERAL = 0,
 			PAGE_SYSTRAY,
@@ -42,9 +42,9 @@ class PrefsPanelDialog : public QDialog, private Ui::PrefsPanel
 		void initShortcuts();
 		void showPage(PAGE page);
 
-		bool event( QEvent* ev );
-		void keyPressEvent(QKeyEvent *k);
-		void keyReleaseEvent(QKeyEvent *k);
+		bool event( QEvent* ev ) override;
+		void keyPressEvent(QKeyEvent *k) override;
+		void keyReleaseEvent(QKeyEvent *k) override;
 		static QString getKeyText(int KeyC);
 
 	private:

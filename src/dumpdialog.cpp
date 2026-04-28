@@ -19,7 +19,7 @@
 #include <QTextStream>
 
 FMDumpDialog::FMDumpDialog(FontItem * font, QWidget * parent)
-	: QDialog(parent), m_dumpinfo(0)
+	: QDialog(parent), m_dumpinfo(nullptr)
 {
 	setupUi(this);
 	fontName->setText(font->fancyName());

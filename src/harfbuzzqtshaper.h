@@ -21,7 +21,7 @@ class HarfbuzzShaper : public FMBaseShaper
 		HarfbuzzShaper(FMOtf* o, QString s);
 		~HarfbuzzShaper();	
 		
-		GlyphList doShape( const QString& s );
+		GlyphList doShape( const QString& s ) override;
 	private:
 		FMShaper *hbqtsh;
 };

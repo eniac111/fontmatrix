@@ -35,11 +35,11 @@ class ActivationWidget : public FloatingWidget
 
 public:
 	static const QString Name;
-	explicit ActivationWidget(const QString& familyName, QWidget *parent = 0);
-	~ActivationWidget();
+	explicit ActivationWidget(const QString& familyName, QWidget *parent = nullptr);
+	~ActivationWidget() override;
 
 protected:
-	void changeEvent(QEvent *e);
+	void changeEvent(QEvent *e) override;
 
 private:
 	const QString family;

@@ -58,7 +58,7 @@ ChartWidget::ChartWidget(const QString& fid, const QString& block, QWidget *pare
 	allMappedGlyphName = tr("View all mapped glyphs");
 	uRangeIsNotEmpty = false;
 	fillUniPlanesCombo(theVeryFont);
-	curGlyph = 0;
+	curGlyph = nullptr;
 	fancyGlyphInUse = -1;
 
 	if(!block.isEmpty())
@@ -340,7 +340,7 @@ void ChartWidget::slotSearchCharName()
 		return;
 	}
 
-	foreach(const QString& key, FMUniBlocks::blocks() )
+	for (const auto& key : FMUniBlocks::blocks())
 	{
 		QPair<int,int> p(FMUniBlocks::interval(key));
 		if((cc >= p.first)
@@ -358,7 +358,7 @@ void ChartWidget::slotSearchCharName()
 					ui->abcView->verticalScrollBar()->setValue(sv + ui->abcView->height());
 					sv = ui->abcView->verticalScrollBar()->value();
 				}
-				foreach(QGraphicsItem* sit, abcScene->items())
+				for (auto* sit : abcScene->items())
 				{
 					if((sit->data(1).toString() == "select")
 						&& (sit->data(3).toInt() == cc))
@@ -396,7 +396,7 @@ void ChartWidget::slotSearchCharName()
 				ui->abcView->verticalScrollBar()->setValue(sv + ui->abcView->height());
 				sv = ui->abcView->verticalScrollBar()->value();
 			}
-			foreach(QGraphicsItem* sit, abcScene->items())
+			for (auto* sit : abcScene->items())
 			{
 				if((sit->data(1).toString() == "select")
 					&& (sit->data(3).toInt() == cc))
@@ -484,12 +484,12 @@ void ChartWidget::fillUniPlanesCombo ( FontItem* item )
 void ChartWidget::slotPrint()
 {
 	FontItem *font(FMFontDb::DB()->Font(fontIdentifier));
-	if(font == 0)
+	if(font == nullptr)
 		return;
 
-	if(printer == 0)
+	if(printer == nullptr)
 		printer = new QPrinter(QPrinter::HighResolution);
-	if(printDialog == 0)
+	if(printDialog == nullptr)
 		printDialog = new QPrintDialog(printer, this);
 
 	printDialog->setWindowTitle("Fontmatrix - " + tr("Print Chart") +" - " + font->fancyName() );
@@ -528,7 +528,7 @@ void ChartWidget::slotDoPrinting()
 	{
 		qDebug() << "Chart("<< ++numP <<") ->"<<beginCharcode<<maxCharcode;
 		QList<QGraphicsItem*> lgit(pScene.items());
-		foreach(QGraphicsItem* git, lgit)
+		for (auto* git : lgit)
 		{
 			pScene.removeItem(git);
 			delete git;

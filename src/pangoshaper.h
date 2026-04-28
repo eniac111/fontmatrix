@@ -19,7 +19,7 @@ class PangoShaper : public FMBaseShaper
 	public:
 		PangoShaper(FMOtf* o, QString s);
 		~PangoShaper();
-		GlyphList doShape( const QString& s );
+		GlyphList doShape( const QString& s ) override;
 };
 
 #endif

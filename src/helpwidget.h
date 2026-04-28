@@ -31,7 +31,7 @@ class HelpWidget : public QDialog, private Ui::Help
 		Q_OBJECT
 	public:
 		HelpWidget ( QWidget *parent );
-		~HelpWidget();
+		~HelpWidget() override;
 
 	private slots:
 		void slotIsClosing();

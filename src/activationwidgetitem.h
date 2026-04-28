@@ -32,13 +32,13 @@ class ActivationWidgetItem : public QWidget
 	Q_OBJECT
 
 public:
-	explicit ActivationWidgetItem(const QString& fontID, QWidget *parent = 0);
-	~ActivationWidgetItem();
+	explicit ActivationWidgetItem(const QString& fontID, QWidget *parent = nullptr);
+	~ActivationWidgetItem() override;
 
 	void changeState(bool s);
 
 protected:
-	void changeEvent(QEvent *e);
+	void changeEvent(QEvent *e) override;
 
 private:
 	const QString fileName;

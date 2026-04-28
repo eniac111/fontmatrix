@@ -149,7 +149,7 @@ class FMAltContextLib : private QObject
 	static FMAltContextLib * instance;
 	static FMAltContextLib * that();
 	FMAltContextLib();
-	~FMAltContextLib();
+	~FMAltContextLib() override;
 	
 	QMap<QString, FMAltContext*> cmap;
 	QString current;

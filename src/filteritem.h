@@ -42,14 +42,14 @@ public:
 		NOT
 	};
 
-	explicit FilterItem(FilterData *filter, QWidget *parent = 0);
-	~FilterItem();
+	explicit FilterItem(FilterData *filter, QWidget *parent = nullptr);
+	~FilterItem() override;
 
 	FilterData* filter(){return d;}
 	void hideOperation(Operation op);
 
 protected:
-	void changeEvent(QEvent *e);
+	void changeEvent(QEvent *e) override;
 
 private:
 	Ui::FilterItem *ui;

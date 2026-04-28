@@ -74,25 +74,25 @@ class FMAltSelectorModel : public QAbstractItemModel
 		const FMAltSelectorModel * pmodel;
 	public:
 		FMAltItemDelegate(FMAltSelectorModel* model);
-		~FMAltItemDelegate(){delete pmodel;}
+		~FMAltItemDelegate() override{delete pmodel;}
 
-		void paint ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const;
-		QSize sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const;
+		void paint ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const override;
+		QSize sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const override;
 	};
 	FMAltItemDelegate * altDelegate;
 
 public:
 	FMAltSelectorModel();
-	~FMAltSelectorModel();
+	~FMAltSelectorModel() override;
 
 	void reModel(FMAltContext * ctx);
 
-	QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const;
-	QModelIndex parent ( const QModelIndex & index ) const;
-	int rowCount ( const QModelIndex & parent = QModelIndex() ) const;
-	int columnCount ( const QModelIndex & parent = QModelIndex() ) const ;
-	Qt::ItemFlags flags(const QModelIndex &index) const;
-	QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const;
+	QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const override;
+	QModelIndex parent ( const QModelIndex & index ) const override;
+	int rowCount ( const QModelIndex & parent = QModelIndex() ) const override;
+	int columnCount ( const QModelIndex & parent = QModelIndex() ) const override ;
+	Qt::ItemFlags flags(const QModelIndex &index) const override;
+	QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const override;
 
 	FMAltItemDelegate * AltDelegate(){return altDelegate;}
 	friend class FMAltItemDelegate;
@@ -108,7 +108,7 @@ class FMAltSelector : public QWidget , private Ui::AltSelectorWidget
 
 public:
 	FMAltSelector(QWidget * parent);
-	~FMAltSelector(){}
+	~FMAltSelector() override{}
 
 public slots:
 	void fillFromContext();

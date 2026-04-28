@@ -28,14 +28,14 @@ const QString FMFontCompareItem::toolTipModel = QString("<strong>x</strong>: %1 
 
 /// Item
 FMFontCompareItem::FMFontCompareItem()
-	:uuid(QUuid::createUuid()), scene(0),font(0),zindex(0),char_code(0),path(0)
+	:uuid(QUuid::createUuid()), scene(nullptr),font(nullptr),zindex(0),char_code(0),path(nullptr)
 {
 	// Nothing special :)
 // 	qDebug()<< "Create" <<uuid.toString();
 }
 
 FMFontCompareItem::FMFontCompareItem(QGraphicsScene * s, FontItem * f, int z)
-	:uuid(QUuid::createUuid()), scene(s), font(f), zindex(z),char_code(0),path(0)
+	:uuid(QUuid::createUuid()), scene(s), font(f), zindex(z),char_code(0),path(nullptr)
 {
 // 	qDebug()<< "Create" <<uuid.toString();
 // 	int ml(159);
@@ -51,22 +51,22 @@ void FMFontCompareItem::clear()
 {
 // 	qDebug()<< "Clearing" <<uuid.toString();
 	
-	foreach(QGraphicsLineItem* li, lines_controls)
+	for (auto* li : lines_controls)
 	{
 		delete li;
 	}
 	lines_controls.clear();
-	foreach(QGraphicsLineItem* li, lines_metrics)
+	for (auto* li : lines_metrics)
 	{
 		delete li;
 	}
 	lines_metrics.clear();
-	foreach(QGraphicsEllipseItem *ri, points)
+	for (auto* ri : points)
 	{
 		delete ri;
 	}
 	points.clear();
-	foreach(QGraphicsSimpleTextItem *ti, text_metrics)
+	for (auto* ti : text_metrics)
 	{
 		delete ti;
 	}
@@ -74,7 +74,7 @@ void FMFontCompareItem::clear()
 	if(path)
 	{
 		delete path;
-		path = 0;
+		path = nullptr;
 	}
 }
 
@@ -83,26 +83,26 @@ void FMFontCompareItem::toScreen()
 	if(!scene)
 		return;
 	QRectF itemsBB(scene->sceneRect());
-	foreach(QGraphicsLineItem* li, lines_controls)
+	for (auto* li : lines_controls)
 	{
 		scene->addItem(li);
 		itemsBB = itemsBB.united(li->boundingRect());
 		li->setZValue(zindex);
 		
 	}
-	foreach(QGraphicsLineItem* li, lines_metrics)
+	for (auto* li : lines_metrics)
 	{
 		scene->addItem(li);
 		itemsBB = itemsBB.united(li->boundingRect());
 		li->setZValue(zindex);
 	}
-	foreach(QGraphicsEllipseItem *ri, points)
+	for (auto* ri : points)
 	{
 		scene->addItem(ri);
 		itemsBB = itemsBB.united(ri->boundingRect());
 		ri->setZValue(zindex);
 	}
-	foreach(QGraphicsSimpleTextItem *ti, text_metrics)
+	for (auto* ti : text_metrics)
 	{
 		scene->addItem(ti);
 		ti->setZValue(zindex);
@@ -303,7 +303,7 @@ void FMFontCompareView::removeFont(int level)
 	elements.remove(level);
 	offsets.remove(level);
 	int maxLevel(0);
-	foreach(int l, glyphs.keys())
+	for (const auto& l : glyphs.keys())
 	{
 		maxLevel = qMax(maxLevel, l);
 	}
@@ -328,7 +328,7 @@ void FMFontCompareView::removeFont(int level)
 void FMFontCompareView::changeChar(uint ccode)
 {
 	thechar = ccode;
-	foreach(int l, glyphs.keys())
+	for (const auto& l : glyphs.keys())
 	{
 		glyphs[l]->setChar(thechar);
 	}
@@ -384,12 +384,12 @@ void FMFontCompareView::initPensAndBrushes()
 	
 // 	QString cat("Compare/%1");
 // 	QSettings settings;
-// 	foreach(QString attr, pens.keys())
+// 	for (const auto& attr : pens.keys())
 // 	{
 // 		pens[attr].setColor( QColor(settings.value(cat.arg(attr),pens[attr].color().name()).toString()) );
 // 		settings.setValue(cat.arg(attr),pens[attr].color().name());
 // 	}
-// 	foreach(QString attr, brushes.keys())
+// 	for (const auto& attr : brushes.keys())
 // 	{
 // 		brushes[attr].setColor( QColor(settings.value(cat.arg(attr),brushes[attr].color().name()).toString()) );
 // 		settings.setValue(cat.arg(attr),pens[attr].color().name());
@@ -398,7 +398,7 @@ void FMFontCompareView::initPensAndBrushes()
 
 void FMFontCompareView::updateGlyphs()
 {
-	foreach(int l, glyphs.keys())
+	for (const auto& l : glyphs.keys())
 	{
 		glyphs[l]->show(elements[l], colors[l], offsets[l]);
 	}
@@ -494,7 +494,7 @@ void FMFontCompareView::wheelEvent(QWheelEvent * e)
 	updateGlyphs();
 }
 
-void FMFontCompareView::resizeEvent(QResizeEvent * event)
+void FMFontCompareView::resizeEvent(QResizeEvent * )
 {
 	updateGlyphs();
 }
@@ -502,7 +502,7 @@ void FMFontCompareView::resizeEvent(QResizeEvent * event)
 void FMFontCompareView::fitGlyphsView()
 {
 	QRectF maxrect;
-	foreach(int l, glyphs.keys())
+	for (const auto& l : glyphs.keys())
 	{
 		maxrect = maxrect.united(glyphs[l]->boundingRect());
 	}

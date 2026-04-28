@@ -55,7 +55,7 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 	public:
 		MainViewWidget ( QWidget *parent );
 
-		~MainViewWidget();
+		~MainViewWidget() override;
 	private:
 		QStringList ord;
 		QStringList fields;
@@ -137,7 +137,7 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 
 
 	protected:
-		void keyPressEvent ( QKeyEvent * event ) ;
+		void keyPressEvent ( QKeyEvent * event ) override ;
 };
 
 #endif

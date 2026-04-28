@@ -100,7 +100,7 @@ FMFloatingMenu::FMFloatingMenu(QWidget * parent, FontItem * item)
 
 void FMFloatingMenu::childrenVisible(bool v)
 {
-	foreach(QWidget *w, findChildren<QWidget*>())
+	for (auto* w : findChildren<QWidget*>())
 	{
 		w->setVisible(v);
 	}
@@ -185,7 +185,7 @@ void FMFloatingPreview::mousePressEvent(QMouseEvent * e)
 	QApplication::setOverrideCursor(Qt::SizeAllCursor);
 }
 
-void FMFloatingPreview::mouseReleaseEvent(QMouseEvent * e)
+void FMFloatingPreview::mouseReleaseEvent(QMouseEvent * )
 {
 	if(hasMouseGrab)
 		releaseMouse();
@@ -203,12 +203,12 @@ void FMFloatingPreview::mouseMoveEvent(QMouseEvent * e)
 	setGeometry(r);
 }
 
-void FMFloatingPreview::enterEvent(QEvent * e)
+void FMFloatingPreview::enterEvent(QEvent * )
 {
 	menuWidget->childrenVisible(true);
 }
 
-void FMFloatingPreview::leaveEvent(QEvent * e)
+void FMFloatingPreview::leaveEvent(QEvent * )
 {
 	if(hasMouseGrab)
 		releaseMouse();

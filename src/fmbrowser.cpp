@@ -14,7 +14,7 @@
 
 #include <QSettings>
 
-FMBrowser * FMBrowser::instance = 0;
+FMBrowser * FMBrowser::instance = nullptr;
 FMBrowser::FMBrowser()
 	:QProcess()
 {

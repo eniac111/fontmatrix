@@ -36,7 +36,7 @@ PanoseAttributeModel::PanoseAttributeModel(QObject * parent)
 	QSettings settings;
 	QString defaultDir(FMPaths::ResourcesDir() + "Panose/Icons");
 	QString pDir(settings.value("Panose/IconDir", defaultDir).toString() + QDir::separator());
-	foreach(const FontStrings::PanoseKey& k, p.keys())
+	for (const auto& k : p.keys())
 	{
 		QString fn(pDir + QString::number(k) + QDir::separator() + "attribute.png");
 		if(QFile::exists(fn))
@@ -66,7 +66,7 @@ QVariant PanoseAttributeModel::data(const QModelIndex& index, int role) const
 
 }
 
-int PanoseAttributeModel::rowCount(const QModelIndex& parent) const
+int PanoseAttributeModel::rowCount(const QModelIndex& ) const
 {
 	return m_icons.count();
 }
@@ -84,9 +84,9 @@ PanoseValueModel::PanoseValueModel( QObject * parent)
 	QString defaultDir(FMPaths::ResourcesDir() + "Panose/Icons");
 	QString pDir(settings.value("Panose/IconDir", defaultDir).toString() + QDir::separator());
 
-	foreach(const FontStrings::PanoseKey& k, p.keys())
+	for (const auto& k : p.keys())
 	{
-		foreach(const int& v, p[k].keys())
+		for (const auto& v : p[k].keys())
 		{
 			if(v > 1) // We do not want "Any" and "No Fit"
 			{
@@ -112,7 +112,7 @@ void PanoseValueModel::setCat(const int& cat)
 }
 
 
-int PanoseValueModel::rowCount(const QModelIndex& parent) const
+int PanoseValueModel::rowCount(const QModelIndex& ) const
 {
 	return m_names[m_cat].count();
 }

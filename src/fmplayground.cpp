@@ -86,7 +86,7 @@ void FMPlayGround::mousePressEvent ( QMouseEvent * e )
 	}
 	else
 	{
-		foreach(const QGraphicsItem *i, sel)
+		for (auto* i : sel)
 		{
 			curSelRect = curSelRect.united( i->boundingRect() );
 		}
@@ -181,7 +181,7 @@ void FMPlayGround::keyReleaseEvent(QKeyEvent * e)
 		if(Qt::Key_A == e->key())
 		{
 			closeLine();
-			foreach(QGraphicsItemGroup *gi, glyphLines)
+			for (auto* gi : glyphLines)
 			{
 				gi->setSelected(true);
 			}
@@ -194,7 +194,7 @@ void FMPlayGround::keyReleaseEvent(QKeyEvent * e)
 			{
 				QStringList cs(clipText.split(QString("\n")));
 				bool first(true);
-				foreach(QString s, cs)
+				for (const auto& s : cs)
 				{
 					if(first)
 					{
@@ -220,7 +220,7 @@ void FMPlayGround::keyReleaseEvent(QKeyEvent * e)
 	}
 }
 
-void FMPlayGround::leaveEvent(QEvent *e)
+void FMPlayGround::leaveEvent(QEvent *)
 {
 	closeLine();
 }
@@ -235,7 +235,7 @@ void FMPlayGround::displayGlyphs ( const QString & spec, FontItem * fontI, doubl
 	//	TextProgression *tp = TextProgression::getInstance();
 	QPointF pen(CursorPos);
 
-	foreach(RenderedGlyph g, fontI->glyphs( spec , fontS ) )
+	for (const auto& g : fontI->glyphs( spec , fontS ))
 	{
 		QGraphicsPathItem* glyph(fontI->itemFromGindex(g.glyph, fontS));
 		if(!glyph)
@@ -270,7 +270,7 @@ void FMPlayGround::updateLine()
 	FontItem * fi(typotek::getInstance()->getTheMainView()->selectedFont());
 	if(fi)
 	{
-		foreach(QGraphicsItem * item, curLine)
+		for (auto* item : curLine)
 			delete item;
 		curLine.clear();
 		displayGlyphs(curString, fi, PlayWidget::getInstance()->playFontSize());
@@ -301,7 +301,7 @@ void FMPlayGround::closeLine()
 
 void FMPlayGround::deselectAll()
 {
-	foreach(QGraphicsItemGroup *gi, glyphLines)
+	for (auto* gi : glyphLines)
 	{
 		gi->setSelected(false);
 	}
@@ -353,7 +353,7 @@ QRectF FMPlayGround::getMaxRect()
 void FMPlayGround::removeLine()
 {
 	QList<QGraphicsItemGroup*> tmpL(glyphLines);
-	foreach(QGraphicsItemGroup* ig,  tmpL)
+	for (auto* ig : tmpL)
 	{
 		if(ig->isSelected())
 		{

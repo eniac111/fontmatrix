@@ -22,7 +22,7 @@
 
 #include <QAction>
 
-Shortcuts* Shortcuts::instance = 0;
+Shortcuts* Shortcuts::instance = nullptr;
 
 Shortcuts::Shortcuts()
 {
@@ -31,7 +31,7 @@ Shortcuts::Shortcuts()
 
 Shortcuts* Shortcuts::getInstance()
 {
-	if (instance == 0)
+	if (instance == nullptr)
 		instance = new Shortcuts();
 
 	return instance;
@@ -75,7 +75,7 @@ QString Shortcuts::isReserved(const QString &shortcut, const QString &actionText
 	QString isTaken;
 	if (actions.contains(cleanName(actionText))) {
 		QList<QAction*> alist = actions.values();
-		foreach(QAction *act, alist) {
+		for (auto* act : alist) {
 			if (act->shortcut() == shortcut) {
 				isTaken = act->text();
 				break;

@@ -43,11 +43,11 @@ struct TextElementStyle
 			font ( f ),
 			fontsize ( fs ),
 			lineheight ( lh ),
+			color ( co ),
 			margin_top ( mt ),
 			margin_left ( ml ),
 			margin_bottom ( mb ),
-			margin_right ( mr ),
-			color ( co ) {}
+			margin_right ( mr ) {}
 };
 
 struct TextElement
@@ -80,8 +80,8 @@ struct GraphicElement
 	double x,y;
 	QString svg; // OBSOLETE :)
 	bool valid;
-	GraphicElement(QString aName, QString svgstring, double xpos,double ypos):name(aName),svg(svgstring.startsWith("<?xml") ? svgstring : ("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" + svgstring)),x(xpos),y(ypos),valid(true){}
-	GraphicElement():name("noname"),svg(""),x(0.0),y(0.0),valid(false){}
+	GraphicElement(QString aName, QString svgstring, double xpos,double ypos):name(aName),x(xpos),y(ypos),svg(svgstring.startsWith("<?xml") ? svgstring : ("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" + svgstring)),valid(true){}
+	GraphicElement():name("noname"),x(0.0),y(0.0),svg(""),valid(false){}
 };
 
 struct FontBookContext
@@ -106,7 +106,7 @@ public:
 	};
 	FontBook();
 
-	~FontBook();
+	~FontBook() override;
 	void doBook(Style s);
 private:
 

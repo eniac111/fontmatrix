@@ -62,7 +62,7 @@ void FiltersDialogItem::slotFilter()
 
 void FiltersDialogItem::slotRemove()
 {
-	if(QMessageBox::question(0, tr("Remove Filter"), tr("Confirm deletion of filter:") + filterName, QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Ok) == QMessageBox::Ok)
+	if(QMessageBox::question(nullptr, tr("Remove Filter"), tr("Confirm deletion of filter:") + filterName, QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Ok) == QMessageBox::Ok)
 		emit Remove(filterName);
 }
 

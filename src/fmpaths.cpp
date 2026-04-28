@@ -16,7 +16,7 @@
 #include <QStandardPaths>
 // #include <QDebug>
 
-FMPaths *FMPaths::instance = 0;
+FMPaths *FMPaths::instance = nullptr;
 FMPaths * FMPaths::getThis()
 {
 	if(!instance)
@@ -73,8 +73,11 @@ QString FMPaths::ResourcesDir()
 	QString QMDirPath = QApplication::applicationDirPath();
 	QMDirPath +=  dirsep + "share" + dirsep + "resources" + dirsep;
 #else
-	QString QMDirPath = PREFIX;
-	QMDirPath +=  dirsep + "share" + dirsep + "fontmatrix" + dirsep + "resources" + dirsep;
+	// Use a path relative to the executable so the app works both from an
+	// installed location (/usr/bin → /usr/share/fontmatrix/resources/) and
+	// from a build directory (./build/bin → ./build/share/fontmatrix/resources/).
+	QString QMDirPath = QApplication::applicationDirPath();
+	QMDirPath +=  dirsep + ".." + dirsep + "share" + dirsep + "fontmatrix" + dirsep + "resources" + dirsep;
 #endif
 	getThis()->FMPathsDB["ResourcesDir"] = QMDirPath;
 	return getThis()->FMPathsDB["ResourcesDir"];
@@ -116,7 +119,7 @@ QString FMPaths::LocalizedDirPath(const QString & base, const QString& fallback 
 	names << base + fallback  ;
 	names << base  ;
 	
-	foreach(QString t, names)
+	for (const auto& t : names)
 	{
 		QDir d(t);
 		if( d.exists() )
@@ -144,7 +147,7 @@ QString FMPaths::LocalizedFilePath(const QString & base, const QString & ext, co
 	names << base + fallback + ext ;
 	names << base + ext ;
 	
-	foreach(QString t, names)
+	for (const auto& t : names)
 	{
 		if( QFile::exists(t) )
 		{

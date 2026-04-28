@@ -454,7 +454,7 @@ void PrefsPanelDialog::slotRemoveRemote()
 		QSettings settings;
 		QStringList tmpL ( settings.value ( "RemoteDirectories" ).toStringList() );
 		QStringList remoteDirStrings;
-		foreach ( QString s, tmpL )
+		for (const auto& s : tmpL)
 		{
 			if ( s != url )
 				remoteDirStrings << s;
@@ -521,7 +521,7 @@ void PrefsPanelDialog::slotClearShortcut()
 	setSelected ( iText );
 }
 
-void PrefsPanelDialog::slotActionSelected ( const QModelIndex &mi )
+void PrefsPanelDialog::slotActionSelected ( const QModelIndex & )
 {
 	QModelIndex index = shortcutList->currentIndex();
 	if ( !index.isValid() )
@@ -685,7 +685,7 @@ void PrefsPanelDialog::reloadShortcuts()
 	shortcutModel->clear();
 	QList<QAction*> alist = Shortcuts::getInstance()->getActions();
 	Shortcuts *scuts = Shortcuts::getInstance();
-	foreach ( QAction *act, alist )
+	for (auto* act : alist)
 	{
 		QStandardItem *iText = new QStandardItem ( scuts->cleanName(act->text()) );
 		QStandardItem *iShortcut = new QStandardItem ( act->shortcut().toString() );

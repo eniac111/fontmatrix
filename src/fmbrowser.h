@@ -21,7 +21,7 @@ class FMBrowser : public QProcess
 		Q_OBJECT
 
 		FMBrowser();
-		~FMBrowser();
+		~FMBrowser() override;
 		static FMBrowser * instance;
 	public:
 		static FMBrowser * getInstance();

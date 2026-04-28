@@ -88,4 +88,4 @@ void FilterMeta::operate()
 	{
 		operateFilter(FMFontDb::DB()->Fonts(fs, FMFontDb::InfoItem(ff)));
 	}
-}
+};

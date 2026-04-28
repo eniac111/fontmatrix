@@ -13,7 +13,7 @@ OpenCloseArrow::~OpenCloseArrow()
 }
 
 
-void OpenCloseArrow::mouseReleaseEvent(QMouseEvent *ev)
+void OpenCloseArrow::mouseReleaseEvent(QMouseEvent *)
 {
 	openingState = !openingState;
 	setOpText();

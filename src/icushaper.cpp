@@ -231,7 +231,7 @@ void IcuShaper::IcuError(int err)
 
 /// Je suis furieux d’avoir à écrire ça - pm
 
-IcuFontImpl *IcuFontImpl::instance = 0;
+IcuFontImpl *IcuFontImpl::instance = nullptr;
 
 IcuFontImpl::IcuFontImpl ( FMOtf * o )
 		:otf ( o )
@@ -241,7 +241,7 @@ IcuFontImpl::IcuFontImpl ( FMOtf * o )
 
 IcuFontImpl::~ IcuFontImpl()
 {
-	foreach(unsigned char* p, tables)
+	for (auto* p : tables)
 	{
 		delete p;
 	}
@@ -253,7 +253,7 @@ const void * IcuFontImpl::getFontTable ( LETag tableTag, size_t &length_sz ) con
 // 	qDebug()<< "IcuFontImpl::getFontTable" << OTF_tag_name( tableTag );
 	FT_Face face ( otf->face() );
 	FT_ULong length(0);
-	if ( !FT_Load_Sfnt_Table ( face, tableTag, 0, NULL, &length ) )
+	if ( !FT_Load_Sfnt_Table ( face, tableTag, 0, nullptr, &length ) )
 	{
 		if ( length > 0 )
 		{
@@ -265,7 +265,7 @@ const void * IcuFontImpl::getFontTable ( LETag tableTag, size_t &length_sz ) con
 		}
 	}
 	length_sz = 0;
-	return 0;
+	return nullptr;
 }
 
 le_int32 IcuFontImpl::getUnitsPerEM() const

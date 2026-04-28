@@ -30,7 +30,7 @@ class Shortcuts : public QObject
 {
 	Q_OBJECT
 public:
-	~Shortcuts();
+	~Shortcuts() override;
 
 	static Shortcuts* getInstance();
 

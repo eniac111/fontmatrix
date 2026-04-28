@@ -34,11 +34,11 @@ FMPanoseDialog::FMPanoseDialog(FontItem * font, QWidget * parent)
 
 FMPanoseDialog::~ FMPanoseDialog()
 {
-	foreach(QString s, m_box.keys())
+	for (const auto& s : m_box.keys())
 	{
 		delete m_box[s];
 	}
-	foreach(QString s, m_label.keys())
+	for (const auto& s : m_label.keys())
 	{
 		delete m_label[s];
 	}
@@ -51,7 +51,7 @@ void FMPanoseDialog::populateDialog()
 	QList<int> l;
 	if ( pl.count() == 10 )
 	{
-		foreach ( QString s, pl )
+		for (const auto& s : pl)
 		{
 			l << s.toInt();
 		}
@@ -69,7 +69,7 @@ void FMPanoseDialog::populateDialog()
 		
 		
 		int cIndex(0);
-		foreach(int ik, pmap[pk].keys())
+		for (const auto& ik : pmap[pk].keys())
 		{
 			m_box[sk]->addItem( pmap[pk][ik], ik );
 			if(ik == pValue)
@@ -83,16 +83,15 @@ void FMPanoseDialog::populateDialog()
 		pk = FontStrings::nextPanoseKey(pk);
 	}
 	
-	foreach(QString sk, m_box.keys())
+	for (const auto& sk : m_box.keys())
 	{
 		connect(m_box[sk], SIGNAL(currentIndexChanged (int)), this, SLOT(panoseChange(int)));
 	}
 }
 
-void FMPanoseDialog::panoseChange(int index)
+void FMPanoseDialog::panoseChange(int )
 {
 	QStringList l;
-	const QMap< FontStrings::PanoseKey, QMap<int, QString> >& pmap( FontStrings::Panose() ); 
 	FontStrings::PanoseKey pk(FontStrings::firstPanoseKey());
 	
 	while(pk != FontStrings::InvalidPK)

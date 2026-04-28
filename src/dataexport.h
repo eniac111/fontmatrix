@@ -34,7 +34,7 @@ class DataExport : public QWidget
 public:
 	explicit DataExport(QWidget* parent);
 //	DataExport(const QString &dirPath, const QString &filterTag);
-	~DataExport();
+	~DataExport() override;
 
 
 private:

@@ -64,7 +64,7 @@ TagListModel::TagListModel(QObject *parent)
 //	QStringList tl_tmp = FMFontDb::DB()->getTags();
 ////	qDebug()<< "T"<< tl_tmp.join("||");
 //	tl_tmp.sort();
-//	foreach(QString tag, tl_tmp )
+//	for (const auto& tag : tl_tmp)
 //	{
 //		if(!FMFontDb::DB()->Fonts(tag, FMFontDb::Tags ).isEmpty())
 //			ui->tagsCombo->addItem(tag, "TAG");
@@ -148,7 +148,7 @@ QVariant TagListModel::data(const QModelIndex &index, int role) const
 	return QVariant();
 }
 
-bool TagListModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool TagListModel::setData(const QModelIndex &index, const QVariant &value, int )
 {
 	if(!index.isValid())
 		return false;
@@ -163,7 +163,7 @@ bool TagListModel::setData(const QModelIndex &index, const QVariant &value, int 
 	return true;
 }
 
-Qt::ItemFlags TagListModel::flags(const QModelIndex &index) const
+Qt::ItemFlags TagListModel::flags(const QModelIndex & ) const
 {
 //	if(index.row() > specialTagsCount - 1)
 //		return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
@@ -324,7 +324,7 @@ void FilterBar::processFilters()
 	{
 		FMFontDb::DB()->clearFilteredFonts();
 		bool first(true);
-		foreach(FilterItem* d, filters)
+		for (auto* d : filters)
 		{
 			if(first)
 			{
@@ -340,7 +340,7 @@ void FilterBar::processFilters()
 void FilterBar::slotRemoveFilterItem(bool process)
 {
 	FilterItem * fi(reinterpret_cast<FilterItem*>(sender()));
-	if(fi != 0)
+	if(fi != nullptr)
 	{
 		filters.removeAll(fi);
 		if(filters.count() == 0)
@@ -358,7 +358,7 @@ void FilterBar::slotRemoveFilterItem(bool process)
 void FilterBar::removeAllFilters()
 {
 	FMFontDb::DB()->filterAllFonts();
-	foreach(FilterItem* d, filters)
+	for (auto* d : filters)
 	{
 		d->deleteLater();
 	}
@@ -368,7 +368,7 @@ void FilterBar::removeAllFilters()
 
 void FilterBar::addFilterItem(FilterData *f, bool process)
 {
-	if(f != 0)
+	if(f != nullptr)
 	{
 		curFilterWidget->setVisible(true);
 		FilterItem * it(f->item());
@@ -414,19 +414,19 @@ QString FilterBar::filterString(FilterData *d, bool first)
 
 void FilterBar::loadFilters()
 {
-	foreach(FiltersDialogItem* i, items)
+	for (auto* i : items)
 		delete i;
 	items.clear();
 
 	QDir fbasedir(FMPaths::FiltersDir());
 	QStringList fbaselist(fbasedir.entryList(QDir::NoDotAndDotDot|QDir::Dirs,QDir::Name));
-	foreach(QString fname, fbaselist)
+	for (const auto& fname : fbaselist)
 	{
 		QDir fdir(FMPaths::FiltersDir() + fname);
 		QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files, QDir::Name));
 		QString fString;
 		bool first(true);
-		foreach(QString fn, flist)
+		for (const auto& fn : flist)
 		{
 			QStringList l(fn.split(QString("-")));
 			if(l.count() == 2)
@@ -476,7 +476,7 @@ void FilterBar::slotTagSelect(const QModelIndex & index)
 //	int selCount(ui->tagsView->selectionModel()->selectedIndexes().count());
 //	if(selCount == 1)
 	{
-		foreach(FilterItem* f, filters)
+		for (auto* f : filters)
 		{
 			if(f->filter()->data(FilterTag::Tag).toString() == tag)
 				return;
@@ -524,9 +524,9 @@ void FilterBar::slotPanoFilter()
 {
 	QMap<int,QList<int> > pv(ui->panoseWidget->getFilter());
 	const QMap< FontStrings::PanoseKey, QMap<int, QString> >& ps(FontStrings::Panose());
-	foreach(int k, pv.keys())
+	for (const auto& k : pv.keys())
 	{
-		foreach(int v, pv[k])
+		for (const auto& v : pv[k])
 		{
 			FontStrings::PanoseKey pk (static_cast<FontStrings::PanoseKey>(k));
 			QString text(FontStrings::PanoseKeyName(pk) + QString(" : ") + ps.value(pk).value(v));
@@ -587,7 +587,7 @@ void FilterBar::slotLoadFilter(const QString &fname)
 	removeAllFilters();
 	QDir fdir(FMPaths::FiltersDir() + fname);
 	QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files, QDir::Name));
-	foreach(QString fn, flist)
+	for (const auto& fn : flist)
 	{
 		QStringList l(fn.split(QString("-")));
 		if(l.count() == 2)
@@ -628,7 +628,7 @@ void FilterBar::slotRemoveFilter(const QString &fname)
 	{
 		fdir.cd(fname);
 		QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files));
-		foreach(QString fn, flist)
+		for (const auto& fn : flist)
 		{
 			fdir.remove(fn);
 		}

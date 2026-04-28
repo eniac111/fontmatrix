@@ -33,8 +33,8 @@ class TTTableView : public QWidget, private Ui::TTTableWidget
 	
 	public:
 		
-		TTTableView(FontItem * font, QWidget * parent = 0);
-		~TTTableView();
+		TTTableView(FontItem * font, QWidget * parent = nullptr);
+		~TTTableView() override;
 		
 	private:
 		QByteArray curTable;

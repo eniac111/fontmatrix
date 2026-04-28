@@ -33,8 +33,8 @@ public:
 	    Value
     };
 
-    QString type() const;
-    void operate();
+    QString type() const override;
+    void operate() override;
 };
 
 #endif // FILTERPANOSE_H

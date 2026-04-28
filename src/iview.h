@@ -24,7 +24,7 @@ class IView: public QGraphicsView
 	Q_OBJECT
 	public:
 		IView(QWidget* parent);
-		~IView(){}
+		~IView() override{}
 		
 		void setImage(const QString& path);
 		void setImage(const QPixmap& pixmap);
@@ -38,10 +38,10 @@ class IView: public QGraphicsView
 		void selColorChanged(QRgb);
 		
 	protected:
-		void mouseMoveEvent ( QMouseEvent * e );
-		void mousePressEvent ( QMouseEvent * e );
-		void mouseReleaseEvent ( QMouseEvent * e );
-		void resizeEvent ( QResizeEvent * event );
+		void mouseMoveEvent ( QMouseEvent * e ) override;
+		void mousePressEvent ( QMouseEvent * e ) override;
+		void mouseReleaseEvent ( QMouseEvent * e ) override;
+		void resizeEvent ( QResizeEvent * event ) override;
 		
 	private:
 		QGraphicsPixmapItem * curImage;

@@ -31,7 +31,7 @@ QList<int> FMOtf::altGlyphs;
 
 /// HB Externals //////////////////////////////////////////////////////////////////////////////////////////////
 
-HB_LineBreakClass HB_GetLineBreakClass ( HB_UChar32 ch )
+HB_LineBreakClass HB_GetLineBreakClass ( HB_UChar32 )
 {
 	return ( HB_LineBreakClass ) 0;
 }
@@ -57,20 +57,20 @@ HB_UChar16 HB_GetMirroredChar ( HB_UChar16 ch )
 	return QChar ( ch ).mirroredChar().unicode();
 }
 
-HB_GraphemeClass HB_GetGraphemeClass(HB_UChar32 ch)
+HB_GraphemeClass HB_GetGraphemeClass(HB_UChar32 )
 {
 	return (HB_GraphemeClass) 0;
 }
-HB_WordClass HB_GetWordClass(HB_UChar32 ch)
+HB_WordClass HB_GetWordClass(HB_UChar32 )
 {
 	return (HB_WordClass) 0;
 }
-HB_SentenceClass HB_GetSentenceClass(HB_UChar32 ch)
+HB_SentenceClass HB_GetSentenceClass(HB_UChar32 )
 {
 	return (HB_SentenceClass) 0;
 }
 
-void HB_GetGraphemeAndLineBreakClass(HB_UChar32 ch, HB_GraphemeClass *grapheme, HB_LineBreakClass *lineBreak)
+void HB_GetGraphemeAndLineBreakClass(HB_UChar32 , HB_GraphemeClass * , HB_LineBreakClass * )
 {
 	//###
 }
@@ -113,7 +113,7 @@ HB_Bool hb_stringToGlyphs ( HB_Font font, const HB_UChar16 *string, hb_uint32 le
 	return true;
 }
 
-void hb_getAdvances ( HB_Font font, const HB_Glyph * glyphs, hb_uint32 numGlyphs, HB_Fixed *advances, int flags )
+void hb_getAdvances ( HB_Font font, const HB_Glyph * glyphs, hb_uint32 numGlyphs, HB_Fixed *advances, int )
 {
 // 	qDebug() << "void hb_getAdvances with flag("<<QString::number ( flags, 16 ) <<")";
 	FT_Face face = ( FT_Face ) font->userData;
@@ -181,14 +181,14 @@ HB_Error hb_getPointInOutline ( HB_Font font, HB_Glyph glyph, int flags, hb_uint
 	return HB_Err_Ok;
 }
 
-void hb_getGlyphMetrics ( HB_Font font, HB_Glyph glyph, HB_GlyphMetrics *metrics )
+void hb_getGlyphMetrics ( HB_Font , HB_Glyph , HB_GlyphMetrics *metrics )
 {
 	qDebug() << "void hb_getGlyphMetrics";
 	// ###
 	metrics->x = metrics->y = metrics->width = metrics->height = metrics->xOffset = metrics->yOffset = 0;
 }
 
-HB_Fixed hb_getFontMetric ( HB_Font font, HB_FontMetric metric )
+HB_Fixed hb_getFontMetric ( HB_Font , HB_FontMetric )
 {
 	qDebug() << "HB_Fixed hb_getFontMetric";
 	return 0; // ####
@@ -297,7 +297,7 @@ FMOtf::FMOtf ( FT_Face f , double scale )
 {
 
 	_face = f;
-	_buffer = 0;
+	_buffer = nullptr;
 
 	hbFont.klass = &hb_fontClass;
 	hbFont.userData = _face ;
@@ -317,7 +317,7 @@ FMOtf::FMOtf ( FT_Face f , double scale )
 	glyphAlloc = false;
 	FT_ULong length = 0;
 
-	if ( !FT_Load_Sfnt_Table ( _face, OTF_name_tag ( "GDEF" ), 0, NULL, &length ) )
+	if ( !FT_Load_Sfnt_Table ( _face, OTF_name_tag ( "GDEF" ), 0, nullptr, &length ) )
 	{
 // 		qDebug() << QString ( "length of GDEF table is %1" ).arg ( length ) ;
 		if ( length > 0 )
@@ -329,7 +329,7 @@ FMOtf::FMOtf ( FT_Face f , double scale )
 			gdefstream->base = ( HB_Byte * ) _memgdef.data ();
 			gdefstream->size = _memgdef.size ();
 			gdefstream->pos = 0;
-			gdefstream->cursor = NULL;
+			gdefstream->cursor = nullptr;
 
 
 			HB_New_GDEF_Table ( &_gdef );
@@ -345,7 +345,7 @@ FMOtf::FMOtf ( FT_Face f , double scale )
 	else
 		GDEF = 0;
 	length = 0;
-	if ( !FT_Load_Sfnt_Table ( _face, OTF_name_tag ( "GSUB" ), 0, NULL, &length ) )
+	if ( !FT_Load_Sfnt_Table ( _face, OTF_name_tag ( "GSUB" ), 0, nullptr, &length ) )
 	{
 // 		qDebug()<< QString ( "length of GSUB table is %1" ).arg ( length ) ;
 		if ( length > 32 ) //Some font files seem to have a fake table that is just 32 words long and make harbuzz confused
@@ -357,14 +357,14 @@ FMOtf::FMOtf ( FT_Face f , double scale )
 			gsubstream->base = ( HB_Byte * ) _memgsub.data ();
 			gsubstream->size = _memgsub.size ();
 			gsubstream->pos = 0;
-			gsubstream->cursor = NULL;
+			gsubstream->cursor = nullptr;
 
 			if ( GDEF ? !HB_Load_GSUB_Table ( gsubstream, &_gsub, _gdef, gdefstream ) :
-			        !HB_Load_GSUB_Table ( gsubstream, &_gsub, NULL, NULL ) )
+			        !HB_Load_GSUB_Table ( gsubstream, &_gsub, nullptr, nullptr ) )
 			{
 				GSUB = 1;
 				qDebug()<<"REGISTER alternate substitutions callback";
-				HB_GSUB_Register_Alternate_Function( _gsub, manageAlternates ,0);
+				HB_GSUB_Register_Alternate_Function( _gsub, manageAlternates ,nullptr);
 			}
 			else
 				GSUB = 0;
@@ -376,7 +376,7 @@ FMOtf::FMOtf ( FT_Face f , double scale )
 		GSUB = 0;
 
 	length = 0;
-	if ( !FT_Load_Sfnt_Table ( _face, OTF_name_tag ( "GPOS" ), 0, NULL, &length ) )
+	if ( !FT_Load_Sfnt_Table ( _face, OTF_name_tag ( "GPOS" ), 0, nullptr, &length ) )
 	{
 // 		qDebug () << QString ( "length of GPOS table is %1" ).arg ( length  );
 		if ( length > 32 )
@@ -388,9 +388,9 @@ FMOtf::FMOtf ( FT_Face f , double scale )
 			gposstream->base = ( HB_Byte * ) _memgpos.data ();
 			gposstream->size = _memgpos.size ();
 			gposstream->pos = 0;
-			gposstream->cursor = NULL;
+			gposstream->cursor = nullptr;
 			if ( GDEF ? !HB_Load_GPOS_Table ( gposstream, &_gpos, _gdef, gdefstream ) :
-			        !HB_Load_GPOS_Table ( gposstream, &_gpos, NULL, NULL ) )
+			        !HB_Load_GPOS_Table ( gposstream, &_gpos, nullptr, nullptr ) )
 				GPOS = 1;
 			else
 				GPOS = 0;
@@ -431,7 +431,7 @@ QList<RenderedGlyph> FMOtf::procstring ( QString s, OTFSet set )
 		qDebug ( ) << "Unable to get _buffer("<< _buffer <<")";
 		return QList<RenderedGlyph>();
 	}
-	int numR = procstring ( s, set.script, set.lang, set.gsub_features, set.gpos_features );
+	procstring ( s, set.script, set.lang, set.gsub_features, set.gpos_features );
 	
 	QList<RenderedGlyph> ret = get_position();
 	
@@ -446,7 +446,7 @@ QList<RenderedGlyph> FMOtf::procstring ( QString s, OTFSet set )
 	}
 
 	hb_buffer_free ( _buffer );
-	_buffer = 0;
+	_buffer = nullptr;
 	
 	return ret;
 }
@@ -473,7 +473,7 @@ QList< RenderedGlyph > FMOtf::procstring( QList<Character> shaped , QString scri
 	//First we collect properties
 	for( int i = 0; i < n; i++ )
 	{
-		foreach(QString cProp, shaped[i].CustomProperties)
+		for (const auto& cProp : shaped[i].CustomProperties)
 		{
 			if(!props.contains(cProp))
 			{
@@ -488,7 +488,7 @@ QList< RenderedGlyph > FMOtf::procstring( QList<Character> shaped , QString scri
 	{
 		uint prop = 0;
 // 		prop |= all;
-		foreach(QString cProp, shaped[i].CustomProperties)
+		for (const auto& cProp : shaped[i].CustomProperties)
 		{
 			prop |= (props[cProp]);
 		}
@@ -564,7 +564,7 @@ QList< RenderedGlyph > FMOtf::procstring( QList<Character> shaped , QString scri
 	
 	QList<RenderedGlyph> ret = get_position();
 	hb_buffer_free ( _buffer );
-	_buffer = 0;
+	_buffer = nullptr;
 	
 	// We need to attach CHAR infos to GLYPHS
 	int sCount(ret.count());
@@ -892,11 +892,10 @@ FMOtf::set_lang ( QString s )
 		curLang = 0xFFFF;// HB_DEFAULT_LANGUAGE;
 		return;
 	}
-	HB_Error           error;
 	curLangName = s;
 	if ( curTable == "GSUB" && GSUB )
 	{
-		error = HB_GSUB_Select_Language ( _gsub,
+		HB_GSUB_Select_Language ( _gsub,
 		        OTF_name_tag ( curLangName ),
 		        curScript,
 		        &curLang,
@@ -906,7 +905,7 @@ FMOtf::set_lang ( QString s )
 	}
 	if ( curTable == "GPOS" && GPOS )
 	{
-		error = HB_GPOS_Select_Language ( _gpos, OTF_name_tag ( curLangName ),curScript, &curLang, &curLangReq );
+		HB_GPOS_Select_Language ( _gpos, OTF_name_tag ( curLangName ),curScript, &curLang, &curLangReq );
 // 		if ( error )
 // 			qDebug ( QString ( "Unable to set lang index due to error %1" ).arg ( error ) );
 	}
@@ -989,7 +988,7 @@ GlyphList FMOtf::get_position ( HB_Buffer abuffer )
 			continue;
 		}
 		gl.log = _buffer->in_string[bIndex].cluster;
-		HB_Position p = 0;
+		HB_Position p = nullptr;
 		if ( wantPos && GPOS )
 		{
 			p = &_buffer->positions[bIndex] ;
@@ -1048,7 +1047,7 @@ GlyphList FMOtf::get_position ( HB_Buffer abuffer )
 	return renderedString;
 }
 
-HB_UShort FMOtf::manageAlternates(HB_UInt pos, HB_UShort glyphID, HB_UShort num_alternates, HB_UShort * alternates, void * data)
+HB_UShort FMOtf::manageAlternates(HB_UInt , HB_UShort , HB_UShort , HB_UShort * , void * )
 {
 	// ALTERNATES
 //	FMAltContext * actx(FMAltContextLib::GetCurrentContext());

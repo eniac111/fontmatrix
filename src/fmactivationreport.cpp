@@ -28,7 +28,7 @@ FMActivationReport::FMActivationReport(QWidget * parent, const QMap<QString,QStr
 	setupUi(this);
 	errorTable->setSortingEnabled(false);
 	int row(0);
-	foreach(const QString& key, errorMap.keys())
+	for (const auto& key : errorMap.keys())
 	{
 		qDebug()<<"EM"<<key<<errorMap[key];
 		errorTable->insertRow (row);

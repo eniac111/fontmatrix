@@ -35,19 +35,19 @@ class TreeModel : public QAbstractItemModel
 // 		Q_OBJECT
 
 	public:
-		TreeModel ( const QString &data, QObject *parent = 0 );
-		TreeModel ( QObject *parent = 0 ) {}; //CB Added for ScHelpTreeModel
-		~TreeModel();
+		TreeModel ( const QString &data, QObject *parent = nullptr );
+		TreeModel ( QObject *parent = nullptr ) {}; //CB Added for ScHelpTreeModel
+		~TreeModel() override;
 
-		QVariant data ( const QModelIndex &index, int role ) const;
-		Qt::ItemFlags flags ( const QModelIndex &index ) const;
+		QVariant data ( const QModelIndex &index, int role ) const override;
+		Qt::ItemFlags flags ( const QModelIndex &index ) const override;
 		QVariant headerData ( int section, Qt::Orientation orientation,
-		                      int role = Qt::DisplayRole ) const;
+		                      int role = Qt::DisplayRole ) const override;
 		QModelIndex index ( int row, int column,
-		                    const QModelIndex &parent = QModelIndex() ) const;
-		QModelIndex parent ( const QModelIndex &index ) const;
-		int rowCount ( const QModelIndex &parent = QModelIndex() ) const;
-		int columnCount ( const QModelIndex &parent = QModelIndex() ) const;
+		                    const QModelIndex &parent = QModelIndex() ) const override;
+		QModelIndex parent ( const QModelIndex &index ) const override;
+		int rowCount ( const QModelIndex &parent = QModelIndex() ) const override;
+		int columnCount ( const QModelIndex &parent = QModelIndex() ) const override;
 
 	protected:
 		void setupModelData ( const QStringList &lines, TreeItem *parent );

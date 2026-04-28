@@ -24,7 +24,7 @@ class FMFontExtract : public QDialog, private Ui::FontExtractorDialog
 
 	public:
 		FMFontExtract ( QWidget * parent );
-		~FMFontExtract();
+		~FMFontExtract() override;
 
 	private:
 		QMap<QString,FMFontExtractorBase*> extractors;

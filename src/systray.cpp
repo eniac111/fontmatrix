@@ -26,7 +26,7 @@
 #include <QtGui>
 #include <QDebug>
 
-typotek* Systray::ttek = 0;
+typotek* Systray::ttek = nullptr;
 
 Systray::Systray()
 {
@@ -123,7 +123,7 @@ void Systray::slotActivateAll()
 
 //	disconnect(tagMenu, SIGNAL(triggered(QAction*)), this, SLOT(slotTagMenuClicked(QAction*)));
 //	QList<QAction*> tags = tagActions.values();
-//	foreach (QAction* a, tags) {
+//	for (auto* a : tags) {
 //		a->setChecked(true);
 //	}
 //	connect(tagMenu, SIGNAL(triggered(QAction*)), this, SLOT(slotTagMenuClicked(QAction*)));
@@ -143,13 +143,13 @@ void Systray::slotDeactivateAll()
 //		ttek->theMainView->slotDesactivateAll();
 //	disconnect(tagMenu, SIGNAL(triggered(QAction*)), this, SLOT(slotTagMenuClicked(QAction*)));
 //	QList<QAction*> tags = tagActions.values();
-//	foreach (QAction* a, tags) {
+//	for (auto* a : tags) {
 //		a->setChecked(false);
 //	}
 //	connect(tagMenu, SIGNAL(triggered(QAction*)), this, SLOT(slotTagMenuClicked(QAction*)));
 }
 
-void Systray::slotTagMenuClicked(QAction *action)
+void Systray::slotTagMenuClicked(QAction *)
 {
 
 	// Deactivate the feature atm
@@ -272,7 +272,7 @@ void Systray::createActions()
 
 void Systray::createTrayIcon()
 {
-    trayIconMenu = new QMenu(0);
+    trayIconMenu = new QMenu(nullptr);
     trayIconMenu->addAction(activateAllAction);
     trayIconMenu->addAction(deactivateAllAction);
 // 	trayIconMenu->addSeparator();
@@ -296,7 +296,7 @@ void Systray::createTagMenu()
 
 	QStringList tmp(FMFontDb::DB()->getTags());
 	tmp.sort();
-	foreach (QString tagName, tmp) {
+	for (const auto& tagName : tmp) {
 // 		if (tagName != "Activated_On" && tagName != "Activated_Off")
 			newTag(tagName);
 	}
@@ -340,11 +340,11 @@ void Systray::updateTagMenu(const QStringList& nameOfFontWhichCausedThisUpdate)
 {
 	QStringList tags(tagActions.keys());
 	bool lazy = true;
-	foreach(QString tag, tags)
+	for (const auto& tag : tags)
 	{
 		QList<FontItem*> taggedFonts = FMFontDb::DB()->Fonts( tag , FMFontDb::Tags );
 //		ttek->resetFilter();
-		foreach(FontItem* fit, taggedFonts)
+		for (auto* fit : taggedFonts)
 		{
 			if( nameOfFontWhichCausedThisUpdate.contains(fit->path()))
 			{	// we’re concerned
@@ -355,7 +355,7 @@ void Systray::updateTagMenu(const QStringList& nameOfFontWhichCausedThisUpdate)
 	}
 	if(lazy)
 		return;
-	foreach(QString tag, tags)
+	for (const auto& tag : tags)
 	{
 		deleteTag(tag);
 	}
@@ -365,7 +365,7 @@ void Systray::updateTagMenu(const QStringList& nameOfFontWhichCausedThisUpdate)
 
 	QStringList tmp(FMFontDb::DB()->getTags());
 	tmp.sort();
-	foreach (QString tagName, tmp) {
+	for (const auto& tagName : tmp) {
 // 		if (tagName != "Activated_On" && tagName != "Activated_Off")
 			newTag(tagName);
 	}

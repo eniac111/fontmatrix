@@ -41,15 +41,13 @@ void DataLoader::load()
 	pm.clear();
 	// First we load system samples
 	QDir samplesDir(FMPaths::ResourcesDir() + "Samples" );
-	foreach(QString ld,
-		samplesDir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs) )
+	for (const auto& ld : samplesDir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs))
 	{
 		QDir lang(samplesDir.absoluteFilePath(ld));
 		QLocale locale(ld);
 		QString loclang(QLocale::languageToString(locale.language()));
 		qDebug()<<ld<<loclang;
-		foreach(QString st,
-			lang.entryList(QDir::NoDotAndDotDot | QDir::NoSymLinks | QDir::Files) )
+		for (const auto& st : lang.entryList(QDir::NoDotAndDotDot | QDir::NoSymLinks | QDir::Files))
 		{
 			QFile fp(lang.absoluteFilePath(st));
 			if(fp.open(QIODevice::ReadOnly))
@@ -68,7 +66,7 @@ void DataLoader::load()
 	}
 	else
 	{
-		foreach(QString ld, uDir.entryList(QDir::NoDotAndDotDot | QDir::NoSymLinks | QDir::Files) )
+		for (const auto& ld : uDir.entryList(QDir::NoDotAndDotDot | QDir::NoSymLinks | QDir::Files))
 		{
 			QFile fp(uDir.absoluteFilePath(ld));
 			if(fp.open(QIODevice::ReadOnly))

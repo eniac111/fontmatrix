@@ -118,7 +118,7 @@ QString FMInfoDisplay::writeLangOS2(FontItem * font)
 		ret += "<div id=\"langblock\">\n";
 		ret += "\t<div class=\"langblockname\">" + QObject::tr("Unicode Ranges") + "</div>\n";
 		ret += "\t<ul>\n";
-		foreach(QString ln, llist)
+		for (const auto& ln : llist)
 		{
 			ret += QString("\t\t<li>%1</li>\n").arg(ln);
 		}
@@ -142,7 +142,7 @@ QString FMInfoDisplay::writeSVGPreview(FontItem * font)
 	double horOffset ( 0 );
 	tf.translate ( horOffset , vertOffset );
 
-	foreach ( QChar c, font->fancyName() )
+	for (const auto& c : font->fancyName())
 	{
 		{
 			QGraphicsPathItem * gpi ( font->itemFromChar ( c.unicode(), pifs ) );
@@ -184,7 +184,7 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 
 
 	QStringList cmapStrings;
-	foreach ( FT_Encoding c, font->getCharsets() )
+	for (const auto& c : font->getCharsets())
 	{
 		QString encString ( FontStrings::Encoding ( c ) );
 		if ( ( c == FT_ENCODING_UNICODE ) && ( !font->getUnicodeBuiltIn() ) )
@@ -283,7 +283,7 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 			<< FMFontDb::UniqueFontIdentifier;
 	
 	QMap<FMFontDb::InfoItem, QString> tNames(FontStrings::Names());
-	foreach(FMFontDb::InfoItem key, order)
+	for (const auto& key : order)
 	{
 		if (orderedInfo.contains(key))
 			ret += modelItem.arg(tNames.value(key))

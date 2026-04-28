@@ -85,7 +85,7 @@ QMap<QString, QBrush> ParallelCoorView::brushes;
 QPainterPath ParallelCoorView::markPath;
 
 ParallelCoorView::ParallelCoorView(QWidget * parent)
-	:QGraphicsView(parent), m_dataSet(0)
+	:QGraphicsView(parent), m_dataSet(nullptr)
 {
 	setScene(new QGraphicsScene(this));
 #ifdef HAVE_QTOPENGL
@@ -203,12 +203,12 @@ void ParallelCoorView::initPensAndBrushes()
 	
 	QString cat("Panose/color-%1");
 	QSettings settings;
-	foreach(QString attr, pens.keys())
+	for (const auto& attr : pens.keys())
 	{
 		pens[attr].setColor( QColor(settings.value(cat.arg(attr),pens[attr].color().name()).toString()) );
 		settings.setValue(cat.arg(attr),pens[attr].color().name());
 	}
-	foreach(QString attr, brushes.keys())
+	for (const auto& attr : brushes.keys())
 	{
 		brushes[attr].setColor( QColor(settings.value(cat.arg(attr),brushes[attr].color().name()).toString()) );
 		settings.setValue(cat.arg(attr),pens[attr].color().name());
@@ -219,13 +219,13 @@ void ParallelCoorView::cleanLists(ItemList il)
 {
 	if((il == AllList) || (il == ValueList))
 	{
-		foreach(ParallelCoorValueItem* ti, valueLabels)
+		for (auto* ti : valueLabels)
 		{
 			delete ti;
 		}
 		valueLabels.clear();
 		
-		foreach(ParallelCoorMarkItem *mi, marks)
+		for (auto* mi : marks)
 		{
 			delete mi;
 		}
@@ -233,7 +233,7 @@ void ParallelCoorView::cleanLists(ItemList il)
 	}
 	if((il == AllList) || (il == FieldList))
 	{
-		foreach(ParallelCoorFieldItem* ti, fieldLabels)
+		for (auto* ti : fieldLabels)
 		{
 			delete ti;
 		}
@@ -241,7 +241,7 @@ void ParallelCoorView::cleanLists(ItemList il)
 	}
 	if((il == AllList) || (il == VerticeList))
 	{
-		foreach(QGraphicsLineItem* pi, vertices)
+		for (auto* pi : vertices)
 		{
 			delete pi;
 		}
@@ -249,7 +249,7 @@ void ParallelCoorView::cleanLists(ItemList il)
 	}
 	if((il == AllList) || (il == BarList))
 	{
-		foreach(ParallelCoorBarItem* li, bars)
+		for (auto* li : bars)
 		{
 			delete li;
 		}
@@ -557,7 +557,7 @@ QMap< QString, QStringList > ParallelCoorView::getFilter() const
 QString ParallelCoorView::filterAsString()
 {
 	QString ret;
-	foreach(QString key, m_filter.keys())
+	for (const auto& key : m_filter.keys())
 	{
 		const QStringList& l = m_filter[key];
 		if(!l.isEmpty())
@@ -584,7 +584,7 @@ void ParallelCoorView::setFilter ( const QMap< QString, QStringList >& theValue 
 	{
 		if(m_filter.contains(m_dataSet->at(i).first))
 		{
-			foreach(QString v, m_filter[m_dataSet->at(i).first])
+			for (const auto& v : m_filter[m_dataSet->at(i).first])
 			{
 				cfilter[i] << m_dataSet->at(i).second.indexOf(v);
 			}
@@ -842,12 +842,12 @@ void ParallelCoorView::slotSaveColors()
 // 	qDebug()<<"ParallelCoorView::~ParallelCoorView()";
 // 	QString cat("Panose/%1");
 // 	QSettings settings;
-// 	foreach(QString attr, pens.keys())
+// 	for (const auto& attr : pens.keys())
 // 	{
 // 		qDebug()<<cat.arg(attr);
 // 		settings.setValue(cat.arg(attr),pens[attr].color() );
 // 	}
-// 	foreach(QString attr, brushes.keys())
+// 	for (const auto& attr : brushes.keys())
 // 	{
 // 		qDebug()<<cat.arg(attr);
 // 		settings.setValue(cat.arg(attr),brushes[attr].color() );

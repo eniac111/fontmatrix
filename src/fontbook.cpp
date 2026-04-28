@@ -130,7 +130,7 @@ void FontBook::doFullBook()
 	progress->show();
 
 	int familyCounter(0);
-	foreach(FontItem * family, FMFontDb::DB()->getFilteredFonts(true))
+	for (auto* family : FMFontDb::DB()->getFilteredFonts(true))
 	{
 		progress->setLabel(family->family(), 0);
 		progress->setValue(++familyCounter, 0);
@@ -159,7 +159,7 @@ void FontBook::doFullBookCover()
 	double y(0);
 	double fsize(QRandomGenerator::global()->bounded(module));
 	int gray(QRandomGenerator::global()->bounded(160));
-	foreach(FontItem * f, FMFontDb::DB()->getFilteredFonts())
+	for (auto* f : FMFontDb::DB()->getFilteredFonts())
 	{
 		int lc(f->lastChar());
 		int charcode(QRandomGenerator::global()->bounded(lc));
@@ -259,7 +259,7 @@ void FontBook::doFullBookPageRight(const QString &family)
 		logDescend[fidx] = tmpScene.itemsBoundingRect().bottom() - 1000.0;
 //		qDebug()<< sampleString[fidx] << logWidth[fidx];
 		QList<QGraphicsItem*> lgit(tmpScene.items());
-		foreach(QGraphicsItem* git, lgit)
+		for (auto* git : lgit)
 		{
 			tmpScene.removeItem(git);
 			delete git;
@@ -346,13 +346,13 @@ void FontBook::doFullBookPageRight(const QString &family)
 	bool rasterState(rFont->rasterFreetype());
 	rFont->setFTRaster(false);
 	QList<GlyphList> lgl;
-	foreach(QString s, stringList)
+	for (const auto& s : stringList)
 	{
 		lgl << rFont->glyphs(s, littleSize);
 	}
 	layoutLeft->doLayout(lgl, littleSize);
 	lgl.clear();
-	foreach(QString s, stringList)
+	for (const auto& s : stringList)
 	{
 		lgl << rFont->glyphs(s, bigSize);
 	}
@@ -462,9 +462,9 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 
 		// Unicode Coverage
 		QStringList llist;
-		foreach(FontItem * fi, familyFonts)
+		for (auto* fi : familyFonts)
 		{
-			foreach(const QString& sl, fi->supportedLangDeclaration())
+			for (const auto& sl : fi->supportedLangDeclaration())
 			{
 				if(!llist.contains(sl))
 					llist << sl;
@@ -549,7 +549,7 @@ void FontBook::doOneLinerBook()
 
 
 // OBSOLETE
-void FontBook::doBookFromTemplate ( const QDomDocument &aTemplate )
+void FontBook::doBookFromTemplate ( const QDomDocument & )
 {
 //	/**
 //	We build lists of contexts

@@ -66,7 +66,7 @@ FMGlyphsView::~FMGlyphsView()
 {
 }
 
-void FMGlyphsView::resizeEvent ( QResizeEvent * event )
+void FMGlyphsView::resizeEvent ( QResizeEvent * )
 {
 	if ( m_state == SingleView )
 		emit pleaseUpdateSingle();
@@ -75,7 +75,7 @@ void FMGlyphsView::resizeEvent ( QResizeEvent * event )
 
 }
 
-void FMGlyphsView::showEvent ( QShowEvent * event )
+void FMGlyphsView::showEvent ( QShowEvent * )
 {
 	emit pleaseUpdateMe();
 }
@@ -87,7 +87,7 @@ void FMGlyphsView::mouseReleaseEvent ( QMouseEvent * e )
 	if ( e->button() == Qt::LeftButton )
 	{
 		QList<QGraphicsItem*> gg = scene()->items ( mapToScene ( e->pos() ) );
-		foreach ( QGraphicsItem* ii, gg )
+		for (auto* ii : gg)
 		{
 			if ( ii->data ( 1 ).toString() == "select" && m_state == AllView )
 				ii->setSelected ( true );
@@ -100,7 +100,7 @@ void FMGlyphsView::mouseReleaseEvent ( QMouseEvent * e )
 	}
 }
 
-void FMGlyphsView::mousePressEvent ( QMouseEvent * e )
+void FMGlyphsView::mousePressEvent ( QMouseEvent * )
 {
 	// We just catch it to avoid a waeird segfault ... we’ll see later for a plain fix
 // 	if(e->button() == Qt::LeftButton)
@@ -125,7 +125,7 @@ void FMGlyphsView::setState ( ViewState s )
 	m_state = s;
 }
 
-void FMGlyphsView::hideEvent ( QHideEvent * event )
+void FMGlyphsView::hideEvent ( QHideEvent * )
 {
 //	if ( m_state == SingleView )
 //		emit pleaseShowAll();
@@ -145,7 +145,7 @@ QRectF FMGlyphsView::visibleSceneRect()
 	return rr;
 }
 
-void FMGlyphsView::slotViewMoved ( int v )
+void FMGlyphsView::slotViewMoved ( int )
 {
 	if ( m_state == AllView )
 		emit pleaseUpdateMe();

@@ -37,7 +37,7 @@ class PlayWidget : public QWidget
 	static PlayWidget* instance;
 	explicit PlayWidget();
 public:
-	~PlayWidget();
+	~PlayWidget() override;
 	static PlayWidget* getInstance();
 	double playFontSize();
 	QRectF getMaxRect();
@@ -45,8 +45,8 @@ public:
 	QGraphicsScene* getPlayScene(){return playScene;}
 
 protected:
-	void changeEvent(QEvent *e);
-	void closeEvent(QCloseEvent *);
+	void changeEvent(QEvent *e) override;
+	void closeEvent(QCloseEvent *) override;
 
 private:
 	Ui::PlayWidget *ui;

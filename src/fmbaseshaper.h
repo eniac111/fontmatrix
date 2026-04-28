@@ -27,7 +27,7 @@ class FMBaseShaper
 {
 	public:
 		FMBaseShaper ( FMOtf *o, QString s );
-		~FMBaseShaper();
+		virtual ~FMBaseShaper();
 		virtual GlyphList doShape ( const QString& aString ) = 0;
 	protected:
 		FMOtf *otf;

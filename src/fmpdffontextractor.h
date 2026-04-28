@@ -23,14 +23,14 @@ class FMPDFFontExtractor : public FMFontExtractorBase
 {
 	public:
 		FMPDFFontExtractor();
-		~FMPDFFontExtractor();
+		~FMPDFFontExtractor() override;
 
-		bool loadFile(const QString& filePath);
-		QStringList extensions();
+		bool loadFile(const QString& filePath) override;
+		QStringList extensions() override;
 
-		QStringList list();
-		QString fontType(const QString& name);
-		bool write(const QString& name, QIODevice * openedDevice);
+		QStringList list() override;
+		QString fontType(const QString& name) override;
+		bool write(const QString& name, QIODevice * openedDevice) override;
 
 	private:
 		bool cachedList;

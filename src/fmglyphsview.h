@@ -34,7 +34,7 @@ class FMGlyphsView : public QGraphicsView
 		enum ViewState{AllView,SingleView};
 		
 		FMGlyphsView ( QWidget *parent );
-		~FMGlyphsView();
+		~FMGlyphsView() override;
 		
 		void setState(ViewState s);
 		ViewState state(){return m_state;}
@@ -63,16 +63,16 @@ class FMGlyphsView : public QGraphicsView
 		
 	protected:
 
-		void resizeEvent ( QResizeEvent * event );
-		void showEvent ( QShowEvent * event ) ;
-		void hideEvent ( QHideEvent * event );
-		void mouseReleaseEvent ( QMouseEvent * e );
-		void mousePressEvent ( QMouseEvent * e ) ;
-                void wheelEvent ( QWheelEvent * e );
-		void keyPressEvent ( QKeyEvent * e );
+		void resizeEvent ( QResizeEvent * event ) override;
+		void showEvent ( QShowEvent * event ) override ;
+		void hideEvent ( QHideEvent * event ) override;
+		void mouseReleaseEvent ( QMouseEvent * e ) override;
+		void mousePressEvent ( QMouseEvent * e ) override ;
+                void wheelEvent ( QWheelEvent * e ) override;
+		void keyPressEvent ( QKeyEvent * e ) override;
 	private:
-		FMGlyphsView(const FMGlyphsView&) {};
-		void operator= (const FMGlyphsView&) {};
+		FMGlyphsView(const FMGlyphsView&) = delete;
+		FMGlyphsView& operator=(const FMGlyphsView&) = delete;
 };
 
 #endif

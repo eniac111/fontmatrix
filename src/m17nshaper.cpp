@@ -14,7 +14,7 @@
 
 #include <QDebug>
 
-M17NShaper * M17NShaper::instance = 0;
+M17NShaper * M17NShaper::instance = nullptr;
 		
 QString OTF_tag_name ( unsigned int tag );
 
@@ -106,7 +106,7 @@ int M17NShaper::impl_check_otf( struct _MFLTFont *font, MFLTOtfSpec *spec )
 	QString lang ( OTF_tag_name ( spec->langsys ) );
 	QStringList subf;
 	QStringList posf;
-	unsigned int* cursor ( 0 );
+	unsigned int* cursor ( nullptr );
 	for ( cursor = spec->features[0]; *cursor ; ++cursor )
 	{
 		subf <<  OTF_tag_name ( *cursor );
@@ -127,7 +127,7 @@ int M17NShaper::impl_drive_otf ( struct _MFLTFont *font, MFLTOtfSpec *spec, MFLT
 	QStringList subf;
 	QStringList posf;
 	QList<unsigned int> gl;
-	unsigned int* cursor ( 0 );
+	unsigned int* cursor ( nullptr );
 	for ( cursor = spec->features[0]; *cursor ; ++cursor )
 	{
 		subf <<  OTF_tag_name ( *cursor );

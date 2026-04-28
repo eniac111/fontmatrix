@@ -16,7 +16,7 @@ class ScTextBrowser : public QWebEngineView
 	Q_OBJECT
 	QUrl m_home;
 	public:
-		ScTextBrowser( QWidget * parent = 0 );
+		ScTextBrowser( QWidget * parent = nullptr );
 		void setHome(const QUrl& h){m_home = h;}
 		
 	signals:

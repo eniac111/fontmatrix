@@ -26,7 +26,7 @@ TTTableView::TTTableView(FontItem * font, QWidget * parent)
 // 	tView->setColumnCount (3);
 	bool hasTable(false);
 	QTreeWidgetItem *first;
-	foreach( QString tname, FontStrings::Tables().keys() )
+	for (const auto& tname : FontStrings::Tables().keys())
 	{
 		int len(font->table(tname));
 		if(len > 0)
@@ -61,7 +61,7 @@ TTTableView::TTTableView(FontItem * font, QWidget * parent)
 
 TTTableView::~ TTTableView()
 {
-	foreach(QTreeWidgetItem *twi, twiList)
+	for (auto* twi : twiList)
 	{
 		delete twi;
 	}

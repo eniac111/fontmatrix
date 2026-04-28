@@ -59,15 +59,15 @@ class typotek:public QMainWindow
 	static typotek* instance;
 	static bool matrix;
 	typotek();
-	~typotek();
+	~typotek() override;
 public:
 	static typotek* getInstance();
 	void initMatrix();
 	void postInit();
 
 protected:
-	void closeEvent ( QCloseEvent *event );
-	void keyPressEvent ( QKeyEvent * event ) ;
+	void closeEvent ( QCloseEvent *event ) override;
+	void keyPressEvent ( QKeyEvent * event ) override ;
 
 private slots:
 	void fontBook();
@@ -308,7 +308,7 @@ public:
 	QString getTemplatesDir() {return templatesDir;}
 
 	void setWord(QString s, bool updateView);
-	QString word(FontItem * item = 0, const QString& alt = QString());
+	QString word(FontItem * item = nullptr, const QString& alt = QString());
 	void setPreviewSize(double d);
 	double getPreviewSize(){ return previewSize; }
 	void setPreviewRTL(bool d);
@@ -396,9 +396,9 @@ public:
 	
 	
 protected:
-	void dragEnterEvent(QDragEnterEvent *event);
-	void dropEvent ( QDropEvent * event );
-	void showEvent ( QShowEvent * event );
+	void dragEnterEvent(QDragEnterEvent *event) override;
+	void dropEvent ( QDropEvent * event ) override;
+	void showEvent ( QShowEvent * event ) override;
 
 
 
@@ -409,7 +409,7 @@ class LazyInit : public QThread
 {
 	Q_OBJECT
 public:
-	void run();
+	void run() override;
 signals:
 	void endOfRun();
 };

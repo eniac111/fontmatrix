@@ -27,7 +27,7 @@
 #include <QRectF>
 #include <QPainter>
 
-PlayWidget* PlayWidget::instance = 0;
+PlayWidget* PlayWidget::instance = nullptr;
 PlayWidget::PlayWidget() :
     ui(new Ui::PlayWidget)
 {
@@ -51,7 +51,7 @@ PlayWidget::~PlayWidget()
 
 PlayWidget* PlayWidget::getInstance()
 {
-	if(instance == 0)
+	if(instance == nullptr)
 	{
 		instance = new PlayWidget;
 		Q_ASSERT(instance);

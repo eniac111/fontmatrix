@@ -124,7 +124,7 @@ QList< RenderedGlyph > FMShaper::doShape(QString string, bool ltr)
 		setFont();
 	
 	QMap<unsigned int, unsigned short> glyphToChar; // ugly and wrong, but shaper doesnt preserve any data about glyph generation.
-	foreach(QChar c, string)
+	for (const auto& c : string)
 	{
 		glyphToChar[FT_Get_Char_Index(anchorFace, c.unicode())] = c.unicode();
 	}

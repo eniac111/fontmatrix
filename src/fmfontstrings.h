@@ -21,7 +21,7 @@ class FontStrings : public QObject
 {
 	Q_OBJECT
 		FontStrings();
-		~FontStrings() {}
+		~FontStrings() override {}
 		static FontStrings* instance;
 		static FontStrings* getInstance();
 

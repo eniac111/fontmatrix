@@ -44,11 +44,11 @@ public:
 		PartlyActivated
 	};
 	FMPreviewIconEngine();
-	~FMPreviewIconEngine();
-	void paint ( QPainter * painter, const QRect & rect, QIcon::Mode mode, QIcon::State state );
-	void addPixmap ( const QPixmap & pixmap, QIcon::Mode mode, QIcon::State state );
+	~FMPreviewIconEngine() override;
+	void paint ( QPainter * painter, const QRect & rect, QIcon::Mode mode, QIcon::State state ) override;
+	void addPixmap ( const QPixmap & pixmap, QIcon::Mode mode, QIcon::State state ) override;
 	void setActivation(Activation a){activatedFont = a;}
-	virtual QIconEngine *clone() const; // TODO Implement this function
+	QIconEngine *clone() const override; // TODO Implement this function
 
 private:
 	QPixmap m_p;
@@ -69,20 +69,20 @@ class FMPreviewView : public QListView
 {
 	Q_OBJECT
 public:
-	FMPreviewView(QWidget * parent = 0);
-	~FMPreviewView(){}
+	FMPreviewView(QWidget * parent = nullptr);
+	~FMPreviewView() override{}
 	int getUsedWidth() const{return usedWidth;}
 	// n = 1 for a single column layout (list); n = 2 for multi columns layout
 	void setNumCol(int n){columns = n;}
 	bool moveTo(const QString& fname); // fname can be the begining of a fancy name
 
 protected:
-	void resizeEvent ( QResizeEvent * event );
+	void resizeEvent ( QResizeEvent * event ) override;
 	QPoint startDragPoint;
 	bool dragFlag;
-	virtual void mousePressEvent(QMouseEvent *event);
-	virtual void mouseMoveEvent(QMouseEvent *event);
-	void keyPressEvent(QKeyEvent *event);
+	void mousePressEvent(QMouseEvent *event) override;
+	void mouseMoveEvent(QMouseEvent *event) override;
+	void keyPressEvent(QKeyEvent *event) override;
 
 private:
 	int usedWidth;
@@ -108,11 +108,11 @@ public:
 
 	FMPreviewModel ( QObject * pa , FMPreviewView * wPa, QList<FontItem*> db = QList<FontItem*>());
 	//returns a preview
-	QVariant data ( const QModelIndex &index, int role = Qt::DisplayRole ) const;
+	QVariant data ( const QModelIndex &index, int role = Qt::DisplayRole ) const override;
 	//returns flags for items
-	Qt::ItemFlags flags ( const QModelIndex &index ) const;
+	Qt::ItemFlags flags ( const QModelIndex &index ) const override;
 	//returns the number of items
-	int rowCount ( const QModelIndex &parent ) const;
+	int rowCount ( const QModelIndex &parent ) const override;
 
 	void resetBase(QList<FontItem*> db);
 	QList<FontItem*> getBase();

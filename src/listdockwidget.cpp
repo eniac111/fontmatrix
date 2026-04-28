@@ -95,7 +95,7 @@ ListDockWidget::ListDockWidget()
 		hierarchy.prepend(luIdx);
 		luIdx = luIdx.parent();
 	}
-	foreach(QModelIndex idx, hierarchy)
+	for (const auto& idx : hierarchy)
 		folderView->expand(idx);
 
 	dirWatcher = new QFileSystemWatcher(this);
@@ -420,7 +420,7 @@ void FolderViewMenu::slotImportDir()
 		return;
 	QString lastItem = fontList.at(fontList.count() - 1);
 	fontList.removeAt(fontList.count() - 1);
-	foreach(QString tmpFontPath, fontList) {
+	for (const auto& tmpFontPath : fontList) {
 		QString absPath = dir.absolutePath() + "/" + tmpFontPath;
 		typotek::getInstance()->open(absPath, false, true);
 	}
@@ -451,7 +451,7 @@ void ListDockWidget::initTagCombo()
 	tagsCombo->addItem(tr("Similar to current"),"SIMILAR");
 
 // 	QStringList ts_tmp = typotek::getInstance()->tagsets();
-// 	foreach(QString tagset, ts_tmp)
+// 	for (const auto& tagset : ts_tmp)
 // 	{
 // 		tagsCombo->addItem(tagsetIcon,tagset,"TAGSET");
 // 	}
@@ -459,7 +459,7 @@ void ListDockWidget::initTagCombo()
 	QStringList tl_tmp = FMFontDb::DB()->getTags();
 	qDebug()<<"RELOAD"<<tl_tmp.join("|");
 	tl_tmp.sort();
-	foreach(QString tag, tl_tmp )
+	for (const auto& tag : tl_tmp)
 	{
 		tagsCombo->addItem(tag, "TAG");
 	}
@@ -576,7 +576,7 @@ void ListDockWidget::slotPreviewSize(double d)
 QStringList ListDockWidget::getOperation() const
 {
 	QStringList ret;
-// 	foreach(QAction* action, theOperationMenu->actions())
+// 	for (auto* action : theOperationMenu->actions())
 // 	{
 // 		if(action->isChecked())
 // 			ret << action->data().toString();
@@ -590,7 +590,7 @@ QStringList ListDockWidget::getOperation() const
 
 void ListDockWidget::clearOperation()
 {
-// 	foreach(QAction* action, theOperationMenu->actions())
+// 	for (auto* action : theOperationMenu->actions())
 // 	{
 // 		action->setChecked(false);
 // 	}

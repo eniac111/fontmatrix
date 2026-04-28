@@ -22,7 +22,7 @@ FMAltSelectorModel::FMAltSelectorModel()
 		:QAbstractItemModel()
 {
 	altDelegate = new FMAltItemDelegate(this);
-	rootItem = 0;
+	rootItem = nullptr;
 }
 
 FMAltSelectorModel::~FMAltSelectorModel()
@@ -230,7 +230,7 @@ void FMAltSelectorModel::FMAltItemDelegate::paint(QPainter * painter, const QSty
 	qDebug()<<"Paint"<<index.row()<<index.column()<< item->alts;
 	double fsize(22.0);
 	painter->save();
-	foreach(int idx, item->alts)
+	for (const auto& idx : item->alts)
 	{
 		QImage img(fi->glyphImage(idx, fsize));
 		int ssize(img.width());
@@ -253,7 +253,7 @@ QSize FMAltSelectorModel::FMAltItemDelegate::sizeHint( const QStyleOptionViewIte
 	FMAltSelectorModel::AltItem * item = static_cast<FMAltSelectorModel::AltItem*>(index.internalPointer());
 	if(!item)
 		return ret;
-	foreach(int idx, item->alts)
+	for (const auto& idx : item->alts)
 	{
 		QImage img(fi->glyphImage(idx, fsize));
 		ret.rwidth() += img.width() + 3;

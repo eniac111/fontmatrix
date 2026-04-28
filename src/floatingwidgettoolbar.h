@@ -35,13 +35,13 @@ class FloatingWidgetToolBar : public QWidget
     Q_OBJECT
 
 public:
-    explicit FloatingWidgetToolBar(QWidget *parent = 0);
-    ~FloatingWidgetToolBar();
+    explicit FloatingWidgetToolBar(QWidget *parent = nullptr);
+    ~FloatingWidgetToolBar() override;
 
     void setNoClose(bool c);
 
 protected:
-    void changeEvent(QEvent *e);
+    void changeEvent(QEvent *e) override;
 
 private:
     Ui::FloatingWidgetToolBar *ui;

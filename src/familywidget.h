@@ -47,8 +47,8 @@ class FamilyWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit FamilyWidget(QWidget *parent = 0);
-    ~FamilyWidget();
+    explicit FamilyWidget(QWidget *parent = nullptr);
+    ~FamilyWidget() override;
 
     void setFamily(const QString& f);
     TagsWidget* tagWidget();
@@ -57,8 +57,8 @@ public:
     QString curVariant;
 
 protected:
-    void changeEvent(QEvent *e);
-    void keyPressEvent ( QKeyEvent * event );
+    void changeEvent(QEvent *e) override;
+    void keyPressEvent ( QKeyEvent * event ) override;
 
     void buildList(const QList<FontItem*>& fl);
 
