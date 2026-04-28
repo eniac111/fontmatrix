@@ -132,7 +132,6 @@ void FMKernFeature::makeCoverage()
 				quint16 RangeCount ( toUint16 ( Coverage_Offset + 2 ) );
 				if ( out )
 					qDebug() <<"\t\t\tRangeCount" <<RangeCount;
-				int gl_base ( 0 );
 				for ( int r ( 0 ); r < RangeCount; ++r )
 				{
 					quint16 rBase ( Coverage_Offset + 4 + ( r * 6 ) );

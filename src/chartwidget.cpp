@@ -148,7 +148,7 @@ void ChartWidget::selectBlock(const QString &uname)
 		int interval = uniPair.second - uniPair.first;
 		coverage = coverage * 100 / ( interval + 1 );// against /0 exception
 
-		QString statstring(tr("Block (%1):").arg( QString::number ( coverage ) + "\%"));
+		QString statstring(tr("Block (%1):").arg( QString::number ( coverage ) + "%"));
 		ui->unicodeCoverageStat->setText ( statstring );
 
 		theVeryFont->renderAll ( abcScene , uniPair.first, uniPair.second );
@@ -235,7 +235,7 @@ void ChartWidget::slotUpdateGView()
 		int interval = uniPair.second - uniPair.first;
 		coverage = coverage * 100 / ( interval + 1 );// against /0 exception
 
-		QString statstring(tr("Block (%1):").arg( QString::number ( coverage ) + "\%"));
+		QString statstring(tr("Block (%1):").arg( QString::number ( coverage ) + "%"));
 		ui->unicodeCoverageStat->setText ( statstring );
 
 		theVeryFont->renderAll ( abcScene , uniPair.first, uniPair.second );
@@ -244,7 +244,7 @@ void ChartWidget::slotUpdateGView()
 }
 
 
-void ChartWidget::slotAdjustGlyphView ( int width )
+void ChartWidget::slotAdjustGlyphView ( [[maybe_unused]] int width )
 {
 //	if ( !theVeryFont )
 //		return;
@@ -534,7 +534,6 @@ void ChartWidget::slotDoPrinting()
 			delete git;
 		}
 
-		int controlN(maxCharcode - beginCharcode);
 		int stopAtCode( font->renderChart(&pScene, beginCharcode, maxCharcode, sourceR.width(),sourceR.height() ) );
 		qDebug()<< "Control"<<beginCharcode<<stopAtCode;
 

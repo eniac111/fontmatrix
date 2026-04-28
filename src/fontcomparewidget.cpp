@@ -160,8 +160,8 @@ void FontCompareWidget::addFont()
 	int curCIdx(0);
 	for(int co(1); co <= cn; co++)
 	{
-		if(cc <= curcode)
-			curCIdx = co; 
+		if(static_cast<uint>(cc) <= curcode)
+			curCIdx = co;
 		compareCharBox->addItem(QString("%1  (U+%2)").arg(QChar(cc)).arg(cc,4,16,QChar('0')),cc);
 		cc = f->nextChar(cc,1);
 	}
@@ -363,7 +363,7 @@ void FontCompareWidget::fontChange(QListWidgetItem * witem, QListWidgetItem * )
 	for(int co(1); co <= cn; co++)
 	{
 		compareCharBox->addItem( QString("%1  (U+%2)").arg(QChar(cc)).arg(cc,4,16,QChar('0')),cc);
-		if(cc < curcode)
+		if(static_cast<uint>(cc) < curcode)
 		{
 			curCIdx = co;
 		}

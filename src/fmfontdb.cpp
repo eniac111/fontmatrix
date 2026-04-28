@@ -325,10 +325,8 @@ FontInfoMap FMFontDb::getInfoMap ( const QString & id )
 	if ( query.exec() )
 	{
 		int lIdx ( query.record().indexOf ( fieldName[Lang] ) );
-		int iIdx ( query.record().indexOf ( fieldName[Id] ) );
 		int kIdx ( query.record().indexOf ( fieldName[InfoKey] ) );
 		int vIdx ( query.record().indexOf ( fieldName[InfoValue] ) );
-		int maxIdx ( query.record().count() );
 		while ( query.next() )
 		{
 			ret[query.value ( lIdx ).toInt() ][query.value ( kIdx ).toInt() ] = query.value ( vIdx ).toString();
@@ -342,7 +340,7 @@ FontInfoMap FMFontDb::getInfoMap ( const QString & id )
 
 }
 
-QList<FontDBResult> FMFontDb::getInfo ( const QList< FontItem * > & fonts, InfoItem info, int codeLang )
+QList<FontDBResult> FMFontDb::getInfo ( [[maybe_unused]] const QList< FontItem * > & fonts, InfoItem info, int codeLang )
 {
 	QList<FontDBResult> ret;
 	QString where ( QString ( "(%1='%2') AND (%3='%4')" )
@@ -663,7 +661,6 @@ void FMFontDb::initFMDb()
 		{
 			int anId ( 0 );
 			QString path;
-			int counter ( 0 );
 			bool act ( false );
 			while ( query.next() )
 			{
@@ -856,7 +853,7 @@ QList< FontItem * > FMFontDb::Fonts ( const QVariant & pattern, Field field )
 
 QList< FontItem * > FMFontDb::Fonts ( const QVariant & pattern, InfoItem info, int codeLang )
 {
-	QString qs ( QString ( "(%1='%2') AND (%3='%4') AND (%5 LIKE '\%%6\%')" )
+	QString qs ( QString ( "(%1='%2') AND (%3='%4') AND (%5 LIKE '%%6%')" )
 	             .arg ( fieldName[InfoKey] )
 	             .arg ( info )
 	             .arg ( fieldName[Lang] )

@@ -433,12 +433,12 @@ void FMLayout::run()
 		}
 		doDraw();
 	}
-	qDebug()<<"\tLayout Finished";
+	// qDebug()<<"\tLayout Finished";
 }
 
 void FMLayout::doLayout ( const QList<GlyphList> & spec , double fs, FontItem* font)
 {
-	qDebug()<<"FMLayout::doLayout"<<thread();
+	// qDebug()<<"FMLayout::doLayout"<<thread();
 	if(font)
 		theFont = font;
 	stopIt = false;
@@ -484,7 +484,7 @@ void FMLayout::doLayout ( const QList<GlyphList> & spec , double fs, FontItem* f
 	run();
 	layoutIsFinished = true;
 	emit layoutFinished();
-	qDebug()<< "FMLayout::doLayout return" << justRedraw;
+	// qDebug()<< "FMLayout::doLayout return" << justRedraw;
 }
 
 void FMLayout::endOfRun()
@@ -967,7 +967,7 @@ void FMLayout::doDraw()
 	// 	qDebug() <<"doDraw T(ms)"<<t.elapsed();
 	emit paintFinished();
 	emit drawPixmapForMe(-1,0,0,0);
-	qDebug()<<"P emitted:"<<pd;
+	// qDebug()<<"P emitted:"<<pd;
 }
 
 int FMLayout::sepCount(int start, int end, const GlyphList & gl)

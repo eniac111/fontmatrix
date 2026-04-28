@@ -23,11 +23,19 @@ for which a new license (GPL+exception) is in place.
 
 // #include "prefsmanager.h"
 #include "sctextbrowser.h"
+
+#include <QWebEnginePage>
+#include <QWebEngineProfile>
 // #include "urllauncher.h"
 
 ScTextBrowser::ScTextBrowser( QWidget * parent )
 	: QWebEngineView(parent)
 {
+	// Use a dedicated off-the-record profile owned by this widget instead of
+	// the global default profile, so page and profile are both destroyed with
+	// the widget and don't outlive the profile's shutdown at application exit.
+	auto *profile = new QWebEngineProfile(this);
+	setPage(new QWebEnginePage(profile, this));
 }
 
 void ScTextBrowser::home()

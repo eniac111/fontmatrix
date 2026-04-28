@@ -301,7 +301,6 @@ void FMOwnShaper::Replace(int repIndex, QList< Character > chunk)
 		}
 	}
 	// Let replace :)
-	int rIndex(0);
 	for (const auto& rep : Replacements[repIndex].Properties)
 	{
 		if(rep.isNull())

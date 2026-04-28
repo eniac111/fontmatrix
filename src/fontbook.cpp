@@ -299,7 +299,7 @@ void FontBook::doFullBookPageRight(const QString &family)
 
 		yPos += 4.0;
 		QGraphicsSimpleTextItem * nameText = pScene.addSimpleText( QString("%1 %2pt").arg(familyFonts[fidx]->variant())
-									   .arg((fSize > 16.0) ? qRound(fSize) : (fSize, 0, 'f', 1)),
+									   .arg((fSize > 16.0) ? QString::number(qRound(fSize)) : QString::number(fSize, 'f', 1)),
 									   nameFont) ;
 		nameText->setPos(xOff, yPos);
 		nameText->setBrush(Qt::gray);

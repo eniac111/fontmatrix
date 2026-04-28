@@ -242,7 +242,7 @@ void FMAltSelectorModel::FMAltItemDelegate::paint(QPainter * painter, const QSty
 	painter->restore();
 }
 
-QSize FMAltSelectorModel::FMAltItemDelegate::sizeHint( const QStyleOptionViewItem & option, const QModelIndex & index ) const
+QSize FMAltSelectorModel::FMAltItemDelegate::sizeHint( [[maybe_unused]] const QStyleOptionViewItem & option, const QModelIndex & index ) const
 {
 	QSize ret;
 

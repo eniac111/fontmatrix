@@ -732,11 +732,10 @@ bool QHexView::isSelected(int index) const {
 //------------------------------------------------------------------------------
 // Name: 
 //------------------------------------------------------------------------------
-void QHexView::drawComments(QPainter &painter, unsigned int offset, unsigned int row) const {
+void QHexView::drawComments(QPainter &painter, unsigned int /*offset*/, unsigned int row) const {
 	
 	painter.setPen(QPen(palette().text().color()));
 	
-	const address_t address	= m_AddressOffset + offset;
 	QString comment;
 	
 // 	if(m_CommentServer != 0) {

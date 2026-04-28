@@ -89,7 +89,7 @@ void FMMatchRaster::addImage ( const QString & )
 	refImage = iView->getPixmap().toImage().copy ( curRect );
 	const unsigned int iw(refImage.width());
 	const unsigned int ih(refImage.height());
-	if((iw < m_minRefSize) && (ih < m_minRefSize))
+	if((iw < static_cast<unsigned int>(m_minRefSize)) && (ih < static_cast<unsigned int>(m_minRefSize)))
 	{
 		double dw(iw);
 		double dh(ih);
@@ -99,11 +99,11 @@ void FMMatchRaster::addImage ( const QString & )
 		dh *= ratio;
 		refImage = refImage.scaled(qRound(dw), qRound(dh), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 	}
-	else if(iw < m_minRefSize)
+	else if(iw < static_cast<unsigned int>(m_minRefSize))
 	{
 		refImage = refImage.scaledToWidth(m_minRefSize, Qt::SmoothTransformation);
 	}
-	else if(ih < m_minRefSize)
+	else if(ih < static_cast<unsigned int>(m_minRefSize))
 	{
 		refImage = refImage.scaledToHeight(m_minRefSize, Qt::SmoothTransformation);
 	}

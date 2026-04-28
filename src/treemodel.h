@@ -36,7 +36,7 @@ class TreeModel : public QAbstractItemModel
 
 	public:
 		TreeModel ( const QString &data, QObject *parent = nullptr );
-		TreeModel ( QObject *parent = nullptr ) {}; //CB Added for ScHelpTreeModel
+		TreeModel ( [[maybe_unused]] QObject *parent = nullptr ) {}; //CB Added for ScHelpTreeModel
 		~TreeModel() override;
 
 		QVariant data ( const QModelIndex &index, int role ) const override;

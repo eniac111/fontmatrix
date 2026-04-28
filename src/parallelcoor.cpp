@@ -420,8 +420,6 @@ void ParallelCoorView::drawFields()
 {
 // 	qDebug()<<"ParallelCoorView::drawFields";
 	QFont fontF( "Helvetica" , 100.0 , QFont::DemiBold, false );
-	double lastW(0.0);
-	bool lastPosShifted(false);
 	double maxAscent(0.0);
 	for(int k(0);k < m_dataSet->count(); ++k)
 	{
@@ -492,7 +490,6 @@ void ParallelCoorView::drawValues()
 	
 	QFont fontV( "Helvetica" , 9, QFont::Normal , true );
 	QFont fontS( "Helvetica" , 10, QFont::DemiBold , true );
-	double din(static_cast<double>(di));
 	double dn(static_cast<double>(m_dataSet->at(di).second.count()-1));
 	double vsep(units.H / dn);
 	QList<QString> list (m_dataSet->at(di).second);
@@ -631,7 +628,7 @@ bool ParallelCoorView::matchFilter(QList< int > list) const
 /**
 	Field label
 */
-void ParallelCoorFieldItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
+void ParallelCoorFieldItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
 {
 	qApp->setOverrideCursor(Qt::PointingHandCursor);
 	QBrush b = brush();
@@ -639,7 +636,7 @@ void ParallelCoorFieldItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
 	setBrush(b);
 }
 
-void ParallelCoorFieldItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
+void ParallelCoorFieldItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *)
 {
 	QBrush b = brush();
 	b.setColor(Qt::black);
@@ -652,14 +649,14 @@ void ParallelCoorFieldItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 	event->accept();
 }
 
-void ParallelCoorFieldItem::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
+void ParallelCoorFieldItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
 	if(QString(pview->metaObject()->className()) == QString("ParallelCoorView") )
 	{
 		ParallelCoorView *pcv = reinterpret_cast<ParallelCoorView*>(pview);
 		pcv->selectField(text());
 	}
-	
+
 	qApp->restoreOverrideCursor();
 }
 
@@ -725,12 +722,12 @@ void ParallelCoorValueItem::click(int mod)
 	qApp->restoreOverrideCursor();
 }
 
-void ParallelCoorValueItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
+void ParallelCoorValueItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
 {
 	hoverEnter();
 }
 
-void ParallelCoorValueItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
+void ParallelCoorValueItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *)
 {
 	hoverLeave();
 }
@@ -760,7 +757,7 @@ ParallelCoorBarItem::ParallelCoorBarItem(const QString& field, QGraphicsView * p
 	setAcceptHoverEvents ( true );
 }
 
-void ParallelCoorBarItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
+void ParallelCoorBarItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
 {
 // 	qApp->setOverrideCursor(Qt::PointingHandCursor);
 	setPen(ParallelCoorView::pens["bar-hover"]);
@@ -771,18 +768,18 @@ void ParallelCoorBarItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
 	}
 }
 
-void ParallelCoorBarItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
+void ParallelCoorBarItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *)
 {
 	setPen(ParallelCoorView::pens["bar"]);
 // 	qApp->restoreOverrideCursor();
 }
 
-void ParallelCoorBarItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
+void ParallelCoorBarItem::mousePressEvent(QGraphicsSceneMouseEvent *)
 {
 // 	event->accept();
 }
 
-void ParallelCoorBarItem::mouseReleaseEvent(QGraphicsSceneMouseEvent * event)
+void ParallelCoorBarItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
 // 	if(QString(pview->metaObject()->className()) == QString("ParallelCoorView") )
 // 	{

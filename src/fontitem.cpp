@@ -701,8 +701,6 @@ QGraphicsPixmapItem * FontItem::itemFromGindexPix ( int index, double size )
 		return nullptr;
 	int charcode = index ;
 
-	double scaleFactor = size / m_face->units_per_EM;
-
 	// Set size
 	FT_Set_Char_Size ( m_face,
 	                   qRound( size  * 64 ),
@@ -1738,7 +1736,7 @@ void FontItem::deRenderAll()
 QByteArray FontItem::pixarray ( uchar * b, int len )
 {
 	uchar *imgdata =  b ;
-	QByteArray buffer ( len * 4, 255 );
+	QByteArray buffer ( len * 4, static_cast<char>(-1) );
 	QDataStream stream ( &buffer,QIODevice::WriteOnly );
 	for ( int i = 0 ; i < len; ++i )
 	{
@@ -1824,11 +1822,10 @@ int FontItem::countCoverage ( int begin_code, int end_code )
 		return 0;
 // 	qDebug()<<"CC B E"<<begin_code<<end_code;
 	FT_ULong  charcode = begin_code ;
-	FT_UInt   gindex = 0;
 	int count = 0;
 	if ( begin_code >= 0 )
 	{
-		for ( ;charcode <= end_code ; ++charcode)
+		for ( ;charcode <= static_cast<FT_ULong>(end_code) ; ++charcode)
 		{
 			if( FT_Get_Char_Index ( m_face, charcode))
 				++count;
@@ -1927,7 +1924,7 @@ void FontItem::renderAll ( QGraphicsScene * scene , int begin_code, int end_code
 	{
 		if ( m_isEncoded )
 		{
-			while ( charcode <= end_code && gindex )
+			while ( charcode <= static_cast<FT_ULong>(end_code) && gindex )
 			{
 				if ( nl == m_glyphsPerRow )
 				{
@@ -1995,7 +1992,7 @@ void FontItem::renderAll ( QGraphicsScene * scene , int begin_code, int end_code
 		else // Has not Unicode
 		{
 			// Here are fake charcodes (glyph index)
-			while ( charcode <= end_code )
+			while ( charcode <= static_cast<FT_ULong>(end_code) )
 			{
 				if ( nl == m_glyphsPerRow )
 				{
@@ -2063,7 +2060,7 @@ void FontItem::renderAll ( QGraphicsScene * scene , int begin_code, int end_code
 		while ( anIndex )
 		{
 			anyChar =  FT_Get_Next_Char ( m_face,anyChar,&anIndex );
-			if ( anIndex && (anIndex <= m_numGlyphs))
+			if ( anIndex && (anIndex <= static_cast<FT_UInt>(m_numGlyphs)))
 			{
 				notCovered[anIndex] = false;
 			}
@@ -2162,7 +2159,7 @@ int FontItem::renderChart ( QGraphicsScene * scene, int begin_code, int end_code
 	QFont infoFont (  typotek::getInstance()->getChartInfoFontName() , typotek::getInstance()->getChartInfoFontSize()  );
 	QBrush selBrush ( QColor ( 255,255,255,0 ) );
 
-	while ( charcode <= end_code && gindex )
+	while ( charcode <= static_cast<FT_ULong>(end_code) && gindex )
 	{
 		if ( nl == m_glyphsPerRow )
 		{
@@ -2261,7 +2258,7 @@ QString FontItem::glyphName ( int codepoint, bool codeIsChar )
 }
 
 
-QString FontItem::infoGlyph ( int index, int code )
+QString FontItem::infoGlyph ( [[maybe_unused]] int index, int code )
 {
 	ensureFace();
 	QString ret;
@@ -2304,8 +2301,6 @@ QPixmap FontItem::oneLinePreviewPixmap ( QString oneline , QColor fg_color, QCol
 //	}
 	if ( !ensureFace() )
 		return QPixmap();
-	QRectF savedRect = theOneLineScene->sceneRect();
-
 	double theSize = (size_f == 0) ? typotek::getInstance()->getPreviewSize() : size_f;
 	double pt2px = typotek::getInstance()->getDpiX() / 72.0;
 	double theHeight = theSize * 1.3 * pt2px;
@@ -2324,7 +2319,6 @@ QPixmap FontItem::oneLinePreviewPixmap ( QString oneline , QColor fg_color, QCol
 	QPointF pen ( pRTL ? theWidth - 16 : 16 , theSize *  pt2px );
 
 	int fsize = qRound(theSize) * 64  ;
-	double scalefactor = theSize / m_face->units_per_EM;
 
 	QPixmap linePixmap ( qRound(theWidth), qRound(theHeight) );
 	linePixmap.fill ( bg_color );
@@ -3055,7 +3049,7 @@ int FontItem::showFancyGlyph ( QGraphicsView *view, int charcode , bool charcode
 		for (int ay = 0; ay < tmp_.height(); ++ay)
 			for (int ax = 0; ax < tmp_.width(); ++ax)
 				altI.setPixel(ax, ay, qGray(qAlpha(tmp_.pixel(ax,ay)), qAlpha(tmp_.pixel(ax,ay)), qAlpha(tmp_.pixel(ax,ay))));
-			QPixmap altP ( altI.width() * 2, altI.height() * 2 );
+		QPixmap altP ( altI.width() * 2, altI.height() * 2 );
 			altP.fill ( Qt::transparent );
 			QPainter altPainter ( &altP );
 			altPainter.setRenderHint ( QPainter::Antialiasing,true );
@@ -3124,7 +3118,7 @@ bool FontItem::isLocal()
 }
 
 /// We don’t want to download fonts yet. We just want something to fill font tree
-void FontItem::fileRemote ( QString f , QString v, QString t, QString i, QPixmap p )
+void FontItem::fileRemote ( QString f , QString v, QString t, [[maybe_unused]] QString i, [[maybe_unused]] QPixmap p )
 {
 	m_family = f;
 	m_variant = v;
@@ -3134,7 +3128,7 @@ void FontItem::fileRemote ( QString f , QString v, QString t, QString i, QPixmap
 }
 
 /// the same, but just for speedup startup with a lot of font files
-void FontItem::fileLocal ( QString f, QString v, QString t, QString p )
+void FontItem::fileLocal ( QString f, QString v, QString t, [[maybe_unused]] QString p )
 {
 	m_family = f;
 	m_variant = v;
@@ -3219,7 +3213,7 @@ void FontItem::slotDowloadProgress ( int done, int total )
 	qDebug() << " [" <<done << "/"<< total<<"]" ;
 }
 
-void FontItem::slotDownloadEnd ( int id, bool error )
+void FontItem::slotDownloadEnd ( int id, [[maybe_unused]] bool error )
 {
 	qDebug() << m_path << "::slotDownloadEnd ["<< id <<"] when remoteCached = "<< remoteCached;
 	if ( id != remoteId )
@@ -3253,7 +3247,7 @@ void FontItem::slotDownloadDone ( bool error )
 	qDebug() << "slotDownloadDone(" <<error<<")";
 }
 
-void FontItem::slotDownloadState ( int state )
+void FontItem::slotDownloadState ( [[maybe_unused]] int state )
 {
 #if 0 // TODO Must be re-implemented
 // 	qDebug() << "slotDownloadState("<<state<<")";
@@ -3415,10 +3409,10 @@ QImage FontItem::glyphImage(QColor color)
 	
 	unsigned char * cursor(m_face->glyph->bitmap.buffer);
 // 	QString dbs;
-	for(int r(0); r < m_face->glyph->bitmap.rows; ++r)
+	for(int r(0); r < static_cast<int>(m_face->glyph->bitmap.rows); ++r)
 	{
 // 		dbs.clear();
-		for(int x(0); x < m_face->glyph->bitmap.width; ++x)
+		for(int x(0); x < static_cast<int>(m_face->glyph->bitmap.width); ++x)
 		{
 			img.setPixel( x, r, *(cursor + x));
 // 			dbs += (*(cursor + x) > 0) ? "+" : ".";

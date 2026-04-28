@@ -37,6 +37,7 @@ ENDIF(WANT_HARFBUZZ)
 ADD_LIBRARY(harfbuzz
 STATIC ${harfbuzz_SOURCES})
 
+target_compile_options(harfbuzz PRIVATE -w)
 
 # MESSAGE(STATUS "Adding ${harfbuzz}" )
 

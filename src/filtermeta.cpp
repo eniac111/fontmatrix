@@ -48,7 +48,7 @@ void FilterMeta::operate()
 		int patCount(fs.size());
 		for(int a(0); a < patCount; ++a)
 		{
-			unsigned int ca(fs[a].unicode());
+			int ca(fs[a].unicode());
 			if( ca < startC)
 				startC = ca;
 			if(ca > endC)

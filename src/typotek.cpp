@@ -235,22 +235,23 @@ void typotek::initMatrix()
 	{
 		QSettings st;
 		QString dP( st.value("Sample/HyphenationDict", "hyph.dic").toString() );
-		if(QFileInfo(dP).exists())
+		if(!dP.isEmpty() && QFileInfo(dP).exists())
 		{
 			hyphenator = new FMHyphenator();
 			if (!hyphenator->loadDict(dP, st.value("Sample/HyphLeft", 2).toInt(), st.value("Sample/HyphRight", 3).toInt())) {
-				st.setValue("Sample/HyphenationDict", "");
-				st.setValue("Sample/HyphLeft", 2);
-				st.setValue("Sample/HyphRight", 3);
+				// Dict file exists but failed to load — clear so the user can reconfigure
+				st.remove("Sample/HyphenationDict");
+				st.remove("Sample/HyphLeft");
+				st.remove("Sample/HyphRight");
 			}
 		}
 		else
 		{
-			hyphenator = new FMHyphenator(); // init the hyphenator anyway for the prefs
-			st.setValue("Sample/HyphenationDict", "");
-			st.setValue("Sample/HyphLeft", 2);
-			st.setValue("Sample/HyphRight", 3);
-			qDebug()<<"Err H"<<dP;
+			// No dict configured or file missing — create hyphenator anyway for prefs access
+			hyphenator = new FMHyphenator();
+			// Remove any stale empty-string value so the default applies next launch
+			if(dP.isEmpty())
+				st.remove("Sample/HyphenationDict");
 		}
 	}
 }

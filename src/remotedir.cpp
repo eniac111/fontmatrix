@@ -179,7 +179,7 @@ void RemoteDir::eventEndDownload()
 		doc.setContent(*(bIt.value()));
 		//loading fonts
 		QDomNodeList colList = doc.elementsByTagName ( "fontfile" );
-		for ( uint i = 0; i < colList.length(); ++i )
+		for ( int i = 0; i < colList.length(); ++i )
 		{
 			QDomNode col = colList.item ( i );
 			
@@ -228,7 +228,7 @@ void RemoteDir::getPreviews()
 		QDomDocument doc ( "fontdata" );
 		doc.setContent(*(bIt.value()));
 		QDomNodeList colList = doc.elementsByTagName ( "fontfile" );
-		for ( uint i = 0; i < colList.length(); ++i )
+		for ( int i = 0; i < colList.length(); ++i )
 		{
 			QDomNode col = colList.item ( i );
 			QString p = col.namedItem ( "file" ).toElement().text();
