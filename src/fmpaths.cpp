@@ -32,7 +32,7 @@ QString FMPaths::TranslationsDir()
 #ifdef PLATFORM_APPLE
 	QString QMDirPath = QApplication::applicationDirPath();
 	QMDirPath +=  dirsep + ".." + dirsep + "Resources" + dirsep + "Locales" + dirsep;	
-#elif _WIN32
+#elif defined(_WIN32)
 	QString QMDirPath = QApplication::applicationDirPath();
 	QMDirPath +=  dirsep + "share" + dirsep + "qm" + dirsep;
 #else
@@ -52,7 +52,7 @@ QString FMPaths::HelpDir()
 	QString dirsep(QDir::separator());
 #ifdef PLATFORM_APPLE
 	hf = LocalizedDirPath( QApplication::applicationDirPath() + dirsep + "help" + dirsep );
-#elif _WIN32
+#elif defined(_WIN32)
 	hf = LocalizedDirPath(QApplication::applicationDirPath() + dirsep + "help" + dirsep );
 #else
 	hf = LocalizedDirPath( PREFIX + dirsep + "share" + dirsep + "fontmatrix" + dirsep + "help" + dirsep );
@@ -69,7 +69,7 @@ QString FMPaths::ResourcesDir()
 #ifdef PLATFORM_APPLE
 	QString QMDirPath = QApplication::applicationDirPath();
 	QMDirPath +=  dirsep + ".." + dirsep + "Resources" + dirsep ;	
-#elif _WIN32
+#elif defined(_WIN32)
 	QString QMDirPath = QApplication::applicationDirPath();
 	QMDirPath +=  dirsep + "share" + dirsep + "resources" + dirsep;
 #else

@@ -866,7 +866,7 @@ void typotek::createMenus()
 	servicesMenu->addAction(exportXeTeXAct);
 #ifdef PLATFORM_APPLE
 	// TODO
-#elif _WIN32
+#elif defined(_WIN32)
 	// TODO
 #else
 	servicesMenu->addAction( repairAct );
@@ -1103,7 +1103,7 @@ void typotek::checkOwnDir()
 
 		ResourceFile.setFileName(newDataPath + sep + "Resource.xml");
 	}
-#elif _WIN32
+#elif defined(_WIN32)
 	{
 		// %LOCALAPPDATA%\Fontmatrix\fontmatrix
 		QString newDataPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
@@ -1291,7 +1291,7 @@ QStringList typotek::getSystemFontDirs()
 	retList << "/Library/Fonts";
 	retList << "/System/Library/Fonts";
 #endif // PLATFORM_APPLE
-#if _WIN32
+#if defined(_WIN32)
 	retList << getWin32SystemFontDir();
 #endif // _WIN32
 	

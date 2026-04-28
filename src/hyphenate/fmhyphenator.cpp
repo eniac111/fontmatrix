@@ -39,7 +39,7 @@ bool FMHyphenator::loadDict(const QString & dictPath, int leftMin, int rightMin)
 		}
 	}
 
-	if (( dict = hnj_hyphen_load( dictPath.toLocal8Bit() ) ) == 0)
+	if (( dict = hnj_hyphen_load( dictPath.toLocal8Bit().constData() ) ) == 0)
 	{
 		qDebug()<<"Unable to load dict file:"<<dictPath;
 		return false;

@@ -167,7 +167,7 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 	emit activationEvent ( aList );
 }
 
-#elif _WIN32
+#elif defined(_WIN32)
 
 void FMActivate::activate(QList<FontItem*> fitList, bool act)
 {

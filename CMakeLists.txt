@@ -17,8 +17,6 @@ MESSAGE(STATUS "Building Fontmatrix ${VERSION}")
 
 IF(UNIX AND NOT APPLE)
 	SET (CMAKE_INSTALL_PREFIX /usr/local CACHE PATH "Installation path")
-	SET (FONTMATRIX_BIN bin )
-	SET (FONTMATRIX_QMDIR "share/fontmatrix/qm" )
 ENDIF(UNIX AND NOT APPLE)
 
 IF(APPLE)
@@ -38,7 +36,33 @@ MESSAGE(STATUS "Fontmatrix will be installed under ${CMAKE_INSTALL_PREFIX}")
 
 
 
-SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
+find_package(ECM 6.0 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
+
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+# These Qt strictness flags require mass codebase changes — deferred to later phases:
+#   QT_NO_CAST_FROM_ASCII / TO_ASCII / FROM_BYTEARRAY  → Phase 5 (i18n migration)
+#   QT_NO_KEYWORDS (signals/slots/foreach)             → Phase 2 (main window refactor)
+remove_definitions(
+    -DQT_NO_CAST_FROM_ASCII
+    -DQT_NO_CAST_TO_ASCII
+    -DQT_NO_CAST_FROM_BYTEARRAY
+    -DQT_NO_KEYWORDS
+    -DQT_NO_FOREACH
+    -DQT_USE_QSTRINGBUILDER
+)
+include(FeatureSummary)
+
+find_package(KF6 REQUIRED COMPONENTS
+    CoreAddons
+)
+
+IF(UNIX AND NOT APPLE)
+    SET(FONTMATRIX_BIN ${KDE_INSTALL_BINDIR})
+    SET(FONTMATRIX_QMDIR "${KDE_INSTALL_DATADIR}/fontmatrix/qm")
+ENDIF(UNIX AND NOT APPLE)
 
 # Very generic definition, mainly to sort out bugs reported by mrdocs
 IF(APPLE)
@@ -203,37 +227,31 @@ ADD_SUBDIRECTORY(src)
 ######## Installation ##################
 
 IF(UNIX AND NOT APPLE)
-	SET(DESKTOPDIR "share/applications/")
-	SET(MANDIR "share/man/")
-	SET(ICONDIR "share/icons/hicolor/48x48/apps/")
-	SET(RESOURCESDIR "share/fontmatrix/resources/")
-	SET(HELPDIR "share/fontmatrix/help/")
-	
 	INSTALL(FILES
 	fontmatrix.desktop
-	DESTINATION ${DESKTOPDIR}
+	DESTINATION ${KDE_INSTALL_APPDIR}
 	)
-	
+
 	INSTALL(FILES
 	fontmatrix.png
-	DESTINATION ${ICONDIR}
+	DESTINATION "${KDE_INSTALL_ICONDIR}/hicolor/48x48/apps"
 	)
-	
+
 	INSTALL(FILES
 	fontmatrix.1
-	DESTINATION "${MANDIR}man1"
+	DESTINATION "${KDE_INSTALL_MANDIR}/man1"
 	)
-	
+
 	INSTALL(FILES
 	${FM_TEMPLATES_FILES}
 	${FM_STYLE_FILES}
 	${FM_WELCOME_FILES}
-	DESTINATION "${RESOURCESDIR}"
+	DESTINATION "${KDE_INSTALL_DATADIR}/fontmatrix/resources"
 	)
 
 	INSTALL(FILES
 	${FM_HELP_FILES}
-	DESTINATION "${HELPDIR}"
+	DESTINATION "${KDE_INSTALL_DATADIR}/fontmatrix/help"
 	)
 ENDIF(UNIX AND NOT APPLE)
 
@@ -349,5 +367,7 @@ GNU GENERAL PUBLIC LICENSE\n\
 ${_gpl_text}")
 	SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_BINARY_DIR}/LICENSE.txt")
 ENDIF(WIN32)
+
+feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 INCLUDE(CPack)

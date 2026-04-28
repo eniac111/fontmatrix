@@ -123,10 +123,16 @@ IF(PODOFO)
 	SET(PODOFO_SRCS
 	fmpdffontextractor.cpp
 	)
+	# PoDoFo API uses C++ exceptions; re-enable them for this file only
+	KDE_SOURCE_FILES_ENABLE_EXCEPTIONS(${CMAKE_CURRENT_SOURCE_DIR}/fmpdffontextractor.cpp)
 	IF(TARGET podofo::podofo)
+		# podofo 1.0.x CMake config (namespaced target)
 		SET(PODOFO_LINK_LIBS podofo::podofo)
+	ELSEIF(TARGET podofo_shared)
+		# podofo 0.10.x system package (old-style non-namespaced target)
+		SET(PODOFO_LINK_LIBS podofo_shared)
 	ELSE()
-		SET(PODOFO_LINK_LIBS ${PODOFO_LINK_LIBS})
+		SET(PODOFO_LINK_LIBS ${LIBPODOFO_LIBRARY})
 	ENDIF()
 ENDIF(PODOFO)
 
