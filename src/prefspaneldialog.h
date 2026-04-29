@@ -12,15 +12,16 @@
 #ifndef PREFSPANELDIALOG_H
 #define PREFSPANELDIALOG_H
 
-#include <qdialog.h>
+#include <KPageDialog>
 #include <ui_prefs_panel.h>
 
 class QStandardItemModel;
+class KPageWidgetItem;
 
 /**
 	@author Pierre Marchand <pierremarc@oep-h.com>
 */
-class PrefsPanelDialog : public QDialog, private Ui::PrefsPanel
+class PrefsPanelDialog : public KPageDialog, private Ui::PrefsPanel
 {
 	Q_OBJECT
 	public:
@@ -45,11 +46,20 @@ class PrefsPanelDialog : public QDialog, private Ui::PrefsPanel
 		bool event( QEvent* ev ) override;
 		void keyPressEvent(QKeyEvent *k) override;
 		void keyReleaseEvent(QKeyEvent *k) override;
+		void done(int r) override;
 		static QString getKeyText(int KeyC);
 
 	private:
 		void doConnect();
 		QStandardItemModel *shortcutModel;
+		QDialog *m_uiHolder;
+		KPageWidgetItem *m_pageGeneral;
+		KPageWidgetItem *m_pageSystray;
+		KPageWidgetItem *m_pageDisplay;
+		KPageWidgetItem *m_pageTools;
+		KPageWidgetItem *m_pageSampleText;
+		KPageWidgetItem *m_pageFiles;
+		KPageWidgetItem *m_pageShortcuts;
 
 		/* For the keyboard shortcut */
 		int keyCode;
@@ -63,7 +73,6 @@ class PrefsPanelDialog : public QDialog, private Ui::PrefsPanel
 		void setSelected(const QString &actionText);
 
 	private slots:
-		void slotSelectPage(QListWidgetItem * item);
 		void applySampleText();
 
 		void addSampleName();
@@ -112,7 +121,6 @@ class PrefsPanelDialog : public QDialog, private Ui::PrefsPanel
 
 		void slotDictDialog();
 
-		void slotClose();
 
 };
 

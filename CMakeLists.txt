@@ -74,6 +74,7 @@ IF(UNIX AND NOT APPLE)
         Config
         XmlGui
         ConfigWidgets
+        WidgetsAddons
         StatusNotifierItem
     )
     # KDocTools is optional — if absent, the handbook is skipped but the app still builds.

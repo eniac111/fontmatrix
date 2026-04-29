@@ -309,6 +309,7 @@ IF(UNIX AND NOT APPLE)
 	KF6::ConfigCore
 	KF6::XmlGui
 	KF6::ConfigWidgets
+	KF6::WidgetsAddons
 	KF6::StatusNotifierItem
 	)
 	target_compile_definitions(fontmatrix PRIVATE

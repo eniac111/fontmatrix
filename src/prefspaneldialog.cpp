@@ -16,6 +16,7 @@
 #include "fmpaths.h"
 
 #include <KLocalizedString>
+#include <KPageWidgetItem>
 #include <QAction>
 #include <QDebug>
 #include <QToolTip>
@@ -23,13 +24,40 @@
 #include <QFileDialog>
 #include <QStandardItemModel>
 #include <QMessageBox>
+#include <QDialogButtonBox>
 
 PrefsPanelDialog::PrefsPanelDialog ( QWidget *parent )
-		: QDialog ( parent )
+		: KPageDialog ( parent )
 {
 	//get this before anything
 	double pSize = typotek::getInstance()->getPreviewSize();
-	setupUi ( this );
+
+	setWindowTitle(i18nc("@title:window", "Preferences"));
+	setFaceType(KPageDialog::List);
+	setStandardButtons(QDialogButtonBox::Close);
+	setModal(true);
+
+	// Build the legacy QDialog UI on a hidden holder, then move each page widget
+	// into the KPageDialog. Form widgets remain accessible via Ui::PrefsPanel.
+	m_uiHolder = new QDialog(this);
+	m_uiHolder->setVisible(false);
+	setupUi(m_uiHolder);
+
+	m_pageGeneral    = addPage(page,         i18n("General"));
+	m_pageGeneral->setIcon(QIcon::fromTheme(QStringLiteral("preferences-other")));
+	m_pageSystray    = addPage(pageSystray,  i18n("System tray"));
+	m_pageSystray->setIcon(QIcon::fromTheme(QStringLiteral("preferences-system")));
+	m_pageDisplay    = addPage(pageDisplay,  i18n("Display"));
+	m_pageDisplay->setIcon(QIcon::fromTheme(QStringLiteral("preferences-desktop-display")));
+	m_pageTools      = addPage(page_5,       i18n("Tools"));
+	m_pageTools->setIcon(QIcon::fromTheme(QStringLiteral("applications-utilities")));
+	m_pageSampleText = addPage(page_2,       i18n("Samples collection"));
+	m_pageSampleText->setIcon(QIcon::fromTheme(QStringLiteral("format-text-bold")));
+	m_pageFiles      = addPage(page_3,       i18n("Files && Folders"));
+	m_pageFiles->setIcon(QIcon::fromTheme(QStringLiteral("folder")));
+	m_pageShortcuts  = addPage(page_4,       i18n("Shortcuts"));
+	m_pageShortcuts->setIcon(QIcon::fromTheme(QStringLiteral("configure-shortcuts")));
+
 	fontEditorPath->setText ( typotek::getInstance()->fontEditorPath() );
 
 	systrayFrame->setCheckable ( true );
@@ -144,8 +172,6 @@ void PrefsPanelDialog::initShortcuts()
 
 void PrefsPanelDialog::doConnect()
 {
-	connect ( catList,SIGNAL ( itemClicked( QListWidgetItem *  ) ),this,SLOT ( slotSelectPage ( QListWidgetItem * ) ) );
-
 	connect ( commitSample,SIGNAL ( clicked() ),this,SLOT ( validateSampleName() ) );
 	connect ( addSampleTextNameButton,SIGNAL ( released() ),this,SLOT ( addSampleName() ) );
 	connect ( newSampleTextNameText,SIGNAL ( editingFinished() ),this,SLOT ( addSampleName() ) );
@@ -196,8 +222,6 @@ void PrefsPanelDialog::doConnect()
 	connect ( changeButton, SIGNAL ( clicked() ), this, SLOT ( slotChangeShortcut() ) );
 	connect ( shortcutList, SIGNAL ( clicked ( const QModelIndex& ) ), this, SLOT ( slotActionSelected ( const QModelIndex& ) ) );
 	// connect ( shortcutList, SIGNAL ( activated ( const QModelIndex& ) ), changeButton, SLOT ( toggle() ) );
-
-	connect ( closeButton,SIGNAL ( clicked() ),this,SLOT ( slotClose() ) );
 }
 
 void PrefsPanelDialog::applySampleText()
@@ -387,20 +411,19 @@ void PrefsPanelDialog::selectInfoStyle(const QString & css)
 
 void PrefsPanelDialog::showPage ( PAGE page )
 {
-// 	if ( page == PAGE_GENERAL )
-// 		stackedPrefs->setCurrentIndex ( 0 );
-// 	else if ( page == PAGE_SAMPLETEXT )
-// 		stackedPrefs->setCurrentIndex ( 1 );
-// 	else if ( page == PAGE_FILES )
-// 		stackedPrefs->setCurrentIndex ( 2 );
-// 	else if ( page == PAGE_SHORTCUTS )
-// 		stackedPrefs->setCurrentIndex ( 3 );
-	stackedPrefs->setCurrentIndex( int(page) );
-}
-
-void PrefsPanelDialog::slotSelectPage ( QListWidgetItem * item )
-{
-	stackedPrefs->setCurrentIndex ( catList->row ( item ) );
+	KPageWidgetItem *target = nullptr;
+	switch (page)
+	{
+		case PAGE_GENERAL:    target = m_pageGeneral; break;
+		case PAGE_SYSTRAY:    target = m_pageSystray; break;
+		case PAGE_DISPLAY:    target = m_pageDisplay; break;
+		case PAGE_SERVICES:   target = m_pageTools; break;
+		case PAGE_SAMPLETEXT: target = m_pageSampleText; break;
+		case PAGE_FILES:      target = m_pageFiles; break;
+		case PAGE_SHORTCUTS:  target = m_pageShortcuts; break;
+	}
+	if (target)
+		setCurrentPage(target);
 }
 
 void PrefsPanelDialog::slotTemplatesBrowse()
@@ -727,10 +750,10 @@ void PrefsPanelDialog::slotDictDialog()
 		dictEdit->setText ( s );
 }
 
-void PrefsPanelDialog::slotClose()
+void PrefsPanelDialog::done(int r)
 {
 	applySampleText();
-	close();
+	KPageDialog::done(r);
 }
 
 void PrefsPanelDialog::updateChartFontFamily(const QFont & font)
