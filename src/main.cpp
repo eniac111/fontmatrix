@@ -90,20 +90,70 @@ int main ( int argc, char *argv[] )
 	        .arg(FONTMATRIX_VERSION_PATCH)
 	);
 	aboutData.setShortDescription(QStringLiteral("Font management application"));
+	// Long description preserved from the legacy About dialog (src/messages/about.html).
+	aboutData.setOtherText(QStringLiteral(
+	    "<p>Fontmatrix is aimed at adventurous graphic designers and typesetters "
+	    "who need to manage hundreds and even thousands of fonts for their work — "
+	    "avoiding the need to browse overly long lists in dialogs.</p>"
+	    "<p>Basically, Fontmatrix helps you do three things:</p>"
+	    "<ul>"
+	    "<li>Activating and deactivating your fonts</li>"
+	    "<li>Tagging fonts with sets</li>"
+	    "<li>Finding suitable fonts by constructing simple or complex queries</li>"
+	    "<li>Refining the fonts selection by comparing glyphs in detail</li>"
+	    "<li>Generating font \"books\" as PDF.</li>"
+	    "</ul>"));
 	aboutData.setLicense(KAboutLicense::GPL_V2);
 	aboutData.setCopyrightStatement(QStringLiteral("© 2007–2026 FontMatrix contributors"));
 	aboutData.setHomepage(QStringLiteral("https://github.com/eniac111/fontmatrix"));
 	aboutData.setBugAddress(QByteArrayLiteral("https://github.com/eniac111/fontmatrix/issues"));
 	aboutData.setOrganizationDomain(QByteArrayLiteral("io.fontmatrix"));
+	// Authors and contributors — preserved from the legacy "The People" tab
+	// of the old About dialog (src/messages/about_people.html).
 	aboutData.addAuthor(
 	    QStringLiteral("Blagovest Petrov"),
-	    QStringLiteral("Current maintainer"),
+	    QStringLiteral("Maintainer since 2026, Qt6 support, Flatpak and improved Windows 11 support, Bulgarian translation"),
 	    QStringLiteral("blagovest@petrovs.info")
 	);
 	aboutData.addAuthor(
 	    QStringLiteral("Pierre Marchand"),
-	    QStringLiteral("Original author"),
-	    QStringLiteral("pierremarc@oep-h.com")
+	    QStringLiteral("Initiator of Fontmatrix"),
+	    QStringLiteral("pierremarc@oep-h.com"),
+	    QStringLiteral("http://oep-h.com")
+	);
+	aboutData.addAuthor(
+	    QStringLiteral("Mr Docs"),
+	    QStringLiteral("Tester, packager and documentation"),
+	    QStringLiteral("mrdocs@scribus.info"),
+	    QStringLiteral("http://www.scribus.net")
+	);
+	aboutData.addAuthor(
+	    QStringLiteral("Riku Leino"),
+	    QStringLiteral("Systray, minor tweaks, Finnish translation"),
+	    QStringLiteral("riku@scribus.info"),
+	    QStringLiteral("http://www.tsoots.fi/")
+	);
+	aboutData.addAuthor(
+	    QStringLiteral("ParagAN"),
+	    QStringLiteral("GUI enhancements, Indic fonts"),
+	    QStringLiteral("paragn@fedoraproject.org"),
+	    QStringLiteral("http://paragn.fedorapeople.org")
+	);
+	aboutData.addAuthor(
+	    QStringLiteral("Alexandre Prokoudine"),
+	    QStringLiteral("Usability, user manual, Russian translation, website"),
+	    QStringLiteral("alexandre.prokoudine@gmail.com"),
+	    QStringLiteral("http://www.libregraphicsworld.org")
+	);
+	aboutData.addAuthor(
+	    QStringLiteral("Vladimir Savic"),
+	    QStringLiteral("General visual impact, documentation"),
+	    QStringLiteral("vladimir.firefly.savic@gmail.com")
+	);
+	aboutData.addAuthor(
+	    QStringLiteral("Pavel Fric"),
+	    QStringLiteral("Czech translation"),
+	    QStringLiteral("pavelfric@seznam.cz")
 	);
 	aboutData.addCredit(
 	    QStringLiteral("FontMatrix-NG contributors"),
