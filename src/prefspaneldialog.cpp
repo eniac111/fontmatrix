@@ -70,8 +70,12 @@ PrefsPanelDialog::PrefsPanelDialog ( QWidget *parent )
 	showNamesBox->setChecked ( typotek::getInstance()->showImportedFonts() );
 // 	familyNameScheme->setChecked ( !typotek::getInstance()->familySchemeFreetype() );
 
-	chartFontCombo->setCurrentFont ( QFont(typotek::getInstance()->getChartInfoFontName()) );
-	chartFontSpin->setValue( typotek::getInstance()->getChartInfoFontSize() );
+	{
+		QFont chartFont(typotek::getInstance()->getChartInfoFontName());
+		chartFont.setPointSize(typotek::getInstance()->getChartInfoFontSize());
+		chartFontRequester->setFont(chartFont);
+		chartFontRequester->setSampleText(i18nc("@info:placeholder sample text in font requester", "Aa Bb 123"));
+	}
 
 // 	qDebug()<< "ss" << FMConfig::value("SplashScreen",false).toBool();
 	splashCheck->setChecked ( FMConfig::value ( QStringLiteral("SplashScreen"), true ).toBool() );
@@ -192,8 +196,7 @@ void PrefsPanelDialog::doConnect()
 	connect ( previewIsRTL, SIGNAL ( stateChanged ( int ) ), this, SLOT ( updateWordRTL ( int ) ) );
 	connect ( previewSubtitled, SIGNAL ( stateChanged ( int ) ), this, SLOT ( updateWordSubtitled ( int ) ) );
 
-	connect ( chartFontCombo, SIGNAL( currentFontChanged ( const QFont& ) ), this, SLOT(updateChartFontFamily( const QFont& ) ) );
-	connect ( chartFontSpin, SIGNAL( valueChanged( int ) ), this, SLOT(updateChartFontSize(int)) );
+	connect ( chartFontRequester, SIGNAL( fontSelected( const QFont& ) ), this, SLOT( updateChartFont( const QFont& ) ) );
 
 	connect ( fontEditorPath, SIGNAL ( textChanged ( const QString ) ), this, SLOT ( setupFontEditor ( QString ) ) );
 	connect ( fontEditorBrowse, SIGNAL ( clicked() ), this, SLOT ( slotFontEditorBrowse() ) );
@@ -756,19 +759,17 @@ void PrefsPanelDialog::done(int r)
 	KPageDialog::done(r);
 }
 
-void PrefsPanelDialog::updateChartFontFamily(const QFont & font)
+void PrefsPanelDialog::updateChartFont(const QFont & font)
 {
+	// Chart subtitle consumers (fontitem.cpp) read family + size only;
+	// style attributes from the requester are intentionally not persisted.
+	const int size = font.pointSize() > 0 ? font.pointSize() : qRound(font.pointSizeF());
+
 	FMConfig::setValue(QStringLiteral("ChartInfoFontFamily"), font.family());
+	FMConfig::setValue(QStringLiteral("ChartInfoFontSize"), size);
 
 	typotek::getInstance()->setChartInfoFontName(font.family());
-
-}
-
-void PrefsPanelDialog::updateChartFontSize(int s)
-{
-	FMConfig::setValue(QStringLiteral("ChartInfoFontSize"), s);
-
-	typotek::getInstance()->setChartInfoFontSize(s);
+	typotek::getInstance()->setChartInfoFontSize(size);
 }
 
 

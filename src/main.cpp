@@ -32,15 +32,10 @@
 #include <QThread>
 #include <QSettings>
 
-#ifdef HAVE_KF6_COREADDONS
 #include <KAboutData>
 #include <KLocalizedString>
-#endif
-
-#ifdef HAVE_KF6_CONFIG
 #include <KSharedConfig>
 #include <KConfigGroup>
-#endif
 
 #include "typotek.h"
 #include "mainviewwidget.h"
@@ -78,7 +73,6 @@ int main ( int argc, char *argv[] )
 	app.setWindowIcon ( QIcon::fromTheme ( QStringLiteral("fontmatrix"),
 	                                       QIcon ( QStringLiteral(":/fontmatrix_icon.png") ) ) );
 
-#ifdef HAVE_KF6_COREADDONS
 	KLocalizedString::setApplicationDomain("fontmatrix");
 
 	KAboutData aboutData(
@@ -196,25 +190,13 @@ int main ( int argc, char *argv[] )
 	// processCommandLine handles any remaining KAboutData-specific flags.
 	// It is only reached on a normal GUI launch (no early-exit flags set).
 	aboutData.processCommandLine(&parser);
-#else
-	app.setApplicationVersion ( QString ( "%1.%2.%3" )
-	                            .arg ( FONTMATRIX_VERSION_MAJOR )
-	                            .arg ( FONTMATRIX_VERSION_MINOR )
-	                            .arg ( FONTMATRIX_VERSION_PATCH ) );
-#endif
 
 	// One-time QSettings forward-migration from the legacy "Undertype" scope
 	// (used by the original Fontmatrix releases) into the current Fontmatrix scope.
-	// Runs only when the destination scope is empty.
-	// On Linux, newSettings is just a staging area; KConfig imports it below.
-	// On Windows/macOS, newSettings IS the live store and must match FMConfig::sharedSettings() (IniFormat).
+	// Runs only when the destination scope is empty. newSettings is a staging
+	// area; the KConfig import below pulls everything into the live store.
 	{
-#ifdef HAVE_KF6_CONFIG
 		QSettings newSettings;
-#else
-		QSettings newSettings ( QSettings::IniFormat, QSettings::UserScope,
-		                        QStringLiteral ( "Fontmatrix" ), QStringLiteral ( "fontmatrix" ) );
-#endif
 		if ( newSettings.allKeys().isEmpty() )
 		{
 			QSettings oldSettings ( QSettings::defaultFormat(), QSettings::UserScope,
@@ -227,7 +209,6 @@ int main ( int argc, char *argv[] )
 		}
 	}
 
-#ifdef HAVE_KF6_CONFIG
 	// One-time import from QSettings into KConfig on the first launch of a KConfig-enabled build.
 	{
 		KSharedConfig::Ptr kconf = KSharedConfig::openConfig();
@@ -246,7 +227,6 @@ int main ( int argc, char *argv[] )
 			kconf->sync();
 		}
 	}
-#endif
 
 	// Translation routing is owned by KLocalizedString (KF6 Ki18n). Strings
 	// flow through i18n() / i18nc() / i18np() and are looked up in

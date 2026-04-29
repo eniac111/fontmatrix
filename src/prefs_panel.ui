@@ -360,45 +360,10 @@
            <string>Chart Subtitle Font</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_5" >
-           <item row="0" column="0" colspan="2" >
-            <widget class="QFontComboBox" name="chartFontCombo" />
-           </item>
-           <item row="1" column="1" >
-            <widget class="QSpinBox" name="chartFontSpin" >
-             <property name="sizePolicy" >
-              <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="suffix" >
-              <string> pt</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0" >
-            <widget class="QLabel" name="label_8" >
-             <property name="sizePolicy" >
-              <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
-               <horstretch>1</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text" >
-              <string>Size:</string>
-             </property>
-             <property name="alignment" >
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-             </property>
-             <property name="buddy" >
-              <cstring>chartFontSpin</cstring>
-             </property>
-            </widget>
+           <item row="0" column="0" >
+            <widget class="KFontRequester" name="chartFontRequester" />
            </item>
           </layout>
-          <zorder>chartFontCombo</zorder>
-          <zorder>chartFontSpin</zorder>
-          <zorder>label_8</zorder>
          </widget>
         </item>
         <item row="1" column="1" >
@@ -1015,6 +980,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KFontRequester</class>
+   <extends>QWidget</extends>
+   <header>KFontRequester</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="application.qrc" />
  </resources>

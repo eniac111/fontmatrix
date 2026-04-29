@@ -90,8 +90,7 @@ class PrefsPanelDialog : public KPageDialog, private Ui::PrefsPanel
 		void updateWordRTL(int);
 		void updateWordSubtitled(int);
 
-		void updateChartFontFamily(const QFont & font);
-		void updateChartFontSize(int);
+		void updateChartFont(const QFont & font);
 
 		void setupFontEditor(QString);
 		void slotFontEditorBrowse();

@@ -1,7 +1,5 @@
 #include "fmconfig.h"
 
-#ifdef HAVE_KF6_CONFIG
-
 #include <KSharedConfig>
 #include <KConfigGroup>
 
@@ -46,50 +44,3 @@ void FMConfig::sync()
 {
     KSharedConfig::openConfig()->sync();
 }
-
-#else  // QSettings fallback (Windows / macOS)
-
-// Use IniFormat + AppConfigLocation so the file lands in %APPDATA%\Fontmatrix\fontmatrix.ini
-// on Windows (mirroring where KConfig would write on Windows) and in
-// ~/Library/Application Support/Fontmatrix/fontmatrix.ini on macOS.
-// NativeFormat is intentionally avoided: on Windows it writes to the registry, which is a
-// completely different location from what KConfig uses, breaking any future migration.
-
-#include <QSettings>
-#include <QStandardPaths>
-#include <QDir>
-
-static QSettings &sharedSettings()
-{
-    static QSettings inst{QSettings::IniFormat, QSettings::UserScope,
-                          QStringLiteral("Fontmatrix"),
-                          QStringLiteral("fontmatrix")};
-    return inst;
-}
-
-QVariant FMConfig::value(const QString &fullKey, const QVariant &def)
-{
-    return sharedSettings().value(fullKey, def);
-}
-
-void FMConfig::setValue(const QString &fullKey, const QVariant &val)
-{
-    sharedSettings().setValue(fullKey, val);
-}
-
-bool FMConfig::contains(const QString &fullKey)
-{
-    return sharedSettings().contains(fullKey);
-}
-
-void FMConfig::remove(const QString &fullKey)
-{
-    sharedSettings().remove(fullKey);
-}
-
-void FMConfig::sync()
-{
-    sharedSettings().sync();
-}
-
-#endif

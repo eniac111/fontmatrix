@@ -312,11 +312,6 @@ IF(UNIX AND NOT APPLE)
 	KF6::WidgetsAddons
 	KF6::StatusNotifierItem
 	)
-	target_compile_definitions(fontmatrix PRIVATE
-		HAVE_KF6_COREADDONS
-		HAVE_KF6_CONFIG
-		HAVE_KF6_XMLGUI
-	)
 
 	INSTALL(TARGETS fontmatrix
 	RUNTIME DESTINATION ${FONTMATRIX_BIN}
@@ -413,6 +408,13 @@ IF(APPLE)
 	${SHAPERS_LIBRARIES}
 	${PODOFO_LINK_LIBS}
 	"-framework ApplicationServices"
+	KF6::CoreAddons
+	KF6::I18n
+	KF6::ConfigCore
+	KF6::XmlGui
+	KF6::ConfigWidgets
+	KF6::WidgetsAddons
+	KF6::StatusNotifierItem
 	)
 
 	# here we’ll poupulate the bundle in order to make it
@@ -485,6 +487,13 @@ IF(WIN32)
 	${FREETYPE_LIBRARIES}
 	${SHAPERS_LIBRARIES}
 	${PODOFO_LINK_LIBS}
+	KF6::CoreAddons
+	KF6::I18n
+	KF6::ConfigCore
+	KF6::XmlGui
+	KF6::ConfigWidgets
+	KF6::WidgetsAddons
+	KF6::StatusNotifierItem
 	)
 
 	INSTALL(TARGETS fontmatrix
