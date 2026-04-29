@@ -72,6 +72,8 @@ IF(UNIX AND NOT APPLE)
         CoreAddons
         I18n
         Config
+        XmlGui
+        ConfigWidgets
     )
     SET(FONTMATRIX_BIN ${KDE_INSTALL_BINDIR})
     SET(FONTMATRIX_QMDIR "${KDE_INSTALL_DATADIR}/fontmatrix-ng/qm")

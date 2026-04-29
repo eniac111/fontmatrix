@@ -124,8 +124,12 @@ IF(PODOFO)
 	SET(PODOFO_SRCS
 	fmpdffontextractor.cpp
 	)
-	# PoDoFo API uses C++ exceptions; re-enable them for this file only
-	KDE_SOURCE_FILES_ENABLE_EXCEPTIONS(${CMAKE_CURRENT_SOURCE_DIR}/fmpdffontextractor.cpp)
+	# PoDoFo API uses C++ exceptions; re-enable them for this file only.
+	# KDE_SOURCE_FILES_ENABLE_EXCEPTIONS is only available when KDECompilerSettings
+	# is loaded (Linux). On Windows/MSVC exceptions are enabled by default.
+	if(COMMAND KDE_SOURCE_FILES_ENABLE_EXCEPTIONS)
+		KDE_SOURCE_FILES_ENABLE_EXCEPTIONS(${CMAKE_CURRENT_SOURCE_DIR}/fmpdffontextractor.cpp)
+	endif()
 	IF(TARGET podofo::podofo)
 		# podofo 1.0.x CMake config (namespaced target)
 		SET(PODOFO_LINK_LIBS podofo::podofo)
@@ -335,13 +339,20 @@ IF(UNIX AND NOT APPLE)
 	KF6::CoreAddons
 	KF6::I18n
 	KF6::ConfigCore
+	KF6::XmlGui
+	KF6::ConfigWidgets
 	)
-	target_compile_definitions(fontmatrix-ng PRIVATE HAVE_KF6_COREADDONS HAVE_KF6_CONFIG)
+	target_compile_definitions(fontmatrix-ng PRIVATE
+		HAVE_KF6_COREADDONS
+		HAVE_KF6_CONFIG
+		HAVE_KF6_XMLGUI
+	)
 
 	INSTALL(TARGETS fontmatrix-ng
 	RUNTIME DESTINATION ${FONTMATRIX_BIN}
 	)
-	INSTALL ( FILES ${fontmatrix_QMS} DESTINATION ${FONTMATRIX_QMDIR} )
+	INSTALL(FILES ${fontmatrix_QMS} DESTINATION ${FONTMATRIX_QMDIR})
+	INSTALL(FILES fontmatrixui.rc DESTINATION "${KDE_INSTALL_KXMLGUIDIR}/fontmatrix-ng")
 ENDIF(UNIX AND NOT APPLE)
 
 IF(APPLE)

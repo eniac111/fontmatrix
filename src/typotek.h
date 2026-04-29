@@ -22,7 +22,7 @@
 #ifndef TYPOTEK_H
 #define TYPOTEK_H
 
-#include <QMainWindow>
+#include <KXmlGuiWindow>
 #include <QCloseEvent>
 #include <QMap>
 #include <QFile>
@@ -52,7 +52,7 @@ class DataLoader;
 class FloatingWidget;
 class QStackedWidget;
 
-class typotek:public QMainWindow
+class typotek : public KXmlGuiWindow
 {
 	Q_OBJECT
 
@@ -77,6 +77,7 @@ private slots:
 	void about();
 	void helpBegin();
 	void helpEnd();
+	void toggleShowMenuBar(bool showMessage = true);
 	void slotExportFontSet();
 	void slotRemoteIsReady();
 	void slotRepair();
@@ -126,8 +127,6 @@ signals:
 private:
 	void installDock(const QString& id, const QString& name, QWidget *w, const QString& tip=QString() );
 	void createActions();
-	void createMenus();
-	void createToolBars();
 	void createStatusBar();
 	void readSettings();
 	void writeSettings();
@@ -142,28 +141,13 @@ private:
 	QTextEdit *textEdit;
 	QString curFile;
 
-	QMenu *fileMenu;
-	QMenu *editMenu;
-	QMenu *servicesMenu;
-	QMenu *viewMenu;
-	QMenu *helpMenu;
-	QToolBar *fileToolBar;
-	QToolBar *editToolBar;
-	QAction *newAct;
+	QMenu *viewMenu = nullptr;
 	QAction *openAct;
 	QAction *importFilesAction;
-	QAction *exitAct;
-	QAction *cutAct;
-	QAction *copyAct;
-	QAction *pasteAct;
-	QAction *aboutAct;
-	QAction *aboutQtAct;
 	QAction *fontBookAct;
 	QAction *activCurAct;
 	QAction *deactivCurAct;
-	QAction *helpAct;
 	QAction *fonteditorAct;
-	QAction *prefsAct;
 	QAction *exportFontSetAct;
 	QAction *repairAct;
 	QAction *tagAll;
@@ -182,6 +166,7 @@ private:
 	QAction *showAllFloat;
 	QAction *hideAllFloat;
 	QAction *floatSep;
+	QAction *m_paShowMenuBar = nullptr;
 
 	// 		HelpWidget *theHelp;
 	HelpBrowser *theHelp;

@@ -66,6 +66,14 @@ int main ( int argc, char *argv[] )
 	QCoreApplication::setOrganizationDomain ( "io.fontmatrix" );
 	QCoreApplication::setApplicationName ( "fontmatrix-ng" );
 
+	// On Plasma 6, kded6's kappmenu D-Bus registrar is enabled by default.
+	// If no panel widget consumes the exported menu, Qt still hides the local
+	// QMenuBar — leaving users with no menu anywhere. Force in-window menus.
+	// macOS keeps its system menu via the platform default.
+#ifndef Q_OS_MACOS
+	QCoreApplication::setAttribute(Qt::AA_DontUseNativeMenuBar);
+#endif
+
 	Q_INIT_RESOURCE ( application );
 	QApplication app ( argc, argv );
 	app.setWindowIcon ( QIcon ( ":/fontmatrix_icon.png" ) );

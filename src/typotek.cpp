@@ -79,6 +79,13 @@
 #include <fontconfig/fontconfig.h>
 #endif
 
+#include <KActionCollection>
+#include <KConfigGroup>
+#include <KHamburgerMenu>
+#include <KSharedConfig>
+#include <KStandardAction>
+#include <KToolBar>
+
 
 
 #ifdef Q_OS_MAC
@@ -226,8 +233,35 @@ void typotek::initMatrix()
 //	}
 
 	createActions();
-	createMenus();
 	createStatusBar();
+
+	// Inspired by Kate: enable the standard toolbar menu, set the RC, build the GUI.
+	setStandardToolBarMenuEnabled(true);
+	setXMLFile(QStringLiteral("fontmatrixui.rc"));
+	createGUI(xmlFile());
+
+	// Restore Show Menu Bar from the General group; must run after createGUI().
+	{
+		KConfigGroup generalGroup(KSharedConfig::openConfig(), QStringLiteral("General"));
+		m_paShowMenuBar->setChecked(generalGroup.readEntry("Show Menu Bar", true));
+		toggleShowMenuBar(false);
+		connect(m_paShowMenuBar, &QAction::toggled, this, [this] {
+			KConfigGroup g(KSharedConfig::openConfig(), QStringLiteral("General"));
+			g.writeEntry("Show Menu Bar", m_paShowMenuBar->isChecked());
+		});
+	}
+
+	// Exclude toolbar actions from hamburger menu to avoid duplicates
+	if (auto *hm = qobject_cast<KHamburgerMenu *>(actionCollection()->action(QStringLiteral("hamburger_menu"))))
+		hm->hideActionsOf(toolBar());
+	// Wire the dynamic View menu for floating-panel entries
+	for (auto *menuAction : menuBar()->actions()) {
+		if (QMenu *menu = menuAction->menu(); menu && menu->objectName() == QStringLiteral("view")) {
+			viewMenu = menu;
+			connect(viewMenu, &QMenu::aboutToShow, this, &typotek::updateFloatingStatus);
+			break;
+		}
+	}
 	doConnect();
 
 	showToltalFilteredFonts();
@@ -676,34 +710,6 @@ void typotek::createActions()
 	dumpInfoAct->setStatusTip ( tr ( "Fill a template file with metadata for packaging currently selected font to a Linux distribution" ) );
 	connect(dumpInfoAct, SIGNAL(triggered()), this, SLOT(slotDumpInfo()));
 
-	exitAct = new QAction ( tr ( "E&xit" ), this );
-	exitAct->setShortcut ( QKeySequence(Qt::CTRL | Qt::Key_Q) );
-	exitAct->setStatusTip ( tr ( "Exit the application" ) );
-        exitAct->setMenuRole(QAction::QuitRole);
-	scuts->add(exitAct);
-	connect ( exitAct, SIGNAL ( triggered() ), this, SLOT ( close() ) );
-
-
-	aboutAct = new QAction ( tr ( "&About" ), this );
-	aboutAct->setStatusTip ( tr ( "Show information about Fontmatrix" ) );
-        aboutAct->setMenuRole(QAction::AboutRole);
-	scuts->add(aboutAct);
-	connect ( aboutAct, SIGNAL ( triggered() ), this, SLOT ( about() ) );
-
-	aboutQtAct = new QAction ( tr ( "About &Qt" ), this );
-	aboutQtAct->setStatusTip ( tr ( "Show information about Qt" ) );
-        aboutQtAct->setMenuRole(QAction::AboutQtRole);
-	scuts->add(aboutQtAct);
-	connect (aboutQtAct,SIGNAL(triggered()), QApplication::instance(),SLOT(aboutQt()));
-
-	helpAct = new QAction ( tr ( "Help" ), this );
-	helpAct->setShortcut ( Qt::Key_F1 );
-	helpAct->setStatusTip ( tr ( "Read documentation on Fontmatrix" ) );
-	helpAct->setCheckable(true);
-	helpAct->setChecked(false);
-	scuts->add(helpAct);
-	connect ( helpAct,SIGNAL ( triggered( ) ),this,SLOT ( helpBegin() ) );
-
 // 	tagsetAct = new QAction ( tr ( "&Tag Sets" ),this );
 // 	tagsetAct->setIcon ( QIcon ( ":/fontmatrix_tagseteditor_icon.png" ) );
 // 	scuts->add(tagsetAct);
@@ -741,12 +747,6 @@ void typotek::createActions()
 	reloadSingleAct->setStatusTip(tr ("Reload informations for selected font from the font file"));
 	scuts->add(reloadSingleAct);
 	connect(reloadSingleAct, SIGNAL(triggered()), this, SLOT(slotReloadSingle()));
-
-	prefsAct = new QAction ( tr ( "Preferences" ),this );
-	prefsAct->setStatusTip ( tr ( "Setup Fontmatrix" ) );
-        prefsAct->setMenuRole(QAction::PreferencesRole);
-	scuts->add(prefsAct);
-	connect ( prefsAct,SIGNAL ( triggered() ),this,SLOT ( slotPrefsPanelDefault() ) );
 
 	repairAct = new QAction ( tr("Check Database"), this);
 	repairAct->setStatusTip ( tr ( "Check Fontmatrix database for dead links to font files" ) );
@@ -821,63 +821,73 @@ void typotek::createActions()
 	exportXeTeXAct->setStatusTip(tr("Export the current filtered font list as a XeTeX source file"));
 	scuts->add(exportXeTeXAct);
 	connect(exportXeTeXAct, SIGNAL(triggered()), this, SLOT(slotExportXeTeX()));
-}
 
-void typotek::createMenus()
-{
-	fileMenu = menuBar()->addMenu ( tr ( "&File" ) );
+	auto *ac = actionCollection();
 
-	fileMenu->addAction ( openAct );
-	fileMenu->addAction ( importFilesAction );
-	fileMenu->addAction ( exportFontSetAct );
-	fileMenu->addSeparator();
+	ac->addAction(QStringLiteral("file_import_dir"), openAct);
+	ac->setDefaultShortcut(openAct, QKeySequence(Qt::CTRL | Qt::Key_O));
+	ac->addAction(QStringLiteral("file_import_files"), importFilesAction);
+	ac->setDefaultShortcut(importFilesAction, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_O));
+	ac->addAction(QStringLiteral("file_export_fontset"), exportFontSetAct);
+	ac->addAction(QStringLiteral("file_font_book"), fontBookAct);
+	ac->addAction(QStringLiteral("file_dump_info"), dumpInfoAct);
 
-	fileMenu->addAction ( fontBookAct );
-	fileMenu->addAction ( dumpInfoAct );
-	fileMenu->addSeparator();
-	fileMenu->addAction ( exitAct );
+	ac->addAction(QStringLiteral("edit_tag_all"), tagAll);
+	ac->addAction(QStringLiteral("edit_activate_current"), activCurAct);
+	ac->addAction(QStringLiteral("edit_deactivate_current"), deactivCurAct);
+	ac->addAction(QStringLiteral("edit_font_editor"), fonteditorAct);
+	ac->addAction(QStringLiteral("edit_panose"), editPanoseAct);
+	ac->addAction(QStringLiteral("edit_reload_filtered"), reloadAct);
+	ac->addAction(QStringLiteral("edit_reload_single"), reloadSingleAct);
 
-	editMenu = menuBar()->addMenu ( tr ( "&Edit" ) );
-// 	editMenu->addAction ( tagsetAct );
-	editMenu->addSeparator();
-	editMenu->addAction( tagAll );
-	editMenu->addAction ( activCurAct );
-	editMenu->addAction ( deactivCurAct );
-	editMenu->addSeparator();
-	editMenu->addAction ( fonteditorAct );
-	editMenu->addAction ( editPanoseAct );
-	editMenu->addSeparator();
-	editMenu->addAction(reloadSingleAct);
-	editMenu->addAction(reloadAct);
-	editMenu->addSeparator();
-	editMenu->addAction ( prefsAct );
+	ac->addAction(QStringLiteral("view_playground"), playAction);
+	ac->setDefaultShortcut(playAction, QKeySequence(Qt::CTRL | Qt::Key_G));
+	ac->addAction(QStringLiteral("view_compare"), compareAction);
+	ac->setDefaultShortcut(compareAction, QKeySequence(Qt::CTRL | Qt::Key_R));
+	ac->addAction(QStringLiteral("view_close_all"), closeAllFloat);
+	ac->addAction(QStringLiteral("view_show_all"), showAllFloat);
+	ac->addAction(QStringLiteral("view_hide_all"), hideAllFloat);
 
-	viewMenu = menuBar()->addMenu(tr("&View"));
-	viewMenu->addAction(playAction);
-	viewMenu->addAction(compareAction);
-	viewMenu->addSeparator();
-	connect(viewMenu, SIGNAL(aboutToShow()), this,SLOT(updateFloatingStatus()));
+	ac->addAction(QStringLiteral("service_extract_font"), extractFontAction);
+	ac->addAction(QStringLiteral("service_match_raster"), matchRasterAct);
+	ac->addAction(QStringLiteral("service_export_xetex"), exportXeTeXAct);
+	ac->addAction(QStringLiteral("service_repair"), repairAct);
+	ac->addAction(QStringLiteral("service_tt_tables"), showTTTAct);
 
-	servicesMenu =  menuBar()->addMenu ( tr ( "&Service" ) );
-	servicesMenu->addAction(extractFontAction);
-	servicesMenu->addAction(matchRasterAct);
-	servicesMenu->addAction(exportXeTeXAct);
-#ifdef PLATFORM_APPLE
-	// TODO
-#elif defined(_WIN32)
-	// TODO
-#else
-	servicesMenu->addAction( repairAct );
-#endif
-	servicesMenu->addAction(showTTTAct);
-	servicesMenu->addSeparator();
-//	servicesMenu->addAction(layOptAct);
-	
-	helpMenu = menuBar()->addMenu ( tr ( "&Help" ) );
-	helpMenu->addAction ( helpAct );
-	helpMenu->addAction ( aboutAct );
-	helpMenu->addAction ( aboutQtAct );
+	KStandardAction::quit(this, &typotek::close, ac);
+	KStandardAction::preferences(this, &typotek::slotPrefsPanelDefault, ac);
+	KStandardAction::helpContents(this, &typotek::helpBegin, ac);
 
+	// KDE theme icons — toolbar-visible actions get standard XDG names with QRC fallbacks
+	openAct->setIcon(QIcon::fromTheme(QStringLiteral("folder-open"), openAct->icon()));
+	importFilesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-open"), importFilesAction->icon()));
+	fontBookAct->setIcon(QIcon::fromTheme(QStringLiteral("document-print-preview"), fontBookAct->icon()));
+	activCurAct->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));
+	deactivCurAct->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-stop")));
+	compareAction->setIcon(QIcon::fromTheme(QStringLiteral("view-split-left-right")));
+	playAction->setIcon(QIcon::fromTheme(QStringLiteral("applications-games")));
+	// Other menu actions
+	extractFontAction->setIcon(QIcon::fromTheme(QStringLiteral("package-x-generic")));
+	exportXeTeXAct->setIcon(QIcon::fromTheme(QStringLiteral("document-export")));
+	repairAct->setIcon(QIcon::fromTheme(QStringLiteral("tools-check-spelling")));
+	showTTTAct->setIcon(QIcon::fromTheme(QStringLiteral("document-properties")));
+	tagAll->setIcon(QIcon::fromTheme(QStringLiteral("tag")));
+	fonteditorAct->setIcon(QIcon::fromTheme(QStringLiteral("document-edit")));
+	editPanoseAct->setIcon(QIcon::fromTheme(QStringLiteral("format-list-unordered")));
+	exportFontSetAct->setIcon(QIcon::fromTheme(QStringLiteral("document-save-as")));
+	reloadAct->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
+	reloadSingleAct->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
+	matchRasterAct->setIcon(QIcon::fromTheme(QStringLiteral("zoom-fit-best")));
+
+	// "Show Menu Bar" toggle and hamburger menu — the pattern comes from Kate.
+	// The hamburger goes through KStandardAction::HamburgerMenu so XMLGUI
+	// builds a real KHamburgerMenu container.
+	m_paShowMenuBar = KStandardAction::showMenubar(this, &typotek::toggleShowMenuBar, ac);
+
+	auto *hamburgerMenu = static_cast<KHamburgerMenu *>(
+	    ac->addAction(KStandardAction::HamburgerMenu, QStringLiteral("hamburger_menu")));
+	hamburgerMenu->setMenuBar(menuBar());
+	hamburgerMenu->setShowMenuBarAction(m_paShowMenuBar);
 }
 
 void typotek::createStatusBar()
@@ -912,10 +922,8 @@ void typotek::createStatusBar()
 void typotek::readSettings()
 {
 	relayStartingStepIn(tr("Load settings"));
-	QPoint pos = FMConfig::value(QStringLiteral("WState/pos"), QPoint(200, 200)).toPoint();
-	QSize size = FMConfig::value(QStringLiteral("WState/size"), QSize(400, 400)).toSize();
-	resize ( size );
-	move ( pos );
+	// KMainWindow restores window geometry via the autoSaveConfigGroup() mechanism
+	// (see writeSettings()), so no explicit pos/size restore is needed here.
 
 	fonteditorPath = FMConfig::value(QStringLiteral("FontEditor"), "/usr/bin/fontforge").toString();
 	useInitialTags = FMConfig::value(QStringLiteral("UseInitialTags"), false).toBool();
@@ -984,8 +992,7 @@ void typotek::readSettings()
 
 void typotek::writeSettings()
 {
-	FMConfig::setValue(QStringLiteral("WState/pos"), pos());
-	FMConfig::setValue(QStringLiteral("WState/size"), size());
+	// Window geometry is persisted by KMainWindow via setAutoSaveSettings().
 	theMainView->saveSplitterState();
 
 //	QStringList dl;
@@ -1474,25 +1481,37 @@ void typotek::slotDeactivateCurrents()
 
 void typotek::helpBegin()
 {
-	theHelp = new HelpBrowser(this,tr("Fontmatrix Help"));
-	helpAct->setChecked(true);
-
-	connect( theHelp, SIGNAL( closed() ), this, SLOT(helpEnd()) );
-
-	disconnect ( helpAct,SIGNAL ( triggered( ) ),this,SLOT ( helpBegin() ) );
-	connect ( helpAct,SIGNAL ( triggered( ) ),this,SLOT ( helpEnd() ) );
-
+	if (theHelp) {
+		theHelp->show();
+		theHelp->raise();
+		return;
+	}
+	theHelp = new HelpBrowser(this, tr("Fontmatrix Help"));
+	connect(theHelp, SIGNAL(closed()), this, SLOT(helpEnd()));
 	theHelp->show();
 }
 
 void typotek::helpEnd()
 {
-	helpAct->setChecked(false);
-
-	disconnect ( helpAct,SIGNAL ( triggered( ) ),this,SLOT ( helpEnd() ) );
-	connect ( helpAct,SIGNAL ( triggered( ) ),this,SLOT ( helpBegin() ) );
-
 	theHelp->deleteLater();
+	theHelp = nullptr;
+}
+
+void typotek::toggleShowMenuBar(bool showMessage)
+{
+	// Inspired by Kate. The hamburger menu in the toolbar is the user's escape
+	// hatch back to the menu when the bar is hidden.
+	if (m_paShowMenuBar->isChecked()) {
+		menuBar()->show();
+	} else {
+		if (showMessage && toolBar()->isHidden()) {
+			const QString accel = m_paShowMenuBar->shortcut().toString(QKeySequence::NativeText);
+			QMessageBox::information(this,
+			    tr("Hide menu bar"),
+			    tr("This will hide the menu bar completely. You can show it again by typing %1.").arg(accel));
+		}
+		menuBar()->hide();
+	}
 }
 
 void typotek::slotEditFont()
