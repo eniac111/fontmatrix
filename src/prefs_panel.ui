@@ -13,7 +13,7 @@
    <string>Preferences Panel</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="application.qrc" >
+   <iconset theme="fontmatrix" resource="application.qrc" >
     <normaloff>:/fontmatrix_icon.png</normaloff>:/fontmatrix_icon.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout_13" >

@@ -77,7 +77,7 @@
            <string>X</string>
           </property>
           <property name="icon">
-           <iconset resource="application.qrc">
+           <iconset theme="list-remove" resource="application.qrc">
             <normaloff>:/graphic-resources/filter-remove.png</normaloff>:/graphic-resources/filter-remove.png</iconset>
           </property>
           <property name="autoRaise">

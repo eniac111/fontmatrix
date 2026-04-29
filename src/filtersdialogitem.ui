@@ -94,7 +94,7 @@
          <string>Filter</string>
         </property>
         <property name="icon">
-         <iconset resource="application.qrc">
+         <iconset theme="view-filter" resource="application.qrc">
           <normaloff>:/graphic-resources/filter.png</normaloff>:/graphic-resources/filter.png</iconset>
         </property>
        </widget>
@@ -114,7 +114,7 @@
          <string>Remove</string>
         </property>
         <property name="icon">
-         <iconset resource="application.qrc">
+         <iconset theme="list-remove" resource="application.qrc">
           <normaloff>:/graphic-resources/filter-remove.png</normaloff>:/graphic-resources/filter-remove.png</iconset>
         </property>
         <property name="autoRaise">

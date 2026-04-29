@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file alias="action-copy-char">icons/action-copy-char-24.png</file>
-        <file alias="fontmatrix_icon.png">icons/application-fontmatrix_128.png</file>
-        <file alias="fontmatrix_systray_icon.png">icons/fontmatrix-systray.png</file>
+        <file alias="fontmatrix_icon.png">icons/128-apps-fontmatrix.png</file>
+        <file alias="fontmatrix_systray_icon.png">icons/22-status-fontmatrix-tray.png</file>
         <file alias="fontmatrix_splash.png">graphic-resources/splashscreen-670x470.png</file>
         <file alias="fontmatrix_tags.png">graphic-resources/font-tag.png</file>
         <file alias="fontmatrix_tags_graphic.png">graphic-resources/fontmatrix-tag-graphic.png</file>
@@ -12,21 +12,7 @@
         <file>graphic-resources/filter-and.png</file>
         <file>graphic-resources/filter-remove.png</file>
         <file>graphic-resources/filter.png</file>
-        <file alias="kxmlgui5/fontmatrix-ng/fontmatrixui.rc">fontmatrixui.rc</file>
-    </qresource>
-    <qresource prefix="/help">
-        <file alias="document-print.png">icons/help/document-print.png</file>
-        <file alias="exit.png">icons/help/exit.png</file>
-        <file alias="go-bottom.png">icons/help/go-bottom.png</file>
-        <file alias="go-down.png">icons/help/go-down.png</file>
-        <file alias="go-first.png">icons/help/go-first.png</file>
-        <file alias="go-home.png">icons/help/go-home.png</file>
-        <file alias="go-last.png">icons/help/go-last.png</file>
-        <file alias="go-next.png">icons/help/go-next.png</file>
-        <file alias="go-previous.png">icons/help/go-previous.png</file>
-        <file alias="go-top.png">icons/help/go-top.png</file>
-        <file alias="go-up.png">icons/help/go-up.png</file>
-        <file alias="help-browser.png">icons/help/help-browser.png</file>
+        <file alias="kxmlgui5/fontmatrix/fontmatrixui.rc">fontmatrixui.rc</file>
     </qresource>
     <qresource prefix="/texts">
         <file alias="about">messages/about.html</file>

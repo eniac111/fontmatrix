@@ -854,7 +854,7 @@ void typotek::createActions()
 	KStandardAction::preferences(this, &typotek::slotPrefsPanelDefault, ac);
 	// help_contents is provided automatically by KHelpMenu (auto-installed by
 	// KXmlGuiWindow::createGUI()) and routes to khelpcenter via the
-	// "help:/fontmatrix-ng" URL — no custom handler needed.
+	// "help:/fontmatrix" URL — no custom handler needed.
 
 	// KDE theme icons (XDG standard names) for menu and toolbar actions.
 	openAct->setIcon(QIcon::fromTheme(QStringLiteral("folder-open")));

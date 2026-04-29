@@ -49,9 +49,9 @@ void FMConfig::sync()
 
 #else  // QSettings fallback (Windows / macOS)
 
-// Use IniFormat + AppConfigLocation so the file lands in %APPDATA%\FontMatrix-NG\fontmatrix-ng.ini
+// Use IniFormat + AppConfigLocation so the file lands in %APPDATA%\Fontmatrix\fontmatrix.ini
 // on Windows (mirroring where KConfig would write on Windows) and in
-// ~/Library/Application Support/FontMatrix-NG/fontmatrix-ng.ini on macOS.
+// ~/Library/Application Support/Fontmatrix/fontmatrix.ini on macOS.
 // NativeFormat is intentionally avoided: on Windows it writes to the registry, which is a
 // completely different location from what KConfig uses, breaking any future migration.
 
@@ -62,8 +62,8 @@ void FMConfig::sync()
 static QSettings &sharedSettings()
 {
     static QSettings inst{QSettings::IniFormat, QSettings::UserScope,
-                          QStringLiteral("FontMatrix-NG"),
-                          QStringLiteral("fontmatrix-ng")};
+                          QStringLiteral("Fontmatrix"),
+                          QStringLiteral("fontmatrix")};
     return inst;
 }
 

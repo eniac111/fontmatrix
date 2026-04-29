@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="fontmatrix-ng" version="4" translationDomain="fontmatrix-ng">
+<gui name="fontmatrix" version="4" translationDomain="fontmatrix">
   <MenuBar>
     <Menu name="file" noMerge="1">
       <text>&amp;File</text>

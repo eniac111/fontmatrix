@@ -1,14 +1,14 @@
 kdoctools_create_handbook(
     index.docbook
     INSTALL_DESTINATION ${KDE_INSTALL_DOCBUNDLEDIR}/en
-    SUBDIR fontmatrix-ng
+    SUBDIR fontmatrix
 )
 
 # Dev-tree mirror: copy the handbook artifacts into ${CMAKE_BINARY_DIR}/data/
 # under the layout khelpcenter expects (doc/HTML/<lang>/<app>/). Combined with
 # the launcher in src/CMakeLists.txt this lets F1 find the handbook when the
 # binary is run from the build tree, without `make install`.
-set(_handbook_dev_dir "${CMAKE_BINARY_DIR}/data/doc/HTML/en/fontmatrix-ng")
+set(_handbook_dev_dir "${CMAKE_BINARY_DIR}/data/doc/HTML/en/fontmatrix")
 add_custom_command(
     OUTPUT  "${_handbook_dev_dir}/index.cache.bz2"
             "${_handbook_dev_dir}/index.docbook"
@@ -24,7 +24,7 @@ add_custom_command(
     COMMENT "Mirroring handbook into ${_handbook_dev_dir}"
     VERBATIM
 )
-add_custom_target(fontmatrix-ng-handbook-devtree ALL
+add_custom_target(fontmatrix-handbook-devtree ALL
     DEPENDS "${_handbook_dev_dir}/index.cache.bz2"
             "${_handbook_dev_dir}/index.docbook"
 )

@@ -13,7 +13,7 @@
    <string>Fontmatrix - Tags</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="application.qrc" >
+   <iconset theme="tag" resource="application.qrc" >
     <normaloff>:/fontmatrix_tags.png</normaloff>:/fontmatrix_tags.png</iconset>
   </property>
   <layout class="QGridLayout" name="gLt" >

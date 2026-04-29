@@ -1,12 +1,12 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
 "dtd/kdedbx45.dtd" [
-  <!ENTITY fontmatrix "<application>FontMatrix-NG</application>">
+  <!ENTITY fontmatrix "<application>Fontmatrix</application>">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE">
 ]>
 
-<book id="fontmatrix-ng" lang="&language;">
+<book id="fontmatrix" lang="&language;">
 
 <bookinfo>
 <title>The &fontmatrix; Handbook</title>
@@ -45,7 +45,7 @@
 <legalnotice>&FDLNotice;</legalnotice>
 
 <date>2026-04-29</date>
-<releaseinfo>FontMatrix-NG 0.11</releaseinfo>
+<releaseinfo>Fontmatrix 0.11</releaseinfo>
 
 <abstract>
 <para>&fontmatrix; is a font manager for adventurous graphic designers
@@ -874,7 +874,7 @@ with <command>gdb</command>:</para>
 <orderedlist>
 <listitem><para>Install <package>gdb</package>.</para></listitem>
 <listitem><para>Open a terminal.</para></listitem>
-<listitem><para>Run <command>gdb fontmatrix-ng</command>.</para></listitem>
+<listitem><para>Run <command>gdb fontmatrix</command>.</para></listitem>
 <listitem><para>At the gdb prompt: <command>run</command>.</para></listitem>
 <listitem><para>Reproduce the crash.</para></listitem>
 <listitem><para>At the gdb prompt: <command>bt</command>.</para></listitem>
@@ -964,7 +964,7 @@ url="http://dejavu-fonts.github.io">DejaVu</ulink></para></listitem>
 
 <para>This documentation is based on the original Fontmatrix help
 content authored by Alexandre Prokoudine, Pierre Marchand and other
-contributors, converted to DocBook for FontMatrix-NG.</para>
+contributors, converted to DocBook for Fontmatrix.</para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
 

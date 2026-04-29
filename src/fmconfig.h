@@ -4,7 +4,7 @@
 #include <QVariant>
 
 // Cross-platform configuration wrapper.
-// On Linux with KF6: uses KSharedConfig (stores in ~/.config/fontmatrix-ngrc).
+// On Linux with KF6: uses KSharedConfig (stores in ~/.config/fontmatrixrc).
 // On Windows/macOS: falls back to QSettings.
 //
 // Keys use "Group/Key" notation matching the existing QSettings convention.

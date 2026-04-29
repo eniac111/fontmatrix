@@ -44,10 +44,11 @@ Systray::Systray()
 
 	slotSetActivateAll(FMConfig::value(QStringLiteral("Systray/ActivateAllVisible"), false).toBool());
 
-	trayIcon->setIconByPixmap(QIcon(QStringLiteral(":/fontmatrix_systray_icon.png")));
-	trayIcon->setToolTip(QStringLiteral(":/fontmatrix_systray_icon.png"),
-	                     QStringLiteral("FontMatrix-NG"),
-	                     QString());
+	const QIcon trayThemed = QIcon::fromTheme(QStringLiteral("fontmatrix-tray"),
+	                                          QIcon(QStringLiteral(":/fontmatrix_systray_icon.png")));
+	trayIcon->setIconByPixmap(trayThemed);
+	trayIcon->setToolTipIconByPixmap(trayThemed);
+	trayIcon->setToolTipTitle(QStringLiteral("Fontmatrix"));
 
 	if (FMConfig::value(QStringLiteral("Systray/Visible"), false).toBool())
 		trayIcon->setStatus(KStatusNotifierItem::Active);
@@ -271,9 +272,9 @@ void Systray::createTrayIcon()
 	trayIconMenu->addSeparator();
 	trayIconMenu->addAction(quitAction);
 
-	trayIcon = new KStatusNotifierItem(QStringLiteral("fontmatrix-ng"), this);
+	trayIcon = new KStatusNotifierItem(QStringLiteral("fontmatrix"), this);
 	trayIcon->setCategory(KStatusNotifierItem::ApplicationStatus);
-	trayIcon->setTitle(QStringLiteral("FontMatrix-NG"));
+	trayIcon->setTitle(QStringLiteral("Fontmatrix"));
 	trayIcon->setStandardActionsEnabled(false);
 	trayIcon->setContextMenu(trayIconMenu);
 

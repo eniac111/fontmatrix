@@ -2,19 +2,19 @@
 
 Version=1.0
 Type=Application
-Name=FontMatrix-NG
+Name=Fontmatrix
 Comment=A font management application
 Comment[ru]=Программа для управления шрифтами
 Comment[fi]=Työkalu fonttien hallintaan
 Categories=Graphics;VectorGraphics;
-Exec=fontmatrix-ng
-Icon=fontmatrix-ng
+Exec=fontmatrix
+Icon=fontmatrix
 Terminal=false
 GenericName=Font Manager
 GenericName[fr]=Gestion des Polices
 GenericName[ru]=Управление шрифтами
 GenericName[fi]=Fonttien hallinta
-TryExec=fontmatrix-ng
+TryExec=fontmatrix
 X-StandardInstall=false
-StartupWMClass=fontmatrix-ng
+StartupWMClass=fontmatrix
 X-KDE-SubstituteUID=false

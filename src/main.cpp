@@ -62,9 +62,9 @@ bool __FM_SHOW_FONTLOADED;
 int main ( int argc, char *argv[] )
 {
 	// Must be set before QApplication so QSettings picks up the right scope.
-	QCoreApplication::setOrganizationName ( "FontMatrix-NG" );
+	QCoreApplication::setOrganizationName ( "Fontmatrix" );
 	QCoreApplication::setOrganizationDomain ( "io.fontmatrix" );
-	QCoreApplication::setApplicationName ( "fontmatrix-ng" );
+	QCoreApplication::setApplicationName ( "fontmatrix" );
 
 	// On Plasma 6, kded6's kappmenu D-Bus registrar is enabled by default.
 	// If no panel widget consumes the exported menu, Qt still hides the local
@@ -76,14 +76,15 @@ int main ( int argc, char *argv[] )
 
 	Q_INIT_RESOURCE ( application );
 	QApplication app ( argc, argv );
-	app.setWindowIcon ( QIcon ( ":/fontmatrix_icon.png" ) );
+	app.setWindowIcon ( QIcon::fromTheme ( QStringLiteral("fontmatrix"),
+	                                       QIcon ( QStringLiteral(":/fontmatrix_icon.png") ) ) );
 
 #ifdef HAVE_KF6_COREADDONS
-	KLocalizedString::setApplicationDomain("fontmatrix-ng");
+	KLocalizedString::setApplicationDomain("fontmatrix");
 
 	KAboutData aboutData(
-	    QStringLiteral("fontmatrix-ng"),
-	    QStringLiteral("FontMatrix-NG"),
+	    QStringLiteral("fontmatrix"),
+	    QStringLiteral("Fontmatrix"),
 	    QStringLiteral("%1.%2.%3")
 	        .arg(FONTMATRIX_VERSION_MAJOR)
 	        .arg(FONTMATRIX_VERSION_MINOR)
@@ -156,7 +157,7 @@ int main ( int argc, char *argv[] )
 	    QStringLiteral("pavelfric@seznam.cz")
 	);
 	aboutData.addCredit(
-	    QStringLiteral("FontMatrix-NG contributors"),
+	    QStringLiteral("Fontmatrix contributors"),
 	    QStringLiteral("Original project: https://github.com/fontmatrix/fontmatrix"),
 	    QString(),
 	    QStringLiteral("https://github.com/fontmatrix/fontmatrix")
@@ -203,9 +204,9 @@ int main ( int argc, char *argv[] )
 	                            .arg ( FONTMATRIX_VERSION_PATCH ) );
 #endif
 
-	// Migrate QSettings forward through the rename history:
-	//   Undertype/fontmatrix  →  Fontmatrix/fontmatrix  →  FontMatrix-NG/fontmatrix-ng
-	// Each step only runs when the destination scope is empty.
+	// One-time QSettings forward-migration from the legacy "Undertype" scope
+	// (used by the original Fontmatrix releases) into the current Fontmatrix scope.
+	// Runs only when the destination scope is empty.
 	// On Linux, newSettings is just a staging area; KConfig imports it below.
 	// On Windows/macOS, newSettings IS the live store and must match FMConfig::sharedSettings() (IniFormat).
 	{
@@ -213,31 +214,17 @@ int main ( int argc, char *argv[] )
 		QSettings newSettings;
 #else
 		QSettings newSettings ( QSettings::IniFormat, QSettings::UserScope,
-		                        QStringLiteral ( "FontMatrix-NG" ), QStringLiteral ( "fontmatrix-ng" ) );
+		                        QStringLiteral ( "Fontmatrix" ), QStringLiteral ( "fontmatrix" ) );
 #endif
 		if ( newSettings.allKeys().isEmpty() )
 		{
-			// Try the most recent old scope first (pre-rename "Fontmatrix").
-			QSettings midSettings ( QSettings::defaultFormat(), QSettings::UserScope,
-			                        QLatin1String ( "Fontmatrix" ), QLatin1String ( "fontmatrix" ) );
-			const QStringList midKeys = midSettings.allKeys();
-			if ( !midKeys.isEmpty() )
-			{
-				for ( const QString &key : midKeys )
-					newSettings.setValue ( key, midSettings.value ( key ) );
+			QSettings oldSettings ( QSettings::defaultFormat(), QSettings::UserScope,
+			                        QLatin1String ( "Undertype" ), QLatin1String ( "fontmatrix" ) );
+			const QStringList keys = oldSettings.allKeys();
+			for ( const QString &key : keys )
+				newSettings.setValue ( key, oldSettings.value ( key ) );
+			if ( !keys.isEmpty() )
 				newSettings.sync();
-			}
-			else
-			{
-				// Fall back to the even older "Undertype" scope.
-				QSettings oldSettings ( QSettings::defaultFormat(), QSettings::UserScope,
-				                        QLatin1String ( "Undertype" ), QLatin1String ( "fontmatrix" ) );
-				const QStringList keys = oldSettings.allKeys();
-				for ( const QString &key : keys )
-					newSettings.setValue ( key, oldSettings.value ( key ) );
-				if ( !keys.isEmpty() )
-					newSettings.sync();
-			}
 		}
 	}
 

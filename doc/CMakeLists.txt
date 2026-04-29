@@ -1,1 +1,1 @@
-add_subdirectory(fontmatrix-ng)
+add_subdirectory(fontmatrix)
