@@ -311,6 +311,7 @@ IF(UNIX AND NOT APPLE)
 	KF6::ConfigWidgets
 	KF6::WidgetsAddons
 	KF6::StatusNotifierItem
+	KF6::DBusAddons
 	)
 
 	INSTALL(TARGETS fontmatrix
@@ -415,6 +416,7 @@ IF(APPLE)
 	KF6::ConfigWidgets
 	KF6::WidgetsAddons
 	KF6::StatusNotifierItem
+	KF6::DBusAddons
 	)
 
 	# here we’ll poupulate the bundle in order to make it
@@ -494,6 +496,7 @@ IF(WIN32)
 	KF6::ConfigWidgets
 	KF6::WidgetsAddons
 	KF6::StatusNotifierItem
+	KF6::DBusAddons
 	)
 
 	INSTALL(TARGETS fontmatrix

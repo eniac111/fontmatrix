@@ -40,7 +40,6 @@ class QTextEdit;
 class MainViewWidget;
 class BrowserWidget;
 class FontItem;
-// class TypotekAdaptator;
 class QDockWidget;
 class Systray;
 class RemoteDir;

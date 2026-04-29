@@ -33,6 +33,7 @@
 #include <QSettings>
 
 #include <KAboutData>
+#include <KDBusService>
 #include <KLocalizedString>
 #include <KSharedConfig>
 #include <KConfigGroup>
@@ -242,7 +243,24 @@ int main ( int argc, char *argv[] )
 		__FM_SHOW_FONTLOADED = false;
 	}
 
+	// Single-instance guard. KDBusService::Unique aborts a second
+	// `fontmatrix` invocation early; the existing process receives an
+	// activateRequested signal so it can raise its window. Done before
+	// typotek::getInstance() so we don't pay the font-DB init cost twice
+	// on a duplicate launch.
+	KDBusService dbusService(KDBusService::Unique);
+
 	typotek * mw = typotek::getInstance();
+
+	// Bring the existing window forward when a second invocation is rejected.
+	QObject::connect(&dbusService, &KDBusService::activateRequested,
+	                 mw, [mw](const QStringList &/*args*/, const QString &/*workingDir*/) {
+		if (mw->isMinimized())
+			mw->setWindowState(mw->windowState() & ~Qt::WindowMinimized);
+		mw->show();
+		mw->raise();
+		mw->activateWindow();
+	});
 
 
 	QSplashScreen theSplash;
