@@ -173,8 +173,9 @@ void Systray::slotTagMenuClicked(QAction *)
 
 void Systray::slotQuit()
 {
-		ttek->writeSettings();
-		qApp->quit();
+	// Route through typotek::slotQuit() so the same cleanup runs as File → Quit
+	// (force-quit flag, floating-widget close, writeSettings, singleton deletes).
+	ttek->slotQuit();
 }
 
 void Systray::slotPrepareMenu()

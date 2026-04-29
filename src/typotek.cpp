@@ -332,7 +332,7 @@ void typotek::doConnect()
 
 void typotek::closeEvent ( QCloseEvent *event )
 {
-	if ( systray )
+	if ( systray && !m_forceQuit )
 	{
 		if ( systray->isVisible() && FMConfig::value(QStringLiteral("Systray/CloseToTray"), true).toBool() )
 		{
@@ -363,6 +363,19 @@ void typotek::closeEvent ( QCloseEvent *event )
 
 	event->accept();
 
+	// KStatusNotifierItem holds a D-Bus service registration that keeps the
+	// process alive past lastWindowClosed when the tray is not visible to the
+	// user. Quit explicitly so closing the X button always terminates the
+	// process unless the user opted into "close to tray" above.
+	qApp->quit();
+}
+
+void typotek::slotQuit()
+{
+	// File → Quit (and the systray "Exit" action) must terminate even when
+	// "close to tray" is on. Set the flag so closeEvent skips its hide branch.
+	m_forceQuit = true;
+	close();
 }
 
 /// IMPORT
@@ -853,7 +866,7 @@ void typotek::createActions()
 	ac->addAction(QStringLiteral("tools_repair"), repairAct);
 	ac->addAction(QStringLiteral("tools_tt_tables"), showTTTAct);
 
-	KStandardAction::quit(this, &typotek::close, ac);
+	KStandardAction::quit(this, &typotek::slotQuit, ac);
 	KStandardAction::preferences(this, &typotek::slotPrefsPanelDefault, ac);
 	// help_contents is provided automatically by KHelpMenu (auto-installed by
 	// KXmlGuiWindow::createGUI()) and routes to khelpcenter via the

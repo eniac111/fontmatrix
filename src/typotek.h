@@ -111,6 +111,9 @@ public slots:
 	void hideAllFloatings();
 	void toggleMainView(bool v);
 	void pushObject(QObject* o);
+	// Force a real quit, bypassing the close-to-tray hide.
+	// Used by File → Quit and the systray's "Exit" action.
+	void slotQuit();
 
 	void hide();
 	void show();
@@ -130,6 +133,9 @@ private:
 	void initDir();
 	void doConnect();
 	void setupDrop();
+
+	// Set by slotQuit() so closeEvent skips the close-to-tray hide branch.
+	bool m_forceQuit = false;
 
 	void checkOwnDir();
 	void fillTagsList();
