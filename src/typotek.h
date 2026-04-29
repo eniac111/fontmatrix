@@ -46,8 +46,6 @@ class Systray;
 class RemoteDir;
 class FMHyphenator;
 class QProgressBar;
-// class HelpWidget;
-class HelpBrowser;
 class DataLoader;
 class FloatingWidget;
 class QStackedWidget;
@@ -75,8 +73,6 @@ private slots:
 	void slotDeactivateCurrents();
 	void slotEditFont();
 	void about();
-	void helpBegin();
-	void helpEnd();
 	void toggleShowMenuBar(bool showMessage = true);
 	void slotExportFontSet();
 	void slotRemoteIsReady();
@@ -168,9 +164,6 @@ private:
 	QAction *floatSep;
 	QAction *m_paShowMenuBar = nullptr;
 
-	// 		HelpWidget *theHelp;
-	HelpBrowser *theHelp;
-
 //	QAction *layOptAct;
 
 	QProgressBar *statusProgressBar;
@@ -201,7 +194,6 @@ private:
 	bool previewRTL;
 	bool previewSubtitled;
 	bool m_familySchemeFreetype;
-	QString m_welcomeURL;
 	QString m_sysTagName;
 
 	void addFcDirItem(const QString &dirPath);
@@ -317,8 +309,6 @@ public:
 
 	bool familySchemeFreetype() const{return m_familySchemeFreetype;}
 	void setFamilySchemeFreetype ( bool theValue ){m_familySchemeFreetype = theValue;}
-
-	QString welcomeURL() const{return m_welcomeURL;}
 
 	FMHyphenator* getHyphenator() const;
 

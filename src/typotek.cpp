@@ -37,8 +37,6 @@
 #include "fontbook.h"
 #include "fontcomparewidget.h"
 #include "fontitem.h"
-// #include "helpwidget.h"
-#include "helpbrowser.h"
 #include "hyphenate/fmhyphenator.h"
 #include "importedfontsdialog.h"
 #include "importtags.h"
@@ -74,6 +72,8 @@
 #include <QDockWidget>
 #include <QStackedWidget>
 #include <QMessageBox>
+#include <QMenuBar>
+#include <QStatusBar>
 
 #ifdef HAVE_FONTCONFIG
 #include <fontconfig/fontconfig.h>
@@ -162,7 +162,6 @@ typotek::typotek()
 	setupDrop();
 	theMainView = nullptr;
 	hyphenator = nullptr;
-	theHelp = nullptr;
 	dataLoader = nullptr;
 	playVisible = false;
 
@@ -856,7 +855,9 @@ void typotek::createActions()
 
 	KStandardAction::quit(this, &typotek::close, ac);
 	KStandardAction::preferences(this, &typotek::slotPrefsPanelDefault, ac);
-	KStandardAction::helpContents(this, &typotek::helpBegin, ac);
+	// help_contents is provided automatically by KHelpMenu (auto-installed by
+	// KXmlGuiWindow::createGUI()) and routes to khelpcenter via the
+	// "help:/fontmatrix-ng" URL — no custom handler needed.
 
 	// KDE theme icons (XDG standard names) for menu and toolbar actions.
 	openAct->setIcon(QIcon::fromTheme(QStringLiteral("folder-open")));
@@ -952,7 +953,6 @@ void typotek::readSettings()
 	infoStyle = FMConfig::value(QStringLiteral("Info/Style"), FMPaths::ResourcesDir() + "info.css").toString();
 
 	templatesDir = FMConfig::value(QStringLiteral("Places/TemplatesDir"), "./").toString();
-	m_welcomeURL = FMConfig::value(QStringLiteral("Places/WelcomeURL")).toString();
 	m_remoteTmpDir = FMConfig::value(QStringLiteral("Places/RemoteTmpDir"), QDir::tempPath()).toString();
 
 	defaultOTFScript = FMConfig::value(QStringLiteral("OTF/Script")).toString();
@@ -1477,24 +1477,6 @@ void typotek::slotDeactivateCurrents()
 {
 	if ( QMessageBox::question ( this,tr ( "Fontmatrix care" ),tr ( "You are about to deactivate a bunch of fonts,\nit is time to cancel if it was not your intent" ),QMessageBox::Ok|QMessageBox::Cancel, QMessageBox::Cancel ) == QMessageBox::Ok )
 		theMainView->slotDesactivateAll();
-}
-
-void typotek::helpBegin()
-{
-	if (theHelp) {
-		theHelp->show();
-		theHelp->raise();
-		return;
-	}
-	theHelp = new HelpBrowser(this, tr("Fontmatrix Help"));
-	connect(theHelp, SIGNAL(closed()), this, SLOT(helpEnd()));
-	theHelp->show();
-}
-
-void typotek::helpEnd()
-{
-	theHelp->deleteLater();
-	theHelp = nullptr;
 }
 
 void typotek::toggleShowMenuBar(bool showMessage)

@@ -64,8 +64,6 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fontcomparewidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fontitem.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fontmatrixshaper.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/glyphtosvghelper.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/helpbrowser.cpp
-# ${CMAKE_CURRENT_SOURCE_DIR}/helpwidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/importedfontsdialog.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/importtags.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/iview.cpp
@@ -90,16 +88,12 @@ ${CMAKE_CURRENT_SOURCE_DIR}/remotedir.cpp
 #${CMAKE_CURRENT_SOURCE_DIR}/savedata.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/sampletoolbar.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/samplewidget.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/schelptreemodel.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/sctextbrowser.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/shortcuts.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/systray.cpp
 # ${CMAKE_CURRENT_SOURCE_DIR}/tagseteditor.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/tagswidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/tagswidget_listmodel.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/textprogression.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/treeitem.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/treemodel.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/tttableview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/typotek.cpp
 )
@@ -191,8 +185,6 @@ fmsampletextview.h
 fontbookdialog.h
 fontcomparewidget.h
 fontitem.h
-helpbrowser.h
-# helpwidget.h
 importtags.h
 iview.h
 QHexView.h
@@ -210,7 +202,6 @@ progressbarduo.h
 remotedir.h
 sampletoolbar.h
 samplewidget.h
-sctextbrowser.h
 shortcuts.h
 systray.h
 # tagseteditor.h
@@ -245,8 +236,6 @@ ${CMAKE_CURRENT_SOURCE_DIR}/floatingwidgettoolbar.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/fontextractordialog.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/importedfonts.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/importtags.ui
-# ${CMAKE_CURRENT_SOURCE_DIR}/help.ui
-${CMAKE_CURRENT_SOURCE_DIR}/helpbrowser.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/layoutoptions.ui
 #${CMAKE_CURRENT_SOURCE_DIR}/listsdock.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/mainview.ui
@@ -353,6 +342,22 @@ IF(UNIX AND NOT APPLE)
 	)
 	INSTALL(FILES ${fontmatrix_QMS} DESTINATION ${FONTMATRIX_QMDIR})
 	INSTALL(FILES fontmatrixui.rc DESTINATION "${KDE_INSTALL_KXMLGUIDIR}/fontmatrix-ng")
+
+	# Dev launcher: prepend ${CMAKE_BINARY_DIR}/data to XDG_DATA_DIRS so the
+	# handbook (mirrored by doc/fontmatrix-ng/CMakeLists.txt) is found by
+	# khelpcenter when the binary is run from the build tree.
+	file(GENERATE
+	    OUTPUT  "${CMAKE_BINARY_DIR}/bin/fontmatrix-ng-dev.sh"
+	    CONTENT "#!/bin/sh
+# Auto-generated dev launcher — runs the build-tree binary with XDG_DATA_DIRS
+# pointed at ${CMAKE_BINARY_DIR}/data so F1 finds the handbook without install.
+export XDG_DATA_DIRS=\"${CMAKE_BINARY_DIR}/data:\${XDG_DATA_DIRS:-/usr/local/share:/usr/share}\"
+exec \"${CMAKE_BINARY_DIR}/bin/fontmatrix-ng\" \"\$@\"
+"
+	    FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+	                     GROUP_READ GROUP_EXECUTE
+	                     WORLD_READ WORLD_EXECUTE
+	)
 ENDIF(UNIX AND NOT APPLE)
 
 IF(APPLE)
@@ -401,7 +406,7 @@ IF(APPLE)
 	ADD_CUSTOM_COMMAND( TARGET ${PROGNAME} POST_BUILD
 	COMMAND mkdir ARGS -p ${BUNDLE_RESOURCES_DIR}
 	COMMAND cp ARGS  "${CMAKE_SOURCE_DIR}/src/graphic-resources/fontmatrix.icns" ${BUNDLE_RESOURCES_DIR}
-	COMMAND cp ARGS ${FM_TEMPLATES_FILES} ${FM_STYLE_FILES} ${FM_WELCOME_FILES} ${FM_HELP_FILES} ${BUNDLE_RESOURCES_DIR}
+	COMMAND cp ARGS ${FM_TEMPLATES_FILES} ${FM_STYLE_FILES} ${BUNDLE_RESOURCES_DIR}
 	)
 # bundles QM files
 	ADD_CUSTOM_COMMAND( TARGET translation_release POST_BUILD

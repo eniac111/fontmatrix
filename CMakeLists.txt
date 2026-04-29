@@ -75,6 +75,12 @@ IF(UNIX AND NOT APPLE)
         XmlGui
         ConfigWidgets
     )
+    # KDocTools is optional — if absent, the handbook is skipped but the app still builds.
+    find_package(KF6DocTools)
+    set_package_properties(KF6DocTools PROPERTIES
+        DESCRIPTION "Tools to generate documentation in various formats from DocBook"
+        TYPE OPTIONAL
+        PURPOSE "Required to build the FontMatrix-NG handbook")
     SET(FONTMATRIX_BIN ${KDE_INSTALL_BINDIR})
     SET(FONTMATRIX_QMDIR "${KDE_INSTALL_DATADIR}/fontmatrix-ng/qm")
 ENDIF(UNIX AND NOT APPLE)
@@ -207,25 +213,6 @@ ${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/img/css-info-property.png
 ${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/img/css-shadow.png
 ${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/img/css-tech-info.png
 )
-SET(FM_WELCOME_FILES
-${CMAKE_SOURCE_DIR}/src/messages/welcome_cs.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_da.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_de.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_en.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_fi.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_fr.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_hi.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_nb.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_nl.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_no.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_ru.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_sr.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_sv.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_uk.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_zh_CN.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_zh_TW.html
-)
-
 # tell cmake to process CMakeLists.txt in that subdirectory
 SET(HYPHENATE_DIR src/hyphenate)
 ADD_SUBDIRECTORY(${HYPHENATE_DIR})
@@ -234,6 +221,11 @@ SET(HYPHENATE_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/${HYPHENATE_DIR})
 
 
 ADD_SUBDIRECTORY(src)
+
+# Handbook (DocBook → khelpcenter). Skipped silently when KDocTools is absent.
+IF(KF6DocTools_FOUND)
+    ADD_SUBDIRECTORY(doc)
+ENDIF()
 
 # dodict
 # ADD_SUBDIRECTORY(src/langs)
@@ -262,13 +254,7 @@ IF(UNIX AND NOT APPLE)
 	INSTALL(FILES
 	${FM_TEMPLATES_FILES}
 	${FM_STYLE_FILES}
-	${FM_WELCOME_FILES}
 	DESTINATION "${KDE_INSTALL_DATADIR}/fontmatrix-ng/resources"
-	)
-
-	INSTALL(FILES
-	${FM_HELP_FILES}
-	DESTINATION "${KDE_INSTALL_DATADIR}/fontmatrix-ng/help"
 	)
 ENDIF(UNIX AND NOT APPLE)
 
@@ -278,12 +264,9 @@ ENDIF(APPLE)
 
 IF(WIN32)
 	SET(RESOURCESDIR "share/resources/")
-	SET(HELPDIR "help/")
 	INSTALL(FILES
 	${FM_TEMPLATES_FILES}
 	${FM_STYLE_FILES}
-	${FM_WELCOME_FILES}
-	${FM_HELP_FILES}
 	DESTINATION "${RESOURCESDIR}"
 	)
 
@@ -336,7 +319,6 @@ IF(WIN32)
 
 ENDIF(WIN32)
 
-ADD_SUBDIRECTORY(help)
 ADD_SUBDIRECTORY(samples)
 
 SET(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
