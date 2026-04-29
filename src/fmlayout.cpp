@@ -16,6 +16,7 @@
 #include "typotek.h"
 #include "textprogression.h"
 
+#include <KLocalizedString>
 #include <cstdlib>
 
 #include <QDialog>
@@ -351,7 +352,7 @@ FMLayout::FMLayout ( QGraphicsScene * scene, FontItem * font , QRectF rect )
 	FM_LAYOUT_MAX_COMPRESSION = 50.0; // 50%
 
 	optionDialog = new QWidget;
-	//	optionDialog->setWindowTitle ( tr ( "Text engine options" ) );
+	//	optionDialog->setWindowTitle ( i18n( "Text engine options" ) );
 	optionLayout =  new QGridLayout(optionDialog) ;
 	
 	optionsWidget = new FMLayOptWidget;

@@ -127,9 +127,11 @@ private:
     QString filterString(FilterData *d, bool first = false);
     void loadFilters();
     QList<FiltersDialogItem*> items;
-    static QString andOpString;
-    static QString notOpString;
-    static QString orOpString;
+    // Lazy-initialised translated strings; static-init i18n() would run before
+    // KLocalizedString::setApplicationDomain() and fall back to source text.
+    static const QString &andOp();
+    static const QString &notOp();
+    static const QString &orOp();
 
     QStringListModel *mModel;
     QStringList mList;

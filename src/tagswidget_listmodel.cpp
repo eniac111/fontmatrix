@@ -9,6 +9,7 @@
 #include "fontitem.h"
 #include "fmfontdb.h"
 
+#include <KLocalizedString>
 #include <QFont>
 #include <QStringList>
 #include <QModelIndex>
@@ -17,7 +18,7 @@
 
 TagsWidget_ListModel::TagsWidget_ListModel(QObject *parent)
 		:QAbstractListModel(parent),
-		newTagString(tr("New Tag"))
+		newTagString(i18n("New Tag"))
 {
 	connect(FMFontDb::DB(), SIGNAL(tagsChanged()), this, SLOT(updateTags()));
 }

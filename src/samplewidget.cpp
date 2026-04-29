@@ -30,6 +30,7 @@
 #include "opentypetags.h"
 #include "fmconfig.h"
 
+#include <KLocalizedString>
 #include <QApplication>
 #include <QMap>
 #include <QTreeWidgetItem>
@@ -100,7 +101,9 @@ SampleWidget::State SampleWidget::State::fromByteArray(QByteArray b)
 	return *this;
 }
 
-const QString SampleWidget::Name = QObject::tr("Sample");
+// Registry key used by FloatingWidgetsRegister; stable English identifier,
+// never translated.
+const QString SampleWidget::Name = QStringLiteral("Sample");
 
 SampleWidget::SampleWidget(const QString& fid, QWidget *parent) :
 		FloatingWidget(fid, Name, parent),
@@ -764,7 +767,7 @@ void SampleWidget::refillSampleList()
 	QList<QString> ul( sl.take(QString("User")) );
 	uRoot = new QTreeWidgetItem(ui->sampleTextTree);
 	//: Identify root of user defined sample texts
-	uRoot->setText(0, tr("User"));
+	uRoot->setText(0, i18n("User"));
 	if(ul.count())
 	{
 
@@ -829,7 +832,7 @@ void SampleWidget::slotPrint()
 	if(printDialog == nullptr)
 		printDialog = new QPrintDialog(printer, this);
 
-	printDialog->setWindowTitle("Fontmatrix - " + tr("Print Sample") +" - " + font->fancyName() );
+	printDialog->setWindowTitle("Fontmatrix - " + i18n("Print Sample") +" - " + font->fancyName() );
 	printDialog->open(this, SLOT(slotDoPrinting()));
 }
 
@@ -921,7 +924,7 @@ void SampleWidget::slotShowOpenType(bool b)
 
 void SampleWidget::slotAddSample()
 {
-	QString nu( tr("New Sample") );
+	QString nu( i18n("New Sample") );
 	newSampleName = new QTreeWidgetItem();
 	newSampleName->setText(0,nu);
 	newSampleName->setData(0, Qt::UserRole , QString("NEW_SAMPLE"));

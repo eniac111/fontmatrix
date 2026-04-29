@@ -10,6 +10,7 @@
 //
 //
 
+#include <KLocalizedString>
 #include <QDebug>
 #include <QFileDialog>
 #include <QFile>
@@ -88,7 +89,7 @@ void TTTableView::exportHex()
 	if(curTable.isEmpty())
 		return;
 	
-	QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"));
+	QString fileName = QFileDialog::getSaveFileName(this, i18n("Save File"));
 	if(fileName.isEmpty())
 		return;
 	QFile f(fileName);

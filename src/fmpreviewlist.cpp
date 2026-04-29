@@ -25,6 +25,7 @@
 #include "fmfloatingpreview.h"
 #include "fmfontdb.h"
 
+#include <KLocalizedString>
 #include <QImage>
 #include <QDebug>
 #include "fmconfig.h"

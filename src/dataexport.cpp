@@ -18,6 +18,7 @@
 #include "fmfontdb.h"
 #include "fminfodisplay.h"
 
+#include <KLocalizedString>
 #include <QFile>
 #include <QXmlStreamWriter>
 #include <QDebug>
@@ -59,7 +60,7 @@ DataExport::~DataExport()
 void DataExport::doExport()
 {
 	QString dir( QDir::homePath() );
-	dir = QFileDialog::getExistingDirectory ( this, tr ( "Choose Directory" ), dir  ,  QFileDialog::ShowDirsOnly );
+	dir = QFileDialog::getExistingDirectory ( this, i18n( "Choose Directory" ), dir  ,  QFileDialog::ShowDirsOnly );
 	if ( dir.isEmpty() )
 		return ;
 	exDir = QDir(dir);
@@ -72,7 +73,7 @@ void DataExport::doExport()
 
 int DataExport::copyFiles()
 {
-	QProgressDialog progress ( QObject::tr ( "Copying files" ), QObject::tr ( "cancel" ), 0, fonts.count(), this );
+	QProgressDialog progress ( i18n( "Copying files" ), i18n( "cancel" ), 0, fonts.count(), this );
 	progress.setWindowModality ( Qt::WindowModal );
 	int progressindex(0);
 	QList<int> toRemove;

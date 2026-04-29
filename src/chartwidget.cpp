@@ -26,6 +26,7 @@
 #include "fmfontdb.h"
 #include "fmuniblocks.h"
 
+#include <KLocalizedString>
 #include <QStringListModel>
 #include <QCompleter>
 #include <QGraphicsRectItem>
@@ -36,7 +37,9 @@
 #include <QPrinter>
 #include <QPrintDialog>
 
-const QString ChartWidget::Name = QObject::tr("Chart");
+// Registry key used by FloatingWidgetsRegister; stable English identifier,
+// never translated.
+const QString ChartWidget::Name = QStringLiteral("Chart");
 
 ChartWidget::ChartWidget(const QString& fid, const QString& block, QWidget *parent) :
 		FloatingWidget(fid, Name, parent),
@@ -54,8 +57,8 @@ ChartWidget::ChartWidget(const QString& fid, const QString& block, QWidget *pare
 	QCompleter* cslCompleter(new QCompleter(ui->charSearchLine));
 	cslCompleter->setModel(cslModel);
 	ui->charSearchLine->setCompleter(cslCompleter);
-	unMapGlyphName = tr("Un-Mapped Glyphs");
-	allMappedGlyphName = tr("View all mapped glyphs");
+	unMapGlyphName = i18n("Un-Mapped Glyphs");
+	allMappedGlyphName = i18n("View all mapped glyphs");
 	uRangeIsNotEmpty = false;
 	fillUniPlanesCombo(theVeryFont);
 	curGlyph = nullptr;
@@ -148,7 +151,7 @@ void ChartWidget::selectBlock(const QString &uname)
 		int interval = uniPair.second - uniPair.first;
 		coverage = coverage * 100 / ( interval + 1 );// against /0 exception
 
-		QString statstring(tr("Block (%1):").arg( QString::number ( coverage ) + "%"));
+		QString statstring(i18n("Block (%1):", QString::number ( coverage ) + "%"));
 		ui->unicodeCoverageStat->setText ( statstring );
 
 		theVeryFont->renderAll ( abcScene , uniPair.first, uniPair.second );
@@ -235,7 +238,7 @@ void ChartWidget::slotUpdateGView()
 		int interval = uniPair.second - uniPair.first;
 		coverage = coverage * 100 / ( interval + 1 );// against /0 exception
 
-		QString statstring(tr("Block (%1):").arg( QString::number ( coverage ) + "%"));
+		QString statstring(i18n("Block (%1):", QString::number ( coverage ) + "%"));
 		ui->unicodeCoverageStat->setText ( statstring );
 
 		theVeryFont->renderAll ( abcScene , uniPair.first, uniPair.second );
@@ -492,7 +495,7 @@ void ChartWidget::slotPrint()
 	if(printDialog == nullptr)
 		printDialog = new QPrintDialog(printer, this);
 
-	printDialog->setWindowTitle("Fontmatrix - " + tr("Print Chart") +" - " + font->fancyName() );
+	printDialog->setWindowTitle("Fontmatrix - " + i18n("Print Chart") +" - " + font->fancyName() );
 
 
 	printDialog->open(this, SLOT(slotDoPrinting()));

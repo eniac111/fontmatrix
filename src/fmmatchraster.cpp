@@ -18,6 +18,7 @@
 #include "fontitem.h"
 #include "fmfontdb.h"
 
+#include <KLocalizedString>
 #include <QScreen>
 #include <QFileDialog>
 #include <QFile>
@@ -156,9 +157,9 @@ void FMMatchRaster::search()
 							compView->setEnabled ( true );
 							compView->setImage ( QPixmap::fromImage ( adjustedImg ) );
 							compView->setEnabled ( false );
-							scoreLabel->setText ( tr ( "The font %1 scores %2.\nDo you want to add it to the filtered fonts?" )
-							                      .arg ( fit->fancyName() )
-							                      .arg ( compResult ) );
+							scoreLabel->setText ( i18n( "The font %1 scores %2.\nDo you want to add it to the filtered fonts?",
+							                            fit->fancyName(),
+							                            compResult ) );
 							buttonBox->setEnabled ( true );
 							waitingFont = fit;
 							m_waitingForButton = true;
@@ -212,7 +213,7 @@ void FMMatchRaster::slotStop()
 	}
 	else
 	{
-		QMessageBox::information ( this, "Fontmatrix", tr ( "No font match the submitted image" ) );
+		QMessageBox::information ( this, "Fontmatrix", i18n( "No font match the submitted image" ) );
 	}
 	close();
 }

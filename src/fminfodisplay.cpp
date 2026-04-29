@@ -19,6 +19,7 @@
 #include "glyphtosvghelper.h"
 #include "typotek.h"
 
+#include <KLocalizedString>
 #include <QMap>
 #include <QObject>
 #include <QRegularExpression>
@@ -116,7 +117,7 @@ QString FMInfoDisplay::writeLangOS2(FontItem * font)
 	if(llist.count() > 0)
 	{
 		ret += "<div id=\"langblock\">\n";
-		ret += "\t<div class=\"langblockname\">" + QObject::tr("Unicode Ranges") + "</div>\n";
+		ret += "\t<div class=\"langblockname\">" + i18n("Unicode Ranges") + "</div>\n";
 		ret += "\t<ul>\n";
 		for (const auto& ln : llist)
 		{
@@ -175,11 +176,11 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 	if(fontType == QString("CFF"))
 		fontType = QString("OpenType");
 
-	ret += modelItem.arg(QObject::tr("File"))
+	ret += modelItem.arg(i18n("File"))
 	       .arg(font->path().replace("/","/&shy;"));
-	ret += modelItem.arg( QObject::tr ( "Glyphs count" ))
+	ret += modelItem.arg( i18n( "Glyphs count" ))
 	       .arg(QString::number ( font->glyphsCount() ));
-	ret += modelItem.arg(QObject::tr ( "Font Type" ) )
+	ret += modelItem.arg(i18n( "Font Type" ) )
 	       .arg(fontType );
 
 
@@ -194,7 +195,7 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 		else
 			cmapStrings << "<span class=\"encoding\">" + encString + "</span>\n";
 	}
-	ret += "<div class=\"infoblock\"><div class=\"infoname\">"+ QObject::tr ( "Charmaps List" ) +"</div><div class=\"langundefined\">"+ font->charmaps().join( ", " ) +"</div></div>\n";
+	ret += "<div class=\"infoblock\"><div class=\"infoname\">"+ i18n( "Charmaps List" ) +"</div><div class=\"langundefined\">"+ font->charmaps().join( ", " ) +"</div></div>\n";
 
 	
 // 	if ( !moreInfo.isEmpty() ) // moreInfo.isNotEmpty

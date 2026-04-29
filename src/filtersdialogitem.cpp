@@ -22,6 +22,7 @@
 #include "ui_filtersdialogitem.h"
 
 
+#include <KLocalizedString>
 #include <QMessageBox>
 
 FiltersDialogItem::FiltersDialogItem(const QString& name, const QString& f, QWidget *parent) :
@@ -62,7 +63,7 @@ void FiltersDialogItem::slotFilter()
 
 void FiltersDialogItem::slotRemove()
 {
-	if(QMessageBox::question(nullptr, tr("Remove Filter"), tr("Confirm deletion of filter:") + filterName, QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Ok) == QMessageBox::Ok)
+	if(QMessageBox::question(nullptr, i18n("Remove Filter"), i18n("Confirm deletion of filter:") + filterName, QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Ok) == QMessageBox::Ok)
 		emit Remove(filterName);
 }
 

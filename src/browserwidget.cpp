@@ -29,6 +29,7 @@
 #include "chartwidget.h"
 #include "typotek.h"
 
+#include <KLocalizedString>
 #include <QFileSystemModel>
 #include <QDir>
 #include "fmconfig.h"
@@ -329,9 +330,9 @@ void BrowserWidget::slotImport()
 
 FolderViewMenu::FolderViewMenu() : QMenu()
 {
-	dirAction = new QAction(tr("Import Directory"), nullptr);
-	dirRecursiveAction = new QAction(tr("Import recursively"), nullptr);
-	fileAction = new QAction(tr("Import File"), nullptr);
+	dirAction = new QAction(i18n("Import Directory"), nullptr);
+	dirRecursiveAction = new QAction(i18n("Import recursively"), nullptr);
+	fileAction = new QAction(i18n("Import File"), nullptr);
 
 	addAction(dirAction);
 	addAction(dirRecursiveAction);

@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "importedfontsdialog.h"
+#include <KLocalizedString>
 #include <QListWidgetItem>
 #include "typotek.h"
 
@@ -34,14 +35,14 @@ ImportedFontsDialog::ImportedFontsDialog(QWidget * parent, QStringList fontlist)
 		if(s.startsWith("__FAILEDTOLOAD__", Qt::CaseSensitive))
 		{
 			success = false;
-			s = s.mid(16) + tr(" (not loaded)");
+			s = s.mid(16) + i18n(" (not loaded)");
 			++buggyFonts;
 		}
 		QListWidgetItem *it=new QListWidgetItem(s);
 		it->setForeground(success ? Qt::black : Qt::red);
 		fontList->addItem(it);
 	}
-	label->setText(tr("Number of Imported Fonts ") + QString::number(fontList->count() - buggyFonts));
+	label->setText(i18n("Number of Imported Fonts ") + QString::number(fontList->count() - buggyFonts));
 	dontShowBox->setChecked(false);
 
 	connect(dontShowBox, SIGNAL(stateChanged(int)),typotek::getInstance(), SLOT(showImportedFonts(int)));

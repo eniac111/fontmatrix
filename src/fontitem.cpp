@@ -32,6 +32,7 @@
 #include "fmkernfeat.h"
 #include "fmuniblocks.h"
 
+#include <KLocalizedString>
 #include <cmath>
 
 #include <QDebug>
@@ -2263,7 +2264,7 @@ QString FontItem::infoGlyph ( [[maybe_unused]] int index, int code )
 	ensureFace();
 	QString ret;
 	ret += glyphName ( code ) ;
-	ret += ", " + QObject::tr ( "codepoint is U+" ) ;
+	ret += ", " + i18n( "codepoint is U+" ) ;
 	ret += QString ( "%1" ).arg ( code, 4, 16, QChar ( 0x0030 ) ) ;
 	ret += " (int"+ QString::number ( code ) +")";
 
@@ -2359,8 +2360,7 @@ QPixmap FontItem::oneLinePreviewPixmap ( QString oneline , QColor fg_color, QCol
 	}
 	else
 	{
-		QString cantRenderString(tr("(%1)", "when doing the font preview, used to denote a font that can not displayed its name"));
-		apainter.drawText(pen.x(),pen.y(), cantRenderString.arg(oneline));
+		apainter.drawText(pen.x(),pen.y(), i18nc("when doing the font preview, used to denote a font that can not displayed its name", "(%1)", oneline));
 	}
 
 	apainter.end();
@@ -3180,8 +3180,8 @@ int FontItem::getFromNetwork()
 	rHttp = new QHttp ( url.host() );
 	qDebug() << "Init progress Dialog";
 	rProgressDialog = new QProgressDialog ( typotek::getInstance() );
-	rProgressDialog->setWindowTitle ( tr ( "Fontmatrix - Download" ) );
-	rProgressDialog->setLabelText ( tr ( "Downloading %1." ).arg ( m_path ) );
+	rProgressDialog->setWindowTitle ( i18n( "Fontmatrix - Download" ) );
+	rProgressDialog->setLabelText ( i18n ( "Downloading %1.", m_path ) );
 	rProgressDialog->show();
 	rProgressDialog->raise();
 	rProgressDialog->activateWindow();

@@ -21,6 +21,7 @@
 #include "playwidget.h"
 #include "ui_playwidget.h"
 
+#include <KLocalizedString>
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QDialog>
@@ -32,7 +33,7 @@ PlayWidget::PlayWidget() :
     ui(new Ui::PlayWidget)
 {
     ui->setupUi(this);
-    setWindowTitle(tr("Playground"));
+    setWindowTitle(i18n("Playground"));
     ui->toolbar->setDetached();
     ui->toolbar->setNoClose(true);
     playScene = new QGraphicsScene;
@@ -104,7 +105,7 @@ void PlayWidget::print()
 {
 	QPrinter thePrinter ( QPrinter::HighResolution );
 	QPrintDialog dialog(&thePrinter, this);
-	dialog.setWindowTitle("Fontmatrix - " + tr("Print Playground")  );
+	dialog.setWindowTitle("Fontmatrix - " + i18n("Print Playground")  );
 
 	if ( dialog.exec() != QDialog::Accepted )
 		return;

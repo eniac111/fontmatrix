@@ -12,6 +12,7 @@
 
 #include "fmfontextract.h"
 
+#include <KLocalizedString>
 #include <QFileInfo>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -63,7 +64,7 @@ void FMFontExtract::loadDoc(const QString & path)
 	QFileInfo fi(path);
 	if(!fi.exists())
 	{
-		docPath->setText(tr("File does not exist:") + " " + fi.fileName());
+		docPath->setText(i18n("File does not exist:") + " " + fi.fileName());
 		return;
 	}
 	
@@ -83,7 +84,7 @@ void FMFontExtract::loadDoc(const QString & path)
 	}
 	else
 	{
-		docPath->setText(tr("Format not handled."));
+		docPath->setText(i18n("Format not handled."));
 	}
 		
 	for(int i(0);i < fontList->count(); ++i )
@@ -141,7 +142,7 @@ void FMFontExtract::slotExtract()
 	}
 	if(!failedExt.isEmpty())
 	{
-		QMessageBox::information(this,"Fontmatrix",tr("Failed to extract:\n%1").arg(failedExt.join("\n")));
+		QMessageBox::information(this,"Fontmatrix",i18n("Failed to extract:\n%1", failedExt.join("\n")));
 	}
 	
 }

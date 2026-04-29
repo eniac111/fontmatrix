@@ -15,6 +15,7 @@
 #include "hyphenate/fmhyphenator.h"
 #include "fmpaths.h"
 
+#include <KLocalizedString>
 #include <QAction>
 #include <QDebug>
 #include <QToolTip>
@@ -33,7 +34,7 @@ PrefsPanelDialog::PrefsPanelDialog ( QWidget *parent )
 
 	systrayFrame->setCheckable ( true );
 	previewWord->setText ( typotek::getInstance()->word() );
-	previewWord->setToolTip(tr("You can use the following keywords to be replaced by data from fonts: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"));
+	previewWord->setToolTip(i18n("You can use the following keywords to be replaced by data from fonts: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"));
 	previewSizeSpin->setValue ( pSize );
 	previewIsRTL->setChecked ( typotek::getInstance()->getPreviewRTL() );
 	previewSubtitled->setChecked ( typotek::getInstance()->getPreviewSubtitled() );
@@ -47,7 +48,7 @@ PrefsPanelDialog::PrefsPanelDialog ( QWidget *parent )
 // 	qDebug()<< "ss" << FMConfig::value("SplashScreen",false).toBool();
 	splashCheck->setChecked ( FMConfig::value ( QStringLiteral("SplashScreen"), true ).toBool() );
 
-	namedSampleTextText->setText ( tr ( "Please select an item in the list or create a new one." ) );
+	namedSampleTextText->setText ( i18n( "Please select an item in the list or create a new one." ) );
 	namedSampleTextText->setEnabled ( false );
 	
 	/// browser
@@ -85,7 +86,7 @@ void PrefsPanelDialog::initSystrayPrefs ( bool hasSystray, bool isVisible, bool 
 	if ( !hasSystray )
 	{
 		systrayFrame->setEnabled ( false );
-		systrayFrame->setToolTip ( tr ( "Looks like your setup does not have a system tray available." ) );
+		systrayFrame->setToolTip ( i18n( "Looks like your setup does not have a system tray available." ) );
 	} else
 		systrayFrame->setToolTip ( "" );
 	systrayFrame->setChecked ( isVisible );
@@ -230,7 +231,7 @@ void PrefsPanelDialog::addSampleName()
 	if ( typotek::getInstance()->namedSamplesNames().contains ( n ) )
 		return;
 
-	typotek::getInstance()->addNamedSample ( n, tr ( "Sample Text","A default sample text inserted when creating a new sample" ) );
+	typotek::getInstance()->addNamedSample ( n, i18nc("A default sample text inserted when creating a new sample", "Sample Text") );
 	sampleTextNamesList->addItem ( n );
 	newSampleTextNameText->clear();
 // 	displayNamedText();
@@ -244,7 +245,7 @@ void PrefsPanelDialog::deleteSampleName()
 		return;
 
 	QString sampleKey ( sel[0]->text() );
-	QString  message ( tr ( "Do you confirm that you want to remove:","the name of a sample text will be append to the string" ) + " \"%1\"" );
+	QString  message ( i18nc("the name of a sample text will be append to the string", "Do you confirm that you want to remove:") + " \"%1\"" );
 
 	if ( QMessageBox::warning ( this ,
 	                            "Fontmatrix",
@@ -337,7 +338,7 @@ void PrefsPanelDialog::setupFontEditor ( QString s )
 
 void PrefsPanelDialog::slotFontEditorBrowse()
 {
-	QString s = QFileDialog::getOpenFileName ( this, tr ( "Select font editor" ) );
+	QString s = QFileDialog::getOpenFileName ( this, i18n( "Select font editor" ) );
 	if ( !s.isEmpty() )
 	{
 		fontEditorPath->setText ( s );
@@ -346,7 +347,7 @@ void PrefsPanelDialog::slotFontEditorBrowse()
 
 void PrefsPanelDialog::addAndSelectWebBrowser()
 {
-	QString s = QFileDialog::getOpenFileName ( this, tr ( "Select web browser" ) );
+	QString s = QFileDialog::getOpenFileName ( this, i18n( "Select web browser" ) );
 	if ( !s.isEmpty() )
 	{
 		QStringList l;
@@ -404,7 +405,7 @@ void PrefsPanelDialog::slotSelectPage ( QListWidgetItem * item )
 
 void PrefsPanelDialog::slotTemplatesBrowse()
 {
-	QString s = QFileDialog::getExistingDirectory ( this, tr ( "Select Templates Folder" ), QDir::homePath(), QFileDialog::ShowDirsOnly );
+	QString s = QFileDialog::getExistingDirectory ( this, i18n( "Select Templates Folder" ), QDir::homePath(), QFileDialog::ShowDirsOnly );
 	if ( !s.isEmpty() )
 	{
 		templatesFolder->setText ( s );
@@ -460,7 +461,7 @@ void PrefsPanelDialog::slotSetLocalStorage ( QString s )
 
 void PrefsPanelDialog::slotBrowseLocalStorage()
 {
-	QString s = QFileDialog::getExistingDirectory ( this, tr ( "Select Where remote font files will be stored" ) );
+	QString s = QFileDialog::getExistingDirectory ( this, i18n( "Select Where remote font files will be stored" ) );
 	if ( !s.isEmpty() )
 	{
 		localStorageLine->setText ( s );
@@ -539,7 +540,7 @@ void PrefsPanelDialog::keyPressEvent ( QKeyEvent *k )
 		{
 			tl = shortcutLabel->text().split ( "+", Qt::SkipEmptyParts );
 			Part4 = tl[tl.count()-1];
-			if ( Part4 == tr ( "Alt" ) || Part4 == tr ( "Ctrl" ) || Part4 == tr ( "Shift" ) || Part4 == tr ( "Meta" ) )
+			if ( Part4 == i18n( "Alt" ) || Part4 == i18n( "Ctrl" ) || Part4 == i18n( "Shift" ) || Part4 == i18n( "Meta" ) )
 				Part4 = "";
 		}
 		else
@@ -547,19 +548,19 @@ void PrefsPanelDialog::keyPressEvent ( QKeyEvent *k )
 		switch ( k->key() )
 		{
 			case Qt::Key_Meta:
-				Part0 = tr ( "Meta+" );
+				Part0 = i18n( "Meta+" );
 				keyCode |= Qt::META;
 				break;
 			case Qt::Key_Shift:
-				Part3 = tr ( "Shift+" );
+				Part3 = i18n( "Shift+" );
 				keyCode |= Qt::SHIFT;
 				break;
 			case Qt::Key_Alt:
-				Part2 = tr ( "Alt+" );
+				Part2 = i18n( "Alt+" );
 				keyCode |= Qt::ALT;
 				break;
 			case Qt::Key_Control:
-				Part1 = tr ( "Ctrl+" );
+				Part1 = i18n( "Ctrl+" );
 				keyCode |= Qt::CTRL;
 				break;
 			default:
@@ -585,7 +586,7 @@ void PrefsPanelDialog::keyReleaseEvent ( QKeyEvent *k )
 			QStringList tl;
 			tl = shortcutLabel->text().split ( "+", Qt::SkipEmptyParts );
 			Part4 = tl[tl.count()-1];
-			if ( Part4 == tr ( "Alt" ) || Part4 == tr ( "Ctrl" ) || Part4 == tr ( "Shift" ) || Part4 == tr ( "Meta" ) )
+			if ( Part4 == i18n( "Alt" ) || Part4 == i18n( "Ctrl" ) || Part4 == i18n( "Shift" ) || Part4 == i18n( "Meta" ) )
 				Part4 = "";
 		}
 		else
@@ -646,10 +647,10 @@ void PrefsPanelDialog::shortcutSet ( const QString &shortcut )
 	QString reserved = tmp->isReserved ( shortcut, iText );
 	if ( !reserved.isEmpty() ) // shortcut is already in use
 	{
-		if ( QMessageBox::question ( this, tr ( "Replace" ),
-		                             "<qt>" + tr ( "Shortcut is already in use for", "action name will be appended to this" ) +
+		if ( QMessageBox::question ( this, i18n( "Replace" ),
+		                             "<qt>" + i18nc("action name will be appended to this", "Shortcut is already in use for") +
 		                             QString ( "<br/><b>%1</b>.<br/>" ).arg ( reserved ) +
-		                             tr ( "Do you still want to assign it?" ) + "</qt>",
+		                             i18n( "Do you still want to assign it?" ) + "</qt>",
 		                             QMessageBox::Yes | QMessageBox::No ) == QMessageBox::Yes )
 		{
 			tmp->clearShortcut ( reserved );
@@ -686,9 +687,9 @@ void PrefsPanelDialog::reloadShortcuts()
 		iRow << iText << iShortcut << iTooltip;
 		shortcutModel->appendRow ( iRow );
 	}
-	shortcutModel->setHeaderData ( 0, Qt::Horizontal, tr ( "Action" ) );
-	shortcutModel->setHeaderData ( 1, Qt::Horizontal, tr ( "Shortcut" ) );
-	shortcutModel->setHeaderData ( 2, Qt::Horizontal, tr ( "Tip" ) );
+	shortcutModel->setHeaderData ( 0, Qt::Horizontal, i18n( "Action" ) );
+	shortcutModel->setHeaderData ( 1, Qt::Horizontal, i18n( "Shortcut" ) );
+	shortcutModel->setHeaderData ( 2, Qt::Horizontal, i18n( "Tip" ) );
 	shortcutList->resizeColumnsToContents();
 	shortcutList->resizeRowsToContents();
 	shortcutList->setSortingEnabled ( true );
@@ -721,7 +722,7 @@ void PrefsPanelDialog::slotSplashScreen ( bool state )
 
 void PrefsPanelDialog::slotDictDialog()
 {
-	QString s = QFileDialog::getOpenFileName ( this, tr ( "Select hyphenation dictionary" ), QDir::homePath() );
+	QString s = QFileDialog::getOpenFileName ( this, i18n( "Select hyphenation dictionary" ), QDir::homePath() );
 	if ( !s.isEmpty() )
 		dictEdit->setText ( s );
 }

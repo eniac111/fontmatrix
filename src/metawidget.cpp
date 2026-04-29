@@ -23,6 +23,7 @@
 #include "fmfontstrings.h"
 
 
+#include <KLocalizedString>
 #include <QStringListModel>
 #include <QCompleter>
 #include <QGridLayout>
@@ -50,7 +51,7 @@ MetaWidget::MetaWidget(QWidget *parent) :
 	QCompleter * completer(new QCompleter(mModel));
 
 	//	dont know why but it doesn't want to be placed in the ui->grid ###
-//	QLabel *lab(new QLabel(tr("<div style=\"font-weight:bold;\">Fill-in a text field and press enter.</div>"), this));
+//	QLabel *lab(new QLabel(i18n("<div style=\"font-weight:bold;\">Fill-in a text field and press enter.</div>"), this));
 //	ui->grid->addWidget(lab,0,0,0,-1);
 
 	QList<FMFontDb::InfoItem> ln;

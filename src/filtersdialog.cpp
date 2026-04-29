@@ -28,12 +28,25 @@
 #include "fmpaths.h"
 #include "filteritem.h"
 
+#include <KLocalizedString>
 #include <QDir>
 #include <QFile>
 
-QString FiltersDialog::andOpString = FiltersDialog::tr("And");
-QString FiltersDialog::notOpString = FiltersDialog::tr("Not");
-QString FiltersDialog::orOpString = FiltersDialog::tr("Or");
+const QString &FiltersDialog::andOp()
+{
+	static const QString s = i18n("And");
+	return s;
+}
+const QString &FiltersDialog::notOp()
+{
+	static const QString s = i18n("Not");
+	return s;
+}
+const QString &FiltersDialog::orOp()
+{
+	static const QString s = i18n("Or");
+	return s;
+}
 
 
 FiltersDialog::FiltersDialog(const QList<FilterItem*>& currentFilters, QWidget *parent) :
@@ -86,19 +99,19 @@ QString FiltersDialog::filterString(FilterData *d, bool first)
 	{
 		first = false;
 		if(d->data(FilterData::Not).toBool())
-			fs += notOpString + QString(" [%1] ").arg(d->getText());
+			fs += notOp() + QString(" [%1] ").arg(d->getText());
 		else
 			fs += QString("[%1] ").arg(d->getText());
 	}
 	else
 	{
 		if(d->data(FilterData::Or).toBool())
-			fs += orOpString;
+			fs += orOp();
 		else
-			fs += andOpString;
+			fs += andOp();
 
 		if(d->data(FilterData::Not).toBool())
-			fs += QString(" %1").arg(notOpString);
+			fs += QString(" %1").arg(notOp());
 		fs += QString(" [%1] ").arg(d->getText());
 	}
 	return fs;

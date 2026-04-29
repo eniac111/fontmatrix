@@ -33,6 +33,7 @@
 #include "typotek.h"
 #include "mainviewwidget.h"
 
+#include <KLocalizedString>
 #include <QDialog>
 #include <QGridLayout>
 #include <QStringList>
@@ -47,9 +48,21 @@
 #include <QRect>
 #include "fmconfig.h"
 
-QString FilterBar::andOpString = FilterBar::tr("And");
-QString FilterBar::notOpString = FilterBar::tr("Not");
-QString FilterBar::orOpString = FilterBar::tr("Or");
+const QString &FilterBar::andOp()
+{
+	static const QString s = i18n("And");
+	return s;
+}
+const QString &FilterBar::notOp()
+{
+	static const QString s = i18n("Not");
+	return s;
+}
+const QString &FilterBar::orOp()
+{
+	static const QString s = i18n("Or");
+	return s;
+}
 
 TagListModel::TagListModel(QObject *parent)
 	:QAbstractListModel(parent),
@@ -58,8 +71,8 @@ TagListModel::TagListModel(QObject *parent)
 //	ui->tagsCombo->clear();
 //	//	tagsetIcon = QIcon(":/fontmatrix_tagseteditor.png");
 
-//	ui->tagsCombo->addItem(tr("Tags"),"NO_KEY");
-//	ui->tagsCombo->addItem(tr("All activated"),"ALL_ACTIVATED");
+//	ui->tagsCombo->addItem(i18n("Tags"),"NO_KEY");
+//	ui->tagsCombo->addItem(i18n("All activated"),"ALL_ACTIVATED");
 
 //	QStringList tl_tmp = FMFontDb::DB()->getTags();
 ////	qDebug()<< "T"<< tl_tmp.join("||");
@@ -92,7 +105,7 @@ QVariant TagListModel::data(const QModelIndex &index, int role) const
 	QStringList tl_tmp = FMFontDb::DB()->getTags();
 	tl_tmp.sort();
 	// specials
-	QString tagActivated(tr("Activated"));
+	QString tagActivated(i18n("Activated"));
 	tl_tmp.prepend(tagActivated);
 
 	QString tag(tl_tmp.at(index.row()));
@@ -216,7 +229,7 @@ FilterBar::FilterBar(QWidget *parent) :
 //	ui->tagsView->horizontalHeader()->hide();
 	ui->tagsView->setModel(tagListModel);
 
-//	metaFieldsMenu = new QMenu(tr("Fields"), this);
+//	metaFieldsMenu = new QMenu(i18n("Fields"), this);
 	QList<FMFontDb::InfoItem> ln;
 	metaFieldKey = int(FMFontDb::AllInfo);
 	ln << FMFontDb::AllInfo
@@ -392,19 +405,19 @@ QString FilterBar::filterString(FilterData *d, bool first)
 	{
 		first = false;
 		if(d->data(FilterData::Not).toBool())
-			fs += notOpString + QString(" [%1] ").arg(d->getText());
+			fs += notOp() + QString(" [%1] ").arg(d->getText());
 		else
 			fs += QString("[%1] ").arg(d->getText());
 	}
 	else
 	{
 		if(d->data(FilterData::Or).toBool())
-			fs += orOpString;
+			fs += orOp();
 		else
-			fs += andOpString;
+			fs += andOp();
 
 		if(d->data(FilterData::Not).toBool())
-			fs += QString(" %1").arg(notOpString);
+			fs += QString(" %1").arg(notOp());
 		fs += QString(" [%1] ").arg(d->getText());
 	}
 	return fs;
@@ -510,7 +523,7 @@ void FilterBar::slotTagEdit(const QModelIndex &index)
 {
 	QString tag(tagListModel->data(index, TagListModel::TagString).toString());
 	bool ok;
-	QString newTag(QInputDialog::getText(this, tr("Fontmatrix - edit tag"), tr("Edit tag: ") + tag, QLineEdit::Normal, QString(), &ok));
+	QString newTag(QInputDialog::getText(this, i18n("Fontmatrix - edit tag"), i18n("Edit tag: ") + tag, QLineEdit::Normal, QString(), &ok));
 	if(!ok || newTag.isEmpty())
 		return;
 	FMFontDb::DB()->editTag(tag, newTag);
@@ -558,8 +571,8 @@ void FilterBar::slotSaveFilter()
 		return;
 
 	bool ok;
-	QString fname = QInputDialog::getText(this, tr("Fontmatrix - Filter name"),
-					     tr("Filter name:"), QLineEdit::Normal,
+	QString fname = QInputDialog::getText(this, i18n("Fontmatrix - Filter name"),
+					     i18n("Filter name:"), QLineEdit::Normal,
 					     QString(""), &ok);
 	if (!ok || fname.isEmpty())
 		return;

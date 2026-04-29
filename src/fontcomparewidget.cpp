@@ -14,6 +14,7 @@
 #include "fontitem.h"
 #include "typotek.h"
 #include "fmfontdb.h"
+#include <KLocalizedString>
 
 // #define RECORD_MY_REMIX
 #ifdef RECORD_MY_REMIX
@@ -69,7 +70,7 @@ void FontCompareWidget::initColors()
 			<< "midnightblue" 
 			<< "red" ;
 	QPixmap px(32,32);
-	compareFillColor->addItem(tr("None", "No fill color in comprae glyph"), "transparent");
+	compareFillColor->addItem(i18nc("No fill color in comprae glyph", "None"), "transparent");
 	QString colorN("Compare/color%1");
 	for(int i(0); i < 12; ++i)
 	{

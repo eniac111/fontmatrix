@@ -254,7 +254,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/tagswidget.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/textprogression.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/tttablewidget.ui
 )
-qt_wrap_ui(fontmatrix_UIS_H
+ki18n_wrap_ui(fontmatrix_UIS_H
 ${fontmatrix_UIS}
 )
 
@@ -269,30 +269,9 @@ application.qrc
 )
 qt_add_resources(fontmatrix_RCC_SRCS ${fontmatrix_RCCS})
 
-FILE( GLOB FM_GLOB_TSS ${CMAKE_CURRENT_SOURCE_DIR}/messages/fontmatrix-*.ts )
-# message(STATUS "lang files: ${FM_GLOB_TSS}")
-IF ( TRANSLATOR )
-	MESSAGE(STATUS "We are glad to see you handle the fontmatrix-${TRANSLATOR}.ts file, thank you very much")
-	ADD_CUSTOM_TARGET(translation
-			COMMAND ${QT_LUPDATE_EXECUTABLE}  ${fontmatrix_SRCS} ${fontmatrix_UIS} ${FONTMATRIX_TR_EXTRA} -ts "fontmatrix-${TRANSLATOR}.ts"
-			DEPENDS ${fontmatrix_SRCS} ${fontmatrix_UIS}
-			WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/messages"
-			)
-	SET( fontmatrix_TSS 
-		${FM_GLOB_TSS} 
-		"messages/fontmatrix-${TRANSLATOR}.ts" )
-ELSE ( TRANSLATOR )
-	SET( fontmatrix_TSS ${FM_GLOB_TSS} )
-ENDIF( TRANSLATOR )
-
-
-
-
-
-qt_add_translation( fontmatrix_QMS ${fontmatrix_TSS} )
-ADD_CUSTOM_TARGET ( translation_release ALL DEPENDS ${fontmatrix_QMS} )
-
-# ADD_SUBDIRECTORY(messages)
+# Translation pipeline lives in po/ at the project root and is wired up via
+# ki18n_install(po) in the top-level CMakeLists.txt. Source strings flow
+# through KLocalizedString (i18n() / i18nc() / i18np()).
 
 include_directories(
 ${CMAKE_CURRENT_SOURCE_DIR}
@@ -341,7 +320,6 @@ IF(UNIX AND NOT APPLE)
 	INSTALL(TARGETS fontmatrix
 	RUNTIME DESTINATION ${FONTMATRIX_BIN}
 	)
-	INSTALL(FILES ${fontmatrix_QMS} DESTINATION ${FONTMATRIX_QMDIR})
 	INSTALL(FILES fontmatrixui.rc DESTINATION "${KDE_INSTALL_KXMLGUIDIR}/fontmatrix")
 
 	# Dev launcher: prepend ${CMAKE_BINARY_DIR}/data to XDG_DATA_DIRS so the
@@ -396,6 +374,26 @@ exec \"${CMAKE_BINARY_DIR}/bin/fontmatrix\" \"\$@\"
 		list(APPEND _icon_dev_outputs "${_dst_path}")
 	endforeach()
 	add_custom_target(fontmatrix-icons-devtree ALL DEPENDS ${_icon_dev_outputs})
+
+	# Dev-tree mirror for the .mo translation catalogue. ki18n_install(po)
+	# generates ${CMAKE_BINARY_DIR}/locale/<lang>/LC_MESSAGES/fontmatrix.mo
+	# at build time, but KLocalizedString resolves catalogues via
+	# QStandardPaths::GenericDataLocation/locale — i.e. <XDG_DATA_DIR>/locale.
+	# The dev launcher prepends ${CMAKE_BINARY_DIR}/data to XDG_DATA_DIRS, so
+	# we expose the build-tree locale dir there via a symlink. This is what
+	# makes the "Switch Application Language" dialog (KHelpMenu) discover
+	# every language without `make install`.
+	add_custom_command(
+		OUTPUT  "${CMAKE_BINARY_DIR}/data/locale"
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/data"
+		COMMAND ${CMAKE_COMMAND} -E create_symlink
+		        "${CMAKE_BINARY_DIR}/locale"
+		        "${CMAKE_BINARY_DIR}/data/locale"
+		COMMENT "Linking ${CMAKE_BINARY_DIR}/data/locale → ${CMAKE_BINARY_DIR}/locale"
+		VERBATIM
+	)
+	add_custom_target(fontmatrix-locale-devtree ALL
+		DEPENDS "${CMAKE_BINARY_DIR}/data/locale" pofiles)
 ENDIF(UNIX AND NOT APPLE)
 
 IF(APPLE)
@@ -446,11 +444,6 @@ IF(APPLE)
 	COMMAND cp ARGS  "${CMAKE_SOURCE_DIR}/src/graphic-resources/fontmatrix.icns" ${BUNDLE_RESOURCES_DIR}
 	COMMAND cp ARGS ${FM_TEMPLATES_FILES} ${FM_STYLE_FILES} ${BUNDLE_RESOURCES_DIR}
 	)
-# bundles QM files
-	ADD_CUSTOM_COMMAND( TARGET translation_release POST_BUILD
-        COMMAND mkdir ARGS -p ${BUNDLE_LOCALES_DIR}
-        COMMAND cp ARGS ${fontmatrix_QMS} ${BUNDLE_LOCALES_DIR}
-	)
 # bundles libs
 #	ADD_CUSTOM_COMMAND(TARGET ${PROGNAME} POST_BUILD
 #	COMMAND ${CMAKE_COMMAND} ARGS -Dinput_file=${CMAKE_CURRENT_BINARY_DIR}/${PROGNAME}.app/Contents/MacOS/${PROGNAME} -P ${CMAKE_MODULE_PATH}/OwnIngestOSXBundleLibraries.cmake
@@ -496,5 +489,4 @@ IF(WIN32)
 	INSTALL(TARGETS fontmatrix
 	RUNTIME DESTINATION ${FONTMATRIX_BIN}
 	)
-	INSTALL ( FILES ${fontmatrix_QMS} DESTINATION ${FONTMATRIX_QMDIR} )
 ENDIF(WIN32)

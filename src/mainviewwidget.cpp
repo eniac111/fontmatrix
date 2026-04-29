@@ -44,6 +44,7 @@
 #include "panosewidget.h"
 #include "fmconfig.h"
 
+#include <KLocalizedString>
 #include <cstdlib>
 
 #include <QString>
@@ -690,7 +691,7 @@ bool MainViewWidget::slotFontSelectedByName (const QString& fname )
 
 		//		slotView ( true );
 		typo->setWindowTitle ( theVeryFont->fancyName() + " - Fontmatrix" );
-//		m_lists->fontTree->headerItem()->setText(0, tr("Names")+" ("+theVeryFont->family()+")");
+//		m_lists->fontTree->headerItem()->setText(0, i18n("Names")+" ("+theVeryFont->family()+")");
 		typo->presentFontName ( theVeryFont->fancyName() );
 		// 		fillTree();
 //		updateTree();
@@ -949,7 +950,7 @@ void MainViewWidget::slotQuitFamily()
 //	{
 //		m_lists->fontTree->clear();
 //		fontsetHasChanged = true;
-//		operateFilter( FMFontDb::DB()->Fonts(1, FMFontDb::Activation ), tr("Activated"));
+//		operateFilter( FMFontDb::DB()->Fonts(1, FMFontDb::Activation ), i18n("Activated"));
 //		currentOrdering = "family";
 //		fillTree();
 //	}
@@ -1112,7 +1113,7 @@ void MainViewWidget::activation(QList< FontItem * > fit, bool act)
 
 	// TODO check for duplicates before we activate them.
 
-	// we tr("purge") errors;
+	// we i18n("purge") errors;
 	FMActivate::getInstance()->errors();
 	FMActivate::getInstance()->activate(actualF, act);
 	QMap<QString,QString> actErr(FMActivate::getInstance()->errors());
@@ -1169,10 +1170,10 @@ void MainViewWidget::slotRemoveCurrentItem()
 		return;
 	if(theVeryFont->isActivated())
 	{
-		QMessageBox::information(this, tr("Fontmatrix takes care of you"), curItemName + tr(" is activated.\nIf you want to remove it from Fontmatrix database, please deactivate it first."), QMessageBox::Yes );
+		QMessageBox::information(this, i18n("Fontmatrix takes care of you"), curItemName + i18n(" is activated.\nIf you want to remove it from Fontmatrix database, please deactivate it first."), QMessageBox::Yes );
 		return;
 	}
-	if( QMessageBox::question ( this, tr("Fontmatrix safe"), tr("You are about to remove a font from Fontmatrix database") +"\n"+curItemName+"\n" + tr("Do you want to continue?"),QMessageBox::Yes |  QMessageBox::No, QMessageBox::No) == QMessageBox::Yes )
+	if( QMessageBox::question ( this, i18n("Fontmatrix safe"), i18n("You are about to remove a font from Fontmatrix database") +"\n"+curItemName+"\n" + i18n("Do you want to continue?"),QMessageBox::Yes |  QMessageBox::No, QMessageBox::No) == QMessageBox::Yes )
 	{
 		theVeryFont->deRenderAll();
 		FMFontDb::DB()->removeFilteredFont(theVeryFont);

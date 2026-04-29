@@ -23,6 +23,7 @@
 #include "fmpaths.h"
 #include "fmfontdb.h"
 
+#include <KLocalizedString>
 #include <QFileDialog>
 #include <QDebug>
 #include <QGraphicsScene>
@@ -108,7 +109,7 @@ void FontBookDialog::slotCancel()
 
 void FontBookDialog::slotFileDialog()
 {
-	QString theFile = QFileDialog::getSaveFileName ( this, tr("Save fontBook"), QDir::homePath() , "Portable Document Format (*.pdf)" );
+	QString theFile = QFileDialog::getSaveFileName ( this, i18n("Save fontBook"), QDir::homePath() , "Portable Document Format (*.pdf)" );
 	fileNameEdit->setText ( theFile );
 }
 
@@ -134,7 +135,7 @@ QString FontBookDialog::getFileName()
 */
 void FontBookDialog::slotLoadTemplate(const QString &theTemplate)
 {
-// 	QString theTemplate = QFileDialog::getOpenFileName ( this, "Get template", QDir::homePath(), tr("Templates (*.xml)"));
+// 	QString theTemplate = QFileDialog::getOpenFileName ( this, "Get template", QDir::homePath(), i18n("Templates (*.xml)"));
 	qDebug() << "FontBookDialog::slotLoadTemplate("<<theTemplate<<") -> " << templatesMap[theTemplate];
 	if(theTemplate.isEmpty())
 		return;

@@ -1,0 +1,7300 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
+"X-Language: cs\n"
+"X-Qt-Contexts: true\n"
+
+#: ../about.ui:20
+msgid "About Fontmatrix"
+msgstr "O programu Fontmatrix"
+
+#: ../about.ui:59 ../about.ui:87
+msgid "TextLabel"
+msgstr "Textová jmenovka"
+
+#: ../about.ui:34
+msgid "Splash"
+msgstr "Uvítací obrazovka"
+
+#: ../about.ui:98
+msgid "The Project"
+msgstr "Projekt"
+
+#: ../about.ui:130
+msgid "The People"
+msgstr "Přispěvatelé"
+
+#: ../about.ui:178
+msgid "Close"
+msgstr "Zavřít"
+
+#: ../aboutwidget.cpp:34
+msgid "version"
+msgstr "verze"
+
+#: ../aboutwidget.cpp:36
+msgid "fonts loaded"
+msgstr "písem bylo nahráno"
+
+#: ../activationreportdialog.ui:13
+msgid "Dialog"
+msgstr "Dialog"
+
+#: ../activationreportdialog.ui:19
+msgid "Activation - Deactivation Error Report"
+msgstr "Hlášení chyb při zapnutí nebo vypnutí písem"
+
+#: ../activationreportdialog.ui:47
+msgid "Font path"
+msgstr "Cesta k písmu"
+
+#: ../activationreportdialog.ui:52
+msgid "Error"
+msgstr "Chyba"
+
+#: ../activationwidget.ui:14
+msgid "Form"
+msgstr "Formulář"
+
+#: ../activationwidget.ui:20
+msgid "Activate All"
+msgstr "Zapnout vše"
+
+#: ../activationwidget.ui:27
+msgid "Deactivate All"
+msgstr "Vypnout vše"
+
+#: ../activationwidgetitem.ui:44
+msgid "StyleName"
+msgstr "Název stylu"
+
+#: ../activationwidgetitem.ui:51
+msgid "Activated"
+msgstr "Zapnuto"
+
+#: ../bookexport.ui:55
+msgid "Browse..."
+msgstr "Procházet..."
+
+#: ../bookexport.ui:13
+msgid "Export Font Book"
+msgstr "Exportovat knihu písem"
+
+#: ../bookexport.ui:45
+msgid "Output"
+msgstr "Výstup"
+
+#: ../browserwidget.ui:66
+msgid "Info"
+msgstr "Informace"
+
+#: ../browserwidget.ui:76
+msgid "Import"
+msgstr "Zavést"
+
+#: ../browserwidget.ui:86
+msgid "Chart"
+msgstr "Tabulka"
+
+#: ../browserwidget.ui:96
+msgid "Sample"
+msgstr "Ukázka"
+
+#: ../browserwidget.ui:117
+msgid "about:blank"
+msgstr "about:blank"
+
+#: ../chartwidget.ui:34
+msgid "Coverage of Unicode Interval"
+msgstr "Pokrytí rozmezí Unicode"
+
+#: ../chartwidget.ui:37
+msgid "Block:"
+msgstr "Blok:"
+
+#: ../chartwidget.ui:79
+msgid "Search:"
+msgstr "Hledat:"
+
+#: ../chartwidget.ui:89
+msgid ""
+"Search a character by its codepoint (expressed in hexadecimal \n"
+"and prefixed with \"U+\", \"u+\" or \"+\") or a glyph by its name.\n"
+"Press enter after editing to run the search."
+msgstr ""
+"Hledat znak pomocí jeho pozice (vyjádřené šestnáctkově a\n"
+"uvozené \"U+\", \"u+\" nebo \"+\") nebo glyf pomocí jména.\n"
+"Hledání začně až po stisku Enter."
+
+#: ../chartwidget.ui:115
+msgid "Clicking on a glyph will show details about it"
+msgstr "Klepnutím na glyf se ukážou jeho podrobnosti"
+
+#: ../chartwidget.ui:136
+msgid "Set Mode \"Copy Character to Clipboard\""
+msgstr "Nastavit režim Kopírovat znak do schránky"
+
+#: ../chartwidget.ui:139
+msgid "Copy Mode"
+msgstr "Režim kopírování"
+
+#: ../chartwidget.cpp:57
+msgid "Un-Mapped Glyphs"
+msgstr "Nepřiřazené glyfy"
+
+#: ../chartwidget.cpp:58
+msgid "View all mapped glyphs"
+msgstr "Zobrazit všechny přiřazené glyfy"
+
+#: ../chartwidget.cpp:151 ../chartwidget.cpp:238
+#, qt-format
+msgid "Block (%1):"
+msgstr "Blok (%1):"
+
+#: ../chartwidget.cpp:495
+msgid "Print Chart"
+msgstr "Vytisknout tabulku"
+
+#: ../comparewidget.ui:14
+msgid "Compare Glyphs"
+msgstr "Porovnat glyfy"
+
+#: ../comparewidget.ui:44
+msgid "Fonts"
+msgstr "Písma"
+
+#: ../comparewidget.ui:53
+msgid "Add"
+msgstr "Přidat"
+
+#: ../comparewidget.ui:60
+msgid "Remove"
+msgstr "Odstranit"
+
+#: ../comparewidget.ui:83
+msgid "Show"
+msgstr "Ukázat"
+
+#: ../comparewidget.ui:92
+msgid "Metrics"
+msgstr "Metrika"
+
+#: ../comparewidget.ui:102
+msgid "Points"
+msgstr "Body"
+
+#: ../comparewidget.ui:114
+msgid "Controls"
+msgstr "Řídicí body"
+
+#: ../comparewidget.ui:140
+msgid "Offset"
+msgstr "Posunutí"
+
+#: ../comparewidget.ui:150
+msgid "0"
+msgstr "0"
+
+#: ../comparewidget.ui:160
+msgid "Fill:"
+msgstr "Výplň:"
+
+#: ../comparewidget.ui:187
+msgid "Select a character"
+msgstr "Výběr znaku"
+
+#: ../comparewidget.ui:206
+msgid "Keep in sync"
+msgstr "Udržet seřízené"
+
+#: ../dataexport.ui:14
+msgid "Export Data"
+msgstr "Vyvést data"
+
+#: ../dataexport.ui:23
+msgid "The font files currently filtered and selected here will be copied in a directory of your choice."
+msgstr "Nyní vyfiltrované a zde vybrané soubory písem budou zkopírovány do adresáře dle vaší volby."
+
+#: ../dataexport.ui:36
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: ../dataexport.ui:43
+msgid "Continue"
+msgstr "Pokračovat"
+
+#: ../dataexport.cpp:62
+msgid "Choose Directory"
+msgstr "Vybrat adresář"
+
+#: ../dumpdialog.ui:16
+msgid "Fontmatrix - Export font info for packaging"
+msgstr "Fontmatrix - Export informací o písmu pro balíčky"
+
+#: ../dumpdialog.ui:35
+msgid "Save to:"
+msgstr "Uložit jako:"
+
+#: ../dumpdialog.ui:58
+msgid "Model"
+msgstr "Model"
+
+#: ../dumpdialog.ui:74
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>"
+msgstr ""
+
+#: ../dumpdialog.ui:92
+msgid "Available names"
+msgstr "Dostupná jména"
+
+#: ../dumpdialog.ui:138
+msgid "Load..."
+msgstr "Nahrát..."
+
+#. Activation subroutine failed to make a symbolic link to the font file
+#: ../fmactivate.cpp:37
+msgid "Unable to link"
+msgstr "Nelze udělat odkaz"
+
+#. The Font asked for activation is already activated
+#: ../fmactivate.cpp:39
+msgid "Font already activated"
+msgstr "Písmo je již zapnuto"
+
+#. Activation subroutine failed to remove a symbolic link to the font file
+#: ../fmactivate.cpp:41
+msgid "Unable to un-link"
+msgstr "Nelze odstranit odkaz"
+
+#. The Font asked for de-activation is already de-activated
+#: ../fmactivate.cpp:43
+msgid "Font already de-activated"
+msgstr "Písmo je již vypnuto"
+
+#. A postcript font (pfb) without its metrics file (afm)
+#: ../fmactivate.cpp:45
+msgid "Cannot link or copy the metrics file"
+msgstr "Nelze udělat odkaz nebo kopírovat soubor s metrikou"
+
+#. A generic error in activation or deactivation process
+#: ../fmactivate.cpp:47
+msgctxt "activation"
+msgid "Error"
+msgstr "Chyba"
+
+#: ../fmfloatingpreview.cpp:73
+msgid "Activate"
+msgstr "Zapnout"
+
+#: ../fmfloatingpreview.cpp:80
+msgid "close"
+msgstr "Zavřít"
+
+#: ../fmfontextract.cpp:66
+msgid "File does not exist:"
+msgstr "Soubor neexistuje:"
+
+#: ../fmfontextract.cpp:86
+msgid "Format not handled."
+msgstr "Formát není zvládán."
+
+#: ../fmfontextract.cpp:144
+#, qt-format
+msgid ""
+"Failed to extract:\n"
+"%1"
+msgstr ""
+"Nepodařilo se získat:\n"
+"%1"
+
+#: ../fmmatchraster.cpp:160
+#, qt-format
+msgid ""
+"The font %1 scores %2.\n"
+"Do you want to add it to the filtered fonts?"
+msgstr ""
+"Písmo %1 dosahuje %2.\n"
+"Chcete je přidat do filtrovaných písem?"
+
+#: ../fmmatchraster.cpp:216
+msgid "No font match the submitted image"
+msgstr "Žádné písmo neodpovídá předloženému obrázku"
+
+#: ../fmmissingfonthelper.cpp:30 ../fmmissingfonthelper.cpp:42
+msgid "Missing Font File"
+msgstr "Chybí soubor s písmem"
+
+#: ../fmmissingfonthelper.cpp:31
+#, qt-format
+msgid ""
+"Fontmatrix has been unable to load the font in file \n"
+"%1.\n"
+" Please check missing files."
+msgstr ""
+"Fontmatrixu se nepodařilo nahrát písmo v souboru \n"
+"%1.\n"
+"Prověřte, prosím, chybějící soubory."
+
+#: ../fmmissingfonthelper.cpp:43
+#, qt-format
+msgid ""
+"Fontmatrix has been unable to load fonts in files \n"
+"%1.\n"
+" Please check missing files."
+msgstr ""
+"Fontmatrixu se nepodařilo nahrát písma v souborech \n"
+"%1.\n"
+"Prověřte, prosím, chybějící soubory."
+
+#: ../fmscriptconsole.cpp:136
+msgid "A name for the script to save:"
+msgstr "Název pro skript k uložení:"
+
+#: ../fmscriptconsole.cpp:146
+#, qt-format
+msgid "The file %1 already exists"
+msgstr "Soubor %1 již existuje"
+
+#: ../fmscriptconsole.cpp:283
+msgid "Running"
+msgstr "Běží"
+
+#: ../familywidget.ui:55
+msgid "Return To List"
+msgstr "Návrat do seznamu"
+
+#: ../familywidget.ui:114
+msgid "Activation"
+msgstr "Zapnutí"
+
+#: ../familywidget.ui:140
+msgid "Family Name"
+msgstr "Název rodiny písma"
+
+#: ../filterbar.ui:49
+msgid "Filters"
+msgstr "Filtry"
+
+#: ../filterbar.ui:143
+msgid "Tags"
+msgstr "Značky"
+
+#: ../filterbar.ui:273
+msgid "Metadata"
+msgstr "Popisná data"
+
+#: ../filterbar.ui:320
+msgid "Search"
+msgstr "Hledat"
+
+#: ../filterbar.ui:350
+msgid "in"
+msgstr "v"
+
+#: ../filterbar.ui:395
+msgid "Panose"
+msgstr "Panose"
+
+#: ../filterbar.cpp:50
+msgid "And"
+msgstr "A"
+
+#: ../filterbar.cpp:51
+msgid "Not"
+msgstr "Ne"
+
+#: ../filterbar.cpp:52
+msgid "Or"
+msgstr "Nebo"
+
+#: ../filterbar.cpp:515
+msgid "Fontmatrix - edit tag"
+msgstr "Fontmatrix - Upravit značku"
+
+#: ../filterbar.cpp:515
+msgid "Edit tag: "
+msgstr "Upravit značku:"
+
+#: ../filterbar.cpp:563
+msgid "Fontmatrix - Filter name"
+msgstr "Fontmatrix - Název filtru"
+
+#: ../filterbar.cpp:564
+msgid "Filter name:"
+msgstr "Název filtru:"
+
+#: ../filteritem.ui:72
+msgid "Remove Filter"
+msgstr "Odstranit filtr"
+
+#: ../filteritem.ui:78
+msgid "X"
+msgstr "X"
+
+#: ../filteritem.ui:104
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<table style=\"-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;\">\n"
+"<tr>\n"
+"<td style=\"border: none;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If set, the filter will <span style=\" font-weight:600;\">intersect</span> with the previous filters.</p></td></tr></table></body></html>"
+msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<table style=\"-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;\">\n"
+"<tr>\n"
+"<td style=\"border: none;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Je-li nastaveno, filtr se bude <span style=\" font-weight:600;\">překrývat</span> s předchozími filtry.</p></td></tr></table></body></html>"
+
+#: ../filteritem.ui:114
+msgid "&&"
+msgstr "&&"
+
+#: ../filteritem.ui:143
+msgid "if set, it will filter all the fonts but these matching this filter"
+msgstr "Je-li nastaveno, budou se filtrovat všechna písma odpovídající tomuto filtru"
+
+#: ../filteritem.ui:146
+msgid "!"
+msgstr "!"
+
+#: ../filtersdialog.ui:14
+msgid "Filters Manager"
+msgstr "Správce filtrů"
+
+#: ../filtersdialog.ui:67
+msgid "In order to add filters, you have to first select some of tags, meta informations or classifications elements."
+msgstr "Abyste přidali filtry, musíte nejprve vybrat nějaké značky, popisné údaje nebo třídící prvky."
+
+#: ../filtersdialog.ui:96
+msgid "Add Filter"
+msgstr "Přidat filtr"
+
+#: ../filtersdialog.ui:127
+msgid "Filter Name:"
+msgstr "Název filtru:"
+
+#: ../filtersdialog.ui:162
+msgid "current filter"
+msgstr "Nynější filtr"
+
+#: ../filtersdialogitem.ui:72
+msgid "filter name"
+msgstr "Název filtru"
+
+#: ../filtersdialogitem.ui:91
+msgid "Apply this filter to the list"
+msgstr "Použít tento filtr na seznam"
+
+#: ../filtersdialogitem.ui:94
+msgid "Filter"
+msgstr "Filtr"
+
+#: ../filtersdialogitem.ui:111
+msgid "Delete this filter"
+msgstr "Smazat tento filtr"
+
+#: ../filtersdialogitem.cpp:65
+msgid "Confirm deletion of filter:"
+msgstr "Potvrdit smazání filtru:"
+
+#: ../floatingwidgettoolbar.ui:66
+msgid "Print"
+msgstr "Tisk"
+
+#: ../floatingwidgettoolbar.ui:69
+msgid "P"
+msgstr "P"
+
+#: ../floatingwidgettoolbar.ui:76
+msgid "Detach from main window"
+msgstr "Odpojit od hlavního okna"
+
+#: ../floatingwidgettoolbar.ui:79
+msgid "D"
+msgstr "D"
+
+#: ../floatingwidgettoolbar.ui:95
+msgid "Close window"
+msgstr "Zavřít okno"
+
+#: ../floatingwidgettoolbar.ui:98
+msgid "..."
+msgstr "..."
+
+#: ../floatingwidgettoolbar.ui:109
+msgid "Hide window"
+msgstr "Skrýt okno"
+
+#: ../floatingwidgettoolbar.ui:112
+msgid "H"
+msgstr "H"
+
+#: ../browserwidget.cpp:330 ../listdockwidget.cpp:381
+msgid "Import Directory"
+msgstr "Zavést adresář"
+
+#: ../browserwidget.cpp:331 ../listdockwidget.cpp:382
+msgid "Import recursively"
+msgstr "Zavést včetně podsložek"
+
+#: ../browserwidget.cpp:332 ../listdockwidget.cpp:383
+msgid "Import File"
+msgstr "Zavést soubor"
+
+#: ../fontaction.ui:65
+msgid "Add Tag"
+msgstr "Přidat značku"
+
+#: ../fontaction.ui:32
+msgid "Action"
+msgstr "Činnost"
+
+#: ../fontbook.cpp:92
+msgid "Print Fontbook"
+msgstr "Vytisknout knihu písem"
+
+#: ../fontbook.cpp:475
+msgid "Unicode coverage"
+msgstr "Rozsah Unicode"
+
+#: ../fontbookdialog.cpp:111
+msgid "Save fontBook"
+msgstr "Uložit knihu písem"
+
+#: ../fontcomparewidget.cpp:73
+msgctxt "No fill color in comprae glyph"
+msgid "None"
+msgstr "Žádná"
+
+#: ../fontextractordialog.ui:13
+msgid "Font extractor"
+msgstr "Vytahovač písem"
+
+#: ../fontextractordialog.ui:19
+msgid "Select PDF"
+msgstr "Výběr PDF"
+
+#: ../fontextractordialog.ui:31
+msgid "File name"
+msgstr "Jméno souboru"
+
+#: ../fontextractordialog.ui:41
+msgid "&Browse"
+msgstr "&Procházet"
+
+#: ../fontextractordialog.ui:63
+msgid "&Select Dir"
+msgstr "Vybrat &adresář"
+
+#: ../fontextractordialog.ui:70
+msgid "&Extract"
+msgstr "&Vytáhnout"
+
+#: ../fontitem.cpp:2368
+#, qt-format
+msgctxt "FontItem|when doing the font preview, used to denote a font that can not displayed its name"
+msgid "(%1)"
+msgstr "(%1)"
+
+#: ../fontitem.cpp:3185
+msgid "Fontmatrix - Download"
+msgstr "Fontmatrix - Stažení"
+
+#: ../fontitem.cpp:3186
+#, qt-format
+msgid "Downloading %1."
+msgstr "Stahuje se %1."
+
+#: ../fmfontstrings.cpp:39
+msgid "Copyright"
+msgstr "Autorské právo"
+
+#: ../fmfontstrings.cpp:40
+msgid "Font Family"
+msgstr "Rodina písma"
+
+#: ../fmfontstrings.cpp:41
+msgid "Font Subfamily"
+msgstr "Podrodina písma"
+
+#: ../fmfontstrings.cpp:42
+msgid "Unique font identifier"
+msgstr "Jedinečný identifikátor písma"
+
+#: ../fmfontstrings.cpp:43
+msgid "Full font name"
+msgstr "Úplný název písma"
+
+#: ../fmfontstrings.cpp:44
+msgid "Version string"
+msgstr "Řetězec verze"
+
+#: ../fmfontstrings.cpp:45
+msgid "Postscript name"
+msgstr "Postscriptový název"
+
+#: ../fmfontstrings.cpp:46
+msgid "Trademark"
+msgstr "Obchodní značka"
+
+#: ../fmfontstrings.cpp:47
+msgid "Manufacturer"
+msgstr "Výrobce"
+
+#: ../fmfontstrings.cpp:48
+msgid "Designer"
+msgstr "Návrhář"
+
+#: ../fmfontstrings.cpp:49
+msgid "Description"
+msgstr "Popis"
+
+#: ../fmfontstrings.cpp:50
+msgid "URL Vendor"
+msgstr "Adresa prodejce"
+
+#: ../fmfontstrings.cpp:51
+msgid "URL Designer"
+msgstr "Adresa návrháře"
+
+#: ../fmfontstrings.cpp:52
+msgid "License Description"
+msgstr "Popis licenčního ujednání"
+
+#: ../fmfontstrings.cpp:53
+msgid "License Info URL"
+msgstr "Adresa informací o licenčním ujednání"
+
+#: ../fmfontstrings.cpp:54
+msgid "Preferred Family"
+msgstr "Upřednostňovaná rodina"
+
+#: ../fmfontstrings.cpp:55
+msgid "Preferred Subfamily"
+msgstr "Upřednostňovaná podrodina"
+
+#: ../fmfontstrings.cpp:56
+msgid "Compatible Full (Macintosh only)"
+msgstr "Plně slučitelné (pouze Macintosh)"
+
+#: ../fmfontstrings.cpp:57
+msgid "Sample text"
+msgstr "Ukázkový text"
+
+#: ../fmfontstrings.cpp:58
+msgid "PostScript CID findfont name"
+msgstr "Postscriptový název nalezeného písma CID"
+
+#: ../fmfontstrings.cpp:60
+msgid "All fields"
+msgstr "Všechna pole"
+
+#: ../fmfontstrings.cpp:77 ../fmfontstrings.cpp:89 ../fmfontstrings.cpp:111
+#: ../fmfontstrings.cpp:129 ../fmfontstrings.cpp:145 ../fmfontstrings.cpp:161
+#: ../fmfontstrings.cpp:176 ../fmfontstrings.cpp:194 ../fmfontstrings.cpp:216
+#: ../fmfontstrings.cpp:236
+msgid "Any"
+msgstr "Jakékoli"
+
+#: ../fmfontstrings.cpp:78 ../fmfontstrings.cpp:90 ../fmfontstrings.cpp:112
+#: ../fmfontstrings.cpp:130 ../fmfontstrings.cpp:146 ../fmfontstrings.cpp:162
+#: ../fmfontstrings.cpp:177 ../fmfontstrings.cpp:195 ../fmfontstrings.cpp:217
+#: ../fmfontstrings.cpp:237
+msgid "No Fit"
+msgstr "Žádné spojení"
+
+#: ../fmfontstrings.cpp:79
+msgctxt "Family Type"
+msgid "Text and Display"
+msgstr "Text a zobrazení"
+
+#: ../fmfontstrings.cpp:80
+msgctxt "Family Type"
+msgid "Script"
+msgstr "Skript"
+
+#: ../fmfontstrings.cpp:81
+msgctxt "Family Type"
+msgid "Decorative"
+msgstr "Ozdobné"
+
+#: ../fmfontstrings.cpp:82
+msgctxt "Family Type"
+msgid "Pictorial"
+msgstr "Obrázkové"
+
+#: ../fmfontstrings.cpp:85
+msgid "Family Type"
+msgstr "Typ rodiny"
+
+#: ../fmfontstrings.cpp:91
+msgctxt "Serif style"
+msgid "Cove"
+msgstr "Výklenek"
+
+#: ../fmfontstrings.cpp:92
+msgctxt "Serif style"
+msgid "Obtuse Cove"
+msgstr "Neostrý výklenek"
+
+#: ../fmfontstrings.cpp:93
+msgctxt "Serif style"
+msgid "Square Cove"
+msgstr "Čtvercový výklenek"
+
+#: ../fmfontstrings.cpp:94
+msgctxt "Serif style"
+msgid "Obtuse Square Cove"
+msgstr "Neostrý čtvercový výklenek"
+
+#: ../fmfontstrings.cpp:95
+msgctxt "Serif style"
+msgid "Square"
+msgstr "Čtvercové"
+
+#: ../fmfontstrings.cpp:96
+msgctxt "Serif style"
+msgid "Thin"
+msgstr "Slabé"
+
+#: ../fmfontstrings.cpp:97
+msgctxt "Serif style"
+msgid "Bone"
+msgstr "Kostěné"
+
+#: ../fmfontstrings.cpp:98
+msgctxt "Serif style"
+msgid "Exaggerated"
+msgstr "Zvětšené"
+
+#: ../fmfontstrings.cpp:99
+msgctxt "Serif style"
+msgid "Triangle"
+msgstr "Trojúhelníkové"
+
+#: ../fmfontstrings.cpp:100
+msgctxt "Serif style"
+msgid "Normal Sans"
+msgstr "Normální bez patek"
+
+#: ../fmfontstrings.cpp:101
+msgctxt "Serif style"
+msgid "Obtuse Sans"
+msgstr "Neostré bez patek"
+
+#: ../fmfontstrings.cpp:102
+msgctxt "Serif style"
+msgid "Perp Sans"
+msgstr "Pachatel bez patek"
+
+#: ../fmfontstrings.cpp:103
+msgctxt "Serif style"
+msgid "Flared"
+msgstr "Zvonové"
+
+#: ../fmfontstrings.cpp:104
+msgctxt "Serif style"
+msgid "Rounded"
+msgstr "Zakulacené"
+
+#: ../fmfontstrings.cpp:107
+msgid "Serif style"
+msgstr "Patkový styl"
+
+#: ../fmfontstrings.cpp:113
+msgctxt "Weight"
+msgid "Very Light"
+msgstr "Velmi jemné"
+
+#: ../fmfontstrings.cpp:114
+msgctxt "Weight"
+msgid "Light"
+msgstr "Jemné"
+
+#: ../fmfontstrings.cpp:115
+msgctxt "Weight"
+msgid "Thin"
+msgstr "Slabé"
+
+#: ../fmfontstrings.cpp:116
+msgctxt "Weight"
+msgid "Book"
+msgstr "Knižní"
+
+#: ../fmfontstrings.cpp:117
+msgctxt "Weight"
+msgid "Medium"
+msgstr "Střední"
+
+#: ../fmfontstrings.cpp:118
+msgctxt "Weight"
+msgid "Demi"
+msgstr "Polotučné"
+
+#: ../fmfontstrings.cpp:119
+msgctxt "Weight"
+msgid "Bold"
+msgstr "Tučné"
+
+#: ../fmfontstrings.cpp:120
+msgctxt "Weight"
+msgid "Heavy"
+msgstr "Tmavé"
+
+#: ../fmfontstrings.cpp:121
+msgctxt "Weight"
+msgid "Black"
+msgstr "Černé"
+
+#: ../fmfontstrings.cpp:122
+msgctxt "Weight"
+msgid "Nord"
+msgstr "Severské"
+
+#: ../fmfontstrings.cpp:125
+msgid "Weight"
+msgstr "Váha"
+
+#: ../fmfontstrings.cpp:131
+msgctxt "Proportion"
+msgid "Old Style"
+msgstr "Starý styl"
+
+#: ../fmfontstrings.cpp:132
+msgctxt "Proportion"
+msgid "Modern"
+msgstr "Moderní"
+
+#: ../fmfontstrings.cpp:133
+msgctxt "Proportion"
+msgid "Even Width"
+msgstr "Neměnná šířka"
+
+#: ../fmfontstrings.cpp:134
+msgctxt "Proportion"
+msgid "Expanded"
+msgstr "Rozšířené"
+
+#: ../fmfontstrings.cpp:135
+msgctxt "Proportion"
+msgid "Condensed"
+msgstr "Zúžené"
+
+#: ../fmfontstrings.cpp:136
+msgctxt "Proportion"
+msgid "Very Expanded"
+msgstr "Velmi rozšířené"
+
+#: ../fmfontstrings.cpp:137
+msgctxt "Proportion"
+msgid "Very Condensed"
+msgstr "Velmi zúžené"
+
+#: ../fmfontstrings.cpp:138
+msgctxt "Proportion"
+msgid "Monospaced"
+msgstr "Neproporcionální"
+
+#: ../fmfontstrings.cpp:141
+msgid "Proportion"
+msgstr "Úměrnost"
+
+#: ../fmfontstrings.cpp:147
+msgctxt "Contrast"
+msgid "None"
+msgstr "Žádná"
+
+#: ../fmfontstrings.cpp:148
+msgctxt "Contrast"
+msgid "Very Low"
+msgstr "Velmi nízké"
+
+#: ../fmfontstrings.cpp:149
+msgctxt "Contrast"
+msgid "Low"
+msgstr "Nízké"
+
+#: ../fmfontstrings.cpp:150
+msgctxt "Contrast"
+msgid "Medium Low"
+msgstr "Středně nízké"
+
+#: ../fmfontstrings.cpp:151
+msgctxt "Contrast"
+msgid "Medium"
+msgstr "Střední"
+
+#: ../fmfontstrings.cpp:152
+msgctxt "Contrast"
+msgid "Medium High"
+msgstr "Středně vysoké"
+
+#: ../fmfontstrings.cpp:153
+msgctxt "Contrast"
+msgid "High"
+msgstr "Vysoké"
+
+#: ../fmfontstrings.cpp:154
+msgctxt "Contrast"
+msgid "Very High"
+msgstr "Velmi vysoké"
+
+#: ../fmfontstrings.cpp:157
+msgid "Contrast"
+msgstr "Kontrastní"
+
+#: ../fmfontstrings.cpp:163
+msgctxt "Stroke Variation"
+msgid "Gradual/Diagonal"
+msgstr "Postupné/Úhlopříčné"
+
+#: ../fmfontstrings.cpp:164
+msgctxt "Stroke Variation"
+msgid "Gradual/Transitional"
+msgstr "Postupné/Přechodné"
+
+#: ../fmfontstrings.cpp:165
+msgctxt "Stroke Variation"
+msgid "Gradual/Vertical"
+msgstr "Postupné/Svislé"
+
+#: ../fmfontstrings.cpp:166
+msgctxt "Stroke Variation"
+msgid "Gradual/Horizontal"
+msgstr "Postupné/Vodorovné"
+
+#: ../fmfontstrings.cpp:167
+msgctxt "Stroke Variation"
+msgid "Rapid/Vertical"
+msgstr "Svižné/Svislé"
+
+#: ../fmfontstrings.cpp:168
+msgctxt "Stroke Variation"
+msgid "Rapid/Horizontal"
+msgstr "Svižné/Vodorovné"
+
+#: ../fmfontstrings.cpp:169
+msgctxt "Stroke Variation"
+msgid "Instant/Vertical"
+msgstr "Bezprostřední/Svislé"
+
+#: ../fmfontstrings.cpp:172
+msgid "Stroke Variation"
+msgstr "Obměna tahu"
+
+#: ../fmfontstrings.cpp:178
+msgctxt "Arm Style"
+msgid "Straight Arms/Horizontal"
+msgstr "Urovnané ruce/Vodorovné"
+
+#: ../fmfontstrings.cpp:179
+msgctxt "Arm Style"
+msgid "Straight Arms/Wedge"
+msgstr "Urovnané ruce/Klínové"
+
+#: ../fmfontstrings.cpp:180
+msgctxt "Arm Style"
+msgid "Straight Arms/Vertical"
+msgstr "Urovnané ruce/Svislé"
+
+#: ../fmfontstrings.cpp:181
+msgctxt "Arm Style"
+msgid "Straight Arms/Single Serif"
+msgstr "Urovnané ruce/Jednoduché patkové"
+
+#: ../fmfontstrings.cpp:182
+msgctxt "Arm Style"
+msgid "Straight Arms/Double Serif"
+msgstr "Urovnané ruce/Dvojité patkové"
+
+#: ../fmfontstrings.cpp:183
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Horizontal"
+msgstr "Neurovnané ruce/Vodorovné"
+
+#: ../fmfontstrings.cpp:184
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Wedge"
+msgstr "Neurovnané ruce/Klínové"
+
+#: ../fmfontstrings.cpp:185
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Vertical"
+msgstr "Neurovnané ruce/Svislé"
+
+#: ../fmfontstrings.cpp:186
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Single Serif"
+msgstr "Neurovnané ruce/Jednoduché patkové"
+
+#: ../fmfontstrings.cpp:187
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Double Serif"
+msgstr "Neurovnané ruce/Dvojité patkové"
+
+#: ../fmfontstrings.cpp:190
+msgid "Arm Style"
+msgstr "Styl ruky"
+
+#: ../fmfontstrings.cpp:196
+msgctxt "Letterform"
+msgid "Normal/Contact"
+msgstr "Běžné/Dotykové"
+
+#: ../fmfontstrings.cpp:197
+msgctxt "Letterform"
+msgid "Normal/Weighted"
+msgstr "Běžné/Zatěžkané"
+
+#: ../fmfontstrings.cpp:198
+msgctxt "Letterform"
+msgid "Normal/Boxed"
+msgstr "Běžné/Uložené v krabici"
+
+#: ../fmfontstrings.cpp:199
+msgctxt "Letterform"
+msgid "Normal/Flattened"
+msgstr "Běžné/Zploštěné"
+
+#: ../fmfontstrings.cpp:200
+msgctxt "Letterform"
+msgid "Normal/Rounded"
+msgstr "Běžné/Kulaté"
+
+#: ../fmfontstrings.cpp:201
+msgctxt "Letterform"
+msgid "Normal/Off Center"
+msgstr "Běžné/Mimo střed"
+
+#: ../fmfontstrings.cpp:202
+msgctxt "Letterform"
+msgid "Normal/Square"
+msgstr "Běžné/Čtvercové"
+
+#: ../fmfontstrings.cpp:203
+msgctxt "Letterform"
+msgid "Oblique/Contact"
+msgstr "Šikmé/Dotykové"
+
+#: ../fmfontstrings.cpp:204
+msgctxt "Letterform"
+msgid "Oblique/Weighted"
+msgstr "Šikmé/Zatěžkané"
+
+#: ../fmfontstrings.cpp:205
+msgctxt "Letterform"
+msgid "Oblique/Boxed"
+msgstr "Šikmé/Uložené v krabici"
+
+#: ../fmfontstrings.cpp:206
+msgctxt "Letterform"
+msgid "Oblique/Flattened"
+msgstr "Šikmé/Zploštěné"
+
+#: ../fmfontstrings.cpp:207
+msgctxt "Letterform"
+msgid "Oblique/Rounded"
+msgstr "Šikmé/Kulaté"
+
+#: ../fmfontstrings.cpp:208
+msgctxt "Letterform"
+msgid "Oblique/Off Center"
+msgstr "Šikmé/Mimo střed"
+
+#: ../fmfontstrings.cpp:209
+msgctxt "Letterform"
+msgid "Oblique/Square"
+msgstr "Šikmé/Čtvercové"
+
+#: ../fmfontstrings.cpp:212
+msgid "Letterform"
+msgstr "Tvar písmene"
+
+#: ../fmfontstrings.cpp:218
+msgctxt "Midline"
+msgid "Standard/Trimmed"
+msgstr "Obvyklé/Štíhlé"
+
+#: ../fmfontstrings.cpp:219
+msgctxt "Midline"
+msgid "Standard/Pointed"
+msgstr "Obvyklé/Špičaté"
+
+#: ../fmfontstrings.cpp:220
+msgctxt "Midline"
+msgid "Standard/Serifed"
+msgstr "Obvyklé/Patkové"
+
+#: ../fmfontstrings.cpp:221
+msgctxt "Midline"
+msgid "High/Trimmed"
+msgstr "Vysoké/Štíhlé"
+
+#: ../fmfontstrings.cpp:222
+msgctxt "Midline"
+msgid "High/Pointed"
+msgstr "Vysoké/Špičaté"
+
+#: ../fmfontstrings.cpp:223
+msgctxt "Midline"
+msgid "High/Serifed"
+msgstr "Vysoké/Patkové"
+
+#: ../fmfontstrings.cpp:224
+msgctxt "Midline"
+msgid "Constant/Trimmed"
+msgstr "Stálé/Štíhlé"
+
+#: ../fmfontstrings.cpp:225
+msgctxt "Midline"
+msgid "Constant/Pointed"
+msgstr "Stálé/Špičaté"
+
+#: ../fmfontstrings.cpp:226
+msgctxt "Midline"
+msgid "Constant/Serifed"
+msgstr "Stálé/Patkové"
+
+#: ../fmfontstrings.cpp:227
+msgctxt "Midline"
+msgid "Low/Trimmed"
+msgstr "Nízké/Štíhlé"
+
+#: ../fmfontstrings.cpp:228
+msgctxt "Midline"
+msgid "Low/Pointed"
+msgstr "Nízké/Špičaté"
+
+#: ../fmfontstrings.cpp:229
+msgctxt "Midline"
+msgid "Low/Serifed"
+msgstr "Nízké/Patkové"
+
+#: ../fmfontstrings.cpp:232
+msgid "Midline"
+msgstr "Středová čára"
+
+#: ../fmfontstrings.cpp:238
+msgctxt "X-Height"
+msgid "Constant/Small"
+msgstr "Stálé/Malé"
+
+#: ../fmfontstrings.cpp:239
+msgctxt "X-Height"
+msgid "Constant/Standard"
+msgstr "Stálé/Obvyklé"
+
+#: ../fmfontstrings.cpp:240
+msgctxt "X-Height"
+msgid "Constant/Large"
+msgstr "Stálé/Velké"
+
+#: ../fmfontstrings.cpp:241
+msgctxt "X-Height"
+msgid "Ducking/Small"
+msgstr "Skrčené/Malé"
+
+#: ../fmfontstrings.cpp:242
+msgctxt "X-Height"
+msgid "Ducking/Standard"
+msgstr "Skrčené/Obvyklé"
+
+#: ../fmfontstrings.cpp:243
+msgctxt "X-Height"
+msgid "Ducking/Large"
+msgstr "Skrčené/Velké"
+
+#: ../fmfontstrings.cpp:246
+msgid "X-Height"
+msgstr "Výška malých písmen"
+
+#: ../fmfontstrings.cpp:270
+msgid "This value is deprecated and was never used nor reported by FreeType. Don't use or test for it."
+msgstr "Tato hodnota je odmítnuta a nikdy nebyla používána ani hlášena od FreeType.  Nepoužívejte ji a nezkoušejte ji."
+
+#: ../fmfontstrings.cpp:283
+msgid "Character to glyph mapping"
+msgstr "Přiřazení znaku ke glyfu"
+
+#: ../fmfontstrings.cpp:284
+msgid "Font header"
+msgstr "Záhlaví písma"
+
+#: ../fmfontstrings.cpp:285
+msgid "Horizontal header"
+msgstr "Vodorovné záhlaví"
+
+#: ../fmfontstrings.cpp:286
+msgid "Horizontal metrics"
+msgstr "Vodorovná metrika"
+
+#: ../fmfontstrings.cpp:287
+msgid "Maximum profile"
+msgstr "Největší boční obrys"
+
+#: ../fmfontstrings.cpp:288
+msgid "Naming table"
+msgstr "Tabulka názvů"
+
+#: ../fmfontstrings.cpp:289
+msgid "OS/2 and Windows specific metrics"
+msgstr "Metrika vlastní OS/2 a Windows"
+
+#: ../fmfontstrings.cpp:290
+msgid "PostScript information"
+msgstr "Informace o PostScriptu"
+
+#: ../fmfontstrings.cpp:293
+msgid "Control Value Table"
+msgstr "Tabulka ovládacích hodnot"
+
+#: ../fmfontstrings.cpp:294
+msgid "Font program"
+msgstr "Program na písma"
+
+#: ../fmfontstrings.cpp:295
+msgid "Glyph data"
+msgstr "Data ke glyfu"
+
+#: ../fmfontstrings.cpp:296
+msgid "Index to location"
+msgstr "Rejstřík k umístění"
+
+#: ../fmfontstrings.cpp:297
+msgid "CVT Program"
+msgstr "Program CVT"
+
+#: ../fmfontstrings.cpp:300
+msgid "PostScript font program"
+msgstr "Program na písma PostScript"
+
+#: ../fmfontstrings.cpp:301
+msgid "Vertical Origin"
+msgstr "Svislý počátek"
+
+#: ../fmfontstrings.cpp:304
+msgid "Embedded bitmap data"
+msgstr "Data pro vloženou bitmapu"
+
+#: ../fmfontstrings.cpp:305
+msgid "Embedded bitmap location data"
+msgstr "Data pro umístění vložené bitmapy"
+
+#: ../fmfontstrings.cpp:306
+msgid "Embedded bitmap scaling data"
+msgstr "Data pro změnu velikosti vložené bitmapy"
+
+#: ../fmfontstrings.cpp:309
+msgid "Baseline data"
+msgstr "Data pro základnu"
+
+#: ../fmfontstrings.cpp:310
+msgid "Glyph definition data"
+msgstr "Data pro vymezení glyfu"
+
+#: ../fmfontstrings.cpp:311
+msgid "Glyph positioning data"
+msgstr "Data pro umísťování glyfu"
+
+#: ../fmfontstrings.cpp:312
+msgid "Glyph substitution data"
+msgstr "Data pro nahrazení glyfu"
+
+#: ../fmfontstrings.cpp:313
+msgid "Justification data"
+msgstr "Data pro zarovnání"
+
+#: ../fmfontstrings.cpp:316
+msgid "Digital signature"
+msgstr "Digitální podpis"
+
+#: ../fmfontstrings.cpp:317
+msgid "Grid-fitting/Scan-conversion"
+msgstr "Umístění do mřížky/Převod naskenovaného obrázku"
+
+#: ../fmfontstrings.cpp:318
+msgid "Horizontal device metrics"
+msgstr "Vodorovná metrika zařízení"
+
+#: ../fmfontstrings.cpp:319
+msgid "Kerning"
+msgstr "Podřezávání"
+
+#: ../fmfontstrings.cpp:320
+msgid "Linear threshold data"
+msgstr "Lineární prahová data"
+
+#: ../fmfontstrings.cpp:321
+msgid "PCL 5 data"
+msgstr "Data PCL 5"
+
+#: ../fmfontstrings.cpp:322
+msgid "Vertical device metrics"
+msgstr "Svislá metrika zařízení"
+
+#: ../fmfontstrings.cpp:323
+msgid "Vertical Metrics header"
+msgstr "Záhlaví svislé metriky"
+
+#: ../fmfontstrings.cpp:324
+msgid "Vertical Metrics"
+msgstr "Svislá metrika"
+
+#: ../fmfontstrings.cpp:332
+msgid "This font may be embedded and permanently installed on the remote system by an application. The user of the remote system acquires the identical rights, obligations and licenses for that font as the original purchaser of the font, and is subject to the same end-user license agreement, copyright, design patent, and/or trademark as was the original purchaser."
+msgstr "Toto písmo může být vloženo a trvale nainstalováno ve vzdáleném systému pomocí nějaké aplikace. Uživatel vzdáleného systému dostane pro toto písmo stejná práva, povinnosti a oprávnění jako původní kupec písma, a je předmětem stejného ujednání pro koncového uživatele, autorského práva, výsady pro tvar, a/nebo obchodní značky, jako byl původní kupující."
+
+#: ../fmfontstrings.cpp:333
+msgid "This font must not be modified, embedded or exchanged in any manner without first obtaining permission of the legal owner."
+msgstr "Toto písmo se nesmí jakýmkoli způsobem upravovat, vkládat nebo vyměňovat bez toho, že by nejprve bylo získáno svolení zákonného vlastníka."
+
+#: ../fmfontstrings.cpp:334
+msgid "This font may be embedded, and temporarily loaded on the remote system. Documents containing this font must be opened \"read-only;\" no edits can be applied to the document."
+msgstr "Toto písmo může být vkládáno, a dočasně nahráno na vzdálený systém. Dokumenty obsahující toto písmo se musí otevírat \"pouze pro čtení\". Tento dokument nelze nijak upravovat."
+
+#: ../fmfontstrings.cpp:335
+msgid "This font may be embedded but must only be installed  temporarily  on other systems. In contrast to Preview &amp; Print fonts, documents containing this font may be opened for reading, editing is permitted, and changes may be saved."
+msgstr "Toto písmo může být vkládáno, ale musí být na vzdálených systémech nainstalováno pouze dočasně. V protikladu k Náhled &amp; Vytisknout písma, dokumenty obsahující toto písmo mohou být otevírány pro čtení, úpravy jsou povoleny, a změny lze ukládat."
+
+#: ../fmfontstrings.cpp:336
+msgid "This font may not be subsetted prior to embedding. Other embedding restrictions specified in bits 0-3 and 9 also apply."
+msgstr "Toto písmo se nesmí stát podmnožinou před vkládání. Další omezení pro vkládání předepsané v bitech 0-3 a 9 platí také."
+
+#: ../fmfontstrings.cpp:337
+msgid "Only bitmaps contained in this font may be embedded. No outline data may be embedded. If there are no bitmaps available in this font, then it is considered unembeddable and the embedding services will fail. Other embedding restrictions specified in bits 0-3 and 8 also apply."
+msgstr "Smí být vkládány pouze bitmapy obsažené v tomto písmu. Nesmí být vkládána žádná data s obrysovým náčrtem. Pokud v tomto písmu nejsou dostupné žádné bitmapy, potom je považováno za nevkladatelné a vložit se je nepodaří. Další omezení pro vkládání předepsané v bitech 0-3 a 8 platí také."
+
+#: ../fmfontstrings.cpp:342
+msgid "Mark, NonSpacing"
+msgstr "Značka, bez prostrkávání"
+
+#: ../fmfontstrings.cpp:343
+msgid "Mark, SpacingCombining"
+msgstr "Značka, kombinuje se s prostrkáváním"
+
+#: ../fmfontstrings.cpp:344
+msgid "Mark, Enclosing"
+msgstr "Značka, uzavírá se"
+
+#: ../fmfontstrings.cpp:345
+msgid "Number, DecimalDigit"
+msgstr "Číslo, číslo od 0 do 9 v desítkovém zápisu"
+
+#: ../fmfontstrings.cpp:346
+msgid "Number, Letter"
+msgstr "Číslo, písmeno"
+
+#: ../fmfontstrings.cpp:347
+msgid "Number, Other"
+msgstr "Číslo, jiné"
+
+#: ../fmfontstrings.cpp:348
+msgid "Separator, Space"
+msgstr "Oddělovač, mezera"
+
+#: ../fmfontstrings.cpp:349
+msgid "Separator, Line"
+msgstr "Oddělovač, řádek"
+
+#: ../fmfontstrings.cpp:350
+msgid "Separator, Paragraph"
+msgstr "Oddělovač, odstavec"
+
+#: ../fmfontstrings.cpp:351
+msgid "Other, Control"
+msgstr "Jiné, ovládání"
+
+#: ../fmfontstrings.cpp:352
+msgid "Other, Format"
+msgstr "Jiné, formát"
+
+#: ../fmfontstrings.cpp:353
+msgid "Other, Surrogate"
+msgstr "Jiné, náhrada"
+
+#: ../fmfontstrings.cpp:354
+msgid "Other, PrivateUse"
+msgstr "Jiné, soukromé použití"
+
+#: ../fmfontstrings.cpp:355
+msgid "Other, NotAssigned"
+msgstr "Jiné, nepřiděleno"
+
+#: ../fmfontstrings.cpp:356
+msgid "Letter, Uppercase"
+msgstr "Písmeno, velká písmena"
+
+#: ../fmfontstrings.cpp:357
+msgid "Letter, Lowercase"
+msgstr "Písmeno, malá písmena"
+
+#: ../fmfontstrings.cpp:358
+msgid "Letter, Titlecase"
+msgstr "Písmeno, písmena v nadpisech"
+
+#: ../fmfontstrings.cpp:359
+msgid "Letter, Modifier"
+msgstr "Písmeno, modifikátor"
+
+#: ../fmfontstrings.cpp:360
+msgid "Letter, Other"
+msgstr "Písmeno, jiné"
+
+#: ../fmfontstrings.cpp:361
+msgid "Punctuation, Connector"
+msgstr "Interpunkční znaménka, spojovník"
+
+#: ../fmfontstrings.cpp:362
+msgid "Punctuation, Dash"
+msgstr "Interpunkční znaménka, pomlčka"
+
+#: ../fmfontstrings.cpp:363
+msgid "Punctuation, Open"
+msgstr "Interpunkční znaménka, otevřít"
+
+#: ../fmfontstrings.cpp:364
+msgid "Punctuation, Close"
+msgstr "Interpunkční znaménka, zavřít"
+
+#: ../fmfontstrings.cpp:365
+msgid "Punctuation, InitialQuote"
+msgstr "Interpunkční znaménka, počáteční uvozovky"
+
+#: ../fmfontstrings.cpp:366
+msgid "Punctuation, FinalQuote"
+msgstr "Interpunkční znaménka, závěrečné uvozovky"
+
+#: ../fmfontstrings.cpp:367
+msgid "Punctuation, Other"
+msgstr "Interpunkční znaménka, jiná"
+
+#: ../fmfontstrings.cpp:368
+msgid "Symbol, Math"
+msgstr "Symbol, matematika"
+
+#: ../fmfontstrings.cpp:369
+msgid "Symbol, Currency"
+msgstr "Symbol, měna"
+
+#: ../fmfontstrings.cpp:370
+msgid "Symbol, Modifier"
+msgstr "Symbol, modifikátor"
+
+#: ../fmfontstrings.cpp:371
+msgid "Symbol, Other"
+msgstr "Symbol, jiný"
+
+#: ../fmfontstrings.cpp:376
+msgid "Arabic"
+msgstr "Arabské"
+
+#: ../fmfontstrings.cpp:377
+msgid "Armenian"
+msgstr "Arménské"
+
+#: ../fmfontstrings.cpp:378
+msgid "Balinese"
+msgstr "Balijské"
+
+#: ../fmfontstrings.cpp:379
+msgid "Bengali"
+msgstr "Bengálské"
+
+#: ../fmfontstrings.cpp:380
+msgid "Bopomofo"
+msgstr "Bopomofo"
+
+#: ../fmfontstrings.cpp:381
+msgid "Braille"
+msgstr "Braillovo/Slepecké písmo"
+
+#: ../fmfontstrings.cpp:382
+msgid "Buginese"
+msgstr "Buginezské"
+
+#: ../fmfontstrings.cpp:383
+msgid "Buhid"
+msgstr "Buhidské"
+
+#: ../fmfontstrings.cpp:384
+msgid "Byzantine Music"
+msgstr "Byzantská hudba"
+
+#: ../fmfontstrings.cpp:385
+msgid "Canadian Syllabics"
+msgstr "Kanadské slabiky"
+
+#: ../fmfontstrings.cpp:386
+msgid "Cherokee"
+msgstr "Čerokijské"
+
+#: ../fmfontstrings.cpp:387
+msgid "CJK Ideographic"
+msgstr "CJK ideogramy"
+
+#: ../fmfontstrings.cpp:388
+msgid "Coptic"
+msgstr "Koptské"
+
+#: ../fmfontstrings.cpp:389
+msgid "Cypriot Syllabary"
+msgstr "Slabikové kyperské písmo"
+
+#: ../fmfontstrings.cpp:390
+msgid "Cyrillic"
+msgstr "Azbuka"
+
+#: ../fmfontstrings.cpp:391
+msgid "Default"
+msgstr "Výchozí"
+
+#: ../fmfontstrings.cpp:392
+msgid "Deseret"
+msgstr "Deseretské"
+
+#: ../fmfontstrings.cpp:393
+msgid "Devanagari"
+msgstr "Devanagarijské"
+
+#: ../fmfontstrings.cpp:394
+msgid "Ethiopic"
+msgstr "Etiopské"
+
+#: ../fmfontstrings.cpp:395
+msgid "Georgian"
+msgstr "Gruzínské"
+
+#: ../fmfontstrings.cpp:396
+msgid "Glagolitic"
+msgstr "Hlaholice"
+
+#: ../fmfontstrings.cpp:397
+msgid "Gothic"
+msgstr "Gotické"
+
+#: ../fmfontstrings.cpp:398
+msgid "Greek"
+msgstr "Řecké"
+
+#: ../fmfontstrings.cpp:399
+msgid "Gujarati"
+msgstr "Gujaratské"
+
+#: ../fmfontstrings.cpp:400
+msgid "Gurmukhi"
+msgstr "Gurmucké"
+
+#: ../fmfontstrings.cpp:401
+msgid "Hangul Jamo"
+msgstr "Korejské písmo hangul jamo"
+
+#: ../fmfontstrings.cpp:402
+msgid "Hangul"
+msgstr "Korejské písmo hangul"
+
+#: ../fmfontstrings.cpp:403
+msgid "Hanunoo"
+msgstr "Hanunoo"
+
+#: ../fmfontstrings.cpp:404
+msgid "Hebrew"
+msgstr "Hebrejské"
+
+#: ../fmfontstrings.cpp:405
+msgid "Hiragana and Katakana"
+msgstr "Hiragana a Katakana"
+
+#: ../fmfontstrings.cpp:406
+msgid "Javanese"
+msgstr "Jávské"
+
+#: ../fmfontstrings.cpp:407
+msgid "Kannada"
+msgstr "Kannadské"
+
+#: ../fmfontstrings.cpp:408
+msgid "Kharosthi"
+msgstr "Kharosthijské"
+
+#: ../fmfontstrings.cpp:409
+msgid "Khmer"
+msgstr "Khmerské"
+
+#: ../fmfontstrings.cpp:410
+msgid "Lao"
+msgstr "Lao"
+
+#: ../fmfontstrings.cpp:411
+msgid "Latin"
+msgstr "Latinka"
+
+#: ../fmfontstrings.cpp:412
+msgid "Limbu"
+msgstr "Limbu"
+
+#: ../fmfontstrings.cpp:413
+msgid "Linear B"
+msgstr "Lineární B"
+
+#: ../fmfontstrings.cpp:414
+msgid "Malayalam"
+msgstr "Malayalamské"
+
+#: ../fmfontstrings.cpp:415
+msgid "Mathematical Alphanumeric Symbols"
+msgstr "Matematické alfanumerické symboly"
+
+#: ../fmfontstrings.cpp:416
+msgid "Mongolian"
+msgstr "Mongolské"
+
+#: ../fmfontstrings.cpp:417
+msgid "Musical Symbols"
+msgstr "Hudební symboly"
+
+#: ../fmfontstrings.cpp:418
+msgid "Myanmar"
+msgstr "Myanmarské"
+
+#: ../fmfontstrings.cpp:419
+msgid "N'ko"
+msgstr "N'Ko"
+
+#: ../fmfontstrings.cpp:420
+msgid "Ogham"
+msgstr "Ogamské"
+
+#: ../fmfontstrings.cpp:421
+msgid "Old Italic"
+msgstr "Stará italika"
+
+#: ../fmfontstrings.cpp:422
+msgid "Old Persian Cuneiform"
+msgstr "Staré perské klínové"
+
+#: ../fmfontstrings.cpp:423
+msgid "Oriya"
+msgstr "Oriya"
+
+#: ../fmfontstrings.cpp:424
+msgid "Osmanya"
+msgstr "Osmanyjské"
+
+#: ../fmfontstrings.cpp:425
+msgid "Phags-pa"
+msgstr "Phags-pa"
+
+#: ../fmfontstrings.cpp:426
+msgid "Phoenician"
+msgstr "Fénické"
+
+#: ../fmfontstrings.cpp:427
+msgid "Runic"
+msgstr "Runové"
+
+#: ../fmfontstrings.cpp:428
+msgid "Shavian"
+msgstr "Shavijské"
+
+#: ../fmfontstrings.cpp:429
+msgid "Sinhala"
+msgstr "Sinhálské"
+
+#: ../fmfontstrings.cpp:430
+msgid "Sumero-Akkadian Cuneiform"
+msgstr "Sumerské-akadské klínové"
+
+#: ../fmfontstrings.cpp:431
+msgid "Syloti Nagri"
+msgstr "Syloti Nagri"
+
+#: ../fmfontstrings.cpp:432
+msgid "Syriac"
+msgstr "Syrské"
+
+#: ../fmfontstrings.cpp:433
+msgid "Tagalog"
+msgstr "Filipínské"
+
+#: ../fmfontstrings.cpp:434
+msgid "Tagbanwa"
+msgstr "Tagbanwa"
+
+#: ../fmfontstrings.cpp:435
+msgid "Tai Le"
+msgstr "Tai Le"
+
+#: ../fmfontstrings.cpp:436
+msgid "Tai Lu"
+msgstr "Tai Lu"
+
+#: ../fmfontstrings.cpp:437
+msgid "Tamil"
+msgstr "Tamilské"
+
+#: ../fmfontstrings.cpp:438
+msgid "Telugu"
+msgstr "Telugské"
+
+#: ../fmfontstrings.cpp:439
+msgid "Thaana"
+msgstr "Thaanské"
+
+#: ../fmfontstrings.cpp:440
+msgid "Thai"
+msgstr "Thajské"
+
+#: ../fmfontstrings.cpp:441
+msgid "Tibetan"
+msgstr "Tibetské"
+
+#: ../fmfontstrings.cpp:442
+msgid "Tifinagh"
+msgstr "Tifinaghské"
+
+#: ../fmfontstrings.cpp:443
+msgid "Ugaritic Cuneiform"
+msgstr "Ugaritické klínové"
+
+#: ../fmfontstrings.cpp:444
+msgid "Yi"
+msgstr "Yi"
+
+#: ../fmfontstrings.cpp:491
+msgid "Not Restricted"
+msgstr "Neomezeno"
+
+#: ../fmfontstrings.cpp:493
+msgid "Restricted"
+msgstr "Omezeno"
+
+#: ../fmfontstrings.cpp:495
+msgid "Preview/Print"
+msgstr "Poskytnout náhled/Vytisknout"
+
+#: ../fmfontstrings.cpp:497
+msgid "Edit/Embed"
+msgstr "Upravit/Vložit"
+
+#: ../fmfontstrings.cpp:499
+msgid "No Subset"
+msgstr "Žádná podmnožina"
+
+#: ../fmfontstrings.cpp:501
+msgid "Bitmap Only"
+msgstr "Pouze bitmapa"
+
+# Nápověda k programu Fontmatrix
+#: ../help.ui:13
+msgid "Fontmatrix Help"
+msgstr "Fontmatrix Help"
+
+#: ../helpbrowser.cpp:291
+msgid "Fontmatrix Online Help"
+msgstr "Nápověda pro program Fontmatrix na internetu"
+
+#: ../helpbrowser.cpp:293
+msgid "&File"
+msgstr "&Soubor"
+
+#: ../helpbrowser.cpp:294
+msgid "&Edit"
+msgstr "Úp&ravy"
+
+#: ../helpbrowser.cpp:295
+msgid "&Bookmarks"
+msgstr "&Záložky"
+
+#: ../helpbrowser.ui:148 ../helpbrowser.cpp:297
+msgid "&Print..."
+msgstr "&Tisk..."
+
+#: ../helpbrowser.cpp:298
+msgid "&Quit"
+msgstr "&Ukončit"
+
+#: ../helpbrowser.ui:158 ../helpbrowser.cpp:299
+msgid "&Find..."
+msgstr "&Najít..."
+
+#: ../helpbrowser.cpp:300
+msgid "Find &Next"
+msgstr "Najít &další"
+
+#: ../helpbrowser.cpp:301
+msgid "Find &Previous"
+msgstr "Najít &předchozí"
+
+#: ../helpbrowser.cpp:302
+msgid "&Add Bookmark"
+msgstr "&Přidat záložku"
+
+#: ../helpbrowser.ui:103 ../helpbrowser.ui:178 ../helpbrowser.cpp:303
+msgid "&Delete"
+msgstr "&Smazat"
+
+#: ../helpbrowser.ui:110 ../helpbrowser.ui:183 ../helpbrowser.cpp:304
+msgid "D&elete All"
+msgstr "S&mazat vše"
+
+#: ../helpbrowser.cpp:381
+msgid "Find"
+msgstr "Najít"
+
+#: ../helpbrowser.cpp:381
+msgid "Search Term:"
+msgstr "Hledaný pojem:"
+
+#: ../helpbrowser.cpp:413
+msgid "New Bookmark"
+msgstr "Nová záložka"
+
+#: ../helpbrowser.cpp:413
+msgid "New Bookmark's Title:"
+msgstr "Název pro novou záložku:"
+
+#: ../helpbrowser.cpp:672
+msgctxt "HTML message for no documentation available to show"
+msgid "<h2><p>Sorry, no manual is installed!</p><p>Please contact your package provider or Fontmatrix team if you built the application yourself</p></h2>"
+msgstr "<h2><p>Promiňte, ale není nainstalován žádný návod!</p><p>Spojte se, prosím, se svým poskytovatelem balíčků nebo s družstvem Fontmatrix, pokud si program sestavujete sám</p></h2>"
+
+#: ../helpbrowser.ui:31
+msgid "&Contents"
+msgstr "&Obsah"
+
+#: ../helpbrowser.ui:45
+msgid "Se&arch"
+msgstr "&Hledat"
+
+#: ../helpbrowser.ui:53
+msgid "Searching is case insensitive"
+msgstr "Hledání nerozlišuje velikost písmen"
+
+#: ../helpbrowser.ui:60
+msgid "&Search"
+msgstr "&Hledat"
+
+#: ../helpbrowser.ui:70 ../helpbrowser.ui:86
+msgid "1"
+msgstr "1"
+
+#: ../helpbrowser.ui:79
+msgid "Book&marks"
+msgstr "Zálo&žky"
+
+#: ../helpbrowser.ui:96
+msgid "&New"
+msgstr "&Nová"
+
+#: ../helpbrowser.ui:153
+msgid "&Exit"
+msgstr "&Ukončit"
+
+#: ../helpbrowser.ui:163
+msgid "Find &Next..."
+msgstr "Najít &další..."
+
+#: ../helpbrowser.ui:168
+msgid "Find &Previous..."
+msgstr "Najít &předchozí..."
+
+#: ../helpbrowser.ui:173
+msgid "&Add"
+msgstr "&Přidat"
+
+#: ../importtags.ui:13
+msgid "Fontmatrix - Tags"
+msgstr "Fontmatrix - Značky"
+
+#: ../importtags.ui:72
+msgid "Ok"
+msgstr "OK"
+
+#: ../importedfonts.ui:13
+msgid "Imported fonts"
+msgstr "Zavedená písma"
+
+#: ../importedfonts.ui:24
+msgid "Imported Fonts:"
+msgstr "Zavedená písma:"
+
+#: ../importedfonts.ui:58
+msgid "&Do not show this dialog again"
+msgstr "Znovu již tento dialog &nezobrazovat"
+
+#: ../importedfonts.ui:84
+msgid "&OK"
+msgstr "&OK"
+
+#: ../importedfonts.ui:52
+msgid ""
+"<qt>Instead of showing this dialog imported font count\n"
+"will be shown in the status bar. If you choose not to\n"
+"show this dialog anymore you can reset the state\n"
+"in preferences.</qt>"
+msgstr ""
+"<qt>Namísto zobrazení tohoto dialogu, bude počet zavedených písem\n"
+"ukázán ve stavovém řádku. Jestliže si vyberete, aby se tento dialog\n"
+"více neukazoval, můžete tuto volbu zrušit\n"
+"v nastavení.</qt>"
+
+#: ../importedfontsdialog.cpp:37
+msgid " (not loaded)"
+msgstr " (nenahráno)"
+
+#: ../importedfontsdialog.cpp:44
+msgid "Number of Imported Fonts "
+msgstr "Počet zavedených písem "
+
+#: ../layoutoptions.ui:19
+msgid "Text layout engine options"
+msgstr "Volby pro stroj na rozvržení textu"
+
+#: ../layoutoptions.ui:25
+msgid "Weights"
+msgstr "Váhy"
+
+#: ../layoutoptions.ui:78 ../layoutoptions.ui:124 ../layoutoptions.ui:222
+#: ../layoutoptions.ui:294
+msgid "score"
+msgstr "body"
+
+#: ../layoutoptions.ui:91
+msgid "Before"
+msgstr "Před"
+
+#: ../layoutoptions.ui:137
+msgid "Exact"
+msgstr "Přesně"
+
+#: ../layoutoptions.ui:235
+msgid "After"
+msgstr "Po"
+
+#: ../layoutoptions.ui:307
+msgid "End"
+msgstr "Konec"
+
+#: ../layoutoptions.ui:429
+msgid "space"
+msgstr "Mezera"
+
+#: ../layoutoptions.ui:442
+msgid "Max. compression"
+msgstr "Max. stlačení"
+
+#: ../layoutoptions.ui:360
+msgid "penalty"
+msgstr "Postih"
+
+#: ../layoutoptions.ui:373
+msgid "H-penalty"
+msgstr "H-postih"
+
+#: ../listsdock.ui:128
+msgid "Filter view by chosing tag"
+msgstr "Zobrazení filtru při výběru značky"
+
+#: ../listsdock.ui:282 ../listsdock.ui:343
+msgid "Names"
+msgstr "Názvy"
+
+#: ../listsdock.ui:201
+msgid "Show complete collection of available fonts"
+msgstr "Ukázat celou sbírku dostupných písem"
+
+#: ../listsdock.ui:74
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you want to negate the filter,</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">prefix the word with \"!\" such as in:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">\"!pattern\"</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you want to enqueue the filter,</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">prefix it with \"+\".</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Finally, you can mix negate and queue in:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">\"+!pattern\"</span> or \"!+pattern\"</p></body></html>"
+msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Pokud chcete filtr zrušit,</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">postavte před slovo znak vykřičníku \"!\" tak jako v:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">\"!pattern\"</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Pokud chcete filtr zařadit do řady,</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">dejte před slovo \"+\".</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">A konečně můžete použít jak zrušení filtru, tak jeho zařazení do řady:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">\"+!vzor\"</span> nebo \"!+vzor\"</p></body></html>"
+
+#: ../listsdock.ui:87
+msgid "F"
+msgstr "F"
+
+#: ../listsdock.ui:204
+msgid "reset"
+msgstr "Vymazat"
+
+#: ../listsdock.ui:251
+msgid "save"
+msgstr "Uložit"
+
+#: ../listsdock.ui:355
+msgid "Collapse or expand"
+msgstr "Sbalit nebo rozbalit"
+
+#: ../listsdock.ui:371
+msgid "Show face boxes"
+msgstr "Zobrazit značky u řezů"
+
+#: ../listsdock.ui:399
+msgid "Folders"
+msgstr "Složky"
+
+#: ../listdockwidget.cpp:132
+msgid "Unicode character"
+msgstr "Znak Unicode"
+
+#: ../listdockwidget.cpp:165
+msgid "Collapse Top Level"
+msgstr "Složit horní úroveň"
+
+#: ../listdockwidget.cpp:167
+msgid "Collapse Families"
+msgstr "Složit rodiny písem"
+
+#: ../listdockwidget.cpp:170
+msgid "Expand Top Level"
+msgstr "Rozbalit horní úroveň"
+
+#: ../listdockwidget.cpp:172
+msgid "Expand Families"
+msgstr "Rozbalit rodiny písem"
+
+#: ../listdockwidget.cpp:451
+msgid "Similar to current"
+msgstr "Podobné nynějšímu"
+
+#: ../listdockwidget.cpp:450
+msgid "All activated"
+msgstr "Vše zapnuto"
+
+#: ../mainview.ui:24
+msgid "main view widget"
+msgstr "Prvek uživatelského rozhraní pro hlavní pohled"
+
+#: ../mainview.ui:103
+msgid "Quick Search:"
+msgstr "Rychlé hledání:"
+
+#: ../mainview.ui:190
+msgid "Save"
+msgstr "Uložit"
+
+#: ../mainview.ui:202
+msgid "clear"
+msgstr "Vyprázdnit"
+
+#: ../mainviewwidget.cpp:1168
+msgid "Fontmatrix takes care of you"
+msgstr "Fontmatrix se o vás postará"
+
+#: ../mainviewwidget.cpp:1168
+msgid ""
+" is activated.\n"
+"If you want to remove it from Fontmatrix database, please deactivate it first."
+msgstr ""
+" je zapnut.\n"
+"Pokud je chcete odstranit z databáze programu Fontmatrix, nejprve je, prosím, vypněte."
+
+#: ../mainviewwidget.cpp:1171
+msgid "Fontmatrix safe"
+msgstr "Fontmatrix je v bezpečí"
+
+#: ../mainviewwidget.cpp:1171
+msgid "You are about to remove a font from Fontmatrix database"
+msgstr "Chystáte se písmo odstranit z databáze programu Fontmatrix"
+
+#: ../mainviewwidget.cpp:1171
+msgid "Do you want to continue?"
+msgstr "Chcete pokračovat?"
+
+#: ../matchraster.ui:13
+msgid "Find a font using raster sample"
+msgstr "Najít písmo pomocí rastrovaného vzorku"
+
+#: ../matchraster.ui:32
+msgid "Input Image"
+msgstr "Vstupní obrázek"
+
+#: ../matchraster.ui:40
+msgid "Grab mode"
+msgstr "Režim záchytu"
+
+#: ../matchraster.ui:69
+msgid "Zoom level"
+msgstr "Zvětšení"
+
+#: ../matchraster.ui:126
+msgid "Raster sample preview"
+msgstr "Náhled obrázku"
+
+#: ../matchraster.ui:153
+msgid "C&haracter:"
+msgstr "&Znak:"
+
+#: ../matchraster.ui:169
+msgid "A unique character or a four digits hexadecimal Unicode value"
+msgstr "Jediný znak nebo čtyři číslice jeho Unicode hodnoty v šestnáctkovém vyjádření"
+
+#: ../matchraster.ui:201
+msgid "If set, you will be prompted for each matching font"
+msgstr "Je-li zvoleno, budete vyzvání u každého odpovídajícího písma"
+
+#: ../matchraster.ui:204
+msgid "Interactive"
+msgstr "Interaktivní"
+
+#: ../matchraster.ui:220
+msgid "Click on the letter to let Fontmatrix compute the bounding box"
+msgstr "Klikněte na písmeno a Fontmatrix určí jeho ohraničující obdélník"
+
+#: ../matchraster.ui:236
+msgid "Tweak rect"
+msgstr "Upravit obdélník"
+
+#: ../matchraster.ui:279
+msgid "Compare with:"
+msgstr "Srovnat s:"
+
+#: ../matchraster.ui:322
+msgid "Stop"
+msgstr "Zastavit"
+
+#: ../matchraster.ui:336
+msgid "&Cancel"
+msgstr "&Zrušit"
+
+#: ../metawidget.ui:26
+msgid "Fill-in text fields and press enter key  or click \"Add Filters\" button to process filters."
+msgstr "Naplňte textová pole a stiskněte klávesu Enter nebo klepněte na tlačítko Přidat filtry pro zpracování filtrů."
+
+#: ../metawidget.ui:66
+msgid "Add Filters"
+msgstr "Přidat filtry"
+
+#: ../panosedialog.ui:13
+msgid "Fontmatrix - Panose Editor"
+msgstr "Fontmatrix - Panose Editor"
+
+#: ../panosewidget.ui:14
+msgid "Panose Metadata"
+msgstr "Popisná data Panose"
+
+#: ../panosewidget.ui:57
+msgid "Panose Attributes"
+msgstr "Vlastnosti Panose"
+
+#: ../playwidget.ui:49
+msgid "Font Size:"
+msgstr "Velikost písma:"
+
+#: ../playwidget.ui:59
+msgid " pt"
+msgstr " pt"
+
+#: ../playwidget.cpp:35
+msgid "Playground"
+msgstr "Hřiště"
+
+#: ../playwidget.cpp:107
+msgid "Print Playground"
+msgstr "Vytisknout hřiště"
+
+#: ../prefs_panel.ui:13
+msgid "Preferences Panel"
+msgstr "Panel voleb"
+
+#: ../prefs_panel.ui:74 ../prefs_panel.ui:123
+msgid "General"
+msgstr "Obecné"
+
+#: ../prefs_panel.ui:185
+msgid "Close to system tray"
+msgstr "Zavřít do oznamovací části panelu"
+
+#: ../prefs_panel.ui:170
+msgid "Show Fontmatrix in System Tray"
+msgstr "Ukázat Fontmatrix v oznamovací části panelu"
+
+#: ../prefs_panel.ui:257
+msgid "Preview Word"
+msgstr "Náhled slova"
+
+#: ../prefs_panel.ui:501
+msgid "/usr/bin/fontforge"
+msgstr "/usr/bin/fontforge"
+
+#: ../prefs_panel.ui:129
+msgid "Ask for tag names when importing fonts"
+msgstr "Při zavádění písem se ptát na názvy značek"
+
+#: ../prefs_panel.ui:79
+msgid "System tray"
+msgstr "Systémová část panelu"
+
+#: ../prefs_panel.ui:84
+msgid "Display"
+msgstr "Zobrazení"
+
+#: ../prefs_panel.ui:89
+msgid "Service"
+msgstr "Služby"
+
+#: ../prefs_panel.ui:94
+msgid "Samples collection"
+msgstr "Sbírka ukázek"
+
+#: ../prefs_panel.ui:99
+msgid "Files & Folders"
+msgstr "Soubory a složky"
+
+#: ../prefs_panel.ui:195
+msgid "Start minimized to system tray"
+msgstr "Spouštět zmenšené v systémové části panelu"
+
+#: ../prefs_panel.ui:202
+msgid "Show \"All\" actions"
+msgstr "Ukázat všechny kroky"
+
+#: ../prefs_panel.ui:217
+msgid "Ask for confirmation when activating or deactivating all fonts"
+msgstr "Žádat potvrzení při zapnutí nebo vypnutí všech písem"
+
+#: ../prefs_panel.ui:230
+msgid "Ask for confirmation when activating or deactivating fonts by tags"
+msgstr "Žádat potvrzení při zapnutí nebo vypnutí písem podle značek"
+
+#: ../prefs_panel.ui:263
+msgid "Word:"
+msgstr "Slovo:"
+
+#: ../prefs_panel.ui:302
+msgid "Default font size:"
+msgstr "Výchozí velikost písma:"
+
+#: ../prefs_panel.ui:343
+msgid "subtitled"
+msgstr "podtitulek"
+
+#: ../prefs_panel.ui:350
+msgid "is RTL"
+msgstr "je RTL"
+
+#: ../prefs_panel.ui:360
+msgid "Chart Subtitle Font"
+msgstr "Písmo podtitulku v tabulce"
+
+#: ../prefs_panel.ui:388
+msgid "Size:"
+msgstr "Velikost:"
+
+#: ../prefs_panel.ui:433
+msgid "linespacing:"
+msgstr "Vzdálenost řádků:"
+
+#: ../prefs_panel.ui:460
+msgid "Information Style"
+msgstr "Styl informací"
+
+#: ../prefs_panel.ui:466
+msgid "Select Style"
+msgstr "Vybrat styl"
+
+#: ../prefs_panel.ui:486
+msgid "Fonts Editor"
+msgstr "Editor písem"
+
+#: ../prefs_panel.ui:531
+msgid "Help Browser"
+msgstr "Prohlížeč nápovědy"
+
+#: ../prefs_panel.ui:550
+msgid "Extra options:"
+msgstr "Další volby:"
+
+#: ../prefs_panel.ui:596
+msgid "Select an  hyphenation dict file as it comes with OpenOffice or Scribus"
+msgstr "Vyberte slovník s dělením slov (buď z OpenOffice nebo ze Scribusu)"
+
+#: ../prefs_panel.ui:599
+msgid "Hyphenation dictionary"
+msgstr "Slovník dělení slov"
+
+#: ../prefs_panel.ui:686
+msgid "Sample Texts"
+msgstr "Ukázkové texty"
+
+#: ../prefs_panel.ui:726
+msgid "+"
+msgstr "+"
+
+#: ../prefs_panel.ui:745
+msgid "−"
+msgstr "-"
+
+#: ../prefs_panel.ui:498
+msgid "Add the full path to your preferred font editor"
+msgstr "Přidat celou cestu k vašemu oblíbenému editoru"
+
+#: ../prefs_panel.ui:136
+msgid "Show names of imported fonts after import process"
+msgstr "Po dokončení zaváděcího procesu ukázat názvy zavedených písem"
+
+#: ../prefs_panel.ui:143
+msgid "Show splash at startup"
+msgstr "Při spuštění ukázat úvodní obrazovku"
+
+#: ../prefs_panel.ui:407
+msgid "Initial Layout"
+msgstr "Rozvržení na začátku"
+
+#: ../prefs_panel.ui:631
+msgid "Left:"
+msgstr "Levý:"
+
+#: ../prefs_panel.ui:644
+msgid "Right:"
+msgstr "Pravý:"
+
+#: ../prefs_panel.ui:608
+msgid "Browse"
+msgstr "Procházet"
+
+#: ../prefs_panel.ui:819
+msgid "Templates Folder"
+msgstr "Složka s předlohami"
+
+#: ../prefs_panel.ui:858
+msgid "Remote directories"
+msgstr "Vzdálené adresáře"
+
+#: ../prefs_panel.ui:866
+msgid "http://"
+msgstr "http://"
+
+#: ../prefs_panel.ui:928
+msgid "Local storage"
+msgstr "Místní úložiště"
+
+#: ../prefs_panel.ui:962
+msgid "Change"
+msgstr "Změnit"
+
+#: ../prefs_panel.ui:104
+msgid "Shortcuts"
+msgstr "Klávesové zkratky"
+
+#: ../prefspaneldialog.cpp:88
+msgid "Looks like your setup does not have a system tray available."
+msgstr "Vypadá to, jako by ve vašem prostředí nebyla dostupná oznamovací oblast panelu."
+
+#: ../prefspaneldialog.cpp:347
+msgid "Select font editor"
+msgstr "Vybrat editor písma"
+
+#: ../prefspaneldialog.cpp:417
+msgid "Select Templates Folder"
+msgstr "Vybrat složku s předlohami"
+
+#: ../prefspaneldialog.cpp:476
+msgid "Select Where remote font files will be stored"
+msgstr "Vybrat, kde se budou ukládat soubory se vzdálenými písmy"
+
+#: ../prefspaneldialog.cpp:50
+msgid "Please select an item in the list or create a new one."
+msgstr "Vyberte, prosím, ze seznamu jednu položku, nebo jednu vytvořte."
+
+#: ../prefspaneldialog.cpp:35
+msgid "You can use the following keywords to be replaced by data from fonts: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"
+msgstr "Můžete použít následující klíčová slova, aby byla nahrazena daty z písem: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"
+
+#: ../prefspaneldialog.cpp:237
+msgctxt "PrefsPanelDialog|A default sample text inserted when creating a new sample"
+msgid "Sample Text"
+msgstr "Ukázkový text"
+
+#: ../prefspaneldialog.cpp:251
+msgctxt "PrefsPanelDialog|the name of a sample text will be append to the string"
+msgid "Do you confirm that you want to remove:"
+msgstr "Potvrzujete, že chcete odstranit:"
+
+#: ../prefspaneldialog.cpp:356
+msgid "Select web browser"
+msgstr "Vybrat prohlížeč"
+
+#: ../prefspaneldialog.cpp:555 ../prefspaneldialog.cpp:601
+msgid "Alt"
+msgstr "Alt"
+
+#: ../prefspaneldialog.cpp:555 ../prefspaneldialog.cpp:601
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: ../prefspaneldialog.cpp:555 ../prefspaneldialog.cpp:601
+msgid "Shift"
+msgstr "Shift"
+
+#: ../prefspaneldialog.cpp:555 ../prefspaneldialog.cpp:601
+msgid "Meta"
+msgstr "Meta"
+
+#: ../prefspaneldialog.cpp:563
+msgid "Meta+"
+msgstr "Meta+"
+
+#: ../prefspaneldialog.cpp:567
+msgid "Shift+"
+msgstr "Shift+"
+
+#: ../prefspaneldialog.cpp:571
+msgid "Alt+"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:575
+msgid "Ctrl+"
+msgstr "Ctrl+"
+
+#: ../prefspaneldialog.cpp:662
+msgid "Replace"
+msgstr "Nahradit"
+
+#: ../prefspaneldialog.cpp:663
+msgctxt "action name will be appended to this"
+msgid "Shortcut is already in use for"
+msgstr "Zkratka se již používá pro"
+
+#: ../prefspaneldialog.cpp:665
+msgid "Do you still want to assign it?"
+msgstr "Stále ještě ji chcete přiřadit?"
+
+#: ../prefspaneldialog.cpp:703
+msgid "Shortcut"
+msgstr "Zkratka"
+
+#: ../prefspaneldialog.cpp:704
+msgid "Tip"
+msgstr "Rada"
+
+#: ../prefspaneldialog.cpp:738
+msgid "Select hyphenation dictionary"
+msgstr "Vybrat slovník dělení slov"
+
+#: ../fontitem.cpp:2269
+msgid "codepoint is U+"
+msgstr "Kód je U+"
+
+#: ../dataexport.cpp:75
+msgid "cancel"
+msgstr "Zrušit"
+
+#: ../dataexport.cpp:75
+msgid "Copying files"
+msgstr "Kopírují se soubory"
+
+#: ../fminfodisplay.cpp:119
+msgid "Unicode Ranges"
+msgstr "Rozsahy Unicode"
+
+#: ../fminfodisplay.cpp:177
+msgid "File"
+msgstr "Soubor"
+
+#: ../fminfodisplay.cpp:179
+msgid "Glyphs count"
+msgstr "Počet obrázků"
+
+#: ../fminfodisplay.cpp:181
+msgid "Font Type"
+msgstr "Typ písma"
+
+#: ../fminfodisplay.cpp:196
+msgid "Charmaps List"
+msgstr "Seznam zobrazení znaků"
+
+#: ../opentypetags.h:32
+msgid "Access All Alternates"
+msgstr "Získat všechna náhradní"
+
+#: ../opentypetags.h:33
+msgid "Above-Base Forms"
+msgstr "Tvary nad základem"
+
+#: ../opentypetags.h:34
+msgid "Above-Base Mark Positioning"
+msgstr "Umístění značky nad základem"
+
+#: ../opentypetags.h:35
+msgid "Above-Base Substitutions"
+msgstr "Nahrazení nad základem"
+
+#: ../opentypetags.h:36
+msgid "Alternative Fractions"
+msgstr "Náhradní zlomky"
+
+#: ../opentypetags.h:37
+msgid "Akhands"
+msgstr "Akhand"
+
+#: ../opentypetags.h:38
+msgid "Below-Base Forms"
+msgstr "Tvary pod základem"
+
+#: ../opentypetags.h:39
+msgid "Below-Base Mark Positioning"
+msgstr "Umístění značky pod základem"
+
+#: ../opentypetags.h:40
+msgid "Below-Base Substitutions"
+msgstr "Nahrazení pod základem"
+
+#: ../opentypetags.h:41
+msgid "Petite Capitals From Capitals"
+msgstr "Drobné kapitálky z velkých písmen"
+
+#: ../opentypetags.h:42
+msgid "Small Capitals From Capitals"
+msgstr "Malé kapitálky z velkých písmen"
+
+#: ../opentypetags.h:43
+msgid "Contextual Alternates"
+msgstr "Náhrady vyplývající ze souvislosti"
+
+#: ../opentypetags.h:44
+msgid "Case-Sensitive Forms"
+msgstr "Tvary rozlišující velká a malá písmena"
+
+#: ../opentypetags.h:45
+msgid "Glyph Composition/Decomposition"
+msgstr "Složení/Rozklad glyfu"
+
+#: ../opentypetags.h:46
+msgid "Contextual Ligatures"
+msgstr "Slitky vyplývající ze souvislosti"
+
+#: ../opentypetags.h:47
+msgid "Conjunct Forms"
+msgstr "Spojené tvary"
+
+#: ../opentypetags.h:48
+msgid "Capital Spacing"
+msgstr "Rozestupy velkých písmen"
+
+#: ../opentypetags.h:49
+msgid "Contextual Swash"
+msgstr "Ozdobné písmeno vyplývající ze souvislosti"
+
+#: ../opentypetags.h:50
+msgid "Cursive Positioning"
+msgstr "Kurzívní umístění"
+
+#: ../opentypetags.h:51
+msgid "Default Processing"
+msgstr "Výchozí zpracování"
+
+#: ../opentypetags.h:52
+msgid "Distances"
+msgstr "Vzdálenosti"
+
+#: ../opentypetags.h:53
+msgid "Discretionary Ligatures"
+msgstr "Nepředepsané slitky"
+
+#: ../opentypetags.h:54
+msgid "Denominators"
+msgstr "Jmenovatelé"
+
+#: ../opentypetags.h:55
+msgid "Expert Forms"
+msgstr "Odborné tvary"
+
+#: ../opentypetags.h:56
+msgid "Final glyph Alternates"
+msgstr "Náhrady závěrečného glyfu"
+
+#: ../opentypetags.h:57
+msgid "Terminal Forms #2"
+msgstr "Tvary zakončení #2"
+
+#: ../opentypetags.h:58
+msgid "Terminal Forms #3"
+msgstr "Tvary zakončení #3"
+
+#: ../opentypetags.h:59
+msgid "Terminal Forms"
+msgstr "Tvary zakončení"
+
+#: ../opentypetags.h:60
+msgid "Fractions"
+msgstr "Zlomky"
+
+#: ../opentypetags.h:61
+msgid "Full Width"
+msgstr "Celá šířka"
+
+#: ../opentypetags.h:62
+msgid "Half Forms"
+msgstr "Poloviční tvary"
+
+#: ../opentypetags.h:63
+msgid "Halant Forms"
+msgstr "Tvary Halant"
+
+#: ../opentypetags.h:64
+msgid "Alternate Half Width"
+msgstr "Náhradní poloviční šířka"
+
+#: ../opentypetags.h:65
+msgid "Historical Forms"
+msgstr "Historické tvary"
+
+#: ../opentypetags.h:66
+msgid "Horizontal Kana Alternates"
+msgstr "Vodorovné náhrady Kana"
+
+#: ../opentypetags.h:67
+msgid "Historical Ligatures"
+msgstr "Historické slitky"
+
+#: ../opentypetags.h:69
+msgid "Hojo Kanji Forms (JIS x 212-1990 Kanji Forms)"
+msgstr "Tvary Hojo Kanji (tvary Kanji JIS x 212-1990)"
+
+#: ../opentypetags.h:70
+msgid "Half Width"
+msgstr "Poloviční šířka"
+
+#: ../opentypetags.h:71
+msgid "Initial Forms"
+msgstr "Počáteční tvary"
+
+#: ../opentypetags.h:72
+msgid "Isolated Forms"
+msgstr "Osamocené tvary"
+
+#: ../opentypetags.h:73
+msgid "Italics"
+msgstr "Kurzíva"
+
+#: ../opentypetags.h:74
+msgid "Justification Alternatives"
+msgstr "Náhradní zarovnání"
+
+#: ../opentypetags.h:75
+msgid "JIS78 Forms"
+msgstr "Tvary JIS78"
+
+#: ../opentypetags.h:76
+msgid "JIS83 Forms"
+msgstr "Tvary JIS83"
+
+#: ../opentypetags.h:77
+msgid "JIS90 Forms"
+msgstr "Tvary JIS90"
+
+#: ../opentypetags.h:78
+msgid "JIS2004 Forms"
+msgstr "Tvary JIS2004"
+
+#: ../opentypetags.h:80
+msgid "Left Bounds"
+msgstr "Levé hranice"
+
+#: ../opentypetags.h:81
+msgid "Standard Ligatures"
+msgstr "Obvyklé slitky"
+
+#: ../opentypetags.h:82
+msgid "Leading Jamo Forms"
+msgstr "Tvary Jamo na začátku"
+
+#: ../opentypetags.h:83
+msgid "Lining Figures"
+msgstr "Seřazení číslic"
+
+#: ../opentypetags.h:84
+msgid "Localized Forms"
+msgstr "Lokalizované tvary"
+
+#: ../opentypetags.h:85
+msgid "Mark Positioning"
+msgstr "Umístění značky"
+
+#: ../opentypetags.h:86
+msgid "Medial Forms #2"
+msgstr "Průměrné tvary #2"
+
+#: ../opentypetags.h:87
+msgid "Medial Forms"
+msgstr "Průměrné tvary"
+
+#: ../opentypetags.h:88
+msgid "Mathematical Greek"
+msgstr "Matematické řecké"
+
+#: ../opentypetags.h:89
+msgid "Mark to Mark Positioning"
+msgstr "Umístění značky k značce"
+
+#: ../opentypetags.h:90
+msgid "Mark Positioning via Substitution"
+msgstr "Umístění značky pomocí nahrazení"
+
+#: ../opentypetags.h:91
+msgid "Alternate Annotation Forms"
+msgstr "Náhradní tvary vysvětlivek"
+
+#: ../opentypetags.h:92
+msgid "NLC Kanji Forms"
+msgstr "Tvary Kanji NLC"
+
+#: ../opentypetags.h:93
+msgid "Nukta Forms"
+msgstr "Tvary Nukta"
+
+#: ../opentypetags.h:94
+msgid "Numerators"
+msgstr "Čitatelé"
+
+#: ../opentypetags.h:95
+msgid "Old Style Figures"
+msgstr "Číslice ve starém slohu"
+
+#: ../opentypetags.h:96
+msgid "Optical Bounds"
+msgstr "Viditelné hranice"
+
+#: ../opentypetags.h:97
+msgid "Ordinals"
+msgstr "Řadové číslovky"
+
+#: ../opentypetags.h:98
+msgid "Ornaments"
+msgstr "Ozdoby"
+
+#: ../opentypetags.h:99
+msgid "Proportional Alternate Width"
+msgstr "Poměrná náhradní šířka"
+
+#: ../opentypetags.h:100
+msgid "Petite Capitals"
+msgstr "Drobná velká písmena (kapitálky)"
+
+#: ../opentypetags.h:101
+msgid "Proportional Figures"
+msgstr "Poměrné číslice"
+
+#: ../opentypetags.h:102
+msgid "Pre-base Forms"
+msgstr "Tvary před základem"
+
+#: ../opentypetags.h:103
+msgid "Pre-base Substitutions"
+msgstr "Náhrady před základem"
+
+#: ../opentypetags.h:104
+msgid "Post-base Forms"
+msgstr "Tvary po základu"
+
+#: ../opentypetags.h:105
+msgid "Post-base Substitutions"
+msgstr "Náhrady po základu"
+
+#: ../opentypetags.h:106
+msgid "Proportional Widths"
+msgstr "Poměrné šířky"
+
+#: ../opentypetags.h:107
+msgid "Quarter Widths"
+msgstr "Čtvrtinové šířky"
+
+#: ../opentypetags.h:108
+msgid "Randomize"
+msgstr "Vybrat náhodně"
+
+#: ../opentypetags.h:109
+msgid "Rakar Forms"
+msgstr "Tvary Rakar"
+
+#: ../opentypetags.h:110
+msgid "Required Ligatures"
+msgstr "Požadované slitky"
+
+#: ../opentypetags.h:111
+msgid "Reph Form"
+msgstr "Tvar Reph"
+
+#: ../opentypetags.h:112
+msgid "Right Bounds"
+msgstr "Pravé hranice"
+
+#: ../opentypetags.h:113
+msgid "Right-To-Left Alternates"
+msgstr "Pravolevé náhrady"
+
+#: ../opentypetags.h:114
+msgid "Ruby Notation Forms"
+msgstr "Tvary zápisu typu písma Ruby"
+
+#: ../opentypetags.h:115
+msgid "Stylistic Alternates"
+msgstr "Slohové náhrady"
+
+#: ../opentypetags.h:116
+msgid "Scientific Inferiors"
+msgstr "Vědecké psané jako dolní index"
+
+#: ../opentypetags.h:117
+msgid "Optical Size"
+msgstr "Viditelná velikost"
+
+#: ../opentypetags.h:118
+msgid "Small Capitals"
+msgstr "Malé kapitálky"
+
+#: ../opentypetags.h:119
+msgid "Simplified Forms"
+msgstr "Zjednodušené tvary"
+
+#: ../opentypetags.h:120
+msgid "Stylistic Set 1"
+msgstr "Slohový soubor 1"
+
+#: ../opentypetags.h:121
+msgid "Stylistic Set 2"
+msgstr "Slohový soubor 2"
+
+#: ../opentypetags.h:122
+msgid "Stylistic Set 3"
+msgstr "Slohový soubor 3"
+
+#: ../opentypetags.h:123
+msgid "Stylistic Set 4"
+msgstr "Slohový soubor 4"
+
+#: ../opentypetags.h:124
+msgid "Stylistic Set 5"
+msgstr "Slohový soubor 5"
+
+#: ../opentypetags.h:125
+msgid "Stylistic Set 6"
+msgstr "Slohový soubor 6"
+
+#: ../opentypetags.h:126
+msgid "Stylistic Set 7"
+msgstr "Slohový soubor 7"
+
+#: ../opentypetags.h:127
+msgid "Stylistic Set 8"
+msgstr "Slohový soubor 8"
+
+#: ../opentypetags.h:128
+msgid "Stylistic Set 9"
+msgstr "Slohový soubor 9"
+
+#: ../opentypetags.h:129
+msgid "Stylistic Set 10"
+msgstr "Slohový soubor 10"
+
+#: ../opentypetags.h:130
+msgid "Stylistic Set 11"
+msgstr "Slohový soubor 11"
+
+#: ../opentypetags.h:131
+msgid "Stylistic Set 12"
+msgstr "Slohový soubor 12"
+
+#: ../opentypetags.h:132
+msgid "Stylistic Set 13"
+msgstr "Slohový soubor 13"
+
+#: ../opentypetags.h:133
+msgid "Stylistic Set 14"
+msgstr "Slohový soubor 14"
+
+#: ../opentypetags.h:134
+msgid "Stylistic Set 15"
+msgstr "Slohový soubor 15"
+
+#: ../opentypetags.h:135
+msgid "Stylistic Set 16"
+msgstr "Slohový soubor 16"
+
+#: ../opentypetags.h:136
+msgid "Stylistic Set 17"
+msgstr "Slohový soubor 17"
+
+#: ../opentypetags.h:137
+msgid "Stylistic Set 18"
+msgstr "Slohový soubor 18"
+
+#: ../opentypetags.h:138
+msgid "Stylistic Set 19"
+msgstr "Slohový soubor 19"
+
+#: ../opentypetags.h:139
+msgid "Stylistic Set 20"
+msgstr "Slohový soubor 20"
+
+#: ../opentypetags.h:140
+msgid "Subscript"
+msgstr "Dolní index"
+
+#: ../opentypetags.h:141
+msgid "Superscript"
+msgstr "Horní index"
+
+#: ../opentypetags.h:142
+msgid "Swash"
+msgstr "Ozdobné písmeno"
+
+#: ../opentypetags.h:143
+msgid "Titling"
+msgstr "Titulování"
+
+#: ../opentypetags.h:144
+msgid "Trailing Jamo Forms"
+msgstr "Tvary Jamo na konci"
+
+#: ../opentypetags.h:145
+msgid "Traditional Name Forms"
+msgstr "Tradiční tvary názvu"
+
+#: ../opentypetags.h:146
+msgid "Tabular Figures"
+msgstr "Tabulkové číslice"
+
+#: ../opentypetags.h:147
+msgid "Traditional Forms"
+msgstr "Tradiční tvary"
+
+#: ../opentypetags.h:148
+msgid "Third Widths"
+msgstr "Třetinové šířky"
+
+#: ../opentypetags.h:149
+msgid "Unicase"
+msgstr "Jednotná písmovka"
+
+#: ../opentypetags.h:150
+msgid "Alternate Vertical Metrics"
+msgstr "Náhradní svislá metrika"
+
+#: ../opentypetags.h:151
+msgid "Vattu Variants"
+msgstr "Obměny Vattu"
+
+#: ../opentypetags.h:152
+msgid "Vertical Writing"
+msgstr "Svislé písmo"
+
+#: ../opentypetags.h:153
+msgid "Alternate Vertical Half Metrics"
+msgstr "Náhradní svislá poloviční metrika"
+
+#: ../opentypetags.h:154
+msgid "Vowel Jamo Forms"
+msgstr "Tvary samohlásek Jamo"
+
+#: ../opentypetags.h:155
+msgid "Vertical Kana Alternates"
+msgstr "Svislé náhrady Kana"
+
+#: ../opentypetags.h:156
+msgid "Vertical Kerning"
+msgstr "Svislé podřezávání"
+
+#: ../opentypetags.h:157
+msgid "Proportional Alternate Vertical Metrics"
+msgstr "Poměrná náhradní svislá metrika"
+
+#: ../opentypetags.h:158
+msgid "Vertical Rotation"
+msgstr "Svislé otočení"
+
+#: ../opentypetags.h:159
+msgid "Slashed Zero"
+msgstr "Nula s lomítkem"
+
+#: ../remotedir.cpp:55 ../remotedir.cpp:239
+msgid "Downloading"
+msgstr "Stahuje se"
+
+#: ../sampletoolbar.ui:37
+msgid "Samples"
+msgstr "Ukázky"
+
+#: ../sampletoolbar.ui:56
+msgid "OpenType"
+msgstr "OpenType"
+
+#: ../sampletoolbar.ui:75
+msgid ""
+"Depending of the font, some scripts \n"
+"are especially supported if processed \n"
+"through some logic (ICU here)."
+msgstr ""
+"V závislosti na písmě jsou některé skripty\n"
+"obzvláště podporovány, pokud jsou\n"
+"zpracovávány některou logikou (zde ICU)."
+
+#: ../sampletoolbar.ui:84
+msgid "Shaping:"
+msgstr "Tvarování:"
+
+#: ../sampletoolbar.cpp:92
+msgid "Select language"
+msgstr "Vybrat jazyk"
+
+#: ../samplewidget.ui:80
+msgid "World is wide"
+msgstr "Svět je rozlehlý"
+
+#: ../samplewidget.ui:118
+msgctxt "Writing system"
+msgid "Script"
+msgstr "Skript"
+
+#: ../samplewidget.ui:134
+msgid "Shaper type"
+msgstr "Druh tvarovače"
+
+#: ../samplewidget.ui:150
+msgid "Use shaper"
+msgstr "Použít tvarovač"
+
+#: ../samplewidget.ui:193
+msgid "OpenType Features"
+msgstr "Vlastnosti OpenType"
+
+#: ../samplewidget.ui:198
+msgid "Friendly Name"
+msgstr "Přátelský název"
+
+#: ../samplewidget.ui:207
+msgid "Save as default"
+msgstr "Uložit jako výchozí"
+
+#: ../samplewidget.ui:214
+msgid "Reset Default"
+msgstr "Přenastavit na výchozí"
+
+#. Identify root of user defined sample texts
+#: ../samplewidget.cpp:797
+msgid "User"
+msgstr "Uživatel"
+
+#: ../samplewidget.cpp:862
+msgid "Print Sample"
+msgstr "Vytisknout ukázku"
+
+#: ../samplewidget.cpp:955
+msgid "New Sample"
+msgstr "Nová ukázka"
+
+#: ../scriptconsole.ui:13
+msgid "Script Console"
+msgstr "Skriptovací konzole"
+
+#: ../scriptconsole.ui:29
+msgid "Input"
+msgstr "Vstup"
+
+#: ../scriptconsole.ui:42
+msgid "# Type your script right here\n"
+msgstr "# Napište svůj skript přesně zde\n"
+
+#: ../scriptconsole.ui:68
+msgid "Load"
+msgstr "Nahrát"
+
+#: ../scriptconsole.ui:98
+msgid "Execute"
+msgstr "Vykonat"
+
+#: ../scriptconsole.ui:111
+msgid "Running label"
+msgstr "Běžící návěští"
+
+#: ../scriptconsole.ui:143
+msgid "Standard Output"
+msgstr "Obvyklý výstup"
+
+#: ../scriptconsole.ui:188
+msgid "Standard Error"
+msgstr "Obvyklá chyba"
+
+#: ../systray.cpp:257
+msgid "&Activate all"
+msgstr "&Zapnout vše"
+
+#: ../systray.cpp:260
+msgid "&Deactivate all"
+msgstr "&Vypnout vše"
+
+#: ../systray.cpp:263
+msgid "Mi&nimize"
+msgstr "&Zmenšit"
+
+#: ../systray.cpp:266
+msgid "&Restore"
+msgstr "&Obnovit"
+
+#: ../systray.cpp:280
+msgid "&Tags"
+msgstr "&Značky"
+
+#: ../systray.cpp:269
+msgid "E&xit"
+msgstr "&Ukončit"
+
+#: ../tttableview.cpp:91
+msgid "Save File"
+msgstr "Uložit soubor"
+
+#: ../tttablewidget.ui:13
+msgid "TrueType tables display"
+msgstr "Zobrazení tabulek TrueType"
+
+#: ../tttablewidget.ui:19
+msgid "TrueType Tables "
+msgstr "Tabulky TrueType"
+
+#: ../tttablewidget.ui:34
+msgid "Tag"
+msgstr "Značka"
+
+#: ../tttablewidget.ui:44
+msgid "Size"
+msgstr "Velikost"
+
+#: ../tttablewidget.ui:85
+msgid "&Export"
+msgstr "&Exportovat"
+
+#: ../tagset.ui:19
+msgid "TagSet editor"
+msgstr "Editor nastavení značek"
+
+#: ../tagset.ui:64
+msgid "Collections of Tags"
+msgstr "Sbírky značek"
+
+#: ../tagset.ui:115
+msgid "Add selected tag to current set."
+msgstr "Přidat vybranou značku k nynější sadě."
+
+#: ../tagset.ui:138
+msgid "Collections"
+msgstr "Sbírky"
+
+#: ../tagset.ui:153
+msgid "New"
+msgstr "Nový"
+
+#: ../tagset.ui:160
+msgid "delete"
+msgstr "Smazat"
+
+#: ../tagset.ui:80
+msgid "Available Tags"
+msgstr "Dostupné značky"
+
+#: ../tagswidget.cpp:68
+msgid ""
+"Please confirm that you want to remove\n"
+"the following tag from database:"
+msgstr ""
+"Potvrďte, prosím, že chcete, aby byla\n"
+"následující značka odstraněna z databáze:"
+
+#: ../tagswidget_listmodel.cpp:20
+msgid "New Tag"
+msgstr "Nová značka"
+
+#: ../textprogression.ui:25
+msgid "Inline progression"
+msgstr "Řadový sled znaků"
+
+#: ../textprogression.ui:40 ../textprogression.ui:101
+msgid "e.g. Latin text"
+msgstr "např. latinský text"
+
+#: ../textprogression.ui:43 ../textprogression.ui:127
+msgid "Left to right"
+msgstr "Zleva doprava"
+
+#: ../textprogression.ui:53
+msgid "e.g. Arabic text"
+msgstr "např. arabský text"
+
+#: ../textprogression.ui:56 ../textprogression.ui:117
+msgid "Right to left"
+msgstr "Zprava doleva"
+
+#: ../textprogression.ui:63
+msgid "e.g. Traditional Chinese & Japanese text"
+msgstr "např. tradiční čínský & japonský text"
+
+#: ../textprogression.ui:66 ../textprogression.ui:104
+msgid "Top to bottom"
+msgstr "Shora dolů"
+
+#: ../textprogression.ui:73
+msgid "e.g. Runic text"
+msgstr "např. runový text"
+
+#: ../textprogression.ui:76
+msgid "Bottom to top"
+msgstr "Zdola nahoru"
+
+#: ../textprogression.ui:86
+msgid "Block progression"
+msgstr "Blokový sled znaků"
+
+#: ../textprogression.ui:114
+msgid "e.g. Tarditionnal Chinese & Japanes text"
+msgstr "např. tradiční čínský & japonský text"
+
+#: ../textprogression.ui:124
+msgid "e.g. Traditional Mongolian text"
+msgstr "např. tradiční mongolský text"
+
+#: ../multiprintdialog.ui:19
+msgid "Printing multiple items"
+msgstr "Tisk více položek"
+
+#: ../multiprintdialog.ui:41
+msgid "Views"
+msgstr "Pohledy"
+
+#: ../multiprintdialog.ui:47
+msgid "Informations"
+msgstr "Informace"
+
+#: ../multiprintdialog.ui:54
+msgid "Preview"
+msgstr "Náhled"
+
+#: ../multiprintdialog.ui:61
+msgid "Glyphs chart"
+msgstr "Tabulka glyfů"
+
+#: ../repair.ui:63 ../repair.ui:107 ../repair.ui:158 ../repair.ui:202
+msgid "Select all"
+msgstr "Vybrat vše"
+
+#: ../repair.ui:47
+msgid "Dead links"
+msgstr "Mrtvé odkazy"
+
+#: ../repair.ui:13
+msgid "Database repair"
+msgstr "Kontrola databáze"
+
+#: ../repair.ui:127
+msgid "Re-link"
+msgstr "Odkázat znovu"
+
+#: ../repair.ui:134
+msgid "Deactivate"
+msgstr "Vypnout"
+
+#: ../repair.ui:193
+msgid "Unreferenced Files"
+msgstr "Nepřiřazené soubory"
+
+#: ../repair.ui:91
+msgid "Activated Not Linked"
+msgstr "Zapnut neodkázaný"
+
+#: ../repair.ui:178
+msgid "De-link"
+msgstr "Zrušit odkaz"
+
+#: ../repair.ui:142
+msgid "Deactivated Linked"
+msgstr "Vypnut odkázaný"
+
+#: ../tagswidget.ui:77
+msgid "Right mouse click on a tag to add it or remove it from TagSet"
+msgstr "Klepnutí pravým tlačítkem myši na značku pro její přidání nebo odstranění ze sady značek"
+
+#: ../tagswidget.ui:54
+msgid "Add a tag"
+msgstr "Přidat značku"
+
+#: ../tagswidget.ui:67
+msgid "Remove Tag"
+msgstr "Odstranit značku"
+
+#: ../typotek.cpp:315
+msgid "Fontmatrix"
+msgstr "Fontmatrix"
+
+#: ../typotek.cpp:316
+msgid "The program will keep running in the system tray. To terminate the program, choose <b>Exit</b> in the context menu of the system tray entry."
+msgstr "Program poběží i nadále v oznamovací části panelu. Pro ukončení programu zvolte <b>Ukončit</b> v nabídce souvisejících činností vyvolané z oznamovací části panelu."
+
+#: ../typotek.cpp:367
+msgid "Add Directory"
+msgstr "Přidat adresář"
+
+#: ../typotek.cpp:420
+msgid "confirmation"
+msgstr "Potvrzení"
+
+#: ../typotek.cpp:421
+#, qt-format
+msgid "Do you confirm you want to import these %1 fonts?"
+msgstr "Potvrzujete, že chcete zavést těchto %1 písem?"
+
+#: ../typotek.cpp:480
+msgid "Cannot import this font because it is broken:"
+msgstr "Toto písmo nelze zavést, protože je rozbité:"
+
+#: ../typotek.cpp:660
+msgid "Import a directory"
+msgstr "Zavést adresář"
+
+#: ../typotek.cpp:676
+msgid "Export font book..."
+msgstr "Vyvést knihu písem..."
+
+#: ../typotek.cpp:687
+msgid "Exit the application"
+msgstr "Ukončit program"
+
+#: ../typotek.cpp:693
+msgid "&About"
+msgstr "&O programu"
+
+#: ../typotek.cpp:705
+msgid "Help"
+msgstr "Nápověda"
+
+#: ../typotek.cpp:728
+msgid "Edit current font"
+msgstr "Upravit nynější písmo"
+
+#: ../typotek.cpp:751
+msgid "Preferences"
+msgstr "Nastavení"
+
+#: ../typotek.cpp:903
+msgid "&Help"
+msgstr "&Nápověda"
+
+#: ../typotek.cpp:1397
+msgid "There is no font selected"
+msgstr "Žádné písmo nebylo vybráno"
+
+#: ../typotek.cpp:1452
+msgid "Support of DragNDrop over http is sheduled but not yet effective"
+msgstr "Podpora pro \"táhni a pusť\" přes http je naplánována, ale dosud není účinná"
+
+#: ../typotek.cpp:1477
+msgid "You bring something over me I canât handle"
+msgstr "Dal jste mi něco, s čím si nedovedu poradit"
+
+#: ../typotek.cpp:718
+msgid "Activate all current"
+msgstr "Zapnout všechna nynější"
+
+#: ../typotek.cpp:723
+msgid "Deactivate all current"
+msgstr "Vypnout všechna nynější"
+
+#: ../typotek.cpp:1549
+msgid "Edit me!"
+msgstr "Uprav mě!"
+
+#: ../typotek.cpp:1710
+msgid "Try to run font editor with the selected font as argument"
+msgstr "Zkusit spustit editor písem s vybraným písmem jako argumentem"
+
+#: ../typotek.cpp:1715
+msgid "You don't seem to have font editor installed. Path to font editor can be set in preferences."
+msgstr "Nezdá se, že byste měl nainstalován editor písem. Cestu k editoru písem lze nastavit v nastavení."
+
+#: ../typotek.cpp:440 ../typotek.cpp:567
+msgid "Importing font files... "
+msgstr "Zavádějí se soubory s písmy... "
+
+#: ../typotek.cpp:658
+msgid "&Import Directory..."
+msgstr "&Zavést adresář..."
+
+#: ../typotek.cpp:664
+msgid "Import &Files..."
+msgstr "Zavést &soubory..."
+
+#: ../typotek.cpp:666
+msgid "Import Files"
+msgstr "Zavést soubory"
+
+#: ../typotek.cpp:783
+msgid "Show/Hide Playground"
+msgstr "Ukázat/Skrýt hřiště"
+
+#: ../typotek.cpp:789
+msgid "Compare"
+msgstr "Porovnání"
+
+#: ../typotek.cpp:791
+msgid "Show/Hide Compare glyphs"
+msgstr "Ukázat/Skrýt porovnání glyfů"
+
+#: ../typotek.cpp:797
+msgid "Close All"
+msgstr "Zavřít vše"
+
+#: ../typotek.cpp:798
+msgid "Close all floating windows"
+msgstr "Zavřít všechna plovoucí okna"
+
+#: ../typotek.cpp:802
+msgid "Show All"
+msgstr "Ukázat vše"
+
+#: ../typotek.cpp:803
+msgid "Show all floating windows"
+msgstr "Ukázat všechna plovoucí okna"
+
+#: ../typotek.cpp:807
+msgid "Hide All"
+msgstr "Skrýt vše"
+
+#: ../typotek.cpp:808
+msgid "Hide all floating windows"
+msgstr "Skrýt všechna plovoucí okna"
+
+#: ../typotek.cpp:816
+msgid "Extract fonts..."
+msgstr "Vytáhnout písma..."
+
+#: ../typotek.cpp:817
+msgid "Extract fonts from documents like PDF to PFM file format"
+msgstr "Vytáhnout písma z dokumentů jako PDF do souborového formátu PFM"
+
+#: ../typotek.cpp:821
+msgid "Find a font using raster sample..."
+msgstr "Najít písmo pomocí ukázky rastru jeho obrazu..."
+
+#: ../typotek.cpp:822
+msgid "Find a font using a raster sample of a letter"
+msgstr "Najít písmo pomocí ukázky rastru obrazu jeho písmene"
+
+#: ../typotek.cpp:828
+msgid "Execute Script..."
+msgstr "Provést skript..."
+
+#: ../typotek.cpp:829
+msgid "Execute a Python script"
+msgstr "Provést Pythonový script"
+
+#: ../typotek.cpp:833
+msgid "Execute Last Script"
+msgstr "Provést poslední script"
+
+#: ../typotek.cpp:834
+msgid "Execute the last chosen Python script"
+msgstr "Provést naposledy vybraný Pythonový script"
+
+#: ../typotek.cpp:838
+msgid "Script Console..."
+msgstr "Skriptovací konzole..."
+
+#: ../typotek.cpp:839
+msgid "Open Python scripting console"
+msgstr "Otevřít skriptovací konzoli pro Python"
+
+#: ../typotek.cpp:876
+msgid "&View"
+msgstr "&Pohled"
+
+#: ../typotek.cpp:883
+msgid "&Scripts"
+msgstr "S&kripty"
+
+#: ../typotek.cpp:889
+msgid "&Service"
+msgstr "S&lužba"
+
+#: ../typotek.cpp:933
+msgid "Browse Directories"
+msgstr "Procházet adresáře"
+
+#: ../typotek.cpp:935
+msgid "Toggle Files/Collection view"
+msgstr "Přepnout pohled soubory/sbírka"
+
+#: ../typotek.cpp:1208
+msgid "Loading System Fonts"
+msgstr "Nahrává se systémové písmo"
+
+#: ../typotek.cpp:1209
+msgid "System Fonts"
+msgstr "Systémová písma"
+
+#: ../typotek.cpp:1245 ../typotek.cpp:1246
+msgctxt "followed by a directory name"
+msgid "fonts from"
+msgstr "Písma z"
+
+#: ../typotek.cpp:1272
+msgid "system fonts added."
+msgstr "Systémová písma přidána."
+
+#: ../typotek.cpp:1359 ../typotek.cpp:1365
+msgid "Fontmatrix care"
+msgstr "Péče programu Fontmatrix"
+
+#: ../typotek.cpp:1359
+msgid ""
+"You are about to activate a bunch of fonts,\n"
+"it is time to cancel if it was not your intent"
+msgstr ""
+"Vypadá to, že se chystáte zapnout skupinu písem.\n"
+"Teď je čas na zrušení této akce, pokud jste tedy její provedení neměl v úmyslu"
+
+#: ../typotek.cpp:1365
+msgid ""
+"You are about to deactivate a bunch of fonts,\n"
+"it is time to cancel if it was not your intent"
+msgstr ""
+"Vypadá to, že se chystáte vypnout skupinu písem.\n"
+"Teď je čas na zrušení této akce, pokud jste tedy její provedení neměl v úmyslu"
+
+#: ../typotek.cpp:2310
+msgctxt "followed by currently selected font name (in status bar)"
+msgid "Current Font"
+msgstr "Nynější písmo"
+
+#: ../typotek.cpp:671
+msgid "Export a fontset"
+msgstr "Vyvést sadu písem"
+
+#: ../typotek.cpp:757
+msgid "Check Database"
+msgstr "Prověřit databázi"
+
+#: ../typotek.cpp:941
+msgid "Load settings"
+msgstr "Nahrát nastavení"
+
+#: ../typotek.cpp:1055
+msgid "Check for Fontmatrix own dir"
+msgstr "Prověřit vlastní adresář Fontmatrixu"
+
+#: ../typotek.cpp:1245 ../typotek.cpp:1246
+msgid "Adding"
+msgstr "Přidávají se"
+
+#: ../typotek.cpp:1332
+msgid "font descriptions imported from network"
+msgstr "Popisy písem zavedené ze sítě"
+
+#: ../typotek.cpp:1634
+msgid "default"
+msgstr "Výchozí"
+
+#: ../typotek.cpp:512 ../typotek.cpp:618
+#, qt-format
+msgid "Fonts imported: %1"
+msgstr "Zavedená písma: %1"
+
+#: ../typotek.cpp:524
+msgid "Select Files to Import"
+msgstr "Vybrat soubory k zavedení"
+
+#: ../typotek.cpp:526
+msgid "Font Files"
+msgstr "Soubory s písmy"
+
+#: ../typotek.cpp:591
+msgid "Cannot import this font because it is broken: "
+msgstr "Toto písmo nelze zavést, protože je rozbité: "
+
+#: ../typotek.cpp:670
+msgid "Export &fonts"
+msgstr "Vyvést &písma"
+
+#: ../typotek.cpp:677
+msgid "Export a PDF document that shows selected fonts"
+msgstr "Vyvést dokument PDF, který ukazuje vybraná písma"
+
+#: ../typotek.cpp:681
+msgid "Export font info for packaging..."
+msgstr "Vyvést informace o písmu pro balení..."
+
+#: ../typotek.cpp:682
+msgid "Fill a template file with metadata for packaging currently selected font to a Linux distribution"
+msgstr "Naplnit soubor s předlohou popisnými údaji pro balení nyní vybraného písma pro linuxovou distribuci"
+
+#: ../typotek.cpp:694
+msgid "Show information about Fontmatrix"
+msgstr "Ukázat informace o programu Fontmatrix"
+
+#: ../typotek.cpp:699
+msgid "About &Qt"
+msgstr "O &Qt"
+
+#: ../typotek.cpp:700
+msgid "Show information about Qt"
+msgstr "Ukázat informace o Qt"
+
+#: ../typotek.cpp:707
+msgid "Read documentation on Fontmatrix"
+msgstr "Číst dokumentaci k programu Fontmatrix"
+
+#: ../typotek.cpp:719
+msgid "Activate all currently visible fonts"
+msgstr "Zapnout všechna nyní viditelná písma"
+
+#: ../typotek.cpp:724
+msgid "Deactivate all currently visible fonts"
+msgstr "Vypnout všechna nyní viditelná písma"
+
+#: ../typotek.cpp:733
+msgid "Edit currently selected font in a font editor of your choice"
+msgstr "Upravit nyní vybrané písmo v editoru písem dle vaší volby"
+
+#: ../typotek.cpp:738
+msgid "You don't seem to have a font editor installed. Path to font editor can be set in Preferences dialog."
+msgstr "Zdá se, že nemáte nainstalován editor písem. Cestu k editoru písem lze nastavit v dialogu Nastavení."
+
+#: ../typotek.cpp:741
+msgid "Reload Filtered"
+msgstr "Nahrát znovu vyfiltrované"
+
+#: ../typotek.cpp:742
+msgid "Reload informations for filtered fonts from the font files they belong to"
+msgstr "Nahrát znovu informace pro vyfiltrovaná písma z jejich souborů písem"
+
+#: ../typotek.cpp:746
+msgid "Reload Selected"
+msgstr "Nahrát znovu vybrané"
+
+#: ../typotek.cpp:747
+msgid "Reload informations for selected font from the font file"
+msgstr "Nahrát znovu informace k vybranému písmu z jeho souboru"
+
+#: ../typotek.cpp:752
+msgid "Setup Fontmatrix"
+msgstr "Nastavit Fontmatrix"
+
+#: ../typotek.cpp:758
+msgid "Check Fontmatrix database for dead links to font files"
+msgstr "Prověřit databázi Fontmatrixu na mrtvé odkazy k souborům písem"
+
+#: ../typotek.cpp:765
+msgid "Tag All Filtered..."
+msgstr "Označit vše vyfiltrované..."
+
+#: ../typotek.cpp:766
+msgid "Tag all currently visible files"
+msgstr "Označit všechny nyní viditelné soubory"
+
+#: ../typotek.cpp:770
+msgid "Show TrueType tables"
+msgstr "Ukázat tabulky TrueType"
+
+#: ../typotek.cpp:771
+msgid "View hexadecimal values of TrueType tables for currently selected font file"
+msgstr "Zobrazit šestnáctkové hodnoty tabulek TrueType nyní vybraného souboru s písmem"
+
+#: ../typotek.cpp:775
+msgid "Edit PANOSE metadata"
+msgstr "Upravit údaje Panose"
+
+#: ../typotek.cpp:776
+msgid "Edit PANOSE metadata without saving changes to font files"
+msgstr "Upravit údaje Panose bez uložení změn do souborů s písmy"
+
+#: ../typotek.cpp:2209
+#, qt-format
+msgid "Failed to reload %1 font"
+msgid_plural "Failed to reload %1 fonts"
+msgstr[0] "Nepodařilo se nahrát znovu jedno písmo"
+msgstr[1] "Nepodařilo se nahrát znovu %1 písma"
+msgstr[2] "Nepodařilo se nahrát znovu %1 písem"
+
+#: ../typotek.cpp:2256
+msgid "Python scripts (*.py)"
+msgstr "Pythonové scripty (*.py)"
+
+#: ../typotek.cpp:2304
+#, qt-format
+msgctxt "number of filtererd fonts showed in status bar"
+msgid "Filtered Font: %1"
+msgid_plural "Filtered Fonts: %1"
+msgstr[0] "Vyfiltrované písmo: %1"
+msgstr[1] "Vyfiltrovaná písma: %1"
+msgstr[2] "Vyfiltrovaných písem: %1"
+
+#, fuzzy
+#~ msgctxt "AboutWidget|"
+#~ msgid "version "
+#~ msgstr "Verze"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Dialog"
+#~ msgstr "Dialog"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Font book options "
+#~ msgstr "Font book options "
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "File"
+#~ msgstr "File"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Paper Size"
+#~ msgstr "Paper Size"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "X-Pos"
+#~ msgstr "X-Pos"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Family "
+#~ msgstr "Family "
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Style "
+#~ msgstr "Style "
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Font size"
+#~ msgstr "Font size"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Family"
+#~ msgstr "Family"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Style"
+#~ msgstr "Style"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Headline"
+#~ msgstr "Headline"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Body"
+#~ msgstr "Body"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Sample text"
+#~ msgstr "Sample text"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Font Book Options "
+#~ msgstr "Font Book Options "
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "File:"
+#~ msgstr "File:"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Paper Size:"
+#~ msgstr "Paper Size:"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "X Position"
+#~ msgstr "X Position"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Family:"
+#~ msgstr "Family:"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Style:"
+#~ msgstr "Style:"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Text:"
+#~ msgstr "Text:"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Font Size"
+#~ msgstr "Font Size"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Headline:"
+#~ msgstr "Headline:"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Body:"
+#~ msgstr "Body:"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Sample Text:"
+#~ msgstr "Sample Text:"
+
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Preview"
+#~ msgstr "Preview"
+
+#, fuzzy
+#~ msgctxt "CompareWidget|"
+#~ msgid "Form"
+#~ msgstr "Formulář"
+
+#, fuzzy
+#~ msgctxt "FMLayout|"
+#~ msgid "Text engine options"
+#~ msgstr "Volby pro nástroj textu"
+
+#, fuzzy
+#~ msgctxt "FolderViewMenu|"
+#~ msgid "Reload Tree"
+#~ msgstr "Znovu nahrát strom"
+
+#, fuzzy
+#~ msgctxt "FontAction|"
+#~ msgid "action"
+#~ msgstr "action"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "This value is deprecated and was never used nor reported by FreeType. Don't use or test for it."
+#~ msgstr "Tato hodnota je odmítnuta a nikdy nebyla používána ani hlášena od FreeType.  Nepoužívejte ji a nezkoušejte ji."
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Copyright"
+#~ msgstr "Autorské právo"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Font Family"
+#~ msgstr "Rodina písem"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Font Subfamily"
+#~ msgstr "Podrodina písem"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Unique font identifier"
+#~ msgstr "Jedinečný identifikátor písma"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Full font name"
+#~ msgstr "Úplný název písma"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Version string"
+#~ msgstr "Řetězec verze"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Postscript name"
+#~ msgstr "Postscriptový název"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Trademark"
+#~ msgstr "Obchodní značka"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Manufacturer"
+#~ msgstr "Výrobce"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Designer"
+#~ msgstr "Návrhář"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Description"
+#~ msgstr "Popis"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "URL Vendor"
+#~ msgstr "Adresa prodejce"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "URL Designer"
+#~ msgstr "Adresa návrháře"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "License Description"
+#~ msgstr "Popis licenčního ujednání"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "License Info URL"
+#~ msgstr "Adresa informací o licenčním ujednání"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Reserved"
+#~ msgstr "Zamluveno"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Preferred Family"
+#~ msgstr "Upřednostňovaná rodina"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Preferred Subfamily"
+#~ msgstr "Upřednostňovaná podrodina"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Compatible Full (Macintosh only)"
+#~ msgstr "Plně slučitelné (pouze Macintosh)"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Sample text"
+#~ msgstr "Ukázkový text"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "PostScript CID findfont name"
+#~ msgstr "Název nelezeného písma PostScript CID"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Any"
+#~ msgstr "Jakékoli"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "No Fit"
+#~ msgstr "Žádné spojení"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Text and Display"
+#~ msgstr "Text a zobrazení"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Script"
+#~ msgstr "Skript"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Decorative"
+#~ msgstr "Ozdobné"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Pictorial"
+#~ msgstr "Obrázkové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Family Type"
+#~ msgstr "Rodinný typ"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Cove"
+#~ msgstr "Výklenek"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Obtuse Cove"
+#~ msgstr "Neostrý výklenek"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Square Cove"
+#~ msgstr "Čtvercový výklenek"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Obtuse Square Cove"
+#~ msgstr "Neostrý čtvercový výklenek"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Square"
+#~ msgstr "Čtvercové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Thin"
+#~ msgstr "Tenké"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Bone"
+#~ msgstr "Kostěné"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Exaggerated"
+#~ msgstr "Zvětšené"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Triangle"
+#~ msgstr "Trojúhelníkové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Normal Sans"
+#~ msgstr "Normální bez"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Obtuse Sans"
+#~ msgstr "Neostré bez"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Perp Sans"
+#~ msgstr "Pachatel bez"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Flared"
+#~ msgstr "Zvonové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Rounded"
+#~ msgstr "Zakulacené"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Serif style"
+#~ msgstr "Patkový styl"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Very Light"
+#~ msgstr "Velmi lehké"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Light"
+#~ msgstr "Lehké"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Book"
+#~ msgstr "Knižní"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Medium"
+#~ msgstr "Středně velké"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Demi"
+#~ msgstr "Polo"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Bold"
+#~ msgstr "Tučné"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Heavy"
+#~ msgstr "Těžké"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Black"
+#~ msgstr "Černé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Nord"
+#~ msgstr "Severské"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Weight"
+#~ msgstr "Váhové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Old Style"
+#~ msgstr "Starý styl"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Modern"
+#~ msgstr "Moderní"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Even Width"
+#~ msgstr "Neměnná šířka"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Expanded"
+#~ msgstr "Roztažené"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Condensed"
+#~ msgstr "Zhuštěné"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Very Expanded"
+#~ msgstr "Velmi roztažené"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Very Condensed"
+#~ msgstr "Velmi zhuštěné"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Monospaced"
+#~ msgstr "Jednoprostorové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Proportion"
+#~ msgstr "Úměrnost"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "None"
+#~ msgstr "Žádný"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Very Low"
+#~ msgstr "Velmi nízké"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Low"
+#~ msgstr "Nízké"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Medium Low"
+#~ msgstr "Středně nízké"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Medium High"
+#~ msgstr "Středně vysoké"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "High"
+#~ msgstr "Vysoké"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Very High"
+#~ msgstr "Velmi vysoké"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Contrast"
+#~ msgstr "Kontrastní"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Gradual/Diagonal"
+#~ msgstr "Postupné/Úhlopříčné"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Gradual/Transitional"
+#~ msgstr "Postupné/Přechodné"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Gradual/Vertical"
+#~ msgstr "Postupné/Svislé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Gradual/Horizontal"
+#~ msgstr "Postupné/Vodorovné"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Rapid/Vertical"
+#~ msgstr "Svižné/Svislé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Rapid/Horizontal"
+#~ msgstr "Svižné/Vodorovné"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Instant/Vertical"
+#~ msgstr "Bezprostřední/Svislé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Stroke Variation"
+#~ msgstr "Obměna tahu"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Straight Arms/Horizontal"
+#~ msgstr "Urovnané ruce/Vodorovné"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Straight Arms/Wedge"
+#~ msgstr "Urovnané ruce/Klínové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Straight Arms/Vertical"
+#~ msgstr "Urovnané ruce/Svislé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Straight Arms/Single Serif"
+#~ msgstr "Urovnané ruce/Jednoduché patkové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Straight Arms/Double Serif"
+#~ msgstr "Urovnané ruce/Dvojité patkové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Non-Straight Arms/Horizontal"
+#~ msgstr "Neurovnané ruce/Vodorovné"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Non-Straight Arms/Wedge"
+#~ msgstr "Neurovnané ruce/Klínové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Non-Straight Arms/Vertical"
+#~ msgstr "Neurovnané ruce/Svislé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Non-Straight Arms/Single Serif"
+#~ msgstr "Neurovnané ruce/Jednoduché patkové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Non-Straight Arms/Double Serif"
+#~ msgstr "Neurovnané ruce/Dvojité patkové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Arm Style"
+#~ msgstr "Styl ruky"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Normal/Contact"
+#~ msgstr "Běžné/Dotykové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Normal/Weighted"
+#~ msgstr "Běžné/Zatěžkané"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Normal/Boxed"
+#~ msgstr "Běžné/Uložené v krabici"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Normal/Flattened"
+#~ msgstr "Běžné/Zploštěné"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Normal/Rounded"
+#~ msgstr "Běžné/Kulaté"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Normal/Off Center"
+#~ msgstr "Běžné/Mimo střed"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Normal/Square"
+#~ msgstr "Běžné/Čtvercové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Oblique/Contact"
+#~ msgstr "Šikmé/Dotykové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Oblique/Weighted"
+#~ msgstr "Šikmé/Zatěžkané"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Oblique/Boxed"
+#~ msgstr "Šikmé/Uložené v krabici"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Oblique/Flattened"
+#~ msgstr "Šikmé/Zploštěné"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Oblique/Rounded"
+#~ msgstr "Šikmé/Kulaté"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Oblique/Off Center"
+#~ msgstr "Šikmé/Mimo střed"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Oblique/Square"
+#~ msgstr "Šikmé/Čtvercové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Letterform"
+#~ msgstr "Tvar písmene"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Standard/Trimmed"
+#~ msgstr "Obvyklé/Štíhlé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Standard/Pointed"
+#~ msgstr "Obvyklé/Špičaté"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Standard/Serifed"
+#~ msgstr "Obvyklé/Patkové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "High/Trimmed"
+#~ msgstr "Vysoké/Štíhlé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "High/Pointed"
+#~ msgstr "Vysoké/Špičaté"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "High/Serifed"
+#~ msgstr "Vysoké/Patkové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Constant/Trimmed"
+#~ msgstr "Stálé/Štíhlé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Constant/Pointed"
+#~ msgstr "Stálé/Špičaté"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Constant/Serifed"
+#~ msgstr "Stálé/Patkové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Low/Trimmed"
+#~ msgstr "Nízké/Štíhlé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Low/Pointed"
+#~ msgstr "Nízké/Špičaté"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Low/Serifed"
+#~ msgstr "Nízké/Patkové"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Midline"
+#~ msgstr "Středová čára"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Constant/Small"
+#~ msgstr "Stálé/Malé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Constant/Standard"
+#~ msgstr "Stálé/Obvyklé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Constant/Large"
+#~ msgstr "Stálé/Velké"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Ducking/Small"
+#~ msgstr "Skrčené/Malé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Ducking/Standard"
+#~ msgstr "Skrčené/Obvyklé"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Ducking/Large"
+#~ msgstr "Skrčené/Velké"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "X-Height"
+#~ msgstr "Výška malých písmen"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Category"
+#~ msgstr "Skupina"
+
+#, fuzzy
+#~ msgctxt "ImportTagsDialog|"
+#~ msgid "Dialog"
+#~ msgstr "Dialog"
+
+#, fuzzy
+#~ msgctxt "ImportedFonts|"
+#~ msgid "Dialog"
+#~ msgstr "Dialog"
+
+#, fuzzy
+#~ msgctxt "ImportedFonts|"
+#~ msgid "Imported Fonts"
+#~ msgstr "Zavedená písma"
+
+#, fuzzy
+#~ msgctxt "ImportedFonts|"
+#~ msgid "Ok"
+#~ msgstr "OK"
+
+#, fuzzy
+#~ msgctxt "ImportedFonts|"
+#~ msgid "Do not show this dialog again"
+#~ msgstr "Znovu již tento dialog nezobrazovat"
+
+#, fuzzy
+#~ msgctxt "LayoutOptionWidget|"
+#~ msgid "Form"
+#~ msgstr "Formulář"
+
+#, fuzzy
+#~ msgctxt "LayoutOptionWidget|"
+#~ msgid "before"
+#~ msgstr "předtím"
+
+#, fuzzy
+#~ msgctxt "LayoutOptionWidget|"
+#~ msgid "exact"
+#~ msgstr "přesně"
+
+#, fuzzy
+#~ msgctxt "LayoutOptionWidget|"
+#~ msgid "after"
+#~ msgstr "poté"
+
+#, fuzzy
+#~ msgctxt "LayoutOptionWidget|"
+#~ msgid "end"
+#~ msgstr "konec"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Search through font informations"
+#~ msgstr "Search through font information"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Search"
+#~ msgstr "Search"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Respect entered text case when searching"
+#~ msgstr "Respect entered text case when searching"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Case sensitive"
+#~ msgstr "Case sensitive"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Tag"
+#~ msgstr "Tag"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "TagSet"
+#~ msgstr "TagSet"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Show only fonts that belong to chosen tagset"
+#~ msgstr "Show only fonts that belong to chosen tagset"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Files"
+#~ msgstr "Soubory"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Preview"
+#~ msgstr "Preview"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "View all"
+#~ msgstr "View all"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Show all activated fonts"
+#~ msgstr "Show all activated fonts"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "View activated"
+#~ msgstr "View activated"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Case Sensitive"
+#~ msgstr "Case Sensitive"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Tag:"
+#~ msgstr "Značka:"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Tag Set:"
+#~ msgstr "Tag Set:"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "View All"
+#~ msgstr "View All"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "View Activated"
+#~ msgstr "View Activated"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Remove"
+#~ msgstr "Remove"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Switch to panose filtering"
+#~ msgstr "Přepnout na \"panose\" filtrování"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "P"
+#~ msgstr "P"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Filter:"
+#~ msgstr "Filtr:"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Field selection"
+#~ msgstr "Výběr pole"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Previews"
+#~ msgstr "Náhledy"
+
+#, fuzzy
+#~ msgctxt "ListDockWidget|"
+#~ msgid "You can use the following keywords to be replaced by data from fonts: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"
+#~ msgstr "Můžete použít následující klíčová slova, aby byla nahrazena daty z písem: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"
+
+#, fuzzy
+#~ msgctxt "ListDockWidget|"
+#~ msgid "All fields"
+#~ msgstr "Všechna pole"
+
+#, fuzzy
+#~ msgctxt "ListDockWidget|"
+#~ msgid "Unicode"
+#~ msgstr "Unicode"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Right mouse click on a tag to add it or remove it from TagSet"
+#~ msgstr "Klepnutí pravým tlačítkem myši na značku pro její přidání nebo odstranění ze sady značek"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Font Info"
+#~ msgstr "Font Info"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid ""
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>"
+#~ msgstr "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\"><p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Sample text"
+#~ msgstr "Sample text"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Fit to view"
+#~ msgstr "Fit to view"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Zoom is disabled, uncheck fit to view to enable zoom"
+#~ msgstr "Zoom is disabled, uncheck fit to view to enable zoom"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "FT"
+#~ msgstr "FT"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Sample text rendering options"
+#~ msgstr "Volby zobrazení ukázkového textu"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Display settings"
+#~ msgstr "Nastavení zobrazení"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Enable and disable OpenType features implemented in the font"
+#~ msgstr "Povolení nebo zakázání vlastností OpenType daného písma"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "OpenType features"
+#~ msgstr "Vlastnosti OpenType"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Choose a sample text from your collection"
+#~ msgstr "Výběr ukázkového textu z vaší sbírky"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Samples collection"
+#~ msgstr "Sbírka ukázek"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "OpenType Features"
+#~ msgstr "Vlastnosti OpenType"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Friendly Name"
+#~ msgstr "Přátelský název"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Appearance"
+#~ msgstr "Vzhled"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "FreeType based rasterized rendering"
+#~ msgstr "Zobrazení založené na rastrovači FreeType"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Rasterized"
+#~ msgstr "Rastrovaný obraz"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "No hinting"
+#~ msgstr "Bez vodítek"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Light Hinting"
+#~ msgstr "Slabá vodítka"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Normal Hinting"
+#~ msgstr "Běžná vodítka"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Freely scalable vector rendering using native toolkit (Qt)"
+#~ msgstr "Libovolně zvětšitelné vektorové zobrazení s použitím Qt"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Vector"
+#~ msgstr "Vektorový obraz"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "1"
+#~ msgstr "1"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Edit sample text"
+#~ msgstr "Upravit ukázkový text"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Edit"
+#~ msgstr "Úpravy"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Coverage of Unicode Interval"
+#~ msgstr "Pokrytí rozmezí Unicode"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Block:"
+#~ msgstr "Blok:"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Search:"
+#~ msgstr "Hledat:"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid ""
+#~ "Search a character by its codepoint (expressed in hexadecimal \n"
+#~ "and prefixed with \"U+\", \"u+\" or \"+\") or a glyph by its name.\n"
+#~ "Press enter after editing to run the search."
+#~ msgstr ""
+#~ "Hledat znak pomocí jeho pozice (vyjádřené šestnáctkově a\n"
+#~ "uvozené \"U+\", \"u+\" nebo \"+\") nebo glyf pomocí jména.\n"
+#~ "Hledání začně až po stisku Enter."
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Copy Mode"
+#~ msgstr "Režim kopírování"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Font Size:"
+#~ msgstr "Velikost písma:"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Classification"
+#~ msgstr "Třídění"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Compare"
+#~ msgstr "Porovnání"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Apply features"
+#~ msgstr "Apply features"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Glyphs"
+#~ msgstr "Obrázky"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Coverage of unicode interval :"
+#~ msgstr "Coverage of unicode interval :"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Clicking on a glyph will show details about it"
+#~ msgstr "Klepnutím na glyf se ukážou jeho podrobnosti"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Tags"
+#~ msgstr "Tags"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Font Information"
+#~ msgstr "Informace o písmu"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Sample Text"
+#~ msgstr "Ukázkový text"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Fit to View"
+#~ msgstr "Fit to View"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Simulate screen rendering (FreeType inside)"
+#~ msgstr "Simulate screen rendering (FreeType inside)"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Coverage of Unicode Interval :"
+#~ msgstr "Pokrytí rozmezí Unicode:"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Add Tag"
+#~ msgstr "Add Tag"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Font Size"
+#~ msgstr "Velikost písma"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid " pt"
+#~ msgstr " pt"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "part I"
+#~ msgstr "část I"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "part II"
+#~ msgstr "část II"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Nothing selected"
+#~ msgstr "Nic nebylo označeno"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Add a tag"
+#~ msgstr "Přidat značku"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Settings"
+#~ msgstr "Nastavení"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "S"
+#~ msgstr "S"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "OpenType"
+#~ msgstr "OpenType"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "O"
+#~ msgstr "O"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Save as default"
+#~ msgstr "Uložit jako výchozí"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Reset Default"
+#~ msgstr "Přenastavit na výchozí"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "SampleText"
+#~ msgstr "Ukázkový text"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "..."
+#~ msgstr "..."
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Layout"
+#~ msgstr "Rozvržení"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Rendering"
+#~ msgstr "Předvedení"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "FreeType"
+#~ msgstr "FreeType"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Native Qt objects"
+#~ msgstr "Přirozené Qt objekty"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "World is wide"
+#~ msgstr "Svět je rozlehlý"
+
+#, fuzzy
+#~ msgctxt "MainView|Writing system"
+#~ msgid "Script"
+#~ msgstr "Skript"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Shaper type"
+#~ msgstr "Druh tvarovače"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Script"
+#~ msgstr "Skript"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Use shaper"
+#~ msgstr "Použít tvarovač"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Text Progression"
+#~ msgstr "Vývoj textu"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "push"
+#~ msgstr "Tlačit"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Playground"
+#~ msgstr "Hřiště"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Set Mode \"Copy Character to Clipboard\""
+#~ msgstr "Nastavit režim \"Kopírovat znak do schránky\""
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "C"
+#~ msgstr "C"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "000Basic Latin"
+#~ msgstr "000 Základní latinské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "001Latin-1 Supplement"
+#~ msgstr "001 Latinské-1 doplněk"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "002Latin Extended-A"
+#~ msgstr "002 Latinské rozšířené-A"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "003Latin Extended-B"
+#~ msgstr "003 Latinské rozšířené-B"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "004IPA Extensions"
+#~ msgstr "004 IPA Rozšíření"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "005Spacing Modifier Letters"
+#~ msgstr "005 Písmena mezer rozvíjejícího větného členu (před podstatným jménem)"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "006Combining Diacritical Marks"
+#~ msgstr "006 Spojovací rozlišovací znaky"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "007Greek and Coptic"
+#~ msgstr "007 Řecké a koptské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "008Cyrillic"
+#~ msgstr "008 Cyrilické"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "009Cyrillic Supplement"
+#~ msgstr "009 Cyrilické doplněk"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "010Armenian"
+#~ msgstr "010 Arménské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "011Hebrew"
+#~ msgstr "011 Hebrejské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "012Arabic"
+#~ msgstr "012 Arabské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "013Syriac"
+#~ msgstr "013 Syrské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "014Arabic Supplement"
+#~ msgstr "014 Arabské doplněk"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "015Thaana"
+#~ msgstr "015 Thaana"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "016N'Ko"
+#~ msgstr "016 N'Ko"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "017Devanagari"
+#~ msgstr "017 Devanagari"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "018Bengali"
+#~ msgstr "018 Bengálské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "019Gurmukhi"
+#~ msgstr "019 Gurmukhi"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "020Gujarati"
+#~ msgstr "020 Gujarati"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "021Oriya"
+#~ msgstr "021 Oriya"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "022Tamil"
+#~ msgstr "022 Tamilské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "023Telugu"
+#~ msgstr "023 Telugu"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "024Kannada"
+#~ msgstr "024 Kannada"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "025Malayalam"
+#~ msgstr "025 Malayalam"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "026Sinhala"
+#~ msgstr "026 Sinhala"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "027Thai"
+#~ msgstr "027 Thajské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "028Lao"
+#~ msgstr "028 Lao"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "029Tibetan"
+#~ msgstr "029 Tibetské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "030Burmese"
+#~ msgstr "030 Barmské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "031Georgian"
+#~ msgstr "031 Gruzínské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "032Hangul Jamo"
+#~ msgstr "032 Hangul Jamo"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "033Ethiopic"
+#~ msgstr "033 Etiopské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "034Ethiopic Supplement"
+#~ msgstr "034 Etiopské doplněk"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "035Cherokee"
+#~ msgstr "035 Cherokee"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "036Unified Canadian Aboriginal Syllabics"
+#~ msgstr "036 Sjednocené kanadské původní slabikotvorné souhláskové"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "037Ogham"
+#~ msgstr "037 Ogamské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "038Runic"
+#~ msgstr "038 Runové"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "039Tagalog"
+#~ msgstr "039 Filipínské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "040HanunÃ³o"
+#~ msgstr "040 HanunÃ³o"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "041Buhid"
+#~ msgstr "041 Buhid"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "042Tagbanwa"
+#~ msgstr "042 Tagbanwa"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "043Khmer"
+#~ msgstr "043 Khmerské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "044Mongolian"
+#~ msgstr "044 Mongolské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "045Limbu"
+#~ msgstr "045 Limbu"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "046Tai Le"
+#~ msgstr "046 Tai Le"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "047New Tai Lue"
+#~ msgstr "047 Nové Tai Lue"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "048Khmer Symbols"
+#~ msgstr "048 Khmérské symboly"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "049Buginese"
+#~ msgstr "049 Buginese"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "050Balinese"
+#~ msgstr "050 Balijské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "051Lepcha"
+#~ msgstr "051 Lepcha"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "052Phonetic Extensions"
+#~ msgstr "052 Hláskoslovná rozšíření"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "053Phonetic Extensions Supplement"
+#~ msgstr "053 Doplněk k hláskoslovným rozšířením"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "054Combining Diacritical Marks Supplement"
+#~ msgstr "054 Doplněk ke sloučeným rozlišovacím znakům"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "055Latin Extended Additional"
+#~ msgstr "055 Latinské rozšířené-doplňkové"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "056Greek Extended"
+#~ msgstr "056 Řecké rozšířené"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "057General Punctuation"
+#~ msgstr "057 Obecná interpunkční znaménka"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "058Superscripts and Subscripts"
+#~ msgstr "058 Horní a dolní indexy"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "059Currency Symbols"
+#~ msgstr "059 Měnové symboly"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "060Combining Diacritical Marks for Symbols"
+#~ msgstr "060 Sloučené rozlišovací znaky pro symboly"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "061Letterlike Symbols"
+#~ msgstr "061 Písmena na způsob symbolů"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "062Number Forms"
+#~ msgstr "062 Druhy čísel"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "063Arrows"
+#~ msgstr "063 Šipky"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "064Mathematical Operators"
+#~ msgstr "064 Matematické operátory"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "065Miscellaneous Technical"
+#~ msgstr "065 Různé technické"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "066Control Pictures"
+#~ msgstr "066 Obrázky ovládání"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "067Optical Character Recognition"
+#~ msgstr "067 Optické rozpoznávání znaků"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "068Enclosed Alphanumerics"
+#~ msgstr "068 Uzavřené alfanumerické"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "069Box Drawing"
+#~ msgstr "069 Kresba krabiček"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "070Block Elements"
+#~ msgstr "070 Blokové prvky"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "071Geometric Shapes"
+#~ msgstr "071 Geometrické tvary"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "072Miscellaneous Symbols"
+#~ msgstr "072 Různé symboly"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "073Dingbats"
+#~ msgstr "073 Pošahané věci"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "074Miscellaneous Mathematical Symbols-A"
+#~ msgstr "074 Různé matematické symboly A"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "075Supplemental Arrows-A"
+#~ msgstr "075 Doplňkové šipky A"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "076Braille Patterns"
+#~ msgstr "076 Vzory Braillova/slepeckého písma"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "077Supplemental Arrows-B"
+#~ msgstr "077 Doplňkové šipky B"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "078Miscellaneous Mathematical Symbols-B"
+#~ msgstr "078 Různé matematické symboly B"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "079Supplemental Mathematical Operators"
+#~ msgstr "079 Doplňkové matematické operátory"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "080Miscellaneous Symbols and Arrows"
+#~ msgstr "080 Různé symboly a šipky"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "081Glagolitic"
+#~ msgstr "081 Hlaholické"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "082Latin Extended-C"
+#~ msgstr "082 Latinské rozšířené-C"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "083Coptic"
+#~ msgstr "083 Koptské"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "084Georgian Supplement"
+#~ msgstr "084 Gruzínské doplněk"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "085Tifinagh"
+#~ msgstr "085 Tifinagh"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "086Ethiopic Extended"
+#~ msgstr "086 Etiopské rozšířené"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "087Supplemental Punctuation"
+#~ msgstr "087 Doplňková interpunkční znaménka"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "088CJK Radicals Supplement"
+#~ msgstr "088 CJK kořeny doplněk"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "089Kangxi Radicals"
+#~ msgstr "089 Kangxi kořeny"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "090Ideographic Description Characters"
+#~ msgstr "090 Znaky ideografického popisu"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "091CJK Symbols and Punctuation"
+#~ msgstr "091 CJK symboly a interpunkční znaménka"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "092Hiragana"
+#~ msgstr "092 Hiragana"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "093Katakana"
+#~ msgstr "093 Katakana"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "094Bopomofo"
+#~ msgstr "094 Bopomofo"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "095Hangul Compatibility Jamo"
+#~ msgstr "095 Hangul slučitelnosti Jamo"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "096Kanbun"
+#~ msgstr "096 Kanbun"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "097Bopomofo Extended"
+#~ msgstr "097 Bopomofo rozšířené"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "098CJK Strokes"
+#~ msgstr "098 CJK tahy"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "099Katakana Phonetic Extensions"
+#~ msgstr "099 Fonetická rozšíření pro Katakanu"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "100Enclosed CJK Letters and Months"
+#~ msgstr "100 Uzavřená CJK písmena a měsíce"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "101CJK Compatibility"
+#~ msgstr "101 CJK slučitelnost"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "102CJK Unified Ideographs Extension A"
+#~ msgstr "102 CJK sjednocené ideografické rozšíření A"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "103Yijing Hexagram Symbols"
+#~ msgstr "103 Yijing hexagramové symboly"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "104CJK Unified Ideographs"
+#~ msgstr "104 CJK sjednocené ideogramy"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "105Yi Syllables"
+#~ msgstr "105 Yi slabiky"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "106Yi Radicals"
+#~ msgstr "106 Yi kořeny"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "107Modifier Tone Letters"
+#~ msgstr "107 Písmena tónového rozvíjejícího větného členu (před podstatným jménem)"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "108Latin Extended-D"
+#~ msgstr "082 Latinské rozšířené-D"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "109Syloti Nagri"
+#~ msgstr "109 Syloti Nagri"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "110Phags-pa"
+#~ msgstr "110 Phags-pa"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "111Hangul Syllables"
+#~ msgstr "111 Hangul slabiky"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "112High Surrogates"
+#~ msgstr "112 Vysoké náhrady"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "113High Private Use Surrogates"
+#~ msgstr "113 Vysoké náhrady pro soukromé použití"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "114Low Surrogates"
+#~ msgstr "114 Nízké náhrady"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "115Private Use Area"
+#~ msgstr "115 Oblast soukromého použití"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "116CJK Compatibility Ideographs"
+#~ msgstr "116 Ideogramy CJK slučitelnosti"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "117Alphabetic Presentation Forms"
+#~ msgstr "117 Abecední provedení tvarů"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "118Arabic Presentation Forms-A"
+#~ msgstr "118 Arabské provedení tvarů A"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "119Variation Selectors"
+#~ msgstr "119 Voliče obměn"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "120Vertical Forms"
+#~ msgstr "120 Svislé tvary"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "121Combining Half Marks"
+#~ msgstr "121 Spojující poloznaky"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "122CJK Compatibility Forms"
+#~ msgstr "122 Tvary CJK slučitelnosti"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "123Small Form Variants"
+#~ msgstr "123 Malé obměny tvarů"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "124Arabic Presentation Forms-B"
+#~ msgstr "124 Arabské provedení tvarů B"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "125Halfwidth and Fullwidth Forms"
+#~ msgstr "125 Tvary s poloviční a plnou šířkou"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "126Specials"
+#~ msgstr "126 Zvláštní znaky"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "127Supplementary Multilingual Plane (SMP)"
+#~ msgstr "127 Doplňková vícejazyčná rovina (SMP)"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "128Supplementary Ideographic Plane (SIP)"
+#~ msgstr "128 Doplňková ideogramatická rovina (SIP)"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "129unassigned"
+#~ msgstr "129 Nepřidělené"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "130Supplementary Special-purpose Plane (SSP)"
+#~ msgstr "130 Doplňková rovina pro zvláštní účel (SSP)"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "131Private Use Area 1 (PUA)"
+#~ msgstr "131 Oblast soukromého použití 1 (PUA)"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "132Private Use Area 2 (PUA)"
+#~ msgstr "132 Oblast soukromého použití 2 (PUA)"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "133Un-Mapped Glyphs"
+#~ msgstr "133 Nezobrazované piktogramy"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Activation event"
+#~ msgstr "Událost aktivace"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Cancel"
+#~ msgstr "Zrušit"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Activation of :"
+#~ msgstr "Aktivace:"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Deactivation of :"
+#~ msgstr "Deaktivace:"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "134View all mapped glyphs"
+#~ msgstr "134 Zobrazit všechny zobrazované piktogramy"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Un-Mapped Glyphs"
+#~ msgstr "Nepřiřazené glyfy"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "View all mapped glyphs"
+#~ msgstr "Zobrazit všechny přiřazené glyfy"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Names"
+#~ msgstr "Názvy"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Activated"
+#~ msgstr "Zapnuto"
+
+#. Identify root of user defined sample texts
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "User"
+#~ msgstr "Uživatel"
+
+#, fuzzy, qt-format
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Block (%1):"
+#~ msgstr "Blok (%1):"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Welcome to Fontmatrix"
+#~ msgstr "Vítejte v programu Fontmatrix"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Load"
+#~ msgstr "Nahrát"
+
+#, fuzzy, qt-format
+#~ msgctxt "MainViewWidget|%1 is an url and %2 a program"
+#~ msgid ""
+#~ "An error occured when tried to load %1\n"
+#~ "with command: %2"
+#~ msgstr ""
+#~ "Při pokusu o nahrání %1 se vyskytla\n"
+#~ "při použití příkazu: %2 chyba"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Show Fontmatrix in system tray"
+#~ msgstr "Show Fontmatrix in system tray"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Show Activate all and Deactivate all in system tray menu"
+#~ msgstr "Show Activate all and Deactivate all in system tray menu"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Ask confirmation when activating or deactivating all fonts"
+#~ msgstr "Při aktivaci nebo deaktivaci všech fontů se zeptat na potvrzení"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Ask confirmation when activating or deactivating tags"
+#~ msgstr "Ask confirmation when activating or deactivating tags"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Preview word"
+#~ msgstr "Preview word"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Sample text"
+#~ msgstr "Sample text"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Named sample texts"
+#~ msgstr "Named sample texts"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Validate"
+#~ msgstr "Validate"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Layout"
+#~ msgstr "Layout"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Font size "
+#~ msgstr "Font size "
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Interline "
+#~ msgstr "Interline "
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Apply"
+#~ msgstr "Použít"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Close to System Tray"
+#~ msgstr "Při zavření ponechat v systémové části panelu"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Show Activate All and Deactivate All in the System Tray menu"
+#~ msgstr "Show Activate All and Deactivate All in the System Tray menu"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Ask confirmation when activating or deactivating fonts by tags"
+#~ msgstr "Při aktivaci nebo deaktivaci písem podle značek se zeptat na potvrzení"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Font Editor"
+#~ msgstr "Editor písem"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Sample Text"
+#~ msgstr "Ukázkový text"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Named Sample Texts"
+#~ msgstr "Pojmenovaný ukázkový text"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Interline:"
+#~ msgstr "Psát ob řádek:"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Preferences"
+#~ msgstr "Volby"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "size"
+#~ msgstr "velikost"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Don’t use preferred name scheme (will affect only newly imported fonts)"
+#~ msgstr "Nepoužívat oblíbené schéma názvů (ovlivní pouze nově zaváděná písma)"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Hyphenation"
+#~ msgstr "Dělení slov"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Dictionary:"
+#~ msgstr "Slovník:"
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "..."
+#~ msgstr "..."
+
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Files and Folders"
+#~ msgstr "Soubory a složky"
+
+#, fuzzy
+#~ msgctxt "PrefsPanelDialog|"
+#~ msgid "A text"
+#~ msgstr "A text"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Creating font book... "
+#~ msgstr "Vytváří se kniha písem... "
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Unable to copy"
+#~ msgstr "Nelze kopírovat"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid ""
+#~ "ABCDEFGH\n"
+#~ "IJKLMNOPQ\n"
+#~ "RSTUVXYZ\n"
+#~ "\n"
+#~ "abcdefgh\n"
+#~ "ijklmnopq\n"
+#~ "rstuvxyz\n"
+#~ "0123456789\n"
+#~ ",;:!?."
+#~ msgstr ""
+#~ "ABCDEFGH\n"
+#~ "IJKLMNOPQ\n"
+#~ "RSTUVXYZ\n"
+#~ "\n"
+#~ "abcdefgh\n"
+#~ "ijklmnopq\n"
+#~ "rstuvxyz\n"
+#~ "0123456789\n"
+#~ ",;:!?."
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "hamburgefonstiv"
+#~ msgstr "hamburgefonstiv"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Mark, NonSpacing"
+#~ msgstr "Značka, bez prostrkávání"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Mark, SpacingCombining"
+#~ msgstr "Značka, kombinuje se s prostrkáváním"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Mark, Enclosing"
+#~ msgstr "Značka, uzavírá se"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Number, DecimalDigit"
+#~ msgstr "Číslo, číslo od 0 do 9 v desítkovém zápisu"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Number, Letter"
+#~ msgstr "Číslo, písmeno"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Number, Other"
+#~ msgstr "Číslo, jiné"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Separator, Space"
+#~ msgstr "Oddělovač, mezera"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Separator, Line"
+#~ msgstr "Oddělovač, řádek"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Separator, Paragraph"
+#~ msgstr "Oddělovač, odstavec"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Other, Control"
+#~ msgstr "Jiné, ovládání"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Other, Format"
+#~ msgstr "Jiné, formát"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Other, Surrogate"
+#~ msgstr "Jiné, náhrada"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Other, PrivateUse"
+#~ msgstr "Jiné, soukromé použití"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Other, NotAssigned"
+#~ msgstr "Jiné, nepřiděleno"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Letter, Uppercase"
+#~ msgstr "Písmeno, velká písmena"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Letter, Lowercase"
+#~ msgstr "Písmeno, malá písmena"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Letter, Titlecase"
+#~ msgstr "Písmeno, písmena v nadpisech"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Letter, Modifier"
+#~ msgstr "Písmeno, modifikátor"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Letter, Other"
+#~ msgstr "Písmeno, jiné"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, Connector"
+#~ msgstr "Interpunkční znaménka, spojovník"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, Dash"
+#~ msgstr "Interpunkční znaménka, pomlčka"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, Open"
+#~ msgstr "Interpunkční znaménka, otevřít"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, Close"
+#~ msgstr "Interpunkční znaménka, zavřít"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, InitialQuote"
+#~ msgstr "Interpunkční znaménka, počáteční uvozovky"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, FinalQuote"
+#~ msgstr "Interpunkční znaménka, závěrečné uvozovky"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, Other"
+#~ msgstr "Interpunkční znaménka, jiná"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Symbol, Math"
+#~ msgstr "Symbol, matematika"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Symbol, Currency"
+#~ msgstr "Symbol, měna"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Symbol, Modifier"
+#~ msgstr "Symbol, modifikátor"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Symbol, Other"
+#~ msgstr "Symbol, jiný"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Basic Latin"
+#~ msgstr "Základní latinka"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Latin-1 Supplement"
+#~ msgstr "Dodatečná latinka-1"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Latin Extended-A"
+#~ msgstr "Rozšířená latinka A"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Latin Extended-B"
+#~ msgstr "Rozšířená latinka B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "IPA Extensions"
+#~ msgstr "Rozšíření IPA"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Spacing Modifier Letters"
+#~ msgstr "Písmenné modifikátory s šířkou"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Combining Diacritical Marks"
+#~ msgstr "Kombinující se diakritika"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Greek and Coptic"
+#~ msgstr "Řečtina a kopština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cyrillic"
+#~ msgstr "Azbuka"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cyrillic Supplement"
+#~ msgstr "Dodatečná azbuka"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Armenian"
+#~ msgstr "Arménština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Hebrew"
+#~ msgstr "Hebrejština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Arabic"
+#~ msgstr "Arabština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Syriac"
+#~ msgstr "Syrština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Arabic Supplement"
+#~ msgstr "Dodatečná arabština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Bengali"
+#~ msgstr "Bengálština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Tamil"
+#~ msgstr "Tamilština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Thai"
+#~ msgstr "Thajština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Tibetan"
+#~ msgstr "Tibetština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Myanmar"
+#~ msgstr "Myanmarština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Georgian"
+#~ msgstr "Gruzínština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Hangul Jamo"
+#~ msgstr "Korejské písmo hangul jamo"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ethiopic"
+#~ msgstr "Etiopština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ethiopic Supplement"
+#~ msgstr "Dodatečná etiopština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cherokee"
+#~ msgstr "Čerokijské"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Unified Canadian Aboriginal Syllabics"
+#~ msgstr "Sjednocené kanadské původní slabikotvorné souhláskové"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ogham"
+#~ msgstr "Ogamština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Runic"
+#~ msgstr "Runové"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Tagalog"
+#~ msgstr "Filipínština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Khmer"
+#~ msgstr "Khmérština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Mongolian"
+#~ msgstr "Mongolština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "New Tai Lue"
+#~ msgstr "Nové Tai Lue"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Khmer Symbols"
+#~ msgstr "Khmérské symboly"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Balinese"
+#~ msgstr "Balijština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Sundanese"
+#~ msgstr "Sundština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Phonetic Extensions"
+#~ msgstr "Fonetické rozšíření"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Phonetic Extensions Supplement"
+#~ msgstr "Dodatečné fonetické rozšíření"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Combining Diacritical Marks Supplement"
+#~ msgstr "Dodatečná kombinující se diakritika"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Latin Extended Additional"
+#~ msgstr "Přídavná rozšířená latinka"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Greek Extended"
+#~ msgstr "Rozšířená řečtina"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "General Punctuation"
+#~ msgstr "Obecné značky"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Superscripts and Subscripts"
+#~ msgstr "Horní a dolní indexy"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Currency Symbols"
+#~ msgstr "Měnové symboly"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Combining Diacritical Marks for Symbols"
+#~ msgstr "Kombinující se diakritika pro symboly"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Letterlike Symbols"
+#~ msgstr "Písmenné symboly"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Number Forms"
+#~ msgstr "Číselné formy"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Arrows"
+#~ msgstr "Šipky"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Mathematical Operators"
+#~ msgstr "Matematické operátory"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Miscellaneous Technical"
+#~ msgstr "Různé technické symboly"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Control Pictures"
+#~ msgstr "Kontrolní obrázky"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Optical Character Recognition"
+#~ msgstr "Optické rozpoznávání znaků"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Enclosed Alphanumerics"
+#~ msgstr "Obklopené alfanumerické"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Box Drawing"
+#~ msgstr "Kreslení boxů"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Block Elements"
+#~ msgstr "Blokové prvky"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Geometric Shapes"
+#~ msgstr "Geometrické tvary"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Miscellaneous Symbols"
+#~ msgstr "Různé symboly"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Dingbats"
+#~ msgstr "Dingbats"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Miscellaneous Mathematical Symbols-A"
+#~ msgstr "Různé matematické symboly A"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Supplemental Arrows-A"
+#~ msgstr "Dodatečné šipky A"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Braille Patterns"
+#~ msgstr "Braillovy vzory"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Supplemental Arrows-B"
+#~ msgstr "Dodatečné šipky B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Miscellaneous Mathematical Symbols-B"
+#~ msgstr "Různé matematické symboly B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Supplemental Mathematical Operators"
+#~ msgstr "Dodatečné matematické operátory"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Miscellaneous Symbols and Arrows"
+#~ msgstr "Různé symboly a šipky"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Glagolitic"
+#~ msgstr "Hlaholice"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Latin Extended-C"
+#~ msgstr "Rozšířená latinka C"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Coptic"
+#~ msgstr "Kopština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Georgian Supplement"
+#~ msgstr "Dodatečná gruzínština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ethiopic Extended"
+#~ msgstr "Rozšířená etiopština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cyrillic Extended-A"
+#~ msgstr "Rozšířená azbuka A"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Supplemental Punctuation"
+#~ msgstr "Dodatečná interpunkce"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Radicals Supplement"
+#~ msgstr "CJK kořeny doplněk"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Kangxi Radicals"
+#~ msgstr "Kangxi kořeny"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ideographic Description Characters"
+#~ msgstr "Znaky ideografického popisu"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Symbols and Punctuation"
+#~ msgstr "CJK symboly a interpunkční znaménka"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Hangul Compatibility Jamo"
+#~ msgstr "Hangul slučitelnosti Jamo"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Bopomofo Extended"
+#~ msgstr "Bopomofo rozšířené"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Strokes"
+#~ msgstr "CJK tahy"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Katakana Phonetic Extensions"
+#~ msgstr "Fonetická rozšíření pro Katakanu"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Enclosed CJK Letters and Months"
+#~ msgstr "Uzavřená CJK písmena a měsíce"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Compatibility"
+#~ msgstr "CJK slučitelnost"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Unified Ideographs Extension A"
+#~ msgstr "CJK sjednocené ideografické rozšíření A"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Yijing Hexagram Symbols"
+#~ msgstr "Yijing hexagramové symboly"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Unified Ideographs"
+#~ msgstr "CJK sjednocené ideogramy"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Yi Syllables"
+#~ msgstr "Yi slabiky"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Yi Radicals"
+#~ msgstr "Yi kořeny"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cyrillic Extended-B"
+#~ msgstr "Rozšířená azbuka B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Modifier Tone Letters"
+#~ msgstr "Písmena tónového rozvíjejícího větného členu (před podstatným jménem)"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Latin Extended-D"
+#~ msgstr "Rozšířená latinka D"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Hangul Syllables"
+#~ msgstr "Hangul slabiky"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "High Surrogates"
+#~ msgstr "Vysoké náhrady"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "High Private Use Surrogates"
+#~ msgstr "Vysoké náhrady pro soukromé použití"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Low Surrogates"
+#~ msgstr "Nízké náhrady"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Private Use Area"
+#~ msgstr "Oblast soukromého použití"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Compatibility Ideographs"
+#~ msgstr "Ideogramy CJK slučitelnosti"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Alphabetic Presentation Forms"
+#~ msgstr "Abecední provedení tvarů"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Arabic Presentation Forms-A"
+#~ msgstr "Arabské provedení tvarů A"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Variation Selectors"
+#~ msgstr "Voliče obměn"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Vertical Forms"
+#~ msgstr "Svislé tvary"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Combining Half Marks"
+#~ msgstr "Spojující poloznaky"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Compatibility Forms"
+#~ msgstr "Tvary CJK slučitelnosti"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Small Form Variants"
+#~ msgstr "Obměny malých tvarů"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Arabic Presentation Forms-B"
+#~ msgstr "Arabské provedení tvarů B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Halfwidth and Fullwidth Forms"
+#~ msgstr "Tvary s poloviční a plnou šířkou"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Specials"
+#~ msgstr "Speciální"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Linear B Syllabary"
+#~ msgstr "Slabikové písmo Lineární B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Linear B Ideograms"
+#~ msgstr "Ideogramy písma Lineární B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Aegean Numbers"
+#~ msgstr "Egejská čísla"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ancient Greek Numbers"
+#~ msgstr "Starověká řecká čísla"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ancient Symbols"
+#~ msgstr "Starověké symboly"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Phaistos Disc"
+#~ msgstr "Disk z Faistu"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Lycian"
+#~ msgstr "Lycijština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Carian"
+#~ msgstr "Karijština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Old Italic"
+#~ msgstr "Stará italika"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Gothic"
+#~ msgstr "Gotika"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ugaritic"
+#~ msgstr "Ugaritština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Old Persian"
+#~ msgstr "Stará perština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Deseret"
+#~ msgstr "Deseretština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Shavian"
+#~ msgstr "Shavijština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cypriot Syllabary"
+#~ msgstr "Slabikové kyperské písmo"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Phoenician"
+#~ msgstr "Féničtina"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Lydian"
+#~ msgstr "Lýdština"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Kharoshthi"
+#~ msgstr "Kharoshthi"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cuneiform"
+#~ msgstr "Klínové písmo"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cuneiform Numbers and Punctuation"
+#~ msgstr "Symboly a interpunkční znaménka klínového písma"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Byzantine Musical Symbols"
+#~ msgstr "Byzantské hudební symboly"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Musical Symbols"
+#~ msgstr "Hudební symboly"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ancient Greek Musical Notation"
+#~ msgstr "Starověký řecký hudební zápis"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Tai Xuan Jing Symbols"
+#~ msgstr "Symboly Tai Xuan Jing"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Counting Rod Numerals"
+#~ msgstr "Číslice při počítání s pruty"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Mathematical Alphanumeric Symbols"
+#~ msgstr "Matematické alfanumerické symboly"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Mahjong Tiles"
+#~ msgstr "Dlaždice pro Mahjong"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Domino Tiles"
+#~ msgstr "Dlaždice pro domino"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Unified Ideographs Extension B"
+#~ msgstr "CJK sjednocené ideografické rozšíření B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Compatibility Ideographs Supplement"
+#~ msgstr "CJK doplněk pro ideogramy slučitelnosti"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Tags"
+#~ msgstr "Značky"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Variation Selectors Supplement"
+#~ msgstr "Doplněk k voličům obměn"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Supplementary Private Use Area-A"
+#~ msgstr "Dodatečná oblast soukromého použití A"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Supplementary Private Use Area-B"
+#~ msgstr "Dodatečná oblast soukromého použití B"
+
+#, fuzzy
+#~ msgctxt "Systray|"
+#~ msgid "&Exit"
+#~ msgstr "&Exit"
+
+#, fuzzy
+#~ msgctxt "TagSetDialog|"
+#~ msgid "Available tags"
+#~ msgstr "Available tags"
+
+#, fuzzy
+#~ msgctxt "TagSetDialog|"
+#~ msgid "add"
+#~ msgstr "add"
+
+#, fuzzy
+#~ msgctxt "TagSetDialog|"
+#~ msgid "remove"
+#~ msgstr "remove"
+
+#, fuzzy
+#~ msgctxt "TagsWidget|followed by a tag name"
+#~ msgid "Edit"
+#~ msgstr "Úpravy"
+
+#, fuzzy, qt-format
+#~ msgctxt "TagsWidget|the %%1 is a tag name"
+#~ msgid "Remove tag \"%1\" from database"
+#~ msgstr "Odstranit značku \"%1\" z databáze"
+
+#, fuzzy
+#~ msgctxt "TagsWidget|"
+#~ msgid ""
+#~ "Please provide a replacement name for\n"
+#~ "the following tag:"
+#~ msgstr ""
+#~ "Poskytněte, prosím, název nahrazení pro\n"
+#~ "následující značku:"
+
+#, fuzzy
+#~ msgctxt "repairDialog|"
+#~ msgid "Dialog"
+#~ msgstr "Dialog"
+
+#, fuzzy
+#~ msgctxt "tagsWidget|"
+#~ msgid "Nothing selected"
+#~ msgstr "Nic nebylo označeno"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "&Import..."
+#~ msgstr "&Zavést..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Ctrl+O"
+#~ msgstr "Ctrl+O"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "&Save"
+#~ msgstr "&Uložit"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Ctrl+S"
+#~ msgstr "Ctrl+S"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Save the document to disk"
+#~ msgstr "Uložit dokument na disk"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print..."
+#~ msgstr "Print..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print a specimen of the current font"
+#~ msgstr "Print a specimen of the current font"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Export a pdf that show selected fonts"
+#~ msgstr "Exportovat pdf, které ukazuje vybraná písma"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Ctrl+Q"
+#~ msgstr "Ctrl+Q"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Show the Typotek's About box"
+#~ msgstr "Ukázat informační okénko Typotéky \"O\""
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "&Tag Sets"
+#~ msgstr "&Sady značek"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Activate all currents"
+#~ msgstr "Activate all currents"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Deactivate all currents"
+#~ msgstr "Deactivate all currents"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Try to run Fontforge with the selected font as argument"
+#~ msgstr "Try to run Fontforge with the selected font as argument"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Edit"
+#~ msgstr "Edit"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Ready"
+#~ msgstr "Připraven"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print specimen"
+#~ msgstr "Print specimen"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "You provided an empty string, itâs not fair"
+#~ msgstr "Poskytl jste prázdný řetězec, a to přeci není správné"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "\"default\" is a reserved keyword"
+#~ msgstr "\"default\" is a reserved keyword"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Nothing Selected"
+#~ msgstr "Nic nebylo označeno"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Switch to the previous font face in the list"
+#~ msgstr "Přepnout na předchozí písmový řez v seznamu"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Text layout engine options"
+#~ msgstr "Volby pro stroj na rozvržení textu"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "View and edit text layout engine variables"
+#~ msgstr "Zobrazit a upravovat proměnné stroje na rozvržení textu"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Canât import this font because itâs broken :"
+#~ msgstr "Toto písmo nelze zavést, protože je poškozeno:"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Choose the tag for filter exported fonts"
+#~ msgstr "Vybrat značku pro filtrování vyvedených písem"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Choose Directory"
+#~ msgstr "Vybrat adresář"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Export &Fonts"
+#~ msgstr "Exportovat &písma"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Tag All..."
+#~ msgstr "Označit vše..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Loading"
+#~ msgstr "Nahrává se"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "fonts present in database"
+#~ msgstr "Písma přítomná v databázi"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Catching"
+#~ msgstr "Zachycení"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "font descriptions from network"
+#~ msgstr "Popisy písem ze sítě"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Collected System Font"
+#~ msgstr "Shromážděná systémová písma"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "fonts from system directories"
+#~ msgstr "Písma ze systémových adresářů"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "fonts available from system"
+#~ msgstr "Písma dostupná ze systému"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Browse Fonts"
+#~ msgstr "Procházet písma"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Show/hide fonts browsing sidebar"
+#~ msgstr "Ukázat/Skrýt postranní panel na procházení písem"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Tags"
+#~ msgstr "Značky"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Show/hide tags list sidebar"
+#~ msgstr "Ukázat/Skrýt postranní panel s uvedením značek"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "\"default\" is a reserved"
+#~ msgstr "\"Výchozí\" je zamluveno"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Fontmatrix Tags"
+#~ msgstr "Značky Fontmatrixu"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "&Sync"
+#~ msgstr "&Seřídit"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Sync with the DB file"
+#~ msgstr "Seřídit se souborem DB"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Info..."
+#~ msgstr "Vytisknout informace..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print informations about the current font"
+#~ msgstr "Vytisknout informace o nynějším písmu"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Sample..."
+#~ msgstr "Vytisknout ukázku..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print the sample as a specimen"
+#~ msgstr "Vytisknout ukázku jako vzorový příklad"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Chart..."
+#~ msgstr "Vytisknout tabulku..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print a chart of the current font"
+#~ msgstr "Vytisknout tabulku nynějšího písma"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Playground..."
+#~ msgstr "Vytisknout hřiště..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print the playground"
+#~ msgstr "Vytisknout hřiště"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Family..."
+#~ msgstr "Vytisknout rodinu písem..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print a specimen of the whole family the current face belongs to"
+#~ msgstr "Vytisknout ukázkový příklad celé rodiny písem, ke které náleží nynější řez písma"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "F1"
+#~ msgstr "F1"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Next Family"
+#~ msgstr "Další rodina písem"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Switch to the next font family in the list"
+#~ msgstr "Přepnout na další rodinu písem v seznamu"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Next Face"
+#~ msgstr "Další řez písma"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Switch to the next font face in the list"
+#~ msgstr "Přepnout na další písmový řez v seznamu"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Previous Family"
+#~ msgstr "Předchozí rodina písem"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Switch to the previous font family in the list"
+#~ msgstr "Přepnout na předchozí rodinu písem v seznamu"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Previous Face"
+#~ msgstr "Předchozí řez písma"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Not enough text to make a sample"
+#~ msgstr "Na udělání ukázky není dost textu"
+
+#, fuzzy
+#~ msgctxt "typotek|followed by currently selected font name (in status bar)"
+#~ msgid "Current Font:"
+#~ msgstr "Nynější písmo:"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Layout Options"
+#~ msgstr "Volby rozvržení"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print"
+#~ msgstr "Tisk"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "&Browse"
+#~ msgstr "&Přechod"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Fontmatrix - data warning"
+#~ msgstr "Fontmatrix - Varování týkající se dat"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid ""
+#~ "Your database has not been loaded because of a version mismatch.\n"
+#~ "It is not a problem, you just lost fonts references, tags & sample texts. If you badly need to keep these datas, do not quit Fontmatrix before you have copied the database*. At this point and with a minimum of XML skill, you should be able to get old database into new format.\n"
+#~ "\n"
+#~ "*database is"
+#~ msgstr ""
+#~ "Vaše databáze nemohla být nahrána z důvodu nesouladu mezi verzemi.\n"
+#~ "Není to problém, pouze jste ztratil volby pro písma, značky & texty s ukázkami. Pokud opravdu potřebujete tato data, neukončujte Fontmatrix pře zkopírováním databáze*. V tomto bodě a s minimem znalostí formátu XML, byste měl být schopen dostat starou databázi do nového formátu.\n"
+#~ "\n"
+#~ "*databáze je"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Unicode"
+#~ msgstr "Unicode"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "All fields"
+#~ msgstr "Všechna pole"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Welcome maessage"
+#~ msgstr "Sdělení na uvítanou"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Infos"
+#~ msgstr "Vytisknout informace"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Sample"
+#~ msgstr "Vytisknout ukázku"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Chart"
+#~ msgstr "Vytisknout tabulku"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Playground"
+#~ msgstr "Vytisknout hřiště"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Family"
+#~ msgstr "Vytisknout rodinu písem"

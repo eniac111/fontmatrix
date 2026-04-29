@@ -30,7 +30,6 @@
 #include <QElapsedTimer>
 #include <QLocale>
 #include <QThread>
-#include <QTranslator>
 #include <QSettings>
 
 #ifdef HAVE_KF6_COREADDONS
@@ -249,17 +248,10 @@ int main ( int argc, char *argv[] )
 	}
 #endif
 
-	QTranslator translator;
-	if ( translator.load ( FMPaths::LocalizedFilePath( FMPaths::TranslationsDir() + "fontmatrix-"  , ".qm" ) ) )
-	{
-		app.installTranslator ( &translator );
-		qDebug() << "Translator is installed."<<FMPaths::LocalizedFilePath( FMPaths::TranslationsDir() + "fontmatrix-" , ".qm" );
-	}
-	else
-	{
-		qDebug() << "Unable to load"<< FMPaths::LocalizedFilePath( FMPaths::TranslationsDir() + "fontmatrix-" , ".qm" );
-	}
-
+	// Translation routing is owned by KLocalizedString (KF6 Ki18n). Strings
+	// flow through i18n() / i18nc() / i18np() and are looked up in
+	// ${KDE_INSTALL_LOCALEDIR}/<lang>/LC_MESSAGES/fontmatrix.mo.
+	// setApplicationDomain() is called above next to KAboutData::setApplicationData.
 
 	if ( app.arguments().contains ( "listfonts" ) )
 	{

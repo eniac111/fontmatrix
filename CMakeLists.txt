@@ -28,7 +28,6 @@ ENDIF(APPLE)
 IF(WIN32)
 	SET (CMAKE_INSTALL_PREFIX c:/fontmatrix CACHE PATH "Installation path")
 	SET (FONTMATRIX_BIN ".")
-	SET (FONTMATRIX_QMDIR "share/qm" )
 ENDIF(WIN32)
 
 ADD_DEFINITIONS(-DPREFIX="${CMAKE_INSTALL_PREFIX}")
@@ -84,7 +83,6 @@ IF(UNIX AND NOT APPLE)
         TYPE OPTIONAL
         PURPOSE "Required to build the Fontmatrix handbook")
     SET(FONTMATRIX_BIN ${KDE_INSTALL_BINDIR})
-    SET(FONTMATRIX_QMDIR "${KDE_INSTALL_DATADIR}/fontmatrix/qm")
 ENDIF(UNIX AND NOT APPLE)
 
 # Very generic definition, mainly to sort out bugs reported by mrdocs
@@ -165,7 +163,7 @@ ENDIF(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
 # A lot from Scribus
 #<< Qt
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets Svg SvgWidgets Sql Xml PrintSupport WebEngineWidgets LinguistTools)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Svg SvgWidgets Sql Xml PrintSupport WebEngineWidgets)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -261,7 +259,6 @@ IF(UNIX AND NOT APPLE)
 
 	INSTALL(FILES
 	fontmatrix.1
-	RENAME fontmatrix.1
 	DESTINATION "${KDE_INSTALL_MANDIR}/man1"
 	)
 
@@ -270,6 +267,14 @@ IF(UNIX AND NOT APPLE)
 	${FM_STYLE_FILES}
 	DESTINATION "${KDE_INSTALL_DATADIR}/fontmatrix/resources"
 	)
+
+	# Compile po/<lang>/fontmatrix.po into <lang>/LC_MESSAGES/fontmatrix.mo
+	# at build time and install under ${KDE_INSTALL_LOCALEDIR}.
+	# KLocalizedString reads from ${KDE_INSTALL_LOCALEDIR}/<lang>/LC_MESSAGES/
+	# at runtime once the source uses i18n() — for now (Stage A of the Ki18n
+	# migration) the translations still flow through QTranslator + .qm files;
+	# the .mo build runs in parallel so translators can move to .po.
+	ki18n_install(po)
 ENDIF(UNIX AND NOT APPLE)
 
 IF(APPLE)

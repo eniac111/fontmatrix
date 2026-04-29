@@ -26,6 +26,7 @@
 #include "mainviewwidget.h"
 #include "shortcuts.h"
 
+#include <KLocalizedString>
 #include <QDebug>
 #include <QScrollBar>
 #include <QDirModel>
@@ -68,7 +69,7 @@ ListDockWidget::ListDockWidget()
 //	previewModel = new FMPreviewModel( this, listPreview );
 //	listPreview->setModel(previewModel);
 //	previewText->setText(typotek::getInstance()->word());
-//	previewText->setToolTip(tr("You can use the following keywords to be replaced by data from fonts: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"));
+//	previewText->setToolTip(i18n("You can use the following keywords to be replaced by data from fonts: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"));
 //	previewSize->setValue(typotek::getInstance()->getPreviewSize());
 
 	// Folders tree
@@ -105,7 +106,7 @@ ListDockWidget::ListDockWidget()
 	theFilterMenu = new QMenu;
 	filterActGroup = new QActionGroup(theFilterMenu);
 	
-	QString tagName(tr("Tags"));
+	QString tagName(i18n("Tags"));
 	QAction *actn = new QAction(tagName, filterActGroup);
 	actn->setData(FILTER_FIELD_SPECIAL_TAG);
 	actn->setCheckable(true);
@@ -129,7 +130,7 @@ ListDockWidget::ListDockWidget()
 	completers[allFieldName]->setModel(lModel);
 	
 	// Filter Unicode
-	QString uniFName(tr("Unicode character"));
+	QString uniFName(i18n("Unicode character"));
 	actn = new QAction(uniFName, filterActGroup);
 	actn->setData(FILTER_FIELD_SPECIAL_UNICODE);
 	actn->setCheckable(true);
@@ -162,14 +163,14 @@ ListDockWidget::ListDockWidget()
 	fieldButton->setToolTip(currentField);
 	fieldButton->setText( currentField );
 	
-	collapseAlphaAction = new QAction(tr("Collapse Top Level"), this);
+	collapseAlphaAction = new QAction(i18n("Collapse Top Level"), this);
 	Shortcuts::getInstance()->add(collapseAlphaAction);
-	collapseFamiliesAction = new QAction(tr("Collapse Families"), this);
+	collapseFamiliesAction = new QAction(i18n("Collapse Families"), this);
 	Shortcuts::getInstance()->add(collapseFamiliesAction);
 	
-	expandAlphaAction = new QAction(tr("Expand Top Level"), this);
+	expandAlphaAction = new QAction(i18n("Expand Top Level"), this);
 	Shortcuts::getInstance()->add(expandAlphaAction);
-	expandFamiliesAction = new QAction(tr("Expand Families"), this);
+	expandFamiliesAction = new QAction(i18n("Expand Families"), this);
 	Shortcuts::getInstance()->add(expandFamiliesAction);
 	
 	QMenu * collapseMenu = new QMenu(this);
@@ -378,9 +379,9 @@ void ListDockWidget::slotFolderViewContextMenu(const QPoint& p)
 
 FolderViewMenu::FolderViewMenu() : QMenu()
 {
-	dirAction = new QAction(tr("Import Directory"), 0);
-	dirRecursiveAction = new QAction(tr("Import recursively"), 0);
-	fileAction = new QAction(tr("Import File"), 0);
+	dirAction = new QAction(i18n("Import Directory"), 0);
+	dirRecursiveAction = new QAction(i18n("Import recursively"), 0);
+	fileAction = new QAction(i18n("Import File"), 0);
 
 	addAction(dirAction);
 	addAction(dirRecursiveAction);
@@ -447,8 +448,8 @@ void ListDockWidget::initTagCombo()
 	tagsCombo->clear();
 	tagsetIcon = QIcon(":/fontmatrix_tagseteditor.png");
 
-	tagsCombo->addItem(tr("All activated"),"ALL_ACTIVATED");
-	tagsCombo->addItem(tr("Similar to current"),"SIMILAR");
+	tagsCombo->addItem(i18n("All activated"),"ALL_ACTIVATED");
+	tagsCombo->addItem(i18n("Similar to current"),"SIMILAR");
 
 // 	QStringList ts_tmp = typotek::getInstance()->tagsets();
 // 	for (const auto& tagset : ts_tmp)

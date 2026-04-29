@@ -21,14 +21,15 @@
 #include "fmmissingfonthelper.h"
 #include "fmrepair.h"
 #include "typotek.h"
+#include <KLocalizedString>
 #include <QMessageBox>
 
 FMMissingFontHelper::FMMissingFontHelper(const QString& ff)
 {
     typotek * t = typotek::getInstance();
     QMessageBox::warning( t,
-                          tr("Missing Font File") ,
-                          tr("Fontmatrix has been unable to load the font in file \n%1.\n Please check missing files.").arg(ff),
+                          i18n("Missing Font File") ,
+                          i18n("Fontmatrix has been unable to load the font in file \n%1.\n Please check missing files.", ff),
                           QMessageBox::Ok,
                           QMessageBox::NoButton);
     FmRepair repair(t);
@@ -39,8 +40,8 @@ FMMissingFontHelper::FMMissingFontHelper(const QStringList& ff)
 {
     typotek * t = typotek::getInstance();
     QMessageBox::warning( t,
-                          tr("Missing Font File") ,
-                          tr("Fontmatrix has been unable to load fonts in files \n%1.\n Please check missing files.").arg(ff.join("\n")),
+                          i18n("Missing Font File") ,
+                          i18n("Fontmatrix has been unable to load fonts in files \n%1.\n Please check missing files.", ff.join("\n")),
                           QMessageBox::Ok,
                           QMessageBox::NoButton);
     FmRepair repair(t);

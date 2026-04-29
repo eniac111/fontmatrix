@@ -1,0 +1,2697 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: nl\n"
+"X-Qt-Contexts: true\n"
+
+#: ../../../../../../../fontmatrix-build/src/ui_about.h:159
+#, fuzzy
+msgid "About Fontmatrix"
+msgstr "Info Fontmatrix "
+
+#: ../../../../../../../fontmatrix-build/src/ui_about.h:162
+msgid "TextLabel"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_about.h:163
+msgid "Splash"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_about.h:164
+msgid "The Project"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_about.h:165
+msgid "The People"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_about.h:166
+msgid "Close"
+msgstr ""
+
+#: ../aboutwidget.cpp:33
+msgid "version "
+msgstr ""
+
+#: ../aboutwidget.cpp:35
+msgid "fonts loaded"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_bookexport.h:123
+#, fuzzy
+msgid "Export Font Book"
+msgstr "Output fontboek"
+
+#: ../../../../../../../fontmatrix-build/src/ui_bookexport.h:125
+#, fuzzy
+msgid "Browse..."
+msgstr "Bladeren..."
+
+#: ../../../../../../../fontmatrix-build/src/ui_bookexport.h:124
+msgid "Output"
+msgstr ""
+
+#: ../fmlayout.cpp:302
+msgid "Text engine options"
+msgstr ""
+
+#: ../listdockwidget.cpp:249
+msgid "Reload Tree"
+msgstr ""
+
+#: ../listdockwidget.cpp:250
+msgid "Import Directory"
+msgstr ""
+
+#: ../listdockwidget.cpp:251
+msgid "Import recursively"
+msgstr ""
+
+#: ../listdockwidget.cpp:252
+msgid "Import File"
+msgstr ""
+
+#: ../fontbookdialog.cpp:109
+msgid "Save fontBook"
+msgstr "Save fontboek"
+
+#: ../fontitem.cpp:143
+msgid "This value is deprecated and was never used nor reported by FreeType. Don't use or test for it."
+msgstr "Ga door en gebruik of test dit niet."
+
+#: ../fontitem.cpp:3036
+msgid "Full font name"
+msgstr "Kompleet font naam"
+
+#: ../fontitem.cpp:3037
+msgid "Version string"
+msgstr "Versie naam"
+
+#: ../fontitem.cpp:3038
+msgid "Description"
+msgstr "Beschrijving"
+
+#: ../fontitem.cpp:179
+msgid "Copyright"
+msgstr "auteursrecht"
+
+#: ../fontitem.cpp:180
+msgid "Font Family"
+msgstr "Familie font"
+
+#: ../fontitem.cpp:2578
+msgid "Font Subfamily"
+msgstr "Subfamilie font"
+
+#: ../fontitem.cpp:182
+msgid "Unique font identifier"
+msgstr "Uniek font identificeerder"
+
+#: ../fontitem.cpp:185
+msgid "Postscript name"
+msgstr "Postscriptnaam"
+
+#: ../fontitem.cpp:186
+msgid "Trademark"
+msgstr "Handelsmerk"
+
+#: ../fontitem.cpp:187
+msgid "Manufacturer"
+msgstr "Vervaardigt"
+
+#: ../fontitem.cpp:188
+msgid "Designer"
+msgstr "Ontwerper"
+
+#: ../fontitem.cpp:190
+msgid "URL Vendor"
+msgstr "URL Provider"
+
+#: ../fontitem.cpp:191
+msgid "URL Designer"
+msgstr "URL Ontwerper"
+
+#: ../fontitem.cpp:192
+msgid "License Description"
+msgstr "Licentie beschrijving"
+
+#: ../fontitem.cpp:193
+msgid "License Info URL"
+msgstr "Licentie Info"
+
+#: ../fontitem.cpp:194
+msgid "Reserved"
+msgstr "Gereserveerd"
+
+#: ../fontitem.cpp:195
+msgid "Preferred Family"
+msgstr "Familie Voorkeur"
+
+#: ../fontitem.cpp:196
+msgid "Preferred Subfamily"
+msgstr "Subfamilie Voorkeur"
+
+#: ../fontitem.cpp:197
+msgid "Compatible Full (Macintosh only)"
+msgstr "Aansluitbaar op Macintosh"
+
+#: ../fontitem.cpp:198
+msgid "Sample text"
+msgstr "Tekstvoorbeeld"
+
+#: ../fontitem.cpp:198
+msgid "PostScript CID findfont name"
+msgstr "PostScript Identificatie CID"
+
+#: ../fontitem.cpp:3427
+msgid "Fontmatrix - Download"
+msgstr ""
+
+#: ../fontitem.cpp:3428
+#, qt-format
+msgid "Downloading %1."
+msgstr ""
+
+#: ../fontitem.cpp:662
+msgid "Any"
+msgstr ""
+
+#: ../fontitem.cpp:663
+msgid "No Fit"
+msgstr ""
+
+#: ../fontitem.cpp:514
+msgid "Text and Display"
+msgstr ""
+
+#: ../fontitem.cpp:515
+msgid "Script"
+msgstr ""
+
+#: ../fontitem.cpp:516
+msgid "Decorative"
+msgstr ""
+
+#: ../fontitem.cpp:517
+msgid "Pictorial"
+msgstr ""
+
+#: ../fontitem.cpp:520
+msgid "Family Type"
+msgstr ""
+
+#: ../fontitem.cpp:525
+msgid "Cove"
+msgstr ""
+
+#: ../fontitem.cpp:526
+msgid "Obtuse Cove"
+msgstr ""
+
+#: ../fontitem.cpp:527
+msgid "Square Cove"
+msgstr ""
+
+#: ../fontitem.cpp:528
+msgid "Obtuse Square Cove"
+msgstr ""
+
+#: ../fontitem.cpp:529
+msgid "Square"
+msgstr ""
+
+#: ../fontitem.cpp:548
+msgid "Thin"
+msgstr ""
+
+#: ../fontitem.cpp:531
+msgid "Bone"
+msgstr ""
+
+#: ../fontitem.cpp:532
+msgid "Exaggerated"
+msgstr ""
+
+#: ../fontitem.cpp:533
+msgid "Triangle"
+msgstr ""
+
+#: ../fontitem.cpp:534
+msgid "Normal Sans"
+msgstr ""
+
+#: ../fontitem.cpp:535
+msgid "Obtuse Sans"
+msgstr ""
+
+#: ../fontitem.cpp:536
+msgid "Perp Sans"
+msgstr ""
+
+#: ../fontitem.cpp:537
+msgid "Flared"
+msgstr ""
+
+#: ../fontitem.cpp:538
+msgid "Rounded"
+msgstr ""
+
+#: ../fontitem.cpp:541
+msgid "Serif style"
+msgstr ""
+
+#: ../fontitem.cpp:546
+msgid "Very Light"
+msgstr ""
+
+#: ../fontitem.cpp:547
+msgid "Light"
+msgstr ""
+
+#: ../fontitem.cpp:549
+msgid "Book"
+msgstr ""
+
+#: ../fontitem.cpp:582
+msgid "Medium"
+msgstr ""
+
+#: ../fontitem.cpp:551
+msgid "Demi"
+msgstr ""
+
+#: ../fontitem.cpp:552
+msgid "Bold"
+msgstr ""
+
+#: ../fontitem.cpp:553
+msgid "Heavy"
+msgstr ""
+
+#: ../fontitem.cpp:554
+msgid "Black"
+msgstr ""
+
+#: ../fontitem.cpp:555
+msgid "Nord"
+msgstr ""
+
+#: ../fontitem.cpp:558
+msgid "Weight"
+msgstr ""
+
+#: ../fontitem.cpp:563
+msgid "Old Style"
+msgstr ""
+
+#: ../fontitem.cpp:564
+msgid "Modern"
+msgstr ""
+
+#: ../fontitem.cpp:565
+msgid "Even Width"
+msgstr ""
+
+#: ../fontitem.cpp:566
+msgid "Expanded"
+msgstr ""
+
+#: ../fontitem.cpp:567
+msgid "Condensed"
+msgstr ""
+
+#: ../fontitem.cpp:568
+msgid "Very Expanded"
+msgstr ""
+
+#: ../fontitem.cpp:569
+msgid "Very Condensed"
+msgstr ""
+
+#: ../fontitem.cpp:570
+msgid "Monospaced"
+msgstr ""
+
+#: ../fontitem.cpp:573
+msgid "Proportion"
+msgstr ""
+
+#: ../fontitem.cpp:578
+msgid "None"
+msgstr ""
+
+#: ../fontitem.cpp:579
+msgid "Very Low"
+msgstr ""
+
+#: ../fontitem.cpp:580
+msgid "Low"
+msgstr ""
+
+#: ../fontitem.cpp:581
+msgid "Medium Low"
+msgstr ""
+
+#: ../fontitem.cpp:583
+msgid "Medium High"
+msgstr ""
+
+#: ../fontitem.cpp:584
+msgid "High"
+msgstr ""
+
+#: ../fontitem.cpp:585
+msgid "Very High"
+msgstr ""
+
+#: ../fontitem.cpp:588
+msgid "Contrast"
+msgstr ""
+
+#: ../fontitem.cpp:593
+msgid "Gradual/Diagonal"
+msgstr ""
+
+#: ../fontitem.cpp:594
+msgid "Gradual/Transitional"
+msgstr ""
+
+#: ../fontitem.cpp:595
+msgid "Gradual/Vertical"
+msgstr ""
+
+#: ../fontitem.cpp:596
+msgid "Gradual/Horizontal"
+msgstr ""
+
+#: ../fontitem.cpp:597
+msgid "Rapid/Vertical"
+msgstr ""
+
+#: ../fontitem.cpp:598
+msgid "Rapid/Horizontal"
+msgstr ""
+
+#: ../fontitem.cpp:599
+msgid "Instant/Vertical"
+msgstr ""
+
+#: ../fontitem.cpp:602
+msgid "Stroke Variation"
+msgstr ""
+
+#: ../fontitem.cpp:607
+msgid "Straight Arms/Horizontal"
+msgstr ""
+
+#: ../fontitem.cpp:608
+msgid "Straight Arms/Wedge"
+msgstr ""
+
+#: ../fontitem.cpp:609
+msgid "Straight Arms/Vertical"
+msgstr ""
+
+#: ../fontitem.cpp:610
+msgid "Straight Arms/Single Serif"
+msgstr ""
+
+#: ../fontitem.cpp:611
+msgid "Straight Arms/Double Serif"
+msgstr ""
+
+#: ../fontitem.cpp:612
+msgid "Non-Straight Arms/Horizontal"
+msgstr ""
+
+#: ../fontitem.cpp:613
+msgid "Non-Straight Arms/Wedge"
+msgstr ""
+
+#: ../fontitem.cpp:614
+msgid "Non-Straight Arms/Vertical"
+msgstr ""
+
+#: ../fontitem.cpp:615
+msgid "Non-Straight Arms/Single Serif"
+msgstr ""
+
+#: ../fontitem.cpp:616
+msgid "Non-Straight Arms/Double Serif"
+msgstr ""
+
+#: ../fontitem.cpp:619
+msgid "Arm Style"
+msgstr ""
+
+#: ../fontitem.cpp:624
+msgid "Normal/Contact"
+msgstr ""
+
+#: ../fontitem.cpp:625
+msgid "Normal/Weighted"
+msgstr ""
+
+#: ../fontitem.cpp:626
+msgid "Normal/Boxed"
+msgstr ""
+
+#: ../fontitem.cpp:627
+msgid "Normal/Flattened"
+msgstr ""
+
+#: ../fontitem.cpp:628
+msgid "Normal/Rounded"
+msgstr ""
+
+#: ../fontitem.cpp:629
+msgid "Normal/Off Center"
+msgstr ""
+
+#: ../fontitem.cpp:630
+msgid "Normal/Square"
+msgstr ""
+
+#: ../fontitem.cpp:631
+msgid "Oblique/Contact"
+msgstr ""
+
+#: ../fontitem.cpp:632
+msgid "Oblique/Weighted"
+msgstr ""
+
+#: ../fontitem.cpp:633
+msgid "Oblique/Boxed"
+msgstr ""
+
+#: ../fontitem.cpp:634
+msgid "Oblique/Flattened"
+msgstr ""
+
+#: ../fontitem.cpp:635
+msgid "Oblique/Rounded"
+msgstr ""
+
+#: ../fontitem.cpp:636
+msgid "Oblique/Off Center"
+msgstr ""
+
+#: ../fontitem.cpp:637
+msgid "Oblique/Square"
+msgstr ""
+
+#: ../fontitem.cpp:640
+msgid "Letterform"
+msgstr ""
+
+#: ../fontitem.cpp:645
+msgid "Standard/Trimmed"
+msgstr ""
+
+#: ../fontitem.cpp:646
+msgid "Standard/Pointed"
+msgstr ""
+
+#: ../fontitem.cpp:647
+msgid "Standard/Serifed"
+msgstr ""
+
+#: ../fontitem.cpp:648
+msgid "High/Trimmed"
+msgstr ""
+
+#: ../fontitem.cpp:649
+msgid "High/Pointed"
+msgstr ""
+
+#: ../fontitem.cpp:650
+msgid "High/Serifed"
+msgstr ""
+
+#: ../fontitem.cpp:651
+msgid "Constant/Trimmed"
+msgstr ""
+
+#: ../fontitem.cpp:652
+msgid "Constant/Pointed"
+msgstr ""
+
+#: ../fontitem.cpp:653
+msgid "Constant/Serifed"
+msgstr ""
+
+#: ../fontitem.cpp:654
+msgid "Low/Trimmed"
+msgstr ""
+
+#: ../fontitem.cpp:655
+msgid "Low/Pointed"
+msgstr ""
+
+#: ../fontitem.cpp:656
+msgid "Low/Serifed"
+msgstr ""
+
+#: ../fontitem.cpp:659
+msgid "Midline"
+msgstr ""
+
+#: ../fontitem.cpp:664
+msgid "Constant/Small"
+msgstr ""
+
+#: ../fontitem.cpp:665
+msgid "Constant/Standard"
+msgstr ""
+
+#: ../fontitem.cpp:666
+msgid "Constant/Large"
+msgstr ""
+
+#: ../fontitem.cpp:667
+msgid "Ducking/Small"
+msgstr ""
+
+#: ../fontitem.cpp:668
+msgid "Ducking/Standard"
+msgstr ""
+
+#: ../fontitem.cpp:669
+msgid "Ducking/Large"
+msgstr ""
+
+#: ../fontitem.cpp:672
+msgid "X-Height"
+msgstr ""
+
+#: ../fontitem.cpp:3264
+msgid "Category"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_help.h:49
+#, fuzzy
+msgid "Fontmatrix Help"
+msgstr "Fontmatrix Help"
+
+#: ../../../../../../../fontmatrix-build/src/ui_importtags.h:99
+#, fuzzy
+msgid "Add"
+msgstr "Toevoegen"
+
+#: ../../../../../../../fontmatrix-build/src/ui_importtags.h:97
+msgid "Fontmatrix - Tags"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_importtags.h:100
+msgid "Ok"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_importedfonts.h:97
+#, fuzzy
+msgid "Dialog"
+msgstr "Dialoog"
+
+#: ../../../../../../../fontmatrix-build/src/ui_importedfonts.h:98
+#, fuzzy
+msgid "Imported Fonts"
+msgstr "Geïmporteerde fonts"
+
+#: ../../../../../../../fontmatrix-build/src/ui_importedfonts.h:105
+msgid ""
+"<qt>Instead of showing this dialog imported font count\n"
+"will be shown in the status bar. If you choose not to\n"
+"show this dialog anymore you can reset the state\n"
+"in preferences.</qt>"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_importedfonts.h:108
+msgid "Do not show this dialog again"
+msgstr ""
+
+#: ../importedfontsdialog.cpp:37
+msgid " (not loaded)"
+msgstr ""
+
+#: ../importedfontsdialog.cpp:44
+msgid "Number of Imported Fonts "
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_layoutoptions.h:208
+#, fuzzy
+msgid "Form"
+msgstr "vorm"
+
+#: ../../../../../../../fontmatrix-build/src/ui_layoutoptions.h:209
+msgid "Weights"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_layoutoptions.h:216
+msgid "score"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_layoutoptions.h:211
+msgid "before"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_layoutoptions.h:213
+msgid "exact"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_layoutoptions.h:215
+msgid "after"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_layoutoptions.h:217
+msgid "end"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_layoutoptions.h:218
+msgid "penalty"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_layoutoptions.h:219
+msgid "H-penalty"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_listsdock.h:231
+#, fuzzy
+msgid "Tag:"
+msgstr "Label:"
+
+#: ../../../../../../../fontmatrix-build/src/ui_listsdock.h:234
+#, fuzzy
+msgid "Filter view by chosing tag"
+msgstr "Filter zicht door label keuz"
+
+#: ../../../../../../../fontmatrix-build/src/ui_listsdock.h:264
+#, fuzzy
+msgid "Names"
+msgstr "Namen"
+
+#: ../../../../../../../fontmatrix-build/src/ui_listsdock.h:263
+#, fuzzy
+msgid "Files"
+msgstr "Dossiers"
+
+#: ../../../../../../../fontmatrix-build/src/ui_listsdock.h:253
+#, fuzzy
+msgid "Show complete collection of available fonts"
+msgstr "Toon complete collectie van beschikbare fonts"
+
+#: ../../../../../../../fontmatrix-build/src/ui_listsdock.h:239
+msgid "Switch to panose filtering"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_listsdock.h:242
+msgid "P"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_listsdock.h:243
+msgid "Filter:"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_listsdock.h:246
+msgid "Field selection"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_listsdock.h:249
+msgid "F"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_listsdock.h:265
+msgid "Previews"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_listsdock.h:266
+msgid "Folders"
+msgstr ""
+
+#: ../listdockwidget.cpp:76
+msgid "All fields"
+msgstr ""
+
+#: ../listdockwidget.cpp:83
+msgid "Unicode"
+msgstr ""
+
+#: ../listdockwidget.cpp:331
+msgid "All activated"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:693
+#, fuzzy
+msgid "main view widget"
+msgstr "component hoofdbeeld"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:716
+#, fuzzy
+msgid "Font Information"
+msgstr "Font Informatie "
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:704
+#, fuzzy
+msgid "Nothing selected"
+msgstr "Niets geselecteerd"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:707
+#, fuzzy
+msgid "Right mouse click on a tag to add it or remove it from TagSet"
+msgstr "Rechts Kliken op een label om het aan de collectie toe te voegen of te verwijderen"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:749
+#, fuzzy
+msgid "Sample Text"
+msgstr "Tekstvoorbeeld"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:729
+#, fuzzy
+msgid "OpenType Features"
+msgstr "OpenType functies"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:730
+#, fuzzy
+msgid "Friendly Name"
+msgstr "Benaming Compleet"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:746
+#, fuzzy
+msgid "Use shaper"
+msgstr "Gebruik shaper"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:763
+#, fuzzy
+msgid "Glyphs"
+msgstr "Glyphs"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:750
+#, fuzzy
+msgid "Coverage of Unicode Interval :"
+msgstr "Unicode Interval Vulling:"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:754
+#, fuzzy
+msgid "Clicking on a glyph will show details about it"
+msgstr "Glyph kliken voor details"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:736
+#, fuzzy
+msgid "Font Size"
+msgstr "Font maat"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:764
+#, fuzzy
+msgid " pt"
+msgstr "pt"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:742
+msgid "part I"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:748
+msgid "part II"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:712
+msgid "Add a tag"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:719
+#, fuzzy
+msgid "Settings"
+msgstr "Instellingen"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:722
+msgid "S"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:725
+msgid "OpenType"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:728
+msgid "O"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:731
+msgid "Save as default"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:732
+msgid "Reset Default"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:733
+msgid "SampleText"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:734
+msgid "..."
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:735
+#, fuzzy
+msgid "Layout"
+msgstr "Layout"
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:739
+msgid "Rendering"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:740
+msgid "FreeType"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:741
+msgid "Native Qt objects"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:743
+msgid "World is wide"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:744
+msgid "Shaper type"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:747
+msgid "Text Progression"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:765
+msgid "push"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:766
+msgid "Playground"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:759
+msgid "Set Mode \"Copy Character to Clipboard\""
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_mainview.h:762
+msgid "C"
+msgstr ""
+
+#: ../mainviewwidget.cpp:1010
+msgid "Activation event"
+msgstr "Activeer uitkomst   "
+
+#: ../mainviewwidget.cpp:1010
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ../mainviewwidget.cpp:1013
+msgid "Activation of :"
+msgstr "Activeert :"
+
+#: ../mainviewwidget.cpp:1013
+msgid "Deactivation of :"
+msgstr "Deactiveert :"
+
+#: ../mainviewwidget.cpp:1138
+msgid "000Basic Latin"
+msgstr "000Basis Latijn"
+
+#: ../mainviewwidget.cpp:1139
+msgid "001Latin-1 Supplement"
+msgstr "001Supplement Latijn-1"
+
+#: ../mainviewwidget.cpp:1140
+msgid "002Latin Extended-A"
+msgstr "002Uitgebreid Latijn-A"
+
+#: ../mainviewwidget.cpp:1141
+msgid "003Latin Extended-B"
+msgstr "003Uitgebreid Latijn-B"
+
+#: ../mainviewwidget.cpp:1142
+msgid "004IPA Extensions"
+msgstr "004Aanvulling IPA"
+
+#: ../mainviewwidget.cpp:1143
+msgid "005Spacing Modifier Letters"
+msgstr "005Spatie Modificeerder"
+
+#: ../mainviewwidget.cpp:1144
+msgid "006Combining Diacritical Marks"
+msgstr "006Combineert Diakritische Tekens"
+
+#: ../mainviewwidget.cpp:1145
+msgid "007Greek and Coptic"
+msgstr "007Grieks en Koptisch"
+
+#: ../mainviewwidget.cpp:1146
+msgid "008Cyrillic"
+msgstr "008Cyrillisch"
+
+#: ../mainviewwidget.cpp:1147
+msgid "009Cyrillic Supplement"
+msgstr "009Supplement Cyrillisch"
+
+#: ../mainviewwidget.cpp:1148
+msgid "010Armenian"
+msgstr "010Armeens"
+
+#: ../mainviewwidget.cpp:1149
+msgid "011Hebrew"
+msgstr "011Hebreeuws"
+
+#: ../mainviewwidget.cpp:1150
+msgid "012Arabic"
+msgstr "012Arabisch"
+
+#: ../mainviewwidget.cpp:1151
+msgid "013Syriac"
+msgstr "013Syrisch"
+
+#: ../mainviewwidget.cpp:1152
+msgid "014Arabic Supplement"
+msgstr "014Supplement Arabisch"
+
+#: ../mainviewwidget.cpp:1153
+msgid "015Thaana"
+msgstr "015Thaana"
+
+#: ../mainviewwidget.cpp:1154
+msgid "016N'Ko"
+msgstr "016N'ko"
+
+#: ../mainviewwidget.cpp:1155
+msgid "017Devanagari"
+msgstr "017Devanagari"
+
+#: ../mainviewwidget.cpp:1156
+msgid "018Bengali"
+msgstr "018Bengaals"
+
+#: ../mainviewwidget.cpp:1157
+msgid "019Gurmukhi"
+msgstr "019Gurmukhi"
+
+#: ../mainviewwidget.cpp:1158
+msgid "020Gujarati"
+msgstr "020Gujarati"
+
+#: ../mainviewwidget.cpp:1159
+msgid "021Oriya"
+msgstr "021Orya"
+
+#: ../mainviewwidget.cpp:1160
+msgid "022Tamil"
+msgstr "022Tamil"
+
+#: ../mainviewwidget.cpp:1161
+msgid "023Telugu"
+msgstr "023Telugu"
+
+#: ../mainviewwidget.cpp:1162
+msgid "024Kannada"
+msgstr "024Kannada"
+
+#: ../mainviewwidget.cpp:1163
+msgid "025Malayalam"
+msgstr "025Malayalam"
+
+#: ../mainviewwidget.cpp:1164
+msgid "026Sinhala"
+msgstr "026Singhalees"
+
+#: ../mainviewwidget.cpp:1165
+msgid "027Thai"
+msgstr "027Thais"
+
+#: ../mainviewwidget.cpp:1166
+msgid "028Lao"
+msgstr "028Laotiaans"
+
+#: ../mainviewwidget.cpp:1167
+msgid "029Tibetan"
+msgstr "029Tibetaans"
+
+#: ../mainviewwidget.cpp:1168
+msgid "030Burmese"
+msgstr "030Birmees"
+
+#: ../mainviewwidget.cpp:1169
+msgid "031Georgian"
+msgstr "031Georgisch"
+
+#: ../mainviewwidget.cpp:1170
+msgid "032Hangul Jamo"
+msgstr "032Hangul Jamo"
+
+#: ../mainviewwidget.cpp:1171
+msgid "033Ethiopic"
+msgstr "033Ethiopisch"
+
+#: ../mainviewwidget.cpp:1172
+msgid "034Ethiopic Supplement"
+msgstr "034Supplement Ethiopsch"
+
+#: ../mainviewwidget.cpp:1173
+msgid "035Cherokee"
+msgstr "035Cherokee"
+
+#: ../mainviewwidget.cpp:1174
+msgid "036Unified Canadian Aboriginal Syllabics"
+msgstr "036Samenvoeging Autochtoon Canadese syllabi"
+
+#: ../mainviewwidget.cpp:1175
+msgid "037Ogham"
+msgstr "037Ogham"
+
+#: ../mainviewwidget.cpp:1176
+msgid "038Runic"
+msgstr "038Runisch"
+
+#: ../mainviewwidget.cpp:1177
+msgid "039Tagalog"
+msgstr "039Tagalog"
+
+#: ../mainviewwidget.cpp:1178
+msgid "040HanunÃ³o"
+msgstr "040HanunÄ"
+
+#: ../mainviewwidget.cpp:1179
+msgid "041Buhid"
+msgstr "041Buhid"
+
+#: ../mainviewwidget.cpp:1180
+msgid "042Tagbanwa"
+msgstr "042Tagbawna"
+
+#: ../mainviewwidget.cpp:1181
+msgid "043Khmer"
+msgstr "043Khmer"
+
+#: ../mainviewwidget.cpp:1182
+msgid "044Mongolian"
+msgstr "044Mongools"
+
+#: ../mainviewwidget.cpp:1183
+msgid "045Limbu"
+msgstr "045Limbu"
+
+#: ../mainviewwidget.cpp:1184
+msgid "046Tai Le"
+msgstr "046Tai Le"
+
+#: ../mainviewwidget.cpp:1185
+msgid "047New Tai Lue"
+msgstr "047Nieuw Tai Lue"
+
+#: ../mainviewwidget.cpp:1186
+msgid "048Khmer Symbols"
+msgstr "048Khmer Symbolen"
+
+#: ../mainviewwidget.cpp:1187
+msgid "049Buginese"
+msgstr "049Buginees"
+
+#: ../mainviewwidget.cpp:1188
+msgid "050Balinese"
+msgstr "050Balinees"
+
+#: ../mainviewwidget.cpp:1189
+msgid "051Lepcha"
+msgstr "051Lepcha"
+
+#: ../mainviewwidget.cpp:1190
+msgid "052Phonetic Extensions"
+msgstr "052 Fonetische aanvullingen"
+
+#: ../mainviewwidget.cpp:1191
+msgid "053Phonetic Extensions Supplement"
+msgstr "053Supplement Fonetische Aanvullingen"
+
+#: ../mainviewwidget.cpp:1192
+msgid "054Combining Diacritical Marks Supplement"
+msgstr "054Combineert Supplement Diakritische Tekens"
+
+#: ../mainviewwidget.cpp:1193
+msgid "055Latin Extended Additional"
+msgstr "055Aanvullend Uitgebreid Latijn"
+
+#: ../mainviewwidget.cpp:1194
+msgid "056Greek Extended"
+msgstr "056Uitgebreid Grieks"
+
+#: ../mainviewwidget.cpp:1195
+msgid "057General Punctuation"
+msgstr "057Algemene Interpunctie"
+
+#: ../mainviewwidget.cpp:1196
+msgid "058Superscripts and Subscripts"
+msgstr "058Superscripts en Subscripts"
+
+#: ../mainviewwidget.cpp:1197
+msgid "059Currency Symbols"
+msgstr "059Valuta Symbolen"
+
+#: ../mainviewwidget.cpp:1198
+msgid "060Combining Diacritical Marks for Symbols"
+msgstr "060Combineert Diakritische Tekens met Symbolen"
+
+#: ../mainviewwidget.cpp:1199
+msgid "061Letterlike Symbols"
+msgstr "061Letterachtige Symbolen"
+
+#: ../mainviewwidget.cpp:1200
+msgid "062Number Forms"
+msgstr "062cijfersymbolen"
+
+#: ../mainviewwidget.cpp:1201
+msgid "063Arrows"
+msgstr "063Pijlen"
+
+#: ../mainviewwidget.cpp:1202
+msgid "064Mathematical Operators"
+msgstr "064Mathematische Operators"
+
+#: ../mainviewwidget.cpp:1203
+msgid "065Miscellaneous Technical"
+msgstr "065Technisch gevarieerd"
+
+#: ../mainviewwidget.cpp:1204
+msgid "066Control Pictures"
+msgstr "066Controleer Afbeeldingen "
+
+#: ../mainviewwidget.cpp:1205
+msgid "067Optical Character Recognition"
+msgstr "067Optisch Karakterherkenning"
+
+#: ../mainviewwidget.cpp:1206
+msgid "068Enclosed Alphanumerics"
+msgstr "068Bijgesloten Alfanumerieken"
+
+#: ../mainviewwidget.cpp:1207
+msgid "069Box Drawing"
+msgstr "069Box Tekeningen"
+
+#: ../mainviewwidget.cpp:1208
+msgid "070Block Elements"
+msgstr "070Blokkeer Elementen"
+
+#: ../mainviewwidget.cpp:1209
+msgid "071Geometric Shapes"
+msgstr "071Geometrische Vormen"
+
+#: ../mainviewwidget.cpp:1210
+msgid "072Miscellaneous Symbols"
+msgstr "072Gevarieerde Symbolen"
+
+#: ../mainviewwidget.cpp:1211
+msgid "073Dingbats"
+msgstr "073Droedels"
+
+#: ../mainviewwidget.cpp:1212
+msgid "074Miscellaneous Mathematical Symbols-A"
+msgstr "074Gevarieerde Mathematische Symbolen-A"
+
+#: ../mainviewwidget.cpp:1213
+msgid "075Supplemental Arrows-A"
+msgstr "075Aanvullende Pijlen-A"
+
+#: ../mainviewwidget.cpp:1214
+msgid "076Braille Patterns"
+msgstr "076Braillepatronen"
+
+#: ../mainviewwidget.cpp:1215
+msgid "077Supplemental Arrows-B"
+msgstr "077Aanvullende Pijlen-B"
+
+#: ../mainviewwidget.cpp:1216
+msgid "078Miscellaneous Mathematical Symbols-B"
+msgstr "078Gavarieerde Mathematische Symbolen-B"
+
+#: ../mainviewwidget.cpp:1217
+msgid "079Supplemental Mathematical Operators"
+msgstr "079Supplementair Mathematische Operators"
+
+#: ../mainviewwidget.cpp:1218
+msgid "080Miscellaneous Symbols and Arrows"
+msgstr "080Gevarieerde Symbolen en Pijlen "
+
+#: ../mainviewwidget.cpp:1219
+msgid "081Glagolitic"
+msgstr "081Glagolitisch"
+
+#: ../mainviewwidget.cpp:1220
+msgid "082Latin Extended-C"
+msgstr "082Uitgebreid Latijn-C"
+
+#: ../mainviewwidget.cpp:1221
+msgid "083Coptic"
+msgstr "083Koptisch"
+
+#: ../mainviewwidget.cpp:1222
+msgid "084Georgian Supplement"
+msgstr "084Supplement Georgisch"
+
+#: ../mainviewwidget.cpp:1223
+msgid "085Tifinagh"
+msgstr "085Tifinagh"
+
+#: ../mainviewwidget.cpp:1224
+msgid "086Ethiopic Extended"
+msgstr "086Uitgebreid Ethopisch"
+
+#: ../mainviewwidget.cpp:1225
+msgid "087Supplemental Punctuation"
+msgstr "087Aanvullende interpunctie"
+
+#: ../mainviewwidget.cpp:1226
+msgid "088CJK Radicals Supplement"
+msgstr "088Supplement CJK Worteltekens"
+
+#: ../mainviewwidget.cpp:1227
+msgid "089Kangxi Radicals"
+msgstr "089Kangxi Tekens"
+
+#: ../mainviewwidget.cpp:1228
+msgid "090Ideographic Description Characters"
+msgstr "090Oleografisch"
+
+#: ../mainviewwidget.cpp:1229
+msgid "091CJK Symbols and Punctuation"
+msgstr "091CJK Symbolen en Interpunctie"
+
+#: ../mainviewwidget.cpp:1230
+msgid "092Hiragana"
+msgstr "092Hiragana"
+
+#: ../mainviewwidget.cpp:1231
+msgid "093Katakana"
+msgstr "093Katakana"
+
+#: ../mainviewwidget.cpp:1232
+msgid "094Bopomofo"
+msgstr "094Bopomofo"
+
+#: ../mainviewwidget.cpp:1233
+msgid "095Hangul Compatibility Jamo"
+msgstr "095Hangul Verenigbaar met Jamo"
+
+#: ../mainviewwidget.cpp:1234
+msgid "096Kanbun"
+msgstr "096Kanbun"
+
+#: ../mainviewwidget.cpp:1235
+msgid "097Bopomofo Extended"
+msgstr "097Uitgebreid Bopomofo"
+
+#: ../mainviewwidget.cpp:1236
+msgid "098CJK Strokes"
+msgstr "098CJK Strokes"
+
+#: ../mainviewwidget.cpp:1237
+msgid "099Katakana Phonetic Extensions"
+msgstr "099Uitgebreid Fonetisch Katakana"
+
+#: ../mainviewwidget.cpp:1238
+msgid "100Enclosed CJK Letters and Months"
+msgstr "100Bijgesloten CJK Letters en Maanden"
+
+#: ../mainviewwidget.cpp:1239
+msgid "101CJK Compatibility"
+msgstr "101Verenigbaar CJK"
+
+#: ../mainviewwidget.cpp:1240
+msgid "102CJK Unified Ideographs Extension A"
+msgstr "102Uitgebreid Samengevoegde ideografiën A"
+
+#: ../mainviewwidget.cpp:1241
+msgid "103Yijing Hexagram Symbols"
+msgstr "103Yijing Hexagram Symbolen"
+
+#: ../mainviewwidget.cpp:1242
+msgid "104CJK Unified Ideographs"
+msgstr "104CJK Samengevoegde Ideografiën"
+
+#: ../mainviewwidget.cpp:1243
+msgid "105Yi Syllables"
+msgstr "105Yi syllabi"
+
+#: ../mainviewwidget.cpp:1244
+msgid "106Yi Radicals"
+msgstr "106Yi Tekens"
+
+#: ../mainviewwidget.cpp:1245
+msgid "107Modifier Tone Letters"
+msgstr "107klankletter Modificeerder"
+
+#: ../mainviewwidget.cpp:1246
+msgid "108Latin Extended-D"
+msgstr "108Uitgebreid Latijn-D"
+
+#: ../mainviewwidget.cpp:1247
+msgid "109Syloti Nagri"
+msgstr "109Syloti Nagri"
+
+#: ../mainviewwidget.cpp:1248
+msgid "110Phags-pa"
+msgstr "110Phags-Pa"
+
+#: ../mainviewwidget.cpp:1249
+msgid "111Hangul Syllables"
+msgstr "111Hangul Syllabi"
+
+#: ../mainviewwidget.cpp:1250
+msgid "112High Surrogates"
+msgstr "112Belangrijke Surrogaten"
+
+#: ../mainviewwidget.cpp:1251
+msgid "113High Private Use Surrogates"
+msgstr "113Belangrijk Prive Gebruikte Surrogaten"
+
+#: ../mainviewwidget.cpp:1252
+msgid "114Low Surrogates"
+msgstr "114Eenvoudige Surrogaten"
+
+#: ../mainviewwidget.cpp:1253
+msgid "115Private Use Area"
+msgstr "115Ruimte Voor Persoonlijk Gebruik"
+
+#: ../mainviewwidget.cpp:1254
+msgid "116CJK Compatibility Ideographs"
+msgstr "116CJK Verenigbare Ideografiën"
+
+#: ../mainviewwidget.cpp:1255
+msgid "117Alphabetic Presentation Forms"
+msgstr "117Presentatie Alfabetische vormen"
+
+#: ../mainviewwidget.cpp:1256
+msgid "118Arabic Presentation Forms-A"
+msgstr "118Presentatie Arabische Vormen-A"
+
+#: ../mainviewwidget.cpp:1257
+msgid "119Variation Selectors"
+msgstr "119Kiezersvariatie"
+
+#: ../mainviewwidget.cpp:1258
+msgid "120Vertical Forms"
+msgstr "120Verticale vormen"
+
+#: ../mainviewwidget.cpp:1259
+msgid "121Combining Half Marks"
+msgstr "121Combinerende Halve Tekens"
+
+#: ../mainviewwidget.cpp:1260
+msgid "122CJK Compatibility Forms"
+msgstr "122CJK Verenigbare Vormen"
+
+#: ../mainviewwidget.cpp:1261
+msgid "123Small Form Variants"
+msgstr "123Kleine Vorm Varianten"
+
+#: ../mainviewwidget.cpp:1262
+msgid "124Arabic Presentation Forms-B"
+msgstr "124Presentatie Arabische Vormen-B"
+
+#: ../mainviewwidget.cpp:1263
+msgid "125Halfwidth and Fullwidth Forms"
+msgstr "125Halfbreed en Volle Breedte Vormen"
+
+#: ../mainviewwidget.cpp:1264
+msgid "126Specials"
+msgstr "126Extra's"
+
+#: ../mainviewwidget.cpp:1266
+msgid "127Supplementary Multilingual Plane (SMP)"
+msgstr "127Supplementair Meertalig niveau (SMP)"
+
+#: ../mainviewwidget.cpp:1267
+msgid "128Supplementary Ideographic Plane (SIP)"
+msgstr "128Supplementair Ideografisch Niveau (SIP)"
+
+#: ../mainviewwidget.cpp:1268
+msgid "129unassigned"
+msgstr "129Niet Toegewezen"
+
+#: ../mainviewwidget.cpp:1269
+msgid "130Supplementary Special-purpose Plane (SSP)"
+msgstr "130Supplementair Special-purpose PLane (SSP)"
+
+#: ../mainviewwidget.cpp:1270
+msgid "131Private Use Area 1 (PUA)"
+msgstr "131Ruimte 1 (PUA) Voor Persoonlijk Gebruik"
+
+#: ../mainviewwidget.cpp:1271
+msgid "132Private Use Area 2 (PUA)"
+msgstr "132Ruimte 2 (PUA) Alleen Persoonlijk Gebruik"
+
+#: ../mainviewwidget.cpp:1272
+msgid "133Un-Mapped Glyphs"
+msgstr "133Niet Ingedeelde Glyphs"
+
+#: ../mainviewwidget.cpp:1273
+msgid "134View all mapped glyphs"
+msgstr "134Overzicht alle ingedeelde glyphs"
+
+#: ../mainviewwidget.cpp:1835
+msgid "Fontmatrix takes care of you"
+msgstr ""
+
+#: ../mainviewwidget.cpp:1835
+msgid ""
+" is activated.\n"
+"If you want to remove it from Fontmatrix database, please deactivate it first."
+msgstr ""
+
+#: ../mainviewwidget.cpp:1838
+msgid "Fontmatrix safe"
+msgstr ""
+
+#: ../mainviewwidget.cpp:1838
+msgid "You are about to remove a font from Fontmatrix database"
+msgstr ""
+
+#: ../mainviewwidget.cpp:1838
+msgid "Do you want to continue?"
+msgstr ""
+
+#: ../mainviewwidget.cpp:1923
+msgid "Welcome to Fontmatrix"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:576
+#, fuzzy
+msgid "Preferences Panel"
+msgstr "Voorkeurpaneel"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:599
+#, fuzzy
+msgid "General"
+msgstr "Algemeen"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:578
+#, fuzzy
+msgid "Show Fontmatrix in System Tray"
+msgstr "Toon Fontmatrix in System Tray"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:579
+#, fuzzy
+msgid "Close to System Tray"
+msgstr "Sluit System Tray af"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:581
+#, fuzzy
+msgid "Ask confirmation when activating or deactivating all fonts"
+msgstr "Vraag bevestiging bij activeren of deactiveren van alle fonts "
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:582
+#, fuzzy
+msgid "Ask confirmation when activating or deactivating fonts by tags"
+msgstr "Vraag bevestiging bij activeren of deactiveren fonts via labels"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:583
+#, fuzzy
+msgid "Preview Word"
+msgstr "Woord Voorzicht"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:587
+#, fuzzy
+msgid "Font Editor"
+msgstr "Font Editor"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:593
+#, fuzzy
+msgid "/usr/bin/fontforge"
+msgstr "/usr/bin/fontforge"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:595
+#, fuzzy
+msgid "Ask for tag names when importing fonts"
+msgstr "Vraag naar labelnamen bij het fonts importatie"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:605
+#, fuzzy
+msgid "Named Sample Texts"
+msgstr "Benoemde Tekstvoorbeelden"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:608
+#, fuzzy
+msgid "Font Size:"
+msgstr "Font maat:"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:610
+#, fuzzy
+msgid "Interline:"
+msgstr "Tussenlijn:"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:622
+#, fuzzy
+msgid "Apply"
+msgstr "Toepassen"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:634
+#, fuzzy
+msgid "Remove"
+msgstr "Verwijder"
+
+#: ../typotek.cpp:641
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:580
+msgid "Show \"All\" actions"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:584
+msgid "is RTL"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:585
+msgid "size"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:590
+msgid "Add the full path to your preferred font editor"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:596
+msgid "Show names of imported fonts after import process"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:597
+msgid "Show splash at startup"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:598
+msgid "Don’t use preferred name scheme (will affect only newly imported fonts)"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:607
+msgid "Initial Layout"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:612
+msgid "Hyphenation"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:613
+msgid "Left:"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:614
+msgid "Right:"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:615
+msgid "Dictionary:"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:618
+msgid "Browse"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:624
+msgid "Templates Folder"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:626
+msgid "Remote directories"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:627
+msgid "http://"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:630
+msgid "Local storage"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:632
+msgid "Files and Folders"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:633
+msgid "Change"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_prefs_panel.h:636
+msgid "Shortcuts"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:58
+msgid "Looks like your setup does not have a system tray available."
+msgstr "Het lijkt erop dat uw setup geen system tray beschikbaar heeft."
+
+#: ../prefspaneldialog.cpp:189
+msgid "A text"
+msgstr "Een tekst"
+
+#: ../prefspaneldialog.cpp:265
+msgid "Select font editor"
+msgstr "Selecteer font editor"
+
+#: ../prefspaneldialog.cpp:283
+msgid "Select Templates Folder"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:341
+msgid "Select Where remote font files will be stored"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:43
+msgid "Please select an item in the list or create a new one."
+msgstr ""
+
+#: ../prefspaneldialog.cpp:464
+msgid "Alt"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:464
+msgid "Ctrl"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:464
+msgid "Shift"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:464
+msgid "Meta"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:426
+msgid "Meta+"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:430
+msgid "Shift+"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:434
+msgid "Alt+"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:438
+msgid "Ctrl+"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:524
+msgid "Replace"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:526
+msgctxt "action name will be appended to this"
+msgid "Shortcut is already in use for"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:527
+msgid "Do you still want to assign it?"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:560
+#, fuzzy
+msgid "Action"
+msgstr "Actie"
+
+#: ../prefspaneldialog.cpp:561
+msgid "Shortcut"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:562
+msgid "Tip"
+msgstr ""
+
+#: ../prefspaneldialog.cpp:595
+msgid "Select hyphenation dictionary"
+msgstr ""
+
+#: ../fontbook.cpp:205
+msgid "Creating font book... "
+msgstr "Creëer font boek..."
+
+#: ../fontbook.cpp:205
+msgid "cancel"
+msgstr "annuleer"
+
+#: ../fontitem.cpp:2643
+msgid "codepoint is U+"
+msgstr "codepunt is U+"
+
+#: ../dataexport.cpp:38
+msgid "Copying files"
+msgstr ""
+
+#: ../dataexport.cpp:65
+msgid "Unable to copy"
+msgstr ""
+
+#: ../dataloader.cpp:177
+msgid ""
+"ABCDEFGH\n"
+"IJKLMNOPQ\n"
+"RSTUVXYZ\n"
+"\n"
+"abcdefgh\n"
+"ijklmnopq\n"
+"rstuvxyz\n"
+"0123456789\n"
+",;:!?."
+msgstr ""
+
+#: ../dataloader.cpp:202
+msgid "hamburgefonstiv"
+msgstr ""
+
+#: ../fontitem.cpp:3233
+msgid "Mark, NonSpacing"
+msgstr ""
+
+#: ../fontitem.cpp:3234
+msgid "Mark, SpacingCombining"
+msgstr ""
+
+#: ../fontitem.cpp:3235
+msgid "Mark, Enclosing"
+msgstr ""
+
+#: ../fontitem.cpp:3236
+msgid "Number, DecimalDigit"
+msgstr ""
+
+#: ../fontitem.cpp:3237
+msgid "Number, Letter"
+msgstr ""
+
+#: ../fontitem.cpp:3238
+msgid "Number, Other"
+msgstr ""
+
+#: ../fontitem.cpp:3239
+msgid "Separator, Space"
+msgstr ""
+
+#: ../fontitem.cpp:3240
+msgid "Separator, Line"
+msgstr ""
+
+#: ../fontitem.cpp:3241
+msgid "Separator, Paragraph"
+msgstr ""
+
+#: ../fontitem.cpp:3242
+msgid "Other, Control"
+msgstr ""
+
+#: ../fontitem.cpp:3243
+msgid "Other, Format"
+msgstr ""
+
+#: ../fontitem.cpp:3244
+msgid "Other, Surrogate"
+msgstr ""
+
+#: ../fontitem.cpp:3245
+msgid "Other, PrivateUse"
+msgstr ""
+
+#: ../fontitem.cpp:3246
+msgid "Other, NotAssigned"
+msgstr ""
+
+#: ../fontitem.cpp:3247
+msgid "Letter, Uppercase"
+msgstr ""
+
+#: ../fontitem.cpp:3248
+msgid "Letter, Lowercase"
+msgstr ""
+
+#: ../fontitem.cpp:3249
+msgid "Letter, Titlecase"
+msgstr ""
+
+#: ../fontitem.cpp:3250
+msgid "Letter, Modifier"
+msgstr ""
+
+#: ../fontitem.cpp:3251
+msgid "Letter, Other"
+msgstr ""
+
+#: ../fontitem.cpp:3252
+msgid "Punctuation, Connector"
+msgstr ""
+
+#: ../fontitem.cpp:3253
+msgid "Punctuation, Dash"
+msgstr ""
+
+#: ../fontitem.cpp:3254
+msgid "Punctuation, Open"
+msgstr ""
+
+#: ../fontitem.cpp:3255
+msgid "Punctuation, Close"
+msgstr ""
+
+#: ../fontitem.cpp:3256
+msgid "Punctuation, InitialQuote"
+msgstr ""
+
+#: ../fontitem.cpp:3257
+msgid "Punctuation, FinalQuote"
+msgstr ""
+
+#: ../fontitem.cpp:3258
+msgid "Punctuation, Other"
+msgstr ""
+
+#: ../fontitem.cpp:3259
+msgid "Symbol, Math"
+msgstr ""
+
+#: ../fontitem.cpp:3260
+msgid "Symbol, Currency"
+msgstr ""
+
+#: ../fontitem.cpp:3261
+msgid "Symbol, Modifier"
+msgstr ""
+
+#: ../fontitem.cpp:3262
+msgid "Symbol, Other"
+msgstr ""
+
+#: ../remotedir.cpp:239
+msgid "Downloading"
+msgstr ""
+
+#: ../systray.cpp:243
+msgid "&Activate all"
+msgstr "&Activeer alles"
+
+#: ../systray.cpp:246
+msgid "&Deactivate all"
+msgstr "&Deactiveer alles"
+
+#: ../systray.cpp:249
+msgid "Mi&nimize"
+msgstr "Mi&nimaliseer"
+
+#: ../systray.cpp:252
+msgid "&Restore"
+msgstr "&Herstel"
+
+#: ../systray.cpp:255
+msgid "E&xit"
+msgstr "E&xit"
+
+#: ../systray.cpp:266
+msgid "&Tags"
+msgstr "&Labels"
+
+#: ../../../../../../../fontmatrix-build/src/ui_tagset.h:239
+#, fuzzy
+msgid "TagSet editor"
+msgstr "Labelset editor"
+
+#: ../../../../../../../fontmatrix-build/src/ui_tagset.h:241
+#, fuzzy
+msgid "Collections of Tags"
+msgstr "Collectie Labels"
+
+#: ../../../../../../../fontmatrix-build/src/ui_tagset.h:242
+#, fuzzy
+msgid "Available Tags"
+msgstr "Beschikbare Labels"
+
+#: ../../../../../../../fontmatrix-build/src/ui_tagset.h:245
+#, fuzzy
+msgid "Add selected tag to current set."
+msgstr "Voeg geselecteerd label toe aan huidige set."
+
+#: ../../../../../../../fontmatrix-build/src/ui_tagset.h:249
+#, fuzzy
+msgid "Collections"
+msgstr "Collecties"
+
+#: ../../../../../../../fontmatrix-build/src/ui_tagset.h:250
+#, fuzzy
+msgid "New"
+msgstr "Nieuw"
+
+#: ../../../../../../../fontmatrix-build/src/ui_tagset.h:251
+#, fuzzy
+msgid "delete"
+msgstr "delete"
+
+#: ../../../../../../../fontmatrix-build/src/ui_textprogression.h:109
+msgid "Inline progression"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_textprogression.h:137
+msgid "e.g. Latin text"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_textprogression.h:152
+msgid "Left to right"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_textprogression.h:118
+msgid "e.g. Arabic text"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_textprogression.h:146
+msgid "Right to left"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_textprogression.h:124
+msgid "e.g. Traditional Chinese & Japanese text"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_textprogression.h:140
+msgid "Top to bottom"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_textprogression.h:130
+msgid "e.g. Runic text"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_textprogression.h:133
+msgid "Bottom to top"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_textprogression.h:134
+msgid "Block progression"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_textprogression.h:143
+msgid "e.g. Tarditionnal Chinese & Japanes text"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_textprogression.h:149
+msgid "e.g. Traditional Mongolian text"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_repair.h:196
+msgid "Select all"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_repair.h:191
+msgid "Dead links"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_repair.h:193
+msgid "Re-link"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_repair.h:194
+msgid "Deactivate"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_repair.h:195
+msgid "Activated Not Linked"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_repair.h:197
+msgid "De-link"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_repair.h:198
+msgid "Activate"
+msgstr ""
+
+#: ../../../../../../../fontmatrix-build/src/ui_repair.h:199
+msgid "Deactivated Linked"
+msgstr ""
+
+#: ../typotek.cpp:153
+msgid "Nothing Selected"
+msgstr "Niets Geselecteerd"
+
+#: ../typotek.cpp:219
+msgid "Fontmatrix"
+msgstr "Fontmatrix"
+
+#: ../typotek.cpp:223
+msgid "The program will keep running in the system tray. To terminate the program, choose <b>Exit</b> in the context menu of the system tray entry."
+msgstr "Het programma blijft lopen in het system tray. Om het programma af te sluiten, kies <b>Exit</b> in het context menu van het system tray entry."
+
+#: ../typotek.cpp:268
+msgid "Add Directory"
+msgstr "Voeg Directory toe"
+
+#: ../typotek.cpp:425
+msgid "Importing font files... "
+msgstr "Importeer font dossiers..."
+
+#: ../typotek.cpp:429
+msgid "Import"
+msgstr "Importeer"
+
+#: ../typotek.cpp:450
+msgid "Canât import this font because itâs broken :"
+msgstr "Dit font can niet geimporteerd worden wijgens gebroken :"
+
+#: ../typotek.cpp:548
+msgid "&Import..."
+msgstr "&Import..."
+
+#: ../typotek.cpp:549
+msgid "Ctrl+O"
+msgstr "Ctrl+O"
+
+#: ../typotek.cpp:550
+msgid "Import a directory"
+msgstr "Importeer een directory"
+
+#: ../typotek.cpp:554
+msgid "&Save"
+msgstr "&Save"
+
+#: ../typotek.cpp:555
+msgid "Ctrl+S"
+msgstr "Ctrl+S"
+
+#: ../typotek.cpp:556
+msgid "Save the document to disk"
+msgstr "Save het document op de schijf"
+
+#: ../typotek.cpp:590
+msgid "Export font book..."
+msgstr "Exporteer font boek..."
+
+#: ../typotek.cpp:591
+msgid "Export a pdf that show selected fonts"
+msgstr "Exporteer een pdf dat geselecteerde fonts toont"
+
+#: ../typotek.cpp:596
+msgid "Ctrl+Q"
+msgstr "Ctrl+Q"
+
+#: ../typotek.cpp:597
+msgid "Exit the application"
+msgstr "Verlaat de programma"
+
+#: ../typotek.cpp:602
+msgid "&About"
+msgstr "&About"
+
+#: ../typotek.cpp:603
+msgid "Show the Typotek's About box"
+msgstr "Toon de Typoteks About Box"
+
+#: ../typotek.cpp:611
+msgid "Help"
+msgstr "Help"
+
+#: ../typotek.cpp:615
+msgid "&Tag Sets"
+msgstr "&Label Sets"
+
+#: ../typotek.cpp:620
+msgid "Activate all current"
+msgstr "Activeer al het huidig"
+
+#: ../typotek.cpp:624
+msgid "Deactivate all current"
+msgstr "Deactiveer al het huidig"
+
+#: ../typotek.cpp:628
+msgid "Edit current font"
+msgstr "Edit het huidig font"
+
+#: ../typotek.cpp:1469
+msgid "Try to run font editor with the selected font as argument"
+msgstr "Probeer font editor te starten met het geselecteerde font als argument"
+
+#: ../typotek.cpp:1474
+msgid "You don't seem to have font editor installed. Path to font editor can be set in preferences."
+msgstr "Je hebt waarschijnlijk font editor niet geïnstalleerd. Font editor path moet in Voorkeuren gestelt."
+
+#: ../typotek.cpp:685
+msgid "&File"
+msgstr "&Dossier"
+
+#: ../typotek.cpp:724
+msgid "&Help"
+msgstr "&Help"
+
+#: ../typotek.cpp:734
+msgid "Ready"
+msgstr "Klaar"
+
+#: ../typotek.cpp:1177
+msgid "Fontmatrix care"
+msgstr "Fontmatrix pas voor u op"
+
+#: ../typotek.cpp:1171
+msgid ""
+"You are about to activate a bunch of fonts,\n"
+"it is time to cancel if it was not your intent"
+msgstr ""
+"U zal veel fonten activeeren,\n"
+"verwijder deze wanneer het niet de bedoeling is"
+
+#: ../typotek.cpp:1177
+msgid ""
+"You are about to deactivate a bunch of fonts,\n"
+"it is time to cancel if it was not your intent"
+msgstr ""
+"U zal veel fonten deactiveeren,\n"
+"verwijder deze wanneer het niet de bedoeling is"
+
+#: ../typotek.cpp:1213
+msgid "There is no font selected"
+msgstr "Er is geen font geselecteerd"
+
+#: ../typotek.cpp:1303
+msgid "Support of DragNDrop over http is sheduled but not yet effective"
+msgstr "Hulp bij DragNDrop door http is sheduled maar nog niet effectief"
+
+#: ../typotek.cpp:1328
+#, fuzzy
+msgid "You bring something over me I canât handle"
+msgstr "Je brengt mij iets dat ik niet kan behandelen"
+
+#: ../typotek.cpp:1368
+msgid "You provided an empty string, itâs not fair"
+msgstr "Je bepaald een lege reeks, het is niet fatsoenlijk"
+
+#: ../typotek.cpp:512
+msgid "Choose the tag for filter exported fonts"
+msgstr ""
+
+#: ../typotek.cpp:518
+msgid "Choose Directory"
+msgstr ""
+
+#: ../typotek.cpp:560
+msgid "Export &Fonts"
+msgstr ""
+
+#: ../typotek.cpp:561
+msgid "Export a fontset"
+msgstr ""
+
+#: ../typotek.cpp:645
+msgid "Check Database"
+msgstr ""
+
+#: ../typotek.cpp:652
+msgid "Tag All..."
+msgstr ""
+
+#: ../typotek.cpp:739
+msgid "Load settings"
+msgstr ""
+
+#: ../typotek.cpp:789
+msgid "Check for Fontmatrix own dir"
+msgstr ""
+
+#: ../typotek.cpp:888
+msgid "Loading"
+msgstr ""
+
+#: ../typotek.cpp:888
+msgid "fonts present in database"
+msgstr ""
+
+#: ../typotek.cpp:981
+msgid "Catching"
+msgstr ""
+
+#: ../typotek.cpp:981
+msgid "font descriptions from network"
+msgstr ""
+
+#: ../typotek.cpp:915
+msgid "Collected System Font"
+msgstr ""
+
+#: ../typotek.cpp:948
+msgid "Adding"
+msgstr ""
+
+#: ../typotek.cpp:948
+msgid "fonts from system directories"
+msgstr ""
+
+#: ../typotek.cpp:971
+msgid "fonts available from system"
+msgstr ""
+
+#: ../typotek.cpp:1022
+msgid "font descriptions imported from network"
+msgstr ""
+
+#: ../typotek.cpp:158
+msgid "Browse Fonts"
+msgstr ""
+
+#: ../typotek.cpp:136
+#, fuzzy
+msgid "default"
+msgstr "ontbreekt"
+
+#: ../typotek.cpp:1374
+msgid "\"default\" is a reserved"
+msgstr ""
+
+#: ../typotek.cpp:464
+#, qt-format
+msgid "Fonts imported: %1"
+msgstr ""
+
+#: ../typotek.cpp:565
+msgid "Print Info..."
+msgstr ""
+
+#: ../typotek.cpp:566
+msgid "Print informations about the current font"
+msgstr ""
+
+#: ../typotek.cpp:570
+msgid "Print Sample..."
+msgstr ""
+
+#: ../typotek.cpp:571
+msgid "Print the sample as a specimen"
+msgstr ""
+
+#: ../typotek.cpp:575
+msgid "Print Chart..."
+msgstr ""
+
+#: ../typotek.cpp:576
+msgid "Print a chart of the current font"
+msgstr ""
+
+#: ../typotek.cpp:580
+msgid "Print Playground..."
+msgstr ""
+
+#: ../typotek.cpp:581
+msgid "Print the playground"
+msgstr ""
+
+#: ../typotek.cpp:585
+msgid "Print Family..."
+msgstr ""
+
+#: ../typotek.cpp:586
+msgid "Print a specimen of the whole family the current face belongs to"
+msgstr ""
+
+#: ../typotek.cpp:607
+msgid "About &Qt"
+msgstr ""
+
+#: ../typotek.cpp:656
+msgid "Next Family"
+msgstr ""
+
+#: ../typotek.cpp:661
+msgid "Next Face"
+msgstr ""
+
+#: ../typotek.cpp:666
+msgid "Previous Family"
+msgstr ""
+
+#: ../typotek.cpp:672
+msgid "Previous Face"
+msgstr ""
+
+#: ../typotek.cpp:677
+msgid "Layout Options"
+msgstr ""
+
+#: ../typotek.cpp:692
+msgid "Print"
+msgstr ""
+
+#: ../typotek.cpp:703
+msgid "&Edit"
+msgstr ""
+
+#: ../typotek.cpp:718
+msgid "&Browse"
+msgstr ""
+
+#: ../typotek.cpp:878
+msgid "Fontmatrix - data warning"
+msgstr ""
+
+#: ../typotek.cpp:879
+msgid ""
+"Your database has not been loaded because of a version mismatch.\n"
+"It is not a problem, you just lost fonts references, tags & sample texts. If you badly need to keep these datas, do not quit Fontmatrix before you have copied the database*. At this point and with a minimum of XML skill, you should be able to get old database into new format.\n"
+"\n"
+"*database is"
+msgstr ""
+
+#: ../typotek.cpp:1598
+msgid "Welcome maessage"
+msgstr ""
+
+#: ../typotek.cpp:1632
+msgid "Print Infos"
+msgstr ""
+
+#: ../typotek.cpp:1651
+msgid "Print Chart"
+msgstr ""
+
+#: ../typotek.cpp:1716
+msgid "Print Playground"
+msgstr ""
+
+#: ../typotek.cpp:1739
+msgid "Print Family"
+msgstr ""
+
+#: ../bookexport.ui:23
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Settings"
+#~ msgstr "Instellingen"
+
+#: ../bookexport.ui:46
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Font Book Options "
+#~ msgstr "Opties fontbook"
+
+#: ../bookexport.ui:56
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Load Template"
+#~ msgstr "Laadmodel"
+
+#: ../bookexport.ui:63
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Not A Template"
+#~ msgstr "Geen model"
+
+#: ../bookexport.ui:96
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Paper Size:"
+#~ msgstr "Blad maat:"
+
+#: ../bookexport.ui:123
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "X Position"
+#~ msgstr "X Positie"
+
+#: ../bookexport.ui:248
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Family:"
+#~ msgstr "Familie:"
+
+#: ../bookexport.ui:279
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Style:"
+#~ msgstr "Stijl:"
+
+#: ../bookexport.ui:201
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Text:"
+#~ msgstr "Tekst:"
+
+#: ../bookexport.ui:238
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Font Size"
+#~ msgstr "Font maat"
+
+#: ../bookexport.ui:386
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Headline:"
+#~ msgstr "Hoofdlijn:"
+
+#: ../bookexport.ui:341
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Body:"
+#~ msgstr "Body:"
+
+#: ../bookexport.ui:402
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Sample Text:"
+#~ msgstr "Tekstvoorbeeld:"
+
+#: ../bookexport.ui:435
+#, fuzzy
+#~ msgctxt "BookExportDialog|"
+#~ msgid "Preview"
+#~ msgstr "Voorzien"
+
+#: ../fontaction.ui:14
+#, fuzzy
+#~ msgctxt "FontAction|"
+#~ msgid "Form"
+#~ msgstr "vorm"
+
+#: ../fontaction.ui:32
+#, fuzzy
+#~ msgctxt "FontAction|"
+#~ msgid "Action"
+#~ msgstr "Actie"
+
+#: ../fontaction.ui:65
+#, fuzzy
+#~ msgctxt "FontAction|"
+#~ msgid "Add Tag"
+#~ msgstr "Label Toevoegen"
+
+#: ../fontbookdialog.cpp:251
+#, fuzzy
+#~ msgctxt "FontBookDialog|"
+#~ msgid "family"
+#~ msgstr "familie"
+
+#: ../fontbookdialog.cpp:252
+#, fuzzy
+#~ msgctxt "FontBookDialog|"
+#~ msgid "headline"
+#~ msgstr "hoofdlijn"
+
+#: ../fontbookdialog.cpp:253
+#, fuzzy
+#~ msgctxt "FontBookDialog|"
+#~ msgid "body"
+#~ msgstr "body"
+
+#: ../fontbookdialog.cpp:254
+#, fuzzy
+#~ msgctxt "FontBookDialog|"
+#~ msgid "style"
+#~ msgstr "stijl"
+
+#: ../importtags.ui:13
+#, fuzzy
+#~ msgctxt "ImportTagsDialog|"
+#~ msgid "Dialog"
+#~ msgstr "Dialoog"
+
+#: ../listsdock.ui:52
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Search through font informations"
+#~ msgstr "Doorzoek font informatie"
+
+#: ../listsdock.ui:55
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Search"
+#~ msgstr "Zoek"
+
+#: ../listsdock.ui:65
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Respect entered text case when searching"
+#~ msgstr "Pas op voor hooge en laage letters om te zoeken"
+
+#: ../listsdock.ui:68
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Case Sensitive"
+#~ msgstr "Kast Gevoelig"
+
+#: ../listsdock.ui:90
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Tag Set:"
+#~ msgstr "collectie:"
+
+#: ../listsdock.ui:103
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Show only fonts that belong to chosen tagset"
+#~ msgstr "Toon alleen fonts dat behoort tot de gekozen collectie"
+
+#: ../listsdock.ui:203
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "View All"
+#~ msgstr "Toon alles"
+
+#: ../listsdock.ui:210
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Show all activated fonts"
+#~ msgstr "Toon alle geäctiveerde fonts"
+
+#: ../listsdock.ui:213
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "View Activated"
+#~ msgstr "Toon geäctiveerd"
+
+#: ../listsdock.ui:220
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Remove"
+#~ msgstr "Verwijder"
+
+#: ../mainview.ui:74
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid ""
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+#~ "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>"
+#~ msgstr "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\"><p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>"
+
+#: ../mainview.ui:149
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Add Tag"
+#~ msgstr "Label Toevoegen"
+
+#: ../mainview.ui:284
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Fit to View"
+#~ msgstr "Zicht aanpassen"
+
+#: ../mainview.ui:229
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Zoom is disabled, uncheck fit to view to enable zoom"
+#~ msgstr "Zichtaanpassing moet uitgeschakelt om te zoomen"
+
+#: ../mainview.ui:279
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Simulate screen rendering (FreeType inside)"
+#~ msgstr "Schermweergave simuleeren (FreeType inside)"
+
+#: ../mainview.ui:282
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "FT"
+#~ msgstr "FT"
+
+#: ../mainview.ui:387
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Right to Left"
+#~ msgstr "Van rechts naar links"
+
+#: ../mainviewwidget.cpp:899
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "zoom is enabled"
+#~ msgstr "zoom is mogelijk"
+
+#: ../mainviewwidget.cpp:908
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "zoom is disabled, uncheck fit to view to enable zoom"
+#~ msgstr "Zichtaanpassing moet uitgeschakelt om te zoomen"
+
+#: ../mainviewwidget.cpp:1423
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "default"
+#~ msgstr "ontbreekt"
+
+#: ../prefs_panel.ui:54
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Show Activate All and Deactivate All in the System Tray menu"
+#~ msgstr "Toon Activeer Alles en Deactiveer Alles in het System Tray menu"
+
+#: ../prefs_panel.ui:276
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Validate"
+#~ msgstr "Bevestigen"
+
+#: ../prefs_panel.ui:240
+#, fuzzy
+#~ msgctxt "PrefsPanel|"
+#~ msgid "Layout"
+#~ msgstr "Layout"
+
+#: ../dataloader.cpp:169
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "default"
+#~ msgstr "ontbreekt"
+
+#: ../typotek.cpp:115
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Lists"
+#~ msgstr "Lijsten"
+
+#: ../typotek.cpp:287
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid ""
+#~ "Initial tags.\n"
+#~ "The string you type will be split by \"#\" to obtain a tags list."
+#~ msgstr ""
+#~ "Initiaal labels.\n"
+#~ "De reeks die je typt zal afsplitsen in \"#\" om een labellijst te verkrijgen."
+
+#: ../typotek.cpp:422
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print..."
+#~ msgstr "Print..."
+
+#: ../typotek.cpp:423
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print a specimen of the current font"
+#~ msgstr "Print een specimen van het huidig font"
+
+#: ../typotek.cpp:491
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Edit"
+#~ msgstr "Edit"
+
+#: ../typotek.cpp:833
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print specimen"
+#~ msgstr "Print Specimen"
+
+#: ../typotek.cpp:1067
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "\"default\" is a reserved keyword"
+#~ msgstr "\"ontbreekt\" is een gereserveerd sleutelwoord"

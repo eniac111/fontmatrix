@@ -19,6 +19,7 @@
 #include "progressbarduo.h"
 #include "fmvariants.h"
 
+#include <KLocalizedString>
 #include <QDebug>
 #include <QImage>
 #include <QObject>
@@ -91,7 +92,7 @@ void FontBook::doBook(FontBook::Style s)
 	printer = new QPrinter( QPrinter::HighResolution );
 	printerRect = printer->pageLayout().fullRectPoints();
 	QPrintDialog dialog(printer);
-	dialog.setWindowTitle("Fontmatrix - " + tr("Print Fontbook"));
+	dialog.setWindowTitle("Fontmatrix - " + i18n("Print Fontbook"));
 
 	if ( dialog.exec() != QDialog::Accepted )
 		return;
@@ -474,7 +475,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 		if(llist.size() > 0)
 		{
 			nameFont.setPointSizeF(6.0);
-			QGraphicsSimpleTextItem * uniText( pScene.addSimpleText(tr("Unicode coverage") , nameFont) );
+			QGraphicsSimpleTextItem * uniText( pScene.addSimpleText(i18n("Unicode coverage") , nameFont) );
 			uniText->setPos(printerRect.width() * 0.5, 600);
 			nameFont.setPointSizeF(4.0);
 			QGraphicsTextItem *  uniList(pScene.addText(llist.join(", ") + QString("."), nameFont));
@@ -674,7 +675,7 @@ void FontBook::doBookFromTemplate ( const QDomDocument & )
 //	}
 
 //	QMap<QString, QList<FontItem*> >::const_iterator kit;
-//	QProgressDialog progress ( QObject::tr ( "Creating font book... " ), QObject::tr ( "cancel" ), 0, keyList.size(), typotek::getInstance() );
+//	QProgressDialog progress ( i18n( "Creating font book... " ), i18n( "cancel" ), 0, keyList.size(), typotek::getInstance() );
 //	progress.setWindowModality ( Qt::WindowModal );
 //	int progressindex=0;
 

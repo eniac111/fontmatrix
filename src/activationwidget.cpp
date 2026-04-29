@@ -1,3 +1,4 @@
+#include <KLocalizedString>
 /***************************************************************************
  *   Copyright (C) 2010 by Pierre Marchand   *
  *   pierre@oep-h.com   *
@@ -29,7 +30,9 @@
 #include "fmvariants.h"
 
 
-const QString ActivationWidget::Name = QObject::tr("Activation");
+// Registry key used by FloatingWidgetsRegister; stable English identifier,
+// never translated. User-facing labels come from the floating widget title.
+const QString ActivationWidget::Name = QStringLiteral("Activation");
 
 ActivationWidget::ActivationWidget(const QString& familyName, QWidget *parent) :
 		FloatingWidget(familyName, Name, parent),

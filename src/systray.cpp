@@ -24,6 +24,7 @@
 #include "typotek.h"
 #include "fontitem.h"
 #include "fmfontdb.h"
+#include <KLocalizedString>
 #include <QtGui>
 #include <QMenu>
 #include <QDebug>
@@ -241,19 +242,19 @@ void Systray::deleteTag(const QString &name)
 
 void Systray::createActions()
 {
-    activateAllAction = new QAction(tr("&Activate all"), this);
+    activateAllAction = new QAction(i18n("&Activate all"), this);
     connect(activateAllAction, SIGNAL(triggered()), this, SLOT(slotActivateAll()));
 
-    deactivateAllAction = new QAction(tr("&Deactivate all"), this);
+    deactivateAllAction = new QAction(i18n("&Deactivate all"), this);
     connect(deactivateAllAction, SIGNAL(triggered()), this, SLOT(slotDeactivateAll()));
 
-    minimizeAction = new QAction(tr("Mi&nimize"), this);
+    minimizeAction = new QAction(i18n("Mi&nimize"), this);
     connect(minimizeAction, SIGNAL(triggered()), this, SLOT(slotMinimize()));
 
-    restoreAction = new QAction(tr("&Restore"), this);
+    restoreAction = new QAction(i18n("&Restore"), this);
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(slotRestore()));
 
-    quitAction = new QAction(tr("E&xit"), this);
+    quitAction = new QAction(i18n("E&xit"), this);
     connect(quitAction, SIGNAL(triggered()), this, SLOT(slotQuit()));
 }
 
@@ -265,7 +266,7 @@ void Systray::createTrayIcon()
 	trayIconMenu = new QMenu(nullptr);
 	trayIconMenu->addAction(activateAllAction);
 	trayIconMenu->addAction(deactivateAllAction);
-	tagMenu = trayIconMenu->addMenu(tr("&Tags"));
+	tagMenu = trayIconMenu->addMenu(i18n("&Tags"));
 	trayIconMenu->addSeparator();
 	trayIconMenu->addAction(minimizeAction);
 	trayIconMenu->addAction(restoreAction);

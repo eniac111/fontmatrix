@@ -1,3 +1,4 @@
+#include <KLocalizedString>
 /***************************************************************************
  *   Copyright (C) 2007 by Pierre Marchand   *
  *   pierre@oep-h.com   *
@@ -31,9 +32,9 @@ AboutWidget::AboutWidget(QWidget *parent)
 	QString version_pat(QString::number( FONTMATRIX_VERSION_PATCH) );
 	theText->setSource(QUrl("qrc:/texts/about"));
 	theText_2->setSource(QUrl("qrc:/texts/about_people"));
-	versionStringLabel->setText(tr("version") + " " +version_maj + "." + version_min + "." + version_pat);
+	versionStringLabel->setText(i18n("version") + " " +version_maj + "." + version_min + "." + version_pat);
 	
-	fontsCountLabel->setText(QString::number(FMFontDb::DB()->FontCount()) + " " +tr("fonts loaded") );
+	fontsCountLabel->setText(QString::number(FMFontDb::DB()->FontCount()) + " " +i18n("fonts loaded") );
 	
 			
 }

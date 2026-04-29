@@ -13,6 +13,7 @@
 #include "fmfontstrings.h"
 #include "fmpaths.h"
 
+#include <KLocalizedString>
 #include <QFile>
 
 FontStrings * FontStrings::instance = nullptr;
@@ -36,28 +37,28 @@ FontStrings * FontStrings::getInstance()
 
 void FontStrings::fillNamesMeaning()
 {
-	m_name[FMFontDb::Copyright]= tr ( "Copyright" );
-	m_name[FMFontDb::FontFamily]= tr ( "Font Family" );
-	m_name[FMFontDb::FontSubfamily]= tr ( "Font Subfamily" );
-	m_name[FMFontDb::UniqueFontIdentifier]= tr ( "Unique font identifier" );
-	m_name[FMFontDb::FullFontName]= tr ( "Full font name" );
-	m_name[FMFontDb::VersionString]= tr ( "Version string" );
-	m_name[FMFontDb::PostscriptName]= tr ( "Postscript name" );
-	m_name[FMFontDb::Trademark]= tr ( "Trademark" );
-	m_name[FMFontDb::ManufacturerName]= tr ( "Manufacturer" );
-	m_name[FMFontDb::Designer]= tr ( "Designer" );
-	m_name[FMFontDb::Description]= tr ( "Description" );
-	m_name[FMFontDb::URLVendor]= tr ( "URL Vendor" );
-	m_name[FMFontDb::URLDesigner]= tr ( "URL Designer" );
-	m_name[FMFontDb::LicenseDescription]= tr ( "License Description" );
-	m_name[FMFontDb::LicenseInfoURL]= tr ( "License Info URL" );
-	m_name[FMFontDb::PreferredFamily]= tr ( "Preferred Family" );
-	m_name[FMFontDb::PreferredSubfamily]= tr ( "Preferred Subfamily" );
-	m_name[FMFontDb::CompatibleMacintosh]= tr ( "Compatible Full (Macintosh only)" );
-	m_name[FMFontDb::SampleText]= tr ( "Sample text" );
-	m_name[FMFontDb::PostScriptCIDName]= tr ( "PostScript CID findfont name" );
-// 	m_name[FMFontDb::Panose]= tr("Panose");
-	m_name[FMFontDb::AllInfo]= tr("All fields");
+	m_name[FMFontDb::Copyright]= i18n( "Copyright" );
+	m_name[FMFontDb::FontFamily]= i18n( "Font Family" );
+	m_name[FMFontDb::FontSubfamily]= i18n( "Font Subfamily" );
+	m_name[FMFontDb::UniqueFontIdentifier]= i18n( "Unique font identifier" );
+	m_name[FMFontDb::FullFontName]= i18n( "Full font name" );
+	m_name[FMFontDb::VersionString]= i18n( "Version string" );
+	m_name[FMFontDb::PostscriptName]= i18n( "Postscript name" );
+	m_name[FMFontDb::Trademark]= i18n( "Trademark" );
+	m_name[FMFontDb::ManufacturerName]= i18n( "Manufacturer" );
+	m_name[FMFontDb::Designer]= i18n( "Designer" );
+	m_name[FMFontDb::Description]= i18n( "Description" );
+	m_name[FMFontDb::URLVendor]= i18n( "URL Vendor" );
+	m_name[FMFontDb::URLDesigner]= i18n( "URL Designer" );
+	m_name[FMFontDb::LicenseDescription]= i18n( "License Description" );
+	m_name[FMFontDb::LicenseInfoURL]= i18n( "License Info URL" );
+	m_name[FMFontDb::PreferredFamily]= i18n( "Preferred Family" );
+	m_name[FMFontDb::PreferredSubfamily]= i18n( "Preferred Subfamily" );
+	m_name[FMFontDb::CompatibleMacintosh]= i18n( "Compatible Full (Macintosh only)" );
+	m_name[FMFontDb::SampleText]= i18n( "Sample text" );
+	m_name[FMFontDb::PostScriptCIDName]= i18n( "PostScript CID findfont name" );
+// 	m_name[FMFontDb::Panose]= i18n("Panose");
+	m_name[FMFontDb::AllInfo]= i18n("All fields");
 	
 }
 
@@ -74,176 +75,176 @@ void FontStrings::fillPanoseMap()
 	// http://www.monotypeimaging.com/ProductsServices/pan2.aspx
 
 		QMap<int, QString> mapModel;
-		mapModel[ 0 ] = tr ( "Any" ) ;
-		mapModel[ 1 ] = tr ( "No Fit" ) ;
-		mapModel[ 2 ] = tr ( "Text and Display","Family Type" ) ;
-		mapModel[ 3 ] = tr ( "Script" ,"Family Type" ) ;
-		mapModel[ 4 ] = tr ( "Decorative","Family Type"  ) ;
-		mapModel[ 5 ] = tr ( "Pictorial" ,"Family Type" ) ;
+		mapModel[ 0 ] = i18n( "Any" ) ;
+		mapModel[ 1 ] = i18n( "No Fit" ) ;
+		mapModel[ 2 ] = i18nc("Family Type", "Text and Display") ;
+		mapModel[ 3 ] = i18nc("Family Type", "Script") ;
+		mapModel[ 4 ] = i18nc("Family Type", "Decorative") ;
+		mapModel[ 5 ] = i18nc("Family Type", "Pictorial") ;
 
 		m_panoseMap[FamilyType] = mapModel;
-		m_panoseKeyName[FamilyType] = tr ( "Family Type" );
+		m_panoseKeyName[FamilyType] = i18n( "Family Type" );
 		m_panoseKeyInfo[FamilyType] = "<h1>Family Kind</h1> Defines what type of font is being classified." ;
 		mapModel.clear();
 
-		mapModel[ 0 ] = tr ( "Any" ) ;
-		mapModel[ 1 ] = tr ( "No Fit" ) ;
-		mapModel[ 2 ] = tr ( "Cove" ,"Serif style" ) ;
-		mapModel[ 3 ] = tr ( "Obtuse Cove" ,"Serif style"  ) ;
-		mapModel[ 4 ] = tr ( "Square Cove" ,"Serif style"  ) ;
-		mapModel[ 5 ] = tr ( "Obtuse Square Cove"  ,"Serif style" ) ;
-		mapModel[ 6 ] = tr ( "Square" ,"Serif style"  ) ;
-		mapModel[ 7 ] = tr ( "Thin"  ,"Serif style" ) ;
-		mapModel[ 8 ] = tr ( "Bone"  ,"Serif style" ) ;
-		mapModel[ 9 ] = tr ( "Exaggerated"  ,"Serif style" ) ;
-		mapModel[ 10 ] = tr ( "Triangle"  ,"Serif style" ) ;
-		mapModel[ 11 ] = tr ( "Normal Sans"  ,"Serif style" ) ;
-		mapModel[ 12 ] = tr ( "Obtuse Sans"  ,"Serif style" ) ;
-		mapModel[ 13 ] = tr ( "Perp Sans" ,"Serif style"  ) ;
-		mapModel[ 14 ] = tr ( "Flared"  ,"Serif style" ) ;
-		mapModel[ 15 ] = tr ( "Rounded"  ,"Serif style" ) ;
+		mapModel[ 0 ] = i18n( "Any" ) ;
+		mapModel[ 1 ] = i18n( "No Fit" ) ;
+		mapModel[ 2 ] = i18nc("Serif style", "Cove") ;
+		mapModel[ 3 ] = i18nc("Serif style", "Obtuse Cove") ;
+		mapModel[ 4 ] = i18nc("Serif style", "Square Cove") ;
+		mapModel[ 5 ] = i18nc("Serif style", "Obtuse Square Cove") ;
+		mapModel[ 6 ] = i18nc("Serif style", "Square") ;
+		mapModel[ 7 ] = i18nc("Serif style", "Thin") ;
+		mapModel[ 8 ] = i18nc("Serif style", "Bone") ;
+		mapModel[ 9 ] = i18nc("Serif style", "Exaggerated") ;
+		mapModel[ 10 ] = i18nc("Serif style", "Triangle") ;
+		mapModel[ 11 ] = i18nc("Serif style", "Normal Sans") ;
+		mapModel[ 12 ] = i18nc("Serif style", "Obtuse Sans") ;
+		mapModel[ 13 ] = i18nc("Serif style", "Perp Sans") ;
+		mapModel[ 14 ] = i18nc("Serif style", "Flared") ;
+		mapModel[ 15 ] = i18nc("Serif style", "Rounded") ;
 
 		m_panoseMap[SerifStyle ] = mapModel;
-		m_panoseKeyName[SerifStyle] = tr ( "Serif style" ) ;
+		m_panoseKeyName[SerifStyle] = i18n( "Serif style" ) ;
 		m_panoseKeyInfo[SerifStyle] ="<h1>Serif style</h1>This digit describes the appearance of the serifs used in a font design";
 		mapModel.clear();
 
-		mapModel[ 0 ] = tr ( "Any" ) ;
-		mapModel[ 1 ] = tr ( "No Fit" ) ;
-		mapModel[ 2 ] = tr ( "Very Light" ,"Weight" ) ;
-		mapModel[ 3 ] = tr ( "Light" ,"Weight") ;
-		mapModel[ 4 ] = tr ( "Thin" ,"Weight") ;
-		mapModel[ 5 ] = tr ( "Book" ,"Weight") ;
-		mapModel[ 6 ] = tr ( "Medium" ,"Weight") ;
-		mapModel[ 7 ] = tr ( "Demi" ,"Weight") ;
-		mapModel[ 8 ] = tr ( "Bold" ,"Weight") ;
-		mapModel[ 9 ] = tr ( "Heavy" ,"Weight") ;
-		mapModel[ 10 ] = tr ( "Black" ,"Weight") ;
-		mapModel[ 11 ] = tr ( "Nord" ,"Weight") ;
+		mapModel[ 0 ] = i18n( "Any" ) ;
+		mapModel[ 1 ] = i18n( "No Fit" ) ;
+		mapModel[ 2 ] = i18nc("Weight", "Very Light") ;
+		mapModel[ 3 ] = i18nc("Weight", "Light") ;
+		mapModel[ 4 ] = i18nc("Weight", "Thin") ;
+		mapModel[ 5 ] = i18nc("Weight", "Book") ;
+		mapModel[ 6 ] = i18nc("Weight", "Medium") ;
+		mapModel[ 7 ] = i18nc("Weight", "Demi") ;
+		mapModel[ 8 ] = i18nc("Weight", "Bold") ;
+		mapModel[ 9 ] = i18nc("Weight", "Heavy") ;
+		mapModel[ 10 ] = i18nc("Weight", "Black") ;
+		mapModel[ 11 ] = i18nc("Weight", "Nord") ;
 
 		m_panoseMap[Weight ] = mapModel;
-		m_panoseKeyName[Weight] = tr ( "Weight" );
+		m_panoseKeyName[Weight] = i18n( "Weight" );
 		m_panoseKeyInfo[Weight] ="<h1>Weight</h1>The Weight digit classifies the appearance of a fonts’ stroke thickness in relation to its height.";
 		mapModel.clear();
 
-		mapModel[ 0 ] = tr ( "Any" ) ;
-		mapModel[ 1 ] = tr ( "No Fit" ) ;
-		mapModel[ 2 ] = tr ( "Old Style" ,"Proportion") ;
-		mapModel[ 3 ] = tr ( "Modern" ,"Proportion" ) ;
-		mapModel[ 4 ] = tr ( "Even Width" ,"Proportion" ) ;
-		mapModel[ 5 ] = tr ( "Expanded" ,"Proportion" ) ;
-		mapModel[ 6 ] = tr ( "Condensed"  ,"Proportion") ;
-		mapModel[ 7 ] = tr ( "Very Expanded"  ,"Proportion") ;
-		mapModel[ 8 ] = tr ( "Very Condensed"  ,"Proportion") ;
-		mapModel[ 9 ] = tr ( "Monospaced"  ,"Proportion") ;
+		mapModel[ 0 ] = i18n( "Any" ) ;
+		mapModel[ 1 ] = i18n( "No Fit" ) ;
+		mapModel[ 2 ] = i18nc("Proportion", "Old Style") ;
+		mapModel[ 3 ] = i18nc("Proportion", "Modern") ;
+		mapModel[ 4 ] = i18nc("Proportion", "Even Width") ;
+		mapModel[ 5 ] = i18nc("Proportion", "Expanded") ;
+		mapModel[ 6 ] = i18nc("Proportion", "Condensed") ;
+		mapModel[ 7 ] = i18nc("Proportion", "Very Expanded") ;
+		mapModel[ 8 ] = i18nc("Proportion", "Very Condensed") ;
+		mapModel[ 9 ] = i18nc("Proportion", "Monospaced") ;
 
 		m_panoseMap[Proportion ] = mapModel;
-		m_panoseKeyName[Proportion] = tr ( "Proportion" );
+		m_panoseKeyName[Proportion] = i18n( "Proportion" );
 		m_panoseKeyInfo[Proportion] ="<h1>Proportion</h1>The proportion of a font in the PANOSE Typeface Matching System is defined in greater detail than simply an indication of general glyph shape aspect ratio such as extended and condensed.";
 		mapModel.clear();
 
-		mapModel[ 0 ] = tr ( "Any" ) ;
-		mapModel[ 1 ] = tr ( "No Fit" ) ;
-		mapModel[ 2 ] = tr ( "None" ,"Contrast") ;
-		mapModel[ 3 ] = tr ( "Very Low" ,"Contrast") ;
-		mapModel[ 4 ] = tr ( "Low" ,"Contrast") ;
-		mapModel[ 5 ] = tr ( "Medium Low" ,"Contrast") ;
-		mapModel[ 6 ] = tr ( "Medium" ,"Contrast") ;
-		mapModel[ 7 ] = tr ( "Medium High" ,"Contrast") ;
-		mapModel[ 8 ] = tr ( "High" ,"Contrast") ;
-		mapModel[ 9 ] = tr ( "Very High" ,"Contrast") ;
+		mapModel[ 0 ] = i18n( "Any" ) ;
+		mapModel[ 1 ] = i18n( "No Fit" ) ;
+		mapModel[ 2 ] = i18nc("Contrast", "None") ;
+		mapModel[ 3 ] = i18nc("Contrast", "Very Low") ;
+		mapModel[ 4 ] = i18nc("Contrast", "Low") ;
+		mapModel[ 5 ] = i18nc("Contrast", "Medium Low") ;
+		mapModel[ 6 ] = i18nc("Contrast", "Medium") ;
+		mapModel[ 7 ] = i18nc("Contrast", "Medium High") ;
+		mapModel[ 8 ] = i18nc("Contrast", "High") ;
+		mapModel[ 9 ] = i18nc("Contrast", "Very High") ;
 
 		m_panoseMap[Contrast ] = mapModel;
-		m_panoseKeyName[Contrast] = tr ( "Contrast" );
+		m_panoseKeyName[Contrast] = i18n( "Contrast" );
 		m_panoseKeyInfo[Contrast] ="<h1>Contrast</h1>The Contrast digit describes the ratio between the thickest point on the stroke of the letter O and the narrowest point on the letter O.";
 		mapModel.clear();
 
-		mapModel[ 0 ] = tr ( "Any" ) ;
-		mapModel[ 1 ] = tr ( "No Fit" ) ;
-		mapModel[ 2 ] = tr ( "Gradual/Diagonal" , "Stroke Variation") ;
-		mapModel[ 3 ] = tr ( "Gradual/Transitional"  , "Stroke Variation") ;
-		mapModel[ 4 ] = tr ( "Gradual/Vertical" , "Stroke Variation" ) ;
-		mapModel[ 5 ] = tr ( "Gradual/Horizontal" , "Stroke Variation" ) ;
-		mapModel[ 6 ] = tr ( "Rapid/Vertical"  , "Stroke Variation") ;
-		mapModel[ 7 ] = tr ( "Rapid/Horizontal"  , "Stroke Variation") ;
-		mapModel[ 8 ] = tr ( "Instant/Vertical"  , "Stroke Variation") ;
+		mapModel[ 0 ] = i18n( "Any" ) ;
+		mapModel[ 1 ] = i18n( "No Fit" ) ;
+		mapModel[ 2 ] = i18nc("Stroke Variation", "Gradual/Diagonal") ;
+		mapModel[ 3 ] = i18nc("Stroke Variation", "Gradual/Transitional") ;
+		mapModel[ 4 ] = i18nc("Stroke Variation", "Gradual/Vertical") ;
+		mapModel[ 5 ] = i18nc("Stroke Variation", "Gradual/Horizontal") ;
+		mapModel[ 6 ] = i18nc("Stroke Variation", "Rapid/Vertical") ;
+		mapModel[ 7 ] = i18nc("Stroke Variation", "Rapid/Horizontal") ;
+		mapModel[ 8 ] = i18nc("Stroke Variation", "Instant/Vertical") ;
 
 		m_panoseMap[StrokeVariation] = mapModel;
-		m_panoseKeyName[StrokeVariation] = tr ( "Stroke Variation" );
+		m_panoseKeyName[StrokeVariation] = i18n( "Stroke Variation" );
 		m_panoseKeyInfo[StrokeVariation] ="<h1>Stroke Variation</h1>The Stroke Variation category further details the contrast trait by describing the kind of transition that occurs as the stem thickness changes on rounded glyph shapes.";
 		mapModel.clear();
 
-		mapModel[ 0 ] = tr ( "Any" ) ;
-		mapModel[ 1 ] = tr ( "No Fit" ) ;
-		mapModel[ 2 ] = tr ( "Straight Arms/Horizontal" ,"Arm Style") ;
-		mapModel[ 3 ] = tr ( "Straight Arms/Wedge" ,"Arm Style") ;
-		mapModel[ 4 ] = tr ( "Straight Arms/Vertical" ,"Arm Style") ;
-		mapModel[ 5 ] = tr ( "Straight Arms/Single Serif","Arm Style" ) ;
-		mapModel[ 6 ] = tr ( "Straight Arms/Double Serif","Arm Style" ) ;
-		mapModel[ 7 ] = tr ( "Non-Straight Arms/Horizontal" ,"Arm Style") ;
-		mapModel[ 8 ] = tr ( "Non-Straight Arms/Wedge" ,"Arm Style") ;
-		mapModel[ 9 ] = tr ( "Non-Straight Arms/Vertical" ,"Arm Style") ;
-		mapModel[ 10 ] = tr ( "Non-Straight Arms/Single Serif","Arm Style" ) ;
-		mapModel[ 11 ] = tr ( "Non-Straight Arms/Double Serif" ,"Arm Style") ;
+		mapModel[ 0 ] = i18n( "Any" ) ;
+		mapModel[ 1 ] = i18n( "No Fit" ) ;
+		mapModel[ 2 ] = i18nc("Arm Style", "Straight Arms/Horizontal") ;
+		mapModel[ 3 ] = i18nc("Arm Style", "Straight Arms/Wedge") ;
+		mapModel[ 4 ] = i18nc("Arm Style", "Straight Arms/Vertical") ;
+		mapModel[ 5 ] = i18nc("Arm Style", "Straight Arms/Single Serif") ;
+		mapModel[ 6 ] = i18nc("Arm Style", "Straight Arms/Double Serif") ;
+		mapModel[ 7 ] = i18nc("Arm Style", "Non-Straight Arms/Horizontal") ;
+		mapModel[ 8 ] = i18nc("Arm Style", "Non-Straight Arms/Wedge") ;
+		mapModel[ 9 ] = i18nc("Arm Style", "Non-Straight Arms/Vertical") ;
+		mapModel[ 10 ] = i18nc("Arm Style", "Non-Straight Arms/Single Serif") ;
+		mapModel[ 11 ] = i18nc("Arm Style", "Non-Straight Arms/Double Serif") ;
 
 		m_panoseMap[ArmStyle ] = mapModel;
-		m_panoseKeyName[ArmStyle] = tr ( "Arm Style" );
+		m_panoseKeyName[ArmStyle] = i18n( "Arm Style" );
 		m_panoseKeyInfo[ArmStyle] ="<h1>Arm Style</h1>The Arm Style category classifies two attributes of a glyph design: special treatment of diagonal stems and termination of open rounded letterforms.";
 		mapModel.clear();
 
-		mapModel[ 0 ] = tr ( "Any" ) ;
-		mapModel[ 1 ] = tr ( "No Fit" ) ;
-		mapModel[ 2 ] = tr ( "Normal/Contact" , "Letterform" ) ;
-		mapModel[ 3 ] = tr ( "Normal/Weighted" , "Letterform" ) ;
-		mapModel[ 4 ] = tr ( "Normal/Boxed" , "Letterform");
-		mapModel[ 5 ] = tr ( "Normal/Flattened", "Letterform" ) ;
-		mapModel[ 6 ] = tr ( "Normal/Rounded" , "Letterform") ;
-		mapModel[ 7 ] = tr ( "Normal/Off Center" , "Letterform") ;
-		mapModel[ 8 ] = tr ( "Normal/Square" , "Letterform") ;
-		mapModel[ 9 ] = tr ( "Oblique/Contact" , "Letterform") ;
-		mapModel[ 10 ] = tr ( "Oblique/Weighted" , "Letterform") ;
-		mapModel[ 11 ] = tr ( "Oblique/Boxed" , "Letterform") ;
-		mapModel[ 12 ] = tr ( "Oblique/Flattened" , "Letterform") ;
-		mapModel[ 13 ] = tr ( "Oblique/Rounded" , "Letterform") ;
-		mapModel[ 14 ] = tr ( "Oblique/Off Center" , "Letterform") ;
-		mapModel[ 15 ] = tr ( "Oblique/Square" , "Letterform") ;
+		mapModel[ 0 ] = i18n( "Any" ) ;
+		mapModel[ 1 ] = i18n( "No Fit" ) ;
+		mapModel[ 2 ] = i18nc("Letterform", "Normal/Contact") ;
+		mapModel[ 3 ] = i18nc("Letterform", "Normal/Weighted") ;
+		mapModel[ 4 ] = i18nc("Letterform", "Normal/Boxed");
+		mapModel[ 5 ] = i18nc("Letterform", "Normal/Flattened") ;
+		mapModel[ 6 ] = i18nc("Letterform", "Normal/Rounded") ;
+		mapModel[ 7 ] = i18nc("Letterform", "Normal/Off Center") ;
+		mapModel[ 8 ] = i18nc("Letterform", "Normal/Square") ;
+		mapModel[ 9 ] = i18nc("Letterform", "Oblique/Contact") ;
+		mapModel[ 10 ] = i18nc("Letterform", "Oblique/Weighted") ;
+		mapModel[ 11 ] = i18nc("Letterform", "Oblique/Boxed") ;
+		mapModel[ 12 ] = i18nc("Letterform", "Oblique/Flattened") ;
+		mapModel[ 13 ] = i18nc("Letterform", "Oblique/Rounded") ;
+		mapModel[ 14 ] = i18nc("Letterform", "Oblique/Off Center") ;
+		mapModel[ 15 ] = i18nc("Letterform", "Oblique/Square") ;
 
 		m_panoseMap[Letterform] = mapModel;
-		m_panoseKeyName[Letterform] = tr ( "Letterform" );
+		m_panoseKeyName[Letterform] = i18n( "Letterform" );
 		m_panoseKeyInfo[Letterform] ="<h1>Letterform</h1>Roundness and predominant skewing is classified in the Letterform category.";
 		mapModel.clear();
 
-		mapModel[ 0 ] = tr ( "Any" ) ;
-		mapModel[ 1 ] = tr ( "No Fit" ) ;
-		mapModel[ 2 ] = tr ( "Standard/Trimmed" ,"Midline") ;
-		mapModel[ 3 ] = tr ( "Standard/Pointed" ,"Midline") ;
-		mapModel[ 4 ] = tr ( "Standard/Serifed","Midline" ) ;
-		mapModel[ 5 ] = tr ( "High/Trimmed" ,"Midline") ;
-		mapModel[ 6 ] = tr ( "High/Pointed" ,"Midline") ;
-		mapModel[ 7 ] = tr ( "High/Serifed","Midline" ) ;
-		mapModel[ 8 ] = tr ( "Constant/Trimmed" ,"Midline") ;
-		mapModel[ 9 ] = tr ( "Constant/Pointed" ,"Midline") ;
-		mapModel[ 10 ] = tr ( "Constant/Serifed" ,"Midline") ;
-		mapModel[ 11 ] = tr ( "Low/Trimmed" ,"Midline") ;
-		mapModel[ 12 ] = tr ( "Low/Pointed" ,"Midline") ;
-		mapModel[ 13 ] = tr ( "Low/Serifed" ,"Midline") ;
+		mapModel[ 0 ] = i18n( "Any" ) ;
+		mapModel[ 1 ] = i18n( "No Fit" ) ;
+		mapModel[ 2 ] = i18nc("Midline", "Standard/Trimmed") ;
+		mapModel[ 3 ] = i18nc("Midline", "Standard/Pointed") ;
+		mapModel[ 4 ] = i18nc("Midline", "Standard/Serifed") ;
+		mapModel[ 5 ] = i18nc("Midline", "High/Trimmed") ;
+		mapModel[ 6 ] = i18nc("Midline", "High/Pointed") ;
+		mapModel[ 7 ] = i18nc("Midline", "High/Serifed") ;
+		mapModel[ 8 ] = i18nc("Midline", "Constant/Trimmed") ;
+		mapModel[ 9 ] = i18nc("Midline", "Constant/Pointed") ;
+		mapModel[ 10 ] = i18nc("Midline", "Constant/Serifed") ;
+		mapModel[ 11 ] = i18nc("Midline", "Low/Trimmed") ;
+		mapModel[ 12 ] = i18nc("Midline", "Low/Pointed") ;
+		mapModel[ 13 ] = i18nc("Midline", "Low/Serifed") ;
 
 		m_panoseMap[Midline ] = mapModel;
-		m_panoseKeyName[Midline] = tr ( "Midline" );
+		m_panoseKeyName[Midline] = i18n( "Midline" );
 		m_panoseKeyInfo[Midline] ="<h1>Midline</h1>The ninth category in the PANOSE classification system analyzes two traits, the placement of the midline across the uppercase characters and the treatment of diagonal stem apexes.";
 		mapModel.clear();
 
-		mapModel[ 0 ] = tr ( "Any" ) ;
-		mapModel[ 1 ] = tr ( "No Fit" ) ;
-		mapModel[ 2 ] = tr ( "Constant/Small" , "X-Height") ;
-		mapModel[ 3 ] = tr ( "Constant/Standard" , "X-Height") ;
-		mapModel[ 4 ] = tr ( "Constant/Large" , "X-Height") ;
-		mapModel[ 5 ] = tr ( "Ducking/Small" , "X-Height") ;
-		mapModel[ 6 ] = tr ( "Ducking/Standard" , "X-Height") ;
-		mapModel[ 7 ] = tr ( "Ducking/Large" , "X-Height") ;
+		mapModel[ 0 ] = i18n( "Any" ) ;
+		mapModel[ 1 ] = i18n( "No Fit" ) ;
+		mapModel[ 2 ] = i18nc("X-Height", "Constant/Small") ;
+		mapModel[ 3 ] = i18nc("X-Height", "Constant/Standard") ;
+		mapModel[ 4 ] = i18nc("X-Height", "Constant/Large") ;
+		mapModel[ 5 ] = i18nc("X-Height", "Ducking/Small") ;
+		mapModel[ 6 ] = i18nc("X-Height", "Ducking/Standard") ;
+		mapModel[ 7 ] = i18nc("X-Height", "Ducking/Large") ;
 
 		m_panoseMap[XHeight ] = mapModel;
-		m_panoseKeyName[XHeight] = tr ( "X-Height" );
+		m_panoseKeyName[XHeight] = i18n( "X-Height" );
 		m_panoseKeyInfo[XHeight] ="<h1>X-Height</h1>Two different traits are represented in the X-height digit: the treatment of uppercase glyphs with diacritical marks and the relative size of the lowercase characters.";
 
 }
@@ -267,7 +268,7 @@ void FontStrings::fillCharsetMap()
 	charsetMap[FT_ENCODING_ADOBE_EXPERT] = "Adobe Expert";
 	charsetMap[FT_ENCODING_ADOBE_CUSTOM] = "Adobe Custom";
 	charsetMap[FT_ENCODING_APPLE_ROMAN] = "Apple Roman";
-	charsetMap[FT_ENCODING_OLD_LATIN_2] = tr ( "This value is deprecated and was never used nor reported by FreeType. Don't use or test for it." );
+	charsetMap[FT_ENCODING_OLD_LATIN_2] = i18n( "This value is deprecated and was never used nor reported by FreeType. Don't use or test for it." );
 	charsetMap[FT_ENCODING_MS_SJIS] = "MS SJIS";
 	charsetMap[FT_ENCODING_MS_GB2312] = "MS GB2312";
 	charsetMap[FT_ENCODING_MS_BIG5] = "MS BIG5";
@@ -280,48 +281,48 @@ void FontStrings::fillTTTableList()
 	tttableList.clear();
 	
 	// Required Tables
-	tttableList["cmap"] = tr("Character to glyph mapping");
-	tttableList["head"] = tr("Font header");
-	tttableList["hhea"] = tr("Horizontal header");
-	tttableList["hmtx"] = tr("Horizontal metrics");
-	tttableList["maxp"] = tr("Maximum profile");
-	tttableList["name"] = tr("Naming table");
-	tttableList["OS/2"] = tr("OS/2 and Windows specific metrics");
-	tttableList["post"] = tr("PostScript information");
+	tttableList["cmap"] = i18n("Character to glyph mapping");
+	tttableList["head"] = i18n("Font header");
+	tttableList["hhea"] = i18n("Horizontal header");
+	tttableList["hmtx"] = i18n("Horizontal metrics");
+	tttableList["maxp"] = i18n("Maximum profile");
+	tttableList["name"] = i18n("Naming table");
+	tttableList["OS/2"] = i18n("OS/2 and Windows specific metrics");
+	tttableList["post"] = i18n("PostScript information");
 	
 	// Tables Related to TrueType Outlines
-	tttableList["cvt"] = tr("Control Value Table");
-	tttableList["fpgm"] = tr("Font program");
-	tttableList["glyf"] = tr("Glyph data");
-	tttableList["loca"] = tr("Index to location");
-	tttableList["prep"] = tr("CVT Program");
+	tttableList["cvt"] = i18n("Control Value Table");
+	tttableList["fpgm"] = i18n("Font program");
+	tttableList["glyf"] = i18n("Glyph data");
+	tttableList["loca"] = i18n("Index to location");
+	tttableList["prep"] = i18n("CVT Program");
 	
 	// Tables Related to PostScript Outlines
-	tttableList["CFF"] = tr("PostScript font program");
-	tttableList["VORG"] = tr("Vertical Origin");
+	tttableList["CFF"] = i18n("PostScript font program");
+	tttableList["VORG"] = i18n("Vertical Origin");
 	
 	// Tables Related to Bitmap Glyphs
-	tttableList["EBDT"] = tr("Embedded bitmap data");
-	tttableList["EBLC"] = tr("Embedded bitmap location data");
-	tttableList["EBSC"] = tr("Embedded bitmap scaling data");
+	tttableList["EBDT"] = i18n("Embedded bitmap data");
+	tttableList["EBLC"] = i18n("Embedded bitmap location data");
+	tttableList["EBSC"] = i18n("Embedded bitmap scaling data");
 	
 	// Advanced Typographic Tables
-	tttableList["BASE"] = tr("Baseline data");
-	tttableList["GDEF"] = tr("Glyph definition data");
-	tttableList["GPOS"] = tr("Glyph positioning data");
-	tttableList["GSUB"] = tr("Glyph substitution data");
-	tttableList["JSTF"] = tr("Justification data");
+	tttableList["BASE"] = i18n("Baseline data");
+	tttableList["GDEF"] = i18n("Glyph definition data");
+	tttableList["GPOS"] = i18n("Glyph positioning data");
+	tttableList["GSUB"] = i18n("Glyph substitution data");
+	tttableList["JSTF"] = i18n("Justification data");
 	
 	// Other OpenType Tables
-	tttableList["DSIG"] = tr("Digital signature");
-	tttableList["gasp"] = tr("Grid-fitting/Scan-conversion");
-	tttableList["hdmx"] = tr("Horizontal device metrics");
-	tttableList["kern"] = tr("Kerning");
-	tttableList["LTSH"] = tr("Linear threshold data");
-	tttableList["PCLT"] = tr("PCL 5 data");
-	tttableList["VDMX"] = tr("Vertical device metrics");
-	tttableList["vhea"] = tr("Vertical Metrics header");
-	tttableList["vmtx"] = tr("Vertical Metrics");
+	tttableList["DSIG"] = i18n("Digital signature");
+	tttableList["gasp"] = i18n("Grid-fitting/Scan-conversion");
+	tttableList["hdmx"] = i18n("Horizontal device metrics");
+	tttableList["kern"] = i18n("Kerning");
+	tttableList["LTSH"] = i18n("Linear threshold data");
+	tttableList["PCLT"] = i18n("PCL 5 data");
+	tttableList["VDMX"] = i18n("Vertical device metrics");
+	tttableList["vhea"] = i18n("Vertical Metrics header");
+	tttableList["vmtx"] = i18n("Vertical Metrics");
 }
 
 
@@ -329,119 +330,119 @@ void FontStrings::fillFSftypeMap()
 {
 	// From http://www.microsoft.com/typography/otspec/os2.htm#fst
 	
-	m_FsType[FontItem::NOT_RESTRICTED] = tr("This font may be embedded and permanently installed on the remote system by an application. The user of the remote system acquires the identical rights, obligations and licenses for that font as the original purchaser of the font, and is subject to the same end-user license agreement, copyright, design patent, and/or trademark as was the original purchaser.");
-	m_FsType[FontItem::RESTRICTED] = tr("This font must not be modified, embedded or exchanged in any manner without first obtaining permission of the legal owner.");
-	m_FsType[FontItem::PREVIEW_PRINT] = tr("This font may be embedded, and temporarily loaded on the remote system. Documents containing this font must be opened \"read-only;\" no edits can be applied to the document.");
-	m_FsType[FontItem::EDIT_EMBED] = tr("This font may be embedded but must only be installed  temporarily  on other systems. In contrast to Preview &amp; Print fonts, documents containing this font may be opened for reading, editing is permitted, and changes may be saved.");
-	m_FsType[FontItem::NOSUBSET] = tr("This font may not be subsetted prior to embedding. Other embedding restrictions specified in bits 0-3 and 9 also apply.");
-	m_FsType[FontItem::BITMAP_ONLY] = tr("Only bitmaps contained in this font may be embedded. No outline data may be embedded. If there are no bitmaps available in this font, then it is considered unembeddable and the embedding services will fail. Other embedding restrictions specified in bits 0-3 and 8 also apply.");
+	m_FsType[FontItem::NOT_RESTRICTED] = i18n("This font may be embedded and permanently installed on the remote system by an application. The user of the remote system acquires the identical rights, obligations and licenses for that font as the original purchaser of the font, and is subject to the same end-user license agreement, copyright, design patent, and/or trademark as was the original purchaser.");
+	m_FsType[FontItem::RESTRICTED] = i18n("This font must not be modified, embedded or exchanged in any manner without first obtaining permission of the legal owner.");
+	m_FsType[FontItem::PREVIEW_PRINT] = i18n("This font may be embedded, and temporarily loaded on the remote system. Documents containing this font must be opened \"read-only;\" no edits can be applied to the document.");
+	m_FsType[FontItem::EDIT_EMBED] = i18n("This font may be embedded but must only be installed  temporarily  on other systems. In contrast to Preview &amp; Print fonts, documents containing this font may be opened for reading, editing is permitted, and changes may be saved.");
+	m_FsType[FontItem::NOSUBSET] = i18n("This font may not be subsetted prior to embedding. Other embedding restrictions specified in bits 0-3 and 9 also apply.");
+	m_FsType[FontItem::BITMAP_ONLY] = i18n("Only bitmaps contained in this font may be embedded. No outline data may be embedded. If there are no bitmaps available in this font, then it is considered unembeddable and the embedding services will fail. Other embedding restrictions specified in bits 0-3 and 8 also apply.");
 }
 
 void FontStrings::fillUniCat()
 {
-	unicodeCategory[QChar::Mark_NonSpacing] = tr("Mark, NonSpacing" );
-	unicodeCategory[QChar::Mark_SpacingCombining] = tr("Mark, SpacingCombining" );
-	unicodeCategory[QChar::Mark_Enclosing] = tr("Mark, Enclosing" );
-	unicodeCategory[QChar::Number_DecimalDigit] = tr("Number, DecimalDigit" );
-	unicodeCategory[QChar::Number_Letter] = tr("Number, Letter" );
-	unicodeCategory[QChar::Number_Other] = tr("Number, Other" );
-	unicodeCategory[QChar::Separator_Space] = tr("Separator, Space" );
-	unicodeCategory[QChar::Separator_Line] = tr("Separator, Line" );
-	unicodeCategory[QChar::Separator_Paragraph] = tr("Separator, Paragraph" );
-	unicodeCategory[QChar::Other_Control] = tr("Other, Control" );
-	unicodeCategory[QChar::Other_Format] = tr("Other, Format" );
-	unicodeCategory[QChar::Other_Surrogate] = tr("Other, Surrogate" );
-	unicodeCategory[QChar::Other_PrivateUse] = tr("Other, PrivateUse" );
-	unicodeCategory[QChar::Other_NotAssigned] = tr("Other, NotAssigned" );
-	unicodeCategory[QChar::Letter_Uppercase] = tr("Letter, Uppercase" );
-	unicodeCategory[QChar::Letter_Lowercase] = tr("Letter, Lowercase" );
-	unicodeCategory[QChar::Letter_Titlecase] = tr("Letter, Titlecase" );
-	unicodeCategory[QChar::Letter_Modifier] = tr("Letter, Modifier" );
-	unicodeCategory[QChar::Letter_Other] = tr("Letter, Other" );
-	unicodeCategory[QChar::Punctuation_Connector] = tr("Punctuation, Connector" );
-	unicodeCategory[QChar::Punctuation_Dash] = tr("Punctuation, Dash" );
-	unicodeCategory[QChar::Punctuation_Open] = tr("Punctuation, Open" );
-	unicodeCategory[QChar::Punctuation_Close] = tr("Punctuation, Close" );
-	unicodeCategory[QChar::Punctuation_InitialQuote] = tr("Punctuation, InitialQuote" );
-	unicodeCategory[QChar::Punctuation_FinalQuote] = tr("Punctuation, FinalQuote" );
-	unicodeCategory[QChar::Punctuation_Other] = tr("Punctuation, Other" );
-	unicodeCategory[QChar::Symbol_Math] = tr("Symbol, Math" );
-	unicodeCategory[QChar::Symbol_Currency] = tr("Symbol, Currency" );
-	unicodeCategory[QChar::Symbol_Modifier] = tr("Symbol, Modifier" );
-	unicodeCategory[QChar::Symbol_Other] = tr("Symbol, Other" );
+	unicodeCategory[QChar::Mark_NonSpacing] = i18n("Mark, NonSpacing" );
+	unicodeCategory[QChar::Mark_SpacingCombining] = i18n("Mark, SpacingCombining" );
+	unicodeCategory[QChar::Mark_Enclosing] = i18n("Mark, Enclosing" );
+	unicodeCategory[QChar::Number_DecimalDigit] = i18n("Number, DecimalDigit" );
+	unicodeCategory[QChar::Number_Letter] = i18n("Number, Letter" );
+	unicodeCategory[QChar::Number_Other] = i18n("Number, Other" );
+	unicodeCategory[QChar::Separator_Space] = i18n("Separator, Space" );
+	unicodeCategory[QChar::Separator_Line] = i18n("Separator, Line" );
+	unicodeCategory[QChar::Separator_Paragraph] = i18n("Separator, Paragraph" );
+	unicodeCategory[QChar::Other_Control] = i18n("Other, Control" );
+	unicodeCategory[QChar::Other_Format] = i18n("Other, Format" );
+	unicodeCategory[QChar::Other_Surrogate] = i18n("Other, Surrogate" );
+	unicodeCategory[QChar::Other_PrivateUse] = i18n("Other, PrivateUse" );
+	unicodeCategory[QChar::Other_NotAssigned] = i18n("Other, NotAssigned" );
+	unicodeCategory[QChar::Letter_Uppercase] = i18n("Letter, Uppercase" );
+	unicodeCategory[QChar::Letter_Lowercase] = i18n("Letter, Lowercase" );
+	unicodeCategory[QChar::Letter_Titlecase] = i18n("Letter, Titlecase" );
+	unicodeCategory[QChar::Letter_Modifier] = i18n("Letter, Modifier" );
+	unicodeCategory[QChar::Letter_Other] = i18n("Letter, Other" );
+	unicodeCategory[QChar::Punctuation_Connector] = i18n("Punctuation, Connector" );
+	unicodeCategory[QChar::Punctuation_Dash] = i18n("Punctuation, Dash" );
+	unicodeCategory[QChar::Punctuation_Open] = i18n("Punctuation, Open" );
+	unicodeCategory[QChar::Punctuation_Close] = i18n("Punctuation, Close" );
+	unicodeCategory[QChar::Punctuation_InitialQuote] = i18n("Punctuation, InitialQuote" );
+	unicodeCategory[QChar::Punctuation_FinalQuote] = i18n("Punctuation, FinalQuote" );
+	unicodeCategory[QChar::Punctuation_Other] = i18n("Punctuation, Other" );
+	unicodeCategory[QChar::Symbol_Math] = i18n("Symbol, Math" );
+	unicodeCategory[QChar::Symbol_Currency] = i18n("Symbol, Currency" );
+	unicodeCategory[QChar::Symbol_Modifier] = i18n("Symbol, Modifier" );
+	unicodeCategory[QChar::Symbol_Other] = i18n("Symbol, Other" );
 }
 
 void FontStrings::fillScriptTagNames()
 {
-	scriptTagNames[QString("arab")] = tr("Arabic");
-	scriptTagNames[QString("armn")] = tr("Armenian");
-	scriptTagNames[QString("bali")] = tr("Balinese");
-	scriptTagNames[QString("beng")] = tr("Bengali");
-	scriptTagNames[QString("bopo")] = tr("Bopomofo");
-	scriptTagNames[QString("brai")] = tr("Braille");
-	scriptTagNames[QString("bugi")] = tr("Buginese");
-	scriptTagNames[QString("buhd")] = tr("Buhid");
-	scriptTagNames[QString("byzm")] = tr("Byzantine Music");
-	scriptTagNames[QString("cans")] = tr("Canadian Syllabics");
-	scriptTagNames[QString("cher")] = tr("Cherokee");
-	scriptTagNames[QString("hani")] = tr("CJK Ideographic");
-	scriptTagNames[QString("copt")] = tr("Coptic");
-	scriptTagNames[QString("cprt")] = tr("Cypriot Syllabary");
-	scriptTagNames[QString("cyrl")] = tr("Cyrillic");
-	scriptTagNames[QString("DFLT")] = tr("Default");
-	scriptTagNames[QString("dsrt")] = tr("Deseret");
-	scriptTagNames[QString("deva")] = tr("Devanagari");
-	scriptTagNames[QString("ethi")] = tr("Ethiopic");
-	scriptTagNames[QString("geor")] = tr("Georgian");
-	scriptTagNames[QString("glag")] = tr("Glagolitic");
-	scriptTagNames[QString("goth")] = tr("Gothic");
-	scriptTagNames[QString("grek")] = tr("Greek");
-	scriptTagNames[QString("gujr")] = tr("Gujarati");
-	scriptTagNames[QString("guru")] = tr("Gurmukhi");
-	scriptTagNames[QString("jamo")] = tr("Hangul Jamo");
-	scriptTagNames[QString("hang")] = tr("Hangul");
-	scriptTagNames[QString("hano")] = tr("Hanunoo");
-	scriptTagNames[QString("hebr")] = tr("Hebrew");
-	scriptTagNames[QString("kana")] = tr("Hiragana and Katakana");
-	scriptTagNames[QString("java")] = tr("Javanese");
-	scriptTagNames[QString("knda")] = tr("Kannada");
-	scriptTagNames[QString("khar")] = tr("Kharosthi");
-	scriptTagNames[QString("khmr")] = tr("Khmer");
-	scriptTagNames[QString("lao ")] = tr("Lao");
-	scriptTagNames[QString("latn")] = tr("Latin");
-	scriptTagNames[QString("limb")] = tr("Limbu");
-	scriptTagNames[QString("linb")] = tr("Linear B");
-	scriptTagNames[QString("mlym")] = tr("Malayalam");
-	scriptTagNames[QString("math")] = tr("Mathematical Alphanumeric Symbols");
-	scriptTagNames[QString("mong")] = tr("Mongolian");
-	scriptTagNames[QString("musc")] = tr("Musical Symbols");
-	scriptTagNames[QString("mymr")] = tr("Myanmar");
-	scriptTagNames[QString("nko ")] = tr("N'ko");
-	scriptTagNames[QString("ogam")] = tr("Ogham");
-	scriptTagNames[QString("ital")] = tr("Old Italic");
-	scriptTagNames[QString("xpeo")] = tr("Old Persian Cuneiform");
-	scriptTagNames[QString("orya")] = tr("Oriya");
-	scriptTagNames[QString("osma")] = tr("Osmanya");
-	scriptTagNames[QString("phag")] = tr("Phags-pa");
-	scriptTagNames[QString("phnx")] = tr("Phoenician");
-	scriptTagNames[QString("runr")] = tr("Runic");
-	scriptTagNames[QString("shaw")] = tr("Shavian");
-	scriptTagNames[QString("sinh")] = tr("Sinhala");
-	scriptTagNames[QString("xsux")] = tr("Sumero-Akkadian Cuneiform");
-	scriptTagNames[QString("sylo")] = tr("Syloti Nagri");
-	scriptTagNames[QString("syrc")] = tr("Syriac");
-	scriptTagNames[QString("tglg")] = tr("Tagalog");
-	scriptTagNames[QString("tagb")] = tr("Tagbanwa");
-	scriptTagNames[QString("tale")] = tr("Tai Le");
-	scriptTagNames[QString("talu")] = tr("Tai Lu");
-	scriptTagNames[QString("taml")] = tr("Tamil");
-	scriptTagNames[QString("telu")] = tr("Telugu");
-	scriptTagNames[QString("thaa")] = tr("Thaana");
-	scriptTagNames[QString("thai")] = tr("Thai");
-	scriptTagNames[QString("tibt")] = tr("Tibetan");
-	scriptTagNames[QString("tfng")] = tr("Tifinagh");
-	scriptTagNames[QString("ugar")] = tr("Ugaritic Cuneiform");
-	scriptTagNames[QString("yi ")] = tr("Yi");
+	scriptTagNames[QString("arab")] = i18n("Arabic");
+	scriptTagNames[QString("armn")] = i18n("Armenian");
+	scriptTagNames[QString("bali")] = i18n("Balinese");
+	scriptTagNames[QString("beng")] = i18n("Bengali");
+	scriptTagNames[QString("bopo")] = i18n("Bopomofo");
+	scriptTagNames[QString("brai")] = i18n("Braille");
+	scriptTagNames[QString("bugi")] = i18n("Buginese");
+	scriptTagNames[QString("buhd")] = i18n("Buhid");
+	scriptTagNames[QString("byzm")] = i18n("Byzantine Music");
+	scriptTagNames[QString("cans")] = i18n("Canadian Syllabics");
+	scriptTagNames[QString("cher")] = i18n("Cherokee");
+	scriptTagNames[QString("hani")] = i18n("CJK Ideographic");
+	scriptTagNames[QString("copt")] = i18n("Coptic");
+	scriptTagNames[QString("cprt")] = i18n("Cypriot Syllabary");
+	scriptTagNames[QString("cyrl")] = i18n("Cyrillic");
+	scriptTagNames[QString("DFLT")] = i18n("Default");
+	scriptTagNames[QString("dsrt")] = i18n("Deseret");
+	scriptTagNames[QString("deva")] = i18n("Devanagari");
+	scriptTagNames[QString("ethi")] = i18n("Ethiopic");
+	scriptTagNames[QString("geor")] = i18n("Georgian");
+	scriptTagNames[QString("glag")] = i18n("Glagolitic");
+	scriptTagNames[QString("goth")] = i18n("Gothic");
+	scriptTagNames[QString("grek")] = i18n("Greek");
+	scriptTagNames[QString("gujr")] = i18n("Gujarati");
+	scriptTagNames[QString("guru")] = i18n("Gurmukhi");
+	scriptTagNames[QString("jamo")] = i18n("Hangul Jamo");
+	scriptTagNames[QString("hang")] = i18n("Hangul");
+	scriptTagNames[QString("hano")] = i18n("Hanunoo");
+	scriptTagNames[QString("hebr")] = i18n("Hebrew");
+	scriptTagNames[QString("kana")] = i18n("Hiragana and Katakana");
+	scriptTagNames[QString("java")] = i18n("Javanese");
+	scriptTagNames[QString("knda")] = i18n("Kannada");
+	scriptTagNames[QString("khar")] = i18n("Kharosthi");
+	scriptTagNames[QString("khmr")] = i18n("Khmer");
+	scriptTagNames[QString("lao ")] = i18n("Lao");
+	scriptTagNames[QString("latn")] = i18n("Latin");
+	scriptTagNames[QString("limb")] = i18n("Limbu");
+	scriptTagNames[QString("linb")] = i18n("Linear B");
+	scriptTagNames[QString("mlym")] = i18n("Malayalam");
+	scriptTagNames[QString("math")] = i18n("Mathematical Alphanumeric Symbols");
+	scriptTagNames[QString("mong")] = i18n("Mongolian");
+	scriptTagNames[QString("musc")] = i18n("Musical Symbols");
+	scriptTagNames[QString("mymr")] = i18n("Myanmar");
+	scriptTagNames[QString("nko ")] = i18n("N'ko");
+	scriptTagNames[QString("ogam")] = i18n("Ogham");
+	scriptTagNames[QString("ital")] = i18n("Old Italic");
+	scriptTagNames[QString("xpeo")] = i18n("Old Persian Cuneiform");
+	scriptTagNames[QString("orya")] = i18n("Oriya");
+	scriptTagNames[QString("osma")] = i18n("Osmanya");
+	scriptTagNames[QString("phag")] = i18n("Phags-pa");
+	scriptTagNames[QString("phnx")] = i18n("Phoenician");
+	scriptTagNames[QString("runr")] = i18n("Runic");
+	scriptTagNames[QString("shaw")] = i18n("Shavian");
+	scriptTagNames[QString("sinh")] = i18n("Sinhala");
+	scriptTagNames[QString("xsux")] = i18n("Sumero-Akkadian Cuneiform");
+	scriptTagNames[QString("sylo")] = i18n("Syloti Nagri");
+	scriptTagNames[QString("syrc")] = i18n("Syriac");
+	scriptTagNames[QString("tglg")] = i18n("Tagalog");
+	scriptTagNames[QString("tagb")] = i18n("Tagbanwa");
+	scriptTagNames[QString("tale")] = i18n("Tai Le");
+	scriptTagNames[QString("talu")] = i18n("Tai Lu");
+	scriptTagNames[QString("taml")] = i18n("Tamil");
+	scriptTagNames[QString("telu")] = i18n("Telugu");
+	scriptTagNames[QString("thaa")] = i18n("Thaana");
+	scriptTagNames[QString("thai")] = i18n("Thai");
+	scriptTagNames[QString("tibt")] = i18n("Tibetan");
+	scriptTagNames[QString("tfng")] = i18n("Tifinagh");
+	scriptTagNames[QString("ugar")] = i18n("Ugaritic Cuneiform");
+	scriptTagNames[QString("yi ")] = i18n("Yi");
 }
 
 const QMap< FMFontDb::InfoItem, QString >& FontStrings::Names()
@@ -488,17 +489,17 @@ QString FontStrings::FsType(int fstype_part, bool shortString)
 	else
 	{
 		if(FontItem::NOT_RESTRICTED == fstype_part)
-			return tr("Not Restricted");
+			return i18n("Not Restricted");
 		else if(FontItem::RESTRICTED == fstype_part)
-			return tr("Restricted");
+			return i18n("Restricted");
 		else if(FontItem::PREVIEW_PRINT == fstype_part)
-			return tr("Preview/Print");
+			return i18n("Preview/Print");
 		else if(FontItem::EDIT_EMBED == fstype_part)
-			return tr("Edit/Embed");
+			return i18n("Edit/Embed");
 		else if(FontItem::NOSUBSET == fstype_part)
-			return tr("No Subset");
+			return i18n("No Subset");
 		else if(FontItem::BITMAP_ONLY == fstype_part)
-			return tr("Bitmap Only");
+			return i18n("Bitmap Only");
 	}
 
 	return QString();
