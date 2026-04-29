@@ -683,13 +683,13 @@ void typotek::createActions()
 {
 	Shortcuts *scuts = Shortcuts::getInstance();
 
-	openAct = new QAction ( QIcon ( ":/fontmatrix_import_icon" ), tr ( "&Import Directory..." ), this );
+	openAct = new QAction ( tr ( "&Import Directory..." ), this );
 	openAct->setShortcut ( QKeySequence(Qt::CTRL | Qt::Key_O) );
 	openAct->setToolTip( tr ( "Import a directory" ) );
 	scuts->add(openAct);
 	connect ( openAct, SIGNAL ( triggered() ), this, SLOT ( open() ) );
 
-	importFilesAction = new QAction(QIcon ( ":/fontmatrix_import_icon" ), tr ( "Import &Files..." ), this );
+	importFilesAction = new QAction( tr ( "Import &Files..." ), this );
 	importFilesAction->setShortcut( QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_O) );
 	importFilesAction->setToolTip(tr("Import Files"));
 	scuts->add(importFilesAction);
@@ -701,7 +701,7 @@ void typotek::createActions()
 	connect( exportFontSetAct,SIGNAL(triggered( )),this,SLOT(slotExportFontSet()));
 
 
-	fontBookAct = new QAction ( QIcon ( ":/fontmatrix_fontbookexport_icon.png" ), tr ( "Export font book..." ),this );
+	fontBookAct = new QAction ( tr ( "Export font book..." ),this );
 	fontBookAct->setStatusTip ( tr ( "Export a PDF document that shows selected fonts" ) );
 	scuts->add(fontBookAct);
 	connect ( fontBookAct, SIGNAL ( triggered() ), this, SLOT ( fontBook() ) );
@@ -858,10 +858,10 @@ void typotek::createActions()
 	KStandardAction::preferences(this, &typotek::slotPrefsPanelDefault, ac);
 	KStandardAction::helpContents(this, &typotek::helpBegin, ac);
 
-	// KDE theme icons — toolbar-visible actions get standard XDG names with QRC fallbacks
-	openAct->setIcon(QIcon::fromTheme(QStringLiteral("folder-open"), openAct->icon()));
-	importFilesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-open"), importFilesAction->icon()));
-	fontBookAct->setIcon(QIcon::fromTheme(QStringLiteral("document-print-preview"), fontBookAct->icon()));
+	// KDE theme icons (XDG standard names) for menu and toolbar actions.
+	openAct->setIcon(QIcon::fromTheme(QStringLiteral("folder-open")));
+	importFilesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-open")));
+	fontBookAct->setIcon(QIcon::fromTheme(QStringLiteral("document-print-preview")));
 	activCurAct->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));
 	deactivCurAct->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-stop")));
 	compareAction->setIcon(QIcon::fromTheme(QStringLiteral("view-split-left-right")));
