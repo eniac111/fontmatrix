@@ -205,10 +205,7 @@ void typotek::initMatrix()
 	mainStack->addWidget(theBrowser);
 	setCentralWidget ( mainStack );
 
-	if ( QSystemTrayIcon::isSystemTrayAvailable() )
-		systray = new Systray();
-	else
-		systray = nullptr;
+	systray = new Systray();
 
 	setDockOptions(QMainWindow::AnimatedDocks | QMainWindow::ForceTabbedDocks);
 
@@ -1593,15 +1590,11 @@ void typotek::slotPrefsPanel(PrefsPanelDialog::PAGE page)
 {
 	PrefsPanelDialog pp ( this );
 
-	// FIXME if Systray is not available, systray->whatever() will segault
-	if ( QSystemTrayIcon::isSystemTrayAvailable() )
-		pp.initSystrayPrefs ( QSystemTrayIcon::isSystemTrayAvailable(),
-		                      systray->isVisible(),
-		                      systray->hasActivateAll(),
-		                      systray->allConfirmation(),
-		                      systray->tagsConfirmation() );
-	else
-		pp.initSystrayPrefs ( false,false,false,false,false );
+	pp.initSystrayPrefs ( true,
+	                      systray->isVisible(),
+	                      systray->hasActivateAll(),
+	                      systray->allConfirmation(),
+	                      systray->tagsConfirmation() );
 	pp.initSampleTextPrefs();
 	pp.initFilesAndFolders();
 	pp.initShortcuts();

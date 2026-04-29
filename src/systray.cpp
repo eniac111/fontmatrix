@@ -25,30 +25,34 @@
 #include "fontitem.h"
 #include "fmfontdb.h"
 #include <QtGui>
+#include <QMenu>
 #include <QDebug>
+#include <KStatusNotifierItem>
 
 typotek* Systray::ttek = nullptr;
 
 Systray::Systray()
 {
-    createActions();
-    createTrayIcon();
-    createTagMenu();
+	createActions();
+	createTrayIcon();
+	createTagMenu();
 
-    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-            this, SLOT(trayIconClicked(QSystemTrayIcon::ActivationReason)));
-	connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(slotPrepareMenu()));
+	connect(trayIconMenu, &QMenu::aboutToShow, this, &Systray::slotPrepareMenu);
 
 	showAllConfirmation = FMConfig::value(QStringLiteral("Systray/AllConfirmation"), true).toBool();
 	showTagsConfirmation = FMConfig::value(QStringLiteral("Systray/TagsConfirmation"), false).toBool();
 
 	slotSetActivateAll(FMConfig::value(QStringLiteral("Systray/ActivateAllVisible"), false).toBool());
 
-	trayIcon->setIcon(QIcon(":/fontmatrix_systray_icon.png"));
+	trayIcon->setIconByPixmap(QIcon(QStringLiteral(":/fontmatrix_systray_icon.png")));
+	trayIcon->setToolTip(QStringLiteral(":/fontmatrix_systray_icon.png"),
+	                     QStringLiteral("FontMatrix-NG"),
+	                     QString());
+
 	if (FMConfig::value(QStringLiteral("Systray/Visible"), false).toBool())
-		trayIcon->show();
+		trayIcon->setStatus(KStatusNotifierItem::Active);
 	else
-		trayIcon->hide();
+		trayIcon->setStatus(KStatusNotifierItem::Passive);
 }
 
 Systray::~Systray()
@@ -58,11 +62,8 @@ Systray::~Systray()
 
 void Systray::slotSetVisible(bool isVisible)
 {
-	if (isVisible)
-		trayIcon->show();
-	else
-		trayIcon->hide();
-
+	trayIcon->setStatus(isVisible ? KStatusNotifierItem::Active
+	                              : KStatusNotifierItem::Passive);
 	FMConfig::setValue(QStringLiteral("Systray/Visible"), isVisible);
 }
 
@@ -75,26 +76,12 @@ void Systray::slotSetActivateAll(bool isVisible)
 
 void Systray::show()
 {
-    trayIcon->show();
+	trayIcon->setStatus(KStatusNotifierItem::Active);
 }
 
 void Systray::hide()
 {
-    trayIcon->hide();
-}
-
-void Systray::trayIconClicked(QSystemTrayIcon::ActivationReason reason)
-{
-	switch (reason) {
-	case QSystemTrayIcon::Trigger:
-	case QSystemTrayIcon::DoubleClick:
-		ttek->isVisible() ? ttek->hide() : ttek->show();
-		break;
-	case QSystemTrayIcon::MiddleClick:
-		break;
-	default:
-		;
-	}
+	trayIcon->setStatus(KStatusNotifierItem::Passive);
 }
 
 void Systray::slotMinimize()
@@ -271,21 +258,34 @@ void Systray::createActions()
 
 void Systray::createTrayIcon()
 {
-    trayIconMenu = new QMenu(nullptr);
-    trayIconMenu->addAction(activateAllAction);
-    trayIconMenu->addAction(deactivateAllAction);
-// 	trayIconMenu->addSeparator();
-// 	tagSetMenu = trayIconMenu->addMenu(tr("&Collections"));
-    tagMenu = trayIconMenu->addMenu(tr("&Tags"));
-    trayIconMenu->addSeparator();
-    trayIconMenu->addAction(minimizeAction);
-    trayIconMenu->addAction(restoreAction);
-    trayIconMenu->addSeparator();
-    trayIconMenu->addAction(quitAction);
+	if (!ttek)
+		ttek = typotek::getInstance();
 
-    trayIcon = new QSystemTrayIcon(this);
-    trayIcon->setContextMenu(trayIconMenu);
-    trayIcon->installEventFilter(this);
+	trayIconMenu = new QMenu(nullptr);
+	trayIconMenu->addAction(activateAllAction);
+	trayIconMenu->addAction(deactivateAllAction);
+	tagMenu = trayIconMenu->addMenu(tr("&Tags"));
+	trayIconMenu->addSeparator();
+	trayIconMenu->addAction(minimizeAction);
+	trayIconMenu->addAction(restoreAction);
+	trayIconMenu->addSeparator();
+	trayIconMenu->addAction(quitAction);
+
+	trayIcon = new KStatusNotifierItem(QStringLiteral("fontmatrix-ng"), this);
+	trayIcon->setCategory(KStatusNotifierItem::ApplicationStatus);
+	trayIcon->setTitle(QStringLiteral("FontMatrix-NG"));
+	trayIcon->setStandardActionsEnabled(false);
+	trayIcon->setContextMenu(trayIconMenu);
+
+	connect(trayIcon, &KStatusNotifierItem::activateRequested,
+	        this, [](bool /*active*/, const QPoint & /*pos*/) {
+		if (!ttek)
+			return;
+		if (ttek->isVisible())
+			ttek->hide();
+		else
+			ttek->show();
+	});
 }
 
 void Systray::createTagMenu()
@@ -305,7 +305,7 @@ void Systray::createTagMenu()
 
 bool Systray::isVisible()
 {
-	return trayIcon->isVisible();
+	return trayIcon->status() != KStatusNotifierItem::Passive;
 }
 
 bool Systray::hasActivateAll()
@@ -370,17 +370,4 @@ void Systray::updateTagMenu(const QStringList& nameOfFontWhichCausedThisUpdate)
 	}
 	
 }
-
-// bool Systray::eventFilter(QObject * watched, QEvent * event)
-// {
-// 	if (watched == trayIcon) {
-// // 		qDebug() << event;
-// 		}
-// 	
-// 	return Systray::eventFilter(watched, event);
-// 	
-// }
-
-
-
 
