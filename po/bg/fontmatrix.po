@@ -77,7 +77,7 @@ msgstr "Активирани"
 
 #: ../bookexport.ui:13
 msgid "Export Font Book"
-msgstr "Експортиране на каталог с шрифтове"
+msgstr "Изнасяне на каталог с шрифтове"
 
 #: ../bookexport.ui:45
 msgid "Output"
@@ -93,7 +93,7 @@ msgstr "Информация"
 
 #: ../browserwidget.ui:76
 msgid "Import"
-msgstr "Импортиране"
+msgstr "Внасяне"
 
 #: ../browserwidget.ui:86
 msgid "Chart"
@@ -212,7 +212,7 @@ msgstr "Запълване:"
 
 #: ../dataexport.ui:14
 msgid "Export Data"
-msgstr "Експортиране на данни"
+msgstr "Изнасяне на данни"
 
 #: ../dataexport.ui:23
 msgid "The font files currently filtered and selected here will be copied in a directory of your choice."
@@ -262,7 +262,7 @@ msgstr "Зареждане..."
 
 #: ../dumpdialog.ui:16
 msgid "Fontmatrix - Export font info for packaging"
-msgstr "Fontmatrix — Експортиране на данни за шрифта за пакетиране"
+msgstr "Fontmatrix — Изнасяне на данни за шрифта за пакетиране"
 
 #. Activation subroutine failed to make a symbolic link to the font file
 #: ../fmactivate.cpp:37
@@ -554,15 +554,15 @@ msgstr "Печат"
 
 #: ../browserwidget.cpp:331 ../listdockwidget.cpp:382
 msgid "Import recursively"
-msgstr "Рекурсивно импортиране"
+msgstr "Рекурсивно внасяне"
 
 #: ../browserwidget.cpp:330 ../listdockwidget.cpp:381
 msgid "Import Directory"
-msgstr "Импортиране на папка"
+msgstr "Внасяне на папка"
 
 #: ../browserwidget.cpp:332 ../listdockwidget.cpp:383
 msgid "Import File"
-msgstr "Импортиране на файл"
+msgstr "Внасяне на файл"
 
 #: ../fontaction.ui:32
 msgid "Action"
@@ -1946,11 +1946,11 @@ msgstr ""
 
 #: ../importedfonts.ui:13
 msgid "Imported fonts"
-msgstr "Импортирани шрифтове"
+msgstr "Внесени шрифтове"
 
 #: ../importedfonts.ui:24
 msgid "Imported Fonts:"
-msgstr "Импортирани шрифтове:"
+msgstr "Внесени шрифтове:"
 
 #: ../importedfonts.ui:58
 msgid "&Do not show this dialog again"
@@ -1966,7 +1966,7 @@ msgstr " (не е зареден)"
 
 #: ../importedfontsdialog.cpp:44
 msgid "Number of Imported Fonts "
-msgstr "Брой импортирани шрифтове:"
+msgstr "Брой внесени шрифтове:"
 
 #: ../layoutoptions.ui:25
 msgid "Weights"
@@ -2277,7 +2277,7 @@ msgstr "/usr/bin/fontforge"
 
 #: ../prefs_panel.ui:129
 msgid "Ask for tag names when importing fonts"
-msgstr "Питане за имена на етикети при импортиране на шрифтове"
+msgstr "Питане за имена на етикети при внасяне на шрифтове"
 
 #: ../prefs_panel.ui:407
 msgid "Initial Layout"
@@ -2301,7 +2301,7 @@ msgstr "Локално хранилище"
 
 #: ../prefs_panel.ui:136
 msgid "Show names of imported fonts after import process"
-msgstr "Показване на имената на импортираните шрифтове след импортирането"
+msgstr "Показване на имената на внесените шрифтове след внасянето"
 
 #: ../prefs_panel.ui:962
 msgid "Change"
@@ -2396,8 +2396,8 @@ msgid "Hyphenation dictionary"
 msgstr "Речник за сричкопренасяне"
 
 #: ../prefs_panel.ui:89
-msgid "Service"
-msgstr "Услуги"
+msgid "Tools"
+msgstr "Инструменти"
 
 #: ../prefs_panel.ui:388
 msgid "Size:"
@@ -3221,7 +3221,7 @@ msgstr "Показване на таблиците на TrueType"
 
 #: ../tttablewidget.ui:85
 msgid "&Export"
-msgstr "&Експортиране"
+msgstr "&Изнасяне"
 
 #: ../tagset.ui:19
 msgid "TagSet editor"
@@ -3397,19 +3397,19 @@ msgstr "Добавяне на директория"
 
 #: ../typotek.cpp:440 ../typotek.cpp:567
 msgid "Importing font files... "
-msgstr "Импортиране на шрифтови файлове..."
+msgstr "Внасяне на шрифтови файлове..."
 
 #: ../typotek.cpp:660
 msgid "Import a directory"
-msgstr "Импортиране на директория"
+msgstr "Внасяне на директория"
 
 #: ../typotek.cpp:671
 msgid "Export a fontset"
-msgstr "Експортиране на набор от шрифтове"
+msgstr "Изнасяне на набор от шрифтове"
 
 #: ../typotek.cpp:676
 msgid "Export font book..."
-msgstr "Експортиране на каталог с шрифтове..."
+msgstr "Изнасяне на каталог с шрифтове..."
 
 #: ../typotek.cpp:687
 msgid "Exit the application"
@@ -3526,7 +3526,7 @@ msgstr "Добавяне"
 
 #: ../typotek.cpp:1332
 msgid "font descriptions imported from network"
-msgstr "описания на шрифтове, импортирани от мрежата"
+msgstr "описания на шрифтове, внесени от мрежата"
 
 #: ../typotek.cpp:1359 ../typotek.cpp:1365
 msgid "Fontmatrix care"
@@ -3563,7 +3563,7 @@ msgstr "Пуснахте нещо, което не мога да обработ�
 #: ../typotek.cpp:512 ../typotek.cpp:618
 #, qt-format
 msgid "Fonts imported: %1"
-msgstr "Импортирани шрифтове: %1"
+msgstr "Внесени шрифтове: %1"
 
 #: ../typotek.cpp:770
 msgid "Show TrueType tables"
@@ -3604,11 +3604,11 @@ msgstr "Извличане на шрифтове..."
 
 #: ../typotek.cpp:591
 msgid "Cannot import this font because it is broken: "
-msgstr "Не може да се импортира шрифтът, защото е повреден: "
+msgstr "Не може да се внася шрифтът, защото е повреден: "
 
 #: ../typotek.cpp:480
 msgid "Cannot import this font because it is broken:"
-msgstr "Не може да се импортира шрифтът, защото е повреден:"
+msgstr "Не може да се внася шрифтът, защото е повреден:"
 
 #: ../typotek.cpp:2304
 #, qt-format
@@ -3620,7 +3620,7 @@ msgstr[1] "Филтрирани шрифтове: %1"
 
 #: ../typotek.cpp:677
 msgid "Export a PDF document that shows selected fonts"
-msgstr "Експортиране на PDF документ с избраните шрифтове"
+msgstr "Изнасяне на PDF документ с избраните шрифтове"
 
 #: ../typotek.cpp:694
 msgid "Show information about Fontmatrix"
@@ -3716,19 +3716,19 @@ msgstr "Зареждане на системни шрифтове"
 
 #: ../typotek.cpp:670
 msgid "Export &fonts"
-msgstr "Експортиране на &шрифтове"
+msgstr "Изнасяне на &шрифтове"
 
 #: ../typotek.cpp:681
 msgid "Export font info for packaging..."
-msgstr "Експортиране на информация за шрифта за пакетиране..."
+msgstr "Изнасяне на информация за шрифта за пакетиране..."
 
 #: ../typotek.cpp:765
 msgid "Tag All Filtered..."
 msgstr "Етикетиране на всички филтрирани..."
 
-#: ../typotek.cpp:889
-msgid "&Service"
-msgstr "&Услуги"
+#: ../fontmatrixui.rc:35
+msgid "&Tools"
+msgstr "&Инструменти"
 
 #: ../typotek.cpp:741
 msgid "Reload Filtered"
@@ -3742,12 +3742,12 @@ msgstr "Потвърждение"
 #, qt-format
 msgid "Do you confirm you want to import %1 font?"
 msgid_plural "Do you confirm you want to import %1 fonts?"
-msgstr[0] "Потвърждавате ли импортирането на %1 шрифт?"
-msgstr[1] "Потвърждавате ли импортирането на %1 шрифта?"
+msgstr[0] "Потвърждавате ли внасянето на %1 шрифт?"
+msgstr[1] "Потвърждавате ли внасянето на %1 шрифта?"
 
 #: ../typotek.cpp:524
 msgid "Select Files to Import"
-msgstr "Избор на файлове за импортиране"
+msgstr "Избор на файлове за внасяне"
 
 #: ../typotek.cpp:526
 msgid "Font Files"
@@ -3755,15 +3755,15 @@ msgstr "Шрифтови файлове"
 
 #: ../typotek.cpp:658
 msgid "&Import Directory..."
-msgstr "Импортиране на &директория..."
+msgstr "Внасяне на &директория..."
 
 #: ../typotek.cpp:664
 msgid "Import &Files..."
-msgstr "Импортиране на &файлове..."
+msgstr "Внасяне на &файлове..."
 
 #: ../typotek.cpp:666
 msgid "Import Files"
-msgstr "Импортиране на файлове"
+msgstr "Внасяне на файлове"
 
 #: ../typotek.cpp:742
 msgid "Reload informations for filtered fonts from the font files they belong to"

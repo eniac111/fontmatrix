@@ -2264,8 +2264,8 @@ msgid "Display"
 msgstr "Zobrazení"
 
 #: ../prefs_panel.ui:89
-msgid "Service"
-msgstr "Služby"
+msgid "Tools"
+msgstr "Nástroje"
 
 #: ../prefs_panel.ui:94
 msgid "Samples collection"
@@ -3543,9 +3543,9 @@ msgstr "&Pohled"
 msgid "&Scripts"
 msgstr "S&kripty"
 
-#: ../typotek.cpp:889
-msgid "&Service"
-msgstr "S&lužba"
+#: ../fontmatrixui.rc:35
+msgid "&Tools"
+msgstr "&Nástroje"
 
 #: ../typotek.cpp:933
 msgid "Browse Directories"

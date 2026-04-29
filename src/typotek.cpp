@@ -847,11 +847,11 @@ void typotek::createActions()
 	ac->addAction(QStringLiteral("view_show_all"), showAllFloat);
 	ac->addAction(QStringLiteral("view_hide_all"), hideAllFloat);
 
-	ac->addAction(QStringLiteral("service_extract_font"), extractFontAction);
-	ac->addAction(QStringLiteral("service_match_raster"), matchRasterAct);
-	ac->addAction(QStringLiteral("service_export_xetex"), exportXeTeXAct);
-	ac->addAction(QStringLiteral("service_repair"), repairAct);
-	ac->addAction(QStringLiteral("service_tt_tables"), showTTTAct);
+	ac->addAction(QStringLiteral("tools_extract_font"), extractFontAction);
+	ac->addAction(QStringLiteral("tools_match_raster"), matchRasterAct);
+	ac->addAction(QStringLiteral("tools_export_xetex"), exportXeTeXAct);
+	ac->addAction(QStringLiteral("tools_repair"), repairAct);
+	ac->addAction(QStringLiteral("tools_tt_tables"), showTTTAct);
 
 	KStandardAction::quit(this, &typotek::close, ac);
 	KStandardAction::preferences(this, &typotek::slotPrefsPanelDefault, ac);

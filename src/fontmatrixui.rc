@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="fontmatrix" version="4" translationDomain="fontmatrix">
+<gui name="fontmatrix" version="5" translationDomain="fontmatrix">
   <MenuBar>
     <Menu name="file" noMerge="1">
       <text>&amp;File</text>
@@ -31,13 +31,13 @@
       <Action name="view_compare"/>
       <Separator/>
     </Menu>
-    <Menu name="services" append="before_settings_or_help">
-      <text>&amp;Service</text>
-      <Action name="service_extract_font"/>
-      <Action name="service_match_raster"/>
-      <Action name="service_export_xetex"/>
-      <Action name="service_repair"/>
-      <Action name="service_tt_tables"/>
+    <Menu name="tools" noMerge="1">
+      <text>&amp;Tools</text>
+      <Action name="tools_extract_font"/>
+      <Action name="tools_match_raster"/>
+      <Action name="tools_export_xetex"/>
+      <Action name="tools_repair"/>
+      <Action name="tools_tt_tables"/>
     </Menu>
   </MenuBar>
   <ToolBar name="mainToolBar" noMerge="1">

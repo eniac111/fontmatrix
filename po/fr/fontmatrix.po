@@ -1804,8 +1804,8 @@ msgid "Display"
 msgstr "Affichage"
 
 #: ../prefs_panel.ui:89
-msgid "Service"
-msgstr "Services"
+msgid "Tools"
+msgstr "Outils"
 
 #: ../prefs_panel.ui:94
 msgid "Samples collection"
@@ -3409,9 +3409,9 @@ msgstr "Ouvre l’interface de suivi des scripts"
 msgid "&Scripts"
 msgstr "&Scripts"
 
-#: ../typotek.cpp:855
-msgid "&Service"
-msgstr ""
+#: ../fontmatrixui.rc:35
+msgid "&Tools"
+msgstr "&Outils"
 
 #: ../typotek.cpp:1164
 msgid "Loading System Fonts"

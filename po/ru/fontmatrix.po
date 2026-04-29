@@ -2381,8 +2381,8 @@ msgid "Hyphenation dictionary"
 msgstr "Словарь переносов"
 
 #: ../prefs_panel.ui:89
-msgid "Service"
-msgstr "Сервис"
+msgid "Tools"
+msgstr "Инструменты"
 
 #: ../prefs_panel.ui:388
 msgid "Size:"
@@ -3707,9 +3707,9 @@ msgstr "Экспортировать данные для упаковки..."
 msgid "Tag All Filtered..."
 msgstr "Метки для всех отфильтрованных..."
 
-#: ../typotek.cpp:889
-msgid "&Service"
-msgstr "С&ервис"
+#: ../fontmatrixui.rc:35
+msgid "&Tools"
+msgstr "&Инструменты"
 
 #: ../typotek.cpp:741
 msgid "Reload Filtered"
