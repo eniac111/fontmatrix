@@ -17,6 +17,7 @@
 
 class QStandardItemModel;
 class KPageWidgetItem;
+class KMessageWidget;
 
 /**
 	@author Pierre Marchand <pierremarc@oep-h.com>
@@ -53,6 +54,8 @@ class PrefsPanelDialog : public KPageDialog, private Ui::PrefsPanel
 		void doConnect();
 		QStandardItemModel *shortcutModel;
 		QDialog *m_uiHolder;
+		KMessageWidget *m_systrayUnavailable;
+		KMessageWidget *m_sampleNameWarning;
 		KPageWidgetItem *m_pageGeneral;
 		KPageWidgetItem *m_pageSystray;
 		KPageWidgetItem *m_pageDisplay;

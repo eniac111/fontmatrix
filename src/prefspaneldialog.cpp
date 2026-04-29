@@ -16,8 +16,10 @@
 #include "fmpaths.h"
 
 #include <KLocalizedString>
+#include <KMessageWidget>
 #include <KPageWidgetItem>
 #include <QAction>
+#include <QGridLayout>
 #include <QDebug>
 #include <QToolTip>
 #include "fmconfig.h"
@@ -57,6 +59,35 @@ PrefsPanelDialog::PrefsPanelDialog ( QWidget *parent )
 	m_pageFiles->setIcon(QIcon::fromTheme(QStringLiteral("folder")));
 	m_pageShortcuts  = addPage(page_4,       i18n("Shortcuts"));
 	m_pageShortcuts->setIcon(QIcon::fromTheme(QStringLiteral("configure-shortcuts")));
+
+	// Inline banner shown on the System tray page when the host has no tray
+	// available. Replaces a tooltip on a disabled groupbox (which most styles
+	// don't render). Pushed to the top of pageSystray's grid; the existing
+	// systrayFrame is bumped down a row.
+	m_systrayUnavailable = new KMessageWidget(pageSystray);
+	m_systrayUnavailable->setMessageType(KMessageWidget::Warning);
+	m_systrayUnavailable->setIcon(QIcon::fromTheme(QStringLiteral("dialog-warning")));
+	m_systrayUnavailable->setText(i18n("This desktop does not provide a system tray. The options below have no effect."));
+	m_systrayUnavailable->setCloseButtonVisible(false);
+	m_systrayUnavailable->setWordWrap(true);
+	m_systrayUnavailable->hide();
+	if (auto *grid = qobject_cast<QGridLayout *>(pageSystray->layout()))
+	{
+		grid->removeWidget(systrayFrame);
+		grid->addWidget(m_systrayUnavailable, 0, 0);
+		grid->addWidget(systrayFrame, 1, 0);
+	}
+
+	// Inline validation banner on the Samples Collection page. Surfaces the
+	// previously-silent failures of addSampleName() (empty input, duplicate name).
+	m_sampleNameWarning = new KMessageWidget(widget);
+	m_sampleNameWarning->setMessageType(KMessageWidget::Warning);
+	m_sampleNameWarning->setIcon(QIcon::fromTheme(QStringLiteral("dialog-warning")));
+	m_sampleNameWarning->setCloseButtonVisible(true);
+	m_sampleNameWarning->setWordWrap(true);
+	m_sampleNameWarning->hide();
+	if (auto *grid = qobject_cast<QGridLayout *>(widget->layout()))
+		grid->addWidget(m_sampleNameWarning, 3, 0, 1, 3);
 
 	fontEditorPath->setText ( typotek::getInstance()->fontEditorPath() );
 
@@ -118,9 +149,12 @@ void PrefsPanelDialog::initSystrayPrefs ( bool hasSystray, bool isVisible, bool 
 	if ( !hasSystray )
 	{
 		systrayFrame->setEnabled ( false );
-		systrayFrame->setToolTip ( i18n( "Looks like your setup does not have a system tray available." ) );
-	} else
-		systrayFrame->setToolTip ( "" );
+		m_systrayUnavailable->show();
+	}
+	else
+	{
+		m_systrayUnavailable->hide();
+	}
 	systrayFrame->setChecked ( isVisible );
 	activateAllFrame->setChecked ( hasActivateAll );
 	activateAllConfirmation->setChecked ( allConfirmation );
@@ -254,10 +288,19 @@ void PrefsPanelDialog::addSampleName()
 {
 	QString n = newSampleTextNameText->text();
 	if ( n.isEmpty() )
+	{
+		m_sampleNameWarning->setText(i18nc("@info:status validation", "Please enter a name for the new sample."));
+		m_sampleNameWarning->animatedShow();
 		return;
+	}
 	if ( typotek::getInstance()->namedSamplesNames().contains ( n ) )
+	{
+		m_sampleNameWarning->setText(i18nc("@info:status validation", "A sample named \"%1\" already exists.", n));
+		m_sampleNameWarning->animatedShow();
 		return;
+	}
 
+	m_sampleNameWarning->animatedHide();
 	typotek::getInstance()->addNamedSample ( n, i18nc("A default sample text inserted when creating a new sample", "Sample Text") );
 	sampleTextNamesList->addItem ( n );
 	newSampleTextNameText->clear();
