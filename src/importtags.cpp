@@ -11,7 +11,6 @@
 //
 #include "importtags.h"
 #include "fmfontdb.h"
-//#include "listdockwidget.h"
 
 #include <QDebug>
 
@@ -56,7 +55,6 @@ void ImportTags::slotNewTag()
 	tagText->clear();
 	
 	FMFontDb::DB()->addTagToDB ( nTag );
-//	ListDockWidget::getInstance()->reloadTagsCombo();
 }
 
 void ImportTags::slotEnd()

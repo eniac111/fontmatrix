@@ -40,7 +40,6 @@
 
 #include "typotek.h"
 #include "mainviewwidget.h"
-//#include "listdockwidget.h"
 #include "fmconfig.h"
 #include "fmpaths.h"
 #include "systray.h"
@@ -311,7 +310,6 @@ int main ( int argc, char *argv[] )
 
 
 	LazyInit lazyInit;
-//	QObject::connect ( &lazyInit, SIGNAL ( endOfRun() ), ListDockWidget::getInstance(), SLOT ( unlockFilter() ) );
 	lazyInit.start ( QThread::LowestPriority );
 
 	mw->postInit();

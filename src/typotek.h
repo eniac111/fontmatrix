@@ -71,7 +71,6 @@ private slots:
 	void slotActivateCurrents();
 	void slotDeactivateCurrents();
 	void slotEditFont();
-	void about();
 	void toggleShowMenuBar(bool showMessage = true);
 	void slotExportFontSet();
 	void slotRemoteIsReady();

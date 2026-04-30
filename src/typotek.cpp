@@ -20,7 +20,6 @@
 
 
 
-#include "aboutwidget.h"
 #include "browserwidget.h"
 #include "dataexport.h"
 #include "dataloader.h"
@@ -40,7 +39,6 @@
 #include "hyphenate/fmhyphenator.h"
 #include "importedfontsdialog.h"
 #include "importtags.h"
-//#include "listdockwidget.h"
 #include "mainviewwidget.h"
 #include "panosedialog.h"
 #include "panosewidget.h"
@@ -210,7 +208,6 @@ void typotek::initMatrix()
 
 	setDockOptions(QMainWindow::AnimatedDocks | QMainWindow::ForceTabbedDocks);
 
-//	installDock("Main", i18n( "Browse Fonts" ), ListDockWidget::getInstance() , i18n( "Show/hide fonts browsing sidebar" ));
 //	installDock("Tags", i18n( "Tags" ), TagsWidget::getInstance() ,  i18n( "Show/hide tags list sidebar" ) );
 //	installDock("Panose", i18n( "Panose"), PanoseWidget::getInstance(), i18n( "Browse fonts by means of Panose attributes" ) );
 
@@ -307,17 +304,6 @@ void typotek::installDock(const QString& id, const QString& name, QWidget * w, c
 
 void typotek::postInit()
 {
-	// TODO restore last filter
-//	theMainView->slotViewAll();
-	
-	QString cname(FMConfig::value(QStringLiteral("CurrentFont"), QString()).toString());
-//	if(!cname.isEmpty())
-//	{
-//		if(!ListDockWidget::getInstance()->fontTree->slotSetCurrent(cname))
-//			theMainView->displayWelcomeMessage();
-//	}
-//	else
-//		theMainView->displayWelcomeMessage();
 }
 
 void typotek::doConnect()
@@ -684,12 +670,6 @@ void typotek::slotExportFontSet()
 	new DataExport(this);
 }
 
-
-void typotek::about()
-{
-	AboutWidget aabout(this);
-	aabout.exec();
-}
 
 void typotek::createActions()
 {
@@ -1797,8 +1777,6 @@ void typotek::setPreviewSize(double d)
 		return;
 
 //	previewSize = d;
-//	if(previewSize != ListDockWidget::getInstance()->previewSize->value())
-//		ListDockWidget::getInstance()->previewSize->setValue(previewSize);
 	QList<FontItem*> fontMap(FMFontDb::DB()->AllFonts());
 	for(int i(0); i < fontMap.count(); ++i)
 		fontMap[i]->clearPreview() ;

@@ -32,7 +32,6 @@
 #include "fmpreviewlist.h"
 #include "fmuniblocks.h"
 #include "fontitem.h"
-//#include "listdockwidget.h"
 //#include "opentypetags.h"
 #include "panosematch.h"
 #include "systray.h"
@@ -112,7 +111,6 @@ MainViewWidget::MainViewWidget ( QWidget *parent )
 	
 	theVeryFont = nullptr;
 	typo = typotek::getInstance();
-//	m_lists = ListDockWidget::getInstance();
 	// 	currentFonts = typo->getAllFonts();
 	FMFontDb::DB()->filterAllFonts();
 	fontsetHasChanged = true;
@@ -1197,16 +1195,10 @@ QString MainViewWidget::sampleName()
 
 void MainViewWidget::saveSplitterState()
 {
-	//	FMConfig::setValue(QStringLiteral("WState/SplitterViewState"), splitter_2->saveState());
-//	settings.setValue( "WState/SplitterList1", ListDockWidget::getInstance()->listSplit1->saveState());
-//	settings.setValue( "WState/SplitterList2", ListDockWidget::getInstance()->listSplit2->saveState());
 }
 
 void MainViewWidget::restoreSplitterState()
 {
-	//	splitter_2->restoreState(FMConfig::value(QStringLiteral("WState/SplitterViewState")).toByteArray());
-//	ListDockWidget::getInstance()->listSplit1->restoreState(settings.value("WState/SplitterList1").toByteArray());
-//	ListDockWidget::getInstance()->listSplit2->restoreState(settings.value("WState/SplitterList2").toByteArray());
 }
 
 

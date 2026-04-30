@@ -3,7 +3,6 @@
 set(QT_LIBRARIES Qt6::Core Qt6::Widgets Qt6::Svg Qt6::SvgWidgets Qt6::Sql Qt6::Xml Qt6::PrintSupport Qt6::WebEngineWidgets)
 
 set(fontmatrix_SRCS
-${CMAKE_CURRENT_SOURCE_DIR}/aboutwidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/activationwidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/activationwidgetitem.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/browserwidget.cpp
@@ -70,7 +69,6 @@ ${CMAKE_CURRENT_SOURCE_DIR}/iview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/QHexView.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/parallelcoor.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/puzzleviewimp.cpp
-#${CMAKE_CURRENT_SOURCE_DIR}/listdockwidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/mainviewwidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/metawidget.cpp
@@ -148,7 +146,6 @@ ${M17N_LIBRARIES}
 
 
 SET(fontmatrix_MOC_HDRS
-aboutwidget.h
 browserwidget.h
 activationwidget.h
 activationwidgetitem.h
@@ -188,7 +185,6 @@ fontitem.h
 importtags.h
 iview.h
 QHexView.h
-#listdockwidget.h
 mainviewwidget.h
 metawidget.h
 modeltext.h
@@ -216,7 +212,6 @@ ${fontmatrix_MOC_HDRS})
 
 
 SET(fontmatrix_UIS
-${CMAKE_CURRENT_SOURCE_DIR}/about.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/activationreportdialog.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/activationwidget.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/activationwidgetitem.ui
@@ -237,7 +232,6 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fontextractordialog.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/importedfonts.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/importtags.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/layoutoptions.ui
-#${CMAKE_CURRENT_SOURCE_DIR}/listsdock.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/mainview.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/metawidget.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/matchraster.ui
