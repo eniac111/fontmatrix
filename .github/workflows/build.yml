@@ -89,16 +89,33 @@ jobs:
             PATCH=$(echo $VER | cut -d. -f3)
             echo "version=$VER"         >> "$GITHUB_OUTPUT"
             echo "is_release=true"      >> "$GITHUB_OUTPUT"
+            # Tag build: forward the triple to Craft so the blueprint
+            # passes -DVERSION_MAJOR/MINOR/PATCH to CMake. For untagged
+            # builds we deliberately do NOT export these — letting
+            # CMakeLists' in-tree defaults (currently 0.11.0) take over,
+            # rather than stamping 0.0.0 on dev builds.
+            {
+              echo "CRAFT_FONTMATRIX_VERSION_MAJOR=$MAJOR"
+              echo "CRAFT_FONTMATRIX_VERSION_MINOR=$MINOR"
+              echo "CRAFT_FONTMATRIX_VERSION_PATCH=$PATCH"
+            } >> "$GITHUB_ENV"
           else
             SHORT="${{ github.sha }}"
             SHORT="${SHORT:0:7}"
             MAJOR=0; MINOR=0; PATCH=0
-            echo "version=git-${SHORT}" >> "$GITHUB_OUTPUT"
+            VER="git-${SHORT}"
+            echo "version=${VER}"       >> "$GITHUB_OUTPUT"
             echo "is_release=false"     >> "$GITHUB_OUTPUT"
           fi
           echo "major=$MAJOR"           >> "$GITHUB_OUTPUT"
           echo "minor=$MINOR"           >> "$GITHUB_OUTPUT"
           echo "patch=$PATCH"           >> "$GITHUB_OUTPUT"
+          # Always export the FULL version string. The blueprint reads it
+          # in setTargets() to use as the Craft target name, which ends
+          # up in the package filename (fontmatrix-<full>-windows-...exe).
+          # For untagged builds this is "git-<short-sha>"; for tag builds
+          # it's "1.2.3".
+          echo "CRAFT_FONTMATRIX_VERSION_FULL=$VER" >> "$GITHUB_ENV"
 
       - name: Scrub conflicting POSIX toolchains from PATH
         # The windows-latest runner ships with MinGW (C:\mingw64\bin) and
@@ -131,10 +148,11 @@ jobs:
       #
       # Steps:
       #   1. Cache CraftRoot (multi-GB; first run builds Qt6 + KF6 from source).
-      #   2. Bootstrap Craft non-interactively into C:\CraftRoot.
+      #   2. Bootstrap Craft non-interactively into C:\CraftRoot, including
+      #      NSIS so the cached CraftRoot has everything packaging needs.
       #   3. Drop our blueprint into Craft's blueprint search path.
       #   4. Build Fontmatrix from the checked-out source via --options srcDir.
-      #   5. Package as MSI + ZIP and upload as artifacts.
+      #   5. Package as NSIS installer + 7z archive and upload as artifacts.
 
       - name: Restore Craft cache
         id: cache-craft
@@ -145,9 +163,9 @@ jobs:
           # most-recent-match fallback so we don't go fully cold every
           # time we iterate on the blueprint — Craft will rebuild only
           # the packages whose signature actually changed.
-          key: craft-windows-x86_64-${{ hashFiles('craft-blueprints/**/*.py') }}
+          key: craft-windows-x86_64-nsis1-${{ hashFiles('craft-blueprints/**/*.py') }}
           restore-keys: |
-            craft-windows-x86_64-
+            craft-windows-x86_64-nsis1-
           path: |
             C:\CraftRoot
             !C:\CraftRoot\build\fontmatrix
@@ -258,6 +276,19 @@ jobs:
           }
           Write-Host "Craft bootstrap OK: $craftEnv exists"
 
+          # Install NSIS (Craft's default Windows packager). We do this
+          # inside the bootstrap step so it lands in the cached CraftRoot
+          # alongside Qt/KF6/etc. — once the cache is warm, no separate
+          # always-running NSIS step is needed. Mirrors KDE practice in
+          # sysadmin/craft-ci/gitlab-templates/blocks/windows-base.yml,
+          # which runs `--update nsis` before `--package`.
+          # Clear-Host shim: craftenv.ps1's first instruction is `cls`,
+          # which throws on a missing console handle in non-interactive
+          # pwsh. Same workaround as in the Build/Package steps.
+          function Clear-Host { }
+          . $craftEnv
+          craft --update nsis
+
       - name: Upload bootstrap log on failure
         if: failure() && steps.craft-check.outputs.bootstrapped != 'true'
         uses: actions/upload-artifact@v7
@@ -294,28 +325,14 @@ jobs:
           # $env:GITHUB_WORKSPACE which is always the checkout root.
           $srcDir = $env:GITHUB_WORKSPACE
           . C:\CraftRoot\craft\craftenv.ps1
-          # Forward the version triple to the in-tree CMakeLists.
-          $env:CRAFT_FONTMATRIX_VERSION_MAJOR = '${{ steps.version.outputs.major }}'
-          $env:CRAFT_FONTMATRIX_VERSION_MINOR = '${{ steps.version.outputs.minor }}'
-          $env:CRAFT_FONTMATRIX_VERSION_PATCH = '${{ steps.version.outputs.patch }}'
+          # CRAFT_FONTMATRIX_VERSION_{MAJOR,MINOR,PATCH,FULL} are exported
+          # to job env by the "Determine version" step — picked up here by
+          # the in-tree CMakeLists *and* by the fontmatrix blueprint's
+          # setTargets() to set the package filename version label.
           # --ignoreInstalled forces a rebuild against the local source.
           # --options fontmatrix.srcDir=<path> uses the checkout as the source
           # tree, bypassing Craft's own VCS clone.
           craft --ignoreInstalled --options "fontmatrix.srcDir=$srcDir" fontmatrix
-
-      - name: Install NSIS (packaging tool)
-        shell: pwsh
-        run: |
-          # Craft's default Windows packager is NSIS (matches KDE practice —
-          # see sysadmin/craft-ci/gitlab-templates/blocks/windows-base.yml,
-          # which does the same `--update nsis` step before --package). NSIS
-          # is not bootstrapped by default, so `craft --package` fails with
-          # "Craft requires Nsis to create a package, please install Nsis"
-          # until we install it once. After this step it lives in CraftRoot
-          # and is picked up from the cache on subsequent runs.
-          function Clear-Host { }
-          . C:\CraftRoot\craft\craftenv.ps1
-          craft --update nsis
 
       - name: Package Fontmatrix (NSIS installer + 7z)
         shell: pwsh
@@ -368,7 +385,7 @@ jobs:
         if: always() && steps.cache-craft.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
-          key: craft-windows-x86_64-${{ hashFiles('craft-blueprints/**/*.py') }}
+          key: craft-windows-x86_64-nsis1-${{ hashFiles('craft-blueprints/**/*.py') }}
           path: |
             C:\CraftRoot
             !C:\CraftRoot\build\fontmatrix

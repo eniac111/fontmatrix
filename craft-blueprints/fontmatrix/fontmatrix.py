@@ -26,10 +26,27 @@ class subinfo(info.infoclass):
         self.description = "Cross-platform font management application built on Qt6 / KF6"
         self.webpage = "https://github.com/eniac111/fontmatrix"
 
-        # No `targets` / `svnTargets` are declared: Craft is invoked with
+        # We don't actually fetch source via Craft — CI invokes us with
         #   --options fontmatrix.srcDir=<checkout>
-        # so it builds whatever is on disk rather than pulling source itself.
-        # This keeps CI source-of-truth in the GitHub checkout step.
+        # which overrides the source step entirely. But Craft still needs
+        # *some* target declaration so it has a label to attach to build
+        # artifacts and package filenames; the value of that label ends
+        # up in the NSIS output as `fontmatrix-<target>-windows-cl-msvc2022-x86_64.exe`.
+        #
+        # CRAFT_FONTMATRIX_VERSION_FULL is exported by the GitHub Actions
+        # workflow ("Determine version" step) and is either:
+        #   - "1.2.3"          for tag builds (refs/tags/vX.Y.Z)
+        #   - "git-<short-sha>" for untagged push/PR builds
+        # For local invocations without that env var, we fall back to
+        # "master" — same string a stock Craft build off the GitHub repo
+        # would have used.
+        #
+        # The URL on svnTargets is never followed (srcDir wins), but
+        # Craft expects a non-empty value, so we point it at the canonical
+        # repo for documentation.
+        version = os.environ.get("CRAFT_FONTMATRIX_VERSION_FULL", "master")
+        self.svnTargets[version] = "https://github.com/eniac111/fontmatrix.git"
+        self.defaultTarget = version
 
     def setDependencies(self):
         # Build-only: ECM (KDE's CMake helpers) is a configure-time dep.
@@ -94,6 +111,14 @@ class Package(CMakePackageBase):
     def createPackage(self):
         self.defines["appname"] = "fontmatrix"
         self.defines["company"] = "Fontmatrix"
+        # NSIS template's `Caption "@{productname} @{version}"` and
+        # registry `DisplayVersion` field both reference @{version}. Craft
+        # only auto-populates this when the blueprint has a concrete
+        # target/version; otherwise generateNSISInstaller() throws
+        #   Failed to configure NullsoftInstaller.nsi: @{version} is not in variables
+        # We declare svnTargets[CRAFT_FONTMATRIX_VERSION_FULL] in setTargets,
+        # but set this explicitly too so the install never fails on it.
+        self.defines["version"] = os.environ.get("CRAFT_FONTMATRIX_VERSION_FULL", "0.0.0")
         self.defines["shortcuts"] = [
             {"name": "Fontmatrix", "target": "bin/fontmatrix.exe"},
         ]
