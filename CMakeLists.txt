@@ -312,25 +312,12 @@ IF(WIN32)
 	set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ".")
 	include(InstallRequiredSystemLibraries)
 
-	# Copy FreeType DLL from vcpkg (resolved at configure time via VCPKG_INSTALLATION_ROOT).
-	# Use file(TO_CMAKE_PATH) to convert Windows backslashes (e.g. C:\vcpkg) to forward
-	# slashes so the path is safe to embed in the generated cmake_install.cmake script.
-	if(DEFINED ENV{VCPKG_INSTALLATION_ROOT})
-		set(_vcpkg_root "$ENV{VCPKG_INSTALLATION_ROOT}")
-		file(TO_CMAKE_PATH "${_vcpkg_root}" _vcpkg_root)
-		# freetype and its transitive vcpkg dependencies (brotli, bzip2, libpng, zlib).
-		file(GLOB _vcpkg_dlls
-			"${_vcpkg_root}/installed/x64-windows/bin/freetype*.dll"
-			"${_vcpkg_root}/installed/x64-windows/bin/zlib1.dll"
-			"${_vcpkg_root}/installed/x64-windows/bin/bz2.dll"
-			"${_vcpkg_root}/installed/x64-windows/bin/libpng16.dll"
-			"${_vcpkg_root}/installed/x64-windows/bin/brotlidec.dll"
-			"${_vcpkg_root}/installed/x64-windows/bin/brotlicommon.dll"
-		)
-		foreach(_dll ${_vcpkg_dlls})
-			install(FILES "${_dll}" DESTINATION ".")
-		endforeach()
-	endif()
+	# FreeType + transitive DLLs are bundled by Craft's libs/freetype
+	# blueprint and Craft's `--package` step on Windows. Earlier vcpkg-
+	# specific copy logic was removed in Phase 8 along with the vcpkg CI
+	# path. For non-Craft local Windows builds (e.g. Qt+vcpkg + manual
+	# CMake), windeployqt above handles Qt DLLs and the developer is
+	# expected to make FreeType/PoDoFo DLLs available on PATH.
 
 ENDIF(WIN32)
 

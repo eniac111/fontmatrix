@@ -100,70 +100,90 @@ jobs:
           echo "minor=$MINOR"           >> "$GITHUB_OUTPUT"
           echo "patch=$PATCH"           >> "$GITHUB_OUTPUT"
 
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v4
+      # Build Fontmatrix on Windows using KDE Craft. Craft is the official
+      # KDE tooling for cross-platform packaging and provides full KF6
+      # blueprints — vcpkg's KF6 coverage is incomplete, so Craft is the
+      # supported path for KF6-based applications on Windows.
+      #
+      # Steps:
+      #   1. Cache CraftRoot (multi-GB; first run builds Qt6 + KF6 from source).
+      #   2. Bootstrap Craft non-interactively into C:\CraftRoot.
+      #   3. Drop our blueprint into Craft's blueprint search path.
+      #   4. Build Fontmatrix from the checked-out source via --options srcDir.
+      #   5. Package as MSI + ZIP and upload as artifacts.
+
+      - name: Cache CraftRoot
+        id: cache-craft
+        uses: actions/cache@v4
         with:
-          version: '6.10.*'
-          arch: win64_msvc2022_64
-          modules: 'qtwebengine qtpositioning qtwebchannel'
+          # Hashed on the blueprint to invalidate when our deps list changes.
+          # The build artifacts inside CraftRoot/build are excluded by Craft itself.
+          key: craft-windows-x86_64-${{ hashFiles('craft-blueprints/**/*.py') }}
+          path: |
+            C:\CraftRoot
+            !C:\CraftRoot\build\fontmatrix
+            !C:\CraftRoot\tmp
 
-      - name: Install dependencies via vcpkg
-        run: |
-          vcpkg install freetype:x64-windows-static-md
-          vcpkg install podofo:x64-windows-static-md
-
-      - name: Configure CMake
-        run: >
-          cmake -B build -DCMAKE_BUILD_TYPE=Release
-          -DVERSION_MAJOR=${{ steps.version.outputs.major }}
-          -DVERSION_MINOR=${{ steps.version.outputs.minor }}
-          -DVERSION_PATCH=${{ steps.version.outputs.patch }}
-          -DVCPKG_TARGET_TRIPLET=x64-windows-static-md
-          -DLIBPODOFO_SHARED=0
-          "-DCMAKE_TOOLCHAIN_FILE=$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
-
-      - name: Build
-        run: cmake --build build --config Release --parallel
-
-      - name: Deploy
-        shell: pwsh
-        run: cmake --install build --config Release --prefix (Join-Path $PWD "dist")
-
-      - name: Create ZIP archive
-        shell: pwsh
-        run: Compress-Archive -Path dist\* -DestinationPath fontmatrix-windows-${{ steps.version.outputs.version }}.zip
-
-      - name: Install WiX toolset
-        run: |
-          dotnet tool install --global wix --version 6.0.2
-          wix extension add --global WixToolset.UI.wixext/6.0.2
-
-      - name: Build MSI installer
-        id: msi
+      - name: Bootstrap KDE Craft
+        if: steps.cache-craft.outputs.cache-hit != 'true'
         shell: pwsh
         run: |
-          cd build
-          cpack -G WIX -C Release
+          $pythonPath = (Get-Command python).Source
+          Invoke-WebRequest `
+            -Uri 'https://raw.githubusercontent.com/KDE/craft/master/setup/install_craft.ps1' `
+            -OutFile install_craft.ps1
+          powershell -File install_craft.ps1 -useDefaults -python "$pythonPath"
 
-      - name: Upload WiX log on failure
-        if: failure()
-        uses: actions/upload-artifact@v7
-        with:
-          name: wix-log
-          path: build/_CPack_Packages/win64/WIX/wix.log
-          if-no-files-found: ignore
+      - name: Install Fontmatrix blueprint
+        shell: pwsh
+        run: |
+          $blueprintDir = 'C:\CraftRoot\etc\blueprints\locations\fontmatrix\fontmatrix'
+          New-Item -ItemType Directory -Force -Path $blueprintDir | Out-Null
+          Copy-Item -Force craft-blueprints\fontmatrix\fontmatrix.py $blueprintDir\
 
-      - name: Upload Windows ZIP artifact
+      - name: Build Fontmatrix with Craft
+        shell: pwsh
+        run: |
+          . C:\CraftRoot\craft\craftenv.ps1
+          # Forward the version triple to the in-tree CMakeLists.
+          $env:CRAFT_FONTMATRIX_VERSION_MAJOR = '${{ steps.version.outputs.major }}'
+          $env:CRAFT_FONTMATRIX_VERSION_MINOR = '${{ steps.version.outputs.minor }}'
+          $env:CRAFT_FONTMATRIX_VERSION_PATCH = '${{ steps.version.outputs.patch }}'
+          # --ignoreInstalled forces a rebuild against the local source.
+          # --options fontmatrix.srcDir=<path> uses the checkout as the source
+          # tree, bypassing Craft's own VCS clone.
+          craft --ignoreInstalled --options fontmatrix.srcDir=$pwd fontmatrix
+
+      - name: Package Fontmatrix (MSI + ZIP)
+        shell: pwsh
+        run: |
+          . C:\CraftRoot\craft\craftenv.ps1
+          # Craft's --package step runs the configured packager(s); on Windows
+          # this produces an NSIS or MSI installer plus a 7z archive,
+          # whichever is configured in the Craft settings.
+          craft --options fontmatrix.srcDir=$pwd --package fontmatrix
+
+      - name: Collect Craft artifacts
+        id: collect
+        shell: pwsh
+        run: |
+          $version = '${{ steps.version.outputs.version }}'
+          $outDir = 'fontmatrix-craft-out'
+          New-Item -ItemType Directory -Force -Path $outDir | Out-Null
+          # Craft drops package output under <CraftRoot>/tmp by default.
+          # Pick up any installer-shaped file produced by the packaging step.
+          Get-ChildItem -Path 'C:\CraftRoot\tmp' -Recurse `
+            -Include 'fontmatrix-*.exe', 'fontmatrix-*.msi', 'fontmatrix-*.7z', 'fontmatrix-*.zip' `
+            -ErrorAction SilentlyContinue |
+            Copy-Item -Destination $outDir
+          Get-ChildItem $outDir | Format-Table -AutoSize
+
+      - name: Upload Windows artifacts
         uses: actions/upload-artifact@v7
         with:
           name: fontmatrix-windows
-          path: fontmatrix-windows-${{ steps.version.outputs.version }}.zip
-
-      - name: Upload Windows MSI artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: fontmatrix-windows-msi
-          path: build/fontmatrix-*.msi
+          path: fontmatrix-craft-out/*
+          if-no-files-found: error
 
   release:
     name: Publish to Release
@@ -202,18 +222,11 @@ jobs:
           name: fontmatrix-flatpak
           path: release-artifacts/
 
-      - name: Download Windows ZIP artifact
+      - name: Download Windows artifacts
         if: steps.check-branch.outputs.on_master == 'true'
         uses: actions/download-artifact@v7
         with:
           name: fontmatrix-windows
-          path: release-artifacts/
-
-      - name: Download Windows MSI artifact
-        if: steps.check-branch.outputs.on_master == 'true'
-        uses: actions/download-artifact@v7
-        with:
-          name: fontmatrix-windows-msi
           path: release-artifacts/
 
       - name: Upload artifacts to GitHub Release
@@ -222,5 +235,7 @@ jobs:
         with:
           files: |
             release-artifacts/fontmatrix-*.flatpak
-            release-artifacts/fontmatrix-windows-*.zip
-            release-artifacts/*.msi
+            release-artifacts/fontmatrix-*.exe
+            release-artifacts/fontmatrix-*.msi
+            release-artifacts/fontmatrix-*.7z
+            release-artifacts/fontmatrix-*.zip
