@@ -303,28 +303,46 @@ jobs:
           # tree, bypassing Craft's own VCS clone.
           craft --ignoreInstalled --options "fontmatrix.srcDir=$srcDir" fontmatrix
 
-      - name: Package Fontmatrix (MSI + ZIP)
+      - name: Install NSIS (packaging tool)
+        shell: pwsh
+        run: |
+          # Craft's default Windows packager is NSIS (matches KDE practice —
+          # see sysadmin/craft-ci/gitlab-templates/blocks/windows-base.yml,
+          # which does the same `--update nsis` step before --package). NSIS
+          # is not bootstrapped by default, so `craft --package` fails with
+          # "Craft requires Nsis to create a package, please install Nsis"
+          # until we install it once. After this step it lives in CraftRoot
+          # and is picked up from the cache on subsequent runs.
+          function Clear-Host { }
+          . C:\CraftRoot\craft\craftenv.ps1
+          craft --update nsis
+
+      - name: Package Fontmatrix (NSIS installer + 7z)
         shell: pwsh
         run: |
           function Clear-Host { }
           $srcDir = $env:GITHUB_WORKSPACE
           . C:\CraftRoot\craft\craftenv.ps1
-          # Craft's --package step runs the configured packager(s); on Windows
-          # this produces an NSIS or MSI installer plus a 7z archive,
-          # whichever is configured in the Craft settings.
+          # Craft's default --package on Windows runs the NSIS packager,
+          # producing a self-contained `<app>-<version>-windows-cl-msvc2022-x86_64.exe`
+          # plus a matching 7z portable archive and a .sha256 checksum.
+          # We do not produce MSI: KDE's binary factory does not ship MSI
+          # for any of its applications (Kate, Krita, Okular, …) — NSIS is
+          # the canonical format. AppX is opt-in via the blueprint's
+          # `subinfo.options.dynamic.packageAppx` flag, which we don't set.
           craft --options "fontmatrix.srcDir=$srcDir" --package fontmatrix
 
       - name: Collect Craft artifacts
         id: collect
         shell: pwsh
         run: |
-          $version = '${{ steps.version.outputs.version }}'
           $outDir = 'fontmatrix-craft-out'
           New-Item -ItemType Directory -Force -Path $outDir | Out-Null
           # Craft drops package output under <CraftRoot>/tmp by default.
-          # Pick up any installer-shaped file produced by the packaging step.
+          # Mirroring KDE's windows-base.yml, we collect the NSIS installer
+          # (.exe), the portable archive (.7z), and the checksum (.sha256).
           Get-ChildItem -Path 'C:\CraftRoot\tmp' -Recurse `
-            -Include 'fontmatrix-*.exe', 'fontmatrix-*.msi', 'fontmatrix-*.7z', 'fontmatrix-*.zip' `
+            -Include 'fontmatrix-*.exe', 'fontmatrix-*.7z', 'fontmatrix-*.sha256' `
             -ErrorAction SilentlyContinue |
             Copy-Item -Destination $outDir
           Get-ChildItem $outDir | Format-Table -AutoSize
@@ -407,6 +425,5 @@ jobs:
           files: |
             release-artifacts/fontmatrix-*.flatpak
             release-artifacts/fontmatrix-*.exe
-            release-artifacts/fontmatrix-*.msi
             release-artifacts/fontmatrix-*.7z
-            release-artifacts/fontmatrix-*.zip
+            release-artifacts/fontmatrix-*.sha256
