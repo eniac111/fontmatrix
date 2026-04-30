@@ -33,7 +33,9 @@ class subinfo(info.infoclass):
 
     def setDependencies(self):
         # Build-only: ECM (KDE's CMake helpers) is a configure-time dep.
-        self.buildDependencies["kde/frameworks/tier1/extra-cmake-modules"] = None
+        # Note: extra-cmake-modules is a peer of tier1/tier2/tier3 in
+        # craft-blueprints-kde, not nested under any tier.
+        self.buildDependencies["kde/frameworks/extra-cmake-modules"] = None
 
         # Qt 6 — application links against Core, Widgets, Svg, SvgWidgets,
         # Sql, Xml, PrintSupport, WebEngineWidgets. Craft's qtbase blueprint
@@ -49,7 +51,8 @@ class subinfo(info.infoclass):
         self.runtimeDependencies["kde/frameworks/tier1/kconfig"] = None
         self.runtimeDependencies["kde/frameworks/tier1/kdbusaddons"] = None
         self.runtimeDependencies["kde/frameworks/tier1/kwidgetsaddons"] = None
-        self.runtimeDependencies["kde/frameworks/tier3/kstatusnotifieritem"] = None
+        # kstatusnotifieritem lives in tier2, not tier3, in craft-blueprints-kde.
+        self.runtimeDependencies["kde/frameworks/tier2/kstatusnotifieritem"] = None
         self.runtimeDependencies["kde/frameworks/tier3/kxmlgui"] = None
         self.runtimeDependencies["kde/frameworks/tier3/kconfigwidgets"] = None
         # KDocTools is optional: handbook builds when present, otherwise skipped.
