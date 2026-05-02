@@ -163,13 +163,21 @@ jobs:
           # most-recent-match fallback so we don't go fully cold every
           # time we iterate on the blueprint — Craft will rebuild only
           # the packages whose signature actually changed.
-          key: craft-windows-x86_64-nsis1-${{ hashFiles('craft-blueprints/**/*.py') }}
+          # Path exclusions: actions/cache's glob matcher is fnmatch-
+          # style and treats `\` as a literal char on Windows; use
+          # forward slashes and the `/**` recursive glob, otherwise the
+          # ! lines silently match nothing and tmp/build get cached.
+          # tmp/ holds the package outputs (installer .exe, portable
+          # .7z) — caching them would mean each new run starts with
+          # the previous run's artifacts in tmp and our Collect step
+          # would gather all of them.
+          key: craft-windows-x86_64-nsis2-${{ hashFiles('craft-blueprints/**/*.py') }}
           restore-keys: |
-            craft-windows-x86_64-nsis1-
+            craft-windows-x86_64-nsis2-
           path: |
-            C:\CraftRoot
-            !C:\CraftRoot\build\fontmatrix
-            !C:\CraftRoot\tmp
+            C:/CraftRoot
+            !C:/CraftRoot/build/fontmatrix/**
+            !C:/CraftRoot/tmp/**
 
       # Whether to skip the (slow, network-heavy, sometimes flaky)
       # bootstrap depends on whether a cached CraftRoot was actually
@@ -334,6 +342,21 @@ jobs:
           # tree, bypassing Craft's own VCS clone.
           craft --ignoreInstalled --options "fontmatrix.srcDir=$srcDir" fontmatrix
 
+      - name: Clean Craft tmp before packaging
+        shell: pwsh
+        run: |
+          # Belt-and-braces. tmp/ should already be excluded from the
+          # actions/cache restore (see Restore Craft cache step's path
+          # exclusions), but if a partial cache hit ever leaks an old
+          # `fontmatrix-*-windows-cl-msvc2022-x86_64.{exe,7z,sha256}`
+          # into tmp, our Collect step's recursive `fontmatrix-*` glob
+          # will pick it up alongside this run's outputs and the
+          # uploaded artifact will balloon with stale copies. Wiping
+          # tmp/ here guarantees Collect only sees this run's results.
+          if (Test-Path 'C:\CraftRoot\tmp') {
+            Remove-Item -Recurse -Force 'C:\CraftRoot\tmp\*' -ErrorAction SilentlyContinue
+          }
+
       - name: Package Fontmatrix (NSIS installer + 7z)
         shell: pwsh
         run: |
@@ -343,11 +366,34 @@ jobs:
           # Craft's default --package on Windows runs the NSIS packager,
           # producing a self-contained `<app>-<version>-windows-cl-msvc2022-x86_64.exe`
           # plus a matching 7z portable archive and a .sha256 checksum.
-          # We do not produce MSI: KDE's binary factory does not ship MSI
-          # for any of its applications (Kate, Krita, Okular, …) — NSIS is
-          # the canonical format. AppX is opt-in via the blueprint's
+          # AppX is opt-in via the blueprint's
           # `subinfo.options.dynamic.packageAppx` flag, which we don't set.
           craft --options "fontmatrix.srcDir=$srcDir" --package fontmatrix
+
+      - name: Show package size & largest deployed files
+        shell: pwsh
+        run: |
+          # Diagnostics for "why is the .exe/.7z this big?". Lists the
+          # outputs in tmp/, then surfaces the 30 largest files in the
+          # deploy staging tree (what the .7z is built from). Run after
+          # Package so tmp/ has the final outputs.
+          Write-Host "=== Package outputs in tmp/ ==="
+          Get-ChildItem 'C:\CraftRoot\tmp' -File -ErrorAction SilentlyContinue |
+            Sort-Object Length -Descending |
+            Format-Table @{n='MB';e={[math]::Round($_.Length/1MB,1)}}, Name -AutoSize |
+            Out-String -Width 200 | Write-Host
+          Write-Host ""
+          Write-Host "=== Top 30 largest files in deploy staging ==="
+          $stage = 'C:\CraftRoot\build\fontmatrix\archive'
+          if (Test-Path $stage) {
+            Get-ChildItem $stage -Recurse -File -ErrorAction SilentlyContinue |
+              Sort-Object Length -Descending |
+              Select-Object -First 30 |
+              Format-Table @{n='MB';e={[math]::Round($_.Length/1MB,1)}}, FullName -AutoSize |
+              Out-String -Width 200 | Write-Host
+          } else {
+            Write-Host "  (no staging dir at $stage)"
+          }
 
       - name: Collect Craft artifacts
         id: collect
@@ -364,11 +410,26 @@ jobs:
             Copy-Item -Destination $outDir
           Get-ChildItem $outDir | Format-Table -AutoSize
 
-      - name: Upload Windows artifacts
+      # Two separate artifacts so end users can grab whichever they
+      # actually need without downloading both. GitHub-side, each one
+      # surfaces as its own .zip on the workflow run page; the .sha256
+      # files travel with their corresponding payload.
+      - name: Upload Windows installer
         uses: actions/upload-artifact@v7
         with:
-          name: fontmatrix-windows
-          path: fontmatrix-craft-out/*
+          name: fontmatrix-windows-installer
+          path: |
+            fontmatrix-craft-out/fontmatrix-*.exe
+            fontmatrix-craft-out/fontmatrix-*.exe.sha256
+          if-no-files-found: error
+
+      - name: Upload Windows portable archive
+        uses: actions/upload-artifact@v7
+        with:
+          name: fontmatrix-windows-portable
+          path: |
+            fontmatrix-craft-out/fontmatrix-*.7z
+            fontmatrix-craft-out/fontmatrix-*.7z.sha256
           if-no-files-found: error
 
       # Split restore/save pattern: actions/cache@v4 only saves on full job
@@ -385,11 +446,12 @@ jobs:
         if: always() && steps.cache-craft.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
-          key: craft-windows-x86_64-nsis1-${{ hashFiles('craft-blueprints/**/*.py') }}
+          # Same path/exclusion rules as the Restore step — see comments there.
+          key: craft-windows-x86_64-nsis2-${{ hashFiles('craft-blueprints/**/*.py') }}
           path: |
-            C:\CraftRoot
-            !C:\CraftRoot\build\fontmatrix
-            !C:\CraftRoot\tmp
+            C:/CraftRoot
+            !C:/CraftRoot/build/fontmatrix/**
+            !C:/CraftRoot/tmp/**
 
   release:
     name: Publish to Release
@@ -428,11 +490,18 @@ jobs:
           name: fontmatrix-flatpak
           path: release-artifacts/
 
-      - name: Download Windows artifacts
+      - name: Download Windows installer
         if: steps.check-branch.outputs.on_master == 'true'
         uses: actions/download-artifact@v7
         with:
-          name: fontmatrix-windows
+          name: fontmatrix-windows-installer
+          path: release-artifacts/
+
+      - name: Download Windows portable archive
+        if: steps.check-branch.outputs.on_master == 'true'
+        uses: actions/download-artifact@v7
+        with:
+          name: fontmatrix-windows-portable
           path: release-artifacts/
 
       - name: Upload artifacts to GitHub Release
