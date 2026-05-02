@@ -35,7 +35,6 @@
 class FMPreviewModel;
 class FontItem;
 class TagsWidget;
-class QWebEngineView;
 class FloatingWidget;
 
 namespace Ui {
@@ -52,7 +51,6 @@ public:
 
     void setFamily(const QString& f);
     TagsWidget* tagWidget();
-    QWebEngineView * info();
     QString family;
     QString curVariant;
 

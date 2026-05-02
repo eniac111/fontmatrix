@@ -208,7 +208,7 @@ void BrowserWidget::settingsDir(const QString &path)
 void BrowserWidget::slotShowInfo()
 {
 	FMInfoDisplay fid(FMFontDb::DB()->Font(curVariant));
-	ui->webView->setContent(fid.getHtml().toUtf8(), "application/xhtml+xml");
+	ui->webView->setHtml(fid.getHtml());
 	ui->displayStack->setCurrentIndex(BROWSER_VIEW_INFO);
 	currentPage = BROWSER_VIEW_INFO;
 	updateButtons();

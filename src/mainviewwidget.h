@@ -36,7 +36,6 @@ class QGridLayout;
 class QTreeWidgetItem;
 class QGraphicsRectItem;
 class QButtonGroup;
-class QWebEngineView;
 struct OTFSet;
 class FMLayout;
 class FMPreviewModel;
@@ -121,9 +120,7 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 		
 		QString sampleName();
 //		void displayWelcomeMessage();
-		
-		QWebEngineView *info();
-		
+
 		void addFilterToCrumb(QString filter);
 		void setCrumb(QString text = QString());
 		

@@ -235,8 +235,6 @@ private:
 	QString webBrowser;
 	QString webBrowserOptions;
 
-	QString infoStyle;
-
 	double m_dpiX;
 	double m_dpiY;
 
@@ -364,9 +362,6 @@ public:
 
 	QDir getOwnDir() const{return ownDir;}
 	QDir getConfigDir() const{return configDir;}
-
-	void setInfoStyle ( const QString& theValue );
-	QString getInfoStyle() const{ return infoStyle; }
 
 	QString getSysTagName() const { return m_sysTagName; }
 

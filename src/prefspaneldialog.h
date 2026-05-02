@@ -101,8 +101,6 @@ class PrefsPanelDialog : public KPageDialog, private Ui::PrefsPanel
 		void addAndSelectWebBrowser();
 		void selectWebBrowser(const QString & text );
 		void setupWebBrowserOptions(const QString & text );
-		
-		void selectInfoStyle(const QString& css);
 
 		void setupTemplates(const QString&);
 		void slotTemplatesBrowse();

@@ -197,11 +197,9 @@
          <number>0</number>
         </property>
         <item row="0" column="0">
-         <widget class="QWebEngineView" name="webView">
-          <property name="url">
-           <url>
-            <string>about:blank</string>
-           </url>
+         <widget class="QTextBrowser" name="webView">
+          <property name="openExternalLinks">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -216,12 +214,6 @@
   </layout>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>QWebEngineView</class>
-   <extends>QWidget</extends>
-   <header>QtWebEngineWidgets/QWebEngineView</header>
-   <container>1</container>
-  </customwidget>
   <customwidget>
    <class>FMPreviewView</class>
    <extends>QListView</extends>

@@ -55,12 +55,11 @@ class subinfo(info.infoclass):
         self.buildDependencies["kde/frameworks/extra-cmake-modules"] = None
 
         # Qt 6 — application links against Core, Widgets, Svg, SvgWidgets,
-        # Sql, Xml, PrintSupport, WebEngineWidgets. Craft's qtbase blueprint
-        # pulls Core/Widgets/Sql/Xml/PrintSupport; svg+webengine are separate.
+        # Sql, Xml, PrintSupport. Craft's qtbase blueprint pulls
+        # Core/Widgets/Sql/Xml/PrintSupport; qtsvg is separate.
         self.runtimeDependencies["libs/qt/qtbase"] = None
         self.runtimeDependencies["libs/qt/qtsvg"] = None
         self.runtimeDependencies["libs/qt/qttools"] = None  # for lupdate/lrelease at build time
-        self.runtimeDependencies["libs/qt/qtwebengine"] = None
 
         # KF 6 — same component set as src/CMakeLists.txt's find_package(KF6 ...).
         self.runtimeDependencies["kde/frameworks/tier1/kcoreaddons"] = None

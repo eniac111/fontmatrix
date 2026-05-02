@@ -159,7 +159,7 @@ ENDIF(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
 # A lot from Scribus
 #<< Qt
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets Svg SvgWidgets Sql Xml PrintSupport WebEngineWidgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Svg SvgWidgets Sql Xml PrintSupport)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -200,14 +200,6 @@ ${CMAKE_SOURCE_DIR}/src/graphic-resources/template_oneline.xml
 ${CMAKE_SOURCE_DIR}/src/graphic-resources/template_oneline.png
 ${CMAKE_SOURCE_DIR}/src/graphic-resources/template_default.xml
 ${CMAKE_SOURCE_DIR}/src/graphic-resources/template_default.png
-)
-SET(FM_STYLE_FILES
-${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/info.css
-${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/fontmatrix.js
-${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/img/css-info-propertyname.png
-${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/img/css-info-property.png
-${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/img/css-shadow.png
-${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/img/css-tech-info.png
 )
 # tell cmake to process CMakeLists.txt in that subdirectory
 SET(HYPHENATE_DIR src/hyphenate)
@@ -260,7 +252,6 @@ IF(UNIX AND NOT APPLE)
 
 	INSTALL(FILES
 	${FM_TEMPLATES_FILES}
-	${FM_STYLE_FILES}
 	DESTINATION "${KDE_INSTALL_DATADIR}/fontmatrix/resources"
 	)
 
@@ -281,7 +272,6 @@ IF(WIN32)
 	SET(RESOURCESDIR "share/resources/")
 	INSTALL(FILES
 	${FM_TEMPLATES_FILES}
-	${FM_STYLE_FILES}
 	DESTINATION "${RESOURCESDIR}"
 	)
 

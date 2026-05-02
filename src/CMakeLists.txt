@@ -1,6 +1,6 @@
 # Fontmatrix src/CMakeLists.txt v1
 
-set(QT_LIBRARIES Qt6::Core Qt6::Widgets Qt6::Svg Qt6::SvgWidgets Qt6::Sql Qt6::Xml Qt6::PrintSupport Qt6::WebEngineWidgets)
+set(QT_LIBRARIES Qt6::Core Qt6::Widgets Qt6::Svg Qt6::SvgWidgets Qt6::Sql Qt6::Xml Qt6::PrintSupport)
 
 set(fontmatrix_SRCS
 ${CMAKE_CURRENT_SOURCE_DIR}/activationwidget.cpp
@@ -441,7 +441,7 @@ IF(APPLE)
 	ADD_CUSTOM_COMMAND( TARGET ${PROGNAME} POST_BUILD
 	COMMAND mkdir ARGS -p ${BUNDLE_RESOURCES_DIR}
 	COMMAND cp ARGS  "${CMAKE_SOURCE_DIR}/src/graphic-resources/fontmatrix.icns" ${BUNDLE_RESOURCES_DIR}
-	COMMAND cp ARGS ${FM_TEMPLATES_FILES} ${FM_STYLE_FILES} ${BUNDLE_RESOURCES_DIR}
+	COMMAND cp ARGS ${FM_TEMPLATES_FILES} ${BUNDLE_RESOURCES_DIR}
 	)
 # bundles libs
 #	ADD_CUSTOM_COMMAND(TARGET ${PROGNAME} POST_BUILD

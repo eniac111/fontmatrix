@@ -943,8 +943,6 @@ void typotek::readSettings()
 	webBrowserOptions = FMConfig::value(QStringLiteral("Info/BrowserOptions"), "").toString();
 	previewInfoFontSize = FMConfig::value(QStringLiteral("Info/PreviewSize"), 20.0).toDouble();
 
-	infoStyle = FMConfig::value(QStringLiteral("Info/Style"), FMPaths::ResourcesDir() + "info.css").toString();
-
 	templatesDir = FMConfig::value(QStringLiteral("Places/TemplatesDir"), "./").toString();
 	m_remoteTmpDir = FMConfig::value(QStringLiteral("Places/RemoteTmpDir"), QDir::tempPath()).toString();
 
@@ -1003,7 +1001,6 @@ void typotek::writeSettings()
 
 
 	FMConfig::setValue(QStringLiteral("Info/PreviewSize"), previewInfoFontSize);
-	FMConfig::setValue(QStringLiteral("Info/Style"), infoStyle);
 
 	FMConfig::setValue(QStringLiteral("Preview/Word"), m_theWord);
 
@@ -2435,11 +2432,6 @@ void typotek::show()
 	PlayWidget::getInstance()->setVisible(playVisible);
 
 	QMainWindow::show();
-}
-
-void typotek::setInfoStyle ( const QString& theValue )
-{
-	infoStyle = theValue;
 }
 
 QString typotek::word(FontItem * item, const QString& alt)

@@ -85,11 +85,6 @@ TagsWidget* FamilyWidget::tagWidget()
 	return ui->tagsWidget;
 }
 
-QWebEngineView* FamilyWidget::info()
-{
-	return ui->webView;
-}
-
 void FamilyWidget::changeEvent(QEvent *e)
 {
 	QWidget::changeEvent(e);
@@ -225,7 +220,7 @@ void FamilyWidget::slotShowSample()
 void FamilyWidget::slotShowInfo()
 {
 	FMInfoDisplay fid(FMFontDb::DB()->Font(curVariant));
-	ui->webView->setContent(fid.getHtml().toUtf8(), "application/xhtml+xml");
+	ui->webView->setHtml(fid.getHtml());
 	ui->displayStack->setCurrentIndex(FAMILY_VIEW_INFO);
 	currentPage = FAMILY_VIEW_INFO;
 	updateButtons();
