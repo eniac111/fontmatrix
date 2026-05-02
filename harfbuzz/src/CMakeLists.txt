@@ -1,16 +1,10 @@
 IF(WANT_HARFBUZZ)
-	# harfbuzz-shaper-all.cpp is a "unity build" aggregator: it does
-	# nothing but `#include` every other shaper source (shaper.cpp,
-	# indic.cpp, tibetan.c, khmer.c, hebrew.c, arabic.c, hangul.c,
-	# myanmar.c, thai.c). If we list it AND those same files, every
-	# symbol they define ends up duplicated across two .obj files in
-	# harfbuzz.lib. GNU ld silently picks one archive member and
-	# skips the other; MSVC's link.exe pulls both in and errors with
-	# LNK2005. Listing the individual files (as we do below) is the
-	# correct approach — shaper-all.cpp is redundant and is omitted.
+	# Two unity-build aggregators (`harfbuzz.c` and `harfbuzz-shaper-all.cpp`)
+	# `#include` every other source in this directory. Listing them alongside
+	# the individual files makes MSVC emit LNK4006 for every symbol; both
+	# aggregators are omitted here.
 	SET(harfbuzz_SOURCES
 	harfbuzz-arabic.c
-	harfbuzz.c
 	harfbuzz-gsub.c
 	harfbuzz-hebrew.c
 	harfbuzz-myanmar.c
@@ -30,7 +24,6 @@ IF(WANT_HARFBUZZ)
 	)
 ELSE(WANT_HARFBUZZ)
 	SET(harfbuzz_SOURCES
-	harfbuzz.c
 	harfbuzz-gsub.c
 	harfbuzz-stream.c
 	harfbuzz-buffer.c

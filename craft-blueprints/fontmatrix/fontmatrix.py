@@ -17,6 +17,7 @@
 import os
 
 import info
+from CraftCore import CraftCore
 from Package.CMakePackageBase import CMakePackageBase
 
 
@@ -26,58 +27,31 @@ class subinfo(info.infoclass):
         self.description = "Cross-platform font management application built on Qt6 / KF6"
         self.webpage = "https://github.com/eniac111/fontmatrix"
 
-        # We don't actually fetch source via Craft — CI invokes us with
-        #   --options fontmatrix.srcDir=<checkout>
-        # which overrides the source step entirely. But Craft still needs
-        # *some* target declaration so it has a label to attach to build
-        # artifacts and package filenames; the value of that label ends
-        # up in the NSIS output as `fontmatrix-<target>-windows-cl-msvc2022-x86_64.exe`.
-        #
-        # CRAFT_FONTMATRIX_VERSION_FULL is exported by the GitHub Actions
-        # workflow ("Determine version" step) and is either:
-        #   - "1.2.3"          for tag builds (refs/tags/vX.Y.Z)
-        #   - "git-<short-sha>" for untagged push/PR builds
-        # For local invocations without that env var, we fall back to
-        # "master" — same string a stock Craft build off the GitHub repo
-        # would have used.
-        #
-        # The URL on svnTargets is never followed (srcDir wins), but
-        # Craft expects a non-empty value, so we point it at the canonical
-        # repo for documentation.
+        # CI passes --options fontmatrix.srcDir=<checkout>, so the URL is
+        # never fetched — but Craft requires svnTargets to have at least
+        # one entry. CRAFT_FONTMATRIX_VERSION_FULL is set by the workflow.
         version = os.environ.get("CRAFT_FONTMATRIX_VERSION_FULL", "master")
         self.svnTargets[version] = "https://github.com/eniac111/fontmatrix.git"
         self.defaultTarget = version
 
     def setDependencies(self):
-        # Build-only: ECM (KDE's CMake helpers) is a configure-time dep.
-        # Note: extra-cmake-modules is a peer of tier1/tier2/tier3 in
-        # craft-blueprints-kde, not nested under any tier.
         self.buildDependencies["kde/frameworks/extra-cmake-modules"] = None
 
-        # Qt 6 — application links against Core, Widgets, Svg, SvgWidgets,
-        # Sql, Xml, PrintSupport. Craft's qtbase blueprint pulls
-        # Core/Widgets/Sql/Xml/PrintSupport; qtsvg is separate.
+        # qttools / qtdeclarative are NOT runtime deps. qtdeclarative pulls
+        # libs/llvm (~1 GB of clang tools); we don't ship Linguist/Designer
+        # and translations flow through ki18n_install(po), not lrelease.
         self.runtimeDependencies["libs/qt/qtbase"] = None
         self.runtimeDependencies["libs/qt/qtsvg"] = None
-        self.runtimeDependencies["libs/qt/qttools"] = None  # for lupdate/lrelease at build time
 
-        # KF 6 — same component set as src/CMakeLists.txt's find_package(KF6 ...).
         self.runtimeDependencies["kde/frameworks/tier1/kcoreaddons"] = None
         self.runtimeDependencies["kde/frameworks/tier1/ki18n"] = None
         self.runtimeDependencies["kde/frameworks/tier1/kconfig"] = None
         self.runtimeDependencies["kde/frameworks/tier1/kdbusaddons"] = None
         self.runtimeDependencies["kde/frameworks/tier1/kwidgetsaddons"] = None
-        # kstatusnotifieritem lives in tier2, not tier3, in craft-blueprints-kde.
         self.runtimeDependencies["kde/frameworks/tier2/kstatusnotifieritem"] = None
         self.runtimeDependencies["kde/frameworks/tier3/kxmlgui"] = None
         self.runtimeDependencies["kde/frameworks/tier3/kconfigwidgets"] = None
-        # KDocTools is optional: handbook builds when present, otherwise skipped.
-        # Leave it out of the dependency set on Windows to keep the runtime
-        # smaller; the handbook is consumed by KHelpCenter, which has no
-        # equivalent on Windows anyway.
 
-        # Native deps — FreeType is mandatory; PoDoFo is required for PDF
-        # font extraction. Both have Craft blueprints under libs/.
         self.runtimeDependencies["libs/freetype"] = None
         self.runtimeDependencies["libs/podofo"] = None
 
@@ -86,40 +60,66 @@ class Package(CMakePackageBase):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        # Forward Fontmatrix's optional CMake feature flags. WANT_HARFBUZZ
-        # is on by default because the source tree vendors HarfBuzz under
-        # harfbuzz/ — Craft does not need to provide it. WANT_FONTCONFIG
-        # is off on Windows: there is no system FontConfig.
         cmake_args = [
             "-DWANT_HARFBUZZ=true",
             "-DWANT_FONTCONFIG=false",
             "-DCMAKE_BUILD_TYPE=Release",
         ]
-
-        # Forward an optional version triple from the environment. CI sets
-        # CRAFT_FONTMATRIX_VERSION_{MAJOR,MINOR,PATCH} for tag builds; for
-        # untagged builds the env vars are unset and CMakeLists falls back
-        # to its in-tree defaults.
         for component in ("MAJOR", "MINOR", "PATCH"):
             value = os.environ.get(f"CRAFT_FONTMATRIX_VERSION_{component}")
             if value:
                 cmake_args.append(f"-DVERSION_{component}={value}")
-
         self.subinfo.options.configure.args = " ".join(cmake_args)
+
+        # Layer a custom blacklist on top of Craft's default
+        # applications_blacklist.txt. Skip silently if the file isn't
+        # alongside the blueprint (Craft's toRegExp() raises on missing
+        # paths, which would abort packaging).
+        blueprint_dir = os.path.dirname(os.path.abspath(__file__))
+        blacklist_path = os.path.join(blueprint_dir, "blacklist.txt")
+        if os.path.isfile(blacklist_path):
+            self.blacklist_file.append(blacklist_path)
+
+    def formatVersion(self, includeRevision, includeTimeStamp):
+        # Default uses [git rev-parse --abbrev-ref HEAD, self.version],
+        # which on a detached CI checkout becomes "HEAD-<version>". Collapse
+        # it to a single label when the workflow exports a version.
+        env_version = os.environ.get("CRAFT_FONTMATRIX_VERSION_FULL")
+        if env_version:
+            return env_version
+        return super().formatVersion(includeRevision, includeTimeStamp)
 
     def createPackage(self):
         self.defines["appname"] = "fontmatrix"
         self.defines["company"] = "Fontmatrix"
-        # NSIS template's `Caption "@{productname} @{version}"` and
-        # registry `DisplayVersion` field both reference @{version}. Craft
-        # only auto-populates this when the blueprint has a concrete
-        # target/version; otherwise generateNSISInstaller() throws
-        #   Failed to configure NullsoftInstaller.nsi: @{version} is not in variables
-        # We declare svnTargets[CRAFT_FONTMATRIX_VERSION_FULL] in setTargets,
-        # but set this explicitly too so the install never fails on it.
+        # NSIS template references @{version}; Craft only auto-fills it
+        # when a concrete svnTarget version is set, so set it defensively.
         self.defines["version"] = os.environ.get("CRAFT_FONTMATRIX_VERSION_FULL", "0.0.0")
         self.defines["shortcuts"] = [
             {"name": "Fontmatrix", "target": "bin/fontmatrix.exe"},
         ]
-        self.ignoredPackages.append("binary/mysql")  # not needed for SQLite-only Sql usage
+
+        # Drop random executables that came along with build deps but aren't
+        # ours (e.g. qmldom.exe, androiddeployqt.exe, openssl.exe). Same
+        # pattern as kate.py.
+        self.addExecutableFilter(r"(bin|libexec)/(?!fontmatrix\.exe).*")
+
+        self.ignoredPackages.append("binary/mysql")
+        # KF6 kconfig/ki18n/kguiaddons declare qtdeclarative as a runtime
+        # dep for their QML bindings (KConfig.QML, KLocalizedContext, …).
+        # Fontmatrix is a pure QtWidgets app — strip the QML chain at
+        # packaging time so the installer doesn't ship Qt6Quick/Qml/etc.
+        self.ignoredPackages.extend([
+            "libs/qt6/qtdeclarative",
+            "libs/qt6/qtshadertools",
+            "libs/qt6/qtlanguageserver",
+            "libs/qt6/qttools",
+            "libs/qt6/qtquick3d",
+            "libs/llvm",
+        ])
+        # D-Bus is Linux-only for our use case; KDBusAddons gracefully no-ops
+        # when D-Bus isn't installed on Windows. Mirrors kate.py.
+        if not CraftCore.compiler.isLinux:
+            self.ignoredPackages.append("libs/dbus")
+
         return super().createPackage()

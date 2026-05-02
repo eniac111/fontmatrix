@@ -140,9 +140,9 @@ jobs:
           # Exclusions need forward slashes + /** — actions/cache's
           # fnmatch-style matcher treats `\` as a literal on Windows,
           # so backslash patterns silently match nothing.
-          key: craft-windows-x86_64-kate1-${{ hashFiles('craft-blueprints/**/*.py') }}
+          key: craft-windows-x86_64-slim1-${{ hashFiles('craft-blueprints/**/*') }}
           restore-keys: |
-            craft-windows-x86_64-kate1-
+            craft-windows-x86_64-slim1-
           path: |
             C:/CraftRoot
             !C:/CraftRoot/build/fontmatrix/**
@@ -243,9 +243,10 @@ jobs:
           # Blueprint location pattern:
           #   <CraftRoot>/etc/blueprints/locations/<repo>/<category>/<name>/<name>.py
           $blueprintRoot = 'C:\CraftRoot\etc\blueprints\locations\fontmatrix'
+          if (Test-Path $blueprintRoot) { Remove-Item -Recurse -Force $blueprintRoot }
           New-Item -ItemType Directory -Force -Path $blueprintRoot | Out-Null
           Copy-Item -Recurse -Force craft-blueprints\* $blueprintRoot\
-          Get-ChildItem -Recurse $blueprintRoot -Filter '*.py' |
+          Get-ChildItem -Recurse -File $blueprintRoot |
             ForEach-Object { Write-Host "  installed: $($_.FullName)" }
 
       - name: Install Fontmatrix runtime deps
@@ -345,7 +346,7 @@ jobs:
         if: always() && steps.cache-craft.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
-          key: craft-windows-x86_64-kate1-${{ hashFiles('craft-blueprints/**/*.py') }}
+          key: craft-windows-x86_64-slim1-${{ hashFiles('craft-blueprints/**/*') }}
           path: |
             C:/CraftRoot
             !C:/CraftRoot/build/fontmatrix/**
