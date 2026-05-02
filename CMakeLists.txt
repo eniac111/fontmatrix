@@ -280,26 +280,17 @@ IF(WIN32)
 	DESTINATION "${RESOURCESDIR}/Unicode/"
 	)
 
-	# Bundle Qt runtime DLLs alongside the installed executable.
-	# windeployqt6 path is resolved from Qt6::Core's location at configure time.
-	get_target_property(_qt_core_loc Qt6::Core IMPORTED_LOCATION)
-	get_filename_component(_qt_bin_dir "${_qt_core_loc}" DIRECTORY)
-	install(CODE "
-		if(EXISTS \"${_qt_bin_dir}/windeployqt6.exe\")
-			execute_process(COMMAND
-				\"${_qt_bin_dir}/windeployqt6.exe\" --release
-				\"\${CMAKE_INSTALL_PREFIX}/fontmatrix.exe\"
-			)
-		else()
-			message(WARNING \"windeployqt6.exe not found at ${_qt_bin_dir} — Qt DLLs will not be bundled.\")
-		endif()
-	")
+	# No windeployqt: Craft's qtbase image dir already contains Qt DLLs and
+	# plugins, and Craft's NullsoftInstallerPackager flattens plugins/<type>/
+	# into bin/<type>/ at packaging time (movePluginsToBin=True on Windows).
+	# Running windeployqt on top would deploy the same plugins twice and the
+	# packager's mergeTree would fail on the duplicates. Same pattern as
+	# Kate's craft-blueprints-kde blueprint.
 
-	# Install MSVC runtime DLLs (vcruntime140.dll, msvcp140.dll, etc.) alongside the exe.
-	# InstallRequiredSystemLibraries locates them via CMake's knowledge of the MSVC toolchain,
-	# which is reliable at configure time — unlike windeployqt6 --compiler-runtime which runs
-	# at install time without the full Visual Studio environment.
-	set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ".")
+	# Install MSVC runtime DLLs (vcruntime140.dll, msvcp140.dll, etc.)
+	# alongside fontmatrix.exe in ${KDE_INSTALL_BINDIR}; Windows resolves
+	# CRT imports from the executable's directory first.
+	set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION "${KDE_INSTALL_BINDIR}")
 	include(InstallRequiredSystemLibraries)
 
 	# FreeType + transitive DLLs are bundled by Craft's libs/freetype
