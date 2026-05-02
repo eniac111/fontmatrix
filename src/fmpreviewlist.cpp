@@ -25,9 +25,10 @@
 #include "fmfloatingpreview.h"
 #include "fmfontdb.h"
 
+#include <KLocalizedString>
 #include <QImage>
 #include <QDebug>
-#include <QSettings>
+#include "fmconfig.h"
 #include <QScrollBar>
 //#include <QDrag>
 //#include <QMimeData>
@@ -85,7 +86,7 @@ FMPreviewIconEngine::FMPreviewIconEngine()
 QIconEngine *FMPreviewIconEngine::clone() const
 {
 	// TODO Implement this function
-	return 0;
+	return nullptr;
 }
 
 QVector<QRgb> FMPreviewIconEngine::actualSelPalette(const QVector<QRgb>& orig)
@@ -134,7 +135,7 @@ FMPreviewIconEngine::~FMPreviewIconEngine()
 	//		delete m_p;
 }
 
-void FMPreviewIconEngine::paint ( QPainter * painter, const QRect & rect, QIcon::Mode mode, QIcon::State state )
+void FMPreviewIconEngine::paint ( QPainter * painter, const QRect & rect, QIcon::Mode mode, QIcon::State )
 {
 	if(!m_p.isNull())
 	{
@@ -196,7 +197,7 @@ void FMPreviewIconEngine::paint ( QPainter * painter, const QRect & rect, QIcon:
 	}
 }
 
-void FMPreviewIconEngine::addPixmap ( const QPixmap & pixmap, QIcon::Mode mode, QIcon::State state )
+void FMPreviewIconEngine::addPixmap ( const QPixmap & pixmap, QIcon::Mode , QIcon::State )
 {
 	m_p = pixmap;
 }
@@ -206,14 +207,13 @@ FMPreviewModel::FMPreviewModel( QObject * pa , FMPreviewView * wPa,  QList<FontI
 	: QAbstractListModel(pa) , m_view(wPa), base(db)
 {
 	familyMode = false;
-	QSettings settings;
-	styleTooltipName = settings.value("Preview/StyleTooltipName","font-weight:bold;").toString();
-	styleTooltipPath = settings.value("Preview/StyleTooltipPath","font-weight:normal;font-size:small;").toString();
-	styleTooltipTags = settings.value("Preview/StyleTooltipTags","text-align:right;font-weight:normal;font-size:small;font-style:italic;").toString();
-	
-	settings.setValue("Preview/StyleTooltipName", styleTooltipName);
-	settings.setValue("Preview/StyleTooltipPath", styleTooltipPath);
-	settings.setValue("Preview/StyleTooltipTags", styleTooltipTags);
+	styleTooltipName = FMConfig::value(QStringLiteral("Preview/StyleTooltipName"), QStringLiteral("font-weight:bold;")).toString();
+	styleTooltipPath = FMConfig::value(QStringLiteral("Preview/StyleTooltipPath"), QStringLiteral("font-weight:normal;font-size:small;")).toString();
+	styleTooltipTags = FMConfig::value(QStringLiteral("Preview/StyleTooltipTags"), QStringLiteral("text-align:right;font-weight:normal;font-size:small;font-style:italic;")).toString();
+
+	FMConfig::setValue(QStringLiteral("Preview/StyleTooltipName"), styleTooltipName);
+	FMConfig::setValue(QStringLiteral("Preview/StyleTooltipPath"), styleTooltipPath);
+	FMConfig::setValue(QStringLiteral("Preview/StyleTooltipTags"), styleTooltipTags);
 }
 
 QVariant FMPreviewModel::data(const QModelIndex & index, int role) const
@@ -258,7 +258,7 @@ QVariant FMPreviewModel::data(const QModelIndex & index, int role) const
 		{
 			bool hasActive(false);
 			bool hasNotActive(false);
-			foreach(FontItem * f, FMFontDb::DB()->FamilySet(fit->family()))
+			for (auto* f : FMFontDb::DB()->FamilySet(fit->family()))
 			{
 				if(f->isActivated())
 					hasActive = true;
@@ -288,7 +288,7 @@ QVariant FMPreviewModel::data(const QModelIndex & index, int role) const
 			sRet+= "<div style=\"" + styleTooltipName + "\">" + fit->family() + " ("+QString::number(fam.size())+")</div>";
 			sRet+= "<div style=\"" + styleTooltipTags + "\">" + fit->tags().join(QString(", ")) + "</div>";
 
-			foreach(FontItem* ffi, fam)
+			for (auto* ffi : fam)
 			{
 				sRet += "<div style=\"" + styleTooltipPath + "\">" + ffi->variant() + "</div>";
 			}
@@ -317,7 +317,7 @@ QVariant FMPreviewModel::data(const QModelIndex & index, int role) const
 	
 }
 
-Qt::ItemFlags FMPreviewModel::flags(const QModelIndex & index) const
+Qt::ItemFlags FMPreviewModel::flags(const QModelIndex & ) const
 {
 	return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
 }

@@ -3,7 +3,7 @@
 Version=1.0
 Type=Application
 Name=Fontmatrix
-Comment=A font manager
+Comment=A font management application
 Comment[ru]=Программа для управления шрифтами
 Comment[fi]=Työkalu fonttien hallintaan
 Categories=Graphics;VectorGraphics;

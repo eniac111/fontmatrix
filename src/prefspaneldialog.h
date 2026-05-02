@@ -12,21 +12,23 @@
 #ifndef PREFSPANELDIALOG_H
 #define PREFSPANELDIALOG_H
 
-#include <qdialog.h>
+#include <KPageDialog>
 #include <ui_prefs_panel.h>
 
 class QStandardItemModel;
+class KPageWidgetItem;
+class KMessageWidget;
 
 /**
 	@author Pierre Marchand <pierremarc@oep-h.com>
 */
-class PrefsPanelDialog : public QDialog, private Ui::PrefsPanel
+class PrefsPanelDialog : public KPageDialog, private Ui::PrefsPanel
 {
 	Q_OBJECT
 	public:
 		PrefsPanelDialog ( QWidget *parent );
 
-		~PrefsPanelDialog();
+		~PrefsPanelDialog() override;
 
 		enum PAGE{PAGE_GENERAL = 0,
 			PAGE_SYSTRAY,
@@ -42,14 +44,25 @@ class PrefsPanelDialog : public QDialog, private Ui::PrefsPanel
 		void initShortcuts();
 		void showPage(PAGE page);
 
-		bool event( QEvent* ev );
-		void keyPressEvent(QKeyEvent *k);
-		void keyReleaseEvent(QKeyEvent *k);
+		bool event( QEvent* ev ) override;
+		void keyPressEvent(QKeyEvent *k) override;
+		void keyReleaseEvent(QKeyEvent *k) override;
+		void done(int r) override;
 		static QString getKeyText(int KeyC);
 
 	private:
 		void doConnect();
 		QStandardItemModel *shortcutModel;
+		QDialog *m_uiHolder;
+		KMessageWidget *m_systrayUnavailable;
+		KMessageWidget *m_sampleNameWarning;
+		KPageWidgetItem *m_pageGeneral;
+		KPageWidgetItem *m_pageSystray;
+		KPageWidgetItem *m_pageDisplay;
+		KPageWidgetItem *m_pageTools;
+		KPageWidgetItem *m_pageSampleText;
+		KPageWidgetItem *m_pageFiles;
+		KPageWidgetItem *m_pageShortcuts;
 
 		/* For the keyboard shortcut */
 		int keyCode;
@@ -63,7 +76,6 @@ class PrefsPanelDialog : public QDialog, private Ui::PrefsPanel
 		void setSelected(const QString &actionText);
 
 	private slots:
-		void slotSelectPage(QListWidgetItem * item);
 		void applySampleText();
 
 		void addSampleName();
@@ -81,8 +93,7 @@ class PrefsPanelDialog : public QDialog, private Ui::PrefsPanel
 		void updateWordRTL(int);
 		void updateWordSubtitled(int);
 
-		void updateChartFontFamily(const QFont & font);
-		void updateChartFontSize(int);
+		void updateChartFont(const QFont & font);
 
 		void setupFontEditor(QString);
 		void slotFontEditorBrowse();
@@ -90,8 +101,6 @@ class PrefsPanelDialog : public QDialog, private Ui::PrefsPanel
 		void addAndSelectWebBrowser();
 		void selectWebBrowser(const QString & text );
 		void setupWebBrowserOptions(const QString & text );
-		
-		void selectInfoStyle(const QString& css);
 
 		void setupTemplates(const QString&);
 		void slotTemplatesBrowse();
@@ -112,7 +121,6 @@ class PrefsPanelDialog : public QDialog, private Ui::PrefsPanel
 
 		void slotDictDialog();
 
-		void slotClose();
 
 };
 

@@ -19,10 +19,11 @@
  ***************************************************************************/
 
 #include "shortcuts.h"
+#include "fmconfig.h"
 
 #include <QAction>
 
-Shortcuts* Shortcuts::instance = 0;
+Shortcuts* Shortcuts::instance = nullptr;
 
 Shortcuts::Shortcuts()
 {
@@ -31,7 +32,7 @@ Shortcuts::Shortcuts()
 
 Shortcuts* Shortcuts::getInstance()
 {
-	if (instance == 0)
+	if (instance == nullptr)
 		instance = new Shortcuts();
 
 	return instance;
@@ -43,8 +44,8 @@ void Shortcuts::add(QAction *a)
 		return;
 
 	QString key = settingsKey(a);
-	if (settings.contains(key))
-		a->setShortcut(QKeySequence(settings.value(key).toString()));
+	if (FMConfig::contains(key))
+		a->setShortcut(QKeySequence(FMConfig::value(key).toString()));
 	actions[cleanName(a)] = a;
 }
 
@@ -75,7 +76,7 @@ QString Shortcuts::isReserved(const QString &shortcut, const QString &actionText
 	QString isTaken;
 	if (actions.contains(cleanName(actionText))) {
 		QList<QAction*> alist = actions.values();
-		foreach(QAction *act, alist) {
+		for (auto* act : alist) {
 			if (act->shortcut() == shortcut) {
 				isTaken = act->text();
 				break;
@@ -89,7 +90,7 @@ void Shortcuts::setShortcut(const QString &shortcut, const QString &actionText)
 {
 	if (actions.contains(cleanName(actionText))) {
 		actions[cleanName(actionText)]->setShortcut(shortcut);
-		settings.setValue(settingsKey(actions[cleanName(actionText)]), shortcut);
+		FMConfig::setValue(settingsKey(actions[cleanName(actionText)]), shortcut);
 	}
 }
 
@@ -97,7 +98,7 @@ void Shortcuts::clearShortcut(const QString &actionText)
 {
 	if (actions.contains(cleanName(actionText))) {
 		actions[cleanName(actionText)]->setShortcut(QString(""));
-		settings.setValue(settingsKey(actions[cleanName(actionText)]), QString(""));
+		FMConfig::setValue(settingsKey(actions[cleanName(actionText)]), QString(""));
 	}
 }
 

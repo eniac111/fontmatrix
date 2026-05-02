@@ -11,7 +11,7 @@
 //
 #include "textprogression.h"
 
-TextProgression *TextProgression::instance = 0;
+TextProgression *TextProgression::instance = nullptr;
 TextProgression::TextProgression()
 {
 	instance = this;

@@ -15,16 +15,21 @@
 #include "fontitem.h"
 #include "fmfontdb.h"
 #include "fmfontstrings.h"
-#include "fmpaths.h"
 #include "glyphtosvghelper.h"
 #include "typotek.h"
 
+#include <KLocalizedString>
 #include <QMap>
 #include <QObject>
 #include <QRegularExpression>
 #include <QStringList>
 
+#include <QBuffer>
+#include <QByteArray>
 #include <QFile>
+#include <QImage>
+#include <QPainter>
+#include <QSvgRenderer>
 
 
 FMInfoDisplay::FMInfoDisplay(FontItem * font)
@@ -42,13 +47,9 @@ FMInfoDisplay::FMInfoDisplay(FontItem * font)
 	.encodingcurrent
 	.encoding
 	 */
-	html = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n";
-	html += "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n";
-	html += "<head>\n";
+	html = "<html>\n<head>\n";
 	html += "<title>" + xhtmlifies( font->fancyName() ) + "</title>\n";
 	html += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n";
-	html += "<link rel=\"stylesheet\" href=\"" + QUrl::fromLocalFile(typotek::getInstance()->getInfoStyle()).toString() + "\" type=\"text/css\" />\n";
-	html += "<script type=\"text/javascript\" src=\""+ QUrl::fromLocalFile(FMPaths::ResourcesDir() + "fontmatrix.js" ).toString() +" \" />\n";
 	html += "</head>\n<body>\n";
 	html += writeSVGPreview(font);
 	html += "<div id=\"file\">" + xhtmlifies( font->path() ) + "</div>\n" ;
@@ -116,9 +117,9 @@ QString FMInfoDisplay::writeLangOS2(FontItem * font)
 	if(llist.count() > 0)
 	{
 		ret += "<div id=\"langblock\">\n";
-		ret += "\t<div class=\"langblockname\">" + QObject::tr("Unicode Ranges") + "</div>\n";
+		ret += "\t<div class=\"langblockname\">" + i18n("Unicode Ranges") + "</div>\n";
 		ret += "\t<ul>\n";
-		foreach(QString ln, llist)
+		for (const auto& ln : llist)
 		{
 			ret += QString("\t\t<li>%1</li>\n").arg(ln);
 		}
@@ -133,7 +134,9 @@ QString FMInfoDisplay::writeLangOS2(FontItem * font)
 
 QString FMInfoDisplay::writeSVGPreview(FontItem * font)
 {
-	QString svg;
+	// Rasterise the assembled SVG once: QTextBrowser can resolve
+	// <img src=data:...> but not inline <svg> elements.
+	QString svgPaths;
 	QTransform tf;
 	double pifs ( typotek::getInstance()->getPreviewInfoFontSize() );
 	double scaleFactor( pifs / font->getUnitPerEm() );
@@ -142,28 +145,45 @@ QString FMInfoDisplay::writeSVGPreview(FontItem * font)
 	double horOffset ( 0 );
 	tf.translate ( horOffset , vertOffset );
 
-	foreach ( QChar c, font->fancyName() )
+	for (const auto& c : font->fancyName())
 	{
+		QGraphicsPathItem * gpi ( font->itemFromChar ( c.unicode(), pifs ) );
+		if ( gpi )
 		{
-			QGraphicsPathItem * gpi ( font->itemFromChar ( c.unicode(), pifs ) );
-			if ( gpi )
-			{
-				GlyphToSVGHelper gtsh ( gpi->path(), tf );
-				svg += gtsh.getSVGPath() + "\n";
-				horOffset += gpi->data(GLYPH_DATA_HADVANCE).toDouble() * scaleFactor;
-				/* cast gtsh.height from qreal (float on ARM) to double so qMax can be done */
-				maxHeight = qMax ( (double) gtsh.getRect().height(), maxHeight );
-				tf.translate( gpi->data(GLYPH_DATA_HADVANCE).toDouble()  * scaleFactor,0 );
-				delete gpi;
-			}
+			GlyphToSVGHelper gtsh ( gpi->path(), tf );
+			svgPaths += gtsh.getSVGPath() + "\n";
+			horOffset += gpi->data(GLYPH_DATA_HADVANCE).toDouble() * scaleFactor;
+			/* cast gtsh.height from qreal (float on ARM) to double so qMax can be done */
+			maxHeight = qMax ( (double) gtsh.getRect().height(), maxHeight );
+			tf.translate( gpi->data(GLYPH_DATA_HADVANCE).toDouble()  * scaleFactor,0 );
+			delete gpi;
 		}
 	}
-	QString openElem ( QString ( "<div id=\"previewblock\"><svg width=\"%1px\" height=\"%2px\"  xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n" )
-			.arg ( qRound(horOffset) )
-			.arg ( qRound(maxHeight*1.6) ));
-	
-	
-	return openElem + svg + "</svg></div>\n";
+
+	const int w = qRound(horOffset);
+	const int h = qRound(maxHeight * 1.6);
+	if (svgPaths.isEmpty() || w <= 0 || h <= 0)
+		return QString();
+
+	const QString svgDoc = QStringLiteral(
+			"<svg width=\"%1px\" height=\"%2px\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n%3</svg>")
+			.arg(w).arg(h).arg(svgPaths);
+
+	QSvgRenderer renderer(svgDoc.toUtf8());
+	QImage image(w, h, QImage::Format_ARGB32_Premultiplied);
+	image.fill(Qt::transparent);
+	{
+		QPainter painter(&image);
+		renderer.render(&painter);
+	}
+
+	QByteArray pngBytes;
+	QBuffer buffer(&pngBytes);
+	buffer.open(QIODevice::WriteOnly);
+	image.save(&buffer, "PNG");
+
+	return QStringLiteral("<div id=\"previewblock\"><img src=\"data:image/png;base64,%1\"/></div>\n")
+			.arg(QString::fromLatin1(pngBytes.toBase64()));
 }
 
 QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
@@ -175,16 +195,16 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 	if(fontType == QString("CFF"))
 		fontType = QString("OpenType");
 
-	ret += modelItem.arg(QObject::tr("File"))
+	ret += modelItem.arg(i18n("File"))
 	       .arg(font->path().replace("/","/&shy;"));
-	ret += modelItem.arg( QObject::tr ( "Glyphs count" ))
+	ret += modelItem.arg( i18n( "Glyphs count" ))
 	       .arg(QString::number ( font->glyphsCount() ));
-	ret += modelItem.arg(QObject::tr ( "Font Type" ) )
+	ret += modelItem.arg(i18n( "Font Type" ) )
 	       .arg(fontType );
 
 
 	QStringList cmapStrings;
-	foreach ( FT_Encoding c, font->getCharsets() )
+	for (const auto& c : font->getCharsets())
 	{
 		QString encString ( FontStrings::Encoding ( c ) );
 		if ( ( c == FT_ENCODING_UNICODE ) && ( !font->getUnicodeBuiltIn() ) )
@@ -194,7 +214,7 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 		else
 			cmapStrings << "<span class=\"encoding\">" + encString + "</span>\n";
 	}
-	ret += "<div class=\"infoblock\"><div class=\"infoname\">"+ QObject::tr ( "Charmaps List" ) +"</div><div class=\"langundefined\">"+ font->charmaps().join( ", " ) +"</div></div>\n";
+	ret += "<div class=\"infoblock\"><div class=\"infoname\">"+ i18n( "Charmaps List" ) +"</div><div class=\"langundefined\">"+ font->charmaps().join( ", " ) +"</div></div>\n";
 
 	
 // 	if ( !moreInfo.isEmpty() ) // moreInfo.isNotEmpty
@@ -283,7 +303,7 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 			<< FMFontDb::UniqueFontIdentifier;
 	
 	QMap<FMFontDb::InfoItem, QString> tNames(FontStrings::Names());
-	foreach(FMFontDb::InfoItem key, order)
+	for (const auto& key : order)
 	{
 		if (orderedInfo.contains(key))
 			ret += modelItem.arg(tNames.value(key))

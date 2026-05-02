@@ -21,11 +21,11 @@ class ModelText : public QTextEdit
 	Q_OBJECT
 	public:
 		ModelText(QWidget * parent);
-		~ModelText(){}
+		~ModelText() override{}
 		
 	protected:
-		bool canInsertFromMimeData( const QMimeData *source ) const;
-		void insertFromMimeData ( const QMimeData * source ) ;
+		bool canInsertFromMimeData( const QMimeData *source ) const override;
+		void insertFromMimeData ( const QMimeData * source ) override ;
 		
 	signals:
 		void insertContent();

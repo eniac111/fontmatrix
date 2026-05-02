@@ -13,6 +13,7 @@
 #include "typotek.h"
 
 // #include <QHttp>
+#include <KLocalizedString>
 #include <QByteArray>
 #include <QBuffer>
 #include <QUrl>
@@ -53,7 +54,7 @@ void RemoteDir::run()
 // 		connect(rd,SIGNAL(dataReadProgress( int, int )),this,SLOT(slotProgress(int, int)));
 		
 		int rdId(rd->get(url.path()+"/fontmatrix.data", buffer));
-		typotek::getInstance()->showStatusMessage(tr("Downloading")+" " + url.toString() + "/fontmatrix.data");
+		typotek::getInstance()->showStatusMessage(i18n("Downloading")+" " + url.toString() + "/fontmatrix.data");
 		rDirs[rdId] = argDirs[ridx];
 		httpRequests[rdId] = 1;
 		httpBuffers[rdId] = ba;
@@ -67,12 +68,12 @@ void RemoteDir::run()
 RemoteDir::~RemoteDir()
 {
 #if 0 // TODO Replace this code
-	foreach(QHttp *h, https)
+	for (auto* h : https)
 	{
 		delete h;
 	}
 #endif
-	foreach(QBuffer *b, buffers)
+	for (auto* b : buffers)
 	{
 		delete b;
 	}
@@ -123,9 +124,9 @@ void RemoteDir::slotEndReq(int id, bool error)
 	else
 		httpRequests[id] = 2;
 	
-	int ih(0);
 	bool hFound = false;
 #if 0 // TODO Replace this code
+	int ih(0);
 	for(;ih < https.size();++ih)
 	{
 		if(sender() == https[ih])
@@ -179,7 +180,7 @@ void RemoteDir::eventEndDownload()
 		doc.setContent(*(bIt.value()));
 		//loading fonts
 		QDomNodeList colList = doc.elementsByTagName ( "fontfile" );
-		for ( uint i = 0; i < colList.length(); ++i )
+		for ( int i = 0; i < colList.length(); ++i )
 		{
 			QDomNode col = colList.item ( i );
 			
@@ -228,7 +229,7 @@ void RemoteDir::getPreviews()
 		QDomDocument doc ( "fontdata" );
 		doc.setContent(*(bIt.value()));
 		QDomNodeList colList = doc.elementsByTagName ( "fontfile" );
-		for ( uint i = 0; i < colList.length(); ++i )
+		for ( int i = 0; i < colList.length(); ++i )
 		{
 			QDomNode col = colList.item ( i );
 			QString p = col.namedItem ( "file" ).toElement().text();
@@ -245,17 +246,16 @@ void RemoteDir::getPreviews()
 			int rdId(reverseHttp[bIt.key()]->get(httpPaths[bIt.key()]+"/"+ p + ".png", buffer));
 			pendingPixmaps[rdId] = 1; 
 // 			qDebug() << "Started download of " << httpPaths[bIt.key()]+"/"+ p + ".png";
-			typotek::getInstance()->showStatusMessage(tr("Downloading") +" "+ httpPaths[bIt.key()]+"/"+ p + ".png");
+			typotek::getInstance()->showStatusMessage(i18n("Downloading") +" "+ httpPaths[bIt.key()]+"/"+ p + ".png");
 #endif
 		}
 	}
 }
 
 
-void RemoteDir::slotProgress(int done, int total)
+void RemoteDir::slotProgress(int , int )
 {
 // 	qDebug()<<"RemoteDir::slotProgress(int done, int total)";
-	int ih(0);
 	bool hFound = false;
 #if 0 // TODO Replace this code
 	for(;ih < https.size();++ih)

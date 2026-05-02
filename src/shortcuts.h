@@ -21,8 +21,9 @@
 #ifndef SHORTCUTS_H
 #define SHORTCUTS_H
 
-#include <QSettings>
 #include <QMap>
+#include <QObject>
+#include <QString>
 
 class QAction;
 
@@ -30,7 +31,7 @@ class Shortcuts : public QObject
 {
 	Q_OBJECT
 public:
-	~Shortcuts();
+	~Shortcuts() override;
 
 	static Shortcuts* getInstance();
 
@@ -50,8 +51,6 @@ public:
 	QString cleanName(const QString &s);  // same with a string
 
 private:
-	QSettings settings;
-
 	QMap<QString, QAction*> actions;
 
 	static Shortcuts* instance;

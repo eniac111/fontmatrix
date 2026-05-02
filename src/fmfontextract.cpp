@@ -12,6 +12,7 @@
 
 #include "fmfontextract.h"
 
+#include <KLocalizedString>
 #include <QFileInfo>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -24,10 +25,10 @@ FMFontExtract::FMFontExtract(QWidget * parent)
 	:QDialog(parent), lastPath(QDir::homePath()), lastDir(QDir::homePath())
 {
 	setupUi(this);
-	currentExtractor = 0;
+	currentExtractor = nullptr;
 #ifdef HAVE_PODOFO
 	FMPDFFontExtractor * pdfExtr(new FMPDFFontExtractor);
-	foreach(QString e, pdfExtr->extensions())
+	for (const auto& e : pdfExtr->extensions())
 	{
 		extractors[e] = pdfExtr;
 	}
@@ -46,12 +47,12 @@ FMFontExtract::FMFontExtract(QWidget * parent)
 FMFontExtract::~ FMFontExtract()
 {
 	QList<FMFontExtractorBase*> extP;
-	foreach(FMFontExtractorBase* b, extractors.values())
+	for (auto* b : extractors.values())
 	{
 		if(!extP.contains(b))
 			extP << b;
 	}
-	foreach(FMFontExtractorBase* b, extP)
+	for (auto* b : extP)
 	{
 		if(b)
 			delete b;
@@ -63,7 +64,7 @@ void FMFontExtract::loadDoc(const QString & path)
 	QFileInfo fi(path);
 	if(!fi.exists())
 	{
-		docPath->setText(tr("File does not exist:") + " " + fi.fileName());
+		docPath->setText(i18n("File does not exist:") + " " + fi.fileName());
 		return;
 	}
 	
@@ -75,7 +76,7 @@ void FMFontExtract::loadDoc(const QString & path)
 		fontList->clear();
 		if(currentExtractor->loadFile(path))
 		{
-			foreach(QString n, currentExtractor->list())
+			for (const auto& n : currentExtractor->list())
 			{
 				fontList->addItem(n);
 			}
@@ -83,7 +84,7 @@ void FMFontExtract::loadDoc(const QString & path)
 	}
 	else
 	{
-		docPath->setText(tr("Format not handled."));
+		docPath->setText(i18n("Format not handled."));
 	}
 		
 	for(int i(0);i < fontList->count(); ++i )
@@ -126,7 +127,7 @@ void FMFontExtract::slotExtract()
 	QString odir(outputDir->text() + QDir::separator());
 
 	QStringList failedExt;
-	foreach(QString name,names)
+	for (const auto& name : names)
 	{
 	
 		QString fnam(odir + name + "." + currentExtractor->fontType(name));
@@ -141,7 +142,7 @@ void FMFontExtract::slotExtract()
 	}
 	if(!failedExt.isEmpty())
 	{
-		QMessageBox::information(this,"Fontmatrix",tr("Failed to extract:\n%1").arg(failedExt.join("\n")));
+		QMessageBox::information(this,"Fontmatrix",i18n("Failed to extract:\n%1", failedExt.join("\n")));
 	}
 	
 }

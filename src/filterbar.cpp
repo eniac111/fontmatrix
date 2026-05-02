@@ -33,6 +33,7 @@
 #include "typotek.h"
 #include "mainviewwidget.h"
 
+#include <KLocalizedString>
 #include <QDialog>
 #include <QGridLayout>
 #include <QStringList>
@@ -45,11 +46,23 @@
 #include <QPixmap>
 #include <QPainter>
 #include <QRect>
-#include <QSettings>
+#include "fmconfig.h"
 
-QString FilterBar::andOpString = FilterBar::tr("And");
-QString FilterBar::notOpString = FilterBar::tr("Not");
-QString FilterBar::orOpString = FilterBar::tr("Or");
+const QString &FilterBar::andOp()
+{
+	static const QString s = i18n("And");
+	return s;
+}
+const QString &FilterBar::notOp()
+{
+	static const QString s = i18n("Not");
+	return s;
+}
+const QString &FilterBar::orOp()
+{
+	static const QString s = i18n("Or");
+	return s;
+}
 
 TagListModel::TagListModel(QObject *parent)
 	:QAbstractListModel(parent),
@@ -58,13 +71,13 @@ TagListModel::TagListModel(QObject *parent)
 //	ui->tagsCombo->clear();
 //	//	tagsetIcon = QIcon(":/fontmatrix_tagseteditor.png");
 
-//	ui->tagsCombo->addItem(tr("Tags"),"NO_KEY");
-//	ui->tagsCombo->addItem(tr("All activated"),"ALL_ACTIVATED");
+//	ui->tagsCombo->addItem(i18n("Tags"),"NO_KEY");
+//	ui->tagsCombo->addItem(i18n("All activated"),"ALL_ACTIVATED");
 
 //	QStringList tl_tmp = FMFontDb::DB()->getTags();
 ////	qDebug()<< "T"<< tl_tmp.join("||");
 //	tl_tmp.sort();
-//	foreach(QString tag, tl_tmp )
+//	for (const auto& tag : tl_tmp)
 //	{
 //		if(!FMFontDb::DB()->Fonts(tag, FMFontDb::Tags ).isEmpty())
 //			ui->tagsCombo->addItem(tag, "TAG");
@@ -92,7 +105,7 @@ QVariant TagListModel::data(const QModelIndex &index, int role) const
 	QStringList tl_tmp = FMFontDb::DB()->getTags();
 	tl_tmp.sort();
 	// specials
-	QString tagActivated(tr("Activated"));
+	QString tagActivated(i18n("Activated"));
 	tl_tmp.prepend(tagActivated);
 
 	QString tag(tl_tmp.at(index.row()));
@@ -148,7 +161,7 @@ QVariant TagListModel::data(const QModelIndex &index, int role) const
 	return QVariant();
 }
 
-bool TagListModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool TagListModel::setData(const QModelIndex &index, const QVariant &value, int )
 {
 	if(!index.isValid())
 		return false;
@@ -163,7 +176,7 @@ bool TagListModel::setData(const QModelIndex &index, const QVariant &value, int 
 	return true;
 }
 
-Qt::ItemFlags TagListModel::flags(const QModelIndex &index) const
+Qt::ItemFlags TagListModel::flags(const QModelIndex & ) const
 {
 //	if(index.row() > specialTagsCount - 1)
 //		return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
@@ -216,7 +229,7 @@ FilterBar::FilterBar(QWidget *parent) :
 //	ui->tagsView->horizontalHeader()->hide();
 	ui->tagsView->setModel(tagListModel);
 
-//	metaFieldsMenu = new QMenu(tr("Fields"), this);
+//	metaFieldsMenu = new QMenu(i18n("Fields"), this);
 	QList<FMFontDb::InfoItem> ln;
 	metaFieldKey = int(FMFontDb::AllInfo);
 	ln << FMFontDb::AllInfo
@@ -262,20 +275,18 @@ FilterBar::FilterBar(QWidget *parent) :
 	connect(ui->panoseArrow, SIGNAL(openChanged(bool)), this, SLOT(slotTogglePano(bool)));
 	connect(ui->filtersArrow, SIGNAL(openChanged(bool)), this, SLOT(slotToggleFilter(bool)));
 
-	QSettings settings;
-	ui->tagsArrow->changeOpen(settings.value("FilterBar/TagsOpen", true).toBool());
-	ui->metadataArrow->changeOpen(settings.value("FilterBar/MetaOpen", false).toBool());
-	ui->panoseArrow->changeOpen(settings.value("FilterBar/PanoseOpen", false).toBool());
-	ui->filtersArrow->changeOpen(settings.value("FilterBar/FiltersOpen", true).toBool());
+	ui->tagsArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/TagsOpen"), true).toBool());
+	ui->metadataArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/MetaOpen"), false).toBool());
+	ui->panoseArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/PanoseOpen"), false).toBool());
+	ui->filtersArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/FiltersOpen"), true).toBool());
 }
 
 FilterBar::~FilterBar()
 {
-	QSettings settings;
-	settings.setValue("FilterBar/TagsOpen", ui->tagsArrow->isOpen());
-	settings.setValue("FilterBar/MetaOpen", ui->metadataArrow->isOpen());
-	settings.setValue("FilterBar/PanoseOpen", ui->panoseArrow->isOpen());
-	settings.setValue("FilterBar/FiltersOpen", ui->filtersArrow->isOpen());
+	FMConfig::setValue(QStringLiteral("FilterBar/TagsOpen"), ui->tagsArrow->isOpen());
+	FMConfig::setValue(QStringLiteral("FilterBar/MetaOpen"), ui->metadataArrow->isOpen());
+	FMConfig::setValue(QStringLiteral("FilterBar/PanoseOpen"), ui->panoseArrow->isOpen());
+	FMConfig::setValue(QStringLiteral("FilterBar/FiltersOpen"), ui->filtersArrow->isOpen());
 	delete ui;
 }
 
@@ -324,7 +335,7 @@ void FilterBar::processFilters()
 	{
 		FMFontDb::DB()->clearFilteredFonts();
 		bool first(true);
-		foreach(FilterItem* d, filters)
+		for (auto* d : filters)
 		{
 			if(first)
 			{
@@ -340,7 +351,7 @@ void FilterBar::processFilters()
 void FilterBar::slotRemoveFilterItem(bool process)
 {
 	FilterItem * fi(reinterpret_cast<FilterItem*>(sender()));
-	if(fi != 0)
+	if(fi != nullptr)
 	{
 		filters.removeAll(fi);
 		if(filters.count() == 0)
@@ -358,7 +369,7 @@ void FilterBar::slotRemoveFilterItem(bool process)
 void FilterBar::removeAllFilters()
 {
 	FMFontDb::DB()->filterAllFonts();
-	foreach(FilterItem* d, filters)
+	for (auto* d : filters)
 	{
 		d->deleteLater();
 	}
@@ -368,7 +379,7 @@ void FilterBar::removeAllFilters()
 
 void FilterBar::addFilterItem(FilterData *f, bool process)
 {
-	if(f != 0)
+	if(f != nullptr)
 	{
 		curFilterWidget->setVisible(true);
 		FilterItem * it(f->item());
@@ -394,19 +405,19 @@ QString FilterBar::filterString(FilterData *d, bool first)
 	{
 		first = false;
 		if(d->data(FilterData::Not).toBool())
-			fs += notOpString + QString(" [%1] ").arg(d->getText());
+			fs += notOp() + QString(" [%1] ").arg(d->getText());
 		else
 			fs += QString("[%1] ").arg(d->getText());
 	}
 	else
 	{
 		if(d->data(FilterData::Or).toBool())
-			fs += orOpString;
+			fs += orOp();
 		else
-			fs += andOpString;
+			fs += andOp();
 
 		if(d->data(FilterData::Not).toBool())
-			fs += QString(" %1").arg(notOpString);
+			fs += QString(" %1").arg(notOp());
 		fs += QString(" [%1] ").arg(d->getText());
 	}
 	return fs;
@@ -414,19 +425,19 @@ QString FilterBar::filterString(FilterData *d, bool first)
 
 void FilterBar::loadFilters()
 {
-	foreach(FiltersDialogItem* i, items)
+	for (auto* i : items)
 		delete i;
 	items.clear();
 
 	QDir fbasedir(FMPaths::FiltersDir());
 	QStringList fbaselist(fbasedir.entryList(QDir::NoDotAndDotDot|QDir::Dirs,QDir::Name));
-	foreach(QString fname, fbaselist)
+	for (const auto& fname : fbaselist)
 	{
 		QDir fdir(FMPaths::FiltersDir() + fname);
 		QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files, QDir::Name));
 		QString fString;
 		bool first(true);
-		foreach(QString fn, flist)
+		for (const auto& fn : flist)
 		{
 			QStringList l(fn.split(QString("-")));
 			if(l.count() == 2)
@@ -476,7 +487,7 @@ void FilterBar::slotTagSelect(const QModelIndex & index)
 //	int selCount(ui->tagsView->selectionModel()->selectedIndexes().count());
 //	if(selCount == 1)
 	{
-		foreach(FilterItem* f, filters)
+		for (auto* f : filters)
 		{
 			if(f->filter()->data(FilterTag::Tag).toString() == tag)
 				return;
@@ -512,7 +523,7 @@ void FilterBar::slotTagEdit(const QModelIndex &index)
 {
 	QString tag(tagListModel->data(index, TagListModel::TagString).toString());
 	bool ok;
-	QString newTag(QInputDialog::getText(this, tr("Fontmatrix - edit tag"), tr("Edit tag: ") + tag, QLineEdit::Normal, QString(), &ok));
+	QString newTag(QInputDialog::getText(this, i18n("Fontmatrix - edit tag"), i18n("Edit tag: ") + tag, QLineEdit::Normal, QString(), &ok));
 	if(!ok || newTag.isEmpty())
 		return;
 	FMFontDb::DB()->editTag(tag, newTag);
@@ -524,9 +535,9 @@ void FilterBar::slotPanoFilter()
 {
 	QMap<int,QList<int> > pv(ui->panoseWidget->getFilter());
 	const QMap< FontStrings::PanoseKey, QMap<int, QString> >& ps(FontStrings::Panose());
-	foreach(int k, pv.keys())
+	for (const auto& k : pv.keys())
 	{
-		foreach(int v, pv[k])
+		for (const auto& v : pv[k])
 		{
 			FontStrings::PanoseKey pk (static_cast<FontStrings::PanoseKey>(k));
 			QString text(FontStrings::PanoseKeyName(pk) + QString(" : ") + ps.value(pk).value(v));
@@ -560,8 +571,8 @@ void FilterBar::slotSaveFilter()
 		return;
 
 	bool ok;
-	QString fname = QInputDialog::getText(this, tr("Fontmatrix - Filter name"),
-					     tr("Filter name:"), QLineEdit::Normal,
+	QString fname = QInputDialog::getText(this, i18n("Fontmatrix - Filter name"),
+					     i18n("Filter name:"), QLineEdit::Normal,
 					     QString(""), &ok);
 	if (!ok || fname.isEmpty())
 		return;
@@ -587,7 +598,7 @@ void FilterBar::slotLoadFilter(const QString &fname)
 	removeAllFilters();
 	QDir fdir(FMPaths::FiltersDir() + fname);
 	QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files, QDir::Name));
-	foreach(QString fn, flist)
+	for (const auto& fn : flist)
 	{
 		QStringList l(fn.split(QString("-")));
 		if(l.count() == 2)
@@ -628,7 +639,7 @@ void FilterBar::slotRemoveFilter(const QString &fname)
 	{
 		fdir.cd(fname);
 		QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files));
-		foreach(QString fn, flist)
+		for (const auto& fn : flist)
 		{
 			fdir.remove(fn);
 		}

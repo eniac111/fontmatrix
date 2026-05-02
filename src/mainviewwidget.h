@@ -36,8 +36,6 @@ class QGridLayout;
 class QTreeWidgetItem;
 class QGraphicsRectItem;
 class QButtonGroup;
-class QWebEngineView;
-//class ListDockWidget;
 struct OTFSet;
 class FMLayout;
 class FMPreviewModel;
@@ -55,12 +53,11 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 	public:
 		MainViewWidget ( QWidget *parent );
 
-		~MainViewWidget();
+		~MainViewWidget() override;
 	private:
 		QStringList ord;
 		QStringList fields;
 		typotek *typo;
-//		ListDockWidget *m_lists;
 		QString faceIndex;
 		QString lastIndex;
 //		QList<FontItem*> currentFonts; *moved to FMFontDB*
@@ -123,9 +120,7 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 		
 		QString sampleName();
 //		void displayWelcomeMessage();
-		
-		QWebEngineView *info();
-		
+
 		void addFilterToCrumb(QString filter);
 		void setCrumb(QString text = QString());
 		
@@ -137,7 +132,7 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 
 
 	protected:
-		void keyPressEvent ( QKeyEvent * event ) ;
+		void keyPressEvent ( QKeyEvent * event ) override ;
 };
 
 #endif

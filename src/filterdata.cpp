@@ -104,7 +104,7 @@ void FilterData::operateFilter(QList<FontItem *>fl)
 	{
 		if(andOp)
 		{
-			foreach(FontItem* f, notList)
+			for (auto* f : notList)
 			{
 				if(!sourceList.contains(f) && andList.contains(f))
 					fmdb->insertFilteredFont(f);
@@ -112,7 +112,7 @@ void FilterData::operateFilter(QList<FontItem *>fl)
 		}
 		else
 		{
-			foreach(FontItem* f, notList)
+			for (auto* f : notList)
 			{
 				if(!sourceList.contains(f))
 					fmdb->insertFilteredFont(f);
@@ -123,7 +123,7 @@ void FilterData::operateFilter(QList<FontItem *>fl)
 	{
 		if(andOp)
 		{
-			foreach(FontItem* f, sourceList)
+			for (auto* f : sourceList)
 			{
 				if(andList.contains(f))
 					fmdb->insertFilteredFont(f);
@@ -131,7 +131,7 @@ void FilterData::operateFilter(QList<FontItem *>fl)
 		}
 		else
 		{
-			foreach(FontItem* f, sourceList)
+			for (auto* f : sourceList)
 			{
 				fmdb->insertFilteredFont(f);
 			}

@@ -33,8 +33,8 @@ class SampleToolBar : public QWidget
     Q_OBJECT
 
 public:
-    explicit SampleToolBar(QWidget *parent = 0);
-    ~SampleToolBar();
+    explicit SampleToolBar(QWidget *parent = nullptr);
+    ~SampleToolBar() override;
 
     enum Button{
 	    SampleButton,
@@ -53,7 +53,7 @@ public:
     QString getScript();
 
 protected:
-    void changeEvent(QEvent *e);
+    void changeEvent(QEvent *e) override;
 
 private:
     Ui::SampleToolBar *ui;

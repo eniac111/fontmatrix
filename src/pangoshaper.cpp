@@ -21,7 +21,7 @@ PangoShaper::~ PangoShaper()
 {
 }
 
-GlyphList PangoShaper::doShape(const QString & s)
+GlyphList PangoShaper::doShape(const QString & )
 {
 	return GlyphList();
 }

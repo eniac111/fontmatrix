@@ -14,7 +14,7 @@
 
 #include <QDebug>
 
-FMAltContextLib * FMAltContextLib::instance = 0;
+FMAltContextLib * FMAltContextLib::instance = nullptr;
 FMAltContextLib::FMAltContextLib()
 {
 	cmap.clear();
@@ -23,7 +23,7 @@ FMAltContextLib::FMAltContextLib()
 
 FMAltContextLib::~ FMAltContextLib()
 {
-	foreach ( FMAltContext* actx, cmap.values() )
+	for (auto* actx : cmap.values())
 	{
 		delete actx;
 	}
@@ -65,7 +65,7 @@ FMAltContext * FMAltContextLib::GetCurrentContext()
 	{
 		return that()->cmap[that()->current];
 	}
-	return 0;
+	return nullptr;
 }
 
 

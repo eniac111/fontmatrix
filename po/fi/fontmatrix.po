@@ -1,0 +1,2720 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+
+msgid "About Fontmatrix"
+msgstr "Tietoja Fontmatrixista"
+
+msgid "TextLabel"
+msgstr "Tekstimerkintä"
+
+msgid "The Project"
+msgstr "Projekti"
+
+msgid "The People"
+msgstr "Ihmiset"
+
+msgid "Splash"
+msgstr "Latausikkuna"
+
+msgid "Close"
+msgstr "Sulje"
+
+msgid "version "
+msgstr "versio"
+
+msgid "fonts loaded"
+msgstr "fonttia ladattuna"
+
+msgid "Browse..."
+msgstr "Selaa..."
+
+msgid "Export Font Book"
+msgstr "Tee fonttikirja"
+
+msgid "Output"
+msgstr "Tiedostoon"
+
+msgid "Text engine options"
+msgstr "Tekstijärjestelmän ominaisuudet"
+
+msgid "Import recursively"
+msgstr "Tuo rekursiivisesti"
+
+msgid "Reload Tree"
+msgstr "Lataa uudelleen"
+
+msgid "Import Directory"
+msgstr "Tuo hakemisto"
+
+msgid "Import File"
+msgstr "Tuo tiedosto"
+
+msgid "Form"
+msgstr "Lomake"
+
+msgid "Add Tag"
+msgstr "Lisää luokka"
+
+msgid "Action"
+msgstr "Toiminto"
+
+msgid "Save fontBook"
+msgstr "Tallenna fonttikirja"
+
+msgid "Fontmatrix - Download"
+msgstr "Fontmatrix - Lataa"
+
+#, qt-format
+msgid "Downloading %1."
+msgstr "Ladataan %1."
+
+msgid "Category"
+msgstr "Osa"
+
+msgid "Glyphs count"
+msgstr "Merkkien määrä"
+
+msgid "Font Type"
+msgstr "Fonttityyppi"
+
+msgid "Charmaps List"
+msgstr "Luettelo merkkikartoista"
+
+#, fuzzy
+msgid "Copyright"
+msgstr "Tekijänoikeudet"
+
+#, fuzzy
+msgid "Font Family"
+msgstr "Fonttiperhe"
+
+#, fuzzy
+msgid "Font Subfamily"
+msgstr "Fonttiperheen alijoukko"
+
+#, fuzzy
+msgid "Unique font identifier"
+msgstr "Yksilöllinen tunniste"
+
+#, fuzzy
+msgid "Full font name"
+msgstr "Fontin täydellinen nimi"
+
+#, fuzzy
+msgid "Version string"
+msgstr "Versiomerkintä"
+
+#, fuzzy
+msgid "Postscript name"
+msgstr "Postscript-nimi"
+
+#, fuzzy
+msgid "Trademark"
+msgstr "Tavaramerkki"
+
+#, fuzzy
+msgid "Manufacturer"
+msgstr "Valmistaja"
+
+#, fuzzy
+msgid "Designer"
+msgstr "Suunnittelija"
+
+#, fuzzy
+msgid "Description"
+msgstr "Kuvaus"
+
+#, fuzzy
+msgid "URL Vendor"
+msgstr "Valmistajan URL"
+
+#, fuzzy
+msgid "URL Designer"
+msgstr "Suunnittelijan URL"
+
+#, fuzzy
+msgid "License Description"
+msgstr "Lisenssin kuvaus"
+
+#, fuzzy
+msgid "License Info URL"
+msgstr "Lisenssin URL "
+
+#, fuzzy
+msgid "Preferred Family"
+msgstr "Suositeltu perhe"
+
+#, fuzzy
+msgid "Preferred Subfamily"
+msgstr "Suositeltu perheen alijoukko"
+
+#, fuzzy
+msgid "Compatible Full (Macintosh only)"
+msgstr "Täysi yhteensopivuus (ainoastaan Macintosh)"
+
+msgid "Sample text"
+msgstr "Esimerkkiteksti"
+
+#, fuzzy
+msgid "PostScript CID findfont name"
+msgstr "PostScript CID findfont -nimi"
+
+msgid "Panose"
+msgstr "Panose"
+
+#, fuzzy
+msgid "All fields"
+msgstr "Kaikki kentät"
+
+#, fuzzy
+msgid "Any"
+msgstr "Mikä tahansa"
+
+#, fuzzy
+msgid "No Fit"
+msgstr "Ei sopivaa luokkaa"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Family Type"
+msgid "Text and Display"
+msgstr "Leipäteksti"
+
+msgctxt "Family Type"
+msgid "Script"
+msgstr "Komentojono"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Family Type"
+msgid "Decorative"
+msgstr "Koristeellinen"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Family Type"
+msgid "Pictorial"
+msgstr "Kuvitettu"
+
+#, fuzzy
+msgid "Family Type"
+msgstr "Fonttiperheen tyyli"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Cove"
+msgstr "Kovera"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Obtuse Cove"
+msgstr "Loivasti kovera"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Square Cove"
+msgstr "Kulmikkaasti kovera"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Obtuse Square Cove"
+msgstr "Loivasti ja kulmikkaasti kovera"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Square"
+msgstr "Kulmikas"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Thin"
+msgstr "Ohut"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Bone"
+msgstr "Ovaali"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Exaggerated"
+msgstr "Liioiteltu"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Triangle"
+msgstr "Kolmio"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Normal Sans"
+msgstr "Suora pääteviivaton"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Obtuse Sans"
+msgstr "Vaakasuunnassa vino pääteviivaton"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Perp Sans"
+msgstr "Pystysuunnassa vino pääteviivaton"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Flared"
+msgstr "Levenevä"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Serif style"
+msgid "Rounded"
+msgstr "Pyöristetty"
+
+#, fuzzy
+msgid "Serif style"
+msgstr "Pääteviivan tyyli"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Weight"
+msgid "Very Light"
+msgstr "Erittäin kevyt"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Weight"
+msgid "Light"
+msgstr "Kevyt"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Weight"
+msgid "Thin"
+msgstr "Ohut"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Weight"
+msgid "Book"
+msgstr "Kirja"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Weight"
+msgid "Medium"
+msgstr "Keskipaksu"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Weight"
+msgid "Demi"
+msgstr "Paksu"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Weight"
+msgid "Bold"
+msgstr "Lihava"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Weight"
+msgid "Heavy"
+msgstr "Raskas"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Weight"
+msgid "Black"
+msgstr "Musta"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Weight"
+msgid "Nord"
+msgstr "Hyvin musta"
+
+#, fuzzy
+msgid "Weight"
+msgstr "Vahvuus"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Proportion"
+msgid "Old Style"
+msgstr "Vanhoillinen"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Proportion"
+msgid "Modern"
+msgstr "Moderni"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Proportion"
+msgid "Even Width"
+msgstr "Tasalevyinen"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Proportion"
+msgid "Expanded"
+msgstr "Levennetty"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Proportion"
+msgid "Condensed"
+msgstr "Kavennettu"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Proportion"
+msgid "Very Expanded"
+msgstr "Huomattavasti levennetty"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Proportion"
+msgid "Very Condensed"
+msgstr "Huomattavasti kavennettu"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Proportion"
+msgid "Monospaced"
+msgstr "Tasavälinen"
+
+#, fuzzy
+msgid "Proportion"
+msgstr "Leveys"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Contrast"
+msgid "None"
+msgstr "Ei ole"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Contrast"
+msgid "Very Low"
+msgstr "Hyvin pieni"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Contrast"
+msgid "Low"
+msgstr "Pieni"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Contrast"
+msgid "Medium Low"
+msgstr "Keskipieni"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Contrast"
+msgid "Medium"
+msgstr "Keskipaksu"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Contrast"
+msgid "Medium High"
+msgstr "Keskiverto"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Contrast"
+msgid "High"
+msgstr "Suuri"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Contrast"
+msgid "Very High"
+msgstr "Hyvin suuri"
+
+#, fuzzy
+msgid "Contrast"
+msgstr "Kontrasti"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Stroke Variation"
+msgid "Gradual/Diagonal"
+msgstr "Asteittainen ja diagonaalinen"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Stroke Variation"
+msgid "Gradual/Transitional"
+msgstr "Asteittainen ja transitionaalinen"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Stroke Variation"
+msgid "Gradual/Vertical"
+msgstr "Asteittainen ja pystysuora"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Stroke Variation"
+msgid "Gradual/Horizontal"
+msgstr "Asteittainen ja vaakasuora"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Stroke Variation"
+msgid "Rapid/Vertical"
+msgstr "Nopea ja pystysuora"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Stroke Variation"
+msgid "Rapid/Horizontal"
+msgstr "Nopea ja vaakasuora"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Stroke Variation"
+msgid "Instant/Vertical"
+msgstr "Välitön ja pystysuora"
+
+#, fuzzy
+msgid "Stroke Variation"
+msgstr "Viivan paksuuden muutos"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Arm Style"
+msgid "Straight Arms/Horizontal"
+msgstr "Suorat ja vaakasuora"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Arm Style"
+msgid "Straight Arms/Wedge"
+msgstr "Suorat ja kolmio"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Arm Style"
+msgid "Straight Arms/Vertical"
+msgstr "Suorat ja pystysuora"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Arm Style"
+msgid "Straight Arms/Single Serif"
+msgstr "Suorat ja yksipuoleinen pääteviiva"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Arm Style"
+msgid "Straight Arms/Double Serif"
+msgstr "Suorat ja molemminpuoleinen pääteviiva"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Arm Style"
+msgid "Non-Straight Arms/Horizontal"
+msgstr "Epäsuorat ja vaakasuora"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Arm Style"
+msgid "Non-Straight Arms/Wedge"
+msgstr "Epäsuorat ja kolmio"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Arm Style"
+msgid "Non-Straight Arms/Vertical"
+msgstr "Epäsuorat ja pystysuora"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Arm Style"
+msgid "Non-Straight Arms/Single Serif"
+msgstr "Epäsuorat ja yksipuoleinen pääteviiva"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Arm Style"
+msgid "Non-Straight Arms/Double Serif"
+msgstr "Epäsuorat ja molemminpuoleinen pääteviiva"
+
+#, fuzzy
+msgid "Arm Style"
+msgstr "Käsivarsien tyyli"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Normal/Contact"
+msgstr "Suora ja litistetty"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Normal/Weighted"
+msgstr "Suora ja huomattava"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Normal/Boxed"
+msgstr "Suora ja ahdettu"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Normal/Flattened"
+msgstr "Suora ja kaareva"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Normal/Rounded"
+msgstr "Suora ja pyöreäkulmainen"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Normal/Off Center"
+msgstr "Suora ja epäkesko"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Normal/Square"
+msgstr "Suora ja kulmikas"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Oblique/Contact"
+msgstr "Kallistettu ja litistetty"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Oblique/Weighted"
+msgstr "Kallistettu ja huomattava"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Oblique/Boxed"
+msgstr "Kallistettu ja ahdettu"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Oblique/Flattened"
+msgstr "Kallistettu ja kaareva"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Oblique/Rounded"
+msgstr "Kallistettu ja pyöreäkulmainen"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Oblique/Off Center"
+msgstr "Kallistettu ja epäkesko"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Letterform"
+msgid "Oblique/Square"
+msgstr "Kallistettu ja kulmikas"
+
+#, fuzzy
+msgid "Letterform"
+msgstr "Muoto"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Midline"
+msgid "Standard/Trimmed"
+msgstr "Normaali ja typistetty"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Midline"
+msgid "Standard/Pointed"
+msgstr "Normaali ja terävä"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Midline"
+msgid "Standard/Serifed"
+msgstr "Normaali ja päätteellinen"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Midline"
+msgid "High/Trimmed"
+msgstr "Korkea ja typistetty"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Midline"
+msgid "High/Pointed"
+msgstr "Korkea ja terävä"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Midline"
+msgid "High/Serifed"
+msgstr "Korkea ja päätteellinen"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Midline"
+msgid "Constant/Trimmed"
+msgstr "Vakio ja typistetty"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Midline"
+msgid "Constant/Pointed"
+msgstr "Vakio ja terävä"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Midline"
+msgid "Constant/Serifed"
+msgstr "Vakio ja päätteellinen"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Midline"
+msgid "Low/Trimmed"
+msgstr "Matala ja typistetty"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Midline"
+msgid "Low/Pointed"
+msgstr "Matala ja terävä"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"Midline"
+msgid "Low/Serifed"
+msgstr "Matala ja päätteellinen"
+
+#, fuzzy
+msgid "Midline"
+msgstr "Keskilinja"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"X-Height"
+msgid "Constant/Small"
+msgstr "Normaali ja pieni"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"X-Height"
+msgid "Constant/Standard"
+msgstr "Normaali ja keskikokoinen"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"X-Height"
+msgid "Constant/Large"
+msgstr "Normaali ja suuri"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"X-Height"
+msgid "Ducking/Small"
+msgstr "Supistettu ja pieni"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"X-Height"
+msgid "Ducking/Standard"
+msgstr "Supistettu ja keskikokoinen"
+
+#, fuzzy
+msgctxt ""
+"FontStrings|\n"
+"X-Height"
+msgid "Ducking/Large"
+msgstr "Supistettu ja suuri"
+
+#, fuzzy
+msgid "X-Height"
+msgstr "X-korkeus"
+
+#, fuzzy
+msgid "This value is deprecated and was never used nor reported by FreeType. Don't use or test for it."
+msgstr "Tämä arvo on poistettu käytöstä eikä sitä koskaan käytetty eikä FreeType koskaan huomauttanut siitä. Älä käytä tai testaa sitä."
+
+msgid "Character to glyph mapping"
+msgstr "Merkki-merkin esitys -yhteys"
+
+msgid "Font header"
+msgstr ""
+
+msgid "Horizontal header"
+msgstr ""
+
+msgid "Horizontal metrics"
+msgstr ""
+
+msgid "Maximum profile"
+msgstr ""
+
+msgid "Naming table"
+msgstr "Nimitaulu"
+
+msgid "OS/2 and Windows specific metrics"
+msgstr "OS/2- ja Windows -mitat"
+
+msgid "PostScript information"
+msgstr "Postscript-tiedot"
+
+msgid "Control Value Table"
+msgstr ""
+
+msgid "Font program"
+msgstr "Fonttiohjelma"
+
+msgid "Glyph data"
+msgstr "Merkin esityksen tiedot"
+
+msgid "Index to location"
+msgstr "Osoitin sijaintiin"
+
+msgid "CVT Program"
+msgstr ""
+
+msgid "PostScript font program"
+msgstr "Postscript-fonttiohjelma"
+
+msgid "Vertical Origin"
+msgstr ""
+
+msgid "Embedded bitmap data"
+msgstr "Upotettu bittikarttadata"
+
+msgid "Embedded bitmap location data"
+msgstr ""
+
+msgid "Embedded bitmap scaling data"
+msgstr ""
+
+msgid "Baseline data"
+msgstr "Peruslinjan tiedot"
+
+msgid "Glyph definition data"
+msgstr "Merkin ulkoasun määritykset"
+
+msgid "Glyph positioning data"
+msgstr "Merkin ulkoasun sijoittelu"
+
+msgid "Glyph substitution data"
+msgstr "Merkin korvaus"
+
+msgid "Justification data"
+msgstr "Tasaus"
+
+msgid "Digital signature"
+msgstr "Sähköinen allekirjoitus"
+
+msgid "Grid-fitting/Scan-conversion"
+msgstr ""
+
+msgid "Horizontal device metrics"
+msgstr ""
+
+msgid "Kerning"
+msgstr "Merkkiparien välistys"
+
+msgid "Linear threshold data"
+msgstr ""
+
+msgid "PCL 5 data"
+msgstr ""
+
+msgid "Vertical device metrics"
+msgstr ""
+
+msgid "Vertical Metrics header"
+msgstr ""
+
+msgid "Vertical Metrics"
+msgstr ""
+
+msgid "Fontmatrix Help"
+msgstr "Fontmatrixin ohje"
+
+msgid "Add"
+msgstr "Lisää"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Fontmatrix - Tags"
+msgstr "Fontmatrix - Luokat"
+
+msgid "Dialog"
+msgstr "Valintaikkuna"
+
+msgid "Imported Fonts"
+msgstr "Tuodut fontit"
+
+msgid ""
+"<qt>Instead of showing this dialog imported font count\n"
+"will be shown in the status bar. If you choose not to\n"
+"show this dialog anymore you can reset the state\n"
+"in preferences.</qt>"
+msgstr "<qt>Tämän ikkunan sijaan tuotujen fonttien lukumäärä näytetään tilarivillä. Jos poistat tämän ikkunan käytöstä, voit palauttaa sen asetuksista.</qt>"
+
+msgid "Do not show this dialog again"
+msgstr "Älä näytä tätä ikkunaa uudestaan"
+
+msgid " (not loaded)"
+msgstr "(ei ladattu)"
+
+msgid "Number of Imported Fonts "
+msgstr "Tuotujen fonttien lukumäärä"
+
+msgid "Weights"
+msgstr "Vahvuudet"
+
+msgid "score"
+msgstr "pisteet"
+
+msgid "before"
+msgstr "ennen"
+
+msgid "exact"
+msgstr "tarkka"
+
+msgid "after"
+msgstr "jälkeen"
+
+msgid "end"
+msgstr "loppu"
+
+msgid "penalty"
+msgstr "rangaistus"
+
+msgid "H-penalty"
+msgstr "h-rangaistus"
+
+msgid "space"
+msgstr "tila"
+
+msgid "max compression"
+msgstr "maksimipakkaus"
+
+msgid "Filter view by chosing tag"
+msgstr "Suodata valitulla luokalla"
+
+msgid "Names"
+msgstr "Nimet"
+
+msgid "Show complete collection of available fonts"
+msgstr "Näytä täydellinen fonttikokoelma"
+
+msgid "Previews"
+msgstr "Esikatselut"
+
+msgid "Folders"
+msgstr "Hakemistot"
+
+msgid "F"
+msgstr "S"
+
+msgid "Switch to panose filtering"
+msgstr "Vaihda Panose-suodatukseen"
+
+msgid "reset"
+msgstr "tyhjennä"
+
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you want to negate the filter,</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">prefix the word with \"!\" such as in:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">\"!pattern\"</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you want to enqueue the filter,</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">prefix it with \"+\".</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Finally, you can mix negate and queue in:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">\"+!pattern\"</span> or \"!+pattern\"</p></body></html>"
+msgstr ""
+
+msgid "All activated"
+msgstr "Kaikki käytössä olevat"
+
+msgid "Unicode character"
+msgstr "Unicode-merkki"
+
+msgid "main view widget"
+msgstr "pääikkuna"
+
+msgid "OpenType Features"
+msgstr "OpenType-ominaisuudet"
+
+msgid "Friendly Name"
+msgstr "Nimi"
+
+msgid "Glyphs"
+msgstr "Merkit"
+
+msgid "Clicking on a glyph will show details about it"
+msgstr "Näet merkin lisätietojen kanssa napsauttamalla sitä"
+
+msgid "Font Information"
+msgstr "Fontin tiedot"
+
+msgid "Sample Text"
+msgstr "Esimerkkiteksti"
+
+msgid "Use shaper"
+msgstr "Käytä muotoilijaa"
+
+msgid "Coverage of Unicode Interval :"
+msgstr "Unicode-alueen peitto:"
+
+msgid "Font Size"
+msgstr "Fonttikoko"
+
+msgid " pt"
+msgstr " pt"
+
+msgid "Playground"
+msgstr "Leikkikenttä"
+
+msgid "push"
+msgstr "lisää"
+
+msgid "Settings"
+msgstr "Asetukset"
+
+msgid "OpenType"
+msgstr "Opentype"
+
+msgid "Save as default"
+msgstr "Tallenna oletukseksi"
+
+msgid "Reset Default"
+msgstr "Palauta oletus"
+
+msgid "SampleText"
+msgstr "Esimerkkiteksti"
+
+msgid "FreeType"
+msgstr "Freetype"
+
+msgid "Native Qt objects"
+msgstr "Natiivit Qt-kohteet"
+
+msgid "World is wide"
+msgstr "Maailma on suuri"
+
+msgid "Shaper type"
+msgstr "Muotoilijan tyyppi"
+
+msgid "Script"
+msgstr "Komentosarja"
+
+msgid "Set Mode \"Copy Character to Clipboard\""
+msgstr "Aseta tilaksi \"Kopioi merkki leikepöydälle\""
+
+msgid "Display Settings"
+msgstr "Näytön asetukset"
+
+msgid "edit"
+msgstr "muokkaa"
+
+msgid "No hinting"
+msgstr "Ei vihjeistystä"
+
+msgid "Light Hinting"
+msgstr "Kevyt vihjeistys"
+
+msgid "Normal Hinting"
+msgstr "Normaali vihjeistys"
+
+msgid "Copy"
+msgstr "Kopioi"
+
+msgid "000Basic Latin"
+msgstr "000Latinalainen perusosa"
+
+msgid "001Latin-1 Supplement"
+msgstr "001Latinalaisen merkistön täydennys Latin-1:ksi"
+
+msgid "002Latin Extended-A"
+msgstr "002Latinalaisen merkistön laajennusosa A"
+
+msgid "003Latin Extended-B"
+msgstr "003Latinalaisen merkistön laajennusosa B"
+
+msgid "004IPA Extensions"
+msgstr "004IPA-täydennyksiä"
+
+msgid "005Spacing Modifier Letters"
+msgstr "005Tarkkeenomaisia erillisiä merkkejä"
+
+msgid "006Combining Diacritical Marks"
+msgstr "006Tarkkeita"
+
+msgid "007Greek and Coptic"
+msgstr "007Kreikkalaiset ja koptilaiset"
+
+msgid "008Cyrillic"
+msgstr "008Kyrilliset"
+
+msgid "009Cyrillic Supplement"
+msgstr "009Kyrillisten täydennys"
+
+msgid "010Armenian"
+msgstr "010Armenialaiset"
+
+msgid "011Hebrew"
+msgstr "011Heprealaiset"
+
+msgid "012Arabic"
+msgstr "012Arabialaiset"
+
+msgid "013Syriac"
+msgstr "013Syyrialaiset"
+
+msgid "014Arabic Supplement"
+msgstr "014Arabialaisten täydennys"
+
+msgid "015Thaana"
+msgstr "015Thaana"
+
+msgid "016N'Ko"
+msgstr "016N'Ko"
+
+msgid "017Devanagari"
+msgstr "017Devanagari"
+
+msgid "018Bengali"
+msgstr "018Bengali"
+
+msgid "019Gurmukhi"
+msgstr "019Gurmukhi"
+
+msgid "020Gujarati"
+msgstr "020Gujarati"
+
+msgid "021Oriya"
+msgstr "021Oriya"
+
+msgid "022Tamil"
+msgstr "022Tamil"
+
+msgid "023Telugu"
+msgstr "023Telugu"
+
+msgid "024Kannada"
+msgstr "024Kannada"
+
+msgid "025Malayalam"
+msgstr "025Malayalam"
+
+msgid "026Sinhala"
+msgstr "026Sinhala"
+
+msgid "027Thai"
+msgstr "027Thai"
+
+msgid "028Lao"
+msgstr "028Lao"
+
+msgid "029Tibetan"
+msgstr "029Tiibettiläiset"
+
+msgid "030Burmese"
+msgstr "030Burma"
+
+msgid "031Georgian"
+msgstr "031Kartvelilaiset"
+
+msgid "032Hangul Jamo"
+msgstr "032Hangulin jamo-merkkejä"
+
+msgid "033Ethiopic"
+msgstr "033Etiopialaiset"
+
+msgid "034Ethiopic Supplement"
+msgstr "034Etiopialaisten tarkennus"
+
+msgid "035Cherokee"
+msgstr "035Cherokee"
+
+msgid "036Unified Canadian Aboriginal Syllabics"
+msgstr "036Kanadalaisia tavumerkkejä"
+
+msgid "037Ogham"
+msgstr "037Ogham"
+
+msgid "038Runic"
+msgstr "038Riimukirjaimia"
+
+msgid "039Tagalog"
+msgstr "039Tagalog"
+
+msgid "040HanunÃ³o"
+msgstr "040HanunÃ³o"
+
+msgid "041Buhid"
+msgstr "041Buhid"
+
+msgid "042Tagbanwa"
+msgstr "042Tagbanwa"
+
+msgid "043Khmer"
+msgstr "043Khmer"
+
+msgid "044Mongolian"
+msgstr "044Mongolialaiset"
+
+msgid "045Limbu"
+msgstr "045Limbu"
+
+msgid "046Tai Le"
+msgstr "046Tai Le"
+
+msgid "047New Tai Lue"
+msgstr "047Uusi Tai Lue"
+
+msgid "048Khmer Symbols"
+msgstr "048Khmer-symbolit"
+
+msgid "049Buginese"
+msgstr "049Buginese"
+
+msgid "050Balinese"
+msgstr "050Balinese"
+
+msgid "051Lepcha"
+msgstr "051Lepcha"
+
+msgid "052Phonetic Extensions"
+msgstr "052Äännelaajennus"
+
+msgid "053Phonetic Extensions Supplement"
+msgstr "053Äännelaajennuksen tarkennus"
+
+msgid "054Combining Diacritical Marks Supplement"
+msgstr "054Tarkkeiden täydennys"
+
+msgid "055Latin Extended Additional"
+msgstr "055Latinalaisen merkistön lisälaajennuksia"
+
+msgid "056Greek Extended"
+msgstr "056Kreikkalaisen merkistön laajennusosa"
+
+msgid "057General Punctuation"
+msgstr "057Yleisiä välimerkkejä"
+
+msgid "058Superscripts and Subscripts"
+msgstr "058Ylä- ja alaindeksejä"
+
+msgid "059Currency Symbols"
+msgstr "059Valuuttamerkkejä"
+
+msgid "060Combining Diacritical Marks for Symbols"
+msgstr "060Symbolien tarkkeita"
+
+msgid "061Letterlike Symbols"
+msgstr "061Kirjainsymboleita"
+
+msgid "062Number Forms"
+msgstr "062Lukuilmaisuja"
+
+msgid "063Arrows"
+msgstr "063Nuolia"
+
+msgid "064Mathematical Operators"
+msgstr "064Matemaattisia operaattoreita"
+
+msgid "065Miscellaneous Technical"
+msgstr "065Sekalaisia teknisiä merkkejä"
+
+msgid "066Control Pictures"
+msgstr "066Ohjausmerkkien symboleita"
+
+msgid "067Optical Character Recognition"
+msgstr "067OCR-merkkejä"
+
+msgid "068Enclosed Alphanumerics"
+msgstr "068Ympäröityjä alfanumeerisia merkkejä"
+
+msgid "069Box Drawing"
+msgstr "069Viivapiirrosmerkkejä"
+
+msgid "070Block Elements"
+msgstr "070Lohko-osia"
+
+msgid "071Geometric Shapes"
+msgstr "071Geometrisia muotoja"
+
+msgid "072Miscellaneous Symbols"
+msgstr "072Sekalaisia symboleita"
+
+msgid "073Dingbats"
+msgstr "073Dingbats"
+
+msgid "074Miscellaneous Mathematical Symbols-A"
+msgstr "074Sekalaisia matemaattisia symboleita A"
+
+msgid "075Supplemental Arrows-A"
+msgstr "075Nuolten tarkkenus A"
+
+msgid "076Braille Patterns"
+msgstr "076Braille-merkkejä"
+
+msgid "077Supplemental Arrows-B"
+msgstr "077Nuolten tarkennus B"
+
+msgid "078Miscellaneous Mathematical Symbols-B"
+msgstr "078Sekalaisia matemaattisia symboleita B"
+
+msgid "079Supplemental Mathematical Operators"
+msgstr "079Matemaattisten operaattoreitten tarkennus"
+
+msgid "080Miscellaneous Symbols and Arrows"
+msgstr "080Sekalaisia symoleita ja nuolia"
+
+msgid "081Glagolitic"
+msgstr "081Glagolitic"
+
+msgid "082Latin Extended-C"
+msgstr "082Latinalaisen merkistön laajennusosa C"
+
+msgid "083Coptic"
+msgstr "083Koptilaiset"
+
+msgid "084Georgian Supplement"
+msgstr "084Kartvelilaisten tarkennus"
+
+msgid "085Tifinagh"
+msgstr "085Tifinagh"
+
+msgid "086Ethiopic Extended"
+msgstr "086Etiopialaisten merkkien laajennus"
+
+msgid "087Supplemental Punctuation"
+msgstr "087Välimerkkien lisäosa"
+
+msgid "088CJK Radicals Supplement"
+msgstr "088Lisää CJK-radikaaleja"
+
+msgid "089Kangxi Radicals"
+msgstr "089Kangxi-radikaaleja"
+
+msgid "090Ideographic Description Characters"
+msgstr "090Sanamerkkien kuvailumerkkejä"
+
+msgid "091CJK Symbols and Punctuation"
+msgstr "091CJK-symboleita ja -välimerkkejä"
+
+msgid "092Hiragana"
+msgstr "092Hiragana"
+
+msgid "093Katakana"
+msgstr "093Katakana"
+
+msgid "094Bopomofo"
+msgstr "094Bopomofo"
+
+msgid "095Hangul Compatibility Jamo"
+msgstr "095Hangulin jamo-erillismerkkejä"
+
+msgid "096Kanbun"
+msgstr "096Kanbun"
+
+msgid "097Bopomofo Extended"
+msgstr "097Bopomofo-lisämerkkejä"
+
+msgid "098CJK Strokes"
+msgstr "098CJK-viivoja"
+
+msgid "099Katakana Phonetic Extensions"
+msgstr "099Katakana-äännelaajennos"
+
+msgid "100Enclosed CJK Letters and Months"
+msgstr "100Ympäröityjä CJK-kirjaimia ja -kuukausimerkkejä"
+
+msgid "101CJK Compatibility"
+msgstr "101CJK-yhteensopivia merkkejä"
+
+msgid "102CJK Unified Ideographs Extension A"
+msgstr "102CJK-sanamerkkien laajennus A"
+
+msgid "103Yijing Hexagram Symbols"
+msgstr "103Yijing-heksagrammisymboleja"
+
+msgid "104CJK Unified Ideographs"
+msgstr "104CJK-sanamerkkejä"
+
+msgid "105Yi Syllables"
+msgstr "105Yi-tavumerkkejä"
+
+msgid "106Yi Radicals"
+msgstr "106Yi-juurimerkkejä"
+
+msgid "107Modifier Tone Letters"
+msgstr "107Tarkkeenomaisia toonimerkkejä"
+
+msgid "108Latin Extended-D"
+msgstr "108Latinalaisen merkistön laajennusosa D"
+
+msgid "109Syloti Nagri"
+msgstr "109Syloti Nagri"
+
+msgid "110Phags-pa"
+msgstr "110Phags-pa"
+
+msgid "111Hangul Syllables"
+msgstr "111Hangul-tavumerkkejä"
+
+msgid "112High Surrogates"
+msgstr "112Laajennuskoodien ykkösosia"
+
+msgid "113High Private Use Surrogates"
+msgstr "113Laajennuskoodien ykkösosat erilliskäyttöön"
+
+msgid "114Low Surrogates"
+msgstr "114Laajennuskoodien kakkososia"
+
+msgid "115Private Use Area"
+msgstr "115Erilliskäytön lohko"
+
+msgid "116CJK Compatibility Ideographs"
+msgstr "116CJK-yhteensopivuusmerkkejä"
+
+msgid "117Alphabetic Presentation Forms"
+msgstr "117Kirjainten tulostusmuotoja"
+
+msgid "118Arabic Presentation Forms-A"
+msgstr "118Arabialaisten merkkien esitysmuotoja A"
+
+msgid "119Variation Selectors"
+msgstr "119Vaihtelun valitsimia"
+
+msgid "120Vertical Forms"
+msgstr "120Pystysuoria muotoja"
+
+msgid "121Combining Half Marks"
+msgstr "121Tarkkeiden puolikkaita"
+
+msgid "122CJK Compatibility Forms"
+msgstr "122CJK-yhteensopivia merkkien muotoja"
+
+msgid "123Small Form Variants"
+msgstr "123Pienikokoisia muunnelmia"
+
+msgid "124Arabic Presentation Forms-B"
+msgstr "124Arabialaisten merkkien esitysmuotoja B"
+
+msgid "125Halfwidth and Fullwidth Forms"
+msgstr "125Puoli- ja täyslevyisiä esitysmuotoja"
+
+msgid "126Specials"
+msgstr "126Erikoismerkkejä"
+
+msgid "127Supplementary Multilingual Plane (SMP)"
+msgstr "127 Monikielitason tarkennus (SMP)"
+
+msgid "128Supplementary Ideographic Plane (SIP)"
+msgstr "128Käsitemerkkitason tarkennus"
+
+msgid "129unassigned"
+msgstr "129nimeämättömät"
+
+msgid "130Supplementary Special-purpose Plane (SSP)"
+msgstr "130Monikäyttötason tarkennus (SSP)"
+
+msgid "131Private Use Area 1 (PUA)"
+msgstr "131Erilliskäytön lohko 1 (PUA)"
+
+msgid "132Private Use Area 2 (PUA)"
+msgstr "132Erilliskäytön lohko 2 (PUA)"
+
+msgid "133Un-Mapped Glyphs"
+msgstr "133Sijoittamattomat merkit"
+
+msgid "Activation event"
+msgstr "Käyttöönottotapahtuma"
+
+msgid "Cancel"
+msgstr "Peruuta"
+
+msgid "Activation of :"
+msgstr "Käyttöönotto:"
+
+msgid "Deactivation of :"
+msgstr "Käytöstäpoisto:"
+
+msgid "134View all mapped glyphs"
+msgstr "134Näytä kaikki sijoitetut merkit"
+
+msgid "Fontmatrix takes care of you"
+msgstr "Fontmatrix huolehtii sinusta"
+
+msgid ""
+" is activated.\n"
+"If you want to remove it from Fontmatrix database, please deactivate it first."
+msgstr " on aktivoitu. Jos haluat poistaa sen, poista ensin aktivointi."
+
+#, fuzzy
+msgid "Fontmatrix safe"
+msgstr "Fontmatrix säiliö"
+
+msgid "You are about to remove a font from Fontmatrix database"
+msgstr "Olet poistamassa fonttia Fonmatrixin tietokannasta"
+
+msgid "Do you want to continue?"
+msgstr "Haluatko jatkaa?"
+
+msgid "Welcome to Fontmatrix"
+msgstr "Tervetuloa Fontmatrixiin"
+
+msgid "Load"
+msgstr "Lataa"
+
+msgid "Preferences Panel"
+msgstr "Ominaisuuspaletti"
+
+msgid "General"
+msgstr "Yleiset"
+
+msgid "Ask confirmation when activating or deactivating all fonts"
+msgstr "Kysy vahvistus, kun kaikki fontit otetaan käyttöön tai poistetaan käytöstä"
+
+msgid "Ask confirmation when activating or deactivating fonts by tags"
+msgstr "Kysy vahvistus, kun fontit otetaan käyttöön tai poistetaan käytöstä luokan perusteella"
+
+msgid "Show Fontmatrix in System Tray"
+msgstr "Näytä Fontmatrix ilmoitusalueella"
+
+msgid "Preview Word"
+msgstr "Esikatselusana"
+
+msgid "Font Editor"
+msgstr "Fonttimuokkain"
+
+msgid "/usr/bin/fontforge"
+msgstr "/usr/bin/fontforge"
+
+msgid "Ask for tag names when importing fonts"
+msgstr "Kysy luokkaa, kun fontteja tuodaan"
+
+msgid "Font Size:"
+msgstr "Fonttikoko"
+
+msgid "Templates Folder"
+msgstr "Mallihakemisto"
+
+msgid "Remote directories"
+msgstr "Etähakemistot"
+
+msgid "Remove"
+msgstr "Poista"
+
+msgid "Show \"All\" actions"
+msgstr "Näytä toiminnot kaikille"
+
+msgid "is RTL"
+msgstr "on tyyppiä oikealta vasemmalle"
+
+msgid "size"
+msgstr "koko"
+
+msgid "Initial Layout"
+msgstr "Alkuasettelu"
+
+msgid "http://"
+msgstr "http://"
+
+msgid "Local storage"
+msgstr "Paikallinen säilö"
+
+msgid "Add the full path to your preferred font editor"
+msgstr "Lisää täydellinen polku haluamaasi fonttimuokkaimeen."
+
+msgid "Show names of imported fonts after import process"
+msgstr "Näytä tuotujen fonttien nimet tuonnin jälkeen"
+
+msgid "Show splash at startup"
+msgstr "Näytä latausikkuna käynnistettäessä"
+
+msgid "Hyphenation"
+msgstr "Tavutus"
+
+msgid "Left:"
+msgstr "Vasen"
+
+msgid "Right:"
+msgstr "Oikea"
+
+msgid "Dictionary:"
+msgstr "Sanakirja"
+
+msgid "Browse"
+msgstr "Selaa"
+
+msgid "..."
+msgstr "..."
+
+msgid "Change"
+msgstr "Muuta"
+
+msgid "Files & Folders"
+msgstr "Tiedostot ja hakemistot"
+
+msgid "Shotcuts"
+msgstr "Oikopolut"
+
+msgid "Close to system tray"
+msgstr "Sulje ilmoitusalueelle"
+
+msgid "Start minimized to system tray"
+msgstr "Käynnistä pienennettynä ilmoitusalueelle"
+
+msgid "Chart Subtitle Font"
+msgstr ""
+
+msgid "linespacing:"
+msgstr "riviväli:"
+
+msgid "Select an  hyphenation dict file as it comes with OpenOffice or Scribus"
+msgstr "Valitse sanakirja tavutusta varten. Sanakirjan tyyppi on sama kuin OpenOfficessa tai Scribuksessa."
+
+msgid "subtitled"
+msgstr ""
+
+msgid "Don’t use preferred name scheme (will affect only newly imported fonts)"
+msgstr ""
+
+msgid "Sample Texts"
+msgstr "Esimerkkitekstit"
+
+msgid "+"
+msgstr "+"
+
+msgid "−"
+msgstr "−"
+
+msgid "Looks like your setup does not have a system tray available."
+msgstr "Järjestelmästäsi ei löydy ilmoitusaluetta."
+
+msgid "Select font editor"
+msgstr "Valitse fonttimuokkain"
+
+msgid "Select Templates Folder"
+msgstr "Valitse mallihakemisto"
+
+msgid "Select Where remote font files will be stored"
+msgstr "Valitse etäfonttien säilöntäpaikka"
+
+msgid "Please select an item in the list or create a new one."
+msgstr "Valitse kohde luettelosta tai luo uusi"
+
+msgid "Alt"
+msgstr "Alt"
+
+msgid "Ctrl"
+msgstr "Ctrl"
+
+msgid "Shift"
+msgstr "Vaihto"
+
+msgid "Meta"
+msgstr "Meta"
+
+msgid "Meta+"
+msgstr "Meta+"
+
+msgid "Shift+"
+msgstr "Vaihto+"
+
+msgid "Alt+"
+msgstr "Alt+"
+
+msgid "Ctrl+"
+msgstr "Ctrl+"
+
+msgid "Replace"
+msgstr "Korvaa"
+
+msgctxt "action name will be appended to this"
+msgid "Shortcut is already in use for"
+msgstr "Oikopolku on jo käytössä: "
+
+msgid "Do you still want to assign it?"
+msgstr "Haluatko ottaa sen käyttöön siitä huolimatta?"
+
+msgid "Shortcut"
+msgstr "Oikopolku"
+
+msgid "Tip"
+msgstr "Vihje"
+
+msgid "Select hyphenation dictionary"
+msgstr "Valitse tavutussanasto"
+
+#, fuzzy
+msgctxt ""
+"PrefsPanelDialog|\n"
+"A default sample text inserted when creating a new sample"
+msgid "Sample Text"
+msgstr "Esimerkkiteksti"
+
+msgctxt "PrefsPanelDialog|the name of a sample text will be append to the string"
+msgid "Do you confirm that you want to remove:"
+msgstr "Vahvista poista:"
+
+msgid "codepoint is U+"
+msgstr "merkkikoodi on U+"
+
+msgid "Creating font book... "
+msgstr "Luodaan fonttikirjaa... "
+
+msgid "cancel"
+msgstr "peruuta"
+
+msgid "Copying files"
+msgstr "Kopioidaan tiedostoja"
+
+msgid "Unable to copy"
+msgstr "Ei voi kopioida"
+
+msgid ""
+"ABCDEFGH\n"
+"IJKLMNOPQ\n"
+"RSTUVXYZ\n"
+"\n"
+"abcdefgh\n"
+"ijklmnopq\n"
+"rstuvxyz\n"
+"0123456789\n"
+",;:!?."
+msgstr ""
+"ABCDEFGHI\n"
+"JKLMNOPQR\n"
+"STUVXYZÅÄÖ\n"
+"\n"
+"abcdefghi\n"
+"jklmnopqr\n"
+"stuvxyzåäö\n"
+"0123456789\n"
+",;:!?. "
+
+msgid "hamburgefonstiv"
+msgstr "törkylempijä"
+
+msgid "Access All Alternates"
+msgstr "Salli kaikki vaihtoehdot"
+
+msgid "Above-Base Forms"
+msgstr "Yläosan muodot"
+
+msgid "Above-Base Mark Positioning"
+msgstr "Yläosan merkkien sijoittelu"
+
+msgid "Above-Base Substitutions"
+msgstr "Yläosan korvaukset"
+
+msgid "Alternative Fractions"
+msgstr "Murtolukuvaihtoehdot"
+
+msgid "Akhands"
+msgstr "Akahand-ligatuurit"
+
+msgid "Below-Base Forms"
+msgstr "Alaosan muodot"
+
+msgid "Below-Base Mark Positioning"
+msgstr "Alaosan merkkien sijoittelu"
+
+msgid "Below-Base Substitutions"
+msgstr "Alaosan korvaukset"
+
+msgid "Petite Capitals From Capitals"
+msgstr "Pienet kapiteelit kapiteeleista"
+
+msgid "Small Capitals From Capitals"
+msgstr "Kapiteelit versaalikirjaimista"
+
+msgid "Contextual Alternates"
+msgstr "Kontekstiriippuvaiset vaihtoehdot"
+
+msgid "Case-Sensitive Forms"
+msgstr "Aakkoslajiriippuvaiset muodot"
+
+msgid "Glyph Composition/Decomposition"
+msgstr "Merkkiyhdiste tai -hajote"
+
+msgid "Contextual Ligatures"
+msgstr "Kontekstiriippuvaiset ligatuurit"
+
+msgid "Capital Spacing"
+msgstr "Versaalivälistys"
+
+msgid "Contextual Swash"
+msgstr "Kontekstiriippuvainen erikoismerkki"
+
+msgid "Distances"
+msgstr "Etäisyydet"
+
+msgid "Discretionary Ligatures"
+msgstr "Harkinnanvaraiset ligatuurit"
+
+msgid "Denominators"
+msgstr "Nimittäjät"
+
+msgid "Expert Forms"
+msgstr "Ammattilaismuodot"
+
+msgid "Final glyph Alternates"
+msgstr "Päättävän merkin vaihtoehdot"
+
+msgid "Fractions"
+msgstr "Murtoluvut"
+
+msgid "Full Width"
+msgstr "Täysi leveys"
+
+msgid "Alternate Half Width"
+msgstr "Vaihtoehtoiset puolikkaat"
+
+msgid "Historical Forms"
+msgstr "Historialliset muodot"
+
+msgid "Historical Ligatures"
+msgstr "Historialliset ligatuurit"
+
+msgid "Half Width"
+msgstr "Puolikas"
+
+msgid "Justification Alternatives"
+msgstr "Tasausvaihtoehdot"
+
+msgid "Standard Ligatures"
+msgstr "Perusligatuurit"
+
+msgid "Numerators"
+msgstr "Osoittajat"
+
+msgid "Old Style Figures"
+msgstr "Lukujen vanha tyyli"
+
+msgid "Optical Bounds"
+msgstr "Havainnollinen tasaus"
+
+msgid "Ordinals"
+msgstr "Järjestysluvut"
+
+msgid "Ornaments"
+msgstr "Ornamentit"
+
+msgid "Proportional Alternate Width"
+msgstr "Vaihtoehtoinen suhteellinen leveys"
+
+msgid "Petite Capitals"
+msgstr "Pienet kapiteelit"
+
+msgid "Proportional Widths"
+msgstr "Suhteelliset leveydet"
+
+msgid "Quarter Widths"
+msgstr "Neljäsosat"
+
+msgid "Randomize"
+msgstr "Satunnainen"
+
+msgid "Stylistic Alternates"
+msgstr "Tyylivaihtoehdot"
+
+msgid "Optical Size"
+msgstr "Havainnollinen koko"
+
+msgid "Small Capitals"
+msgstr "Kapiteelit"
+
+msgid "Subscript"
+msgstr "Alaindeksi"
+
+msgid "Superscript"
+msgstr "Yläindeksi"
+
+msgid "Swash"
+msgstr "Erikoismerkki"
+
+msgid "Titling"
+msgstr "Otsikointi"
+
+msgid "Traditional Forms"
+msgstr "Perinteiset kuviot"
+
+msgid "Third Widths"
+msgstr "Kolmasosat"
+
+msgid "Vattu Variants"
+msgstr "Vattu-muunnelmat"
+
+msgid "Vertical Writing"
+msgstr "Pystysuora kirjoitus"
+
+msgid "Vertical Kerning"
+msgstr "Merkkiparien pystysuuntainen välistys"
+
+msgid "Slashed Zero"
+msgstr "Lävistetty nolla"
+
+msgid "Mark, NonSpacing"
+msgstr "Merkki, ei väli"
+
+msgid "Mark, SpacingCombining"
+msgstr "Merkki, yhdistävä väli"
+
+msgid "Mark, Enclosing"
+msgstr "Merkki, ympäröivä"
+
+msgid "Number, DecimalDigit"
+msgstr "Numero, desimaalinumero"
+
+msgid "Number, Letter"
+msgstr "Numero, kirjain"
+
+msgid "Number, Other"
+msgstr "Numero, muut"
+
+msgid "Separator, Space"
+msgstr "Erotin, väli"
+
+msgid "Separator, Line"
+msgstr "Erotin, rivi"
+
+msgid "Separator, Paragraph"
+msgstr "Erotin, kappale"
+
+msgid "Other, Control"
+msgstr "Muu, hallinta"
+
+msgid "Other, Format"
+msgstr "Muu, muoto"
+
+msgid "Other, Surrogate"
+msgstr "Muu, korvaava"
+
+msgid "Other, PrivateUse"
+msgstr "Muu, erilliskäyttö"
+
+msgid "Other, NotAssigned"
+msgstr "Muu, sijoittamaton"
+
+msgid "Letter, Uppercase"
+msgstr "Kirjain, versaali"
+
+msgid "Letter, Lowercase"
+msgstr "Kirjain, gemena"
+
+msgid "Letter, Titlecase"
+msgstr "Kirjain, otsikkokoko"
+
+msgid "Letter, Modifier"
+msgstr "Kirjain, määrite"
+
+msgid "Letter, Other"
+msgstr "Kirjain, muu"
+
+msgid "Punctuation, Connector"
+msgstr "Välimerkki, yhdistin"
+
+msgid "Punctuation, Dash"
+msgstr "Välimerkki, viiva"
+
+msgid "Punctuation, Open"
+msgstr "Välimerkki, aloitus"
+
+msgid "Punctuation, Close"
+msgstr "Välimerkki, lopetus"
+
+msgid "Punctuation, InitialQuote"
+msgstr "Välimerkki, aloittava lainausmerkki"
+
+msgid "Punctuation, FinalQuote"
+msgstr "Välimerkki, lopettava lainausmerkki"
+
+msgid "Punctuation, Other"
+msgstr "Välimerkki, muu"
+
+msgid "Symbol, Math"
+msgstr "Symboli, matematiikka"
+
+msgid "Symbol, Currency"
+msgstr "Symboli, valuutta"
+
+msgid "Symbol, Modifier"
+msgstr "Symboli, määrite"
+
+msgid "Symbol, Other"
+msgstr "Symboli, muu"
+
+msgid "Stylistic Set 1"
+msgstr "Tyylijoukko 1"
+
+msgid "Stylistic Set 2"
+msgstr "Tyylijoukko 2"
+
+msgid "Stylistic Set 3"
+msgstr "Tyylijoukko 3"
+
+msgid "Stylistic Set 4"
+msgstr "Tyylijoukko 4"
+
+msgid "Stylistic Set 5"
+msgstr "Tyylijoukko 5"
+
+msgid "Stylistic Set 6"
+msgstr "Tyylijoukko 6"
+
+msgid "Stylistic Set 7"
+msgstr "Tyylijoukko 7"
+
+msgid "Stylistic Set 8"
+msgstr "Tyylijoukko 8"
+
+msgid "Stylistic Set 9"
+msgstr "Tyylijoukko 9"
+
+msgid "Stylistic Set 10"
+msgstr "Tyylijoukko 10"
+
+msgid "Stylistic Set 11"
+msgstr "Tyylijoukko 11"
+
+msgid "Stylistic Set 12"
+msgstr "Tyylijoukko 12"
+
+msgid "Stylistic Set 13"
+msgstr "Tyylijoukko 13"
+
+msgid "Stylistic Set 14"
+msgstr "Tyylijoukko 14"
+
+msgid "Stylistic Set 15"
+msgstr "Tyylijoukko 15"
+
+msgid "Stylistic Set 16"
+msgstr "Tyylijoukko 16"
+
+msgid "Stylistic Set 17"
+msgstr "Tyylijoukko 17"
+
+msgid "Stylistic Set 18"
+msgstr "Tyylijoukko 18"
+
+msgid "Stylistic Set 19"
+msgstr "Tyylijoukko 19"
+
+msgid "Stylistic Set 20"
+msgstr "Tyylijoukko 20"
+
+msgid "Conjunct Forms"
+msgstr ""
+
+msgid "Cursive Positioning"
+msgstr "Kursiivisijoittelu"
+
+msgid "Default Processing"
+msgstr "Oletuskäsittely"
+
+msgid "Terminal Forms #2"
+msgstr "Terminaalimuodot #2"
+
+msgid "Terminal Forms #3"
+msgstr "Terminaalimuodot #3"
+
+msgid "Terminal Forms"
+msgstr "Terminaalimuodot"
+
+msgid "Half Forms"
+msgstr ""
+
+msgid "Halant Forms"
+msgstr ""
+
+msgid "Horizontal Kana Alternates"
+msgstr "Vaakasuorat Kana-vaihtoehdot"
+
+msgid "Hangul"
+msgstr ""
+
+msgid "Hojo Kanji Forms (JIS x 212-1990 Kanji Forms)"
+msgstr ""
+
+msgid "Initial Forms"
+msgstr ""
+
+msgid "Isolated Forms"
+msgstr ""
+
+msgid "Italics"
+msgstr "Kursiivit"
+
+#, fuzzy
+msgid "JIS78 Forms"
+msgstr "JIS2004-muodot {78 ?}"
+
+msgid "JIS83 Forms"
+msgstr "JIS83-muodot"
+
+msgid "JIS90 Forms"
+msgstr "JIS90-muodot"
+
+msgid "JIS2004 Forms"
+msgstr "JIS2004-muodot"
+
+msgid "Left Bounds"
+msgstr ""
+
+msgid "Leading Jamo Forms"
+msgstr ""
+
+msgid "Lining Figures"
+msgstr ""
+
+msgid "Localized Forms"
+msgstr ""
+
+msgid "Mark Positioning"
+msgstr ""
+
+msgid "Medial Forms #2"
+msgstr ""
+
+msgid "Medial Forms"
+msgstr ""
+
+msgid "Mathematical Greek"
+msgstr ""
+
+msgid "Mark to Mark Positioning"
+msgstr ""
+
+msgid "Mark Positioning via Substitution"
+msgstr ""
+
+msgid "Alternate Annotation Forms"
+msgstr ""
+
+msgid "NLC Kanji Forms"
+msgstr ""
+
+msgid "Nukta Forms"
+msgstr ""
+
+msgid "Proportional Figures"
+msgstr ""
+
+msgid "Pre-base Forms"
+msgstr ""
+
+msgid "Pre-base Substitutions"
+msgstr ""
+
+msgid "Post-base Forms"
+msgstr ""
+
+msgid "Post-base Substitutions"
+msgstr ""
+
+msgid "Rakar Forms"
+msgstr ""
+
+msgid "Required Ligatures"
+msgstr "Vaaditut ligatuurit"
+
+msgid "Reph Form"
+msgstr ""
+
+msgid "Right Bounds"
+msgstr ""
+
+msgid "Right-To-Left Alternates"
+msgstr ""
+
+msgid "Ruby Notation Forms"
+msgstr ""
+
+msgid "Scientific Inferiors"
+msgstr ""
+
+msgid "Simplified Forms"
+msgstr "Yksinkertaistetut muodot"
+
+msgid "Trailing Jamo Forms"
+msgstr ""
+
+msgid "Traditional Name Forms"
+msgstr ""
+
+msgid "Tabular Figures"
+msgstr ""
+
+msgid "Unicase"
+msgstr ""
+
+msgid "Alternate Vertical Metrics"
+msgstr ""
+
+msgid "Alternate Vertical Half Metrics"
+msgstr ""
+
+msgid "Vowel Jamo Forms"
+msgstr ""
+
+msgid "Vertical Kana Alternates"
+msgstr ""
+
+msgid "Proportional Alternate Vertical Metrics"
+msgstr ""
+
+msgid "Vertical Rotation"
+msgstr ""
+
+msgid "Fonts with this setting indicate that they may be embedded and permanently installed on the remote system by an application. The user of the remote system acquires the identical rights, obligations and licenses for that font as the original purchaser of the font, and is subject to the same end-user license agreement, copyright, design patent, and/or trademark as was the original purchaser."
+msgstr ""
+
+msgid "Fonts that have  only  this bit set must not be modified, embedded or exchanged in any manner without first obtaining permission of the legal owner."
+msgstr ""
+
+msgid "When this bit is set, the font may be embedded, and temporarily loaded on the remote system. Documents containing Preview & Print fonts must be opened \"read-only;\" no edits can be applied to the document."
+msgstr ""
+
+msgid "When this bit is set, the font may be embedded but must only be installed  temporarily  on other systems. In contrast to Preview & Print fonts, documents containing Editable fonts may be opened for reading, editing is permitted, and changes may be saved."
+msgstr ""
+
+msgid "When this bit is set, the font may not be subsetted prior to embedding. Other embedding restrictions specified in bits 0-3 and 9 also apply."
+msgstr ""
+
+msgid "When this bit is set, only bitmaps contained in the font may be embedded. No outline data may be embedded. If there are no bitmaps available in the font, then the font is considered unembeddable and the embedding services will fail. Other embedding restrictions specified in bits 0-3 and 8 also apply."
+msgstr ""
+
+msgid "Downloading"
+msgstr "Ladataan"
+
+msgid "&Activate all"
+msgstr "Ot&a kaikki käyttöön"
+
+msgid "&Deactivate all"
+msgstr "Poista &kaikki käytöstä"
+
+msgid "Mi&nimize"
+msgstr "Pie&nennä"
+
+msgid "&Restore"
+msgstr "P&alauta"
+
+msgid "&Tags"
+msgstr "Luoka&t"
+
+msgid "E&xit"
+msgstr "&Poistu"
+
+msgid "TrueType Tables "
+msgstr "Truetype-taulukot"
+
+msgid "Tag"
+msgstr "Luokka"
+
+msgid "Size"
+msgstr "Koko"
+
+msgid "TagSet editor"
+msgstr "Muokkaa kokoelmia"
+
+msgid "Collections of Tags"
+msgstr "Luokkakokoelmat"
+
+msgid "Add selected tag to current set."
+msgstr "Lisää valittu luokka kokoelmaan"
+
+msgid "Collections"
+msgstr "Kokoelmat"
+
+msgid "New"
+msgstr "Uusi"
+
+msgid "delete"
+msgstr "poista"
+
+msgid "Available Tags"
+msgstr "Käytettävissä olevat luokat"
+
+#, fuzzy
+msgid "Add new tag"
+msgstr "Lisää uusi luokka"
+
+msgid "Inline progression"
+msgstr "Rivin kulku"
+
+msgid "e.g. Latin text"
+msgstr "esim. latinalainen teksti"
+
+msgid "Left to right"
+msgstr "Vasemmalta oikealle"
+
+msgid "e.g. Arabic text"
+msgstr "esim. arabialainen teksti"
+
+msgid "Right to left"
+msgstr "Oikealta vasemmalle"
+
+msgid "e.g. Traditional Chinese & Japanese text"
+msgstr "esim. perinteinen kiina ja japanilainen teksti"
+
+msgid "Top to bottom"
+msgstr "Ylhäältä alas"
+
+msgid "e.g. Runic text"
+msgstr "esim. riimukirjoitus"
+
+msgid "Bottom to top"
+msgstr "Alhaalta ylös"
+
+msgid "Block progression"
+msgstr "Lohkon kulku"
+
+msgid "e.g. Traditional Mongolian text"
+msgstr "esim. perinteinen mongolialainen teksti"
+
+msgid "e.g. Tarditionnal Chinese & Japanes text"
+msgstr "esim. perinteinen kiina ja japanilainen teksti"
+
+msgid "Views"
+msgstr "Näkymät"
+
+msgid "Informations"
+msgstr "Tiedot"
+
+msgid "Preview"
+msgstr "Esikatselu"
+
+msgid "Glyphs chart"
+msgstr "Merkkikartta"
+
+msgid "Dead links"
+msgstr "Toimimattomat linkit"
+
+msgid "Select all"
+msgstr "Valitse kaikki"
+
+msgid "Activated Not Linked"
+msgstr "Käytössä, ei linkitetty"
+
+msgid "Re-link"
+msgstr "Linkitä uudestaan"
+
+msgid "Deactivate"
+msgstr "Poista käytöstä"
+
+msgid "Deactivated Linked"
+msgstr "Käytöstä poistettu, linkitetty"
+
+msgid "De-link"
+msgstr "Poista linkitys"
+
+msgid "Activate"
+msgstr "Ota käyttöön"
+
+#, fuzzy
+msgid "Right mouse click on a tag to add it or remove it from TagSet"
+msgstr "Poista tai lisää luokka oikealla hiiren painikkeella"
+
+#, fuzzy
+msgid "Nothing selected"
+msgstr "Ei valintaa"
+
+#, fuzzy
+msgid "Add a tag"
+msgstr "Lisää luokka"
+
+msgid "Fontmatrix"
+msgstr "Fontmatrix"
+
+msgid "The program will keep running in the system tray. To terminate the program, choose <b>Exit</b> in the context menu of the system tray entry."
+msgstr "Ohjelmaa ei suljeta vaan se pienennetään ilmoitusalueelle. Voit sulkea ohjelman ilmoitusalueella olevan kuvakkeen valikon kohdasta <b>Poistu</b>."
+
+msgid "Add Directory"
+msgstr "Lisää hakemisto"
+
+msgid "&Import..."
+msgstr "T&uo..."
+
+msgid "Ctrl+O"
+msgstr "Ctrl+O"
+
+msgid "Import a directory"
+msgstr "Tuo hakemisto"
+
+msgid "Ctrl+S"
+msgstr "Ctrl+S"
+
+msgid "Export font book..."
+msgstr "Tallenna fonttikirja..."
+
+msgid "Export a pdf that show selected fonts"
+msgstr "Tallenna esimerkkitekstit valituista fonteista pdf-tiedostoon"
+
+msgid "Ctrl+Q"
+msgstr "Ctrl+Q"
+
+msgid "Exit the application"
+msgstr "Poistu ohjelmasta"
+
+msgid "&About"
+msgstr "&Tietoja"
+
+msgid "Show the Typotek's About box"
+msgstr "Näytä Fontmatrixin tietoja-ikkuna"
+
+msgid "Help"
+msgstr "Ohje"
+
+msgid "Edit current font"
+msgstr "Muokkaa valittua fonttia"
+
+msgid "Preferences"
+msgstr "Asetukset"
+
+msgid "&File"
+msgstr "&Tiedosto"
+
+msgid "&Help"
+msgstr "&Ohje"
+
+msgid "Ready"
+msgstr "Valmis"
+
+msgid "There is no font selected"
+msgstr "Fontteja ei ole valittuna"
+
+msgid "Support of DragNDrop over http is sheduled but not yet effective"
+msgstr "Raahaa ja pudota -tuki http:lle on kehitteillä, muttei vielä toiminnassa"
+
+msgid "You bring something over me I canât handle"
+msgstr "Pudotit jotain, jota en osaa käsitellä"
+
+msgid "You provided an empty string, itâs not fair"
+msgstr "Merkkijono on tyhjä."
+
+msgid "Activate all current"
+msgstr "Ota kaikki nykyiset käyttöön"
+
+msgid "Deactivate all current"
+msgstr "Poista kaikki nykyiset käytöstä"
+
+msgid "Try to run font editor with the selected font as argument"
+msgstr "Yritä ajaa fonttimuokkain valitulla fontilla"
+
+msgid "You don't seem to have font editor installed. Path to font editor can be set in preferences."
+msgstr "Fonttimuokkainta ei ole asennettu. Voit asettaa polun muokkaimeen asetuksissa."
+
+msgid "Nothing Selected"
+msgstr "Ei valintaa"
+
+msgid "Importing font files... "
+msgstr "Tuodaan fonttitiedostoja... "
+
+msgid "Import"
+msgstr "Tuo"
+
+msgid "Fontmatrix care"
+msgstr ""
+
+msgid ""
+"You are about to activate a bunch of fonts,\n"
+"it is time to cancel if it was not your intent"
+msgstr "Olet aikeissa ottaa käyttöön runsaasti fontteja. Jos se ei ollut tarkoituksesi, voit vielä perua aikeesi."
+
+msgid ""
+"You are about to deactivate a bunch of fonts,\n"
+"it is time to cancel if it was not your intent"
+msgstr "Olet aikeissa poistaa käytöstä runsaasti fontteja. Jos se ei ollut tarkoituksesi, voit vielä perua aikeesi."
+
+msgid "Canât import this font because itâs broken :"
+msgstr "Tätä fonttia ei voida tuoda, koska se on viallinen:"
+
+msgid "Choose the tag for filter exported fonts"
+msgstr "Valitse tallennettavien fonttien luokka"
+
+msgid "Choose Directory"
+msgstr "Valitse hakemisto"
+
+msgid "Export &Fonts"
+msgstr "Kerää &fontteja"
+
+msgid "Export a fontset"
+msgstr "Tallenna fonttikokoelma"
+
+msgid "Check Database"
+msgstr "Tarkista tietokanta"
+
+msgid "Tag All..."
+msgstr "Lisää kaikki luokkaan..."
+
+msgid "Load settings"
+msgstr "Lataa asetukset"
+
+msgid "Check for Fontmatrix own dir"
+msgstr "Tarkista Fontmatrixin oma hakemisto"
+
+msgid "Catching"
+msgstr ""
+
+msgid "font descriptions from network"
+msgstr "fonttien kuvaukset verkon kautta"
+
+msgid "Collected System Font"
+msgstr "Löydetyt järjestelmäfontit"
+
+msgid "Adding"
+msgstr "Lisätään"
+
+msgid "fonts from system directories"
+msgstr "fontit järjestelmähakemistoista"
+
+msgid "fonts available from system"
+msgstr "fontit järjestelmässä"
+
+msgid "font descriptions imported from network"
+msgstr "verkosta haetut fonttien kuvaukset"
+
+msgid "Browse Fonts"
+msgstr "Selaa fontteja"
+
+msgid "default"
+msgstr "oletus"
+
+msgid "\"default\" is a reserved"
+msgstr "\"oletus\" on varattu"
+
+msgid "Print Info..."
+msgstr "Tiedot..."
+
+msgid "Print informations about the current font"
+msgstr "Tulosta tietoja valitusta fontista"
+
+msgid "Print Sample..."
+msgstr "Näyte..."
+
+msgid "Print the sample as a specimen"
+msgstr "Tulosta näyte"
+
+msgid "Print Chart..."
+msgstr "Taulukko..."
+
+msgid "Print a chart of the current font"
+msgstr "Tulosta valittu fontti taulukkona"
+
+msgid "Print Playground..."
+msgstr "Leikkikenttä"
+
+msgid "Print the playground"
+msgstr "Tulosta leikkikentän sisältö"
+
+msgid "Print Family..."
+msgstr "Perhe..."
+
+msgid "Print a specimen of the whole family the current face belongs to"
+msgstr "Tulosta näyte koko fonttiperheestä, johon valittu fontti kuuluu"
+
+msgid "About &Qt"
+msgstr "Tietoja Qt:stä"
+
+msgid "Print"
+msgstr "Tulosta"
+
+msgid "&Edit"
+msgstr "&Muokkaa"
+
+msgid "Welcome maessage"
+msgstr "Tervetuloviesti"
+
+msgid "Print Infos"
+msgstr "Tulosta tiedot"
+
+msgid "Print Chart"
+msgstr "Tulosta taulukko"
+
+msgid "Print Playground"
+msgstr "Tulosta leikkikenttä"
+
+msgid "Print Family"
+msgstr "Tulosta perhe"
+
+#, qt-format
+msgid "Fonts imported: %1"
+msgstr "Tuotuja fontteja: %1"
+
+msgid "Next Family"
+msgstr "Seuraava perhe"
+
+msgid "Next Face"
+msgstr "Seuraava fontti"
+
+msgid "Previous Family"
+msgstr "Edellinen perhe"
+
+msgid "Previous Face"
+msgstr "Edellinen fontti"
+
+msgid "Layout Options"
+msgstr "Sijoitteluasetukset"
+
+msgid "&Browse"
+msgstr "&Selaa"
+
+msgid "&Sync"
+msgstr "&Synkronoi"
+
+msgid "Sync with the DB file"
+msgstr "Synkronoi tietokannan kanssa"
+
+msgid "Print Sample"
+msgstr "Tulosta näyte"
+
+msgid "Not enough text to make a sample"
+msgstr "Ei tarpeeksi tekstiä näytettä varten"
+
+msgid "Tags"
+msgstr "Luokat"
+
+msgid "Show TrueType tables"
+msgstr "Näytä Truetype-taulukot"

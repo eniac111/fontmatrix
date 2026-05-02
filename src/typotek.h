@@ -22,7 +22,7 @@
 #ifndef TYPOTEK_H
 #define TYPOTEK_H
 
-#include <QMainWindow>
+#include <KXmlGuiWindow>
 #include <QCloseEvent>
 #include <QMap>
 #include <QFile>
@@ -40,43 +40,38 @@ class QTextEdit;
 class MainViewWidget;
 class BrowserWidget;
 class FontItem;
-// class TypotekAdaptator;
 class QDockWidget;
 class Systray;
 class RemoteDir;
 class FMHyphenator;
 class QProgressBar;
-// class HelpWidget;
-class HelpBrowser;
 class DataLoader;
 class FloatingWidget;
 class QStackedWidget;
 
-class typotek:public QMainWindow
+class typotek : public KXmlGuiWindow
 {
 	Q_OBJECT
 
 	static typotek* instance;
 	static bool matrix;
 	typotek();
-	~typotek();
+	~typotek() override;
 public:
 	static typotek* getInstance();
 	void initMatrix();
 	void postInit();
 
 protected:
-	void closeEvent ( QCloseEvent *event );
-	void keyPressEvent ( QKeyEvent * event ) ;
+	void closeEvent ( QCloseEvent *event ) override;
+	void keyPressEvent ( QKeyEvent * event ) override ;
 
 private slots:
 	void fontBook();
 	void slotActivateCurrents();
 	void slotDeactivateCurrents();
 	void slotEditFont();
-	void about();
-	void helpBegin();
-	void helpEnd();
+	void toggleShowMenuBar(bool showMessage = true);
 	void slotExportFontSet();
 	void slotRemoteIsReady();
 	void slotRepair();
@@ -114,6 +109,9 @@ public slots:
 	void hideAllFloatings();
 	void toggleMainView(bool v);
 	void pushObject(QObject* o);
+	// Force a real quit, bypassing the close-to-tray hide.
+	// Used by File → Quit and the systray's "Exit" action.
+	void slotQuit();
 
 	void hide();
 	void show();
@@ -126,8 +124,6 @@ signals:
 private:
 	void installDock(const QString& id, const QString& name, QWidget *w, const QString& tip=QString() );
 	void createActions();
-	void createMenus();
-	void createToolBars();
 	void createStatusBar();
 	void readSettings();
 	void writeSettings();
@@ -136,34 +132,22 @@ private:
 	void doConnect();
 	void setupDrop();
 
+	// Set by slotQuit() so closeEvent skips the close-to-tray hide branch.
+	bool m_forceQuit = false;
+
 	void checkOwnDir();
 	void fillTagsList();
 
 	QTextEdit *textEdit;
 	QString curFile;
 
-	QMenu *fileMenu;
-	QMenu *editMenu;
-	QMenu *servicesMenu;
-	QMenu *viewMenu;
-	QMenu *helpMenu;
-	QToolBar *fileToolBar;
-	QToolBar *editToolBar;
-	QAction *newAct;
+	QMenu *viewMenu = nullptr;
 	QAction *openAct;
 	QAction *importFilesAction;
-	QAction *exitAct;
-	QAction *cutAct;
-	QAction *copyAct;
-	QAction *pasteAct;
-	QAction *aboutAct;
-	QAction *aboutQtAct;
 	QAction *fontBookAct;
 	QAction *activCurAct;
 	QAction *deactivCurAct;
-	QAction *helpAct;
 	QAction *fonteditorAct;
-	QAction *prefsAct;
 	QAction *exportFontSetAct;
 	QAction *repairAct;
 	QAction *tagAll;
@@ -182,9 +166,7 @@ private:
 	QAction *showAllFloat;
 	QAction *hideAllFloat;
 	QAction *floatSep;
-
-	// 		HelpWidget *theHelp;
-	HelpBrowser *theHelp;
+	QAction *m_paShowMenuBar = nullptr;
 
 //	QAction *layOptAct;
 
@@ -216,7 +198,6 @@ private:
 	bool previewRTL;
 	bool previewSubtitled;
 	bool m_familySchemeFreetype;
-	QString m_welcomeURL;
 	QString m_sysTagName;
 
 	void addFcDirItem(const QString &dirPath);
@@ -253,8 +234,6 @@ private:
 
 	QString webBrowser;
 	QString webBrowserOptions;
-
-	QString infoStyle;
 
 	double m_dpiX;
 	double m_dpiY;
@@ -308,7 +287,7 @@ public:
 	QString getTemplatesDir() {return templatesDir;}
 
 	void setWord(QString s, bool updateView);
-	QString word(FontItem * item = 0, const QString& alt = QString());
+	QString word(FontItem * item = nullptr, const QString& alt = QString());
 	void setPreviewSize(double d);
 	double getPreviewSize(){ return previewSize; }
 	void setPreviewRTL(bool d);
@@ -332,8 +311,6 @@ public:
 
 	bool familySchemeFreetype() const{return m_familySchemeFreetype;}
 	void setFamilySchemeFreetype ( bool theValue ){m_familySchemeFreetype = theValue;}
-
-	QString welcomeURL() const{return m_welcomeURL;}
 
 	FMHyphenator* getHyphenator() const;
 
@@ -386,9 +363,6 @@ public:
 	QDir getOwnDir() const{return ownDir;}
 	QDir getConfigDir() const{return configDir;}
 
-	void setInfoStyle ( const QString& theValue );
-	QString getInfoStyle() const{ return infoStyle; }
-
 	QString getSysTagName() const { return m_sysTagName; }
 
 	double getDpiX() const {return m_dpiX;}
@@ -396,9 +370,9 @@ public:
 	
 	
 protected:
-	void dragEnterEvent(QDragEnterEvent *event);
-	void dropEvent ( QDropEvent * event );
-	void showEvent ( QShowEvent * event );
+	void dragEnterEvent(QDragEnterEvent *event) override;
+	void dropEvent ( QDropEvent * event ) override;
+	void showEvent ( QShowEvent * event ) override;
 
 
 
@@ -409,7 +383,7 @@ class LazyInit : public QThread
 {
 	Q_OBJECT
 public:
-	void run();
+	void run() override;
 signals:
 	void endOfRun();
 };

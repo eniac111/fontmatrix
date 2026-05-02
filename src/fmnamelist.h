@@ -24,7 +24,7 @@ class FMNameList : public QTreeWidget
 	Q_OBJECT
 	public:
 		FMNameList(QWidget *parent);
-		~FMNameList();
+		~FMNameList() override;
 	public slots:
 		void slotNextFamily();
 		void slotPreviousFamily();
@@ -35,7 +35,7 @@ class FMNameList : public QTreeWidget
 	signals:
 		void currentChanged(QTreeWidgetItem*, int);
 	protected:
-		void keyPressEvent ( QKeyEvent * e );
+		void keyPressEvent ( QKeyEvent * e ) override;
 // 	private:
 // 		QString curString;
 	private:

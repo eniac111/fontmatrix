@@ -33,12 +33,12 @@ class FiltersDialogItem : public QWidget
     Q_OBJECT
 
 public:
-    explicit FiltersDialogItem(const QString& name, const QString& f, QWidget *parent = 0);
-    ~FiltersDialogItem();
+    explicit FiltersDialogItem(const QString& name, const QString& f, QWidget *parent = nullptr);
+    ~FiltersDialogItem() override;
 
 protected:
     void enterEvent(QEvent *);
-    void leaveEvent(QEvent *);
+    void leaveEvent(QEvent *) override;
 
 private:
     Ui::FiltersDialogItem *ui;

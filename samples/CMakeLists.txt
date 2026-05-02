@@ -1,5 +1,14 @@
 # Samples
-SET(SAMPLE_DIR ${RESOURCESDIR}/Samples/)
+IF(UNIX AND NOT APPLE)
+    SET(SAMPLE_DIR "${KDE_INSTALL_DATADIR}/fontmatrix/resources/Samples")
+    # Mirror samples into the build tree so the binary can be run in-place
+    # without a make install step (binary at build/bin/ → build/share/...).
+    file(COPY ${CMAKE_SOURCE_DIR}/samples/
+         DESTINATION "${CMAKE_BINARY_DIR}/share/fontmatrix/resources/Samples"
+         FILES_MATCHING PATTERN "sample")
+ELSE()
+    SET(SAMPLE_DIR "${RESOURCESDIR}/Samples")
+ENDIF()
 
 # Bengali
 ADD_SUBDIRECTORY(bn)

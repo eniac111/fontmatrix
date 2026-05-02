@@ -23,7 +23,7 @@ class ImportTags : public QDialog, private Ui::ImportTagsDialog
 	Q_OBJECT
 	public:
 		ImportTags ( QWidget * parent, QStringList tags );
-		~ImportTags();
+		~ImportTags() override;
 		
 		
 		QStringList tags(){return m_tags;}

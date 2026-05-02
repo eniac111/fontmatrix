@@ -22,7 +22,7 @@ class FontmatrixShaper : public FMBaseShaper
 	FontmatrixShaper(FMOtf* o, QString s);
 	~FontmatrixShaper();
 	
-	GlyphList doShape( const QString& s );
+	GlyphList doShape( const QString& s ) override;
 	private:
 		FMOwnShaper *fmos;
 };

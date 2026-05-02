@@ -35,15 +35,14 @@ class DataLoader
 	void load();
 public:
 	DataLoader();
-	~DataLoader(){}
+	~DataLoader() = default;
 
 	bool update(const QString& name, const QString& sample);
 	bool remove(const QString& name);
 	void reload();
 
-
-	const QMap<QString, QMap<QString,QString> >& systemSamples()const{return sm;}
-	const QMap<QString,QString>& userSamples()const{return pm;}
+	[[nodiscard]] const QMap<QString, QMap<QString,QString>>& systemSamples() const { return sm; }
+	[[nodiscard]] const QMap<QString,QString>& userSamples() const { return pm; }
 
 };
 

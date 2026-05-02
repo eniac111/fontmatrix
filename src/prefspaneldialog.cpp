@@ -15,25 +15,85 @@
 #include "hyphenate/fmhyphenator.h"
 #include "fmpaths.h"
 
+#include <KLocalizedString>
+#include <KMessageWidget>
+#include <KPageWidgetItem>
 #include <QAction>
+#include <QGridLayout>
 #include <QDebug>
 #include <QToolTip>
-#include <QSettings>
+#include "fmconfig.h"
 #include <QFileDialog>
 #include <QStandardItemModel>
 #include <QMessageBox>
+#include <QDialogButtonBox>
 
 PrefsPanelDialog::PrefsPanelDialog ( QWidget *parent )
-		: QDialog ( parent )
+		: KPageDialog ( parent )
 {
 	//get this before anything
 	double pSize = typotek::getInstance()->getPreviewSize();
-	setupUi ( this );
+
+	setWindowTitle(i18nc("@title:window", "Preferences"));
+	setFaceType(KPageDialog::List);
+	setStandardButtons(QDialogButtonBox::Close);
+	setModal(true);
+
+	// Build the legacy QDialog UI on a hidden holder, then move each page widget
+	// into the KPageDialog. Form widgets remain accessible via Ui::PrefsPanel.
+	m_uiHolder = new QDialog(this);
+	m_uiHolder->setVisible(false);
+	setupUi(m_uiHolder);
+
+	m_pageGeneral    = addPage(page,         i18n("General"));
+	m_pageGeneral->setIcon(QIcon::fromTheme(QStringLiteral("preferences-other")));
+	m_pageSystray    = addPage(pageSystray,  i18n("System tray"));
+	m_pageSystray->setIcon(QIcon::fromTheme(QStringLiteral("preferences-system")));
+	m_pageDisplay    = addPage(pageDisplay,  i18n("Display"));
+	m_pageDisplay->setIcon(QIcon::fromTheme(QStringLiteral("preferences-desktop-display")));
+	m_pageTools      = addPage(page_5,       i18n("Tools"));
+	m_pageTools->setIcon(QIcon::fromTheme(QStringLiteral("applications-utilities")));
+	m_pageSampleText = addPage(page_2,       i18n("Samples collection"));
+	m_pageSampleText->setIcon(QIcon::fromTheme(QStringLiteral("format-text-bold")));
+	m_pageFiles      = addPage(page_3,       i18n("Files && Folders"));
+	m_pageFiles->setIcon(QIcon::fromTheme(QStringLiteral("folder")));
+	m_pageShortcuts  = addPage(page_4,       i18n("Shortcuts"));
+	m_pageShortcuts->setIcon(QIcon::fromTheme(QStringLiteral("configure-shortcuts")));
+
+	// Inline banner shown on the System tray page when the host has no tray
+	// available. Replaces a tooltip on a disabled groupbox (which most styles
+	// don't render). Pushed to the top of pageSystray's grid; the existing
+	// systrayFrame is bumped down a row.
+	m_systrayUnavailable = new KMessageWidget(pageSystray);
+	m_systrayUnavailable->setMessageType(KMessageWidget::Warning);
+	m_systrayUnavailable->setIcon(QIcon::fromTheme(QStringLiteral("dialog-warning")));
+	m_systrayUnavailable->setText(i18n("This desktop does not provide a system tray. The options below have no effect."));
+	m_systrayUnavailable->setCloseButtonVisible(false);
+	m_systrayUnavailable->setWordWrap(true);
+	m_systrayUnavailable->hide();
+	if (auto *grid = qobject_cast<QGridLayout *>(pageSystray->layout()))
+	{
+		grid->removeWidget(systrayFrame);
+		grid->addWidget(m_systrayUnavailable, 0, 0);
+		grid->addWidget(systrayFrame, 1, 0);
+	}
+
+	// Inline validation banner on the Samples Collection page. Surfaces the
+	// previously-silent failures of addSampleName() (empty input, duplicate name).
+	m_sampleNameWarning = new KMessageWidget(widget);
+	m_sampleNameWarning->setMessageType(KMessageWidget::Warning);
+	m_sampleNameWarning->setIcon(QIcon::fromTheme(QStringLiteral("dialog-warning")));
+	m_sampleNameWarning->setCloseButtonVisible(true);
+	m_sampleNameWarning->setWordWrap(true);
+	m_sampleNameWarning->hide();
+	if (auto *grid = qobject_cast<QGridLayout *>(widget->layout()))
+		grid->addWidget(m_sampleNameWarning, 3, 0, 1, 3);
+
 	fontEditorPath->setText ( typotek::getInstance()->fontEditorPath() );
 
 	systrayFrame->setCheckable ( true );
 	previewWord->setText ( typotek::getInstance()->word() );
-	previewWord->setToolTip(tr("You can use the following keywords to be replaced by data from fonts: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"));
+	previewWord->setToolTip(i18n("You can use the following keywords to be replaced by data from fonts: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"));
 	previewSizeSpin->setValue ( pSize );
 	previewIsRTL->setChecked ( typotek::getInstance()->getPreviewRTL() );
 	previewSubtitled->setChecked ( typotek::getInstance()->getPreviewSubtitled() );
@@ -41,14 +101,17 @@ PrefsPanelDialog::PrefsPanelDialog ( QWidget *parent )
 	showNamesBox->setChecked ( typotek::getInstance()->showImportedFonts() );
 // 	familyNameScheme->setChecked ( !typotek::getInstance()->familySchemeFreetype() );
 
-	chartFontCombo->setCurrentFont ( QFont(typotek::getInstance()->getChartInfoFontName()) );
-	chartFontSpin->setValue( typotek::getInstance()->getChartInfoFontSize() );
+	{
+		QFont chartFont(typotek::getInstance()->getChartInfoFontName());
+		chartFont.setPointSize(typotek::getInstance()->getChartInfoFontSize());
+		chartFontRequester->setFont(chartFont);
+		chartFontRequester->setSampleText(i18nc("@info:placeholder sample text in font requester", "Aa Bb 123"));
+	}
 
-	QSettings settings;
-// 	qDebug()<< "ss" << settings.value("SplashScreen",false).toBool();
-	splashCheck->setChecked ( settings.value ( "SplashScreen", true ).toBool() );
+// 	qDebug()<< "ss" << FMConfig::value("SplashScreen",false).toBool();
+	splashCheck->setChecked ( FMConfig::value ( QStringLiteral("SplashScreen"), true ).toBool() );
 
-	namedSampleTextText->setText ( tr ( "Please select an item in the list or create a new one." ) );
+	namedSampleTextText->setText ( i18n( "Please select an item in the list or create a new one." ) );
 	namedSampleTextText->setEnabled ( false );
 	
 	/// browser
@@ -62,16 +125,6 @@ PrefsPanelDialog::PrefsPanelDialog ( QWidget *parent )
 	browserCombo->setCurrentIndex(webBrowsers.indexOf(browser));
 	
 	browserOptions->setText(typotek::getInstance()->getWebBrowserOptions());
-	
-	
-	/// CSS
-	QDir cssDir(FMPaths::ResourcesDir());
-	QStringList cssList(cssDir.entryList(QStringList("*.css")));
-	QFileInfo cssCurrent(typotek::getInstance()->getInfoStyle());
-	QString cssName(cssCurrent.fileName());
-	infoStyleCombo->addItems(cssList);
-	infoStyleCombo->setCurrentIndex(cssList.indexOf(cssName));
-	
 
 	doConnect();
 }
@@ -86,16 +139,18 @@ void PrefsPanelDialog::initSystrayPrefs ( bool hasSystray, bool isVisible, bool 
 	if ( !hasSystray )
 	{
 		systrayFrame->setEnabled ( false );
-		systrayFrame->setToolTip ( tr ( "Looks like your setup does not have a system tray available." ) );
-	} else
-		systrayFrame->setToolTip ( "" );
+		m_systrayUnavailable->show();
+	}
+	else
+	{
+		m_systrayUnavailable->hide();
+	}
 	systrayFrame->setChecked ( isVisible );
 	activateAllFrame->setChecked ( hasActivateAll );
 	activateAllConfirmation->setChecked ( allConfirmation );
 	tagsConfirmation->setChecked ( tagConfirmation );
-	QSettings settings ;
-	closeToSystray->setChecked ( settings.value ( "Systray/CloseToTray", true ).toBool() );
-	startToSystemTray->setChecked ( settings.value ( "Systray/StartToTray", false ).toBool() );
+	closeToSystray->setChecked ( FMConfig::value ( QStringLiteral("Systray/CloseToTray"), true ).toBool() );
+	startToSystemTray->setChecked ( FMConfig::value ( QStringLiteral("Systray/StartToTray"), false ).toBool() );
 	previewSizeSpin->setValue ( typotek::getInstance()->getPreviewSize() );
 
 }
@@ -104,19 +159,17 @@ void PrefsPanelDialog::initSampleTextPrefs()
 {
 	//At least fill the sampletext list :)
 	sampleTextNamesList->addItems ( typotek::getInstance()->namedSamplesNames().value(QString("User")) );
-	QSettings settings;
-	fontSizeSpin->setValue ( settings.value ( "Sample/FontSize",14.0 ).toDouble() );
-	interLineSpin->setValue ( settings.value ( "Sample/Interline",18.0 ).toDouble() );
-	dictEdit->setText ( settings.value ( "Sample/HyphenationDict", "" ).toString() );
-	leftBox->setValue ( settings.value ( "Sample/HyphLeft", 2 ).toInt() );
-	rightBox->setValue ( settings.value ( "Sample/HyphRight", 3 ).toInt() );
+	fontSizeSpin->setValue ( FMConfig::value ( QStringLiteral("Sample/FontSize"), 14.0 ).toDouble() );
+	interLineSpin->setValue ( FMConfig::value ( QStringLiteral("Sample/Interline"), 18.0 ).toDouble() );
+	dictEdit->setText ( FMConfig::value ( QStringLiteral("Sample/HyphenationDict"), QLatin1String("") ).toString() );
+	leftBox->setValue ( FMConfig::value ( QStringLiteral("Sample/HyphLeft"), 2 ).toInt() );
+	rightBox->setValue ( FMConfig::value ( QStringLiteral("Sample/HyphRight"), 3 ).toInt() );
 }
 
 void PrefsPanelDialog::initFilesAndFolders()
 {
-	QSettings settings;
 	templatesFolder->setText ( typotek::getInstance()->getTemplatesDir() );
-	QStringList remoteDirV ( settings.value ( "RemoteDirectories" ).toStringList() );
+	QStringList remoteDirV ( FMConfig::value ( QStringLiteral("RemoteDirectories") ).toStringList() );
 	remoteDirList->addItems ( remoteDirV );
 	localStorageLine->setText ( typotek::getInstance()->remoteTmpDir() );
 
@@ -147,8 +200,6 @@ void PrefsPanelDialog::initShortcuts()
 
 void PrefsPanelDialog::doConnect()
 {
-	connect ( catList,SIGNAL ( itemClicked( QListWidgetItem *  ) ),this,SLOT ( slotSelectPage ( QListWidgetItem * ) ) );
-
 	connect ( commitSample,SIGNAL ( clicked() ),this,SLOT ( validateSampleName() ) );
 	connect ( addSampleTextNameButton,SIGNAL ( released() ),this,SLOT ( addSampleName() ) );
 	connect ( newSampleTextNameText,SIGNAL ( editingFinished() ),this,SLOT ( addSampleName() ) );
@@ -169,8 +220,7 @@ void PrefsPanelDialog::doConnect()
 	connect ( previewIsRTL, SIGNAL ( stateChanged ( int ) ), this, SLOT ( updateWordRTL ( int ) ) );
 	connect ( previewSubtitled, SIGNAL ( stateChanged ( int ) ), this, SLOT ( updateWordSubtitled ( int ) ) );
 
-	connect ( chartFontCombo, SIGNAL( currentFontChanged ( const QFont& ) ), this, SLOT(updateChartFontFamily( const QFont& ) ) );
-	connect ( chartFontSpin, SIGNAL( valueChanged( int ) ), this, SLOT(updateChartFontSize(int)) );
+	connect ( chartFontRequester, SIGNAL( fontSelected( const QFont& ) ), this, SLOT( updateChartFont( const QFont& ) ) );
 
 	connect ( fontEditorPath, SIGNAL ( textChanged ( const QString ) ), this, SLOT ( setupFontEditor ( QString ) ) );
 	connect ( fontEditorBrowse, SIGNAL ( clicked() ), this, SLOT ( slotFontEditorBrowse() ) );
@@ -178,8 +228,6 @@ void PrefsPanelDialog::doConnect()
 	connect(browserButton,SIGNAL(clicked( )), this, SLOT(addAndSelectWebBrowser()));
 	connect(browserCombo, SIGNAL(activated( const QString& )), this, SLOT( selectWebBrowser(const QString& ) ));
 	connect(browserOptions, SIGNAL(textChanged( const QString& )), this, SLOT(setupWebBrowserOptions(const QString& )));
-	
-	connect(infoStyleCombo, SIGNAL(activated( const QString& )), this, SLOT( selectInfoStyle(const QString& ) ));
 
 	connect ( initTagBox, SIGNAL ( clicked ( bool ) ), typotek::getInstance(), SLOT ( slotUseInitialTags ( bool ) ) );
 // 	connect ( familyNameScheme,SIGNAL ( toggled ( bool ) ),this,SLOT ( slotFamilyNotPreferred ( bool ) ) );
@@ -199,8 +247,6 @@ void PrefsPanelDialog::doConnect()
 	connect ( changeButton, SIGNAL ( clicked() ), this, SLOT ( slotChangeShortcut() ) );
 	connect ( shortcutList, SIGNAL ( clicked ( const QModelIndex& ) ), this, SLOT ( slotActionSelected ( const QModelIndex& ) ) );
 	// connect ( shortcutList, SIGNAL ( activated ( const QModelIndex& ) ), changeButton, SLOT ( toggle() ) );
-
-	connect ( closeButton,SIGNAL ( clicked() ),this,SLOT ( slotClose() ) );
 }
 
 void PrefsPanelDialog::applySampleText()
@@ -208,22 +254,21 @@ void PrefsPanelDialog::applySampleText()
 	typotek::getInstance()->changeFontSizeSettings ( fontSizeSpin->value(), interLineSpin->value() );
 	typotek::getInstance()->forwardUpdateView();
 	FMHyphenator *hyphenator = typotek::getInstance()->getHyphenator();
-	QSettings s;
 	if ( hyphenator->loadDict ( dictEdit->text(), leftBox->value(), rightBox->value() ) )
 	{
-		s.setValue ( "Sample/HyphenationDict", dictEdit->text() );
-		s.setValue ( "Sample/HyphLeft", leftBox->value() );
-		s.setValue ( "Sample/HyphRight", rightBox->value() );
+		FMConfig::setValue ( QStringLiteral("Sample/HyphenationDict"), dictEdit->text() );
+		FMConfig::setValue ( QStringLiteral("Sample/HyphLeft"), leftBox->value() );
+		FMConfig::setValue ( QStringLiteral("Sample/HyphRight"), rightBox->value() );
 
 	}
 	else   // use the previous values
 	{
-		dictEdit->setText ( s.value ( "Sample/HyphenationDict", "" ).toString() );
-		leftBox->setValue ( s.value ( "Sample/HyphLeft", 2 ).toInt() );
-		rightBox->setValue ( s.value ( "Sample/HyphRight", 3 ).toInt() );
-		s.setValue ( "Sample/HyphenationDict", "" );
-		s.setValue ( "Sample/HyphLeft", 2 );
-		s.setValue ( "Sample/HyphRight", 3 );
+		dictEdit->setText ( FMConfig::value ( QStringLiteral("Sample/HyphenationDict"), QLatin1String("") ).toString() );
+		leftBox->setValue ( FMConfig::value ( QStringLiteral("Sample/HyphLeft"), 2 ).toInt() );
+		rightBox->setValue ( FMConfig::value ( QStringLiteral("Sample/HyphRight"), 3 ).toInt() );
+		FMConfig::setValue ( QStringLiteral("Sample/HyphenationDict"), QLatin1String("") );
+		FMConfig::setValue ( QStringLiteral("Sample/HyphLeft"), 2 );
+		FMConfig::setValue ( QStringLiteral("Sample/HyphRight"), 3 );
 	}
 }
 
@@ -231,11 +276,20 @@ void PrefsPanelDialog::addSampleName()
 {
 	QString n = newSampleTextNameText->text();
 	if ( n.isEmpty() )
+	{
+		m_sampleNameWarning->setText(i18nc("@info:status validation", "Please enter a name for the new sample."));
+		m_sampleNameWarning->animatedShow();
 		return;
+	}
 	if ( typotek::getInstance()->namedSamplesNames().contains ( n ) )
+	{
+		m_sampleNameWarning->setText(i18nc("@info:status validation", "A sample named \"%1\" already exists.", n));
+		m_sampleNameWarning->animatedShow();
 		return;
+	}
 
-	typotek::getInstance()->addNamedSample ( n, tr ( "Sample Text","A default sample text inserted when creating a new sample" ) );
+	m_sampleNameWarning->animatedHide();
+	typotek::getInstance()->addNamedSample ( n, i18nc("A default sample text inserted when creating a new sample", "Sample Text") );
 	sampleTextNamesList->addItem ( n );
 	newSampleTextNameText->clear();
 // 	displayNamedText();
@@ -249,7 +303,7 @@ void PrefsPanelDialog::deleteSampleName()
 		return;
 
 	QString sampleKey ( sel[0]->text() );
-	QString  message ( tr ( "Do you confirm that you want to remove:","the name of a sample text will be append to the string" ) + " \"%1\"" );
+	QString  message ( i18nc("the name of a sample text will be append to the string", "Do you confirm that you want to remove:") + " \"%1\"" );
 
 	if ( QMessageBox::warning ( this ,
 	                            "Fontmatrix",
@@ -315,8 +369,7 @@ void PrefsPanelDialog::updateWord ( QString s )
 void PrefsPanelDialog::updateWordSize ( double d )
 {
 
-	QSettings settings;
-	settings.setValue ( "Preview/Size", d );
+	FMConfig::setValue ( QStringLiteral("Preview/Size"), d );
 	typotek::getInstance()->setPreviewSize ( d );
 	typotek::getInstance()->setWord ( previewWord->text(), true );
 }
@@ -325,16 +378,14 @@ void PrefsPanelDialog::updateWordSize ( double d )
 void PrefsPanelDialog::updateWordRTL ( int rtl )
 {
 	bool booleanState = ( rtl == Qt::Checked ) ? true : false;
-	QSettings settings;
-	settings.setValue ( "Preview/RTL", booleanState );
+	FMConfig::setValue ( QStringLiteral("Preview/RTL"), booleanState );
 	typotek::getInstance()->setPreviewRTL ( booleanState );
 }
 
 void PrefsPanelDialog::updateWordSubtitled(int sub )
 {
 	bool booleanState = ( sub == Qt::Checked ) ? true : false;
-	QSettings settings;
-	settings.setValue ( "Preview/Subtitled", booleanState );
+	FMConfig::setValue ( QStringLiteral("Preview/Subtitled"), booleanState );
 	typotek::getInstance()->setPreviewSubtitled ( booleanState );
 }
 
@@ -345,7 +396,7 @@ void PrefsPanelDialog::setupFontEditor ( QString s )
 
 void PrefsPanelDialog::slotFontEditorBrowse()
 {
-	QString s = QFileDialog::getOpenFileName ( this, tr ( "Select font editor" ) );
+	QString s = QFileDialog::getOpenFileName ( this, i18n( "Select font editor" ) );
 	if ( !s.isEmpty() )
 	{
 		fontEditorPath->setText ( s );
@@ -354,7 +405,7 @@ void PrefsPanelDialog::slotFontEditorBrowse()
 
 void PrefsPanelDialog::addAndSelectWebBrowser()
 {
-	QString s = QFileDialog::getOpenFileName ( this, tr ( "Select web browser" ) );
+	QString s = QFileDialog::getOpenFileName ( this, i18n( "Select web browser" ) );
 	if ( !s.isEmpty() )
 	{
 		QStringList l;
@@ -377,45 +428,36 @@ void PrefsPanelDialog::addAndSelectWebBrowser()
 
 void PrefsPanelDialog::selectWebBrowser(const QString & text)
 {
-	QSettings settings;
-	settings.setValue("Info/Browser",text);
+	FMConfig::setValue(QStringLiteral("Info/Browser"), text);
 	typotek::getInstance()->setWebBrowser(text);
 }
 
 void PrefsPanelDialog::setupWebBrowserOptions(const QString & text)
 {
-	
-	QSettings settings;
-	settings.setValue("Info/BrowserOptions",text);
+	FMConfig::setValue(QStringLiteral("Info/BrowserOptions"), text);
 	typotek::getInstance()->setWebBrowserOptions(text);
-}
-
-void PrefsPanelDialog::selectInfoStyle(const QString & css)
-{
-	typotek::getInstance()->setInfoStyle(FMPaths::ResourcesDir() + css);
 }
 
 void PrefsPanelDialog::showPage ( PAGE page )
 {
-// 	if ( page == PAGE_GENERAL )
-// 		stackedPrefs->setCurrentIndex ( 0 );
-// 	else if ( page == PAGE_SAMPLETEXT )
-// 		stackedPrefs->setCurrentIndex ( 1 );
-// 	else if ( page == PAGE_FILES )
-// 		stackedPrefs->setCurrentIndex ( 2 );
-// 	else if ( page == PAGE_SHORTCUTS )
-// 		stackedPrefs->setCurrentIndex ( 3 );
-	stackedPrefs->setCurrentIndex( int(page) );
-}
-
-void PrefsPanelDialog::slotSelectPage ( QListWidgetItem * item )
-{
-	stackedPrefs->setCurrentIndex ( catList->row ( item ) );
+	KPageWidgetItem *target = nullptr;
+	switch (page)
+	{
+		case PAGE_GENERAL:    target = m_pageGeneral; break;
+		case PAGE_SYSTRAY:    target = m_pageSystray; break;
+		case PAGE_DISPLAY:    target = m_pageDisplay; break;
+		case PAGE_SERVICES:   target = m_pageTools; break;
+		case PAGE_SAMPLETEXT: target = m_pageSampleText; break;
+		case PAGE_FILES:      target = m_pageFiles; break;
+		case PAGE_SHORTCUTS:  target = m_pageShortcuts; break;
+	}
+	if (target)
+		setCurrentPage(target);
 }
 
 void PrefsPanelDialog::slotTemplatesBrowse()
 {
-	QString s = QFileDialog::getExistingDirectory ( this, tr ( "Select Templates Folder" ), QDir::homePath(), QFileDialog::ShowDirsOnly );
+	QString s = QFileDialog::getExistingDirectory ( this, i18n( "Select Templates Folder" ), QDir::homePath(), QFileDialog::ShowDirsOnly );
 	if ( !s.isEmpty() )
 	{
 		templatesFolder->setText ( s );
@@ -432,11 +474,9 @@ void PrefsPanelDialog::slotAddRemote()
 {
 	QString rem ( newUrlText->text() );
 	remoteDirList->addItem ( rem );
-	QStringList remList;
-	QSettings settings;
-	QList<QVariant> tmpL ( settings.value ( "RemoteDirectories" ).toList() );
+	QList<QVariant> tmpL ( FMConfig::value ( QStringLiteral("RemoteDirectories") ).toList() );
 	tmpL << rem;
-	settings.setValue ( "RemoteDirectories",tmpL );
+	FMConfig::setValue ( QStringLiteral("RemoteDirectories"), tmpL );
 	newUrlText->clear();
 }
 
@@ -451,10 +491,9 @@ void PrefsPanelDialog::slotRemoveRemote()
 			if ( remoteDirList->item ( i )->text() == url )
 				remoteDirList->takeItem ( i );
 		}
-		QSettings settings;
-		QStringList tmpL ( settings.value ( "RemoteDirectories" ).toStringList() );
+		QStringList tmpL ( FMConfig::value ( QStringLiteral("RemoteDirectories") ).toStringList() );
 		QStringList remoteDirStrings;
-		foreach ( QString s, tmpL )
+		for (const auto& s : tmpL)
 		{
 			if ( s != url )
 				remoteDirStrings << s;
@@ -462,7 +501,7 @@ void PrefsPanelDialog::slotRemoveRemote()
 				qDebug() << "Exclude "<<url<< " from remote dirs";
 		}
 		qDebug() <<"RemoteDirectories : "<<remoteDirStrings.join ( ", " );
-		settings.setValue ( "RemoteDirectories", remoteDirStrings );
+		FMConfig::setValue ( QStringLiteral("RemoteDirectories"), remoteDirStrings );
 
 	}
 }
@@ -474,7 +513,7 @@ void PrefsPanelDialog::slotSetLocalStorage ( QString s )
 
 void PrefsPanelDialog::slotBrowseLocalStorage()
 {
-	QString s = QFileDialog::getExistingDirectory ( this, tr ( "Select Where remote font files will be stored" ) );
+	QString s = QFileDialog::getExistingDirectory ( this, i18n( "Select Where remote font files will be stored" ) );
 	if ( !s.isEmpty() )
 	{
 		localStorageLine->setText ( s );
@@ -521,7 +560,7 @@ void PrefsPanelDialog::slotClearShortcut()
 	setSelected ( iText );
 }
 
-void PrefsPanelDialog::slotActionSelected ( const QModelIndex &mi )
+void PrefsPanelDialog::slotActionSelected ( const QModelIndex & )
 {
 	QModelIndex index = shortcutList->currentIndex();
 	if ( !index.isValid() )
@@ -553,7 +592,7 @@ void PrefsPanelDialog::keyPressEvent ( QKeyEvent *k )
 		{
 			tl = shortcutLabel->text().split ( "+", Qt::SkipEmptyParts );
 			Part4 = tl[tl.count()-1];
-			if ( Part4 == tr ( "Alt" ) || Part4 == tr ( "Ctrl" ) || Part4 == tr ( "Shift" ) || Part4 == tr ( "Meta" ) )
+			if ( Part4 == i18n( "Alt" ) || Part4 == i18n( "Ctrl" ) || Part4 == i18n( "Shift" ) || Part4 == i18n( "Meta" ) )
 				Part4 = "";
 		}
 		else
@@ -561,19 +600,19 @@ void PrefsPanelDialog::keyPressEvent ( QKeyEvent *k )
 		switch ( k->key() )
 		{
 			case Qt::Key_Meta:
-				Part0 = tr ( "Meta+" );
+				Part0 = i18n( "Meta+" );
 				keyCode |= Qt::META;
 				break;
 			case Qt::Key_Shift:
-				Part3 = tr ( "Shift+" );
+				Part3 = i18n( "Shift+" );
 				keyCode |= Qt::SHIFT;
 				break;
 			case Qt::Key_Alt:
-				Part2 = tr ( "Alt+" );
+				Part2 = i18n( "Alt+" );
 				keyCode |= Qt::ALT;
 				break;
 			case Qt::Key_Control:
-				Part1 = tr ( "Ctrl+" );
+				Part1 = i18n( "Ctrl+" );
 				keyCode |= Qt::CTRL;
 				break;
 			default:
@@ -599,7 +638,7 @@ void PrefsPanelDialog::keyReleaseEvent ( QKeyEvent *k )
 			QStringList tl;
 			tl = shortcutLabel->text().split ( "+", Qt::SkipEmptyParts );
 			Part4 = tl[tl.count()-1];
-			if ( Part4 == tr ( "Alt" ) || Part4 == tr ( "Ctrl" ) || Part4 == tr ( "Shift" ) || Part4 == tr ( "Meta" ) )
+			if ( Part4 == i18n( "Alt" ) || Part4 == i18n( "Ctrl" ) || Part4 == i18n( "Shift" ) || Part4 == i18n( "Meta" ) )
 				Part4 = "";
 		}
 		else
@@ -660,10 +699,10 @@ void PrefsPanelDialog::shortcutSet ( const QString &shortcut )
 	QString reserved = tmp->isReserved ( shortcut, iText );
 	if ( !reserved.isEmpty() ) // shortcut is already in use
 	{
-		if ( QMessageBox::question ( this, tr ( "Replace" ),
-		                             "<qt>" + tr ( "Shortcut is already in use for", "action name will be appended to this" ) +
+		if ( QMessageBox::question ( this, i18n( "Replace" ),
+		                             "<qt>" + i18nc("action name will be appended to this", "Shortcut is already in use for") +
 		                             QString ( "<br/><b>%1</b>.<br/>" ).arg ( reserved ) +
-		                             tr ( "Do you still want to assign it?" ) + "</qt>",
+		                             i18n( "Do you still want to assign it?" ) + "</qt>",
 		                             QMessageBox::Yes | QMessageBox::No ) == QMessageBox::Yes )
 		{
 			tmp->clearShortcut ( reserved );
@@ -685,7 +724,7 @@ void PrefsPanelDialog::reloadShortcuts()
 	shortcutModel->clear();
 	QList<QAction*> alist = Shortcuts::getInstance()->getActions();
 	Shortcuts *scuts = Shortcuts::getInstance();
-	foreach ( QAction *act, alist )
+	for (auto* act : alist)
 	{
 		QStandardItem *iText = new QStandardItem ( scuts->cleanName(act->text()) );
 		QStandardItem *iShortcut = new QStandardItem ( act->shortcut().toString() );
@@ -700,9 +739,9 @@ void PrefsPanelDialog::reloadShortcuts()
 		iRow << iText << iShortcut << iTooltip;
 		shortcutModel->appendRow ( iRow );
 	}
-	shortcutModel->setHeaderData ( 0, Qt::Horizontal, tr ( "Action" ) );
-	shortcutModel->setHeaderData ( 1, Qt::Horizontal, tr ( "Shortcut" ) );
-	shortcutModel->setHeaderData ( 2, Qt::Horizontal, tr ( "Tip" ) );
+	shortcutModel->setHeaderData ( 0, Qt::Horizontal, i18n( "Action" ) );
+	shortcutModel->setHeaderData ( 1, Qt::Horizontal, i18n( "Shortcut" ) );
+	shortcutModel->setHeaderData ( 2, Qt::Horizontal, i18n( "Tip" ) );
 	shortcutList->resizeColumnsToContents();
 	shortcutList->resizeRowsToContents();
 	shortcutList->setSortingEnabled ( true );
@@ -730,38 +769,33 @@ void PrefsPanelDialog::setSelected ( const QString &actionText )
 void PrefsPanelDialog::slotSplashScreen ( bool state )
 {
 // 	qDebug() <<"slotSplashScreen("<< state <<")";
-	QSettings settings;
-	settings.setValue ( "SplashScreen", state );
+	FMConfig::setValue ( QStringLiteral("SplashScreen"), state );
 }
 
 void PrefsPanelDialog::slotDictDialog()
 {
-	QString s = QFileDialog::getOpenFileName ( this, tr ( "Select hyphenation dictionary" ), QDir::homePath() );
+	QString s = QFileDialog::getOpenFileName ( this, i18n( "Select hyphenation dictionary" ), QDir::homePath() );
 	if ( !s.isEmpty() )
 		dictEdit->setText ( s );
 }
 
-void PrefsPanelDialog::slotClose()
+void PrefsPanelDialog::done(int r)
 {
 	applySampleText();
-	close();
+	KPageDialog::done(r);
 }
 
-void PrefsPanelDialog::updateChartFontFamily(const QFont & font)
+void PrefsPanelDialog::updateChartFont(const QFont & font)
 {
-	QSettings settings;
-	settings.setValue("ChartInfoFontFamily" , font.family());
+	// Chart subtitle consumers (fontitem.cpp) read family + size only;
+	// style attributes from the requester are intentionally not persisted.
+	const int size = font.pointSize() > 0 ? font.pointSize() : qRound(font.pointSizeF());
+
+	FMConfig::setValue(QStringLiteral("ChartInfoFontFamily"), font.family());
+	FMConfig::setValue(QStringLiteral("ChartInfoFontSize"), size);
 
 	typotek::getInstance()->setChartInfoFontName(font.family());
-
-}
-
-void PrefsPanelDialog::updateChartFontSize(int s)
-{
-	QSettings settings;
-	settings.setValue("ChartInfoFontSize" , s);
-
-	typotek::getInstance()->setChartInfoFontSize(s);
+	typotek::getInstance()->setChartInfoFontSize(size);
 }
 
 

@@ -1,3 +1,4 @@
+#include <KLocalizedString>
 /***************************************************************************
  *   Copyright (C) 2010 by Pierre Marchand   *
  *   pierre@oep-h.com   *
@@ -29,7 +30,9 @@
 #include "fmvariants.h"
 
 
-const QString ActivationWidget::Name = QObject::tr("Activation");
+// Registry key used by FloatingWidgetsRegister; stable English identifier,
+// never translated. User-facing labels come from the floating widget title.
+const QString ActivationWidget::Name = QStringLiteral("Activation");
 
 ActivationWidget::ActivationWidget(const QString& familyName, QWidget *parent) :
 		FloatingWidget(familyName, Name, parent),
@@ -38,7 +41,7 @@ ActivationWidget::ActivationWidget(const QString& familyName, QWidget *parent) :
 {
 	ui->setupUi(this);
 	QList<FontItem*> fl(FMVariants::Order(FMFontDb::DB()->FamilySet(family)));
-	foreach(FontItem* f, fl)
+	for (auto* f : fl)
 	{
 		ActivationWidgetItem * i(new ActivationWidgetItem(f->path(), this));
 		ui->listLayout->addWidget(i);
@@ -88,7 +91,7 @@ void ActivationWidget::activateAll(bool c)
 		FMActivationReport ar(this, actErr);
 		ar.exec();
 	}
-	foreach(ActivationWidgetItem *i, items)
+	for (auto* i : items)
 	{
 		i->changeState(c);
 	}

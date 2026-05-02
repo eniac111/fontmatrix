@@ -1,0 +1,3785 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: bg_BG\n"
+"X-Qt-Contexts: true\n"
+
+#: ../about.ui:20
+msgid "About Fontmatrix"
+msgstr "За Fontmatrix"
+
+#: ../about.ui:34
+msgid "Splash"
+msgstr "Начален екран"
+
+#: ../about.ui:59 ../about.ui:87
+msgid "TextLabel"
+msgstr "TextLabel"
+
+#: ../about.ui:98
+msgid "The Project"
+msgstr "Проектът"
+
+#: ../about.ui:130
+msgid "The People"
+msgstr "Участниците"
+
+#: ../about.ui:178
+msgid "Close"
+msgstr "Затваряне"
+
+#: ../aboutwidget.cpp:36
+msgid "fonts loaded"
+msgstr "заредени шрифта"
+
+#: ../aboutwidget.cpp:34
+msgid "version"
+msgstr "Версия"
+
+#: ../activationreportdialog.ui:13
+msgid "Dialog"
+msgstr "Диалог"
+
+#: ../activationreportdialog.ui:19
+msgid "Activation - Deactivation Error Report"
+msgstr "Доклад за грешки при активиране и деактивиране"
+
+#: ../activationreportdialog.ui:47
+msgid "Font path"
+msgstr "Път до шрифта"
+
+#: ../activationreportdialog.ui:52
+msgid "Error"
+msgstr "Грешка"
+
+#: ../activationwidget.ui:14
+msgid "Form"
+msgstr "Form"
+
+#: ../activationwidget.ui:20
+msgid "Activate All"
+msgstr "Активиране на всички"
+
+#: ../activationwidget.ui:27
+msgid "Deactivate All"
+msgstr "Деактивиране на всички"
+
+#: ../activationwidgetitem.ui:44
+msgid "StyleName"
+msgstr "Стил"
+
+#: ../activationwidgetitem.ui:51
+msgid "Activated"
+msgstr "Активирани"
+
+#: ../bookexport.ui:13
+msgid "Export Font Book"
+msgstr "Изнасяне на каталог с шрифтове"
+
+#: ../bookexport.ui:45
+msgid "Output"
+msgstr "Изход"
+
+#: ../bookexport.ui:55
+msgid "Browse..."
+msgstr "Преглед..."
+
+#: ../browserwidget.ui:66
+msgid "Info"
+msgstr "Информация"
+
+#: ../browserwidget.ui:76
+msgid "Import"
+msgstr "Внасяне"
+
+#: ../browserwidget.ui:86
+msgid "Chart"
+msgstr "Таблица с глифове"
+
+#: ../browserwidget.ui:96
+msgid "Sample"
+msgstr "Образец"
+
+#: ../browserwidget.ui:117
+msgid "about:blank"
+msgstr "about:blank"
+
+#: ../chartwidget.ui:34
+msgid "Coverage of Unicode Interval"
+msgstr "Покритие на Unicode блок"
+
+#: ../chartwidget.ui:37
+msgid "Block:"
+msgstr "Блок:"
+
+#: ../chartwidget.ui:79
+msgid "Search:"
+msgstr "Търсене:"
+
+#: ../chartwidget.ui:89
+msgid ""
+"Search a character by its codepoint (expressed in hexadecimal\n"
+"and prefixed with \"U+\", \"u+\" or \"+\") or a glyph by its name.\n"
+"Press enter after editing to run the search."
+msgstr ""
+"Търсене на знак по неговия код (шестнадесетично число\n"
+"с префикс \"U+\", \"u+\" или \"+\") или глиф по неговото име.\n"
+"Натиснете Enter след въвеждане за стартиране на търсенето."
+
+#: ../chartwidget.ui:115
+msgid "Clicking on a glyph will show details about it"
+msgstr "Щракването върху глиф показва подробности за него"
+
+#: ../chartwidget.ui:136
+msgid "Set Mode \"Copy Character to Clipboard\""
+msgstr "Режим „Копиране на знак в клипборда\""
+
+#: ../chartwidget.ui:139
+msgid "Copy Mode"
+msgstr "Режим на копиране"
+
+#: ../chartwidget.cpp:57
+msgid "Un-Mapped Glyphs"
+msgstr "Неприсвоени глифове"
+
+#: ../chartwidget.cpp:58
+msgid "View all mapped glyphs"
+msgstr "Всички присвоени глифове"
+
+#: ../chartwidget.cpp:151 ../chartwidget.cpp:238
+#, qt-format
+msgid "Block (%1):"
+msgstr "Блок (%1):"
+
+#: ../chartwidget.cpp:495
+msgid "Print Chart"
+msgstr "Печат на таблицата"
+
+#: ../comparewidget.ui:44
+msgid "Fonts"
+msgstr "Шрифтове"
+
+#: ../comparewidget.ui:53
+msgid "Add"
+msgstr "Добавяне"
+
+#: ../comparewidget.ui:60
+msgid "Remove"
+msgstr "Изтриване"
+
+#: ../comparewidget.ui:83
+msgid "Show"
+msgstr "Показване"
+
+#: ../comparewidget.ui:114
+msgid "Controls"
+msgstr "Управление"
+
+#: ../comparewidget.ui:92
+msgid "Metrics"
+msgstr "Метрики"
+
+#: ../comparewidget.ui:187
+msgid "Select a character"
+msgstr "Изберете знак"
+
+#: ../comparewidget.ui:102
+msgid "Points"
+msgstr "Точки"
+
+#: ../comparewidget.ui:206
+msgid "Keep in sync"
+msgstr "Синхронизиране"
+
+#: ../comparewidget.ui:140
+msgid "Offset"
+msgstr "Отместване:"
+
+#: ../comparewidget.ui:14
+msgid "Compare Glyphs"
+msgstr "Сравняване на глифове"
+
+#: ../comparewidget.ui:150
+msgid "0"
+msgstr "0"
+
+#: ../comparewidget.ui:160
+msgid "Fill:"
+msgstr "Запълване:"
+
+#: ../dataexport.ui:14
+msgid "Export Data"
+msgstr "Изнасяне на данни"
+
+#: ../dataexport.ui:23
+msgid "The font files currently filtered and selected here will be copied in a directory of your choice."
+msgstr "Изброените шрифтови файлове ще бъдат копирани в избрана от вас папка."
+
+#: ../dataexport.ui:36
+msgid "Cancel"
+msgstr "Отказ"
+
+#: ../dataexport.ui:43
+msgid "Continue"
+msgstr "Продължаване"
+
+#: ../dataexport.cpp:62
+msgid "Choose Directory"
+msgstr "Изберете папка"
+
+#: ../dumpdialog.ui:35
+msgid "Save to:"
+msgstr "Запазване в:"
+
+#: ../dumpdialog.ui:58
+msgid "Model"
+msgstr "Модел"
+
+#: ../dumpdialog.ui:74
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>"
+msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>"
+
+#: ../dumpdialog.ui:92
+msgid "Available names"
+msgstr "Налични полета с метаданни"
+
+#: ../dumpdialog.ui:138
+msgid "Load..."
+msgstr "Зареждане..."
+
+#: ../dumpdialog.ui:16
+msgid "Fontmatrix - Export font info for packaging"
+msgstr "Fontmatrix — Изнасяне на данни за шрифта за пакетиране"
+
+#. Activation subroutine failed to make a symbolic link to the font file
+#: ../fmactivate.cpp:37
+msgid "Unable to link"
+msgstr "Неуспешно свързване"
+
+#. The Font asked for activation is already activated
+#: ../fmactivate.cpp:39
+msgid "Font already activated"
+msgstr "Шрифтът вече е активиран"
+
+#. Activation subroutine failed to remove a symbolic link to the font file
+#: ../fmactivate.cpp:41
+msgid "Unable to un-link"
+msgstr "Неуспешно премахване на връзката"
+
+#. The Font asked for de-activation is already de-activated
+#: ../fmactivate.cpp:43
+msgid "Font already de-activated"
+msgstr "Шрифтът вече е деактивиран"
+
+#. A postcript font (pfb) without its metrics file (afm)
+#: ../fmactivate.cpp:45
+msgid "Cannot link or copy the metrics file"
+msgstr "Неуспешно свързване или копиране на файла с метрики"
+
+#. A generic error in activation or deactivation process
+#: ../fmactivate.cpp:47
+msgctxt "activation"
+msgid "Error"
+msgstr "Грешка"
+
+#: ../fmfloatingpreview.cpp:73
+msgid "Activate"
+msgstr "Активиране"
+
+#: ../fmfloatingpreview.cpp:80
+msgid "close"
+msgstr "Затваряне"
+
+#: ../fmfontextract.cpp:66
+msgid "File does not exist:"
+msgstr "Файлът не съществува:"
+
+#: ../fmfontextract.cpp:86
+msgid "Format not handled."
+msgstr "Форматът не се поддържа."
+
+#: ../fmfontextract.cpp:144
+#, qt-format
+msgid ""
+"Failed to extract:\n"
+"%1"
+msgstr ""
+"Неуспешно извличане:\n"
+"%1"
+
+#: ../fmmatchraster.cpp:160
+#, qt-format
+msgid ""
+"The font %1 scores %2.\n"
+"Do you want to add it to the filtered fonts?"
+msgstr ""
+"Шрифтът %1 получи резултат %2.\n"
+"Искате ли да го добавите към филтрираните шрифтове?"
+
+#: ../fmmatchraster.cpp:216
+msgid "No font match the submitted image"
+msgstr "Нито един шрифт не съответства на подаденото изображение"
+
+#: ../fmmissingfonthelper.cpp:30 ../fmmissingfonthelper.cpp:42
+msgid "Missing Font File"
+msgstr "Липсващ файл на шрифт"
+
+#: ../fmmissingfonthelper.cpp:31
+#, qt-format
+msgid ""
+"Fontmatrix has been unable to load the font in file\n"
+"%1.\n"
+" Please check missing files."
+msgstr ""
+"Fontmatrix не успя да зареди шрифта от файл\n"
+"%1.\n"
+" Моля проверете липсващите файлове."
+
+#: ../fmmissingfonthelper.cpp:43
+#, qt-format
+msgid ""
+"Fontmatrix has been unable to load fonts in files\n"
+"%1.\n"
+" Please check missing files."
+msgstr ""
+"Fontmatrix не успя да зареди шрифтове от файлове\n"
+"%1.\n"
+" Моля проверете липсващите файлове."
+
+#: ../fmscriptconsole.cpp:136
+msgid "A name for the script to save:"
+msgstr "Име за скрипта при запазване:"
+
+#: ../fmscriptconsole.cpp:146
+#, qt-format
+msgid "The file %1 already exists"
+msgstr "Файлът %1 вече съществува"
+
+#: ../fmscriptconsole.cpp:283
+msgid "Running"
+msgstr "Изпълнение"
+
+#: ../familywidget.ui:55
+msgid "Return To List"
+msgstr "Връщане към списъка"
+
+#: ../familywidget.ui:58
+msgid "Esc"
+msgstr "Esc"
+
+#: ../familywidget.ui:117
+msgid "Activation"
+msgstr "Активиране"
+
+#: ../familywidget.ui:143
+msgid "Family Name"
+msgstr "Наименование на гарнитурата"
+
+#: ../filterbar.ui:320
+msgid "Search"
+msgstr "Търсене"
+
+#: ../filterbar.ui:350
+msgid "in"
+msgstr "в"
+
+#: ../filterbar.ui:273
+msgid "Metadata"
+msgstr "Метаданни"
+
+#: ../filterbar.ui:395
+msgid "Panose"
+msgstr "Panose"
+
+#: ../filterbar.ui:49
+msgid "Filters"
+msgstr "Филтри"
+
+#: ../filterbar.ui:143
+msgid "Tags"
+msgstr "Етикети"
+
+#: ../filterbar.cpp:50
+msgid "And"
+msgstr "И"
+
+#: ../filterbar.cpp:51
+msgid "Not"
+msgstr "НЕ"
+
+#: ../filterbar.cpp:52
+msgid "Or"
+msgstr "ИЛИ"
+
+#: ../filterbar.cpp:515
+msgid "Fontmatrix - edit tag"
+msgstr "Fontmatrix — редактиране на етикет"
+
+#: ../filterbar.cpp:515
+msgid "Edit tag: "
+msgstr "Редактиране на етикет: "
+
+#: ../filterbar.cpp:563
+msgid "Fontmatrix - Filter name"
+msgstr "Fontmatrix — Наименование на филтъра"
+
+#: ../filterbar.cpp:564
+msgid "Filter name:"
+msgstr "Наименование на филтъра:"
+
+#: ../filteritem.ui:71
+msgid "Remove Filter"
+msgstr "Изтриване на филтъра"
+
+#: ../filteritem.ui:77
+msgid "X"
+msgstr "X"
+
+#: ../filteritem.ui:103
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<table style=\"-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;\">\n"
+"<tr>\n"
+"<td style=\"border: none;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If set, the filter will <span style=\" font-weight:600;\">intersect</span> with the previous filters.</p></td></tr></table></body></html>"
+msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<table style=\"-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;\">\n"
+"<tr>\n"
+"<td style=\"border: none;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Ако е зададен, филтърът ще <span style=\" font-weight:600;\">се пресича</span> с предходните филтри.</p></td></tr></table></body></html>"
+
+#: ../filteritem.ui:113
+msgid "&&"
+msgstr "&&"
+
+#: ../filteritem.ui:142
+msgid "if set, it will filter all the fonts but these matching this filter"
+msgstr "Ако е зададен, ще покаже само шрифтовете, несъответстващи на този филтър"
+
+#: ../filteritem.ui:145
+msgid "!"
+msgstr "!"
+
+#: ../filtersdialog.ui:14
+msgid "Filters Manager"
+msgstr "Управление на филтри"
+
+#: ../filtersdialog.ui:67
+msgid "In order to add filters, you have to first select some of tags, meta informations or classifications elements."
+msgstr "За да добавите филтри, трябва първо да изберете някои етикети, метаданни или елементи за класификация."
+
+#: ../filtersdialog.ui:127
+msgid "Filter Name:"
+msgstr "Наименование на филтъра:"
+
+#: ../filtersdialog.ui:162
+msgid "current filter"
+msgstr "Текущ филтър"
+
+#: ../filtersdialog.ui:96
+msgid "Add Filter"
+msgstr "Добавяне на филтър"
+
+#: ../filtersdialogitem.ui:72
+msgid "filter name"
+msgstr "Наименование на филтъра"
+
+#: ../filtersdialogitem.ui:91
+msgid "Apply this filter to the list"
+msgstr "Прилагане на филтъра към списъка"
+
+#: ../filtersdialogitem.ui:94
+msgid "Filter"
+msgstr "Филтриране"
+
+#: ../filtersdialogitem.ui:111
+msgid "Delete this filter"
+msgstr "Изтриване на филтъра"
+
+#: ../filtersdialogitem.cpp:65
+msgid "Confirm deletion of filter:"
+msgstr "Потвърдете изтриването на филтъра:"
+
+#: ../floatingwidgettoolbar.ui:69
+msgid "P"
+msgstr "П"
+
+#: ../floatingwidgettoolbar.ui:76
+msgid "Detach from main window"
+msgstr "Откачване от главния прозорец"
+
+#: ../floatingwidgettoolbar.ui:79
+msgid "D"
+msgstr "О"
+
+#: ../floatingwidgettoolbar.ui:95
+msgid "Close window"
+msgstr "Затваряне на прозореца"
+
+#: ../floatingwidgettoolbar.ui:98
+msgid "..."
+msgstr "..."
+
+#: ../floatingwidgettoolbar.ui:109
+msgid "Hide window"
+msgstr "Скриване на прозореца"
+
+#: ../floatingwidgettoolbar.ui:112
+msgid "H"
+msgstr "С"
+
+#: ../floatingwidgettoolbar.ui:66
+msgid "Print"
+msgstr "Печат"
+
+#: ../browserwidget.cpp:331 ../listdockwidget.cpp:382
+msgid "Import recursively"
+msgstr "Рекурсивно внасяне"
+
+#: ../browserwidget.cpp:330 ../listdockwidget.cpp:381
+msgid "Import Directory"
+msgstr "Внасяне на папка"
+
+#: ../browserwidget.cpp:332 ../listdockwidget.cpp:383
+msgid "Import File"
+msgstr "Внасяне на файл"
+
+#: ../fontaction.ui:32
+msgid "Action"
+msgstr "Действие"
+
+#: ../fontaction.ui:65
+msgid "Add Tag"
+msgstr "Добавяне на етикет"
+
+#: ../fontbook.cpp:92
+msgid "Print Fontbook"
+msgstr "Печат на каталога с шрифтове"
+
+#: ../fontbook.cpp:475
+msgid "Unicode coverage"
+msgstr "Покритие на Unicode"
+
+#: ../fontbookdialog.cpp:111
+msgid "Save fontBook"
+msgstr "Запазване на каталога с шрифтове"
+
+#: ../fontcomparewidget.cpp:73
+msgctxt "No fill color in comprae glyph"
+msgid "None"
+msgstr "Без"
+
+#: ../fontextractordialog.ui:19
+msgid "Select PDF"
+msgstr "Избор на PDF файл"
+
+#: ../fontextractordialog.ui:13
+msgid "Font extractor"
+msgstr "Извличане на шрифтове"
+
+#: ../fontextractordialog.ui:41
+msgid "&Browse"
+msgstr "&Преглед"
+
+#: ../fontextractordialog.ui:63
+msgid "&Select Dir"
+msgstr "&Избор на папка"
+
+#: ../fontextractordialog.ui:70
+msgid "&Extract"
+msgstr "&Извличане"
+
+#: ../fontextractordialog.ui:31
+msgid "File name"
+msgstr "Наименование на файла"
+
+#: ../fontitem.cpp:2368
+#, qt-format
+msgctxt "FontItem|when doing the font preview, used to denote a font that can not displayed its name"
+msgid "(%1)"
+msgstr "(%1)"
+
+#: ../fontitem.cpp:3185
+msgid "Fontmatrix - Download"
+msgstr "Fontmatrix — Изтегляне"
+
+#: ../fontitem.cpp:3186
+#, qt-format
+msgid "Downloading %1."
+msgstr "Изтегляне на %1."
+
+#: ../fmfontstrings.cpp:39
+msgid "Copyright"
+msgstr "Авторски права"
+
+#: ../fmfontstrings.cpp:40
+msgid "Font Family"
+msgstr "Гарнитура на шрифт"
+
+#: ../fmfontstrings.cpp:41
+msgid "Font Subfamily"
+msgstr "Начертание"
+
+#: ../fmfontstrings.cpp:42
+msgid "Unique font identifier"
+msgstr "Уникален идентификатор на шрифта"
+
+#: ../fmfontstrings.cpp:43
+msgid "Full font name"
+msgstr "Пълно наименование на шрифта"
+
+#: ../fmfontstrings.cpp:44
+msgid "Version string"
+msgstr "Низ за версия"
+
+#: ../fmfontstrings.cpp:45
+msgid "Postscript name"
+msgstr "Наименование по PostScript"
+
+#: ../fmfontstrings.cpp:46
+msgid "Trademark"
+msgstr "Търговска марка"
+
+#: ../fmfontstrings.cpp:47
+msgid "Manufacturer"
+msgstr "Производител"
+
+#: ../fmfontstrings.cpp:48
+msgid "Designer"
+msgstr "Дизайнер"
+
+#: ../fmfontstrings.cpp:49
+msgid "Description"
+msgstr "Описание"
+
+#: ../fmfontstrings.cpp:50
+msgid "URL Vendor"
+msgstr "URL на производителя"
+
+#: ../fmfontstrings.cpp:51
+msgid "URL Designer"
+msgstr "URL на дизайнера"
+
+#: ../fmfontstrings.cpp:52
+msgid "License Description"
+msgstr "Текст на лиценза"
+
+#: ../fmfontstrings.cpp:53
+msgid "License Info URL"
+msgstr "URL на лицензната информация"
+
+#: ../fmfontstrings.cpp:54
+msgid "Preferred Family"
+msgstr "Предпочитана гарнитура"
+
+#: ../fmfontstrings.cpp:55
+msgid "Preferred Subfamily"
+msgstr "Предпочитано начертание"
+
+#: ../fmfontstrings.cpp:56
+msgid "Compatible Full (Macintosh only)"
+msgstr "Пълна съвместимост (само Macintosh)"
+
+#: ../fmfontstrings.cpp:57
+msgid "Sample text"
+msgstr "Образец"
+
+#: ../fmfontstrings.cpp:58
+msgid "PostScript CID findfont name"
+msgstr "Наименование за PostScript CID findfont"
+
+#: ../fmfontstrings.cpp:60
+msgid "All fields"
+msgstr "Всички полета"
+
+#: ../fmfontstrings.cpp:77 ../fmfontstrings.cpp:89 ../fmfontstrings.cpp:111
+#: ../fmfontstrings.cpp:129 ../fmfontstrings.cpp:145 ../fmfontstrings.cpp:161
+#: ../fmfontstrings.cpp:176 ../fmfontstrings.cpp:194 ../fmfontstrings.cpp:216
+#: ../fmfontstrings.cpp:236
+msgid "Any"
+msgstr "Произволен"
+
+#: ../fmfontstrings.cpp:78 ../fmfontstrings.cpp:90 ../fmfontstrings.cpp:112
+#: ../fmfontstrings.cpp:130 ../fmfontstrings.cpp:146 ../fmfontstrings.cpp:162
+#: ../fmfontstrings.cpp:177 ../fmfontstrings.cpp:195 ../fmfontstrings.cpp:217
+#: ../fmfontstrings.cpp:237
+msgid "No Fit"
+msgstr "Без съответствие"
+
+#: ../fmfontstrings.cpp:79
+msgctxt "Family Type"
+msgid "Text and Display"
+msgstr "Текстова и дисплейна"
+
+#: ../fmfontstrings.cpp:80
+msgctxt "Family Type"
+msgid "Script"
+msgstr "Ръкописна"
+
+#: ../fmfontstrings.cpp:81
+msgctxt "Family Type"
+msgid "Decorative"
+msgstr "Декоративна"
+
+#: ../fmfontstrings.cpp:82
+msgctxt "Family Type"
+msgid "Pictorial"
+msgstr "Картинна"
+
+#: ../fmfontstrings.cpp:85
+msgid "Family Type"
+msgstr "Тип на гарнитурата"
+
+#: ../fmfontstrings.cpp:91
+msgctxt "Serif style"
+msgid "Cove"
+msgstr "Куполообразни"
+
+#: ../fmfontstrings.cpp:92
+msgctxt "Serif style"
+msgid "Obtuse Cove"
+msgstr "Куполообразни тъпоъгълни"
+
+#: ../fmfontstrings.cpp:93
+msgctxt "Serif style"
+msgid "Square Cove"
+msgstr "Квадратно-куполообразни"
+
+#: ../fmfontstrings.cpp:94
+msgctxt "Serif style"
+msgid "Obtuse Square Cove"
+msgstr "Квадратно-куполообразни тъпоъгълни"
+
+#: ../fmfontstrings.cpp:95
+msgctxt "Serif style"
+msgid "Square"
+msgstr "Правоъгълни"
+
+#: ../fmfontstrings.cpp:96
+msgctxt "Serif style"
+msgid "Thin"
+msgstr "Нишковидни"
+
+#: ../fmfontstrings.cpp:97
+msgctxt "Serif style"
+msgid "Bone"
+msgstr "Костилковидни"
+
+#: ../fmfontstrings.cpp:98
+msgctxt "Serif style"
+msgid "Exaggerated"
+msgstr "Силно разширяващи се"
+
+#: ../fmfontstrings.cpp:99
+msgctxt "Serif style"
+msgid "Triangle"
+msgstr "Триъгълни"
+
+#: ../fmfontstrings.cpp:100
+msgctxt "Serif style"
+msgid "Normal Sans"
+msgstr "Нормални"
+
+#: ../fmfontstrings.cpp:101
+msgctxt "Serif style"
+msgid "Obtuse Sans"
+msgstr "Тъпоъгълни без засечки"
+
+#: ../fmfontstrings.cpp:102
+msgctxt "Serif style"
+msgid "Perp Sans"
+msgstr "Перпендикулярни без засечки"
+
+#: ../fmfontstrings.cpp:103
+msgctxt "Serif style"
+msgid "Flared"
+msgstr "Разширяващи се"
+
+#: ../fmfontstrings.cpp:104
+msgctxt "Serif style"
+msgid "Rounded"
+msgstr "Заоблени"
+
+#: ../fmfontstrings.cpp:107
+msgid "Serif style"
+msgstr "Стил на засечките"
+
+#: ../fmfontstrings.cpp:113
+msgctxt "Weight"
+msgid "Very Light"
+msgstr "Много светло"
+
+#: ../fmfontstrings.cpp:114
+msgctxt "Weight"
+msgid "Light"
+msgstr "Светло"
+
+#: ../fmfontstrings.cpp:115
+msgctxt "Weight"
+msgid "Thin"
+msgstr "Тънко"
+
+#: ../fmfontstrings.cpp:116
+msgctxt "Weight"
+msgid "Book"
+msgstr "Нормално"
+
+#: ../fmfontstrings.cpp:117
+msgctxt "Weight"
+msgid "Medium"
+msgstr "Средно"
+
+#: ../fmfontstrings.cpp:118
+msgctxt "Weight"
+msgid "Demi"
+msgstr "Полудебело"
+
+#: ../fmfontstrings.cpp:119
+msgctxt "Weight"
+msgid "Bold"
+msgstr "Дебело"
+
+#: ../fmfontstrings.cpp:120
+msgctxt "Weight"
+msgid "Heavy"
+msgstr "Много дебело"
+
+#: ../fmfontstrings.cpp:121
+msgctxt "Weight"
+msgid "Black"
+msgstr "Черно"
+
+#: ../fmfontstrings.cpp:122
+msgctxt "Weight"
+msgid "Nord"
+msgstr "Нордическо"
+
+#: ../fmfontstrings.cpp:125
+msgid "Weight"
+msgstr "Тегло"
+
+#: ../fmfontstrings.cpp:131
+msgctxt "Proportion"
+msgid "Old Style"
+msgstr "Стар стил"
+
+#: ../fmfontstrings.cpp:132
+msgctxt "Proportion"
+msgid "Modern"
+msgstr "Модерен"
+
+#: ../fmfontstrings.cpp:133
+msgctxt "Proportion"
+msgid "Even Width"
+msgstr "Равна ширина"
+
+#: ../fmfontstrings.cpp:134
+msgctxt "Proportion"
+msgid "Expanded"
+msgstr "Разширен"
+
+#: ../fmfontstrings.cpp:135
+msgctxt "Proportion"
+msgid "Condensed"
+msgstr "Сгъстен"
+
+#: ../fmfontstrings.cpp:136
+msgctxt "Proportion"
+msgid "Very Expanded"
+msgstr "Много разширен"
+
+#: ../fmfontstrings.cpp:137
+msgctxt "Proportion"
+msgid "Very Condensed"
+msgstr "Много сгъстен"
+
+#: ../fmfontstrings.cpp:138
+msgctxt "Proportion"
+msgid "Monospaced"
+msgstr "Моноширочен"
+
+#: ../fmfontstrings.cpp:141
+msgid "Proportion"
+msgstr "Пропорции"
+
+#: ../fmfontstrings.cpp:147
+msgctxt "Contrast"
+msgid "None"
+msgstr "Без"
+
+#: ../fmfontstrings.cpp:148
+msgctxt "Contrast"
+msgid "Very Low"
+msgstr "Много нисък"
+
+#: ../fmfontstrings.cpp:149
+msgctxt "Contrast"
+msgid "Low"
+msgstr "Нисък"
+
+#: ../fmfontstrings.cpp:150
+msgctxt "Contrast"
+msgid "Medium Low"
+msgstr "Умерено нисък"
+
+#: ../fmfontstrings.cpp:151
+msgctxt "Contrast"
+msgid "Medium"
+msgstr "Среден"
+
+#: ../fmfontstrings.cpp:152
+msgctxt "Contrast"
+msgid "Medium High"
+msgstr "Умерено висок"
+
+#: ../fmfontstrings.cpp:153
+msgctxt "Contrast"
+msgid "High"
+msgstr "Висок"
+
+#: ../fmfontstrings.cpp:154
+msgctxt "Contrast"
+msgid "Very High"
+msgstr "Много висок"
+
+#: ../fmfontstrings.cpp:157
+msgid "Contrast"
+msgstr "Контраст"
+
+#: ../fmfontstrings.cpp:163
+msgctxt "Stroke Variation"
+msgid "Gradual/Diagonal"
+msgstr "Постепенна/диагонална"
+
+#: ../fmfontstrings.cpp:164
+msgctxt "Stroke Variation"
+msgid "Gradual/Transitional"
+msgstr "Постепенна/преходна"
+
+#: ../fmfontstrings.cpp:165
+msgctxt "Stroke Variation"
+msgid "Gradual/Vertical"
+msgstr "Постепенна/вертикална"
+
+#: ../fmfontstrings.cpp:166
+msgctxt "Stroke Variation"
+msgid "Gradual/Horizontal"
+msgstr "Постепенна/хоризонтална"
+
+#: ../fmfontstrings.cpp:167
+msgctxt "Stroke Variation"
+msgid "Rapid/Vertical"
+msgstr "Рязка/вертикална"
+
+#: ../fmfontstrings.cpp:168
+msgctxt "Stroke Variation"
+msgid "Rapid/Horizontal"
+msgstr "Рязка/хоризонтална"
+
+#: ../fmfontstrings.cpp:169
+msgctxt "Stroke Variation"
+msgid "Instant/Vertical"
+msgstr "Мигновена/вертикална"
+
+#: ../fmfontstrings.cpp:172
+msgid "Stroke Variation"
+msgstr "Вариация на щриха"
+
+#: ../fmfontstrings.cpp:178
+msgctxt "Arm Style"
+msgid "Straight Arms/Horizontal"
+msgstr "Прави рамена/хоризонтални"
+
+#: ../fmfontstrings.cpp:179
+msgctxt "Arm Style"
+msgid "Straight Arms/Wedge"
+msgstr "Прави рамена/клиновидни"
+
+#: ../fmfontstrings.cpp:180
+msgctxt "Arm Style"
+msgid "Straight Arms/Vertical"
+msgstr "Прави рамена/вертикални"
+
+#: ../fmfontstrings.cpp:181
+msgctxt "Arm Style"
+msgid "Straight Arms/Single Serif"
+msgstr "Прави рамена/единична засечка"
+
+#: ../fmfontstrings.cpp:182
+msgctxt "Arm Style"
+msgid "Straight Arms/Double Serif"
+msgstr "Прави рамена/двойна засечка"
+
+#: ../fmfontstrings.cpp:183
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Horizontal"
+msgstr "Криви рамена/хоризонтални"
+
+#: ../fmfontstrings.cpp:184
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Wedge"
+msgstr "Криви рамена/клиновидни"
+
+#: ../fmfontstrings.cpp:185
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Vertical"
+msgstr "Криви рамена/вертикални"
+
+#: ../fmfontstrings.cpp:186
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Single Serif"
+msgstr "Криви рамена/единична засечка"
+
+#: ../fmfontstrings.cpp:187
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Double Serif"
+msgstr "Криви рамена/двойна засечка"
+
+#: ../fmfontstrings.cpp:190
+msgid "Arm Style"
+msgstr "Стил на раменете"
+
+#: ../fmfontstrings.cpp:196
+msgctxt "Letterform"
+msgid "Normal/Contact"
+msgstr "Прав/окръжност"
+
+#: ../fmfontstrings.cpp:197
+msgctxt "Letterform"
+msgid "Normal/Weighted"
+msgstr "Прав/утежнен"
+
+#: ../fmfontstrings.cpp:198
+msgctxt "Letterform"
+msgid "Normal/Boxed"
+msgstr "Прав/в правоъгълник"
+
+#: ../fmfontstrings.cpp:199
+msgctxt "Letterform"
+msgid "Normal/Flattened"
+msgstr "Прав/сплескан"
+
+#: ../fmfontstrings.cpp:200
+msgctxt "Letterform"
+msgid "Normal/Rounded"
+msgstr "Прав/заоблен"
+
+#: ../fmfontstrings.cpp:201
+msgctxt "Letterform"
+msgid "Normal/Off Center"
+msgstr "Прав/изместен център"
+
+#: ../fmfontstrings.cpp:202
+msgctxt "Letterform"
+msgid "Normal/Square"
+msgstr "Прав/квадрат"
+
+#: ../fmfontstrings.cpp:203
+msgctxt "Letterform"
+msgid "Oblique/Contact"
+msgstr "Наклонен/окръжност"
+
+#: ../fmfontstrings.cpp:204
+msgctxt "Letterform"
+msgid "Oblique/Weighted"
+msgstr "Наклонен/утежнен"
+
+#: ../fmfontstrings.cpp:205
+msgctxt "Letterform"
+msgid "Oblique/Boxed"
+msgstr "Наклонен/в правоъгълник"
+
+#: ../fmfontstrings.cpp:206
+msgctxt "Letterform"
+msgid "Oblique/Flattened"
+msgstr "Наклонен/сплескан"
+
+#: ../fmfontstrings.cpp:207
+msgctxt "Letterform"
+msgid "Oblique/Rounded"
+msgstr "Наклонен/заоблен"
+
+#: ../fmfontstrings.cpp:208
+msgctxt "Letterform"
+msgid "Oblique/Off Center"
+msgstr "Наклонен/изместен център"
+
+#: ../fmfontstrings.cpp:209
+msgctxt "Letterform"
+msgid "Oblique/Square"
+msgstr "Наклонен/квадрат"
+
+#: ../fmfontstrings.cpp:212
+msgid "Letterform"
+msgstr "Форма на знака"
+
+#: ../fmfontstrings.cpp:218
+msgctxt "Midline"
+msgid "Standard/Trimmed"
+msgstr "Стандартна/съкратен връх"
+
+#: ../fmfontstrings.cpp:219
+msgctxt "Midline"
+msgid "Standard/Pointed"
+msgstr "Стандартна/остър връх"
+
+#: ../fmfontstrings.cpp:220
+msgctxt "Midline"
+msgid "Standard/Serifed"
+msgstr "Стандартна/връх с засечка"
+
+#: ../fmfontstrings.cpp:221
+msgctxt "Midline"
+msgid "High/Trimmed"
+msgstr "Висока/съкратен връх"
+
+#: ../fmfontstrings.cpp:222
+msgctxt "Midline"
+msgid "High/Pointed"
+msgstr "Висока/остър връх"
+
+#: ../fmfontstrings.cpp:223
+msgctxt "Midline"
+msgid "High/Serifed"
+msgstr "Висока/връх с засечка"
+
+#: ../fmfontstrings.cpp:224
+msgctxt "Midline"
+msgid "Constant/Trimmed"
+msgstr "Постоянна/съкратен връх"
+
+#: ../fmfontstrings.cpp:225
+msgctxt "Midline"
+msgid "Constant/Pointed"
+msgstr "Постоянна/остър връх"
+
+#: ../fmfontstrings.cpp:226
+msgctxt "Midline"
+msgid "Constant/Serifed"
+msgstr "Постоянна/връх с засечка"
+
+#: ../fmfontstrings.cpp:227
+msgctxt "Midline"
+msgid "Low/Trimmed"
+msgstr "Ниска/съкратен връх"
+
+#: ../fmfontstrings.cpp:228
+msgctxt "Midline"
+msgid "Low/Pointed"
+msgstr "Ниска/остър връх"
+
+#: ../fmfontstrings.cpp:229
+msgctxt "Midline"
+msgid "Low/Serifed"
+msgstr "Ниска/връх с засечка"
+
+#: ../fmfontstrings.cpp:232
+msgid "Midline"
+msgstr "Средна линия"
+
+#: ../fmfontstrings.cpp:238
+msgctxt "X-Height"
+msgid "Constant/Small"
+msgstr "Постоянна/малка"
+
+#: ../fmfontstrings.cpp:239
+msgctxt "X-Height"
+msgid "Constant/Standard"
+msgstr "Постоянна/стандартна"
+
+#: ../fmfontstrings.cpp:240
+msgctxt "X-Height"
+msgid "Constant/Large"
+msgstr "Постоянна/голяма"
+
+#: ../fmfontstrings.cpp:241
+msgctxt "X-Height"
+msgid "Ducking/Small"
+msgstr "Нисходяща/малка"
+
+#: ../fmfontstrings.cpp:242
+msgctxt "X-Height"
+msgid "Ducking/Standard"
+msgstr "Нисходяща/стандартна"
+
+#: ../fmfontstrings.cpp:243
+msgctxt "X-Height"
+msgid "Ducking/Large"
+msgstr "Нисходяща/голяма"
+
+#: ../fmfontstrings.cpp:246
+msgid "X-Height"
+msgstr "X-Височина"
+
+#: ../fmfontstrings.cpp:270
+msgid "This value is deprecated and was never used nor reported by FreeType. Don't use or test for it."
+msgstr "Тази стойност е остаряла и никога не е използвана или отчитана от FreeType. Не я използвайте и не я тествайте."
+
+#: ../fmfontstrings.cpp:283
+msgid "Character to glyph mapping"
+msgstr "Съответствие на знаци към глифове"
+
+#: ../fmfontstrings.cpp:284
+msgid "Font header"
+msgstr "Заглавие на шрифта"
+
+#: ../fmfontstrings.cpp:285
+msgid "Horizontal header"
+msgstr "Хоризонтално заглавие"
+
+#: ../fmfontstrings.cpp:286
+msgid "Horizontal metrics"
+msgstr "Хоризонтални метрики"
+
+#: ../fmfontstrings.cpp:287
+msgid "Maximum profile"
+msgstr "Максимален профил"
+
+#: ../fmfontstrings.cpp:288
+msgid "Naming table"
+msgstr "Таблица с наименования"
+
+#: ../fmfontstrings.cpp:289
+msgid "OS/2 and Windows specific metrics"
+msgstr "Метрики специфични за OS/2 и Windows"
+
+#: ../fmfontstrings.cpp:290
+msgid "PostScript information"
+msgstr "Информация за PostScript"
+
+#: ../fmfontstrings.cpp:293
+msgid "Control Value Table"
+msgstr "Таблица с контролни стойности (CVT)"
+
+#: ../fmfontstrings.cpp:294
+msgid "Font program"
+msgstr "Програма на шрифта"
+
+#: ../fmfontstrings.cpp:295
+msgid "Glyph data"
+msgstr "Данни за глифовете"
+
+#: ../fmfontstrings.cpp:296
+msgid "Index to location"
+msgstr "Индекс към местоположение"
+
+#: ../fmfontstrings.cpp:297
+msgid "CVT Program"
+msgstr "Програма CVT"
+
+#: ../fmfontstrings.cpp:300
+msgid "PostScript font program"
+msgstr "PostScript програма на шрифта (CFF)"
+
+#: ../fmfontstrings.cpp:301
+msgid "Vertical Origin"
+msgstr "Вертикален произход"
+
+#: ../fmfontstrings.cpp:304
+msgid "Embedded bitmap data"
+msgstr "Вградени растерни данни"
+
+#: ../fmfontstrings.cpp:305
+msgid "Embedded bitmap location data"
+msgstr "Данни за местоположението на вградените растерни данни"
+
+#: ../fmfontstrings.cpp:306
+msgid "Embedded bitmap scaling data"
+msgstr "Данни за мащабиране на вградените растерни данни"
+
+#: ../fmfontstrings.cpp:309
+msgid "Baseline data"
+msgstr "Данни за базовата линия"
+
+#: ../fmfontstrings.cpp:310
+msgid "Glyph definition data"
+msgstr "Данни за дефиницията на глифовете"
+
+#: ../fmfontstrings.cpp:311
+msgid "Glyph positioning data"
+msgstr "Данни за позиционирането на глифовете"
+
+#: ../fmfontstrings.cpp:312
+msgid "Glyph substitution data"
+msgstr "Данни за заместването на глифовете"
+
+#: ../fmfontstrings.cpp:313
+msgid "Justification data"
+msgstr "Данни за подравняването"
+
+#: ../fmfontstrings.cpp:316
+msgid "Digital signature"
+msgstr "Цифров подпис"
+
+#: ../fmfontstrings.cpp:317
+msgid "Grid-fitting/Scan-conversion"
+msgstr "Вписване в пикселна мрежа"
+
+#: ../fmfontstrings.cpp:318
+msgid "Horizontal device metrics"
+msgstr "Хоризонтални метрики на устройството"
+
+#: ../fmfontstrings.cpp:319
+msgid "Kerning"
+msgstr "Кернинг"
+
+#: ../fmfontstrings.cpp:320
+msgid "Linear threshold data"
+msgstr "Данни за линеен праг"
+
+#: ../fmfontstrings.cpp:321
+msgid "PCL 5 data"
+msgstr "Данни PCL5"
+
+#: ../fmfontstrings.cpp:322
+msgid "Vertical device metrics"
+msgstr "Вертикални метрики на устройството"
+
+#: ../fmfontstrings.cpp:323
+msgid "Vertical Metrics header"
+msgstr "Заглавие на вертикалните метрики"
+
+#: ../fmfontstrings.cpp:324
+msgid "Vertical Metrics"
+msgstr "Вертикални метрики"
+
+#: ../fmfontstrings.cpp:332
+msgid "This font may be embedded and permanently installed on the remote system by an application. The user of the remote system acquires the identical rights, obligations and licenses for that font as the original purchaser of the font, and is subject to the same end-user license agreement, copyright, design patent, and/or trademark as was the original purchaser."
+msgstr "Този шрифт може да бъде вграден и постоянно инсталиран на отдалечена система от приложение. Потребителят на отдалечената система придобива същите права, задължения и лицензи за шрифта като първоначалния купувач и е обвързан от същото лицензионно споразумение, авторски права, патент за дизайн и/или търговска марка."
+
+#: ../fmfontstrings.cpp:333
+msgid "This font must not be modified, embedded or exchanged in any manner without first obtaining permission of the legal owner."
+msgstr "Този шрифт не може да бъде модифициран, вграден или разпространяван по никакъв начин без предварително разрешение от притежателя на авторските права."
+
+#: ../fmfontstrings.cpp:334
+msgid "This font may be embedded, and temporarily loaded on the remote system. Documents containing this font must be opened \"read-only;\" no edits can be applied to the document."
+msgstr "Този шрифт може да бъде вграден и временно зареден на отдалечена система. Документите с този шрифт трябва да се отварят само за четене; редактирането на документа е забранено."
+
+#: ../fmfontstrings.cpp:335
+msgid "This font may be embedded but must only be installed  temporarily  on other systems. In contrast to Preview &amp; Print fonts, documents containing this font may be opened for reading, editing is permitted, and changes may be saved."
+msgstr "Този шрифт може да бъде вграден, но може да се инсталира само временно на други системи. За разлика от шрифтовете само за преглед и печат, документите с него могат да се четат, редактират и запазват."
+
+#: ../fmfontstrings.cpp:336
+msgid "This font may not be subsetted prior to embedding. Other embedding restrictions specified in bits 0-3 and 9 also apply."
+msgstr "Този шрифт не може да бъде вграден като подмножество. Прилагат се и другите ограничения за вграждане от битове 0–3 и 9."
+
+#: ../fmfontstrings.cpp:337
+msgid "Only bitmaps contained in this font may be embedded. No outline data may be embedded. If there are no bitmaps available in this font, then it is considered unembeddable and the embedding services will fail. Other embedding restrictions specified in bits 0-3 and 8 also apply."
+msgstr "Само растерните изображения от шрифта могат да бъдат вградени. Контурните данни не могат да бъдат вградени. Ако в шрифта няма налични растерни изображения, той се счита за невградим. Прилагат се и другите ограничения от битове 0–3 и 8."
+
+#: ../fmfontstrings.cpp:342
+msgid "Mark, NonSpacing"
+msgstr "Знак, без разстояние"
+
+#: ../fmfontstrings.cpp:343
+msgid "Mark, SpacingCombining"
+msgstr "Знак, с разстояние и комбиниране"
+
+#: ../fmfontstrings.cpp:344
+msgid "Mark, Enclosing"
+msgstr "Знак, обграждащ"
+
+#: ../fmfontstrings.cpp:345
+msgid "Number, DecimalDigit"
+msgstr "Число, десетична цифра"
+
+#: ../fmfontstrings.cpp:346
+msgid "Number, Letter"
+msgstr "Число, буква"
+
+#: ../fmfontstrings.cpp:347
+msgid "Number, Other"
+msgstr "Числа, други"
+
+#: ../fmfontstrings.cpp:348
+msgid "Separator, Space"
+msgstr "Разделител, интервал"
+
+#: ../fmfontstrings.cpp:349
+msgid "Separator, Line"
+msgstr "Разделител, ред"
+
+#: ../fmfontstrings.cpp:350
+msgid "Separator, Paragraph"
+msgstr "Разделител, абзац"
+
+#: ../fmfontstrings.cpp:351
+msgid "Other, Control"
+msgstr "Друго, управляващ знак"
+
+#: ../fmfontstrings.cpp:352
+msgid "Other, Format"
+msgstr "Друго, форматиращ знак"
+
+#: ../fmfontstrings.cpp:353
+msgid "Other, Surrogate"
+msgstr "Друго, заместващ знак"
+
+#: ../fmfontstrings.cpp:354
+msgid "Other, PrivateUse"
+msgstr "Друго, за частна употреба"
+
+#: ../fmfontstrings.cpp:355
+msgid "Other, NotAssigned"
+msgstr "Друго, непри­своен"
+
+#: ../fmfontstrings.cpp:356
+msgid "Letter, Uppercase"
+msgstr "Буква, главна"
+
+#: ../fmfontstrings.cpp:357
+msgid "Letter, Lowercase"
+msgstr "Буква, малка"
+
+#: ../fmfontstrings.cpp:358
+msgid "Letter, Titlecase"
+msgstr "Буква, заглавна"
+
+#: ../fmfontstrings.cpp:359
+msgid "Letter, Modifier"
+msgstr "Буква, модифицираща"
+
+#: ../fmfontstrings.cpp:360
+msgid "Letter, Other"
+msgstr "Буква, друга"
+
+#: ../fmfontstrings.cpp:361
+msgid "Punctuation, Connector"
+msgstr "Пунктуация, свързваща"
+
+#: ../fmfontstrings.cpp:362
+msgid "Punctuation, Dash"
+msgstr "Пунктуация, тире"
+
+#: ../fmfontstrings.cpp:363
+msgid "Punctuation, Open"
+msgstr "Пунктуация, отваряща"
+
+#: ../fmfontstrings.cpp:364
+msgid "Punctuation, Close"
+msgstr "Пунктуация, затваряща"
+
+#: ../fmfontstrings.cpp:365
+msgid "Punctuation, InitialQuote"
+msgstr "Пунктуация, начални кавички"
+
+#: ../fmfontstrings.cpp:366
+msgid "Punctuation, FinalQuote"
+msgstr "Пунктуация, крайни кавички"
+
+#: ../fmfontstrings.cpp:367
+msgid "Punctuation, Other"
+msgstr "Пунктуация, друга"
+
+#: ../fmfontstrings.cpp:368
+msgid "Symbol, Math"
+msgstr "Символ, математически"
+
+#: ../fmfontstrings.cpp:369
+msgid "Symbol, Currency"
+msgstr "Символ, валута"
+
+#: ../fmfontstrings.cpp:370
+msgid "Symbol, Modifier"
+msgstr "Символ, модифициращ"
+
+#: ../fmfontstrings.cpp:371
+msgid "Symbol, Other"
+msgstr "Символ, друг"
+
+#: ../fmfontstrings.cpp:376
+msgid "Arabic"
+msgstr "Арабска"
+
+#: ../fmfontstrings.cpp:377
+msgid "Armenian"
+msgstr "Арменска"
+
+#: ../fmfontstrings.cpp:378
+msgid "Balinese"
+msgstr "Балийска"
+
+#: ../fmfontstrings.cpp:379
+msgid "Bengali"
+msgstr "Бенгалска"
+
+#: ../fmfontstrings.cpp:380
+msgid "Bopomofo"
+msgstr "Бопомофо"
+
+#: ../fmfontstrings.cpp:381
+msgid "Braille"
+msgstr "Брайлово писмо"
+
+#: ../fmfontstrings.cpp:382
+msgid "Buginese"
+msgstr "Бугийска"
+
+#: ../fmfontstrings.cpp:383
+msgid "Buhid"
+msgstr "Бухид"
+
+#: ../fmfontstrings.cpp:384
+msgid "Byzantine Music"
+msgstr "Византийска музика"
+
+#: ../fmfontstrings.cpp:385
+msgid "Canadian Syllabics"
+msgstr "Канадски срички"
+
+#: ../fmfontstrings.cpp:386
+msgid "Cherokee"
+msgstr "Чероки"
+
+#: ../fmfontstrings.cpp:387
+msgid "CJK Ideographic"
+msgstr "CJK идеографска"
+
+#: ../fmfontstrings.cpp:388
+msgid "Coptic"
+msgstr "Коптска"
+
+#: ../fmfontstrings.cpp:389
+msgid "Cypriot Syllabary"
+msgstr "Кипърска сричкова"
+
+#: ../fmfontstrings.cpp:390
+msgid "Cyrillic"
+msgstr "Кирилица"
+
+#: ../fmfontstrings.cpp:391
+msgid "Default"
+msgstr "Подразбирана"
+
+#: ../fmfontstrings.cpp:392
+msgid "Deseret"
+msgstr "Дезерет"
+
+#: ../fmfontstrings.cpp:393
+msgid "Devanagari"
+msgstr "Деванагари"
+
+#: ../fmfontstrings.cpp:394
+msgid "Ethiopic"
+msgstr "Етиопска"
+
+#: ../fmfontstrings.cpp:395
+msgid "Georgian"
+msgstr "Грузинска"
+
+#: ../fmfontstrings.cpp:396
+msgid "Glagolitic"
+msgstr "Глаголица"
+
+#: ../fmfontstrings.cpp:397
+msgid "Gothic"
+msgstr "Готска"
+
+#: ../fmfontstrings.cpp:398
+msgid "Greek"
+msgstr "Гръцка"
+
+#: ../fmfontstrings.cpp:399
+msgid "Gujarati"
+msgstr "Гуджарати"
+
+#: ../fmfontstrings.cpp:400
+msgid "Gurmukhi"
+msgstr "Гурмухи"
+
+#: ../fmfontstrings.cpp:401
+msgid "Hangul Jamo"
+msgstr "Хангъл Ямо"
+
+#: ../fmfontstrings.cpp:402
+msgid "Hangul"
+msgstr "Хангъл"
+
+#: ../fmfontstrings.cpp:403
+msgid "Hanunoo"
+msgstr "Хануноо"
+
+#: ../fmfontstrings.cpp:404
+msgid "Hebrew"
+msgstr "Иврит"
+
+#: ../fmfontstrings.cpp:405
+msgid "Hiragana and Katakana"
+msgstr "Хирагана и катакана"
+
+#: ../fmfontstrings.cpp:406
+msgid "Javanese"
+msgstr "Явска"
+
+#: ../fmfontstrings.cpp:407
+msgid "Kannada"
+msgstr "Каннада"
+
+#: ../fmfontstrings.cpp:408
+msgid "Kharosthi"
+msgstr "Харощи"
+
+#: ../fmfontstrings.cpp:409
+msgid "Khmer"
+msgstr "Кхмерска"
+
+#: ../fmfontstrings.cpp:410
+msgid "Lao"
+msgstr "Лаоска"
+
+#: ../fmfontstrings.cpp:411
+msgid "Latin"
+msgstr "Латиница"
+
+#: ../fmfontstrings.cpp:412
+msgid "Limbu"
+msgstr "Лимбу"
+
+#: ../fmfontstrings.cpp:413
+msgid "Linear B"
+msgstr "Линейно Б"
+
+#: ../fmfontstrings.cpp:414
+msgid "Malayalam"
+msgstr "Малаялам"
+
+#: ../fmfontstrings.cpp:415
+msgid "Mathematical Alphanumeric Symbols"
+msgstr "Математически буквено-цифрови символи"
+
+#: ../fmfontstrings.cpp:416
+msgid "Mongolian"
+msgstr "Монголска"
+
+#: ../fmfontstrings.cpp:417
+msgid "Musical Symbols"
+msgstr "Музикални символи"
+
+#: ../fmfontstrings.cpp:418
+msgid "Myanmar"
+msgstr "Мианмарска"
+
+#: ../fmfontstrings.cpp:419
+msgid "N'ko"
+msgstr "Н'ко"
+
+#: ../fmfontstrings.cpp:420
+msgid "Ogham"
+msgstr "Огамска"
+
+#: ../fmfontstrings.cpp:421
+msgid "Old Italic"
+msgstr "Старо италийска"
+
+#: ../fmfontstrings.cpp:422
+msgid "Old Persian Cuneiform"
+msgstr "Старо персийска клинопис"
+
+#: ../fmfontstrings.cpp:423
+msgid "Oriya"
+msgstr "Ория"
+
+#: ../fmfontstrings.cpp:424
+msgid "Osmanya"
+msgstr "Османия"
+
+#: ../fmfontstrings.cpp:425
+msgid "Phags-pa"
+msgstr "Пагспа"
+
+#: ../fmfontstrings.cpp:426
+msgid "Phoenician"
+msgstr "Финикийска"
+
+#: ../fmfontstrings.cpp:427
+msgid "Runic"
+msgstr "Рунска"
+
+#: ../fmfontstrings.cpp:428
+msgid "Shavian"
+msgstr "Шавска"
+
+#: ../fmfontstrings.cpp:429
+msgid "Sinhala"
+msgstr "Синхалска"
+
+#: ../fmfontstrings.cpp:430
+msgid "Sumero-Akkadian Cuneiform"
+msgstr "Шумеро-акадска клинопис"
+
+#: ../fmfontstrings.cpp:431
+msgid "Syloti Nagri"
+msgstr "Силоти Нагри"
+
+#: ../fmfontstrings.cpp:432
+msgid "Syriac"
+msgstr "Сирийска"
+
+#: ../fmfontstrings.cpp:433
+msgid "Tagalog"
+msgstr "Тагалог"
+
+#: ../fmfontstrings.cpp:434
+msgid "Tagbanwa"
+msgstr "Тагбанва"
+
+#: ../fmfontstrings.cpp:435
+msgid "Tai Le"
+msgstr "Тай Ле"
+
+#: ../fmfontstrings.cpp:436
+msgid "Tai Lu"
+msgstr "Тай Лу"
+
+#: ../fmfontstrings.cpp:437
+msgid "Tamil"
+msgstr "Тамилска"
+
+#: ../fmfontstrings.cpp:438
+msgid "Telugu"
+msgstr "Телугу"
+
+#: ../fmfontstrings.cpp:439
+msgid "Thaana"
+msgstr "Таана"
+
+#: ../fmfontstrings.cpp:440
+msgid "Thai"
+msgstr "Тайска"
+
+#: ../fmfontstrings.cpp:441
+msgid "Tibetan"
+msgstr "Тибетска"
+
+#: ../fmfontstrings.cpp:442
+msgid "Tifinagh"
+msgstr "Тифинаг"
+
+#: ../fmfontstrings.cpp:443
+msgid "Ugaritic Cuneiform"
+msgstr "Угаритска клинопис"
+
+#: ../fmfontstrings.cpp:444
+msgid "Yi"
+msgstr "И"
+
+#: ../fmfontstrings.cpp:491
+msgid "Not Restricted"
+msgstr "Без ограничения"
+
+#: ../fmfontstrings.cpp:493
+msgid "Restricted"
+msgstr "С ограничения"
+
+#: ../fmfontstrings.cpp:495
+msgid "Preview/Print"
+msgstr "Преглед и печат"
+
+#: ../fmfontstrings.cpp:497
+msgid "Edit/Embed"
+msgstr "Редактиране и вграждане"
+
+#: ../fmfontstrings.cpp:499
+msgid "No Subset"
+msgstr "Без подмножество"
+
+#: ../fmfontstrings.cpp:501
+msgid "Bitmap Only"
+msgstr "Само растерно"
+
+#: ../help.ui:13
+msgid "Fontmatrix Help"
+msgstr "Помощ за Fontmatrix"
+
+#: ../helpbrowser.cpp:293
+msgid "&File"
+msgstr "&Файл"
+
+#: ../helpbrowser.cpp:294
+msgid "&Edit"
+msgstr "&Редактиране"
+
+#: ../helpbrowser.cpp:295
+msgid "&Bookmarks"
+msgstr "&Отметки"
+
+#: ../helpbrowser.ui:148 ../helpbrowser.cpp:297
+msgid "&Print..."
+msgstr "&Печат..."
+
+#: ../helpbrowser.cpp:298
+msgid "&Quit"
+msgstr "И&зход"
+
+#: ../helpbrowser.ui:158 ../helpbrowser.cpp:299
+msgid "&Find..."
+msgstr "&Търсене..."
+
+#: ../helpbrowser.cpp:300
+msgid "Find &Next"
+msgstr "Намери &следващото"
+
+#: ../helpbrowser.cpp:301
+msgid "Find &Previous"
+msgstr "Намери &предишното"
+
+#: ../helpbrowser.cpp:302
+msgid "&Add Bookmark"
+msgstr "&Добавяне на отметка"
+
+#: ../helpbrowser.ui:103 ../helpbrowser.ui:178 ../helpbrowser.cpp:303
+msgid "&Delete"
+msgstr "&Изтриване"
+
+#: ../helpbrowser.ui:110 ../helpbrowser.ui:183 ../helpbrowser.cpp:304
+msgid "D&elete All"
+msgstr "И&зтриване на всички"
+
+#: ../helpbrowser.cpp:381
+msgid "Find"
+msgstr "Търсене"
+
+#: ../helpbrowser.cpp:381
+msgid "Search Term:"
+msgstr "Търсен израз:"
+
+#: ../helpbrowser.cpp:413
+msgid "New Bookmark"
+msgstr "Нова отметка"
+
+#: ../helpbrowser.cpp:413
+msgid "New Bookmark's Title:"
+msgstr "Заглавие на новата отметка:"
+
+#: ../helpbrowser.cpp:672
+msgctxt "HTML message for no documentation available to show"
+msgid "<h2><p>Sorry, no manual is installed!</p><p>Please contact your package provider or Fontmatrix team if you built the application yourself</p></h2>"
+msgstr "<h2><p>Ръководството не е инсталирано!</p><p>Свържете се с доставчика на пакета или с екипа на Fontmatrix, ако сте компилирали приложението сами.</p></h2>"
+
+#: ../helpbrowser.ui:31
+msgid "&Contents"
+msgstr "&Съдържание"
+
+#: ../helpbrowser.ui:45
+msgid "Se&arch"
+msgstr "Т&ърсене"
+
+#: ../helpbrowser.ui:53
+msgid "Searching is case insensitive"
+msgstr "Търсенето не е чувствително към регистъра"
+
+#: ../helpbrowser.ui:60
+msgid "&Search"
+msgstr "&Търсене"
+
+#: ../helpbrowser.ui:70 ../helpbrowser.ui:86
+msgid "1"
+msgstr "1"
+
+#: ../helpbrowser.ui:79
+msgid "Book&marks"
+msgstr "О&тметки"
+
+#: ../helpbrowser.ui:96
+msgid "&New"
+msgstr "&Нова"
+
+#: ../helpbrowser.ui:153
+msgid "&Exit"
+msgstr "И&зход"
+
+#: ../helpbrowser.ui:163
+msgid "Find &Next..."
+msgstr "Намери &следващото..."
+
+#: ../helpbrowser.ui:168
+msgid "Find &Previous..."
+msgstr "Намери &предишното..."
+
+#: ../helpbrowser.ui:173
+msgid "&Add"
+msgstr "&Добавяне"
+
+#: ../helpbrowser.cpp:291
+msgid "Fontmatrix Online Help"
+msgstr "Онлайн помощ за Fontmatrix"
+
+#: ../importtags.ui:72
+msgid "Ok"
+msgstr "ОК"
+
+#: ../importtags.ui:13
+msgid "Fontmatrix - Tags"
+msgstr "Fontmatrix — Етикети"
+
+#: ../importedfonts.ui:52
+msgid ""
+"<qt>Instead of showing this dialog imported font count\n"
+"will be shown in the status bar. If you choose not to\n"
+"show this dialog anymore you can reset the state\n"
+"in preferences.</qt>"
+msgstr ""
+"<qt>Вместо този диалог броят на импортираните шрифтове\n"
+"ще се показва в лентата на състоянието. Ако изберете да\n"
+"не показвате повече този диалог, можете да промените\n"
+"настройката от предпочитанията.</qt>"
+
+#: ../importedfonts.ui:13
+msgid "Imported fonts"
+msgstr "Внесени шрифтове"
+
+#: ../importedfonts.ui:24
+msgid "Imported Fonts:"
+msgstr "Внесени шрифтове:"
+
+#: ../importedfonts.ui:58
+msgid "&Do not show this dialog again"
+msgstr "&Да не се показва повече този диалог"
+
+#: ../importedfonts.ui:84
+msgid "&OK"
+msgstr "&ОК"
+
+#: ../importedfontsdialog.cpp:37
+msgid " (not loaded)"
+msgstr " (не е зареден)"
+
+#: ../importedfontsdialog.cpp:44
+msgid "Number of Imported Fonts "
+msgstr "Брой внесени шрифтове:"
+
+#: ../layoutoptions.ui:25
+msgid "Weights"
+msgstr "Тегла на параметрите"
+
+#: ../layoutoptions.ui:78 ../layoutoptions.ui:124 ../layoutoptions.ui:222
+#: ../layoutoptions.ui:294
+msgid "score"
+msgstr "оценка"
+
+#: ../layoutoptions.ui:360
+msgid "penalty"
+msgstr "наказание"
+
+#: ../layoutoptions.ui:373
+msgid "H-penalty"
+msgstr "H-наказание"
+
+#: ../layoutoptions.ui:429
+msgid "space"
+msgstr "интервал"
+
+#: ../layoutoptions.ui:19
+msgid "Text layout engine options"
+msgstr "Настройки на текстовия механизъм"
+
+#: ../layoutoptions.ui:91
+msgid "Before"
+msgstr "Преди"
+
+#: ../layoutoptions.ui:137
+msgid "Exact"
+msgstr "Точно"
+
+#: ../layoutoptions.ui:235
+msgid "After"
+msgstr "След"
+
+#: ../layoutoptions.ui:307
+msgid "End"
+msgstr "Край"
+
+#: ../layoutoptions.ui:442
+msgid "Max. compression"
+msgstr "Макс. компресия"
+
+#: ../listsdock.ui:128
+msgid "Filter view by chosing tag"
+msgstr "Филтриране на списъка чрез избор на етикет"
+
+#: ../listsdock.ui:282 ../listsdock.ui:343
+msgid "Names"
+msgstr "Имена"
+
+#: ../listsdock.ui:201
+msgid "Show complete collection of available fonts"
+msgstr "Показване на пълната колекция от налични шрифтове"
+
+#: ../listsdock.ui:87
+msgid "F"
+msgstr "Ш"
+
+#: ../listsdock.ui:399
+msgid "Folders"
+msgstr "Папки"
+
+#: ../listsdock.ui:204
+msgid "reset"
+msgstr "Нулиране"
+
+#: ../listsdock.ui:74
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you want to negate the filter,</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">prefix the word with \"!\" such as in:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">\"!pattern\"</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you want to enqueue the filter,</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">prefix it with \"+\".</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Finally, you can mix negate and queue in:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">\"+!pattern\"</span> or \"!+pattern\"</p></body></html>"
+msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">За да отречете филтъра,</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">поставете \"!\" пред думата, например:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">\"!шаблон\"</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">За да добавите филтъра към опашката,</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">поставете \"+\" пред него.</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Можете да комбинирате отричане и опашка:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">\"+!шаблон\"</span> или \"!+шаблон\"</p></body></html>"
+
+#: ../listsdock.ui:251
+msgid "save"
+msgstr "Запазване"
+
+#: ../listsdock.ui:355
+msgid "Collapse or expand"
+msgstr "Свиване или разгъване"
+
+#: ../listsdock.ui:371
+msgid "Show face boxes"
+msgstr "Показване на полетата за начертания"
+
+#: ../listdockwidget.cpp:450
+msgid "All activated"
+msgstr "Всички активирани"
+
+#: ../listdockwidget.cpp:132
+msgid "Unicode character"
+msgstr "Unicode знак"
+
+#: ../listdockwidget.cpp:451
+msgid "Similar to current"
+msgstr "Подобни на текущия"
+
+#: ../listdockwidget.cpp:165
+msgid "Collapse Top Level"
+msgstr "Свиване на горното ниво"
+
+#: ../listdockwidget.cpp:167
+msgid "Collapse Families"
+msgstr "Свиване на гарнитурите"
+
+#: ../listdockwidget.cpp:170
+msgid "Expand Top Level"
+msgstr "Разгъване на горното ниво"
+
+#: ../listdockwidget.cpp:172
+msgid "Expand Families"
+msgstr "Разгъване на гарнитурите"
+
+#: ../mainview.ui:24
+msgid "main view widget"
+msgstr "main view widget"
+
+#: ../mainview.ui:103
+msgid "Quick Search:"
+msgstr "Бързо търсене:"
+
+#: ../mainview.ui:185
+msgid "Save this filter for later use"
+msgstr "Запазване на този филтър за по-нататъшна употреба"
+
+#: ../mainview.ui:188
+msgid "Save"
+msgstr "Запазване"
+
+#: ../mainview.ui:195
+msgid "Reset the filter to show all fonts"
+msgstr "Нулиране на филтъра и показване на всички шрифтове"
+
+#: ../mainview.ui:198
+msgid "Clear"
+msgstr "Изчистване"
+
+#: ../mainviewwidget.cpp:1168
+msgid "Fontmatrix takes care of you"
+msgstr "Fontmatrix се грижи за вас"
+
+#: ../mainviewwidget.cpp:1168
+msgid ""
+" is activated.\n"
+"If you want to remove it from Fontmatrix database, please deactivate it first."
+msgstr ""
+" е активиран.\n"
+"Ако искате да го премахнете от базата данни на Fontmatrix, първо го деактивирайте."
+
+#: ../mainviewwidget.cpp:1171
+msgid "Fontmatrix safe"
+msgstr "Fontmatrix предупреждава"
+
+#: ../mainviewwidget.cpp:1171
+msgid "You are about to remove a font from Fontmatrix database"
+msgstr "Предстои да премахнете шрифт от базата данни на Fontmatrix"
+
+#: ../mainviewwidget.cpp:1171
+msgid "Do you want to continue?"
+msgstr "Искате ли да продължите?"
+
+#: ../matchraster.ui:32
+msgid "Input Image"
+msgstr "Входно изображение"
+
+#: ../matchraster.ui:169
+msgid "A unique character or a four digits hexadecimal Unicode value"
+msgstr "Единичен знак или четирицифрена шестнадесетична стойност на Unicode"
+
+#: ../matchraster.ui:279
+msgid "Compare with:"
+msgstr "Сравняване с:"
+
+#: ../matchraster.ui:153
+msgid "C&haracter:"
+msgstr "&Знак:"
+
+#: ../matchraster.ui:336
+msgid "&Cancel"
+msgstr "О&тказ"
+
+#: ../matchraster.ui:13
+msgid "Find a font using raster sample"
+msgstr "Намиране на шрифт по растерна извадка"
+
+#: ../matchraster.ui:126
+msgid "Raster sample preview"
+msgstr "Преглед на растерна извадка"
+
+#: ../matchraster.ui:204
+msgid "Interactive"
+msgstr "Интерактивно"
+
+#: ../matchraster.ui:220
+msgid "Click on the letter to let Fontmatrix compute the bounding box"
+msgstr "Щракнете върху буквата за изчисляване на ограничаващата рамка от Fontmatrix"
+
+#: ../matchraster.ui:322
+msgid "Stop"
+msgstr "Спиране"
+
+#: ../matchraster.ui:40
+msgid "Grab mode"
+msgstr "Режим на захващане"
+
+#: ../matchraster.ui:69
+msgid "Zoom level"
+msgstr "Ниво на мащабиране"
+
+#: ../matchraster.ui:201
+msgid "If set, you will be prompted for each matching font"
+msgstr "Ако е включено, ще бъдете питани за всеки съответстващ шрифт"
+
+#: ../matchraster.ui:236
+msgid "Tweak rect"
+msgstr "Прецизиране на правоъгълника"
+
+#: ../metawidget.ui:26
+msgid "Fill-in text fields and press enter key  or click \"Add Filters\" button to process filters."
+msgstr "Попълнете текстовите полета и натиснете Enter или щракнете върху „Добавяне на филтри\" за прилагане на филтрите."
+
+#: ../metawidget.ui:66
+msgid "Add Filters"
+msgstr "Добавяне на филтри"
+
+#: ../panosedialog.ui:13
+msgid "Fontmatrix - Panose Editor"
+msgstr "Fontmatrix — Редактор на PANOSE"
+
+#: ../panosewidget.ui:14
+msgid "Panose Metadata"
+msgstr "PANOSE метаданни"
+
+#: ../panosewidget.ui:57
+msgid "Panose Attributes"
+msgstr "PANOSE атрибути"
+
+#: ../playwidget.ui:49
+msgid "Font Size:"
+msgstr "Размер на шрифта:"
+
+#: ../playwidget.ui:59
+msgid " pt"
+msgstr " пт"
+
+#: ../playwidget.cpp:35
+msgid "Playground"
+msgstr "Пясъчник"
+
+#: ../playwidget.cpp:107
+msgid "Print Playground"
+msgstr "Печат на пясъчника"
+
+#: ../prefs_panel.ui:13
+msgid "Preferences Panel"
+msgstr "Панел с предпочитания"
+
+#: ../prefs_panel.ui:74 ../prefs_panel.ui:123
+msgid "General"
+msgstr "Общи"
+
+#: ../prefs_panel.ui:170
+msgid "Show Fontmatrix in System Tray"
+msgstr "Показване на Fontmatrix в системния трей"
+
+#: ../prefs_panel.ui:202
+msgid "Show \"All\" actions"
+msgstr "Показване на действията „Всички\""
+
+#: ../prefs_panel.ui:257
+msgid "Preview Word"
+msgstr "Дума за преглед"
+
+#: ../prefs_panel.ui:350
+msgid "is RTL"
+msgstr "Отдясно наляво"
+
+#: ../prefs_panel.ui:498
+msgid "Add the full path to your preferred font editor"
+msgstr "Пълен път до предпочитания редактор на шрифтове"
+
+#: ../prefs_panel.ui:501
+msgid "/usr/bin/fontforge"
+msgstr "/usr/bin/fontforge"
+
+#: ../prefs_panel.ui:129
+msgid "Ask for tag names when importing fonts"
+msgstr "Питане за имена на етикети при внасяне на шрифтове"
+
+#: ../prefs_panel.ui:407
+msgid "Initial Layout"
+msgstr "Начално оформление"
+
+#: ../prefs_panel.ui:819
+msgid "Templates Folder"
+msgstr "Папка с шаблони"
+
+#: ../prefs_panel.ui:858
+msgid "Remote directories"
+msgstr "Отдалечени директории"
+
+#: ../prefs_panel.ui:866
+msgid "http://"
+msgstr "http://"
+
+#: ../prefs_panel.ui:928
+msgid "Local storage"
+msgstr "Локално хранилище"
+
+#: ../prefs_panel.ui:136
+msgid "Show names of imported fonts after import process"
+msgstr "Показване на имената на внесените шрифтове след внасянето"
+
+#: ../prefs_panel.ui:962
+msgid "Change"
+msgstr "Промяна"
+
+#: ../prefs_panel.ui:143
+msgid "Show splash at startup"
+msgstr "Показване на екрана за добре дошли при стартиране"
+
+#: ../prefs_panel.ui:631
+msgid "Left:"
+msgstr "Ляво:"
+
+#: ../prefs_panel.ui:644
+msgid "Right:"
+msgstr "Дясно:"
+
+#: ../prefs_panel.ui:608
+msgid "Browse"
+msgstr "Преглед"
+
+#: ../prefs_panel.ui:99
+msgid "Files & Folders"
+msgstr "Файлове и папки"
+
+#: ../prefs_panel.ui:185
+msgid "Close to system tray"
+msgstr "Затваряне към системния трей"
+
+#: ../prefs_panel.ui:195
+msgid "Start minimized to system tray"
+msgstr "Стартиране минимизирано в системния трей"
+
+#: ../prefs_panel.ui:343
+msgid "subtitled"
+msgstr "С надпис"
+
+#: ../prefs_panel.ui:360
+msgid "Chart Subtitle Font"
+msgstr "Шрифт за надписа на таблицата"
+
+#: ../prefs_panel.ui:433
+msgid "linespacing:"
+msgstr "Разстояние между редовете:"
+
+#: ../prefs_panel.ui:596
+msgid "Select an  hyphenation dict file as it comes with OpenOffice or Scribus"
+msgstr "Изберете файл с речник за сричкопренасяне, какъвто се доставя с OpenOffice или Scribus"
+
+#: ../prefs_panel.ui:686
+msgid "Sample Texts"
+msgstr "Примерни текстове"
+
+#: ../prefs_panel.ui:726
+msgid "+"
+msgstr "+"
+
+#: ../prefs_panel.ui:745
+msgid "−"
+msgstr "−"
+
+#: ../prefs_panel.ui:486
+msgid "Fonts Editor"
+msgstr "Редактор на шрифтове"
+
+#: ../prefs_panel.ui:550
+msgid "Extra options:"
+msgstr "Допълнителни настройки:"
+
+#: ../prefs_panel.ui:79
+msgid "System tray"
+msgstr "Системен трей"
+
+#: ../prefs_panel.ui:84
+msgid "Display"
+msgstr "Показване"
+
+#: ../prefs_panel.ui:94
+msgid "Samples collection"
+msgstr "Колекция от примерни текстове"
+
+#: ../prefs_panel.ui:104
+msgid "Shortcuts"
+msgstr "Клавишни комбинации"
+
+#: ../prefs_panel.ui:263
+msgid "Word:"
+msgstr "Дума:"
+
+#: ../prefs_panel.ui:599
+msgid "Hyphenation dictionary"
+msgstr "Речник за сричкопренасяне"
+
+#: ../prefs_panel.ui:89
+msgid "Tools"
+msgstr "Инструменти"
+
+#: ../prefs_panel.ui:388
+msgid "Size:"
+msgstr "Размер:"
+
+#: ../prefs_panel.ui:302
+msgid "Default font size:"
+msgstr "Подразбиран размер на шрифта:"
+
+#: ../prefs_panel.ui:460
+msgid "Information Style"
+msgstr "Облик на информацията"
+
+#: ../prefs_panel.ui:466
+msgid "Select Style"
+msgstr "Избор на облик:"
+
+#: ../prefs_panel.ui:217
+msgid "Ask for confirmation when activating or deactivating all fonts"
+msgstr "Питане за потвърждение при активиране или деактивиране на всички шрифтове"
+
+#: ../prefs_panel.ui:230
+msgid "Ask for confirmation when activating or deactivating fonts by tags"
+msgstr "Питане за потвърждение при активиране или деактивиране по етикети"
+
+#: ../prefs_panel.ui:531
+msgid "Help Browser"
+msgstr "Браузър за помощ"
+
+#: ../prefspaneldialog.cpp:88
+msgid "Looks like your setup does not have a system tray available."
+msgstr "Изглежда системата ви не разполага с наличен системен трей."
+
+#: ../prefspaneldialog.cpp:347
+msgid "Select font editor"
+msgstr "Избор на редактор на шрифтове"
+
+#: ../prefspaneldialog.cpp:417
+msgid "Select Templates Folder"
+msgstr "Избор на папка с шаблони"
+
+#: ../prefspaneldialog.cpp:476
+msgid "Select Where remote font files will be stored"
+msgstr "Избор на място за съхранение на отдалечени шрифтови файлове"
+
+#: ../prefspaneldialog.cpp:703
+msgid "Shortcut"
+msgstr "Клавишна комбинация"
+
+#: ../prefspaneldialog.cpp:50
+msgid "Please select an item in the list or create a new one."
+msgstr "Моля, изберете елемент от списъка или създайте нов."
+
+#: ../prefspaneldialog.cpp:555 ../prefspaneldialog.cpp:601
+msgid "Alt"
+msgstr "Alt"
+
+#: ../prefspaneldialog.cpp:555 ../prefspaneldialog.cpp:601
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: ../prefspaneldialog.cpp:555 ../prefspaneldialog.cpp:601
+msgid "Shift"
+msgstr "Shift"
+
+#: ../prefspaneldialog.cpp:555 ../prefspaneldialog.cpp:601
+msgid "Meta"
+msgstr "Meta"
+
+#: ../prefspaneldialog.cpp:563
+msgid "Meta+"
+msgstr "Meta+"
+
+#: ../prefspaneldialog.cpp:567
+msgid "Shift+"
+msgstr "Shift+"
+
+#: ../prefspaneldialog.cpp:571
+msgid "Alt+"
+msgstr "Alt+"
+
+#: ../prefspaneldialog.cpp:575
+msgid "Ctrl+"
+msgstr "Ctrl+"
+
+#: ../prefspaneldialog.cpp:662
+msgid "Replace"
+msgstr "Замяна"
+
+#: ../prefspaneldialog.cpp:663
+msgctxt "action name will be appended to this"
+msgid "Shortcut is already in use for"
+msgstr "Клавишната комбинация вече се използва за"
+
+#: ../prefspaneldialog.cpp:665
+msgid "Do you still want to assign it?"
+msgstr "Искате ли все пак да я зададете?"
+
+#: ../prefspaneldialog.cpp:704
+msgid "Tip"
+msgstr "Съвет"
+
+#: ../prefspaneldialog.cpp:738
+msgid "Select hyphenation dictionary"
+msgstr "Избор на речник за сричкопренасяне"
+
+#: ../prefspaneldialog.cpp:237
+msgctxt "PrefsPanelDialog|A default sample text inserted when creating a new sample"
+msgid "Sample Text"
+msgstr ""
+"Примерен текст\n"
+"\n"
+"Sample text\n"
+"\n"
+"Ein Textbeispiel"
+
+#: ../prefspaneldialog.cpp:251
+msgctxt "PrefsPanelDialog|the name of a sample text will be append to the string"
+msgid "Do you confirm that you want to remove:"
+msgstr "Потвърждавате ли, че искате да премахнете:"
+
+#: ../prefspaneldialog.cpp:356
+msgid "Select web browser"
+msgstr "Избор на уеб браузър"
+
+#: ../prefspaneldialog.cpp:35
+msgid "You can use the following keywords to be replaced by data from fonts: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"
+msgstr "Можете да използвате следните ключови думи, заменяни с данни от шрифтовете: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"
+
+#: ../dataexport.cpp:75
+msgid "Copying files"
+msgstr "Копиране на файлове"
+
+#: ../dataexport.cpp:75
+msgid "cancel"
+msgstr "Отказ"
+
+#: ../fontitem.cpp:2269
+msgid "codepoint is U+"
+msgstr "кодова точка е U+"
+
+#: ../opentypetags.h:32
+msgid "Access All Alternates"
+msgstr "Достъп до всички алтернативи"
+
+#: ../opentypetags.h:33
+msgid "Above-Base Forms"
+msgstr "Форми над базовата линия"
+
+#: ../opentypetags.h:34
+msgid "Above-Base Mark Positioning"
+msgstr "Позициониране на знаци над базата"
+
+#: ../opentypetags.h:35
+msgid "Above-Base Substitutions"
+msgstr "Замествания над базата"
+
+#: ../opentypetags.h:36
+msgid "Alternative Fractions"
+msgstr "Алтернативни дроби"
+
+#: ../opentypetags.h:37
+msgid "Akhands"
+msgstr "Акханди"
+
+#: ../opentypetags.h:38
+msgid "Below-Base Forms"
+msgstr "Форми под базовата линия"
+
+#: ../opentypetags.h:39
+msgid "Below-Base Mark Positioning"
+msgstr "Позициониране на знаци под базата"
+
+#: ../opentypetags.h:40
+msgid "Below-Base Substitutions"
+msgstr "Замествания под базата"
+
+#: ../opentypetags.h:41
+msgid "Petite Capitals From Capitals"
+msgstr "Малки капителни от главни букви"
+
+#: ../opentypetags.h:42
+msgid "Small Capitals From Capitals"
+msgstr "Капителни от главни букви"
+
+#: ../opentypetags.h:43
+msgid "Contextual Alternates"
+msgstr "Контекстни алтернативи"
+
+#: ../opentypetags.h:44
+msgid "Case-Sensitive Forms"
+msgstr "Форми, чувствителни към регистъра"
+
+#: ../opentypetags.h:45
+msgid "Glyph Composition/Decomposition"
+msgstr "Съставяне/разлагане на глифи"
+
+#: ../opentypetags.h:46
+msgid "Contextual Ligatures"
+msgstr "Контекстни лигатури"
+
+#: ../opentypetags.h:47
+msgid "Conjunct Forms"
+msgstr "Свързани форми"
+
+#: ../opentypetags.h:48
+msgid "Capital Spacing"
+msgstr "Разредка на главни букви"
+
+#: ../opentypetags.h:49
+msgid "Contextual Swash"
+msgstr "Контекстни завъртулки"
+
+#: ../opentypetags.h:50
+msgid "Cursive Positioning"
+msgstr "Курсивно позициониране"
+
+#: ../opentypetags.h:51
+msgid "Default Processing"
+msgstr "Подразбирана обработка"
+
+#: ../opentypetags.h:52
+msgid "Distances"
+msgstr "Разстояния"
+
+#: ../opentypetags.h:53
+msgid "Discretionary Ligatures"
+msgstr "Незадължителни лигатури"
+
+#: ../opentypetags.h:54
+msgid "Denominators"
+msgstr "Знаменатели"
+
+#: ../opentypetags.h:55
+msgid "Expert Forms"
+msgstr "Експертни форми"
+
+#: ../opentypetags.h:56
+msgid "Final glyph Alternates"
+msgstr "Алтернативи на крайния глиф"
+
+#: ../opentypetags.h:57
+msgid "Terminal Forms #2"
+msgstr "Крайни форми №2"
+
+#: ../opentypetags.h:58
+msgid "Terminal Forms #3"
+msgstr "Крайни форми №3"
+
+#: ../opentypetags.h:59
+msgid "Terminal Forms"
+msgstr "Крайни форми"
+
+#: ../opentypetags.h:60
+msgid "Fractions"
+msgstr "Дроби"
+
+#: ../opentypetags.h:61
+msgid "Full Width"
+msgstr "Пълна ширина"
+
+#: ../opentypetags.h:62
+msgid "Half Forms"
+msgstr "Половинни форми"
+
+#: ../opentypetags.h:63
+msgid "Halant Forms"
+msgstr "Форми с халант"
+
+#: ../opentypetags.h:64
+msgid "Alternate Half Width"
+msgstr "Алтернативна половин ширина"
+
+#: ../opentypetags.h:65
+msgid "Historical Forms"
+msgstr "Исторически форми"
+
+#: ../opentypetags.h:66
+msgid "Horizontal Kana Alternates"
+msgstr "Хоризонтални алтернативи на кана"
+
+#: ../opentypetags.h:67
+msgid "Historical Ligatures"
+msgstr "Исторически лигатури"
+
+#: ../opentypetags.h:69
+msgid "Hojo Kanji Forms (JIS x 212-1990 Kanji Forms)"
+msgstr "Форми Ходжо канджи (JIS x 212-1990)"
+
+#: ../opentypetags.h:70
+msgid "Half Width"
+msgstr "Половин ширина"
+
+#: ../opentypetags.h:71
+msgid "Initial Forms"
+msgstr "Начални форми"
+
+#: ../opentypetags.h:72
+msgid "Isolated Forms"
+msgstr "Изолирани форми"
+
+#: ../opentypetags.h:73
+msgid "Italics"
+msgstr "Курсив"
+
+#: ../opentypetags.h:74
+msgid "Justification Alternatives"
+msgstr "Алтернативи за изравняване"
+
+#: ../opentypetags.h:75
+msgid "JIS78 Forms"
+msgstr "Форми JIS78"
+
+#: ../opentypetags.h:76
+msgid "JIS83 Forms"
+msgstr "Форми JIS83"
+
+#: ../opentypetags.h:77
+msgid "JIS90 Forms"
+msgstr "Форми JIS90"
+
+#: ../opentypetags.h:78
+msgid "JIS2004 Forms"
+msgstr "Форми JIS2004"
+
+#: ../opentypetags.h:80
+msgid "Left Bounds"
+msgstr "Лява граница"
+
+#: ../opentypetags.h:81
+msgid "Standard Ligatures"
+msgstr "Стандартни лигатури"
+
+#: ../opentypetags.h:82
+msgid "Leading Jamo Forms"
+msgstr "Начални форми Джамо"
+
+#: ../opentypetags.h:83
+msgid "Lining Figures"
+msgstr "Маюскулни цифри"
+
+#: ../opentypetags.h:84
+msgid "Localized Forms"
+msgstr "Локализирани форми"
+
+#: ../opentypetags.h:85
+msgid "Mark Positioning"
+msgstr "Позициониране на диакритични знаци"
+
+#: ../opentypetags.h:86
+msgid "Medial Forms #2"
+msgstr "Средни форми №2"
+
+#: ../opentypetags.h:87
+msgid "Medial Forms"
+msgstr "Средни форми"
+
+#: ../opentypetags.h:88
+msgid "Mathematical Greek"
+msgstr "Математически гръцки символи"
+
+#: ../opentypetags.h:89
+msgid "Mark to Mark Positioning"
+msgstr "Позициониране знак към знак"
+
+#: ../opentypetags.h:90
+msgid "Mark Positioning via Substitution"
+msgstr "Позициониране на знаци чрез заместване"
+
+#: ../opentypetags.h:91
+msgid "Alternate Annotation Forms"
+msgstr "Алтернативни форми за анотация"
+
+#: ../opentypetags.h:92
+msgid "NLC Kanji Forms"
+msgstr "Форми канджи по NLC"
+
+#: ../opentypetags.h:93
+msgid "Nukta Forms"
+msgstr "Форми с нукта"
+
+#: ../opentypetags.h:94
+msgid "Numerators"
+msgstr "Числители"
+
+#: ../opentypetags.h:95
+msgid "Old Style Figures"
+msgstr "Минускулни цифри"
+
+#: ../opentypetags.h:96
+msgid "Optical Bounds"
+msgstr "Оптично изравняване"
+
+#: ../opentypetags.h:97
+msgid "Ordinals"
+msgstr "Редни числителни"
+
+#: ../opentypetags.h:98
+msgid "Ornaments"
+msgstr "Орнаменти"
+
+#: ../opentypetags.h:99
+msgid "Proportional Alternate Width"
+msgstr "Пропорционална алтернативна ширина"
+
+#: ../opentypetags.h:100
+msgid "Petite Capitals"
+msgstr "Малки капителни"
+
+#: ../opentypetags.h:101
+msgid "Proportional Figures"
+msgstr "Пропорционални цифри"
+
+#: ../opentypetags.h:102
+msgid "Pre-base Forms"
+msgstr "Форми преди базата"
+
+#: ../opentypetags.h:103
+msgid "Pre-base Substitutions"
+msgstr "Замествания преди базата"
+
+#: ../opentypetags.h:104
+msgid "Post-base Forms"
+msgstr "Форми след базата"
+
+#: ../opentypetags.h:105
+msgid "Post-base Substitutions"
+msgstr "Замествания след базата"
+
+#: ../opentypetags.h:106
+msgid "Proportional Widths"
+msgstr "Пропорционални ширини"
+
+#: ../opentypetags.h:107
+msgid "Quarter Widths"
+msgstr "Четвъртинна ширина"
+
+#: ../opentypetags.h:108
+msgid "Randomize"
+msgstr "Произволни алтернативи"
+
+#: ../opentypetags.h:109
+msgid "Rakar Forms"
+msgstr "Форми ракар"
+
+#: ../opentypetags.h:110
+msgid "Required Ligatures"
+msgstr "Задължителни лигатури"
+
+#: ../opentypetags.h:111
+msgid "Reph Form"
+msgstr "Форма реф"
+
+#: ../opentypetags.h:112
+msgid "Right Bounds"
+msgstr "Дясна граница"
+
+#: ../opentypetags.h:113
+msgid "Right-To-Left Alternates"
+msgstr "Алтернативи за писане отдясно наляво"
+
+#: ../opentypetags.h:114
+msgid "Ruby Notation Forms"
+msgstr "Форми за рубинова нотация"
+
+#: ../opentypetags.h:115
+msgid "Stylistic Alternates"
+msgstr "Стилистични алтернативи"
+
+#: ../opentypetags.h:116
+msgid "Scientific Inferiors"
+msgstr "Научни подстрочни индекси"
+
+#: ../opentypetags.h:117
+msgid "Optical Size"
+msgstr "Оптичен размер"
+
+#: ../opentypetags.h:118
+msgid "Small Capitals"
+msgstr "Капителни"
+
+#: ../opentypetags.h:119
+msgid "Simplified Forms"
+msgstr "Опростени форми"
+
+#: ../opentypetags.h:140
+msgid "Subscript"
+msgstr "Долен индекс"
+
+#: ../opentypetags.h:141
+msgid "Superscript"
+msgstr "Горен индекс"
+
+#: ../opentypetags.h:142
+msgid "Swash"
+msgstr "Завъртулки"
+
+#: ../opentypetags.h:143
+msgid "Titling"
+msgstr "Заглавни форми"
+
+#: ../opentypetags.h:144
+msgid "Trailing Jamo Forms"
+msgstr "Крайни форми Джамо"
+
+#: ../opentypetags.h:145
+msgid "Traditional Name Forms"
+msgstr "Традиционни форми за имена"
+
+#: ../opentypetags.h:146
+msgid "Tabular Figures"
+msgstr "Таблични цифри"
+
+#: ../opentypetags.h:147
+msgid "Traditional Forms"
+msgstr "Традиционни форми"
+
+#: ../opentypetags.h:148
+msgid "Third Widths"
+msgstr "Третинна ширина"
+
+#: ../opentypetags.h:149
+msgid "Unicase"
+msgstr "Единен регистър"
+
+#: ../opentypetags.h:150
+msgid "Alternate Vertical Metrics"
+msgstr "Алтернативни вертикални метрики"
+
+#: ../opentypetags.h:151
+msgid "Vattu Variants"
+msgstr "Варианти ватту"
+
+#: ../opentypetags.h:152
+msgid "Vertical Writing"
+msgstr "Вертикално писане"
+
+#: ../opentypetags.h:153
+msgid "Alternate Vertical Half Metrics"
+msgstr "Алтернативни вертикални метрики на половин em"
+
+#: ../opentypetags.h:154
+msgid "Vowel Jamo Forms"
+msgstr "Гласни форми Джамо"
+
+#: ../opentypetags.h:155
+msgid "Vertical Kana Alternates"
+msgstr "Вертикални алтернативи на кана"
+
+#: ../opentypetags.h:156
+msgid "Vertical Kerning"
+msgstr "Вертикален кернинг"
+
+#: ../opentypetags.h:157
+msgid "Proportional Alternate Vertical Metrics"
+msgstr "Пропорционални алтернативни вертикални метрики"
+
+#: ../opentypetags.h:158
+msgid "Vertical Rotation"
+msgstr "Вертикално завъртане"
+
+#: ../opentypetags.h:159
+msgid "Slashed Zero"
+msgstr "Нула с черта"
+
+#: ../opentypetags.h:120
+msgid "Stylistic Set 1"
+msgstr "Стилистичен набор 1"
+
+#: ../opentypetags.h:121
+msgid "Stylistic Set 2"
+msgstr "Стилистичен набор 2"
+
+#: ../opentypetags.h:122
+msgid "Stylistic Set 3"
+msgstr "Стилистичен набор 3"
+
+#: ../opentypetags.h:123
+msgid "Stylistic Set 4"
+msgstr "Стилистичен набор 4"
+
+#: ../opentypetags.h:124
+msgid "Stylistic Set 5"
+msgstr "Стилистичен набор 5"
+
+#: ../opentypetags.h:125
+msgid "Stylistic Set 6"
+msgstr "Стилистичен набор 6"
+
+#: ../opentypetags.h:126
+msgid "Stylistic Set 7"
+msgstr "Стилистичен набор 7"
+
+#: ../opentypetags.h:127
+msgid "Stylistic Set 8"
+msgstr "Стилистичен набор 8"
+
+#: ../opentypetags.h:128
+msgid "Stylistic Set 9"
+msgstr "Стилистичен набор 9"
+
+#: ../opentypetags.h:129
+msgid "Stylistic Set 10"
+msgstr "Стилистичен набор 10"
+
+#: ../opentypetags.h:130
+msgid "Stylistic Set 11"
+msgstr "Стилистичен набор 11"
+
+#: ../opentypetags.h:131
+msgid "Stylistic Set 12"
+msgstr "Стилистичен набор 12"
+
+#: ../opentypetags.h:132
+msgid "Stylistic Set 13"
+msgstr "Стилистичен набор 13"
+
+#: ../opentypetags.h:133
+msgid "Stylistic Set 14"
+msgstr "Стилистичен набор 14"
+
+#: ../opentypetags.h:134
+msgid "Stylistic Set 15"
+msgstr "Стилистичен набор 15"
+
+#: ../opentypetags.h:135
+msgid "Stylistic Set 16"
+msgstr "Стилистичен набор 16"
+
+#: ../opentypetags.h:136
+msgid "Stylistic Set 17"
+msgstr "Стилистичен набор 17"
+
+#: ../opentypetags.h:137
+msgid "Stylistic Set 18"
+msgstr "Стилистичен набор 18"
+
+#: ../opentypetags.h:138
+msgid "Stylistic Set 19"
+msgstr "Стилистичен набор 19"
+
+#: ../opentypetags.h:139
+msgid "Stylistic Set 20"
+msgstr "Стилистичен набор 20"
+
+#: ../fminfodisplay.cpp:177
+msgid "File"
+msgstr "Файл"
+
+#: ../fminfodisplay.cpp:179
+msgid "Glyphs count"
+msgstr "Брой глифи"
+
+#: ../fminfodisplay.cpp:181
+msgid "Font Type"
+msgstr "Тип шрифт"
+
+#: ../fminfodisplay.cpp:196
+msgid "Charmaps List"
+msgstr "Списък с кодови таблици"
+
+#: ../fminfodisplay.cpp:119
+msgid "Unicode Ranges"
+msgstr "Unicode блокове"
+
+#: ../remotedir.cpp:55 ../remotedir.cpp:239
+msgid "Downloading"
+msgstr "Изтегляне"
+
+#: ../sampletoolbar.ui:37
+msgid "Samples"
+msgstr "Образци"
+
+#: ../sampletoolbar.ui:56
+msgid "OpenType"
+msgstr "OpenType"
+
+#: ../sampletoolbar.ui:75
+msgid ""
+"Depending of the font, some scripts\n"
+"are especially supported if processed\n"
+"through some logic (ICU here)."
+msgstr ""
+"В зависимост от шрифта, някои писмености\n"
+"се поддържат специално при обработка\n"
+"чрез определена логика (ICU тук)."
+
+#: ../sampletoolbar.ui:84
+msgid "Shaping:"
+msgstr "Оформяне:"
+
+#: ../sampletoolbar.cpp:92
+msgid "Select language"
+msgstr "Избор на език"
+
+#: ../samplewidget.ui:193
+msgid "OpenType Features"
+msgstr "Функции на OpenType"
+
+#: ../samplewidget.ui:198
+msgid "Friendly Name"
+msgstr "Четливо наименование"
+
+#: ../samplewidget.ui:207
+msgid "Save as default"
+msgstr "Запазване като подразбирано"
+
+#: ../samplewidget.ui:214
+msgid "Reset Default"
+msgstr "Нулиране на подразбираното"
+
+#: ../samplewidget.ui:80
+msgid "World is wide"
+msgstr "Светът е широк"
+
+#: ../samplewidget.ui:118
+msgctxt "Writing system"
+msgid "Script"
+msgstr "Писменост"
+
+#: ../samplewidget.ui:134
+msgid "Shaper type"
+msgstr "Вид оформяне:"
+
+#: ../samplewidget.ui:150
+msgid "Use shaper"
+msgstr "Използване на оформяне"
+
+#. Identify root of user defined sample texts
+#: ../samplewidget.cpp:797
+msgid "User"
+msgstr "Потребителски"
+
+#: ../samplewidget.cpp:862
+msgid "Print Sample"
+msgstr "Печат на образеца"
+
+#: ../samplewidget.cpp:955
+msgid "New Sample"
+msgstr "Нов образец"
+
+#: ../scriptconsole.ui:13
+msgid "Script Console"
+msgstr "Конзола за скриптове"
+
+#: ../scriptconsole.ui:172
+msgid "clear"
+msgstr "Изчистване"
+
+#: ../scriptconsole.ui:29
+msgid "Input"
+msgstr "Вход"
+
+#: ../scriptconsole.ui:42
+msgid "# Type your script right here\n"
+msgstr "# Въведете скрипта тук\n"
+
+#: ../scriptconsole.ui:143
+msgid "Standard Output"
+msgstr "Стандартен изход"
+
+#: ../scriptconsole.ui:188
+msgid "Standard Error"
+msgstr "Стандартен поток за грешки"
+
+#: ../scriptconsole.ui:68
+msgid "Load"
+msgstr "Зареждане"
+
+#: ../scriptconsole.ui:98
+msgid "Execute"
+msgstr "Изпълнение"
+
+#: ../scriptconsole.ui:111
+msgid "Running label"
+msgstr "Изпълнява се"
+
+#: ../systray.cpp:257
+msgid "&Activate all"
+msgstr "&Активиране на всички"
+
+#: ../systray.cpp:260
+msgid "&Deactivate all"
+msgstr "&Деактивиране на всички"
+
+#: ../systray.cpp:263
+msgid "Mi&nimize"
+msgstr "С&виване"
+
+#: ../systray.cpp:266
+msgid "&Restore"
+msgstr "&Възстановяване"
+
+#: ../systray.cpp:269
+msgid "E&xit"
+msgstr "И&зход"
+
+#: ../systray.cpp:280
+msgid "&Tags"
+msgstr "&Етикети"
+
+#: ../tttableview.cpp:91
+msgid "Save File"
+msgstr "Запазване на файл"
+
+#: ../tttablewidget.ui:19
+msgid "TrueType Tables "
+msgstr "Таблици на TrueType"
+
+#: ../tttablewidget.ui:34
+msgid "Tag"
+msgstr "Маркер"
+
+#: ../tttablewidget.ui:44
+msgid "Size"
+msgstr "Размер"
+
+#: ../tttablewidget.ui:13
+msgid "TrueType tables display"
+msgstr "Показване на таблиците на TrueType"
+
+#: ../tttablewidget.ui:85
+msgid "&Export"
+msgstr "&Изнасяне"
+
+#: ../tagset.ui:19
+msgid "TagSet editor"
+msgstr "Редактор на набори от етикети"
+
+#: ../tagset.ui:64
+msgid "Collections of Tags"
+msgstr "Колекции от етикети"
+
+#: ../tagset.ui:80
+msgid "Available Tags"
+msgstr "Налични етикети"
+
+#: ../tagset.ui:115
+msgid "Add selected tag to current set."
+msgstr "Добавяне на избрания етикет към текущия набор."
+
+#: ../tagset.ui:138
+msgid "Collections"
+msgstr "Колекции"
+
+#: ../tagset.ui:153
+msgid "New"
+msgstr "Нов"
+
+#: ../tagset.ui:160
+msgid "delete"
+msgstr "Изтриване"
+
+#: ../tagswidget.cpp:68
+msgid ""
+"Please confirm that you want to remove\n"
+"the following tag from database:"
+msgstr ""
+"Потвърдете, че искате да премахнете\n"
+"следния етикет от базата данни:"
+
+#: ../tagswidget_listmodel.cpp:20
+msgid "New Tag"
+msgstr "Нов етикет"
+
+#: ../textprogression.ui:25
+msgid "Inline progression"
+msgstr "Посока на реда"
+
+#: ../textprogression.ui:40 ../textprogression.ui:101
+msgid "e.g. Latin text"
+msgstr "напр. латински текст"
+
+#: ../textprogression.ui:43 ../textprogression.ui:127
+msgid "Left to right"
+msgstr "Отляво надясно"
+
+#: ../textprogression.ui:53
+msgid "e.g. Arabic text"
+msgstr "напр. арабски текст"
+
+#: ../textprogression.ui:56 ../textprogression.ui:117
+msgid "Right to left"
+msgstr "Отдясно наляво"
+
+#: ../textprogression.ui:63
+msgid "e.g. Traditional Chinese & Japanese text"
+msgstr "напр. традиционен китайски и японски текст"
+
+#: ../textprogression.ui:66 ../textprogression.ui:104
+msgid "Top to bottom"
+msgstr "Отгоре надолу"
+
+#: ../textprogression.ui:73
+msgid "e.g. Runic text"
+msgstr "напр. рунически текст"
+
+#: ../textprogression.ui:76
+msgid "Bottom to top"
+msgstr "Отдолу нагоре"
+
+#: ../textprogression.ui:86
+msgid "Block progression"
+msgstr "Посока на блока"
+
+#: ../textprogression.ui:124
+msgid "e.g. Traditional Mongolian text"
+msgstr "напр. традиционен монголски текст"
+
+#: ../textprogression.ui:114
+msgid "e.g. Tarditionnal Chinese & Japanes text"
+msgstr "напр. традиционен китайски и японски текст"
+
+#: ../multiprintdialog.ui:41
+msgid "Views"
+msgstr "Изгледи"
+
+#: ../multiprintdialog.ui:47
+msgid "Informations"
+msgstr "Информация"
+
+#: ../multiprintdialog.ui:54
+msgid "Preview"
+msgstr "Преглед"
+
+#: ../multiprintdialog.ui:61
+msgid "Glyphs chart"
+msgstr "Таблица с глифи"
+
+#: ../multiprintdialog.ui:19
+msgid "Printing multiple items"
+msgstr "Печат на множество елементи"
+
+#: ../repair.ui:47
+msgid "Dead links"
+msgstr "Невалидни връзки"
+
+#: ../repair.ui:63 ../repair.ui:107 ../repair.ui:158 ../repair.ui:202
+msgid "Select all"
+msgstr "Избиране на всички"
+
+#: ../repair.ui:91
+msgid "Activated Not Linked"
+msgstr "Активирани без връзка"
+
+#: ../repair.ui:127
+msgid "Re-link"
+msgstr "Повторно свързване"
+
+#: ../repair.ui:134
+msgid "Deactivate"
+msgstr "Деактивиране"
+
+#: ../repair.ui:142
+msgid "Deactivated Linked"
+msgstr "Деактивирани със връзка"
+
+#: ../repair.ui:178
+msgid "De-link"
+msgstr "Премахване на връзката"
+
+#: ../repair.ui:13
+msgid "Database repair"
+msgstr "Поправяне на базата данни"
+
+#: ../repair.ui:193
+msgid "Unreferenced Files"
+msgstr "Файлове без препратка"
+
+#: ../tagswidget.ui:67
+msgid "Remove Tag"
+msgstr "Премахване на етикет"
+
+#: ../tagswidget.ui:77
+msgid "Right mouse click on a tag to add it or remove it from TagSet"
+msgstr "Щракнете с десния бутон върху етикет, за да го добавите или премахнете от набора"
+
+#: ../tagswidget.ui:54
+msgid "Add a tag"
+msgstr "Добавяне на етикет"
+
+#: ../typotek.cpp:1634
+msgid "default"
+msgstr "подразбиран"
+
+#: ../typotek.cpp:315
+msgid "Fontmatrix"
+msgstr "Fontmatrix"
+
+#: ../typotek.cpp:316
+msgid "The program will keep running in the system tray. To terminate the program, choose <b>Exit</b> in the context menu of the system tray entry."
+msgstr "Програмата ще продължи да работи в системния трей. За да я затворите, изберете <b>Изход</b> от контекстното меню на иконата в трея."
+
+#: ../typotek.cpp:367
+msgid "Add Directory"
+msgstr "Добавяне на директория"
+
+#: ../typotek.cpp:440 ../typotek.cpp:567
+msgid "Importing font files... "
+msgstr "Внасяне на шрифтови файлове..."
+
+#: ../typotek.cpp:660
+msgid "Import a directory"
+msgstr "Внасяне на директория"
+
+#: ../typotek.cpp:671
+msgid "Export a fontset"
+msgstr "Изнасяне на набор от шрифтове"
+
+#: ../typotek.cpp:676
+msgid "Export font book..."
+msgstr "Изнасяне на каталог с шрифтове..."
+
+#: ../typotek.cpp:687
+msgid "Exit the application"
+msgstr "Изход от приложението"
+
+#: ../typotek.cpp:693
+msgid "&About"
+msgstr "&За програмата"
+
+#: ../typotek.cpp:699
+msgid "About &Qt"
+msgstr "За &Qt"
+
+#: ../typotek.cpp:705
+msgid "Help"
+msgstr "Помощ"
+
+#: ../typotek.cpp:718
+msgid "Activate all current"
+msgstr "Активиране на всички текущи"
+
+#: ../typotek.cpp:723
+msgid "Deactivate all current"
+msgstr "Деактивиране на всички текущи"
+
+#: ../typotek.cpp:728
+msgid "Edit current font"
+msgstr "Редактиране на текущия шрифт"
+
+#: ../typotek.cpp:783
+msgid "Show/Hide Playground"
+msgstr "Показване/скриване на пясъчника"
+
+#: ../typotek.cpp:789
+msgid "Compare"
+msgstr "Сравняване на глифи"
+
+#: ../typotek.cpp:791
+msgid "Show/Hide Compare glyphs"
+msgstr "Показване/скриване на сравнението на глифи"
+
+#: ../typotek.cpp:797
+msgid "Close All"
+msgstr "Затваряне на всички"
+
+#: ../typotek.cpp:798
+msgid "Close all floating windows"
+msgstr "Затваряне на всички плаващи прозорци"
+
+#: ../typotek.cpp:802
+msgid "Show All"
+msgstr "Показване на всички"
+
+#: ../typotek.cpp:803
+msgid "Show all floating windows"
+msgstr "Показване на всички плаващи прозорци"
+
+#: ../typotek.cpp:807
+msgid "Hide All"
+msgstr "Скриване на всички"
+
+#: ../typotek.cpp:808
+msgid "Hide all floating windows"
+msgstr "Скриване на всички плаващи прозорци"
+
+#: ../typotek.cpp:933
+msgid "Browse Directories"
+msgstr "Преглед на директории"
+
+#: ../typotek.cpp:935
+msgid "Toggle Files/Collection view"
+msgstr "Превключване между файлов изглед и изглед на колекцията"
+
+#: ../typotek.cpp:1549
+msgid "Edit me!"
+msgstr "Редактирайте ме!"
+
+#: ../typotek.cpp:1710
+msgid "Try to run font editor with the selected font as argument"
+msgstr "Опит за отваряне на редактора на шрифтове с избрания шрифт"
+
+#: ../typotek.cpp:1715
+msgid "You don't seem to have font editor installed. Path to font editor can be set in preferences."
+msgstr "Изглежда нямате инсталиран редактор на шрифтове. Пътят му може да се зададе в предпочитанията."
+
+#: ../typotek.cpp:2310
+msgctxt "followed by currently selected font name (in status bar)"
+msgid "Current Font"
+msgstr "Текущ шрифт"
+
+#: ../typotek.cpp:751
+msgid "Preferences"
+msgstr "Предпочитания"
+
+#: ../typotek.cpp:757
+msgid "Check Database"
+msgstr "Проверка на базата данни"
+
+#: ../typotek.cpp:903
+msgid "&Help"
+msgstr "&Помощ"
+
+#: ../typotek.cpp:941
+msgid "Load settings"
+msgstr "Зареждане на настройки"
+
+#: ../typotek.cpp:1055
+msgid "Check for Fontmatrix own dir"
+msgstr "Проверка на директорията на Fontmatrix"
+
+#: ../typotek.cpp:1245 ../typotek.cpp:1246
+msgid "Adding"
+msgstr "Добавяне"
+
+#: ../typotek.cpp:1332
+msgid "font descriptions imported from network"
+msgstr "описания на шрифтове, внесени от мрежата"
+
+#: ../typotek.cpp:1359 ../typotek.cpp:1365
+msgid "Fontmatrix care"
+msgstr "Fontmatrix предупреждава"
+
+#: ../typotek.cpp:1359
+msgid ""
+"You are about to activate a bunch of fonts,\n"
+"it is time to cancel if it was not your intent"
+msgstr ""
+"Предстои активиране на много шрифтове.\n"
+"Ако не е бил намерението ви, отменете действието."
+
+#: ../typotek.cpp:1365
+msgid ""
+"You are about to deactivate a bunch of fonts,\n"
+"it is time to cancel if it was not your intent"
+msgstr ""
+"Предстои деактивиране на много шрифтове.\n"
+"Ако не е бил намерението ви, отменете действието."
+
+#: ../typotek.cpp:1397
+msgid "There is no font selected"
+msgstr "Няма избран шрифт"
+
+#: ../typotek.cpp:1452
+msgid "Support of DragNDrop over http is sheduled but not yet effective"
+msgstr "Поддръжката на плъзгане и пускане по HTTP е планирана, но все още не е реализирана"
+
+#: ../typotek.cpp:1477
+msgid "You bring something over me I canât handle"
+msgstr "Пуснахте нещо, което не мога да обработя"
+
+#: ../typotek.cpp:512 ../typotek.cpp:618
+#, qt-format
+msgid "Fonts imported: %1"
+msgstr "Внесени шрифтове: %1"
+
+#: ../typotek.cpp:770
+msgid "Show TrueType tables"
+msgstr "Показване на таблиците на TrueType"
+
+#: ../typotek.cpp:876
+msgid "&View"
+msgstr "&Изглед"
+
+#: ../typotek.cpp:1209
+msgid "System Fonts"
+msgstr "Системни шрифтове"
+
+#: ../typotek.cpp:1272
+msgid "system fonts added."
+msgstr "системни шрифтове добавени."
+
+#: ../typotek.cpp:1245 ../typotek.cpp:1246
+msgctxt "followed by a directory name"
+msgid "fonts from"
+msgstr "шрифтове от"
+
+#: ../typotek.cpp:833
+msgid "Execute Last Script"
+msgstr "Изпълнение на последния скрипт"
+
+#: ../typotek.cpp:883
+msgid "&Scripts"
+msgstr "&Скриптове"
+
+#: ../typotek.cpp:2256
+msgid "Python scripts (*.py)"
+msgstr "Python скриптове (*.py)"
+
+#: ../typotek.cpp:816
+msgid "Extract fonts..."
+msgstr "Извличане на шрифтове..."
+
+#: ../typotek.cpp:591
+msgid "Cannot import this font because it is broken: "
+msgstr "Не може да се внася шрифтът, защото е повреден: "
+
+#: ../typotek.cpp:480
+msgid "Cannot import this font because it is broken:"
+msgstr "Не може да се внася шрифтът, защото е повреден:"
+
+#: ../typotek.cpp:2304
+#, qt-format
+msgctxt "number of filtererd fonts showed in status bar"
+msgid "Filtered Font: %1"
+msgid_plural "Filtered Fonts: %1"
+msgstr[0] "Филтриран шрифт: %1"
+msgstr[1] "Филтрирани шрифтове: %1"
+
+#: ../typotek.cpp:677
+msgid "Export a PDF document that shows selected fonts"
+msgstr "Изнасяне на PDF документ с избраните шрифтове"
+
+#: ../typotek.cpp:694
+msgid "Show information about Fontmatrix"
+msgstr "Показване на информация за Fontmatrix"
+
+#: ../typotek.cpp:700
+msgid "Show information about Qt"
+msgstr "Показване на информация за Qt"
+
+#: ../typotek.cpp:707
+msgid "Read documentation on Fontmatrix"
+msgstr "Четене на документацията за Fontmatrix"
+
+#: ../typotek.cpp:719
+msgid "Activate all currently visible fonts"
+msgstr "Активиране на всички видими шрифтове"
+
+#: ../typotek.cpp:724
+msgid "Deactivate all currently visible fonts"
+msgstr "Деактивиране на всички видими шрифтове"
+
+#: ../typotek.cpp:733
+msgid "Edit currently selected font in a font editor of your choice"
+msgstr "Редактиране на избрания шрифт в предпочитания редактор"
+
+#: ../typotek.cpp:738
+msgid "You don't seem to have a font editor installed. Path to font editor can be set in Preferences dialog."
+msgstr "Изглежда нямате инсталиран редактор на шрифтове. Пътят му може да се зададе в диалога за предпочитания."
+
+#: ../typotek.cpp:752
+msgid "Setup Fontmatrix"
+msgstr "Настройване на Fontmatrix"
+
+#: ../typotek.cpp:758
+msgid "Check Fontmatrix database for dead links to font files"
+msgstr "Проверка на базата данни на Fontmatrix за невалидни връзки към шрифтови файлове"
+
+#: ../typotek.cpp:766
+msgid "Tag all currently visible files"
+msgstr "Етикетиране на всички видими файлове"
+
+#: ../typotek.cpp:771
+msgid "View hexadecimal values of TrueType tables for currently selected font file"
+msgstr "Преглед на шестнадесетичните стойности на таблиците TrueType за избрания шрифтов файл"
+
+#: ../typotek.cpp:775
+msgid "Edit PANOSE metadata"
+msgstr "Редактиране на PANOSE метаданни"
+
+#: ../typotek.cpp:776
+msgid "Edit PANOSE metadata without saving changes to font files"
+msgstr "Редактиране на PANOSE метаданни без записване на промените в шрифтовите файлове"
+
+#: ../typotek.cpp:817
+msgid "Extract fonts from documents like PDF to PFM file format"
+msgstr "Извличане на шрифтове от документи като PDF във формат PFM"
+
+#: ../typotek.cpp:828
+msgid "Execute Script..."
+msgstr "Изпълнение на скрипт..."
+
+#: ../typotek.cpp:829
+msgid "Execute a Python script"
+msgstr "Изпълнение на Python скрипт"
+
+#: ../typotek.cpp:834
+msgid "Execute the last chosen Python script"
+msgstr "Изпълнение на последно избрания Python скрипт"
+
+#: ../typotek.cpp:838
+msgid "Script Console..."
+msgstr "Конзола за скриптове..."
+
+#: ../typotek.cpp:839
+msgid "Open Python scripting console"
+msgstr "Отваряне на конзолата за Python скриптове"
+
+#: ../typotek.cpp:682
+msgid "Fill a template file with metadata for packaging currently selected font to a Linux distribution"
+msgstr "Попълване на шаблонен файл с метаданни за пакетиране на избрания шрифт за Linux дистрибуция"
+
+#: ../typotek.cpp:821
+msgid "Find a font using raster sample..."
+msgstr "Намиране на шрифт по растерна извадка..."
+
+#: ../typotek.cpp:822
+msgid "Find a font using a raster sample of a letter"
+msgstr "Намиране на шрифт по растерна извадка на буква"
+
+#: ../typotek.cpp:1208
+msgid "Loading System Fonts"
+msgstr "Зареждане на системни шрифтове"
+
+#: ../typotek.cpp:670
+msgid "Export &fonts"
+msgstr "Изнасяне на &шрифтове"
+
+#: ../typotek.cpp:681
+msgid "Export font info for packaging..."
+msgstr "Изнасяне на информация за шрифта за пакетиране..."
+
+#: ../typotek.cpp:765
+msgid "Tag All Filtered..."
+msgstr "Етикетиране на всички филтрирани..."
+
+#: ../fontmatrixui.rc:35
+msgid "&Tools"
+msgstr "&Инструменти"
+
+#: ../typotek.cpp:741
+msgid "Reload Filtered"
+msgstr "Презареждане на филтрираните"
+
+#: ../typotek.cpp:420
+msgid "Confirmation"
+msgstr "Потвърждение"
+
+#: ../typotek.cpp:421
+#, qt-format
+msgid "Do you confirm you want to import %1 font?"
+msgid_plural "Do you confirm you want to import %1 fonts?"
+msgstr[0] "Потвърждавате ли внасянето на %1 шрифт?"
+msgstr[1] "Потвърждавате ли внасянето на %1 шрифта?"
+
+#: ../typotek.cpp:524
+msgid "Select Files to Import"
+msgstr "Избор на файлове за внасяне"
+
+#: ../typotek.cpp:526
+msgid "Font Files"
+msgstr "Шрифтови файлове"
+
+#: ../typotek.cpp:658
+msgid "&Import Directory..."
+msgstr "Внасяне на &директория..."
+
+#: ../typotek.cpp:664
+msgid "Import &Files..."
+msgstr "Внасяне на &файлове..."
+
+#: ../typotek.cpp:666
+msgid "Import Files"
+msgstr "Внасяне на файлове"
+
+#: ../typotek.cpp:742
+msgid "Reload informations for filtered fonts from the font files they belong to"
+msgstr "Презареждане на информацията за филтрираните шрифтове от техните файлове"
+
+#: ../typotek.cpp:746
+msgid "Reload Selected"
+msgstr "Презареждане на избрания"
+
+#: ../typotek.cpp:747
+msgid "Reload informations for selected font from the font file"
+msgstr "Презареждане на информацията за избрания шрифт от файла"
+
+#: ../typotek.cpp:2209
+#, qt-format
+msgid "Failed to reload %1 font"
+msgid_plural "Failed to reload %1 fonts"
+msgstr[0] "Неуспешно презареждане на %1 шрифт"
+msgstr[1] "Неуспешно презареждане на %1 шрифта"

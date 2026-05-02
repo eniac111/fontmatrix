@@ -41,11 +41,11 @@
 FamilyWidget::FamilyWidget(QWidget *parent) :
 		QWidget(parent),
 		ui(new Ui::FamilyWidget),
-		sample(0),
-		chart(0),
-		activation(0),
-		currentPage(FAMILY_VIEW_INFO),
-		currentIndex(0)
+		sample(nullptr),
+		chart(nullptr),
+		activation(nullptr),
+		currentIndex(0),
+		currentPage(FAMILY_VIEW_INFO)
 {
 	ui->setupUi(this);
 
@@ -83,11 +83,6 @@ FamilyWidget::~FamilyWidget()
 TagsWidget* FamilyWidget::tagWidget()
 {
 	return ui->tagsWidget;
-}
-
-QWebEngineView* FamilyWidget::info()
-{
-	return ui->webView;
 }
 
 void FamilyWidget::changeEvent(QEvent *e)
@@ -155,11 +150,11 @@ void FamilyWidget::setFamily(const QString &f)
 			emit fontSelected(curVariant);
 		}
 		delete sample;
-		sample = 0;
+		sample = nullptr;
 		delete chart;
-		chart = 0;
+		chart = nullptr;
 		delete activation;
-		activation = 0;
+		activation = nullptr;
 
 		uniBlock = QString();
 		slotShowSample();
@@ -176,11 +171,11 @@ void FamilyWidget::slotPreviewSelected(const QModelIndex &index)
 	QString fid(index.data(FMPreviewModel::PathRole).toString());
 	if(fid != curVariant)
 	{
-		if(chart != 0)
+		if(chart != nullptr)
 			uniBlock = reinterpret_cast<ChartWidget*>(chart)->currentBlock();
 		delete sample;
 		delete chart;
-		sample = chart = 0;
+		sample = chart = nullptr;
 		curVariant = fid;
 		currentIndex = index.row();
 		switch(currentPage)
@@ -203,9 +198,9 @@ void FamilyWidget::slotPreviewSelected(const QModelIndex &index)
 void FamilyWidget::slotShowSample()
 {
 	FloatingWidget * fw(FloatingWidgetsRegister::Widget(curVariant, SampleWidget::Name));
-	if(fw == 0)
+	if(fw == nullptr)
 	{
-		if(0 == sample)
+		if(nullptr == sample)
 		{
 			SampleWidget *sw(new SampleWidget(curVariant, ui->pageSample));
 			ui->displayStack->insertWidget(FAMILY_VIEW_SAMPLE, sw);
@@ -225,7 +220,7 @@ void FamilyWidget::slotShowSample()
 void FamilyWidget::slotShowInfo()
 {
 	FMInfoDisplay fid(FMFontDb::DB()->Font(curVariant));
-	ui->webView->setContent(fid.getHtml().toUtf8(), "application/xhtml+xml");
+	ui->webView->setHtml(fid.getHtml());
 	ui->displayStack->setCurrentIndex(FAMILY_VIEW_INFO);
 	currentPage = FAMILY_VIEW_INFO;
 	updateButtons();
@@ -234,9 +229,9 @@ void FamilyWidget::slotShowInfo()
 void FamilyWidget::slotShowChart()
 {
 	FloatingWidget * fw(FloatingWidgetsRegister::Widget(curVariant, ChartWidget::Name));
-	if(fw == 0)
+	if(fw == nullptr)
 	{
-		if(0 == chart)
+		if(nullptr == chart)
 		{
 			ChartWidget *cw(new ChartWidget(curVariant, uniBlock, ui->pageChart));
 			ui->displayStack->insertWidget(FAMILY_VIEW_CHART, cw);
@@ -256,9 +251,9 @@ void FamilyWidget::slotShowChart()
 void FamilyWidget::slotShowActivation()
 {
 	FloatingWidget * fw(FloatingWidgetsRegister::Widget(curVariant, ActivationWidget::Name));
-	if(fw == 0)
+	if(fw == nullptr)
 	{
-		if(0 == activation)
+		if(nullptr == activation)
 		{
 			ActivationWidget *aw(new ActivationWidget(family, ui->pageActivation));
 			ui->displayStack->insertWidget(FAMILY_VIEW_ACTIVATION, aw);
@@ -278,7 +273,7 @@ void FamilyWidget::slotShowActivation()
 void FamilyWidget::slotDetachSample()
 {
 	disconnect(sample, SIGNAL(detached()), this, SLOT(slotDetachSample()));
-	sample = 0;
+	sample = nullptr;
 	slotShowInfo();
 }
 
@@ -286,7 +281,7 @@ void FamilyWidget::slotDetachChart()
 {
 	disconnect(chart, SIGNAL(detached()), this, SLOT(slotDetachChart()));
 	uniBlock = reinterpret_cast<ChartWidget*>(chart)->currentBlock();
-	chart = 0;
+	chart = nullptr;
 	slotShowInfo();
 }
 
@@ -305,12 +300,12 @@ void FamilyWidget::updateButtons()
 				<< ui->infoButton
 				<< ui->chartButton
 				<< ui->activationButton;
-		foreach(QToolButton * b, buttons)
+		for (auto* b : buttons)
 		{
 			b->setCheckable(true);
 		}
 	}
-	foreach(QToolButton * b, buttons)
+	for (auto* b : buttons)
 	{
 		b->setChecked(false);
 	}

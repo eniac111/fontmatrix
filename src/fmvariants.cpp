@@ -22,7 +22,7 @@
 
 #include "fontitem.h"
 
-FMVariants * FMVariants::instance = 0;
+FMVariants * FMVariants::instance = nullptr;
 
 FMVariants::FMVariants()
 {
@@ -82,20 +82,20 @@ FMVariants::FMVariants()
 			<<	QString("SmallText")
 			<<	QString("Caption");
 
-	foreach(const QString& w, weight)
+	for (const auto& w : weight)
 	{
-		foreach(const QString& s, slope)
+		for (const auto& s : slope)
 		{
-			foreach(const QString& wi, width)
+			for (const auto& wi : width)
 			{
-				foreach(const QString& o, optical)
+				for (const auto& o : optical)
 				{
 					appendVariants(w, s, wi, o);
 				}
 			}
 		}
 	}
-//	foreach(const QStringList& v, variants)
+//	for (const auto& v : variants)
 //		qDebug()<<v.join(" ");
 
 	priorList <<	QString("Book")
@@ -113,7 +113,7 @@ void FMVariants::appendVariants(const QString &w, const QString &s, const QStrin
 	QStringList p;
 	p << w << s << wi << o;
 	QStringList l;
-	foreach(const QString& s, p)
+	for (const auto& s : p)
 	{
 		if(!s.isEmpty())
 			l << s;
@@ -123,12 +123,12 @@ void FMVariants::appendVariants(const QString &w, const QString &s, const QStrin
 
 bool FMVariants::compareVariants(const QStringList &a, const QStringList &b)
 {
-	foreach(const QString& va, a)
+	for (const auto& va : a)
 	{
 		if(!b.contains(va, Qt::CaseInsensitive))
 			return false;
 	}
-	foreach(const QString& vb, b)
+	for (const auto& vb : b)
 	{
 		if(!a.contains(vb, Qt::CaseInsensitive))
 			return false;
@@ -138,20 +138,20 @@ bool FMVariants::compareVariants(const QStringList &a, const QStringList &b)
 
 QList<FontItem*> FMVariants::Order(QList<FontItem*> ul)
 {
-	if(instance == 0)
+	if(instance == nullptr)
 		instance = new FMVariants;
 
 	FMVariants *vs(instance);
 
 	QList<FontItem*> ret;
 	QMap<FontItem*, QStringList> fl;
-	foreach(FontItem* f, ul)
+	for (auto* f : ul)
 	{
 		fl.insert(f, f->variant().split(QString(" ")));
 	}
-	foreach(const QStringList& v, vs->variants)
+	for (const auto& v : vs->variants)
 	{
-		foreach(FontItem* f, fl.keys())
+		for (auto* f : fl.keys())
 		{
 			if(vs->compareVariants(v,fl[f]))
 			{
@@ -165,7 +165,7 @@ QList<FontItem*> FMVariants::Order(QList<FontItem*> ul)
 		// for Univers-like fonts, we get the number key
 		QMap<int, QMap<QString,FontItem*> > ulikeFonts;
 		bool intOK(false);
-		foreach(FontItem* f, fl.keys())
+		for (auto* f : fl.keys())
 		{
 			intOK = false;
 			QString fs(fl[f].first());
@@ -176,9 +176,9 @@ QList<FontItem*> FMVariants::Order(QList<FontItem*> ul)
 				fl.remove(f);
 			}
 		}
-		foreach(int k, ulikeFonts.keys())
+		for (const auto& k : ulikeFonts.keys())
 		{
-			foreach(const QString& v, ulikeFonts[k].keys())
+			for (const auto& v : ulikeFonts[k].keys())
 				ret << ulikeFonts[k][v];
 		}
 
@@ -186,11 +186,11 @@ QList<FontItem*> FMVariants::Order(QList<FontItem*> ul)
 		if(fl.count() > 0)
 		{
 			QMap<QString, FontItem*> lastChance;
-			foreach(FontItem* f, fl.keys())
+			for (auto* f : fl.keys())
 			{
 				lastChance[f->variant()] = f;
 			}
-			foreach(const QString& v, lastChance.keys())
+			for (const auto& v : lastChance.keys())
 				ret << lastChance[v];
 		}
 	}
@@ -201,10 +201,10 @@ QList<FontItem*> FMVariants::Order(QList<FontItem*> ul)
 FontItem * FMVariants::Preferred(QList<FontItem *> ul)
 {
 	if(ul.isEmpty())
-		return 0;
-	if(instance == 0)
+		return nullptr;
+	if(instance == nullptr)
 		instance = new FMVariants;
-	foreach(FontItem* it, ul)
+	for (auto* it : ul)
 	{
 		if(instance->priorList.contains(it->variant(), Qt::CaseInsensitive))
 		{
@@ -212,4 +212,4 @@ FontItem * FMVariants::Preferred(QList<FontItem *> ul)
 		}
 	}
 	return ul.first();
-}
+};

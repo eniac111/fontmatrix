@@ -34,7 +34,7 @@ class FMSampleTextView : public QGraphicsView
 	public:
 		FMSampleTextView ( QWidget* parent );
 
-		~FMSampleTextView();
+		~FMSampleTextView() override;
 		
 		void fakePage();
 		void sheduleUpdate();
@@ -42,12 +42,12 @@ class FMSampleTextView : public QGraphicsView
 		bool locker;
 
 	protected:
-		void resizeEvent ( QResizeEvent * event );
-		void mousePressEvent ( QMouseEvent * e ) ;
-		void mouseReleaseEvent ( QMouseEvent * e )  ;
-		void mouseMoveEvent ( QMouseEvent * e ) ;
-		void wheelEvent ( QWheelEvent * e );
-		void showEvent ( QShowEvent * event ) ;
+		void resizeEvent ( QResizeEvent * event ) override;
+		void mousePressEvent ( QMouseEvent * e ) override ;
+		void mouseReleaseEvent ( QMouseEvent * e ) override  ;
+		void mouseMoveEvent ( QMouseEvent * e ) override ;
+		void wheelEvent ( QWheelEvent * e ) override;
+		void showEvent ( QShowEvent * event ) override ;
 
 	signals:
 		void refit();

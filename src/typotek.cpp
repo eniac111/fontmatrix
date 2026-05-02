@@ -20,7 +20,6 @@
 
 
 
-#include "aboutwidget.h"
 #include "browserwidget.h"
 #include "dataexport.h"
 #include "dataloader.h"
@@ -37,12 +36,9 @@
 #include "fontbook.h"
 #include "fontcomparewidget.h"
 #include "fontitem.h"
-// #include "helpwidget.h"
-#include "helpbrowser.h"
 #include "hyphenate/fmhyphenator.h"
 #include "importedfontsdialog.h"
 #include "importtags.h"
-//#include "listdockwidget.h"
 #include "mainviewwidget.h"
 #include "panosedialog.h"
 #include "panosewidget.h"
@@ -56,7 +52,9 @@
 #include "tttableview.h"
 #include "typotek.h"
 #include "winutils.h"
+#include "fmconfig.h"
 
+#include <KLocalizedString>
 #include <cstdio>
 #include <QScreen>
 #include <QStandardPaths>
@@ -73,10 +71,19 @@
 #include <QDockWidget>
 #include <QStackedWidget>
 #include <QMessageBox>
+#include <QMenuBar>
+#include <QStatusBar>
 
 #ifdef HAVE_FONTCONFIG
 #include <fontconfig/fontconfig.h>
 #endif
+
+#include <KActionCollection>
+#include <KConfigGroup>
+#include <KHamburgerMenu>
+#include <KSharedConfig>
+#include <KStandardAction>
+#include <KToolBar>
 
 
 
@@ -84,7 +91,7 @@
 #include <ApplicationServices/ApplicationServices.h>
 #endif
 
-typotek* typotek::instance = 0;
+typotek* typotek::instance = nullptr;
 bool typotek::matrix = false;
 QString typotek::fonteditorPath = "/usr/bin/fontforge";
 extern bool __FM_SHOW_FONTLOADED;
@@ -111,7 +118,7 @@ namespace fontmatrix
 			retDirList.clear();
 		retDirList << dir.absolutePath();
 		QStringList localEntries ( dir.entryList ( QDir::AllDirs | QDir::NoDotAndDotDot ) );
-		foreach ( QString dirEntry, localEntries )
+		for (const auto& dirEntry : localEntries)
 		{
 // 			qDebug() << "[exploreDirs] - " + dir.absolutePath() + "/" + dirEntry;
 			QDir d ( dir.absolutePath() + "/" + dirEntry );
@@ -152,10 +159,9 @@ typotek::typotek()
 {
 	setWindowTitle ( "Fontmatrix" );
 	setupDrop();
-	theMainView = 0;
-	hyphenator = 0;
-	theHelp = 0;
-	dataLoader = 0;
+	theMainView = nullptr;
+	hyphenator = nullptr;
+	dataLoader = nullptr;
 	playVisible = false;
 
 	m_dpiX = ( double ) QApplication::primaryScreen()->physicalDotsPerInchX();
@@ -198,16 +204,12 @@ void typotek::initMatrix()
 	mainStack->addWidget(theBrowser);
 	setCentralWidget ( mainStack );
 
-	if ( QSystemTrayIcon::isSystemTrayAvailable() )
-		systray = new Systray();
-	else
-		systray = 0;
+	systray = new Systray();
 
 	setDockOptions(QMainWindow::AnimatedDocks | QMainWindow::ForceTabbedDocks);
 
-//	installDock("Main", tr ( "Browse Fonts" ), ListDockWidget::getInstance() , tr ( "Show/hide fonts browsing sidebar" ));
-//	installDock("Tags", tr ( "Tags" ), TagsWidget::getInstance() ,  tr ( "Show/hide tags list sidebar" ) );
-//	installDock("Panose", tr ( "Panose"), PanoseWidget::getInstance(), tr ( "Browse fonts by means of Panose attributes" ) );
+//	installDock("Tags", i18n( "Tags" ), TagsWidget::getInstance() ,  i18n( "Show/hide tags list sidebar" ) );
+//	installDock("Panose", i18n( "Panose"), PanoseWidget::getInstance(), i18n( "Browse fonts by means of Panose attributes" ) );
 
 	// force tabifyication
 //	QStringList dl;
@@ -225,32 +227,59 @@ void typotek::initMatrix()
 //	}
 
 	createActions();
-	createMenus();
 	createStatusBar();
+
+	// Inspired by Kate: enable the standard toolbar menu, set the RC, build the GUI.
+	setStandardToolBarMenuEnabled(true);
+	setXMLFile(QStringLiteral("fontmatrixui.rc"));
+	createGUI(xmlFile());
+
+	// Restore Show Menu Bar from the General group; must run after createGUI().
+	{
+		KConfigGroup generalGroup(KSharedConfig::openConfig(), QStringLiteral("General"));
+		m_paShowMenuBar->setChecked(generalGroup.readEntry("Show Menu Bar", true));
+		toggleShowMenuBar(false);
+		connect(m_paShowMenuBar, &QAction::toggled, this, [this] {
+			KConfigGroup g(KSharedConfig::openConfig(), QStringLiteral("General"));
+			g.writeEntry("Show Menu Bar", m_paShowMenuBar->isChecked());
+		});
+	}
+
+	// Exclude toolbar actions from hamburger menu to avoid duplicates
+	if (auto *hm = qobject_cast<KHamburgerMenu *>(actionCollection()->action(QStringLiteral("hamburger_menu"))))
+		hm->hideActionsOf(toolBar());
+	// Wire the dynamic View menu for floating-panel entries
+	for (auto *menuAction : menuBar()->actions()) {
+		if (QMenu *menu = menuAction->menu(); menu && menu->objectName() == QStringLiteral("view")) {
+			viewMenu = menu;
+			connect(viewMenu, &QMenu::aboutToShow, this, &typotek::updateFloatingStatus);
+			break;
+		}
+	}
 	doConnect();
 
 	showToltalFilteredFonts();
 
 	if(!hyphenator)
 	{
-		QSettings st;
-		QString dP( st.value("Sample/HyphenationDict", "hyph.dic").toString() );
-		if(QFileInfo(dP).exists())
+		QString dP( FMConfig::value(QStringLiteral("Sample/HyphenationDict"), "hyph.dic").toString() );
+		if(!dP.isEmpty() && QFileInfo(dP).exists())
 		{
 			hyphenator = new FMHyphenator();
-			if (!hyphenator->loadDict(dP, st.value("Sample/HyphLeft", 2).toInt(), st.value("Sample/HyphRight", 3).toInt())) {
-				st.setValue("Sample/HyphenationDict", "");
-				st.setValue("Sample/HyphLeft", 2);
-				st.setValue("Sample/HyphRight", 3);
+			if (!hyphenator->loadDict(dP, FMConfig::value(QStringLiteral("Sample/HyphLeft"), 2).toInt(), FMConfig::value(QStringLiteral("Sample/HyphRight"), 3).toInt())) {
+				// Dict file exists but failed to load — clear so the user can reconfigure
+				FMConfig::remove(QStringLiteral("Sample/HyphenationDict"));
+				FMConfig::remove(QStringLiteral("Sample/HyphLeft"));
+				FMConfig::remove(QStringLiteral("Sample/HyphRight"));
 			}
 		}
 		else
 		{
-			hyphenator = new FMHyphenator(); // init the hyphenator anyway for the prefs
-			st.setValue("Sample/HyphenationDict", "");
-			st.setValue("Sample/HyphLeft", 2);
-			st.setValue("Sample/HyphRight", 3);
-			qDebug()<<"Err H"<<dP;
+			// No dict configured or file missing — create hyphenator anyway for prefs access
+			hyphenator = new FMHyphenator();
+			// Remove any stale empty-string value so the default applies next launch
+			if(dP.isEmpty())
+				FMConfig::remove(QStringLiteral("Sample/HyphenationDict"));
 		}
 	}
 }
@@ -275,18 +304,6 @@ void typotek::installDock(const QString& id, const QString& name, QWidget * w, c
 
 void typotek::postInit()
 {
-	// TODO restore last filter
-//	theMainView->slotViewAll();
-	
-	QSettings st;
-	QString cname(st.value("CurrentFont", QString()).toString());
-//	if(!cname.isEmpty())
-//	{
-//		if(!ListDockWidget::getInstance()->fontTree->slotSetCurrent(cname))
-//			theMainView->displayWelcomeMessage();
-//	}
-//	else
-//		theMainView->displayWelcomeMessage();
 }
 
 void typotek::doConnect()
@@ -301,19 +318,18 @@ void typotek::doConnect()
 
 void typotek::closeEvent ( QCloseEvent *event )
 {
-	QSettings settings ;
-	if ( systray )
+	if ( systray && !m_forceQuit )
 	{
-		if ( systray->isVisible() && settings.value ( "Systray/CloseToTray", true ).toBool() )
+		if ( systray->isVisible() && FMConfig::value(QStringLiteral("Systray/CloseToTray"), true).toBool() )
 		{
-			if ( !settings.value ( "Systray/CloseNoteShown", false ).toBool() )
+			if ( !FMConfig::value(QStringLiteral("Systray/CloseNoteShown"), false).toBool() )
 			{
-				QMessageBox::information ( this, tr ( "Fontmatrix" ),
-				                           tr ( "The program will keep running in the "
+				QMessageBox::information ( this, i18n( "Fontmatrix" ),
+				                           i18n( "The program will keep running in the "
 				                                "system tray. To terminate the program, "
 				                                "choose <b>Exit</b> in the context menu "
 				                                "of the system tray entry." ) );
-				settings.setValue ( "Systray/CloseNoteShown", true );
+				FMConfig::setValue(QStringLiteral("Systray/CloseNoteShown"), true);
 			}
 			hide();
 			event->ignore();
@@ -321,7 +337,7 @@ void typotek::closeEvent ( QCloseEvent *event )
 		}
 	}
 
-	foreach(FloatingWidget *f, FloatingWidgetsRegister::AllWidgets())
+	for (auto* f : FloatingWidgetsRegister::AllWidgets())
 	{
 		f->close();
 	}
@@ -333,6 +349,19 @@ void typotek::closeEvent ( QCloseEvent *event )
 
 	event->accept();
 
+	// KStatusNotifierItem holds a D-Bus service registration that keeps the
+	// process alive past lastWindowClosed when the tray is not visible to the
+	// user. Quit explicitly so closing the X button always terminates the
+	// process unless the user opted into "close to tray" above.
+	qApp->quit();
+}
+
+void typotek::slotQuit()
+{
+	// File → Quit (and the systray "Exit" action) must terminate even when
+	// "close to tray" is on. Set the flag so closeEvent skips its hide branch.
+	m_forceQuit = true;
+	close();
 }
 
 /// IMPORT
@@ -349,8 +378,7 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 	QFileInfo finfo ( path );
 	if ( finfo.isDir() || path.isEmpty() ) // importing a directory
 	{
-		static QSettings settings;
-		static QString dir = settings.value ( "Places/LastUsedFolder", QDir::homePath() ).toString(); // first time use the home path then remember the last used dir
+		QString dir = FMConfig::value(QStringLiteral("Places/LastUsedFolder"), QDir::homePath()).toString(); // first time use the home path then remember the last used dir
 		QDir d ( dir );
 		if ( !d.exists() )
 			dir = QDir::homePath();
@@ -360,13 +388,13 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 		if ( !path.isEmpty() )
 			tmpdir = path;
 		else
-			tmpdir = QFileDialog::getExistingDirectory ( this, tr ( "Add Directory" ), dir  ,  QFileDialog::ShowDirsOnly );
+			tmpdir = QFileDialog::getExistingDirectory ( this, i18n( "Add Directory" ), dir  ,  QFileDialog::ShowDirsOnly );
 
 		if ( tmpdir.isEmpty() )
 			return; // user choose to cancel the import process
 
 		dir = tmpdir; // only set dir if importing wasn't cancelled
-		settings.setValue ( "Places/LastUsedFolder", dir );
+		FMConfig::setValue(QStringLiteral("Places/LastUsedFolder"), dir);
 
 
 		QStringList dirList;
@@ -383,11 +411,11 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 
 		QStringList filters;
 		filters << "*.otf" << "*.pfb" << "*.ttf" << "*.ttc";
-		foreach ( QString dr, dirList )
+		for (const auto& dr : dirList)
 		{
 			QDir d ( dr );
 			QFileInfoList fil= d.entryInfoList ( filters );
-			foreach ( QFileInfo fp, fil )
+			for (const auto& fp : fil)
 			{
 				if ( ( !yetHereFonts.contains ( fp.absoluteFilePath() ) ) )
 				{
@@ -413,8 +441,10 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 	// I want it :) - pm
 	if ( /*( pathList.count() > 1 )
 		&&*/ ( QMessageBox::question ( this,
-	                                     QString ( "Fontmatrix - %1" ).arg ( tr ( "Confirmation" ) ) ,
-	                                     tr ( "Do you confirm you want to import %n font(s)?", "", pathList.count()),
+	                                     QString ( "Fontmatrix - %1" ).arg ( i18n( "Confirmation" ) ) ,
+	                                     i18np ( "Do you confirm you want to import %1 font?",
+	                                             "Do you confirm you want to import %1 fonts?",
+	                                             pathList.count()),
 	                                     QMessageBox::Yes | QMessageBox::No,
 	                                     QMessageBox::No )
 	             != QMessageBox::Yes ) )
@@ -433,7 +463,7 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 		shouldAskTali = false;
 	}
 
-	QProgressDialog progress ( tr ( "Importing font files... " ), tr ( "cancel" ), 0, pathList.count(), this );
+	QProgressDialog progress ( i18n( "Importing font files... " ), i18n( "cancel" ), 0, pathList.count(), this );
 	bool showProgress = pathList.count() > 1;
 	if ( showProgress ) // show progress bar only if there's more than one font
 	{
@@ -443,7 +473,7 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 		progress.show();
 	}
 	FMFontDb::DB()->TransactionBegin();
-	QString importstring ( tr ( "Import" ) +  " %1" );
+	QString importstring ( i18n( "Import" ) +  " %1" );
 	FMFontDb *DB ( FMFontDb::DB() );
 	QList<FontItem*> nf;
 	for ( int i = 0 ; i < pathList.count(); ++i )
@@ -473,7 +503,7 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 				}
 				else
 				{
-					QString errorFont ( tr ( "Cannot import this font because it is broken:" ) +" "+fi.fileName() );
+					QString errorFont ( i18n( "Cannot import this font because it is broken:" ) +" "+fi.fileName() );
 					statusBar()->showMessage ( errorFont );
 					if ( announce || collect )
 						nameList << "__FAILEDTOLOAD__" + fi.fileName();
@@ -483,10 +513,10 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 	}
 
 	QStringList tl;
-	foreach ( QString tag, tali )
+	for (const auto& tag : tali)
 	{
 		tl.clear();
-		foreach ( FontItem* f, nf )
+		for (auto* f : nf)
 		{
 			tl << f->path();
 		}
@@ -505,7 +535,7 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 		}
 		else   // show info in the statusbar
 		{
-			statusBar()->showMessage ( tr ( "Fonts imported: %1" ).arg ( nameList.count() ), 3000 );
+			statusBar()->showMessage ( i18n ( "Fonts imported: %1", nameList.count() ), 3000 );
 		}
 		nameList.clear();
 		tali.clear();
@@ -517,9 +547,9 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 void typotek::importFiles()
 {
 	QStringList flist = QFileDialog::getOpenFileNames(this,
-							  tr("Select Files to Import"),
+							  i18n("Select Files to Import"),
 							  QDir::homePath(),
-							 QString("%1 (*.otf *.ttf *.ttc *.pfb)").arg(tr("Font Files")));
+							 QString("%1 (*.otf *.ttf *.ttc *.pfb)").arg(i18n("Font Files")));
 	if(!flist.isEmpty())
 		openList(flist);
 }
@@ -540,7 +570,7 @@ void typotek::openList ( QStringList files )
 
 	FMFontDb *DB ( FMFontDb::DB() );
 	QStringList fontMap ( DB->AllFontNames() );
-	foreach ( QString file, files )
+	for (const auto& file : files)
 	{
 		QFileInfo fp ( file );
 		if ( ( !fontMap.contains ( fp.absoluteFilePath() ) ) )
@@ -560,12 +590,12 @@ void typotek::openList ( QStringList files )
 	}
 
 	DB->TransactionBegin();
-	QProgressDialog progress ( tr ( "Importing font files... " ),tr ( "cancel" ), 0, pathList.count(), this );
+	QProgressDialog progress ( i18n( "Importing font files... " ),i18n( "cancel" ), 0, pathList.count(), this );
 	progress.setWindowModality ( Qt::WindowModal );
 	progress.setAutoReset ( false );
 
 	QList<FontItem*> nf;
-	QString importstring ( tr ( "Import" ) +" %1" );
+	QString importstring ( i18n( "Import" ) +" %1" );
 	for ( int i = 0 ; i < pathList.count(); ++i )
 	{
 		progress.setLabelText ( importstring.arg ( pathList.at ( i ) ) );
@@ -584,16 +614,16 @@ void typotek::openList ( QStringList files )
 		}
 		else
 		{
-			QString errorFont ( tr ( "Cannot import this font because it is broken: " ) +" "+fi.fileName() );
+			QString errorFont ( i18n( "Cannot import this font because it is broken: " ) +" "+fi.fileName() );
 //			statusBar()->showMessage ( errorFont );
 			nameList << "__FAILEDTOLOAD__" + fi.fileName();
 		}
 	}
 	QStringList tl;
-	foreach ( QString tag, tali )
+	for (const auto& tag : tali)
 	{
 		tl.clear();
-		foreach ( FontItem* f, nf )
+		for (auto* f : nf)
 		{
 			tl << f->path();
 		}
@@ -611,7 +641,7 @@ void typotek::openList ( QStringList files )
 	}
 	else   // show info in the statusbar
 	{
-		statusBar()->showMessage ( tr ( "Fonts imported: %1" ).arg ( nameList.count() ), 3000 );
+		statusBar()->showMessage ( i18n ( "Fonts imported: %1", nameList.count() ), 3000 );
 	}
 	emit newFontsArrived();
 
@@ -623,14 +653,14 @@ void typotek::slotExportFontSet()
 //	QStringList tagsList(FMFontDb::DB()->getTags());
 //	QStringList items ( tagsList );
 //	bool ok;
-//	QString item = QInputDialog::getItem ( this, tr ( "Fontmatrix Tags" ),
-//	                                       tr ( "Choose the tag for filter exported fonts" ), items, 0, false, &ok );
+//	QString item = QInputDialog::getItem ( this, i18n( "Fontmatrix Tags" ),
+//	                                       i18n( "Choose the tag for filter exported fonts" ), items, 0, false, &ok );
 //	if ( ok && !item.isEmpty() )
 //	{
 
 
 //		QString dir( QDir::homePath() );
-//		dir = QFileDialog::getExistingDirectory ( this, tr ( "Choose Directory" ), dir  ,  QFileDialog::ShowDirsOnly );
+//		dir = QFileDialog::getExistingDirectory ( this, i18n( "Choose Directory" ), dir  ,  QFileDialog::ShowDirsOnly );
 //		if ( dir.isEmpty() )
 //			return;
 
@@ -641,167 +671,127 @@ void typotek::slotExportFontSet()
 }
 
 
-void typotek::about()
-{
-	AboutWidget aabout(this);
-	aabout.exec();
-}
-
 void typotek::createActions()
 {
 	Shortcuts *scuts = Shortcuts::getInstance();
 
-	openAct = new QAction ( QIcon ( ":/fontmatrix_import_icon" ), tr ( "&Import Directory..." ), this );
+	openAct = new QAction ( i18n( "&Import Directory..." ), this );
 	openAct->setShortcut ( QKeySequence(Qt::CTRL | Qt::Key_O) );
-	openAct->setToolTip( tr ( "Import a directory" ) );
+	openAct->setToolTip( i18n( "Import a directory" ) );
 	scuts->add(openAct);
 	connect ( openAct, SIGNAL ( triggered() ), this, SLOT ( open() ) );
 
-	importFilesAction = new QAction(QIcon ( ":/fontmatrix_import_icon" ), tr ( "Import &Files..." ), this );
+	importFilesAction = new QAction( i18n( "Import &Files..." ), this );
 	importFilesAction->setShortcut( QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_O) );
-	importFilesAction->setToolTip(tr("Import Files"));
+	importFilesAction->setToolTip(i18n("Import Files"));
 	scuts->add(importFilesAction);
 	connect(importFilesAction, SIGNAL(triggered()), this, SLOT(importFiles()));
 
-	exportFontSetAct = new QAction(tr("Export &fonts"),this);
-	exportFontSetAct->setStatusTip(tr("Export a fontset"));
+	exportFontSetAct = new QAction(i18n("Export &fonts"),this);
+	exportFontSetAct->setStatusTip(i18n("Export a fontset"));
 	scuts->add(exportFontSetAct);
 	connect( exportFontSetAct,SIGNAL(triggered( )),this,SLOT(slotExportFontSet()));
 
 
-	fontBookAct = new QAction ( QIcon ( ":/fontmatrix_fontbookexport_icon.png" ), tr ( "Export font book..." ),this );
-	fontBookAct->setStatusTip ( tr ( "Export a PDF document that shows selected fonts" ) );
+	fontBookAct = new QAction ( i18n( "Export font book..." ),this );
+	fontBookAct->setStatusTip ( i18n( "Export a PDF document that shows selected fonts" ) );
 	scuts->add(fontBookAct);
 	connect ( fontBookAct, SIGNAL ( triggered() ), this, SLOT ( fontBook() ) );
 
-	dumpInfoAct = new QAction(tr("Export font info for packaging..."), this);
-	dumpInfoAct->setStatusTip ( tr ( "Fill a template file with metadata for packaging currently selected font to a Linux distribution" ) );
+	dumpInfoAct = new QAction(i18n("Export font info for packaging..."), this);
+	dumpInfoAct->setStatusTip ( i18n( "Fill a template file with metadata for packaging currently selected font to a Linux distribution" ) );
 	connect(dumpInfoAct, SIGNAL(triggered()), this, SLOT(slotDumpInfo()));
 
-	exitAct = new QAction ( tr ( "E&xit" ), this );
-	exitAct->setShortcut ( QKeySequence(Qt::CTRL | Qt::Key_Q) );
-	exitAct->setStatusTip ( tr ( "Exit the application" ) );
-        exitAct->setMenuRole(QAction::QuitRole);
-	scuts->add(exitAct);
-	connect ( exitAct, SIGNAL ( triggered() ), this, SLOT ( close() ) );
-
-
-	aboutAct = new QAction ( tr ( "&About" ), this );
-	aboutAct->setStatusTip ( tr ( "Show information about Fontmatrix" ) );
-        aboutAct->setMenuRole(QAction::AboutRole);
-	scuts->add(aboutAct);
-	connect ( aboutAct, SIGNAL ( triggered() ), this, SLOT ( about() ) );
-
-	aboutQtAct = new QAction ( tr ( "About &Qt" ), this );
-	aboutQtAct->setStatusTip ( tr ( "Show information about Qt" ) );
-        aboutQtAct->setMenuRole(QAction::AboutQtRole);
-	scuts->add(aboutQtAct);
-	connect (aboutQtAct,SIGNAL(triggered()), QApplication::instance(),SLOT(aboutQt()));
-
-	helpAct = new QAction ( tr ( "Help" ), this );
-	helpAct->setShortcut ( Qt::Key_F1 );
-	helpAct->setStatusTip ( tr ( "Read documentation on Fontmatrix" ) );
-	helpAct->setCheckable(true);
-	helpAct->setChecked(false);
-	scuts->add(helpAct);
-	connect ( helpAct,SIGNAL ( triggered( ) ),this,SLOT ( helpBegin() ) );
-
-// 	tagsetAct = new QAction ( tr ( "&Tag Sets" ),this );
+// 	tagsetAct = new QAction ( i18n( "&Tag Sets" ),this );
 // 	tagsetAct->setIcon ( QIcon ( ":/fontmatrix_tagseteditor_icon.png" ) );
 // 	scuts->add(tagsetAct);
 // 	connect ( tagsetAct,SIGNAL ( triggered( ) ),this,SLOT ( popupTagsetEditor() ) );
 
-	activCurAct = new QAction ( tr ( "Activate all current" ),this );
-	activCurAct->setStatusTip ( tr ( "Activate all currently visible fonts" ) );
+	activCurAct = new QAction ( i18n( "Activate all current" ),this );
+	activCurAct->setStatusTip ( i18n( "Activate all currently visible fonts" ) );
 	scuts->add(activCurAct);
 	connect ( activCurAct,SIGNAL ( triggered( ) ),this,SLOT ( slotActivateCurrents() ) );
 
-	deactivCurAct = new QAction ( tr ( "Deactivate all current" ),this );
-	deactivCurAct->setStatusTip ( tr ( "Deactivate all currently visible fonts" ) );
+	deactivCurAct = new QAction ( i18n( "Deactivate all current" ),this );
+	deactivCurAct->setStatusTip ( i18n( "Deactivate all currently visible fonts" ) );
 	scuts->add(deactivCurAct);
 	connect ( deactivCurAct,SIGNAL ( triggered( ) ),this,SLOT ( slotDeactivateCurrents() ) );
 
-	fonteditorAct = new QAction ( tr ( "Edit current font" ),this );
+	fonteditorAct = new QAction ( i18n( "Edit current font" ),this );
 	scuts->add(fonteditorAct);
 	connect ( fonteditorAct,SIGNAL ( triggered( ) ),this,SLOT ( slotEditFont() ) );
 	if ( QFile::exists ( fonteditorPath ) )
 	{
-		fonteditorAct->setStatusTip ( tr ( "Edit currently selected font in a font editor of your choice" ) );
+		fonteditorAct->setStatusTip ( i18n( "Edit currently selected font in a font editor of your choice" ) );
 	}
 	else
 	{
 		fonteditorAct->setEnabled ( false );
-		fonteditorAct->setStatusTip ( tr ( "You don't seem to have a font editor installed. Path to font editor can be set in Preferences dialog." ) );
+		fonteditorAct->setStatusTip ( i18n( "You don't seem to have a font editor installed. Path to font editor can be set in Preferences dialog." ) );
 	}
 
-	reloadAct = new QAction( tr ("Reload Filtered"), this );
-	reloadAct->setStatusTip(tr ("Reload informations for filtered fonts from the font files they belong to"));
+	reloadAct = new QAction( i18n("Reload Filtered"), this );
+	reloadAct->setStatusTip(i18n("Reload informations for filtered fonts from the font files they belong to"));
 	scuts->add(reloadAct);
 	connect(reloadAct, SIGNAL(triggered()), this, SLOT(slotReloadFiltered()));
 
-	reloadSingleAct = new QAction(tr("Reload Selected"), this);
-	reloadSingleAct->setStatusTip(tr ("Reload informations for selected font from the font file"));
+	reloadSingleAct = new QAction(i18n("Reload Selected"), this);
+	reloadSingleAct->setStatusTip(i18n("Reload informations for selected font from the font file"));
 	scuts->add(reloadSingleAct);
 	connect(reloadSingleAct, SIGNAL(triggered()), this, SLOT(slotReloadSingle()));
 
-	prefsAct = new QAction ( tr ( "Preferences" ),this );
-	prefsAct->setStatusTip ( tr ( "Setup Fontmatrix" ) );
-        prefsAct->setMenuRole(QAction::PreferencesRole);
-	scuts->add(prefsAct);
-	connect ( prefsAct,SIGNAL ( triggered() ),this,SLOT ( slotPrefsPanelDefault() ) );
-
-	repairAct = new QAction ( tr("Check Database"), this);
-	repairAct->setStatusTip ( tr ( "Check Fontmatrix database for dead links to font files" ) );
+	repairAct = new QAction ( i18n("Check Database"), this);
+	repairAct->setStatusTip ( i18n( "Check Fontmatrix database for dead links to font files" ) );
 	scuts->add(repairAct);
 	connect( repairAct, SIGNAL ( triggered() ),this,SLOT (slotRepair()));
 
 //	if ( systray )
 //		connect ( theMainView, SIGNAL ( newTag ( QString ) ), systray, SLOT ( newTag ( QString ) ) );
 
-	tagAll = new QAction(tr("Tag All Filtered..."), this);
-	tagAll->setStatusTip ( tr ( "Tag all currently visible files" ) );
+	tagAll = new QAction(i18n("Tag All Filtered..."), this);
+	tagAll->setStatusTip ( i18n( "Tag all currently visible files" ) );
 	scuts->add(tagAll);
 	connect(tagAll,SIGNAL(triggered()),this,SLOT(slotTagAll()));
 
-	showTTTAct = new QAction(tr("Show TrueType tables"),this);
-	showTTTAct->setStatusTip ( tr ( "View hexadecimal values of TrueType tables for currently selected font file" ) );
+	showTTTAct = new QAction(i18n("Show TrueType tables"),this);
+	showTTTAct->setStatusTip ( i18n( "View hexadecimal values of TrueType tables for currently selected font file" ) );
 	scuts->add(showTTTAct);
 	connect(showTTTAct,SIGNAL(triggered( )),this,SLOT(slotShowTTTables()));
 
-	editPanoseAct = new QAction(tr("Edit PANOSE metadata"), this);
-	editPanoseAct->setStatusTip ( tr ( "Edit PANOSE metadata without saving changes to font files" ) );
+	editPanoseAct = new QAction(i18n("Edit PANOSE metadata"), this);
+	editPanoseAct->setStatusTip ( i18n( "Edit PANOSE metadata without saving changes to font files" ) );
 	scuts->add(editPanoseAct);
 	connect(editPanoseAct, SIGNAL(triggered()), this, SLOT(slotEditPanose()));
 
 
-	playAction = new QAction(tr("Playground"), this);
+	playAction = new QAction(i18n("Playground"), this);
 	playAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_G));
-	playAction->setToolTip(tr("Show/Hide Playground"));
+	playAction->setToolTip(i18n("Show/Hide Playground"));
 	playAction->setCheckable(true);
 	playAction->setChecked(false);
 	scuts->add(playAction);
 	connect(playAction, SIGNAL(triggered(bool)), PlayWidget::getInstance(), SLOT(setVisible(bool)));
 
-	compareAction = new QAction(tr("Compare"), this);
+	compareAction = new QAction(i18n("Compare"), this);
 	compareAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R));
-	compareAction->setToolTip(tr("Show/Hide Compare glyphs"));
+	compareAction->setToolTip(i18n("Show/Hide Compare glyphs"));
 	compareAction->setCheckable(true);
 	compareAction->setChecked(false);
 	scuts->add(compareAction);
 	connect(compareAction, SIGNAL(triggered(bool)), FontCompareWidget::getInstance(), SLOT(setVisible(bool)));
 
-	closeAllFloat = new QAction(tr("Close All"), this);
-	closeAllFloat->setToolTip(tr("Close all floating windows"));
+	closeAllFloat = new QAction(i18n("Close All"), this);
+	closeAllFloat->setToolTip(i18n("Close all floating windows"));
 	scuts->add(closeAllFloat);
 	connect(closeAllFloat, SIGNAL(triggered()), this, SLOT(closeAllFloatings()));
 
-	showAllFloat = new QAction(tr("Show All"), this);
-	showAllFloat->setToolTip(tr("Show all floating windows"));
+	showAllFloat = new QAction(i18n("Show All"), this);
+	showAllFloat->setToolTip(i18n("Show all floating windows"));
 	scuts->add(showAllFloat);
 	connect(showAllFloat, SIGNAL(triggered()), this, SLOT(showAllFloatings()));
 
-	hideAllFloat = new QAction(tr("Hide All"), this);
-	hideAllFloat->setToolTip(tr("Hide all floating windows"));
+	hideAllFloat = new QAction(i18n("Hide All"), this);
+	hideAllFloat->setToolTip(i18n("Hide all floating windows"));
 	scuts->add(hideAllFloat);
 	connect(hideAllFloat, SIGNAL(triggered()), this, SLOT(hideAllFloatings()));
 
@@ -809,82 +799,94 @@ void typotek::createActions()
 	floatSep->setSeparator(true);
 
 	
-	extractFontAction = new QAction(tr("Extract fonts..."),this);
-	extractFontAction->setStatusTip ( tr ( "Extract fonts from documents like PDF to PFM file format" ) );
+	extractFontAction = new QAction(i18n("Extract fonts..."),this);
+	extractFontAction->setStatusTip ( i18n( "Extract fonts from documents like PDF to PFM file format" ) );
 	scuts->add(extractFontAction);
 	connect(extractFontAction,SIGNAL(triggered()),this,SLOT(slotExtractFont()));
 	
-	matchRasterAct = new QAction(tr("Find a font using raster sample..."), this); // FIXME find a name for it
-	matchRasterAct->setStatusTip ( tr ( "Find a font using a raster sample of a letter" ) );
+	matchRasterAct = new QAction(i18n("Find a font using raster sample..."), this); // FIXME find a name for it
+	matchRasterAct->setStatusTip ( i18n( "Find a font using a raster sample of a letter" ) );
 	scuts->add(matchRasterAct);
 	connect(matchRasterAct,SIGNAL(triggered()),this,SLOT(slotMatchRaster()));
 
-	exportXeTeXAct = new QAction(tr("Export font list as XeTeX..."), this);
-	exportXeTeXAct->setStatusTip(tr("Export the current filtered font list as a XeTeX source file"));
+	exportXeTeXAct = new QAction(i18n("Export font list as XeTeX..."), this);
+	exportXeTeXAct->setStatusTip(i18n("Export the current filtered font list as a XeTeX source file"));
 	scuts->add(exportXeTeXAct);
 	connect(exportXeTeXAct, SIGNAL(triggered()), this, SLOT(slotExportXeTeX()));
-}
 
-void typotek::createMenus()
-{
-	fileMenu = menuBar()->addMenu ( tr ( "&File" ) );
+	auto *ac = actionCollection();
 
-	fileMenu->addAction ( openAct );
-	fileMenu->addAction ( importFilesAction );
-	fileMenu->addAction ( exportFontSetAct );
-	fileMenu->addSeparator();
+	ac->addAction(QStringLiteral("file_import_dir"), openAct);
+	ac->setDefaultShortcut(openAct, QKeySequence(Qt::CTRL | Qt::Key_O));
+	ac->addAction(QStringLiteral("file_import_files"), importFilesAction);
+	ac->setDefaultShortcut(importFilesAction, QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_O));
+	ac->addAction(QStringLiteral("file_export_fontset"), exportFontSetAct);
+	ac->addAction(QStringLiteral("file_font_book"), fontBookAct);
+	ac->addAction(QStringLiteral("file_dump_info"), dumpInfoAct);
 
-	fileMenu->addAction ( fontBookAct );
-	fileMenu->addAction ( dumpInfoAct );
-	fileMenu->addSeparator();
-	fileMenu->addAction ( exitAct );
+	ac->addAction(QStringLiteral("edit_tag_all"), tagAll);
+	ac->addAction(QStringLiteral("edit_activate_current"), activCurAct);
+	ac->addAction(QStringLiteral("edit_deactivate_current"), deactivCurAct);
+	ac->addAction(QStringLiteral("edit_font_editor"), fonteditorAct);
+	ac->addAction(QStringLiteral("edit_panose"), editPanoseAct);
+	ac->addAction(QStringLiteral("edit_reload_filtered"), reloadAct);
+	ac->addAction(QStringLiteral("edit_reload_single"), reloadSingleAct);
 
-	editMenu = menuBar()->addMenu ( tr ( "&Edit" ) );
-// 	editMenu->addAction ( tagsetAct );
-	editMenu->addSeparator();
-	editMenu->addAction( tagAll );
-	editMenu->addAction ( activCurAct );
-	editMenu->addAction ( deactivCurAct );
-	editMenu->addSeparator();
-	editMenu->addAction ( fonteditorAct );
-	editMenu->addAction ( editPanoseAct );
-	editMenu->addSeparator();
-	editMenu->addAction(reloadSingleAct);
-	editMenu->addAction(reloadAct);
-	editMenu->addSeparator();
-	editMenu->addAction ( prefsAct );
+	ac->addAction(QStringLiteral("view_playground"), playAction);
+	ac->setDefaultShortcut(playAction, QKeySequence(Qt::CTRL | Qt::Key_G));
+	ac->addAction(QStringLiteral("view_compare"), compareAction);
+	ac->setDefaultShortcut(compareAction, QKeySequence(Qt::CTRL | Qt::Key_R));
+	ac->addAction(QStringLiteral("view_close_all"), closeAllFloat);
+	ac->addAction(QStringLiteral("view_show_all"), showAllFloat);
+	ac->addAction(QStringLiteral("view_hide_all"), hideAllFloat);
 
-	viewMenu = menuBar()->addMenu(tr("&View"));
-	viewMenu->addAction(playAction);
-	viewMenu->addAction(compareAction);
-	viewMenu->addSeparator();
-	connect(viewMenu, SIGNAL(aboutToShow()), this,SLOT(updateFloatingStatus()));
+	ac->addAction(QStringLiteral("tools_extract_font"), extractFontAction);
+	ac->addAction(QStringLiteral("tools_match_raster"), matchRasterAct);
+	ac->addAction(QStringLiteral("tools_export_xetex"), exportXeTeXAct);
+	ac->addAction(QStringLiteral("tools_repair"), repairAct);
+	ac->addAction(QStringLiteral("tools_tt_tables"), showTTTAct);
 
-	servicesMenu =  menuBar()->addMenu ( tr ( "&Service" ) );
-	servicesMenu->addAction(extractFontAction);
-	servicesMenu->addAction(matchRasterAct);
-	servicesMenu->addAction(exportXeTeXAct);
-#ifdef PLATFORM_APPLE
-	// TODO
-#elif _WIN32
-	// TODO
-#else
-	servicesMenu->addAction( repairAct );
-#endif
-	servicesMenu->addAction(showTTTAct);
-	servicesMenu->addSeparator();
-//	servicesMenu->addAction(layOptAct);
-	
-	helpMenu = menuBar()->addMenu ( tr ( "&Help" ) );
-	helpMenu->addAction ( helpAct );
-	helpMenu->addAction ( aboutAct );
-	helpMenu->addAction ( aboutQtAct );
+	KStandardAction::quit(this, &typotek::slotQuit, ac);
+	KStandardAction::preferences(this, &typotek::slotPrefsPanelDefault, ac);
+	// help_contents is provided automatically by KHelpMenu (auto-installed by
+	// KXmlGuiWindow::createGUI()) and routes to khelpcenter via the
+	// "help:/fontmatrix" URL — no custom handler needed.
 
+	// KDE theme icons (XDG standard names) for menu and toolbar actions.
+	openAct->setIcon(QIcon::fromTheme(QStringLiteral("folder-open")));
+	importFilesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-open")));
+	fontBookAct->setIcon(QIcon::fromTheme(QStringLiteral("document-print-preview")));
+	activCurAct->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));
+	deactivCurAct->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-stop")));
+	compareAction->setIcon(QIcon::fromTheme(QStringLiteral("view-split-left-right")));
+	playAction->setIcon(QIcon::fromTheme(QStringLiteral("applications-games")));
+	// Other menu actions
+	extractFontAction->setIcon(QIcon::fromTheme(QStringLiteral("package-x-generic")));
+	exportXeTeXAct->setIcon(QIcon::fromTheme(QStringLiteral("document-export")));
+	repairAct->setIcon(QIcon::fromTheme(QStringLiteral("tools-check-spelling")));
+	showTTTAct->setIcon(QIcon::fromTheme(QStringLiteral("document-properties")));
+	tagAll->setIcon(QIcon::fromTheme(QStringLiteral("tag")));
+	fonteditorAct->setIcon(QIcon::fromTheme(QStringLiteral("document-edit")));
+	editPanoseAct->setIcon(QIcon::fromTheme(QStringLiteral("format-list-unordered")));
+	exportFontSetAct->setIcon(QIcon::fromTheme(QStringLiteral("document-save-as")));
+	reloadAct->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
+	reloadSingleAct->setIcon(QIcon::fromTheme(QStringLiteral("view-refresh")));
+	matchRasterAct->setIcon(QIcon::fromTheme(QStringLiteral("zoom-fit-best")));
+
+	// "Show Menu Bar" toggle and hamburger menu — the pattern comes from Kate.
+	// The hamburger goes through KStandardAction::HamburgerMenu so XMLGUI
+	// builds a real KHamburgerMenu container.
+	m_paShowMenuBar = KStandardAction::showMenubar(this, &typotek::toggleShowMenuBar, ac);
+
+	auto *hamburgerMenu = static_cast<KHamburgerMenu *>(
+	    ac->addAction(KStandardAction::HamburgerMenu, QStringLiteral("hamburger_menu")));
+	hamburgerMenu->setMenuBar(menuBar());
+	hamburgerMenu->setShowMenuBarAction(m_paShowMenuBar);
 }
 
 void typotek::createStatusBar()
 {
-//	statusBar()->showMessage ( tr ( "Ready" ) );
+//	statusBar()->showMessage ( i18n( "Ready" ) );
 
 	statusProgressBar = new QProgressBar(this);
 	statusProgressBar->setMaximumSize(200,20);
@@ -905,79 +907,73 @@ void typotek::createStatusBar()
 	statusBar()->addPermanentWidget ( countFilteredFonts );
 
 	toggleMainViewButton = new QToolButton(this);
-	toggleMainViewButton->setText(tr("Browse Directories"));
+	toggleMainViewButton->setText(i18n("Browse Directories"));
 	toggleMainViewButton->setCheckable(true);
-	toggleMainViewButton->setToolTip(tr("Toggle Files/Collection view"));
+	toggleMainViewButton->setToolTip(i18n("Toggle Files/Collection view"));
 	statusBar()->addPermanentWidget(toggleMainViewButton);
 }
 
 void typotek::readSettings()
 {
-	relayStartingStepIn(tr("Load settings"));
-	QSettings settings;
-	QPoint pos = settings.value ( "WState/pos", QPoint ( 200, 200 ) ).toPoint();
-	QSize size = settings.value ( "WState/size", QSize ( 400, 400 ) ).toSize();
-	resize ( size );
-	move ( pos );
+	relayStartingStepIn(i18n("Load settings"));
+	// KMainWindow restores window geometry via the autoSaveConfigGroup() mechanism
+	// (see writeSettings()), so no explicit pos/size restore is needed here.
 
-	fonteditorPath = settings.value ( "FontEditor", "/usr/bin/fontforge" ).toString();
-	useInitialTags = settings.value ( "UseInitialTags", false ).toBool();
-	showFontListDialog = settings.value("ShowImportedFonts", true).toBool();
-	previewSize = settings.value("Preview/Size", 28.0).toDouble();
-	previewRTL = settings.value("Preview/RTL", false).toBool();
-	previewSubtitled = settings.value("Preview/Subtitled", false).toBool();
-	m_theWord = settings.value("Preview/Word", "<name>" ).toString();
+	fonteditorPath = FMConfig::value(QStringLiteral("FontEditor"), "/usr/bin/fontforge").toString();
+	useInitialTags = FMConfig::value(QStringLiteral("UseInitialTags"), false).toBool();
+	showFontListDialog = FMConfig::value(QStringLiteral("ShowImportedFonts"), true).toBool();
+	previewSize = FMConfig::value(QStringLiteral("Preview/Size"), 28.0).toDouble();
+	previewRTL = FMConfig::value(QStringLiteral("Preview/RTL"), false).toBool();
+	previewSubtitled = FMConfig::value(QStringLiteral("Preview/Subtitled"), false).toBool();
+	m_theWord = FMConfig::value(QStringLiteral("Preview/Word"), "<name>").toString();
 
 //	QStringList dl;
 //	dl << "Main" << "Tags" << "Panose";
-//	foreach(const QString & ds, dl)
+//	for (const auto& ds : dl)
 //	{
-//		dockArea[ds] =  settings.value("Docks/"+ds+"Pos", "Left").toString();
-//		dockVisible[ds] = settings.value("Docks/"+ds+"Visible", true).toBool();
-//		dockGeometry[ds] = settings.value("Docks/"+ds+"Geometry", QRect()).toRect();
+//		dockArea[ds] =  FMConfig::value(QStringLiteral("Docks/"+ds+"Pos"), "Left").toString();
+//		dockVisible[ds] = FMConfig::value(QStringLiteral("Docks/"+ds+"Visible"), true).toBool();
+//		dockGeometry[ds] = FMConfig::value(QStringLiteral("Docks/"+ds+"Geometry"), QRect()).toRect();
 //		qDebug()<<ds<< dockArea[ds] << dockVisible[ds] <<dockGeometry[ds];
 //	}
 
-	panoseMatchTreshold = settings.value("Panose/MatchTreshold" , 1000 ).toInt();
+	panoseMatchTreshold = FMConfig::value(QStringLiteral("Panose/MatchTreshold"), 1000).toInt();
 
-	webBrowser = settings.value("Info/Browser", "Fontmatrix").toString();
-	webBrowserOptions = settings.value("Info/BrowserOptions", "").toString();
-	previewInfoFontSize = settings.value("Info/PreviewSize", 20.0).toDouble();
-	
-	infoStyle = settings.value("Info/Style", FMPaths::ResourcesDir() + "info.css").toString();
+	webBrowser = FMConfig::value(QStringLiteral("Info/Browser"), "Fontmatrix").toString();
+	webBrowserOptions = FMConfig::value(QStringLiteral("Info/BrowserOptions"), "").toString();
+	previewInfoFontSize = FMConfig::value(QStringLiteral("Info/PreviewSize"), 20.0).toDouble();
 
-	templatesDir = settings.value ( "Places/TemplatesDir", "./").toString();
-	m_welcomeURL = settings.value("Places/WelcomeURL").toString();
-	m_remoteTmpDir = settings.value("Places/RemoteTmpDir", QDir::tempPath()).toString();
+	templatesDir = FMConfig::value(QStringLiteral("Places/TemplatesDir"), "./").toString();
+	m_remoteTmpDir = FMConfig::value(QStringLiteral("Places/RemoteTmpDir"), QDir::tempPath()).toString();
 
-	defaultOTFScript = settings.value("OTF/Script").toString();
-	defaultOTFLang = settings.value("OTF/Lang").toString();
-	defaultOTFGPOS = settings.value("OTF/GPOS").toString().split(";",Qt::SkipEmptyParts);
-	defaultOTFGSUB = settings.value("OTF/GSUB").toString().split(";",Qt::SkipEmptyParts);
-	chartInfoFontSize = settings.value("ChartInfoFontSize", 8).toInt();
-	chartInfoFontName = settings.value("ChartInfoFontFamily", QFont().family() ).toString();
+	defaultOTFScript = FMConfig::value(QStringLiteral("OTF/Script")).toString();
+	defaultOTFLang = FMConfig::value(QStringLiteral("OTF/Lang")).toString();
+	defaultOTFGPOS = FMConfig::value(QStringLiteral("OTF/GPOS")).toString().split(";",Qt::SkipEmptyParts);
+	defaultOTFGSUB = FMConfig::value(QStringLiteral("OTF/GSUB")).toString().split(";",Qt::SkipEmptyParts);
+	chartInfoFontSize = FMConfig::value(QStringLiteral("ChartInfoFontSize"), 8).toInt();
+	chartInfoFontName = FMConfig::value(QStringLiteral("ChartInfoFontFamily"), QFont().family()).toString();
 
 
-	databaseDriver = settings.value("Database/Driver","QSQLITE").toString();
-	databaseHostname = settings.value("Database/Hostname","").toString();
+	databaseDriver = FMConfig::value(QStringLiteral("Database/Driver"), "QSQLITE").toString();
+	databaseHostname = FMConfig::value(QStringLiteral("Database/Hostname"), "").toString();
 	{
 		QString sep(QDir::separator());
 		QString newDefault = ownDir.absolutePath() + sep + "Data.sql";
 #if !defined(PLATFORM_APPLE) && !defined(_WIN32)
-		// If QSettings still holds any known pre-migration default, clear it so
+		// If config still holds any known pre-migration default, clear it so
 		// the database is found at the current location.
 		QString xdgData = qEnvironmentVariable("XDG_DATA_HOME",
 		                      QDir::homePath() + "/.local/share");
 		QStringList oldDefaults;
 		oldDefaults << QDir::homePath() + "/.Fontmatrix/Data.sql"
 		            << xdgData + "/Undertype/fontmatrix/Data.sql";
-		if (oldDefaults.contains(settings.value("Database/DbName").toString()))
-			settings.remove("Database/DbName");
+		if (oldDefaults.contains(FMConfig::value(QStringLiteral("Database/DbName")).toString()))
+			FMConfig::remove(QStringLiteral("Database/DbName"));
 #endif
-		databaseDbName = settings.value("Database/DbName", newDefault).toString();
+		databaseDbName = FMConfig::value(QStringLiteral("Database/DbName"), newDefault).toString();
 	}
-	databaseUser = settings.value("Database/User","").toString();
-	databasePassword = settings.value("Database/Password","").toString();
+	databaseUser = FMConfig::value(QStringLiteral("Database/User"), "").toString();
+	databasePassword = FMConfig::value(QStringLiteral("Database/Password"), "").toString();
 	if( !QSqlDatabase::drivers().contains(databaseDriver) )
 	{
 		qDebug()<<"The SQL driver you request is not available("<< databaseDriver <<")";
@@ -987,40 +983,37 @@ void typotek::readSettings()
 
 void typotek::writeSettings()
 {
-	QSettings settings;
-	settings.setValue( "WState/pos", pos() );
-	settings.setValue( "WState/size", size() );
+	// Window geometry is persisted by KMainWindow via setAutoSaveSettings().
 	theMainView->saveSplitterState();
 
 //	QStringList dl;
 //	dl << "Main" << "Tags" << "Panose";
-//	foreach(const QString & ds, dl)
+//	for (const auto& ds : dl)
 //	{
 //		if(dockWidget[ds]->isFloating())
 //		{
 //			dockArea[ds] = "Float";
 //		}
-//		settings.setValue( "Docks/"+ds+"Pos", dockArea[ds] );
-//		settings.setValue( "Docks/"+ds+"Visible", dockWidget[ds]->isVisible());
-//		settings.setValue( "Docks/"+ds+"Geometry", dockWidget[ds]->geometry());
+//		FMConfig::setValue(QStringLiteral("Docks/"+ds+"Pos"), dockArea[ds]);
+//		FMConfig::setValue(QStringLiteral("Docks/"+ds+"Visible"), dockWidget[ds]->isVisible());
+//		FMConfig::setValue(QStringLiteral("Docks/"+ds+"Geometry"), dockWidget[ds]->geometry());
 //	}
 
 
-	settings.setValue("Info/PreviewSize", previewInfoFontSize );
-	settings.setValue("Info/Style", infoStyle );
+	FMConfig::setValue(QStringLiteral("Info/PreviewSize"), previewInfoFontSize);
 
-	settings.setValue("Preview/Word", m_theWord);
+	FMConfig::setValue(QStringLiteral("Preview/Word"), m_theWord);
 
-	settings.setValue( "Panose/MatchTreshold", panoseMatchTreshold);
+	FMConfig::setValue(QStringLiteral("Panose/MatchTreshold"), panoseMatchTreshold);
 
-	settings.setValue( "Database/Driver",databaseDriver);
-	settings.setValue( "Database/Hostname",databaseHostname);
-	settings.setValue( "Database/DbName",databaseDbName);
-	settings.setValue( "Database/User",databaseUser);
-	settings.setValue( "Database/Password",databasePassword);
-	
+	FMConfig::setValue(QStringLiteral("Database/Driver"), databaseDriver);
+	FMConfig::setValue(QStringLiteral("Database/Hostname"), databaseHostname);
+	FMConfig::setValue(QStringLiteral("Database/DbName"), databaseDbName);
+	FMConfig::setValue(QStringLiteral("Database/User"), databaseUser);
+	FMConfig::setValue(QStringLiteral("Database/Password"), databasePassword);
+
 	if(theMainView->selectedFont())
-		settings.setValue("CurrentFont", theMainView->selectedFont()->path());
+		FMConfig::setValue(QStringLiteral("CurrentFont"), theMainView->selectedFont()->path());
 
 
 }
@@ -1070,7 +1063,7 @@ static bool migrateItem(const QString& src, const QString& dst)
 
 void typotek::checkOwnDir()
 {
-	relayStartingStepIn(tr("Check for Fontmatrix own dir"));
+	relayStartingStepIn(i18n("Check for Fontmatrix own dir"));
 	QString sep(QDir::separator());
 
 #ifdef PLATFORM_APPLE
@@ -1103,7 +1096,7 @@ void typotek::checkOwnDir()
 
 		ResourceFile.setFileName(newDataPath + sep + "Resource.xml");
 	}
-#elif _WIN32
+#elif defined(_WIN32)
 	{
 		// %LOCALAPPDATA%\Fontmatrix\fontmatrix
 		QString newDataPath = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
@@ -1255,7 +1248,7 @@ QStringList typotek::getSystemFontDirs()
 #ifdef HAVE_FONTCONFIG // For Unices (OSX excluded)
 	QStringList tmpList;
 	FcConfig* FcInitLoadConfig();
-	FcStrList *sysDirList = FcConfigGetFontDirs(0);
+	FcStrList *sysDirList = FcConfigGetFontDirs(nullptr);
 	QString sysDir( (char*)FcStrListNext(sysDirList) );
 	while(!sysDir.isEmpty())
 	{
@@ -1266,11 +1259,11 @@ QStringList typotek::getSystemFontDirs()
 		sysDir = ( (char*)FcStrListNext(sysDirList) );
 	}
 	// Because we will go recursivly through these directories, we just want to list the top most ones.
-	foreach(QString path, tmpList)
+	for (const auto& path : tmpList)
 	{
 // 		qDebug()<< "PATH"<<path;
 		bool root(true);
-		foreach(QString ref, tmpList)
+		for (const auto& ref : tmpList)
 		{
 			if(path != ref)
 			{
@@ -1291,7 +1284,7 @@ QStringList typotek::getSystemFontDirs()
 	retList << "/Library/Fonts";
 	retList << "/System/Library/Fonts";
 #endif // PLATFORM_APPLE
-#if _WIN32
+#if defined(_WIN32)
 	retList << getWin32SystemFontDir();
 #endif // _WIN32
 	
@@ -1315,8 +1308,8 @@ void typotek::initDir()
 #define SYSTEM_FONTS 1
 	if(SYSTEM_FONTS)
 	{
-		relayStartingStepIn ( tr ( "Loading System Fonts") );
-		m_sysTagName = tr ( "System Fonts" );
+		relayStartingStepIn ( i18n( "Loading System Fonts") );
+		m_sysTagName = i18n( "System Fonts" );
 		QStringList tagsList(FMFontDb::DB()->getTags());
 
 		QList<FontItem*> sysFontPtrs;
@@ -1337,11 +1330,11 @@ void typotek::initDir()
 			QStringList dirList ( fontmatrix::exploreDirs ( theDir,0 ) );
 			QStringList filters;
 			filters << "*.otf" << "*.pfb" << "*.ttf" << "*.ttc";
-			foreach ( QString dr, dirList )
+			for (const auto& dr : dirList)
 			{
 				QDir d ( dr );
 				QFileInfoList fil= d.entryInfoList ( filters );
-				foreach ( QFileInfo fp, fil )
+				for (const auto& fp : fil)
 				{
 					if ( !yetHereFonts.contains ( fp.absoluteFilePath() ) )
 						syspathList <<  fp.absoluteFilePath();
@@ -1352,8 +1345,8 @@ void typotek::initDir()
 			int sysFontCount ( syspathList.count() );
 			if(sysFontCount > 0)
 			{
-				relayStartingStepIn ( tr ( "Adding" ) +" "+ QString::number ( sysFontCount ) +" "+tr ( "fonts from","followed by a directory name" )  +" "+sysDir[sIdx]);
-				qDebug()<< ( tr ( "Adding" ) +" "+ QString::number ( sysFontCount ) +" "+tr ( "fonts from","followed by a directory name" )  +" "+sysDir[sIdx]);
+				relayStartingStepIn ( i18n( "Adding" ) +" "+ QString::number ( sysFontCount ) +" "+i18nc("followed by a directory name", "fonts from")  +" "+sysDir[sIdx]);
+				qDebug()<< ( i18n( "Adding" ) +" "+ QString::number ( sysFontCount ) +" "+i18nc("followed by a directory name", "fonts from")  +" "+sysDir[sIdx]);
 				FMFontDb::DB()->TransactionBegin();
 				for ( int i = 0 ; i < sysFontCount; ++i )
 				{
@@ -1379,11 +1372,11 @@ void typotek::initDir()
 		}
 
 		if(sysFontPtrs.count() > 0)
-			relayStartingStepIn ( QString::number ( sysFontPtrs.count() ) + " " + tr ( "system fonts added." ) );
+			relayStartingStepIn ( QString::number ( sysFontPtrs.count() ) + " " + i18n( "system fonts added." ) );
 
 		// So much complicated only because otherwise, tags were added twice with SQLite ???
 		QStringList tl;
-		foreach(FontItem* sfp, sysFontPtrs)
+		for (auto* sfp : sysFontPtrs)
 		{
 			tl << sfp->path();
 		}
@@ -1398,7 +1391,7 @@ void typotek::initDir()
 // 	QStringList remoteDirV ( settings.value ( "RemoteDirectories" ).toStringList() );
 // 	if ( !remoteDirV.isEmpty() )
 // 	{
-// 		relayStartingStepIn ( tr ( "Catching" ) +" "+ QString::number ( remoteDirV.count() ) +" "+tr ( "font descriptions from network" ) );
+// 		relayStartingStepIn ( i18n( "Catching" ) +" "+ QString::number ( remoteDirV.count() ) +" "+i18n( "font descriptions from network" ) );
 // 		remoteDir = new RemoteDir ( remoteDirV );
 // 		connect ( remoteDir,SIGNAL ( listIsReady() ),this,SLOT ( slotRemoteIsReady() ) );
 // 		remoteDir->run();
@@ -1430,7 +1423,7 @@ void typotek::slotRemoteIsReady()
 // 		fontMap.append ( fi );
 // 		realFontMap[fi->path() ] = fi;
 		fi->setTags ( listInfo[rf].tags );
-		foreach(QString tag, listInfo[rf].tags)
+		for (const auto& tag : listInfo[rf].tags)
 		{
 			if(!tag.isEmpty() && !tagsList.contains(tag))
 			{
@@ -1439,7 +1432,7 @@ void typotek::slotRemoteIsReady()
 		}
 	}
 //	theMainView->slotReloadFontList();
-	showStatusMessage( QString::number(listInfo.count())+ " " +  tr("font descriptions imported from network"));
+	showStatusMessage( QString::number(listInfo.count())+ " " +  i18n("font descriptions imported from network"));
 // 	qDebug()<<"END OF slotRemoteIsReady()";
 }
 
@@ -1466,37 +1459,31 @@ void typotek::keyPressEvent ( QKeyEvent * event )
 
 void typotek::slotActivateCurrents()
 {
-	if ( QMessageBox::question ( this,tr ( "Fontmatrix care" ),tr ( "You are about to activate a bunch of fonts,\nit is time to cancel if it was not your intent" ), QMessageBox::Ok|QMessageBox::Cancel, QMessageBox::Cancel ) == QMessageBox::Ok )
+	if ( QMessageBox::question ( this,i18n( "Fontmatrix care" ),i18n( "You are about to activate a bunch of fonts,\nit is time to cancel if it was not your intent" ), QMessageBox::Ok|QMessageBox::Cancel, QMessageBox::Cancel ) == QMessageBox::Ok )
 		theMainView->slotActivateAll();
 }
 
 void typotek::slotDeactivateCurrents()
 {
-	if ( QMessageBox::question ( this,tr ( "Fontmatrix care" ),tr ( "You are about to deactivate a bunch of fonts,\nit is time to cancel if it was not your intent" ),QMessageBox::Ok|QMessageBox::Cancel, QMessageBox::Cancel ) == QMessageBox::Ok )
+	if ( QMessageBox::question ( this,i18n( "Fontmatrix care" ),i18n( "You are about to deactivate a bunch of fonts,\nit is time to cancel if it was not your intent" ),QMessageBox::Ok|QMessageBox::Cancel, QMessageBox::Cancel ) == QMessageBox::Ok )
 		theMainView->slotDesactivateAll();
 }
 
-void typotek::helpBegin()
+void typotek::toggleShowMenuBar(bool showMessage)
 {
-	theHelp = new HelpBrowser(this,tr("Fontmatrix Help"));
-	helpAct->setChecked(true);
-
-	connect( theHelp, SIGNAL( closed() ), this, SLOT(helpEnd()) );
-
-	disconnect ( helpAct,SIGNAL ( triggered( ) ),this,SLOT ( helpBegin() ) );
-	connect ( helpAct,SIGNAL ( triggered( ) ),this,SLOT ( helpEnd() ) );
-
-	theHelp->show();
-}
-
-void typotek::helpEnd()
-{
-	helpAct->setChecked(false);
-
-	disconnect ( helpAct,SIGNAL ( triggered( ) ),this,SLOT ( helpEnd() ) );
-	connect ( helpAct,SIGNAL ( triggered( ) ),this,SLOT ( helpBegin() ) );
-
-	theHelp->deleteLater();
+	// Inspired by Kate. The hamburger menu in the toolbar is the user's escape
+	// hatch back to the menu when the bar is hidden.
+	if (m_paShowMenuBar->isChecked()) {
+		menuBar()->show();
+	} else {
+		if (showMessage && toolBar()->isHidden()) {
+			const QString accel = m_paShowMenuBar->shortcut().toString(QKeySequence::NativeText);
+			QMessageBox::information(this,
+			    i18n("Hide menu bar"),
+			    i18n("This will hide the menu bar completely. You can show it again by typing %1.", accel));
+		}
+		menuBar()->hide();
+	}
 }
 
 void typotek::slotEditFont()
@@ -1504,7 +1491,7 @@ void typotek::slotEditFont()
 	FontItem *item = theMainView->selectedFont();
 	if ( !item )
 	{
-		statusBar()->showMessage ( tr ( "There is no font selected" ), 3000 );
+		statusBar()->showMessage ( i18n( "There is no font selected" ), 3000 );
 		return;
 	}
 
@@ -1563,7 +1550,7 @@ void typotek::dropEvent ( QDropEvent * event )
 		{
 			// TODO Get fonts over http
 			qDebug() << "Support of DragNDrop over http is sheduled";
-			statusBar()->showMessage ( tr ( "Support of DragNDrop over http is sheduled but not yet effective" ), 3000 );
+			statusBar()->showMessage ( i18n( "Support of DragNDrop over http is sheduled but not yet effective" ), 3000 );
 		}
 		else
 		{
@@ -1588,7 +1575,7 @@ void typotek::dragEnterEvent ( QDragEnterEvent * event )
 	else
 	{
 		qDebug() << "dragEnterEvent refused";
-		statusBar()->showMessage ( tr ( "You bring something over me I can’t handle" ), 3000 );
+		statusBar()->showMessage ( i18n( "You bring something over me I can’t handle" ), 3000 );
 	}
 }
 
@@ -1596,15 +1583,11 @@ void typotek::slotPrefsPanel(PrefsPanelDialog::PAGE page)
 {
 	PrefsPanelDialog pp ( this );
 
-	// FIXME if Systray is not available, systray->whatever() will segault
-	if ( QSystemTrayIcon::isSystemTrayAvailable() )
-		pp.initSystrayPrefs ( QSystemTrayIcon::isSystemTrayAvailable(),
-		                      systray->isVisible(),
-		                      systray->hasActivateAll(),
-		                      systray->allConfirmation(),
-		                      systray->tagsConfirmation() );
-	else
-		pp.initSystrayPrefs ( false,false,false,false,false );
+	pp.initSystrayPrefs ( true,
+	                      systray->isVisible(),
+	                      systray->hasActivateAll(),
+	                      systray->allConfirmation(),
+	                      systray->tagsConfirmation() );
 	pp.initSampleTextPrefs();
 	pp.initFilesAndFolders();
 	pp.initShortcuts();
@@ -1644,15 +1627,13 @@ void typotek::systrayTagsConfirmation ( bool isEnabled )
 
 void typotek::slotCloseToSystray ( bool isEnabled )
 {
-	QSettings settings ;
-	settings.setValue ( "Systray/CloseToTray", isEnabled );
-	settings.setValue ( "Systray/CloseNoteShown", false );
+	FMConfig::setValue(QStringLiteral("Systray/CloseToTray"), isEnabled);
+	FMConfig::setValue(QStringLiteral("Systray/CloseNoteShown"), false);
 }
 
 void typotek::slotSystrayStart( bool isEnabled )
 {
-	QSettings settings ;
-	settings.setValue ( "Systray/StartToTray", isEnabled );
+	FMConfig::setValue(QStringLiteral("Systray/StartToTray"), isEnabled);
 }
 
 
@@ -1660,7 +1641,7 @@ QString typotek::namedSample ( QString name )
 {
 	QString cn(name);
 	if(cn == QString("NEW_SAMPLE"))
-		return tr("Edit me!");
+		return i18n("Edit me!");
 	if(cn.isEmpty())
 		cn = currentNamedSample;
 	else
@@ -1670,7 +1651,7 @@ QString typotek::namedSample ( QString name )
 		dataLoader = new DataLoader();
 
 	const QMap<QString,QString>& us(dataLoader->userSamples());
-	foreach(const QString& k, us.keys())
+	for (const auto& k : us.keys())
 	{
 		QString id(QString("User::") + k);
 //		qDebug()<<"\t"<<id;
@@ -1681,9 +1662,9 @@ QString typotek::namedSample ( QString name )
 	}
 
 	const QMap<QString, QMap<QString,QString> >& ss(dataLoader->systemSamples());
-	foreach(const QString& pk, ss.keys())
+	for (const auto& pk : ss.keys())
 	{
-		foreach(const QString& sk, ss[pk].keys())
+		for (const auto& sk : ss[pk].keys())
 		{
 			QString id(pk + QString("::") + sk);
 //			qDebug()<<"\t"<<id;
@@ -1704,7 +1685,7 @@ QMap<QString,QList<QString> > typotek::namedSamplesNames()
 	QMap<QString,QList<QString> > ret;
 	const QMap<QString,QString>& us(dataLoader->userSamples());
 	const QMap<QString, QMap<QString,QString> >& ss(dataLoader->systemSamples());
-	foreach(const QString& key, ss.keys())
+	for (const auto& key : ss.keys())
 	{
 		ret[key] << ss[key].keys();
 	}
@@ -1745,7 +1726,7 @@ QString typotek::defaultSampleName()
 		dataLoader = new DataLoader();
 
 	const QMap<QString,QString>& us(dataLoader->userSamples());
-	if(us.contains(tr("default")))
+	if(us.contains(i18n("default")))
 		return QString("User::") + QString("default");
 	else if(us.count() > 0)
 		return QString("User::") + us.keys().first();
@@ -1765,7 +1746,7 @@ QString typotek::defaultSampleName()
 				if(ss.contains(preferred) && ss[preferred].count() > 0)
 					return preferred + QString("::") + ss[preferred].keys().first();
 			}
-			foreach(QString k, ss.keys())
+			for (const auto& k : ss.keys())
 			{
 				if(ss[k].count() > 0)
 					return k + QString("::") + ss[k].keys().first();
@@ -1775,7 +1756,7 @@ QString typotek::defaultSampleName()
 	return QString();
 }
 
-void typotek::setWord ( QString s, bool updateView )
+void typotek::setWord ( QString s, bool )
 {
 	if(s == m_theWord)
 		return;
@@ -1793,8 +1774,6 @@ void typotek::setPreviewSize(double d)
 		return;
 
 //	previewSize = d;
-//	if(previewSize != ListDockWidget::getInstance()->previewSize->value())
-//		ListDockWidget::getInstance()->previewSize->setValue(previewSize);
 	QList<FontItem*> fontMap(FMFontDb::DB()->AllFonts());
 	for(int i(0); i < fontMap.count(); ++i)
 		fontMap[i]->clearPreview() ;
@@ -1829,22 +1808,20 @@ void typotek::setFontEditorPath ( const QString &path )
 	if ( QFile::exists ( fonteditorPath ) )
 	{
 		fonteditorAct->setEnabled ( true );
-		fonteditorAct->setStatusTip ( tr ( "Try to run font editor with the selected font as argument" ) );
+		fonteditorAct->setStatusTip ( i18n( "Try to run font editor with the selected font as argument" ) );
 	}
 	else
 	{
 		fonteditorAct->setEnabled ( false );
-		fonteditorAct->setStatusTip ( tr ( "You don't seem to have font editor installed. Path to font editor can be set in preferences." ) );
+		fonteditorAct->setStatusTip ( i18n( "You don't seem to have font editor installed. Path to font editor can be set in preferences." ) );
 	}
-	QSettings settings ;
-	settings.setValue ( "FontEditor", fonteditorPath );
+	FMConfig::setValue(QStringLiteral("FontEditor"), fonteditorPath);
 }
 
 void typotek::slotUseInitialTags ( bool isEnabled )
 {
 	useInitialTags = isEnabled;
-	QSettings settings ;
-	settings.setValue ( "UseInitialTags", isEnabled );
+	FMConfig::setValue(QStringLiteral("UseInitialTags"), isEnabled);
 }
 
 void typotek::showImportedFonts(int show) // 0 == show dialog, 2 == do not show
@@ -1853,8 +1830,7 @@ void typotek::showImportedFonts(int show) // 0 == show dialog, 2 == do not show
 	if (show == Qt::Checked)
 		doShow = false;
 	showFontListDialog = doShow;
-	QSettings settings;
-	settings.setValue("ShowImportedFonts", doShow);
+	FMConfig::setValue(QStringLiteral("ShowImportedFonts"), doShow);
 }
 
 bool typotek::showImportedFonts()
@@ -1865,16 +1841,14 @@ bool typotek::showImportedFonts()
 void typotek::setTemplatesDir(const QString & dir)
 {
 	templatesDir = dir;
-	QSettings settings;
-	settings.setValue("Places/TemplatesDir", templatesDir);
+	FMConfig::setValue(QStringLiteral("Places/TemplatesDir"), templatesDir);
 
 }
 
 void typotek::changeFontSizeSettings(double fSize, double lSize)
 {
-	QSettings settings;
-	settings.setValue("Sample/FontSize", fSize);
-	settings.setValue("Sample/Interline", lSize);
+	FMConfig::setValue(QStringLiteral("Sample/FontSize"), fSize);
+	FMConfig::setValue(QStringLiteral("Sample/Interline"), lSize);
 //	theMainView->reSize(fSize,lSize);
 }
 
@@ -1899,7 +1873,7 @@ void typotek::removeFontItem(QString key)
 
 void typotek::removeFontItem(QStringList keyList)
 {
-	foreach(QString key, keyList)
+	for (const auto& key : keyList)
 	{
 		removeFontItem(key);
 	}
@@ -1917,8 +1891,7 @@ void typotek::setRemoteTmpDir(const QString & s)
 	else
 		m_remoteTmpDir = s;
 
-	QSettings settings;
-	settings.setValue("Places/RemoteTmpDir", m_remoteTmpDir);
+	FMConfig::setValue(QStringLiteral("Places/RemoteTmpDir"), m_remoteTmpDir);
 }
 
 void typotek::slotRepair()
@@ -1966,7 +1939,7 @@ void typotek::slotTagAll()
 //		return;
 //	QPrinter thePrinter ( QPrinter::HighResolution );
 //	QPrintDialog dialog(&thePrinter, this);
-//	dialog.setWindowTitle("Fontmatrix - " + tr("Print Family") +" - " + font->family());
+//	dialog.setWindowTitle("Fontmatrix - " + i18n("Print Family") +" - " + font->family());
 
 //	if ( dialog.exec() != QDialog::Accepted )
 //		return;
@@ -1988,7 +1961,7 @@ void typotek::slotTagAll()
 //	QStringList stl1(namedSample ( theMainView->sampleName() ).split ( QRegExp("\\W") ));
 //	if(stl1.count() < 10 )
 //	{
-//		QMessageBox::information(this,"Fontmatrix",tr("Not enough text to make a sample"));
+//		QMessageBox::information(this,"Fontmatrix",i18n("Not enough text to make a sample"));
 //		return;
 //	}
 //	QStringList stl;
@@ -2029,7 +2002,7 @@ void typotek::slotTagAll()
 //		logDescend[fidx] = tmpScene.itemsBoundingRect().bottom() - 1000.0;
 //		qDebug()<< sampleString[fidx] << logWidth[fidx];
 //		QList<QGraphicsItem*> lgit(tmpScene.items());
-//		foreach(QGraphicsItem* git, lgit)
+//		for (auto* git : lgit)
 //		{
 //			tmpScene.removeItem(git);
 //			delete git;
@@ -2055,7 +2028,7 @@ void typotek::slotTagAll()
 //			pScene.render(&aPainter);
 //			thePrinter.newPage();
 //			QList<QGraphicsItem*> lgit(pScene.items());
-//			foreach(QGraphicsItem* git, lgit)
+//			for (auto* git : lgit)
 //			{
 //				pScene.removeItem(git);
 //				delete git;
@@ -2138,8 +2111,8 @@ void typotek::slotExportXeTeX()
 	if (fonts.isEmpty())
 		return;
 
-	QString path = QFileDialog::getSaveFileName(this, tr("Export font list as XeTeX"),
-	                                             QDir::homePath(), tr("TeX files (*.tex)"));
+	QString path = QFileDialog::getSaveFileName(this, i18n("Export font list as XeTeX"),
+	                                             QDir::homePath(), i18n("TeX files (*.tex)"));
 	if (path.isEmpty())
 		return;
 
@@ -2168,8 +2141,7 @@ void typotek::setDefaultOTFScript ( const QString& theValue )
 {
 	if(theValue != defaultOTFScript)
 	{
-		QSettings st;
-		st.setValue("OTF/Script" , theValue);
+		FMConfig::setValue(QStringLiteral("OTF/Script"), theValue);
 	}
 	defaultOTFScript = theValue;
 
@@ -2184,8 +2156,7 @@ void typotek::setDefaultOTFLang ( const QString& theValue )
 {
 	if(theValue != defaultOTFLang)
 	{
-		QSettings st;
-		st.setValue("OTF/Lang" , theValue);
+		FMConfig::setValue(QStringLiteral("OTF/Lang"), theValue);
 	}
 	defaultOTFLang = theValue;
 }
@@ -2199,8 +2170,7 @@ void typotek::setDefaultOTFGPOS ( const QStringList& theValue )
 {
 	if(theValue != defaultOTFGPOS)
 	{
-		QSettings st;
-		st.setValue("OTF/GPOS" , theValue.join(";"));
+		FMConfig::setValue(QStringLiteral("OTF/GPOS"), theValue.join(";"));
 	}
 	defaultOTFGPOS = theValue;
 }
@@ -2214,8 +2184,7 @@ void typotek::setDefaultOTFGSUB ( const QStringList& theValue )
 {
 	if(theValue != defaultOTFGSUB)
 	{
-		QSettings st;
-		st.setValue("OTF/GSUB" , theValue.join(";"));
+		FMConfig::setValue(QStringLiteral("OTF/GSUB"), theValue.join(";"));
 	}
 	defaultOTFGSUB = theValue;
 }
@@ -2253,7 +2222,7 @@ void typotek::slotShowTTTables()
 		QDialog dia(this);
 		QGridLayout glayout(&dia);
 		TTTableView tv(theMainView->selectedFont(),&dia);
-		QPushButton pbutton(tr("Close"),&dia);
+		QPushButton pbutton(i18n("Close"),&dia);
 		glayout.addWidget(&tv,0,0,3,3);
 		glayout.addWidget(&pbutton,3,2);
 		pbutton.setDefault(true);
@@ -2308,14 +2277,14 @@ void typotek::slotReloadFiltered()
 	QApplication::changeOverrideCursor(Qt::WaitCursor);
 	QMap<QString, QStringList> tagsRec;
 	FMFontDb *db(FMFontDb::DB());
-	foreach(FontItem* f, theMainView->curFonts())
+	for (auto* f : theMainView->curFonts())
 	{
 		toReload << f->path();
 		tagsRec[f->path()] = f->tags();
 		db->Remove(f->path());
 	}
 	QList<FontItem*> renewedFonts;
-	foreach(QString p, toReload)
+	for (const auto& p : toReload)
 	{
 		FontItem * it(db->Font(p, true));
 		if(it)
@@ -2324,7 +2293,7 @@ void typotek::slotReloadFiltered()
 		}
 	}
 	db->TransactionBegin();
-	foreach(FontItem* it, renewedFonts)
+	for (auto* it : renewedFonts)
 	{
 		it->setTags(tagsRec[it->path()]);
 	}
@@ -2333,7 +2302,9 @@ void typotek::slotReloadFiltered()
 	if(toReload.count() > renewedFonts.count())
 	{
 		//! Number of fonts we failed to reload
-		showStatusMessage(tr("Failed to reload %n fonts", "", toReload.count() - renewedFonts.count()));
+		showStatusMessage(i18np("Failed to reload %1 font",
+		                        "Failed to reload %1 fonts",
+		                        toReload.count() - renewedFonts.count()));
 //		theMainView->slotReloadFontList();
 	}
 	if(!cfName.isEmpty())
@@ -2379,13 +2350,16 @@ void typotek::slotMatchRaster()
 
 void typotek::showToltalFilteredFonts()
 {
-	countFilteredFonts->setText( tr( "Filtered Font(s): %n", "number of filtererd fonts showed in status bar", FMFontDb::DB()->countFilteredFonts() ) );
+	countFilteredFonts->setText( i18ncp( "number of filtererd fonts showed in status bar",
+	                                     "Filtered Font: %1",
+	                                     "Filtered Fonts: %1",
+	                                     FMFontDb::DB()->countFilteredFonts() ) );
 }
 
 void typotek::presentFontName(QString s)
 {
 	curFontPresentation->setText(QString("%1 : <b>%2</b>")
-				     .arg(tr("Current Font", "followed by currently selected font name (in status bar)"))
+				     .arg(i18nc("followed by currently selected font name (in status bar)", "Current Font"))
 				     .arg(s));
 }
 
@@ -2427,13 +2401,13 @@ void typotek::setWebBrowserOptions ( const QString& theValue )
 
 void typotek::hide()
 {
-	foreach(const QString& k, dockWidget.keys())
+	for (const auto& k : dockWidget.keys())
 	{
 		dockVisible[k] = dockWidget[k]->isVisible();
 		dockWidget[k]->hide();
 	}
 	visibleFloatingWidgets.clear();
-	foreach(FloatingWidget* f, FloatingWidgetsRegister::AllWidgets())
+	for (auto* f : FloatingWidgetsRegister::AllWidgets())
 	{
 		visibleFloatingWidgets[f] = f->isVisible();
 		f->setVisible(false);
@@ -2446,11 +2420,11 @@ void typotek::hide()
 
 void typotek::show()
 {
-	foreach(const QString& k, dockWidget.keys())
+	for (const auto& k : dockWidget.keys())
 	{
 		dockWidget[k]->setVisible(dockVisible[k]);
 	}
-	foreach(FloatingWidget *f, visibleFloatingWidgets.keys())
+	for (auto* f : visibleFloatingWidgets.keys())
 	{
 		f->setVisible(visibleFloatingWidgets[f]);
 	}
@@ -2458,11 +2432,6 @@ void typotek::show()
 	PlayWidget::getInstance()->setVisible(playVisible);
 
 	QMainWindow::show();
-}
-
-void typotek::setInfoStyle ( const QString& theValue )
-{
-	infoStyle = theValue;
 }
 
 QString typotek::word(FontItem * item, const QString& alt)
@@ -2493,7 +2462,7 @@ void typotek::updateFloatingStatus()
 	viewMenu->removeAction(floatSep);
 
 	QList<FloatingWidget*> fwl(FloatingWidgetsRegister::AllWidgets());
-	foreach(FloatingWidget* f, floatingWidgets.keys())
+	for (auto* f : floatingWidgets.keys())
 	{
 		if(!fwl.contains(f))
 		{
@@ -2502,7 +2471,7 @@ void typotek::updateFloatingStatus()
 		}
 	}
 
-	foreach(FloatingWidget* f, fwl)
+	for (auto* f : fwl)
 	{
 		if(floatingWidgets.contains(f))
 		{
@@ -2534,7 +2503,7 @@ void typotek::updateFloatingStatus()
 
 void typotek::closeAllFloatings()
 {
-	foreach(FloatingWidget* f, floatingWidgets.keys())
+	for (auto* f : floatingWidgets.keys())
 	{
 		f->close();
 	}
@@ -2542,7 +2511,7 @@ void typotek::closeAllFloatings()
 
 void typotek::showAllFloatings()
 {
-	foreach(FloatingWidget* f, floatingWidgets.keys())
+	for (auto* f : floatingWidgets.keys())
 	{
 		f->setVisible(true);
 	}
@@ -2550,7 +2519,7 @@ void typotek::showAllFloatings()
 
 void typotek::hideAllFloatings()
 {
-	foreach(FloatingWidget* f, floatingWidgets.keys())
+	for (auto* f : floatingWidgets.keys())
 	{
 		f->setVisible(false);
 	}

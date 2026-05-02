@@ -24,7 +24,7 @@ class FMMatchRaster : public QDialog , private Ui::MatchRasterDialog
 	Q_OBJECT
 	public:
 		FMMatchRaster(QWidget * parent);
-		~FMMatchRaster();
+		~FMMatchRaster() override;
 	private:
 		QRect curRect;
 		QRgb curCol;
@@ -46,8 +46,8 @@ class FMMatchRaster : public QDialog , private Ui::MatchRasterDialog
 		QImage autoCrop(const QImage& img);
 
 	protected:
-		void moveEvent ( QMoveEvent * event );
-		void resizeEvent ( QResizeEvent * event );
+		void moveEvent ( QMoveEvent * event ) override;
+		void resizeEvent ( QResizeEvent * event ) override;
 		
 	private slots:
 		void browseImage();

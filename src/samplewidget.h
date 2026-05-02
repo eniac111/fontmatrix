@@ -61,7 +61,7 @@ class FMLayoutThread : public QThread
 
 public:
 	void setLayout(FMLayout * l, const QList<GlyphList>& spec , double fs, FontItem * f, unsigned int hinting);
-	void run();
+	void run() override;
 };
 
 class SampleWidget : public FloatingWidget
@@ -103,15 +103,15 @@ public:
 	};
 
 	static const QString Name;
-	explicit SampleWidget(const QString& fid, QWidget *parent = 0);
-	~SampleWidget();
+	explicit SampleWidget(const QString& fid, QWidget *parent = nullptr);
+	~SampleWidget() override;
 
 	QGraphicsScene* textScene() const;
 	State state() const;
 	void setState(const State& s);
 
 protected:
-	void changeEvent(QEvent *e);
+	void changeEvent(QEvent *e) override;
 	void refillSampleList();
 	unsigned int hinting();
 

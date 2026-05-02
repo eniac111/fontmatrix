@@ -14,6 +14,7 @@
 #include "fontitem.h"
 #include "typotek.h"
 #include "fmfontdb.h"
+#include <KLocalizedString>
 
 // #define RECORD_MY_REMIX
 #ifdef RECORD_MY_REMIX
@@ -21,18 +22,18 @@
 #include <QPainter>
 #endif
 
-#include <QSettings>
+#include "fmconfig.h"
+
 #include <QDebug>
 
-FontCompareWidget* FontCompareWidget::instance = 0;
+FontCompareWidget* FontCompareWidget::instance = nullptr;
 
 FontCompareWidget::FontCompareWidget(QWidget * parent)
 	:QWidget(parent),neverUsed(true)
 {
 	setupUi(this);
-	QSettings settings;
-	int maxOffset(settings.value("Compare/MaxOffset", 2000).toInt());
-	settings.setValue("Compare/MaxOffset",maxOffset);
+	int maxOffset(FMConfig::value(QStringLiteral("Compare/MaxOffset"), 2000).toInt());
+	FMConfig::setValue(QStringLiteral("Compare/MaxOffset"), maxOffset);
 	compareOffset->setRange(0, maxOffset);
 	initColors();
 	doconnect();
@@ -45,9 +46,9 @@ FontCompareWidget::~ FontCompareWidget()
 
 FontCompareWidget* FontCompareWidget::getInstance()
 {
-	if(instance == 0)
+	if(instance == nullptr)
 	{
-		instance = new FontCompareWidget(0);
+		instance = new FontCompareWidget(nullptr);
 		Q_ASSERT(instance);
 	}
 	return instance;
@@ -55,7 +56,6 @@ FontCompareWidget* FontCompareWidget::getInstance()
 
 void FontCompareWidget::initColors()
 {
-	QSettings settings;
 	QStringList defaultColors;
 	defaultColors << "aqua" 
 			<< "brown" 
@@ -70,19 +70,19 @@ void FontCompareWidget::initColors()
 			<< "midnightblue" 
 			<< "red" ;
 	QPixmap px(32,32);
-	compareFillColor->addItem(tr("None", "No fill color in comprae glyph"), "transparent");
+	compareFillColor->addItem(i18nc("No fill color in comprae glyph", "None"), "transparent");
 	QString colorN("Compare/color%1");
 	for(int i(0); i < 12; ++i)
 	{
-		QString colStr(settings.value(colorN.arg(i), defaultColors[i]).toString());
+		QString colStr(FMConfig::value(colorN.arg(i), defaultColors[i]).toString());
 		QColor col(colStr);
 		px.fill(col);
 		compareFillColor->addItem(QIcon(px), colStr, col.name());
 	}
 	for(int i(0); i < 12; ++i)
 	{
-		QString colStr(settings.value(colorN.arg(i), defaultColors[i]).toString());
-		settings.setValue(colorN.arg(i), colStr);// as usual, we write it back to settings so user (me as well ;)) can see it if he opens the config file
+		QString colStr(FMConfig::value(colorN.arg(i), defaultColors[i]).toString());
+		FMConfig::setValue(colorN.arg(i), colStr);// as usual, we write it back to settings so user (me as well ;)) can see it if he opens the config file
 	}
 }
 
@@ -160,8 +160,8 @@ void FontCompareWidget::addFont()
 	int curCIdx(0);
 	for(int co(1); co <= cn; co++)
 	{
-		if(cc <= curcode)
-			curCIdx = co; 
+		if(static_cast<uint>(cc) <= curcode)
+			curCIdx = co;
 		compareCharBox->addItem(QString("%1  (U+%2)").arg(QChar(cc)).arg(cc,4,16,QChar('0')),cc);
 		cc = f->nextChar(cc,1);
 	}
@@ -344,7 +344,7 @@ void FontCompareWidget::characterBoxChange(int i)
 	}
 }
 
-void FontCompareWidget::fontChange(QListWidgetItem * witem, QListWidgetItem * olditem)
+void FontCompareWidget::fontChange(QListWidgetItem * witem, QListWidgetItem * )
 {
 	if(!witem)
 	{
@@ -363,7 +363,7 @@ void FontCompareWidget::fontChange(QListWidgetItem * witem, QListWidgetItem * ol
 	for(int co(1); co <= cn; co++)
 	{
 		compareCharBox->addItem( QString("%1  (U+%2)").arg(QChar(cc)).arg(cc,4,16,QChar('0')),cc);
-		if(cc < curcode)
+		if(static_cast<uint>(cc) < curcode)
 		{
 			curCIdx = co;
 		}

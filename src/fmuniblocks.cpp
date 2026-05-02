@@ -19,7 +19,7 @@
 
 #include <QDebug>
 
-FMUniBlocks * FMUniBlocks::instance = 0;
+FMUniBlocks * FMUniBlocks::instance = nullptr;
 FMUniBlocks::FMUniBlocks()
 {
 	loadBlocks();
@@ -132,7 +132,7 @@ QString FMUniBlocks::nextBlock(int & start, int & end)
 	}
 	bool current(false);
 	
-	foreach( bKey k, that()->p.keys() )
+	for (const auto& k : that()->p.keys())
 	{
 		if(current)
 		{
@@ -157,7 +157,7 @@ QString FMUniBlocks::currentBlock(int & start, int & end)
 
 int FMUniBlocks::start(const int & codepoint)
 {
-	foreach(  bKey k, (that()->p.keys()))
+	for (const auto& k : (that()->p.keys()))
 	{
 		if((codepoint >= k.first) 
 				  && (codepoint <= k.second))
@@ -168,7 +168,7 @@ int FMUniBlocks::start(const int & codepoint)
 
 int FMUniBlocks::end(const int & codepoint)
 {
-	foreach(  bKey k , (that()->p.keys()))
+	for (const auto& k : (that()->p.keys()))
 	{
 		if((codepoint >= k.first) 
 				  && (codepoint <= k.second))
@@ -179,7 +179,7 @@ int FMUniBlocks::end(const int & codepoint)
 
 FMUniBlocks::bKey FMUniBlocks::interval(const QString & blockName)
 {
-	foreach(bKey k, that()->p.keys())
+	for (const auto& k : that()->p.keys())
 	{
 		if(that()->p.value(k) == blockName)
 			return k;

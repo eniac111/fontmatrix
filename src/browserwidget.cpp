@@ -29,9 +29,10 @@
 #include "chartwidget.h"
 #include "typotek.h"
 
+#include <KLocalizedString>
 #include <QFileSystemModel>
 #include <QDir>
-#include <QSettings>
+#include "fmconfig.h"
 #include <QFileSystemWatcher>
 #include <QDebug>
 
@@ -45,9 +46,9 @@ BrowserWidget::BrowserWidget(QWidget *parent) :
 	ui->sampleButton->setEnabled(false);
 	ui->chartButton->setEnabled(false);
 
-	folderViewContextMenu = 0;
+	folderViewContextMenu = nullptr;
 	currentPage = BROWSER_VIEW_SAMPLE;
-	sample = chart = 0;
+	sample = chart = nullptr;
 	ffilter << "*.otf" << "*.ttf" << "*.ttc" << "*.pfb";
 	theDirModel = new QFileSystemModel(this);
 	theDirModel->setNameFilters(ffilter);
@@ -60,8 +61,7 @@ BrowserWidget::BrowserWidget(QWidget *parent) :
 	ui->browserView->hideColumn(3);
 	ui->browserView->setContextMenuPolicy(Qt::CustomContextMenu);
 
-	QSettings settings;
-	QString lastUsedDir = settings.value("Places/LastUsedFolder", QDir::homePath()).toString();
+	QString lastUsedDir = FMConfig::value(QStringLiteral("Places/LastUsedFolder"), QDir::homePath()).toString();
 	QDir d(lastUsedDir);
 	if (!d.exists())
 		lastUsedDir = QDir::homePath();
@@ -73,7 +73,7 @@ BrowserWidget::BrowserWidget(QWidget *parent) :
 		hierarchy.prepend(luIdx);
 		luIdx = luIdx.parent();
 	}
-	foreach(QModelIndex idx, hierarchy)
+	for (const auto& idx : hierarchy)
 		ui->browserView->expand(idx);
 
 	dirWatcher = new QFileSystemWatcher(this);
@@ -141,11 +141,11 @@ void BrowserWidget::slotFolderItemclicked(QModelIndex mIdx)
 			QString fid(pf.absoluteFilePath());
 			if(fid != curVariant)
 			{
-				if(chart != 0)
+				if(chart != nullptr)
 					uniBlock = reinterpret_cast<ChartWidget*>(chart)->currentBlock();
 				delete sample;
 				delete chart;
-				sample = chart = 0;
+				sample = chart = nullptr;
 				curVariant = fid;
 //				currentIndex = index.row();
 				switch(currentPage)
@@ -199,8 +199,7 @@ void BrowserWidget::settingsDir(const QString &path)
 	if (fi.isFile())
 		dirPath = fi.absoluteDir().absolutePath();
 
-	QSettings settings;
-	settings.setValue("Places/LastUsedFolder", dirPath);
+	FMConfig::setValue(QStringLiteral("Places/LastUsedFolder"), dirPath);
 
 	s = path;
 }
@@ -209,7 +208,7 @@ void BrowserWidget::settingsDir(const QString &path)
 void BrowserWidget::slotShowInfo()
 {
 	FMInfoDisplay fid(FMFontDb::DB()->Font(curVariant));
-	ui->webView->setContent(fid.getHtml().toUtf8(), "application/xhtml+xml");
+	ui->webView->setHtml(fid.getHtml());
 	ui->displayStack->setCurrentIndex(BROWSER_VIEW_INFO);
 	currentPage = BROWSER_VIEW_INFO;
 	updateButtons();
@@ -218,9 +217,9 @@ void BrowserWidget::slotShowInfo()
 void BrowserWidget::slotShowChart()
 {
 	FloatingWidget * fw(FloatingWidgetsRegister::Widget(curVariant, ChartWidget::Name));
-	if(fw == 0)
+	if(fw == nullptr)
 	{
-		if(0 == chart)
+		if(nullptr == chart)
 		{
 			ChartWidget *cw(new ChartWidget(curVariant, uniBlock, ui->pageChart));
 			ui->displayStack->insertWidget(BROWSER_VIEW_CHART, cw);
@@ -241,9 +240,9 @@ void BrowserWidget::slotShowChart()
 void BrowserWidget::slotShowSample()
 {
 	FloatingWidget * fw(FloatingWidgetsRegister::Widget(curVariant, SampleWidget::Name));
-	if(fw == 0)
+	if(fw == nullptr)
 	{
-		if(0 == sample)
+		if(nullptr == sample)
 		{
 			SampleWidget *sw(new SampleWidget(curVariant, ui->pageSample));
 			ui->displayStack->insertWidget(BROWSER_VIEW_SAMPLE, sw);
@@ -263,14 +262,14 @@ void BrowserWidget::slotShowSample()
 void BrowserWidget::slotDetachChart()
 {
 	disconnect(chart, SIGNAL(detached()), this, SLOT(slotDetachChart()));
-	chart = 0;
+	chart = nullptr;
 	slotShowInfo();
 }
 
 void BrowserWidget::slotDetachSample()
 {
 	disconnect(sample, SIGNAL(detached()), this, SLOT(slotDetachSample()));
-	sample = 0;
+	sample = nullptr;
 	slotShowInfo();
 }
 
@@ -302,12 +301,12 @@ void BrowserWidget::updateButtons()
 		buttons << ui->sampleButton
 				<< ui->infoButton
 				<< ui->chartButton;
-		foreach(QToolButton * b, buttons)
+		for (auto* b : buttons)
 		{
 			b->setCheckable(true);
 		}
 	}
-	foreach(QToolButton * b, buttons)
+	for (auto* b : buttons)
 	{
 		b->setChecked(false);
 	}
@@ -331,9 +330,9 @@ void BrowserWidget::slotImport()
 
 FolderViewMenu::FolderViewMenu() : QMenu()
 {
-	dirAction = new QAction(tr("Import Directory"), 0);
-	dirRecursiveAction = new QAction(tr("Import recursively"), 0);
-	fileAction = new QAction(tr("Import File"), 0);
+	dirAction = new QAction(i18n("Import Directory"), nullptr);
+	dirRecursiveAction = new QAction(i18n("Import recursively"), nullptr);
+	fileAction = new QAction(i18n("Import File"), nullptr);
 
 	addAction(dirAction);
 	addAction(dirRecursiveAction);
@@ -373,7 +372,7 @@ void FolderViewMenu::slotImportDir()
 //		return;
 //	QString lastItem = fontList.at(fontList.count() - 1);
 //	fontList.removeAt(fontList.count() - 1);
-//	foreach(QString tmpFontPath, fontList) {
+//	for (const auto& tmpFontPath : fontList) {
 //		QString absPath = dir.absolutePath() + "/" + tmpFontPath;
 //		typotek::getInstance()->open(absPath, false, true);
 //	}

@@ -16,6 +16,7 @@
 #include "fontitem.h"
 #include "typotek.h"
 
+#include <KLocalizedString>
 #include <QDebug>
 #include <QFile>
 #include <QDomDocument>
@@ -24,7 +25,7 @@
 
 
 
-FMActivate* FMActivate::instance = 0;
+FMActivate* FMActivate::instance = nullptr;
 
 FMActivate::FMActivate()
 {
@@ -34,17 +35,17 @@ FMActivate::FMActivate()
 void FMActivate::setErrorStrings()
 {
 	//: Activation subroutine failed to make a symbolic link to the font file
-	errorStrings[NO_LINK] = tr("Unable to link");
+	errorStrings[NO_LINK] = i18n("Unable to link");
 	//: The Font asked for activation is already activated
-	errorStrings[ALREADY_ACTIVE] = tr("Font already activated");
+	errorStrings[ALREADY_ACTIVE] = i18n("Font already activated");
 	//: Activation subroutine failed to remove a symbolic link to the font file
-	errorStrings[NO_UNLINK] = tr("Unable to un-link");
+	errorStrings[NO_UNLINK] = i18n("Unable to un-link");
 	//: The Font asked for de-activation is already de-activated
-	errorStrings[ALREADY_UNACTIVE] = tr("Font already de-activated");
+	errorStrings[ALREADY_UNACTIVE] = i18n("Font already de-activated");
 	//: A postcript font (pfb) without its metrics file (afm)
-	errorStrings[MISSING_AFM] = tr("Cannot link or copy the metrics file");
+	errorStrings[MISSING_AFM] = i18n("Cannot link or copy the metrics file");
 	//: A generic error in activation or deactivation process
-	errorStrings[ERROR] = tr("Error", "activation");
+	errorStrings[ERROR] = i18nc("activation", "Error");
 }
 
 FMActivate * FMActivate::getInstance()
@@ -64,7 +65,7 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 	// TODO insert error messages.
 	QMap<FontItem*, bool> stack;
 	typotek *T(typotek::getInstance());
-	foreach(FontItem * fit , fitList)
+	for (auto* fit : fitList)
 	{
 		qDebug() << "Activation of " << fit->path() << act;
 		if ( act ) // Activation
@@ -157,7 +158,7 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 
 	QStringList aList;
 	FMFontDb::DB()->TransactionBegin();
-	foreach(FontItem* f, stack.keys())
+	for (auto* f : stack.keys())
 	{
 		f->setActivated(stack[f]);
 		aList << f->path();
@@ -167,7 +168,7 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 	emit activationEvent ( aList );
 }
 
-#elif _WIN32
+#elif defined(_WIN32)
 
 void FMActivate::activate(QList<FontItem*> fitList, bool act)
 {
@@ -180,7 +181,7 @@ void FMActivate::activate(QList< FontItem * > fitList, bool act)
 {
 	QMap<FontItem*, bool> stack;
 	typotek *T(typotek::getInstance());
-	foreach(FontItem * fit , fitList)
+	for (auto* fit : fitList)
 	{
 		if ( act ) // Activation
 		{
@@ -270,7 +271,7 @@ void FMActivate::activate(QList< FontItem * > fitList, bool act)
 	
 	QStringList aList;
 	FMFontDb::DB()->TransactionBegin();
-	foreach(FontItem* f, stack.keys())
+	for (auto* f : stack.keys())
 	{
 		f->setActivated(stack[f]);
 		aList << f->path();

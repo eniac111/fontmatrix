@@ -115,7 +115,7 @@ class FMOtf
 
 //   uint get_position(int,GlyphLayout *);
 //   uint presentAlternates(HB_UInt, HB_UShort, QList<HB_UShort>);
-		GlyphList get_position ( HB_Buffer abuffer = 0 );
+		GlyphList get_position ( HB_Buffer abuffer = nullptr );
 
 	FT_Face face() const
 	{

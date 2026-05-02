@@ -23,7 +23,7 @@ FMKernFeature::FMKernFeature ( FT_Face face )
 		:p_face ( face )
 {
 	FT_ULong length = 0;
-	if ( !FT_Load_Sfnt_Table ( face, TTAG_GPOS , 0, NULL, &length ) )
+	if ( !FT_Load_Sfnt_Table ( face, TTAG_GPOS , 0, nullptr, &length ) )
 	{
 		if ( length > 32 )
 		{
@@ -74,7 +74,7 @@ void FMKernFeature::makeCoverage()
 
 	// Extract indices of lookups for feture kern
 	QList<quint16> LookupListIndex;
-	foreach ( quint16 kern, FeatureKern_Offset )
+	for (const auto& kern : FeatureKern_Offset)
 	{
 		quint16 LookupCount ( toUint16 ( kern + 2 ) );
 		if ( out )
@@ -132,7 +132,6 @@ void FMKernFeature::makeCoverage()
 				quint16 RangeCount ( toUint16 ( Coverage_Offset + 2 ) );
 				if ( out )
 					qDebug() <<"\t\t\tRangeCount" <<RangeCount;
-				int gl_base ( 0 );
 				for ( int r ( 0 ); r < RangeCount; ++r )
 				{
 					quint16 rBase ( Coverage_Offset + 4 + ( r * 6 ) );
@@ -241,9 +240,9 @@ void FMKernFeature::makePairs ( quint16 subtableOffset )
 					qint16 Value1 ( toInt16 ( Class2Record + ( C2 * ( 2 * 2 ) ) ) );
 					QList<quint16> Class2 ( Class2Data[C2] );
 					// keep it barbarian :D
-					foreach ( quint16 FirstGlyph, Class1 )
+					for (const auto& FirstGlyph : Class1)
 					{
-						foreach ( quint16 SecondGlyph, Class2 )
+						for (const auto& SecondGlyph : Class2)
 						{
 							if ( Value1 )
 								pairs[FirstGlyph][SecondGlyph] = double ( Value1 );
@@ -264,9 +263,9 @@ void FMKernFeature::makePairs ( quint16 subtableOffset )
 					qint16 Value1 ( toInt16 ( Class2Record + ( C2 * 2 ) ) );
 					QList<quint16> Class2 ( Class2Data[C2] );
 
-					foreach ( quint16 FirstGlyph, Class1 )
+					for (const auto& FirstGlyph : Class1)
 					{
-						foreach ( quint16 SecondGlyph, Class2 )
+						for (const auto& SecondGlyph : Class2)
 						{
 							if ( Value1 )
 								pairs[FirstGlyph][SecondGlyph] = double ( Value1 );
@@ -373,12 +372,12 @@ FMKernFeature::ClassDefTable FMKernFeature::getClass ( quint16 classDefOffset, q
 	else
 		qDebug() <<"Unknown Class Table type";
 	
-// 	foreach(quint16 c, ret.keys())
+// 	for (const auto& c : ret.keys())
 // 	{
 // 		if(c>0)
 // 		{
 // 			QStringList dl;
-// 			foreach(quint16 lg, ret[c])
+// 			for (const auto& lg : ret[c])
 // 			{
 // 				dl << glyphname(lg);
 // 			}

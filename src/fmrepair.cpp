@@ -33,7 +33,7 @@ FmRepair::FmRepair(QWidget *parent)
 
 FmRepair::~ FmRepair()
 {
-// 	foreach(QListWidgetItem* lit , listItems)
+// 	for (auto* lit : listItems)
 // 	{
 // 		if(lit)
 // 			delete lit;
@@ -221,8 +221,8 @@ void FmRepair::slotRelinkActNotLinked()
 	{
 		if(actNotLinkList->item(i)->checkState() == Qt::Checked)
 		{
-			FontItem *font = 0;
-			if(font = FMFontDb::DB()->Font(actNotLinkList->item(i)->text()))
+			FontItem *font = nullptr;
+			if((font = FMFontDb::DB()->Font(actNotLinkList->item(i)->text())))
 			{
 				QFile f(font->path());
 				f.link( t->getManagedDir() + QDir::separator() + font->activationName() );
@@ -240,13 +240,12 @@ void FmRepair::slotRelinkActNotLinked()
 
 void FmRepair::slotDeactivateActNotLinked()
 {
-	typotek *t = typotek::getInstance();
 	for(int i(0); i < actNotLinkList->count() ; ++i)
 	{
 		if(actNotLinkList->item(i)->checkState() == Qt::Checked)
 		{
-			FontItem *font = 0;
-			if(font = FMFontDb::DB()->Font(actNotLinkList->item(i)->text()))
+			FontItem *font = nullptr;
+			if((font = FMFontDb::DB()->Font(actNotLinkList->item(i)->text())))
 			{
 				font->setActivated(false);
 			}
@@ -271,8 +270,8 @@ void FmRepair::slotDelinkDeactLinked()
 	{
 		if(deactLinkList->item(i)->checkState() == Qt::Checked)
 		{
-			FontItem *font = 0;
-			if(font = FMFontDb::DB()->Font(deactLinkList->item(i)->text()))
+			FontItem *font = nullptr;
+			if((font = FMFontDb::DB()->Font(deactLinkList->item(i)->text())))
 			{
 				QFile f(t->getManagedDir() + QDir::separator() + font->activationName());
 				f.remove();
@@ -284,14 +283,12 @@ void FmRepair::slotDelinkDeactLinked()
 
 void FmRepair::slotActivateDeactLinked()
 {
-	typotek *t = typotek::getInstance();
-	
 	for(int i(0); i < deactLinkList->count(); ++i)
 	{
 		if(deactLinkList->item(i)->checkState() == Qt::Checked)
 		{
-			FontItem *font = 0;
-			if(font = FMFontDb::DB()->Font(deactLinkList->item(i)->text()))
+			FontItem *font = nullptr;
+			if((font = FMFontDb::DB()->Font(deactLinkList->item(i)->text())))
 			{
 				font->setActivated(true);
 			}
@@ -307,7 +304,7 @@ void FmRepair::slotActivateDeactLinked()
 void FmRepair::fillUnreferenced()
 {
 	unrefList->clear();
-	foreach(const QString& fid, FMFontDb::DB()->AllFontNames())
+	for (const auto& fid : FMFontDb::DB()->AllFontNames())
 	{
 		if(!QFile::exists(fid))
 		{
@@ -336,9 +333,9 @@ void FmRepair::slotRemoveUnref()
 	{
 		if(unrefList->item(i)->checkState() == Qt::Checked)
 		{
-			FontItem* curItem = 0;
+			FontItem* curItem = nullptr;
 			QString fId(unrefList->item(i)->text());
-			foreach(FontItem* it, flist)
+			for (auto* it : flist)
 			{
 				if(it->path() == fId)
 				{

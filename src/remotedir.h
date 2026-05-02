@@ -44,7 +44,7 @@ class RemoteDir : public QObject
 	};
 
 		RemoteDir ( const QStringList &dirs );
-		~RemoteDir();
+		~RemoteDir() override;
 		
 		void run();
 		QList<FontInfo> rFonts(){return m_fonts;}

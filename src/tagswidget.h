@@ -27,7 +27,7 @@ class TagsWidget : public QWidget , private Ui::tagsWidget
 
 public:
 	TagsWidget(QWidget * parent);
-	~TagsWidget();
+	~TagsWidget() override;
 
 	void prepare(QList<FontItem*> fonts);
 

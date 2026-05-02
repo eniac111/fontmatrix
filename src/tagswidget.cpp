@@ -10,6 +10,7 @@
 //
 //
 
+#include <KLocalizedString>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QMenu>
@@ -65,7 +66,7 @@ void TagsWidget::slotActRemovetag()
 		return;
 	QString currentTag(model->data(idx, Qt::DisplayRole).toString());
 	QString message;
-	message = tr ( "Please confirm that you want to remove\nthe following tag from database:" ) + " " + currentTag;
+	message = i18n( "Please confirm that you want to remove\nthe following tag from database:" ) + " " + currentTag;
 	if ( QMessageBox::question ( typotek::getInstance(),
 	                             "Fontmatrix",
 	                             message ,

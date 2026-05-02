@@ -54,8 +54,8 @@ FMSampleTextView::FMSampleTextView ( QWidget* parent )
 	setInteractive ( false );
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	theRect = 0;
-	fPage = 0;
+	theRect = nullptr;
+	fPage = nullptr;
 	isSelecting = false;
 	isPanning = false;
 	setAlignment ( Qt::AlignTop | Qt::AlignHCenter );
@@ -69,7 +69,7 @@ FMSampleTextView::~FMSampleTextView()
 {
 }
 
-void FMSampleTextView::resizeEvent ( QResizeEvent * event )
+void FMSampleTextView::resizeEvent ( QResizeEvent * )
 {
 	emit refit();
 }

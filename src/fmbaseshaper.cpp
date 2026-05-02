@@ -64,7 +64,7 @@ QMap<QString, int> FMShaperFactory::types()
 }
 
 FMShaperFactory::FMShaperFactory ( FMOtf * o, QString s, SHAPER_TYPE st )
-		:otf ( o ), script ( s ), shaperType ( st ), shaperImpl ( 0 )
+		:shaperType ( st ), otf ( o ), script ( s ), shaperImpl ( nullptr )
 {
 	switch ( shaperType )
 	{

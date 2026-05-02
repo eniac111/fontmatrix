@@ -18,7 +18,7 @@
 #include FT_FREETYPE_H
 #include FT_TRUETYPE_IDS_H
 
-FMEncData * FMEncData::instance = 0;
+FMEncData * FMEncData::instance = nullptr;
 FMEncData::FMEncData()
 {
 	fillLangIdMap();

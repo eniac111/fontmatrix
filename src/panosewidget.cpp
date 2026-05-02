@@ -24,9 +24,10 @@
 #include "fmfontstrings.h"
 #include "fmpaths.h"
 
+#include "fmconfig.h"
+
 #include <QTreeWidgetItem>
 #include <QDir>
-#include <QSettings>
 #include <QIcon>
 #include <QColor>
 #include <QPalette>
@@ -46,11 +47,10 @@ PanoseWidget::PanoseWidget(QWidget *parent) :
 	m_ui->pTree->setPalette(palette);
 
 	const QMap< FontStrings::PanoseKey, QMap<int, QString> >& p(FontStrings::Panose());
-	QSettings settings;
 	QString defaultDir(FMPaths::ResourcesDir() + "Panose/Icons");
-	QString pDir(settings.value("Panose/IconDir", defaultDir).toString() + QDir::separator());
+	QString pDir(FMConfig::value(QStringLiteral("Panose/IconDir"), defaultDir).toString() + QDir::separator());
 
-	foreach(const FontStrings::PanoseKey& k, p.keys())
+	for (const auto& k : p.keys())
 	{
 		QString fn(pDir + QString::number(k) + QDir::separator() + "attribute.png");
 		QTreeWidgetItem  * pItem(new QTreeWidgetItem(m_ui->pTree));
@@ -60,7 +60,7 @@ PanoseWidget::PanoseWidget(QWidget *parent) :
 		if(QFile::exists(fn))
 			pItem->setIcon(0, QIcon(fn));
 
-		foreach(const int& v, p[k].keys())
+		for (const auto& v : p[k].keys())
 		{
 			if(v > 1) // We do not want "Any" and "No Fit"
 			{

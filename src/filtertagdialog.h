@@ -32,11 +32,11 @@ class FilterTagDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit FilterTagDialog(QWidget *parent = 0);
-    ~FilterTagDialog();
+    explicit FilterTagDialog(QWidget *parent = nullptr);
+    ~FilterTagDialog() override;
 
 protected:
-    void changeEvent(QEvent *e);
+    void changeEvent(QEvent *e) override;
 
 private:
     Ui::FilterTagDialog *ui;

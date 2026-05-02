@@ -26,6 +26,7 @@
 #include "fmfontdb.h"
 #include "fmuniblocks.h"
 
+#include <KLocalizedString>
 #include <QStringListModel>
 #include <QCompleter>
 #include <QGraphicsRectItem>
@@ -36,7 +37,9 @@
 #include <QPrinter>
 #include <QPrintDialog>
 
-const QString ChartWidget::Name = QObject::tr("Chart");
+// Registry key used by FloatingWidgetsRegister; stable English identifier,
+// never translated.
+const QString ChartWidget::Name = QStringLiteral("Chart");
 
 ChartWidget::ChartWidget(const QString& fid, const QString& block, QWidget *parent) :
 		FloatingWidget(fid, Name, parent),
@@ -54,11 +57,11 @@ ChartWidget::ChartWidget(const QString& fid, const QString& block, QWidget *pare
 	QCompleter* cslCompleter(new QCompleter(ui->charSearchLine));
 	cslCompleter->setModel(cslModel);
 	ui->charSearchLine->setCompleter(cslCompleter);
-	unMapGlyphName = tr("Un-Mapped Glyphs");
-	allMappedGlyphName = tr("View all mapped glyphs");
+	unMapGlyphName = i18n("Un-Mapped Glyphs");
+	allMappedGlyphName = i18n("View all mapped glyphs");
 	uRangeIsNotEmpty = false;
 	fillUniPlanesCombo(theVeryFont);
-	curGlyph = 0;
+	curGlyph = nullptr;
 	fancyGlyphInUse = -1;
 
 	if(!block.isEmpty())
@@ -148,7 +151,7 @@ void ChartWidget::selectBlock(const QString &uname)
 		int interval = uniPair.second - uniPair.first;
 		coverage = coverage * 100 / ( interval + 1 );// against /0 exception
 
-		QString statstring(tr("Block (%1):").arg( QString::number ( coverage ) + "\%"));
+		QString statstring(i18n("Block (%1):", QString::number ( coverage ) + "%"));
 		ui->unicodeCoverageStat->setText ( statstring );
 
 		theVeryFont->renderAll ( abcScene , uniPair.first, uniPair.second );
@@ -235,7 +238,7 @@ void ChartWidget::slotUpdateGView()
 		int interval = uniPair.second - uniPair.first;
 		coverage = coverage * 100 / ( interval + 1 );// against /0 exception
 
-		QString statstring(tr("Block (%1):").arg( QString::number ( coverage ) + "\%"));
+		QString statstring(i18n("Block (%1):", QString::number ( coverage ) + "%"));
 		ui->unicodeCoverageStat->setText ( statstring );
 
 		theVeryFont->renderAll ( abcScene , uniPair.first, uniPair.second );
@@ -244,7 +247,7 @@ void ChartWidget::slotUpdateGView()
 }
 
 
-void ChartWidget::slotAdjustGlyphView ( int width )
+void ChartWidget::slotAdjustGlyphView ( [[maybe_unused]] int width )
 {
 //	if ( !theVeryFont )
 //		return;
@@ -340,7 +343,7 @@ void ChartWidget::slotSearchCharName()
 		return;
 	}
 
-	foreach(const QString& key, FMUniBlocks::blocks() )
+	for (const auto& key : FMUniBlocks::blocks())
 	{
 		QPair<int,int> p(FMUniBlocks::interval(key));
 		if((cc >= p.first)
@@ -358,7 +361,7 @@ void ChartWidget::slotSearchCharName()
 					ui->abcView->verticalScrollBar()->setValue(sv + ui->abcView->height());
 					sv = ui->abcView->verticalScrollBar()->value();
 				}
-				foreach(QGraphicsItem* sit, abcScene->items())
+				for (auto* sit : abcScene->items())
 				{
 					if((sit->data(1).toString() == "select")
 						&& (sit->data(3).toInt() == cc))
@@ -396,7 +399,7 @@ void ChartWidget::slotSearchCharName()
 				ui->abcView->verticalScrollBar()->setValue(sv + ui->abcView->height());
 				sv = ui->abcView->verticalScrollBar()->value();
 			}
-			foreach(QGraphicsItem* sit, abcScene->items())
+			for (auto* sit : abcScene->items())
 			{
 				if((sit->data(1).toString() == "select")
 					&& (sit->data(3).toInt() == cc))
@@ -484,15 +487,15 @@ void ChartWidget::fillUniPlanesCombo ( FontItem* item )
 void ChartWidget::slotPrint()
 {
 	FontItem *font(FMFontDb::DB()->Font(fontIdentifier));
-	if(font == 0)
+	if(font == nullptr)
 		return;
 
-	if(printer == 0)
+	if(printer == nullptr)
 		printer = new QPrinter(QPrinter::HighResolution);
-	if(printDialog == 0)
+	if(printDialog == nullptr)
 		printDialog = new QPrintDialog(printer, this);
 
-	printDialog->setWindowTitle("Fontmatrix - " + tr("Print Chart") +" - " + font->fancyName() );
+	printDialog->setWindowTitle("Fontmatrix - " + i18n("Print Chart") +" - " + font->fancyName() );
 
 
 	printDialog->open(this, SLOT(slotDoPrinting()));
@@ -528,13 +531,12 @@ void ChartWidget::slotDoPrinting()
 	{
 		qDebug() << "Chart("<< ++numP <<") ->"<<beginCharcode<<maxCharcode;
 		QList<QGraphicsItem*> lgit(pScene.items());
-		foreach(QGraphicsItem* git, lgit)
+		for (auto* git : lgit)
 		{
 			pScene.removeItem(git);
 			delete git;
 		}
 
-		int controlN(maxCharcode - beginCharcode);
 		int stopAtCode( font->renderChart(&pScene, beginCharcode, maxCharcode, sourceR.width(),sourceR.height() ) );
 		qDebug()<< "Control"<<beginCharcode<<stopAtCode;
 

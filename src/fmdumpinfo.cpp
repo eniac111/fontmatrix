@@ -56,11 +56,11 @@ FMDumpInfo::FMDumpInfo(FontItem * font, const QString & model)
 	*/
 	QList<int> llist;
 	llist << 0x0000 << 0x0009 << 0x0409 << 0x0809;
-	foreach(int langid, llist)
+	for (const auto& langid : llist)
 	{
 		if( fim.contains(langid) ) // DEFAULT - generally means english in fact, which is good for our purpose.
 		{
-			foreach(int key, fim[langid].keys())
+			for (const auto& key : fim[langid].keys())
 			{
 				if( !m_info.contains(m_name[key]) )
 					m_info[m_name[key]] = fim[langid][key];
@@ -85,7 +85,7 @@ bool FMDumpInfo::dumpInfo(const QString& filepath)
 	QTextStream ts(&file);
 	QString re(m_model);
 	
-	foreach(QString key, m_info.keys())
+	for (const auto& key : m_info.keys())
 	{
 		re.replace("${"+key+"}", m_info[key]);
 	}

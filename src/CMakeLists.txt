@@ -1,9 +1,8 @@
 # Fontmatrix src/CMakeLists.txt v1
 
-set(QT_LIBRARIES Qt6::Core Qt6::Widgets Qt6::Svg Qt6::SvgWidgets Qt6::Sql Qt6::Xml Qt6::PrintSupport Qt6::WebEngineWidgets)
+set(QT_LIBRARIES Qt6::Core Qt6::Widgets Qt6::Svg Qt6::SvgWidgets Qt6::Sql Qt6::Xml Qt6::PrintSupport)
 
 set(fontmatrix_SRCS
-${CMAKE_CURRENT_SOURCE_DIR}/aboutwidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/activationwidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/activationwidgetitem.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/browserwidget.cpp
@@ -46,6 +45,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmmatchraster.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmmissingfonthelper.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmnamelist.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmotf.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmconfig.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmpaths.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmplayground.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmpreviewlist.cpp
@@ -63,15 +63,12 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fontcomparewidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fontitem.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fontmatrixshaper.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/glyphtosvghelper.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/helpbrowser.cpp
-# ${CMAKE_CURRENT_SOURCE_DIR}/helpwidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/importedfontsdialog.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/importtags.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/iview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/QHexView.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/parallelcoor.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/puzzleviewimp.cpp
-#${CMAKE_CURRENT_SOURCE_DIR}/listdockwidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/mainviewwidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/metawidget.cpp
@@ -89,16 +86,12 @@ ${CMAKE_CURRENT_SOURCE_DIR}/remotedir.cpp
 #${CMAKE_CURRENT_SOURCE_DIR}/savedata.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/sampletoolbar.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/samplewidget.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/schelptreemodel.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/sctextbrowser.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/shortcuts.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/systray.cpp
 # ${CMAKE_CURRENT_SOURCE_DIR}/tagseteditor.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/tagswidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/tagswidget_listmodel.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/textprogression.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/treeitem.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/treemodel.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/tttableview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/typotek.cpp
 )
@@ -123,10 +116,20 @@ IF(PODOFO)
 	SET(PODOFO_SRCS
 	fmpdffontextractor.cpp
 	)
+	# PoDoFo API uses C++ exceptions; re-enable them for this file only.
+	# KDE_SOURCE_FILES_ENABLE_EXCEPTIONS is only available when KDECompilerSettings
+	# is loaded (Linux). On Windows/MSVC exceptions are enabled by default.
+	if(COMMAND KDE_SOURCE_FILES_ENABLE_EXCEPTIONS)
+		KDE_SOURCE_FILES_ENABLE_EXCEPTIONS(${CMAKE_CURRENT_SOURCE_DIR}/fmpdffontextractor.cpp)
+	endif()
 	IF(TARGET podofo::podofo)
+		# podofo 1.0.x CMake config (namespaced target)
 		SET(PODOFO_LINK_LIBS podofo::podofo)
+	ELSEIF(TARGET podofo_shared)
+		# podofo 0.10.x system package (old-style non-namespaced target)
+		SET(PODOFO_LINK_LIBS podofo_shared)
 	ELSE()
-		SET(PODOFO_LINK_LIBS ${PODOFO_LINK_LIBS})
+		SET(PODOFO_LINK_LIBS ${LIBPODOFO_LIBRARY})
 	ENDIF()
 ENDIF(PODOFO)
 
@@ -143,7 +146,6 @@ ${M17N_LIBRARIES}
 
 
 SET(fontmatrix_MOC_HDRS
-aboutwidget.h
 browserwidget.h
 activationwidget.h
 activationwidgetitem.h
@@ -180,12 +182,9 @@ fmsampletextview.h
 fontbookdialog.h
 fontcomparewidget.h
 fontitem.h
-helpbrowser.h
-# helpwidget.h
 importtags.h
 iview.h
 QHexView.h
-#listdockwidget.h
 mainviewwidget.h
 metawidget.h
 modeltext.h
@@ -199,7 +198,6 @@ progressbarduo.h
 remotedir.h
 sampletoolbar.h
 samplewidget.h
-sctextbrowser.h
 shortcuts.h
 systray.h
 # tagseteditor.h
@@ -214,7 +212,6 @@ ${fontmatrix_MOC_HDRS})
 
 
 SET(fontmatrix_UIS
-${CMAKE_CURRENT_SOURCE_DIR}/about.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/activationreportdialog.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/activationwidget.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/activationwidgetitem.ui
@@ -234,10 +231,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/floatingwidgettoolbar.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/fontextractordialog.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/importedfonts.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/importtags.ui
-# ${CMAKE_CURRENT_SOURCE_DIR}/help.ui
-${CMAKE_CURRENT_SOURCE_DIR}/helpbrowser.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/layoutoptions.ui
-#${CMAKE_CURRENT_SOURCE_DIR}/listsdock.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/mainview.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/metawidget.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/matchraster.ui
@@ -254,7 +248,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/tagswidget.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/textprogression.ui
 ${CMAKE_CURRENT_SOURCE_DIR}/tttablewidget.ui
 )
-qt_wrap_ui(fontmatrix_UIS_H
+ki18n_wrap_ui(fontmatrix_UIS_H
 ${fontmatrix_UIS}
 )
 
@@ -269,30 +263,9 @@ application.qrc
 )
 qt_add_resources(fontmatrix_RCC_SRCS ${fontmatrix_RCCS})
 
-FILE( GLOB FM_GLOB_TSS ${CMAKE_CURRENT_SOURCE_DIR}/messages/fontmatrix-*.ts )
-# message(STATUS "lang files: ${FM_GLOB_TSS}")
-IF ( TRANSLATOR )
-	MESSAGE(STATUS "We are glad to see you handle the fontmatrix-${TRANSLATOR}.ts file, thank you very much")
-	ADD_CUSTOM_TARGET(translation
-			COMMAND ${QT_LUPDATE_EXECUTABLE}  ${fontmatrix_SRCS} ${fontmatrix_UIS} ${FONTMATRIX_TR_EXTRA} -ts "fontmatrix-${TRANSLATOR}.ts"
-			DEPENDS ${fontmatrix_SRCS} ${fontmatrix_UIS}
-			WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/messages"
-			)
-	SET( fontmatrix_TSS 
-		${FM_GLOB_TSS} 
-		"messages/fontmatrix-${TRANSLATOR}.ts" )
-ELSE ( TRANSLATOR )
-	SET( fontmatrix_TSS ${FM_GLOB_TSS} )
-ENDIF( TRANSLATOR )
-
-
-
-
-
-qt_add_translation( fontmatrix_QMS ${fontmatrix_TSS} )
-ADD_CUSTOM_TARGET ( translation_release ALL DEPENDS ${fontmatrix_QMS} )
-
-# ADD_SUBDIRECTORY(messages)
+# Translation pipeline lives in po/ at the project root and is wired up via
+# ki18n_install(po) in the top-level CMakeLists.txt. Source strings flow
+# through KLocalizedString (i18n() / i18nc() / i18np()).
 
 include_directories(
 ${CMAKE_CURRENT_SOURCE_DIR}
@@ -325,12 +298,93 @@ IF(UNIX AND NOT APPLE)
 	${FONTCONFIG_LIBRARIES}
 	${SHAPERS_LIBRARIES}
 	${PODOFO_LINK_LIBS}
+	KF6::CoreAddons
+	KF6::I18n
+	KF6::ConfigCore
+	KF6::XmlGui
+	KF6::ConfigWidgets
+	KF6::WidgetsAddons
+	KF6::StatusNotifierItem
+	KF6::DBusAddons
 	)
 
 	INSTALL(TARGETS fontmatrix
 	RUNTIME DESTINATION ${FONTMATRIX_BIN}
 	)
-	INSTALL ( FILES ${fontmatrix_QMS} DESTINATION ${FONTMATRIX_QMDIR} )
+	INSTALL(FILES fontmatrixui.rc DESTINATION "${KDE_INSTALL_KXMLGUIDIR}/fontmatrix")
+
+	# Dev launcher: prepend ${CMAKE_BINARY_DIR}/data to XDG_DATA_DIRS so the
+	# handbook (mirrored by doc/fontmatrix/CMakeLists.txt) is found by
+	# khelpcenter when the binary is run from the build tree.
+	file(GENERATE
+	    OUTPUT  "${CMAKE_BINARY_DIR}/bin/fontmatrix-dev.sh"
+	    CONTENT "#!/bin/sh
+# Auto-generated dev launcher — runs the build-tree binary with XDG_DATA_DIRS
+# pointed at ${CMAKE_BINARY_DIR}/data so F1 finds the handbook without install.
+export XDG_DATA_DIRS=\"${CMAKE_BINARY_DIR}/data:\${XDG_DATA_DIRS:-/usr/local/share:/usr/share}\"
+exec \"${CMAKE_BINARY_DIR}/bin/fontmatrix\" \"\$@\"
+"
+	    FILE_PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+	                     GROUP_READ GROUP_EXECUTE
+	                     WORLD_READ WORLD_EXECUTE
+	)
+
+	# Dev-tree mirror for the app icons. Mirrors src/icons/<size>-<context>-<name>.<ext>
+	# into ${CMAKE_BINARY_DIR}/data/icons/hicolor/<size>/<context>/<name>.<ext> so
+	# QIcon::fromTheme("fontmatrix") resolves when running from build/bin via
+	# the dev launcher (which prepends ${CMAKE_BINARY_DIR}/data to XDG_DATA_DIRS).
+	# Spec format: "<subdir>|<source-filename>|<install-filename>"
+	set(_icon_dev_root "${CMAKE_BINARY_DIR}/data/icons/hicolor")
+	set(_icon_dev_specs
+		"16/apps|16-apps-fontmatrix.png|fontmatrix.png"
+		"22/apps|22-apps-fontmatrix.png|fontmatrix.png"
+		"32/apps|32-apps-fontmatrix.png|fontmatrix.png"
+		"48/apps|48-apps-fontmatrix.png|fontmatrix.png"
+		"64/apps|64-apps-fontmatrix.png|fontmatrix.png"
+		"128/apps|128-apps-fontmatrix.png|fontmatrix.png"
+		"scalable/apps|sc-apps-fontmatrix.svg|fontmatrix.svg"
+		"22/status|22-status-fontmatrix-tray.png|fontmatrix-tray.png"
+		"scalable/status|sc-status-fontmatrix-tray.svg|fontmatrix-tray.svg"
+	)
+	set(_icon_dev_outputs)
+	foreach(_spec IN LISTS _icon_dev_specs)
+		string(REPLACE "|" ";" _parts "${_spec}")
+		list(GET _parts 0 _subdir)
+		list(GET _parts 1 _src)
+		list(GET _parts 2 _dst)
+		set(_src_path "${CMAKE_SOURCE_DIR}/src/icons/${_src}")
+		set(_dst_path "${_icon_dev_root}/${_subdir}/${_dst}")
+		add_custom_command(
+			OUTPUT  "${_dst_path}"
+			COMMAND ${CMAKE_COMMAND} -E make_directory "${_icon_dev_root}/${_subdir}"
+			COMMAND ${CMAKE_COMMAND} -E copy "${_src_path}" "${_dst_path}"
+			DEPENDS "${_src_path}"
+			COMMENT "Mirroring icon ${_src} → hicolor/${_subdir}/${_dst}"
+			VERBATIM
+		)
+		list(APPEND _icon_dev_outputs "${_dst_path}")
+	endforeach()
+	add_custom_target(fontmatrix-icons-devtree ALL DEPENDS ${_icon_dev_outputs})
+
+	# Dev-tree mirror for the .mo translation catalogue. ki18n_install(po)
+	# generates ${CMAKE_BINARY_DIR}/locale/<lang>/LC_MESSAGES/fontmatrix.mo
+	# at build time, but KLocalizedString resolves catalogues via
+	# QStandardPaths::GenericDataLocation/locale — i.e. <XDG_DATA_DIR>/locale.
+	# The dev launcher prepends ${CMAKE_BINARY_DIR}/data to XDG_DATA_DIRS, so
+	# we expose the build-tree locale dir there via a symlink. This is what
+	# makes the "Switch Application Language" dialog (KHelpMenu) discover
+	# every language without `make install`.
+	add_custom_command(
+		OUTPUT  "${CMAKE_BINARY_DIR}/data/locale"
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/data"
+		COMMAND ${CMAKE_COMMAND} -E create_symlink
+		        "${CMAKE_BINARY_DIR}/locale"
+		        "${CMAKE_BINARY_DIR}/data/locale"
+		COMMENT "Linking ${CMAKE_BINARY_DIR}/data/locale → ${CMAKE_BINARY_DIR}/locale"
+		VERBATIM
+	)
+	add_custom_target(fontmatrix-locale-devtree ALL
+		DEPENDS "${CMAKE_BINARY_DIR}/data/locale" pofiles)
 ENDIF(UNIX AND NOT APPLE)
 
 IF(APPLE)
@@ -349,6 +403,14 @@ IF(APPLE)
 	${SHAPERS_LIBRARIES}
 	${PODOFO_LINK_LIBS}
 	"-framework ApplicationServices"
+	KF6::CoreAddons
+	KF6::I18n
+	KF6::ConfigCore
+	KF6::XmlGui
+	KF6::ConfigWidgets
+	KF6::WidgetsAddons
+	KF6::StatusNotifierItem
+	KF6::DBusAddons
 	)
 
 	# here we’ll poupulate the bundle in order to make it
@@ -364,13 +426,13 @@ IF(APPLE)
 
 	SET(PROGNAME fontmatrix)
 
-	SET(MACOSX_BUNDLE_BUNDLE_NAME "fontmatrix")
+	SET(MACOSX_BUNDLE_BUNDLE_NAME "Fontmatrix")
 	SET(MACOSX_BUNDLE_ICON_FILE "fontmatrix.icns")
-	SET(MACOSX_BUNDLE_GUI_IDENTIFIER "org.undertype.fontmatrix")
+	SET(MACOSX_BUNDLE_GUI_IDENTIFIER "io.github.eniac111.fontmatrix")
 	SET(MACOSX_BUNDLE_LONG_VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 	SET(MACOSX_BUNDLE_SHORT_VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}")
 	SET(MACOSX_BUNDLE_BUNDLE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
-	SET(MACOSX_BUNDLE_COPYRIGHT "© Fontmatrix team - 2007, 2008")
+	SET(MACOSX_BUNDLE_COPYRIGHT "© 2007–2026 Fontmatrix contributors")
 
 	SET(BUNDLE_RESOURCES_DIR	"${CMAKE_CURRENT_BINARY_DIR}/${PROGNAME}.app/Contents/Resources/")
 	SET(BUNDLE_LOCALES_DIR		"${CMAKE_CURRENT_BINARY_DIR}/${PROGNAME}.app/Contents/Resources/Locales/")
@@ -379,12 +441,7 @@ IF(APPLE)
 	ADD_CUSTOM_COMMAND( TARGET ${PROGNAME} POST_BUILD
 	COMMAND mkdir ARGS -p ${BUNDLE_RESOURCES_DIR}
 	COMMAND cp ARGS  "${CMAKE_SOURCE_DIR}/src/graphic-resources/fontmatrix.icns" ${BUNDLE_RESOURCES_DIR}
-	COMMAND cp ARGS ${FM_TEMPLATES_FILES} ${FM_STYLE_FILES} ${FM_WELCOME_FILES} ${FM_HELP_FILES} ${BUNDLE_RESOURCES_DIR}
-	)
-# bundles QM files
-	ADD_CUSTOM_COMMAND( TARGET translation_release POST_BUILD
-        COMMAND mkdir ARGS -p ${BUNDLE_LOCALES_DIR}
-        COMMAND cp ARGS ${fontmatrix_QMS} ${BUNDLE_LOCALES_DIR}
+	COMMAND cp ARGS ${FM_TEMPLATES_FILES} ${BUNDLE_RESOURCES_DIR}
 	)
 # bundles libs
 #	ADD_CUSTOM_COMMAND(TARGET ${PROGNAME} POST_BUILD
@@ -426,10 +483,17 @@ IF(WIN32)
 	${FREETYPE_LIBRARIES}
 	${SHAPERS_LIBRARIES}
 	${PODOFO_LINK_LIBS}
+	KF6::CoreAddons
+	KF6::I18n
+	KF6::ConfigCore
+	KF6::XmlGui
+	KF6::ConfigWidgets
+	KF6::WidgetsAddons
+	KF6::StatusNotifierItem
+	KF6::DBusAddons
 	)
 
 	INSTALL(TARGETS fontmatrix
 	RUNTIME DESTINATION ${FONTMATRIX_BIN}
 	)
-	INSTALL ( FILES ${fontmatrix_QMS} DESTINATION ${FONTMATRIX_QMDIR} )
 ENDIF(WIN32)

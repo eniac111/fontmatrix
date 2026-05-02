@@ -23,7 +23,7 @@
 #include "fmpaths.h"
 #include "fmfontstrings.h"
 
-#include <QSettings>
+#include "fmconfig.h"
 #include <QDir>
 #include <QFile>
 
@@ -33,10 +33,9 @@ PanoseAttributeModel::PanoseAttributeModel(QObject * parent)
 		:QAbstractListModel(parent)
 {
 	const QMap< FontStrings::PanoseKey, QMap<int, QString> >& p(FontStrings::Panose());
-	QSettings settings;
 	QString defaultDir(FMPaths::ResourcesDir() + "Panose/Icons");
-	QString pDir(settings.value("Panose/IconDir", defaultDir).toString() + QDir::separator());
-	foreach(const FontStrings::PanoseKey& k, p.keys())
+	QString pDir(FMConfig::value(QStringLiteral("Panose/IconDir"), defaultDir).toString() + QDir::separator());
+	for (const auto& k : p.keys())
 	{
 		QString fn(pDir + QString::number(k) + QDir::separator() + "attribute.png");
 		if(QFile::exists(fn))
@@ -66,7 +65,7 @@ QVariant PanoseAttributeModel::data(const QModelIndex& index, int role) const
 
 }
 
-int PanoseAttributeModel::rowCount(const QModelIndex& parent) const
+int PanoseAttributeModel::rowCount(const QModelIndex& ) const
 {
 	return m_icons.count();
 }
@@ -80,13 +79,12 @@ PanoseValueModel::PanoseValueModel( QObject * parent)
 		:QAbstractListModel(parent)
 {
 	const QMap< FontStrings::PanoseKey, QMap<int, QString> >& p(FontStrings::Panose());
-	QSettings settings;
 	QString defaultDir(FMPaths::ResourcesDir() + "Panose/Icons");
-	QString pDir(settings.value("Panose/IconDir", defaultDir).toString() + QDir::separator());
+	QString pDir(FMConfig::value(QStringLiteral("Panose/IconDir"), defaultDir).toString() + QDir::separator());
 
-	foreach(const FontStrings::PanoseKey& k, p.keys())
+	for (const auto& k : p.keys())
 	{
-		foreach(const int& v, p[k].keys())
+		for (const auto& v : p[k].keys())
 		{
 			if(v > 1) // We do not want "Any" and "No Fit"
 			{
@@ -112,7 +110,7 @@ void PanoseValueModel::setCat(const int& cat)
 }
 
 
-int PanoseValueModel::rowCount(const QModelIndex& parent) const
+int PanoseValueModel::rowCount(const QModelIndex& ) const
 {
 	return m_names[m_cat].count();
 }

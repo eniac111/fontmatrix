@@ -21,7 +21,7 @@ class FMLayOptWidget : public QWidget , private Ui::LayoutOptionWidget
 	public:
 		enum V{BEFORE = 1, EXACT, AFTER, END, HYPHEN, SPACE, MAX};
 		
-		FMLayOptWidget(QWidget * parent = 0);
+		FMLayOptWidget(QWidget * parent = nullptr);
 		
 		int vToInt(V v){return v;}
 		void setRange(V v, int min, int max);

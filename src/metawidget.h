@@ -43,13 +43,13 @@ class MetaWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MetaWidget(QWidget *parent = 0);
-    ~MetaWidget();
+    explicit MetaWidget(QWidget *parent = nullptr);
+    ~MetaWidget() override;
 
     QMap<int, QString> resultMap;
 
 protected:
-    void changeEvent(QEvent *e);
+    void changeEvent(QEvent *e) override;
 
 private:
     Ui::MetaWidget *ui;

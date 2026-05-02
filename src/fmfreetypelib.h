@@ -34,7 +34,7 @@ class FMFreetypeLib : public QObject
 
 	static FMFreetypeLib * instance;
 	static FMFreetypeLib * that();
-	explicit FMFreetypeLib(QObject *parent = 0);
+	explicit FMFreetypeLib(QObject *parent = nullptr);
 
 	QMap<QThread *, FT_Library> libraries;
 	QMutex *mutex;

@@ -24,7 +24,7 @@
 
 
 
-FMFontDb * FMFontDb::instance = 0;
+FMFontDb * FMFontDb::instance = nullptr;
 FMFontDb::FMFontDb()
 	:QSqlDatabase ( typotek::getInstance()->getDatabaseDriver() )
 {
@@ -188,9 +188,9 @@ void FMFontDb::setInfoMap ( const QString & id, const QMap< int, QMap < int , QS
 	             .arg(fieldName[InfoValue])*/ );
 	QSqlQuery query ( *this );
 	query.prepare ( qs );
-	foreach ( int lang, info.keys() )
+	for (const auto& lang : info.keys())
 	{
-		foreach ( int key, info[lang].keys() )
+		for (const auto& key : info[lang].keys())
 		{
 			++c;
 			idlist << nId;
@@ -325,10 +325,8 @@ FontInfoMap FMFontDb::getInfoMap ( const QString & id )
 	if ( query.exec() )
 	{
 		int lIdx ( query.record().indexOf ( fieldName[Lang] ) );
-		int iIdx ( query.record().indexOf ( fieldName[Id] ) );
 		int kIdx ( query.record().indexOf ( fieldName[InfoKey] ) );
 		int vIdx ( query.record().indexOf ( fieldName[InfoValue] ) );
-		int maxIdx ( query.record().count() );
 		while ( query.next() )
 		{
 			ret[query.value ( lIdx ).toInt() ][query.value ( kIdx ).toInt() ] = query.value ( vIdx ).toString();
@@ -342,7 +340,7 @@ FontInfoMap FMFontDb::getInfoMap ( const QString & id )
 
 }
 
-QList<FontDBResult> FMFontDb::getInfo ( const QList< FontItem * > & fonts, InfoItem info, int codeLang )
+QList<FontDBResult> FMFontDb::getInfo ( [[maybe_unused]] const QList< FontItem * > & fonts, InfoItem info, int codeLang )
 {
 	QList<FontDBResult> ret;
 	QString where ( QString ( "(%1='%2') AND (%3='%4')" )
@@ -400,7 +398,7 @@ void FMFontDb::addTag(const QStringList & idlist, const QString & t)
 		     .arg ( fieldName[Tags] ) );
 	QSqlQuery query ( *this );
 	query.prepare ( qs );
-	foreach ( QString id, idlist)
+	for (const auto& id : idlist)
 	{
 		nidlist << getId ( id );
 		taglist << t;
@@ -438,7 +436,7 @@ void FMFontDb::setTags ( const QString & id, const QStringList & tl )
 	QSqlQuery query ( qs,*this );
 	query.exec();
 	// 	TransactionBegin();
-	foreach ( QString t, tl )
+	for (const auto& t : tl)
 	{
 		addTag ( id, t );
 	}
@@ -525,7 +523,7 @@ void FMFontDb::initFMDb()
 
 	QStringList tl ( tables ( QSql::Tables ) );
 	bool allIsAlreadyHere ( true );
-	foreach ( QString tn, tableName.values() )
+	for (const auto& tn : tableName.values())
 	{
 		if ( !tl.contains ( tn ) )
 		{
@@ -663,7 +661,6 @@ void FMFontDb::initFMDb()
 		{
 			int anId ( 0 );
 			QString path;
-			int counter ( 0 );
 			bool act ( false );
 			while ( query.next() )
 			{
@@ -691,7 +688,7 @@ int FMFontDb::getId ( const QString & fontid )
 FontItem * FMFontDb::Font ( const QString & id , bool noTemporary )
 {
 	// 	qDebug() <<"Font"<<id;
-	FontItem * fitem ( 0 );
+	FontItem * fitem ( nullptr );
 	if ( id.isEmpty() )
 		return fitem;
 	if ( temporaryFont.contains(id) )
@@ -730,14 +727,14 @@ FontItem * FMFontDb::Font ( const QString & id , bool noTemporary )
 			else
 			{
 				delete fitem;
-				fitem = 0;
+				fitem = nullptr;
 				qDebug() <<"ERROR creating font item"<<id;
 			}
 		}
 		else
 		{
 			delete fitem;
-			fitem = 0;
+			fitem = nullptr;
 			qDebug() <<"ERROR creating font item"<<id;
 		}
 	}
@@ -760,7 +757,7 @@ QStringList FMFontDb::AllFontNames()
 QList< FontItem * > FMFontDb::FamilySet(const QString& family)
 {
 	QList< FontItem * > ret;
-	foreach(FontItem * f, fontMap.values())
+	for (auto* f : fontMap.values())
 	{
 		if(f->family() == family)
 			ret << f;
@@ -801,7 +798,7 @@ bool FMFontDb::TransactionEnd()
 	{
 		bool cestGraveDocteur ( false );
 		qDebug() <<"ERRORS ==========================================================================";
-		foreach ( QSqlError e,transactionError )
+		for (const auto& e : transactionError)
 		{
 			qDebug() <<e;
 			if ( e.isValid () )
@@ -856,7 +853,7 @@ QList< FontItem * > FMFontDb::Fonts ( const QVariant & pattern, Field field )
 
 QList< FontItem * > FMFontDb::Fonts ( const QVariant & pattern, InfoItem info, int codeLang )
 {
-	QString qs ( QString ( "(%1='%2') AND (%3='%4') AND (%5 LIKE '\%%6\%')" )
+	QString qs ( QString ( "(%1='%2') AND (%3='%4') AND (%5 LIKE '%%6%')" )
 	             .arg ( fieldName[InfoKey] )
 	             .arg ( info )
 	             .arg ( fieldName[Lang] )
@@ -1007,7 +1004,7 @@ QList<FontItem*> FMFontDb::getFilteredFonts(bool familyOnly)
 	if(currentFamiliesCache.isEmpty() && (!currentFonts.isEmpty()))
 	{
 		QMap<QString, QList< FontItem* > > pools;
-		foreach(FontItem* it, currentFonts)
+		for (auto* it : currentFonts)
 		{
 			if(pools.contains(it->family()))
 				pools[it->family()].append(it);
@@ -1019,10 +1016,10 @@ QList<FontItem*> FMFontDb::getFilteredFonts(bool familyOnly)
 			}
 		}
 
-		foreach(const QString& k, pools.keys())
+		for (const auto& k : pools.keys())
 		{
 			FontItem* sel = pools[k].first();
-			foreach(FontItem* it, pools[k])
+			for (auto* it : pools[k])
 			{
 				if(priorList.contains(it->variant(), Qt::CaseInsensitive))
 				{
@@ -1051,7 +1048,7 @@ int FMFontDb::countFilteredFonts() const
 
 void FMFontDb::insertFilteredFont(FontItem *item)
 {
-	if((item != 0) && (!currentFonts.contains(item)))
+	if((item != nullptr) && (!currentFonts.contains(item)))
 	{
 		currentFonts.append(item);
 		currentFamiliesCache.clear();
@@ -1060,7 +1057,7 @@ void FMFontDb::insertFilteredFont(FontItem *item)
 
 void FMFontDb::removeFilteredFont(FontItem *item)
 {
-	if(item != 0)
+	if(item != nullptr)
 	{
 		currentFonts.removeAll(item);
 		currentFamiliesCache.clear();

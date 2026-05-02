@@ -61,7 +61,7 @@ void ActivationWidgetItem::changeEvent(QEvent *e)
 void ActivationWidgetItem::activate(bool a)
 {
 	FontItem * f(FMFontDb::DB()->Font(fileName));
-	if(f == 0)
+	if(f == nullptr)
 		return;
 	if(a != f->isActivated())
 	{

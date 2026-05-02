@@ -32,8 +32,8 @@ class PanoseAttributeModel : public QAbstractListModel
 public:
 	PanoseAttributeModel(QObject * parent);
 
-	virtual QVariant data(const QModelIndex& index, int role) const;
-	virtual int rowCount(const QModelIndex& parent) const;
+	QVariant data(const QModelIndex& index, int role) const override;
+	int rowCount(const QModelIndex& parent) const override;
 
 private:
 	QStringList m_names;
@@ -47,8 +47,8 @@ class PanoseValueModel : public QAbstractListModel
 public:
 	PanoseValueModel(QObject * parent);
 
-	virtual QVariant data(const QModelIndex& index, int role) const;
-	virtual int rowCount(const QModelIndex& parent) const;
+	QVariant data(const QModelIndex& index, int role) const override;
+	int rowCount(const QModelIndex& parent) const override;
 
 	void setCat(const int& cat);
 

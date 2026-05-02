@@ -24,6 +24,7 @@
 #include "fmfontdb.h"
 #include "fmactivate.h"
 
+#include <KLocalizedString>
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -67,14 +68,14 @@ FMFloatingMenu::FMFloatingMenu(QWidget * parent, FontItem * item)
 	bool act(false);
 	if(item && !item->isActivated())
 	{
-		actButton = new QPushButton(tr("Activate"),this);
+		actButton = new QPushButton(i18n("Activate"),this);
 		actButton->setFont(f);
 		menuLayout->addWidget(actButton, 0,2, Qt::AlignRight);
 		connect(actButton, SIGNAL(clicked()),this,SLOT(activateFont()));
 		act = true;
 	}
 
-	closeButton = new QPushButton(tr("close"), this);
+	closeButton = new QPushButton(i18n("close"), this);
 	closeButton->setFont(f);
 	menuLayout->addWidget(closeButton, 0,act?3:2, Qt::AlignRight);
 
@@ -100,7 +101,7 @@ FMFloatingMenu::FMFloatingMenu(QWidget * parent, FontItem * item)
 
 void FMFloatingMenu::childrenVisible(bool v)
 {
-	foreach(QWidget *w, findChildren<QWidget*>())
+	for (auto* w : findChildren<QWidget*>())
 	{
 		w->setVisible(v);
 	}
@@ -185,7 +186,7 @@ void FMFloatingPreview::mousePressEvent(QMouseEvent * e)
 	QApplication::setOverrideCursor(Qt::SizeAllCursor);
 }
 
-void FMFloatingPreview::mouseReleaseEvent(QMouseEvent * e)
+void FMFloatingPreview::mouseReleaseEvent(QMouseEvent * )
 {
 	if(hasMouseGrab)
 		releaseMouse();
@@ -203,12 +204,12 @@ void FMFloatingPreview::mouseMoveEvent(QMouseEvent * e)
 	setGeometry(r);
 }
 
-void FMFloatingPreview::enterEvent(QEvent * e)
+void FMFloatingPreview::enterEvent(QEvent * )
 {
 	menuWidget->childrenVisible(true);
 }
 
-void FMFloatingPreview::leaveEvent(QEvent * e)
+void FMFloatingPreview::leaveEvent(QEvent * )
 {
 	if(hasMouseGrab)
 		releaseMouse();

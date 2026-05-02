@@ -38,8 +38,8 @@ class FiltersDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit FiltersDialog(const QList<FilterItem*>& currentFilter, QWidget *parent = 0);
-    ~FiltersDialog();
+    explicit FiltersDialog(const QList<FilterItem*>& currentFilter, QWidget *parent = nullptr);
+    ~FiltersDialog() override;
 
 private:
     Ui::FiltersDialog *ui;
@@ -48,9 +48,11 @@ private:
     QString filterString(FilterData *d, bool first = false);
     QList<FiltersDialogItem*> items;
 
-    static QString andOpString;
-    static QString notOpString;
-    static QString orOpString;
+    // Lazy-initialised translated strings; static-init i18n() would run before
+    // KLocalizedString::setApplicationDomain() and fall back to source text.
+    static const QString &andOp();
+    static const QString &notOp();
+    static const QString &orOp();
 
 signals:
     void Filter(QString);

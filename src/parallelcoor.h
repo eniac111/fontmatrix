@@ -81,14 +81,14 @@ class ParallelCoorDataSet : public QMap<QString, QList<QString> >
 class ParallelCoorFieldItem : public QGraphicsSimpleTextItem
 {
 	public:
-		ParallelCoorFieldItem(QString text, QGraphicsView* pcv, QGraphicsItem * parent = 0);
-		~ParallelCoorFieldItem(){}
+		ParallelCoorFieldItem(QString text, QGraphicsView* pcv, QGraphicsItem * parent = nullptr);
+		~ParallelCoorFieldItem() override{}
 		
 	protected:
-		void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
-		void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );
-		void mousePressEvent ( QGraphicsSceneMouseEvent * event );
-		void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event );
+		void hoverEnterEvent ( QGraphicsSceneHoverEvent * event ) override;
+		void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event ) override;
+		void mousePressEvent ( QGraphicsSceneMouseEvent * event ) override;
+		void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event ) override;
 		
 	private:
 		QGraphicsView* pview;
@@ -98,18 +98,18 @@ class ParallelCoorFieldItem : public QGraphicsSimpleTextItem
 class ParallelCoorValueItem : public QGraphicsSimpleTextItem
 {
 	public:
-		ParallelCoorValueItem(QString text, QGraphicsView* pcv, QGraphicsItem * parent = 0);
-		~ParallelCoorValueItem(){}
+		ParallelCoorValueItem(QString text, QGraphicsView* pcv, QGraphicsItem * parent = nullptr);
+		~ParallelCoorValueItem() override{}
 		
 		void hoverEnter();
 		void hoverLeave();
 		void click(int mod = 0);
 		
 	protected:
-		void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
-		void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );
-		void mousePressEvent ( QGraphicsSceneMouseEvent * event );
-		void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event );
+		void hoverEnterEvent ( QGraphicsSceneHoverEvent * event ) override;
+		void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event ) override;
+		void mousePressEvent ( QGraphicsSceneMouseEvent * event ) override;
+		void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event ) override;
 		
 	private:
 		QGraphicsView* pview;
@@ -118,14 +118,14 @@ class ParallelCoorValueItem : public QGraphicsSimpleTextItem
 class ParallelCoorBarItem : public QGraphicsLineItem
 {
 	public:
-		ParallelCoorBarItem(const QString& field, QGraphicsView* pcv, QGraphicsItem * parent = 0);
-		~ParallelCoorBarItem(){}	
+		ParallelCoorBarItem(const QString& field, QGraphicsView* pcv, QGraphicsItem * parent = nullptr);
+		~ParallelCoorBarItem() override{}	
 		
 	protected:
-		void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
-		void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );
-		void mousePressEvent ( QGraphicsSceneMouseEvent * event );
-		void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event );
+		void hoverEnterEvent ( QGraphicsSceneHoverEvent * event ) override;
+		void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event ) override;
+		void mousePressEvent ( QGraphicsSceneMouseEvent * event ) override;
+		void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event ) override;
 	private:
 		QGraphicsView* pview;
 		QString attachedField;
@@ -134,14 +134,14 @@ class ParallelCoorBarItem : public QGraphicsLineItem
 class ParallelCoorMarkItem : public QGraphicsPathItem
 {
 	public:
-		ParallelCoorMarkItem(ParallelCoorValueItem* relative, QGraphicsView* pcv, QGraphicsItem * parent = 0);
-		~ParallelCoorMarkItem(){}
+		ParallelCoorMarkItem(ParallelCoorValueItem* relative, QGraphicsView* pcv, QGraphicsItem * parent = nullptr);
+		~ParallelCoorMarkItem() override{}
 		
 	protected:
-		void hoverEnterEvent ( QGraphicsSceneHoverEvent * event );
-		void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event );
-		void mousePressEvent ( QGraphicsSceneMouseEvent * event );
-		void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event );
+		void hoverEnterEvent ( QGraphicsSceneHoverEvent * event ) override;
+		void hoverLeaveEvent ( QGraphicsSceneHoverEvent * event ) override;
+		void mousePressEvent ( QGraphicsSceneMouseEvent * event ) override;
+		void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event ) override;
 		
 	private:
 		QGraphicsView * pview;
@@ -153,9 +153,9 @@ class ParallelCoorView : public QGraphicsView
 {
 	Q_OBJECT
 	public:
-		ParallelCoorView ( QWidget * parent = 0 );
-		ParallelCoorView ( ParallelCoorDataSet * dataset, QWidget * parent = 0 );
-		~ParallelCoorView();
+		ParallelCoorView ( QWidget * parent = nullptr );
+		ParallelCoorView ( ParallelCoorDataSet * dataset, QWidget * parent = nullptr );
+		~ParallelCoorView() override;
 		
 		void selectField(const QString& field);
 		bool matchFilter(QList<int> list) const;
@@ -176,8 +176,8 @@ class ParallelCoorView : public QGraphicsView
 		// main method that redraws all
 		virtual void redraw();
 		
-		void resizeEvent ( QResizeEvent * event );
-		void showEvent ( QShowEvent * event );
+		void resizeEvent ( QResizeEvent * event ) override;
+		void showEvent ( QShowEvent * event ) override;
 	signals:
 		void selectedField(const QString&);
 		void filterChanged();

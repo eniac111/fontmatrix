@@ -32,7 +32,6 @@
 #include "fmpreviewlist.h"
 #include "fmuniblocks.h"
 #include "fontitem.h"
-//#include "listdockwidget.h"
 //#include "opentypetags.h"
 #include "panosematch.h"
 #include "systray.h"
@@ -42,7 +41,9 @@
 #include "tagswidget.h"
 #include "fmutils.h"
 #include "panosewidget.h"
+#include "fmconfig.h"
 
+#include <KLocalizedString>
 #include <cstdlib>
 
 #include <QString>
@@ -62,7 +63,6 @@
 #include <QProgressDialog>
 #include <QMenu>
 #include <QMessageBox>
-#include <QSettings>
 #include <QStringListModel>
 #include <QTime>
 #include <QTimer>
@@ -86,7 +86,7 @@ MainViewWidget::MainViewWidget ( QWidget *parent )
 	quickSearchWidget->setVisible(false);
 
 	quickSearchWait = 4000;
-	quickSearchTimer = 0;
+	quickSearchTimer = nullptr;
 	m_forceReloadSelection = false;
 	FMFontDb::DB()->clearFilteredFonts();
 
@@ -109,15 +109,13 @@ MainViewWidget::MainViewWidget ( QWidget *parent )
 	iconOTF =  QIcon(":/icon-OTF");
 
 	
-	theVeryFont = 0;
+	theVeryFont = nullptr;
 	typo = typotek::getInstance();
-//	m_lists = ListDockWidget::getInstance();
 	// 	currentFonts = typo->getAllFonts();
 	FMFontDb::DB()->filterAllFonts();
 	fontsetHasChanged = true;
 
-	QSettings settings;
-	activateByFamilyOnly = settings.value("ActivateOnlyFamily", false).toBool();
+	activateByFamilyOnly = FMConfig::value(QStringLiteral("ActivateOnlyFamily"), false).toBool();
 
 	currentOrdering = "family" ;
 	doConnect();
@@ -691,7 +689,7 @@ bool MainViewWidget::slotFontSelectedByName (const QString& fname )
 
 		//		slotView ( true );
 		typo->setWindowTitle ( theVeryFont->fancyName() + " - Fontmatrix" );
-//		m_lists->fontTree->headerItem()->setText(0, tr("Names")+" ("+theVeryFont->family()+")");
+//		m_lists->fontTree->headerItem()->setText(0, i18n("Names")+" ("+theVeryFont->family()+")");
 		typo->presentFontName ( theVeryFont->fancyName() );
 		// 		fillTree();
 //		updateTree();
@@ -917,7 +915,7 @@ void MainViewWidget::slotShowFamily(const QModelIndex& familyIdx)
 		return;
 	}
 	QList<FontItem*> fl(FMFontDb::DB()->FamilySet(fItem->family()));
-	foreach(FontItem* f,fl)
+	for (auto* f : fl)
 	{
 		qDebug() <<"F"<< f->fancyName();
 	}
@@ -950,7 +948,7 @@ void MainViewWidget::slotQuitFamily()
 //	{
 //		m_lists->fontTree->clear();
 //		fontsetHasChanged = true;
-//		operateFilter( FMFontDb::DB()->Fonts(1, FMFontDb::Activation ), tr("Activated"));
+//		operateFilter( FMFontDb::DB()->Fonts(1, FMFontDb::Activation ), i18n("Activated"));
 //		currentOrdering = "family";
 //		fillTree();
 //	}
@@ -998,7 +996,7 @@ void MainViewWidget::slotQuitFamily()
 //	{
 //		if(queue)
 //		{
-//			foreach(FontItem* f, negList)
+//			for (auto* f : negList)
 //			{
 //				if(!fmdb->isFiltered(f) && !tmpList.contains(f) && queList.contains(f))
 //					fmdb->insertFilteredFont(f);
@@ -1006,7 +1004,7 @@ void MainViewWidget::slotQuitFamily()
 //		}
 //		else // not queue
 //		{
-//			foreach(FontItem* f, negList)
+//			for (auto* f : negList)
 //			{
 //				if(!fmdb->isFiltered(f) && !tmpList.contains(f))
 //					fmdb->insertFilteredFont(f);
@@ -1017,7 +1015,7 @@ void MainViewWidget::slotQuitFamily()
 //	{
 //		if(queue)
 //		{
-//			foreach(FontItem* f, tmpList)
+//			for (auto* f : tmpList)
 //			{
 //				if(!fmdb->isFiltered(f) && queList.contains(f))
 //					fmdb->insertFilteredFont(f);
@@ -1025,7 +1023,7 @@ void MainViewWidget::slotQuitFamily()
 //		}
 //		else // not queue
 //		{
-//			foreach(FontItem* f, tmpList)
+//			for (auto* f : tmpList)
 //			{
 //				if(!fmdb->isFiltered(f))
 //					fmdb->insertFilteredFont(f);
@@ -1113,7 +1111,7 @@ void MainViewWidget::activation(QList< FontItem * > fit, bool act)
 
 	// TODO check for duplicates before we activate them.
 
-	// we tr("purge") errors;
+	// we i18n("purge") errors;
 	FMActivate::getInstance()->errors();
 	FMActivate::getInstance()->activate(actualF, act);
 	QMap<QString,QString> actErr(FMActivate::getInstance()->errors());
@@ -1170,14 +1168,14 @@ void MainViewWidget::slotRemoveCurrentItem()
 		return;
 	if(theVeryFont->isActivated())
 	{
-		QMessageBox::information(this, tr("Fontmatrix takes care of you"), curItemName + tr(" is activated.\nIf you want to remove it from Fontmatrix database, please deactivate it first."), QMessageBox::Yes );
+		QMessageBox::information(this, i18n("Fontmatrix takes care of you"), curItemName + i18n(" is activated.\nIf you want to remove it from Fontmatrix database, please deactivate it first."), QMessageBox::Yes );
 		return;
 	}
-	if( QMessageBox::question ( this, tr("Fontmatrix safe"), tr("You are about to remove a font from Fontmatrix database") +"\n"+curItemName+"\n" + tr("Do you want to continue?"),QMessageBox::Yes |  QMessageBox::No, QMessageBox::No) == QMessageBox::Yes )
+	if( QMessageBox::question ( this, i18n("Fontmatrix safe"), i18n("You are about to remove a font from Fontmatrix database") +"\n"+curItemName+"\n" + i18n("Do you want to continue?"),QMessageBox::Yes |  QMessageBox::No, QMessageBox::No) == QMessageBox::Yes )
 	{
 		theVeryFont->deRenderAll();
 		FMFontDb::DB()->removeFilteredFont(theVeryFont);
-		theVeryFont  = 0 ;
+		theVeryFont  = nullptr ;
 		typo->removeFontItem(curItemName);
 		curItemName = lastIndex = faceIndex = "";
 		fontsetHasChanged = true;
@@ -1197,18 +1195,10 @@ QString MainViewWidget::sampleName()
 
 void MainViewWidget::saveSplitterState()
 {
-	QSettings settings;
-	//	settings.setValue( "WState/SplitterViewState", splitter_2->saveState());
-//	settings.setValue( "WState/SplitterList1", ListDockWidget::getInstance()->listSplit1->saveState());
-//	settings.setValue( "WState/SplitterList2", ListDockWidget::getInstance()->listSplit2->saveState());
 }
 
 void MainViewWidget::restoreSplitterState()
 {
-	QSettings settings;
-	//	splitter_2->restoreState(settings.value("WState/SplitterViewState").toByteArray());
-//	ListDockWidget::getInstance()->listSplit1->restoreState(settings.value("WState/SplitterList1").toByteArray());
-//	ListDockWidget::getInstance()->listSplit2->restoreState(settings.value("WState/SplitterList2").toByteArray());
 }
 
 

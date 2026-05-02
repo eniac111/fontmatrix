@@ -37,7 +37,7 @@ void FMNameList::keyPressEvent(QKeyEvent * e)
 		  || (t > m_waitKey) )
 	{
 		m_keyString = e->text().toUpper();
-		QTreeWidgetItem *item = 0;
+		QTreeWidgetItem *item = nullptr;
 		for(int i(0); i < topLevelItemCount() ; ++i)
 		{
 			item = topLevelItem(i);

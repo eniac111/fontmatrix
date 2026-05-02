@@ -18,13 +18,14 @@
 #include "fontitem.h"
 #include "fmfontdb.h"
 
+#include <KLocalizedString>
 #include <QScreen>
 #include <QFileDialog>
 #include <QFile>
 #include <QDir>
 #include <QImage>
 #include <QString>
-#include <QSettings>
+#include "fmconfig.h"
 
 #include <QDebug>
 #include <QMessageBox>
@@ -34,14 +35,13 @@ FMMatchRaster::FMMatchRaster ( QWidget * parent )
 		:QDialog ( parent )
 {
 	setupUi ( this );
-	QSettings settings;
-	m_compsize = settings.value ( "MatchRaster/CompareSize", 120 ).toInt();
-	m_matchLimit = settings.value ( "MatchRaster/Limit", 800.0 ).toDouble();
-	m_minRefSize = settings.value ( "MatchRaster/ReferenceSize", 160 ).toInt();
+	m_compsize = FMConfig::value(QStringLiteral("MatchRaster/CompareSize"), 120).toInt();
+	m_matchLimit = FMConfig::value(QStringLiteral("MatchRaster/Limit"), 800.0).toDouble();
+	m_minRefSize = FMConfig::value(QStringLiteral("MatchRaster/ReferenceSize"), 160).toInt();
 
 	m_progressValue = 0;
 	m_waitingForButton = false;
-	waitingFont = 0;
+	waitingFont = nullptr;
 	refCodepoint = 0;
 
 
@@ -79,7 +79,7 @@ void FMMatchRaster::loadImage()
 		iView->setImage ( ifile );
 }
 
-void FMMatchRaster::addImage ( const QString & text )
+void FMMatchRaster::addImage ( const QString & )
 {
 	if ( letter->text().isEmpty() )
 		return;
@@ -89,7 +89,7 @@ void FMMatchRaster::addImage ( const QString & text )
 	refImage = iView->getPixmap().toImage().copy ( curRect );
 	const unsigned int iw(refImage.width());
 	const unsigned int ih(refImage.height());
-	if((iw < m_minRefSize) && (ih < m_minRefSize))
+	if((iw < static_cast<unsigned int>(m_minRefSize)) && (ih < static_cast<unsigned int>(m_minRefSize)))
 	{
 		double dw(iw);
 		double dh(ih);
@@ -99,11 +99,11 @@ void FMMatchRaster::addImage ( const QString & text )
 		dh *= ratio;
 		refImage = refImage.scaled(qRound(dw), qRound(dh), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 	}
-	else if(iw < m_minRefSize)
+	else if(iw < static_cast<unsigned int>(m_minRefSize))
 	{
 		refImage = refImage.scaledToWidth(m_minRefSize, Qt::SmoothTransformation);
 	}
-	else if(ih < m_minRefSize)
+	else if(ih < static_cast<unsigned int>(m_minRefSize))
 	{
 		refImage = refImage.scaledToHeight(m_minRefSize, Qt::SmoothTransformation);
 	}
@@ -134,7 +134,7 @@ void FMMatchRaster::search()
 
 	PuzzleViewImp ref ( refImage , curCol );
 
-	foreach ( FontItem* fit, compFonts )
+	for (auto* fit : compFonts)
 	{
 		progressBar->setValue ( ++m_progressValue );
 		remainFonts.removeAll ( fit );
@@ -157,9 +157,9 @@ void FMMatchRaster::search()
 							compView->setEnabled ( true );
 							compView->setImage ( QPixmap::fromImage ( adjustedImg ) );
 							compView->setEnabled ( false );
-							scoreLabel->setText ( tr ( "The font %1 scores %2.\nDo you want to add it to the filtered fonts?" )
-							                      .arg ( fit->fancyName() )
-							                      .arg ( compResult ) );
+							scoreLabel->setText ( i18n( "The font %1 scores %2.\nDo you want to add it to the filtered fonts?",
+							                            fit->fancyName(),
+							                            compResult ) );
 							buttonBox->setEnabled ( true );
 							waitingFont = fit;
 							m_waitingForButton = true;
@@ -193,19 +193,19 @@ void FMMatchRaster::slotAcceptFont()
 {
 	if ( !filteredFonts.contains ( waitingFont ) )
 		filteredFonts << waitingFont;
-	waitingFont = 0;
+	waitingFont = nullptr;
 	search();
 }
 
 void FMMatchRaster::slotRefuseFont()
 {
-	waitingFont = 0;
+	waitingFont = nullptr;
 	search();
 }
 
 void FMMatchRaster::slotStop()
 {
-	if ( (waitingFont != 0) && (!filteredFonts.contains ( waitingFont )) )
+	if ( (waitingFont != nullptr) && (!filteredFonts.contains ( waitingFont )) )
 		filteredFonts << waitingFont;
 	if ( filteredFonts.size() > 0 )
 	{
@@ -213,7 +213,7 @@ void FMMatchRaster::slotStop()
 	}
 	else
 	{
-		QMessageBox::information ( this, "Fontmatrix", tr ( "No font match the submitted image" ) );
+		QMessageBox::information ( this, "Fontmatrix", i18n( "No font match the submitted image" ) );
 	}
 	close();
 }

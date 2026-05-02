@@ -1,0 +1,5447 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Language: ru_RU\n"
+"X-Qt-Contexts: true\n"
+
+#: ../about.ui:20
+msgid "About Fontmatrix"
+msgstr "О Fontmatrix"
+
+#: ../about.ui:34
+msgid "Splash"
+msgstr "Заставка"
+
+#: ../about.ui:59 ../about.ui:87
+msgid "TextLabel"
+msgstr "TextLabel"
+
+#: ../about.ui:98
+msgid "The Project"
+msgstr "Проект"
+
+#: ../about.ui:130
+msgid "The People"
+msgstr "Участники"
+
+#: ../about.ui:178
+msgid "Close"
+msgstr "Закрыть"
+
+#: ../aboutwidget.cpp:36
+msgid "fonts loaded"
+msgstr "шрифтов загружено"
+
+#: ../aboutwidget.cpp:34
+msgid "version"
+msgstr "Версия"
+
+#: ../activationreportdialog.ui:13
+msgid "Dialog"
+msgstr "Диалог"
+
+#: ../activationreportdialog.ui:19
+msgid "Activation - Deactivation Error Report"
+msgstr "Отчет об ошибке активации-деактивации"
+
+#: ../activationreportdialog.ui:47
+msgid "Font path"
+msgstr "Расположение шрифта"
+
+#: ../activationreportdialog.ui:52
+msgid "Error"
+msgstr "Ошибка"
+
+#: ../altselectorwidget.ui:13
+msgid "Form"
+msgstr "Form"
+
+#: ../activationwidget.ui:20
+msgid "Activate All"
+msgstr "Активировать все"
+
+#: ../activationwidget.ui:27
+msgid "Deactivate All"
+msgstr "Деактивировать все"
+
+#: ../activationwidgetitem.ui:44
+msgid "StyleName"
+msgstr ""
+
+#: ../filterbar.cpp:95
+msgid "Activated"
+msgstr "Активированные"
+
+#: ../bookexport.ui:13
+msgid "Export Font Book"
+msgstr "Создание каталога шрифтов"
+
+#: ../bookexport.ui:45
+msgid "Output"
+msgstr "Вывод"
+
+#: ../bookexport.ui:55
+msgid "Browse..."
+msgstr "Просмотреть..."
+
+#: ../browserwidget.ui:66
+msgid "Info"
+msgstr "Сводка"
+
+#: ../browserwidget.ui:76
+msgid "Import"
+msgstr "Импортировать"
+
+#: ../browserwidget.ui:86
+msgid "Chart"
+msgstr "Таблица символов"
+
+#: ../familywidget.ui:78
+msgid "Sample"
+msgstr "Образец"
+
+#: ../familywidget.ui:203
+msgid "about:blank"
+msgstr "about:blank"
+
+#: ../chartwidget.ui:34
+#, fuzzy
+msgid "Coverage of Unicode Interval"
+msgstr "Охват блока Unicode"
+
+#: ../chartwidget.ui:37
+#, fuzzy
+msgid "Block:"
+msgstr "Блок:"
+
+#: ../chartwidget.ui:79
+#, fuzzy
+msgid "Search:"
+msgstr "Искать:"
+
+#: ../chartwidget.ui:89
+#, fuzzy
+msgid ""
+"Search a character by its codepoint (expressed in hexadecimal \n"
+"and prefixed with \"U+\", \"u+\" or \"+\") or a glyph by its name.\n"
+"Press enter after editing to run the search."
+msgstr ""
+"Поиск глифа по его коду (шестнадцатиричное значение\n"
+"с префиксом в виде  \"U+\", \"u+\" или \"+\") или названию.\n"
+"Нажатие клавиши ввода запускает поиск."
+
+#: ../chartwidget.ui:115
+#, fuzzy
+msgid "Clicking on a glyph will show details about it"
+msgstr "Щелкните по символу для подробного просмотра"
+
+#: ../chartwidget.ui:136
+#, fuzzy
+msgid "Set Mode \"Copy Character to Clipboard\""
+msgstr "Включить режим копирования символов в буфер обмена"
+
+#: ../chartwidget.ui:139
+#, fuzzy
+msgid "Copy Mode"
+msgstr "Режим копирования"
+
+#: ../chartwidget.cpp:57
+#, fuzzy
+msgid "Un-Mapped Glyphs"
+msgstr "Несвязанные глифы"
+
+#: ../chartwidget.cpp:58
+#, fuzzy
+msgid "View all mapped glyphs"
+msgstr "Все связанные глифы"
+
+#: ../chartwidget.cpp:151 ../chartwidget.cpp:238
+#, fuzzy, qt-format
+msgid "Block (%1):"
+msgstr "Блок (%1):"
+
+#: ../chartwidget.cpp:495
+#, fuzzy
+msgid "Print Chart"
+msgstr "Печать таблицы символов"
+
+#: ../comparewidget.ui:44
+msgid "Fonts"
+msgstr "Шрифты"
+
+#: ../comparewidget.ui:53
+msgid "Add"
+msgstr "Добавить"
+
+#: ../comparewidget.ui:60
+msgid "Remove"
+msgstr "Удалить"
+
+#: ../comparewidget.ui:83
+msgid "Show"
+msgstr "Показывать"
+
+#: ../comparewidget.ui:114
+msgid "Controls"
+msgstr "Рычаги"
+
+#: ../comparewidget.ui:92
+msgid "Metrics"
+msgstr "Метрики"
+
+#: ../comparewidget.ui:187
+msgid "Select a character"
+msgstr "Выберите символ"
+
+#: ../comparewidget.ui:102
+msgid "Points"
+msgstr "Узлы"
+
+#: ../comparewidget.ui:206
+msgid "Keep in sync"
+msgstr "Синхронизировать"
+
+#: ../comparewidget.ui:140
+msgid "Offset"
+msgstr "Смещение:"
+
+#: ../comparewidget.ui:14
+msgid "Compare Glyphs"
+msgstr "Сравнение глифов"
+
+#: ../comparewidget.ui:150
+msgid "0"
+msgstr "0"
+
+#: ../comparewidget.ui:160
+msgid "Fill:"
+msgstr "Заливка:"
+
+#: ../dataexport.ui:14
+msgid "Export Data"
+msgstr "Экспортировать данные"
+
+#: ../dataexport.ui:23
+msgid "The font files currently filtered and selected here will be copied in a directory of your choice."
+msgstr "Перечисленные выше шрифты будут скопированы в желаемый каталог."
+
+#: ../dataexport.ui:36
+msgid "Cancel"
+msgstr "Отменить"
+
+#: ../dataexport.ui:43
+msgid "Continue"
+msgstr "Продолжить"
+
+#: ../dataexport.cpp:62
+msgid "Choose Directory"
+msgstr "Укажите каталог"
+
+#: ../dumpdialog.ui:35
+msgid "Save to:"
+msgstr "Сохранить в:"
+
+#: ../dumpdialog.ui:58
+msgid "Model"
+msgstr "Модель"
+
+#: ../dumpdialog.ui:74
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>"
+msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>"
+
+#: ../dumpdialog.ui:92
+msgid "Available names"
+msgstr "Доступные поля метаданных"
+
+#: ../dumpdialog.ui:138
+msgid "Load..."
+msgstr "Загрузить..."
+
+#: ../dumpdialog.ui:16
+msgid "Fontmatrix - Export font info for packaging"
+msgstr "Fontmatrix — Экспорт данных о шрифте для упаковки"
+
+#. Activation subroutine failed to make a symbolic link to the font file
+#: ../fmactivate.cpp:37
+msgid "Unable to link"
+msgstr "Не удалось связать"
+
+#. The Font asked for activation is already activated
+#: ../fmactivate.cpp:39
+msgid "Font already activated"
+msgstr "Шрифт уже активирован"
+
+#. Activation subroutine failed to remove a symbolic link to the font file
+#: ../fmactivate.cpp:41
+msgid "Unable to un-link"
+msgstr "Не удалось снять связь"
+
+#. The Font asked for de-activation is already de-activated
+#: ../fmactivate.cpp:43
+msgid "Font already de-activated"
+msgstr "Шрифт уже деактивирован"
+
+#. A postcript font (pfb) without its metrics file (afm)
+#: ../fmactivate.cpp:45
+msgid "Cannot link or copy the metrics file"
+msgstr "Не удалось связать или скопировать файл метрик"
+
+#. A generic error in activation or deactivation process
+#: ../fmactivate.cpp:47
+msgctxt "activation"
+msgid "Error"
+msgstr "Ошибка"
+
+#: ../repair.ui:185
+msgid "Activate"
+msgstr "Активировать"
+
+#: ../scriptconsole.ui:225
+msgid "close"
+msgstr "Закрыть"
+
+#: ../fmfontextract.cpp:66
+msgid "File does not exist:"
+msgstr "Файл не существует:"
+
+#: ../fmfontextract.cpp:86
+msgid "Format not handled."
+msgstr "Этот формат не поддерживается."
+
+#: ../fmfontextract.cpp:144
+#, qt-format
+msgid ""
+"Failed to extract:\n"
+"%1"
+msgstr ""
+"Не удалось извлечь:\n"
+"%1"
+
+#: ../fmmatchraster.cpp:160
+#, qt-format
+msgid ""
+"The font %1 scores %2.\n"
+"Do you want to add it to the filtered fonts?"
+msgstr ""
+
+#: ../fmmatchraster.cpp:216
+msgid "No font match the submitted image"
+msgstr "Ни один шрифт в коллекции не соответствует указанному образцу"
+
+#: ../fmmissingfonthelper.cpp:30 ../fmmissingfonthelper.cpp:42
+msgid "Missing Font File"
+msgstr "Отсутствует файл шрифта"
+
+#: ../fmmissingfonthelper.cpp:31
+#, qt-format
+msgid ""
+"Fontmatrix has been unable to load the font in file \n"
+"%1.\n"
+" Please check missing files."
+msgstr ""
+
+#: ../fmmissingfonthelper.cpp:43
+#, qt-format
+msgid ""
+"Fontmatrix has been unable to load fonts in files \n"
+"%1.\n"
+" Please check missing files."
+msgstr ""
+
+#: ../fmscriptconsole.cpp:136
+msgid "A name for the script to save:"
+msgstr "Имя сохраняемого сценарий:"
+
+#: ../fmscriptconsole.cpp:146
+#, qt-format
+msgid "The file %1 already exists"
+msgstr "Файл %1 уже существует"
+
+#: ../fmscriptconsole.cpp:283
+msgid "Running"
+msgstr "Выполняется"
+
+#: ../familywidget.ui:55
+msgid "Return To List"
+msgstr "Вернуться в коллекцию"
+
+#: ../familywidget.ui:58
+msgid "Esc"
+msgstr "Esc"
+
+#: ../familywidget.ui:117
+msgid "Activation"
+msgstr "Активация"
+
+#: ../familywidget.ui:143
+msgid "Family Name"
+msgstr "Название гарнитуры"
+
+#: ../filterbar.ui:320
+msgid "Search"
+msgstr "Что искать"
+
+#: ../filterbar.ui:350
+msgid "in"
+msgstr "Где"
+
+#: ../filterbar.ui:273
+msgid "Metadata"
+msgstr "Метаданные"
+
+#: ../filterbar.ui:395
+msgid "Panose"
+msgstr "Panose"
+
+#: ../filterbar.ui:49
+msgid "Filters"
+msgstr "Фильтры"
+
+#: ../filterbar.ui:143
+msgid "Tags"
+msgstr "Метки"
+
+#: ../filterbar.cpp:50
+msgid "And"
+msgstr "И"
+
+#: ../filterbar.cpp:51
+msgid "Not"
+msgstr "НЕ"
+
+#: ../filterbar.cpp:52
+msgid "Or"
+msgstr "ИЛИ"
+
+#: ../filterbar.cpp:515
+msgid "Fontmatrix - edit tag"
+msgstr ""
+
+#: ../filterbar.cpp:515
+msgid "Edit tag: "
+msgstr ""
+
+#: ../filterbar.cpp:563
+msgid "Fontmatrix - Filter name"
+msgstr "Название фильтра"
+
+#: ../filterbar.cpp:564
+msgid "Filter name:"
+msgstr "Название фильтра:"
+
+#: ../filteritem.ui:71
+msgid "Remove Filter"
+msgstr "Удалить фильтры"
+
+#: ../filteritem.ui:77
+msgid "X"
+msgstr "X"
+
+#: ../filteritem.ui:103
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<table style=\"-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;\">\n"
+"<tr>\n"
+"<td style=\"border: none;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If set, the filter will <span style=\" font-weight:600;\">intersect</span> with the previous filters.</p></td></tr></table></body></html>"
+msgstr ""
+
+#: ../filteritem.ui:113
+msgid "&&"
+msgstr "&&"
+
+#: ../filteritem.ui:142
+msgid "if set, it will filter all the fonts but these matching this filter"
+msgstr ""
+
+#: ../filteritem.ui:145
+msgid "!"
+msgstr "!"
+
+#: ../filtersdialog.ui:14
+msgid "Filters Manager"
+msgstr "Управление фильтрами"
+
+#: ../filtersdialog.ui:67
+msgid "In order to add filters, you have to first select some of tags, meta informations or classifications elements."
+msgstr ""
+
+#: ../filtersdialog.ui:127
+msgid "Filter Name:"
+msgstr "Название фильтра:"
+
+#: ../filtersdialog.ui:162
+msgid "current filter"
+msgstr "Текущий фильтр"
+
+#: ../filtersdialog.ui:96
+msgid "Add Filter"
+msgstr "Добавить фильтр"
+
+#: ../filtersdialogitem.ui:72
+msgid "filter name"
+msgstr "Название фильтра"
+
+#: ../filtersdialogitem.ui:91
+msgid "Apply this filter to the list"
+msgstr "Применить этот фильтр к списку"
+
+#: ../filtersdialogitem.ui:94
+msgid "Filter"
+msgstr "Фильтр"
+
+#: ../filtersdialogitem.ui:111
+msgid "Delete this filter"
+msgstr "Удалить этот фильтр"
+
+#: ../filtersdialogitem.cpp:65
+msgid "Confirm deletion of filter:"
+msgstr "Подтвердите удаление фильтра:"
+
+#: ../floatingwidgettoolbar.ui:69
+msgid "P"
+msgstr "П"
+
+#: ../floatingwidgettoolbar.ui:76
+msgid "Detach from main window"
+msgstr "Отцепить от основного окна"
+
+#: ../floatingwidgettoolbar.ui:79
+msgid "D"
+msgstr "О"
+
+#: ../floatingwidgettoolbar.ui:95
+msgid "Close window"
+msgstr "Закрыть окно"
+
+#: ../floatingwidgettoolbar.ui:98
+msgid "..."
+msgstr "..."
+
+#: ../floatingwidgettoolbar.ui:109
+msgid "Hide window"
+msgstr "Скрыть окно"
+
+#: ../floatingwidgettoolbar.ui:112
+msgid "H"
+msgstr "С"
+
+#: ../floatingwidgettoolbar.ui:66
+msgid "Print"
+msgstr "Печать"
+
+#: ../browserwidget.cpp:331 ../listdockwidget.cpp:382
+msgid "Import recursively"
+msgstr "Импортировать рекурсивно"
+
+#: ../browserwidget.cpp:330 ../listdockwidget.cpp:381
+msgid "Import Directory"
+msgstr "Импортировать каталог"
+
+#: ../browserwidget.cpp:332 ../listdockwidget.cpp:383
+msgid "Import File"
+msgstr "Импортировать файл"
+
+#: ../fontaction.ui:32
+msgid "Action"
+msgstr "Действие"
+
+#: ../fontaction.ui:65
+msgid "Add Tag"
+msgstr "Добавить"
+
+#: ../fontbook.cpp:92
+msgid "Print Fontbook"
+msgstr ""
+
+#: ../fontbook.cpp:475
+msgid "Unicode coverage"
+msgstr "Охват Unicode"
+
+#: ../fontbookdialog.cpp:111
+msgid "Save fontBook"
+msgstr "Сохранить каталог шрифтов"
+
+#: ../fontcomparewidget.cpp:73
+msgctxt "No fill color in comprae glyph"
+msgid "None"
+msgstr "Нет"
+
+#: ../fontextractordialog.ui:19
+msgid "Select PDF"
+msgstr "Файл PDF"
+
+#: ../fontextractordialog.ui:13
+msgid "Font extractor"
+msgstr "Извлечение шрифтов"
+
+#: ../fontextractordialog.ui:41
+msgid "&Browse"
+msgstr "&Указать..."
+
+#: ../fontextractordialog.ui:63
+msgid "&Select Dir"
+msgstr "&Выбрать каталог"
+
+#: ../fontextractordialog.ui:70
+msgid "&Extract"
+msgstr "&Извлечь"
+
+#: ../fontextractordialog.ui:31
+msgid "File name"
+msgstr "Имя файла"
+
+#: ../fontitem.cpp:2368
+#, qt-format
+msgctxt "FontItem|when doing the font preview, used to denote a font that can not displayed its name"
+msgid "(%1)"
+msgstr "(%1)"
+
+#: ../fontitem.cpp:3185
+msgid "Fontmatrix - Download"
+msgstr "Fontmatrix — Скачать"
+
+#: ../fontitem.cpp:3186
+#, qt-format
+msgid "Downloading %1."
+msgstr "Скачивается %1."
+
+#: ../fmfontstrings.cpp:39
+msgid "Copyright"
+msgstr "Авторские права"
+
+#: ../fmfontstrings.cpp:40
+msgid "Font Family"
+msgstr "Гарнитура"
+
+#: ../fmfontstrings.cpp:41
+msgid "Font Subfamily"
+msgstr "Начертание"
+
+#: ../fmfontstrings.cpp:42
+msgid "Unique font identifier"
+msgstr "Уникальный идентификатор шрифта"
+
+#: ../fmfontstrings.cpp:43
+msgid "Full font name"
+msgstr "Полное название шрифта"
+
+#: ../fmfontstrings.cpp:44
+msgid "Version string"
+msgstr "Строка версии"
+
+#: ../fmfontstrings.cpp:45
+msgid "Postscript name"
+msgstr "Имя по правилам PostScript"
+
+#: ../fmfontstrings.cpp:46
+msgid "Trademark"
+msgstr "Торговая марка"
+
+#: ../fmfontstrings.cpp:47
+msgid "Manufacturer"
+msgstr "Производитель"
+
+#: ../fmfontstrings.cpp:48
+msgid "Designer"
+msgstr "Дизайнер"
+
+#: ../fmfontstrings.cpp:49
+msgid "Description"
+msgstr "Описание"
+
+#: ../fmfontstrings.cpp:50
+msgid "URL Vendor"
+msgstr "URL производителя"
+
+#: ../fmfontstrings.cpp:51
+msgid "URL Designer"
+msgstr "URL дизайнера"
+
+#: ../fmfontstrings.cpp:52
+msgid "License Description"
+msgstr "Текст лицензии"
+
+#: ../fmfontstrings.cpp:53
+msgid "License Info URL"
+msgstr "URL текста лицензии"
+
+#: ../fmfontstrings.cpp:54
+msgid "Preferred Family"
+msgstr "Предпочитаемое семейство"
+
+#: ../fmfontstrings.cpp:55
+msgid "Preferred Subfamily"
+msgstr "Предпочитаемое начертание"
+
+#: ../fmfontstrings.cpp:56
+msgid "Compatible Full (Macintosh only)"
+msgstr "Полная совместимость (только Macintosh)"
+
+#: ../fmfontstrings.cpp:57
+msgid "Sample text"
+msgstr "Образец"
+
+#: ../fmfontstrings.cpp:58
+msgid "PostScript CID findfont name"
+msgstr "Имя для поиска по PostScript CID"
+
+#: ../fmfontstrings.cpp:60
+msgid "All fields"
+msgstr "Все поля"
+
+#: ../fmfontstrings.cpp:77 ../fmfontstrings.cpp:89 ../fmfontstrings.cpp:111
+#: ../fmfontstrings.cpp:129 ../fmfontstrings.cpp:145 ../fmfontstrings.cpp:161
+#: ../fmfontstrings.cpp:176 ../fmfontstrings.cpp:194 ../fmfontstrings.cpp:216
+#: ../fmfontstrings.cpp:236
+msgid "Any"
+msgstr "Любой вариант"
+
+#: ../fmfontstrings.cpp:78 ../fmfontstrings.cpp:90 ../fmfontstrings.cpp:112
+#: ../fmfontstrings.cpp:130 ../fmfontstrings.cpp:146 ../fmfontstrings.cpp:162
+#: ../fmfontstrings.cpp:177 ../fmfontstrings.cpp:195 ../fmfontstrings.cpp:217
+#: ../fmfontstrings.cpp:237
+msgid "No Fit"
+msgstr "Все остальное"
+
+#: ../fmfontstrings.cpp:79
+msgctxt "Family Type"
+msgid "Text and Display"
+msgstr "Текстовая"
+
+#: ../fmfontstrings.cpp:80
+msgctxt "Family Type"
+msgid "Script"
+msgstr "Рукописная"
+
+#: ../fmfontstrings.cpp:81
+msgctxt "Family Type"
+msgid "Decorative"
+msgstr "Декоративная"
+
+#: ../fmfontstrings.cpp:82
+msgctxt "Family Type"
+msgid "Pictorial"
+msgstr "Картиночная"
+
+#: ../fmfontstrings.cpp:85
+msgid "Family Type"
+msgstr "Тип гарнитуры"
+
+#: ../fmfontstrings.cpp:91
+msgctxt "Serif style"
+msgid "Cove"
+msgstr "Куполообразные"
+
+#: ../fmfontstrings.cpp:92
+msgctxt "Serif style"
+msgid "Obtuse Cove"
+msgstr "Куполообразные тупоугольные"
+
+#: ../fmfontstrings.cpp:93
+msgctxt "Serif style"
+msgid "Square Cove"
+msgstr "Граненные куполообразные"
+
+#: ../fmfontstrings.cpp:94
+msgctxt "Serif style"
+msgid "Obtuse Square Cove"
+msgstr "Граненные куполообразные тупоугольные"
+
+#: ../fmfontstrings.cpp:95
+msgctxt "Serif style"
+msgid "Square"
+msgstr "Прямоугольные"
+
+#: ../fmfontstrings.cpp:96
+msgctxt "Serif style"
+msgid "Thin"
+msgstr "Нитевидные"
+
+#: ../fmfontstrings.cpp:97
+msgctxt "Serif style"
+msgid "Bone"
+msgstr "Шипообразные"
+
+#: ../fmfontstrings.cpp:98
+msgctxt "Serif style"
+msgid "Exaggerated"
+msgstr "Резко расширяющиеся"
+
+#: ../fmfontstrings.cpp:99
+msgctxt "Serif style"
+msgid "Triangle"
+msgstr "Треугольные"
+
+#: ../fmfontstrings.cpp:100
+msgctxt "Serif style"
+msgid "Normal Sans"
+msgstr "Нормальные"
+
+#: ../fmfontstrings.cpp:101
+msgctxt "Serif style"
+msgid "Obtuse Sans"
+msgstr "Тупоугольные"
+
+#: ../fmfontstrings.cpp:102
+msgctxt "Serif style"
+msgid "Perp Sans"
+msgstr "Перпендикулярные"
+
+#: ../fmfontstrings.cpp:103
+msgctxt "Serif style"
+msgid "Flared"
+msgstr "Расширяющиеся"
+
+#: ../fmfontstrings.cpp:104
+msgctxt "Serif style"
+msgid "Rounded"
+msgstr "Закругленные"
+
+#: ../fmfontstrings.cpp:107
+msgid "Serif style"
+msgstr "Стиль засечек"
+
+#: ../fmfontstrings.cpp:113
+msgctxt "Weight"
+msgid "Very Light"
+msgstr "Сверхсветлый"
+
+#: ../fmfontstrings.cpp:114
+msgctxt "Weight"
+msgid "Light"
+msgstr "Светлый"
+
+#: ../fmfontstrings.cpp:115
+msgctxt "Weight"
+msgid "Thin"
+msgstr "Тонкий"
+
+#: ../fmfontstrings.cpp:116
+msgctxt "Weight"
+msgid "Book"
+msgstr "Нормальный"
+
+#: ../fmfontstrings.cpp:117
+msgctxt "Weight"
+msgid "Medium"
+msgstr "Средний"
+
+#: ../fmfontstrings.cpp:118
+msgctxt "Weight"
+msgid "Demi"
+msgstr "Полужирный"
+
+#: ../fmfontstrings.cpp:119
+msgctxt "Weight"
+msgid "Bold"
+msgstr "Жирный"
+
+#: ../fmfontstrings.cpp:120
+msgctxt "Weight"
+msgid "Heavy"
+msgstr "Сверхжирный"
+
+#: ../fmfontstrings.cpp:121
+msgctxt "Weight"
+msgid "Black"
+msgstr "Черный"
+
+#: ../fmfontstrings.cpp:122
+msgctxt "Weight"
+msgid "Nord"
+msgstr "Нордический"
+
+#: ../fmfontstrings.cpp:125
+msgid "Weight"
+msgstr "Насыщенность"
+
+#: ../fmfontstrings.cpp:131
+msgctxt "Proportion"
+msgid "Old Style"
+msgstr "Старый стиль"
+
+#: ../fmfontstrings.cpp:132
+msgctxt "Proportion"
+msgid "Modern"
+msgstr "Модерн"
+
+#: ../fmfontstrings.cpp:133
+msgctxt "Proportion"
+msgid "Even Width"
+msgstr "Равноширинный"
+
+#: ../fmfontstrings.cpp:134
+msgctxt "Proportion"
+msgid "Expanded"
+msgstr "Расширенный"
+
+#: ../fmfontstrings.cpp:135
+msgctxt "Proportion"
+msgid "Condensed"
+msgstr "Сжатый"
+
+#: ../fmfontstrings.cpp:136
+msgctxt "Proportion"
+msgid "Very Expanded"
+msgstr "Очень расширенный"
+
+#: ../fmfontstrings.cpp:137
+msgctxt "Proportion"
+msgid "Very Condensed"
+msgstr "Очень сжатый"
+
+#: ../fmfontstrings.cpp:138
+msgctxt "Proportion"
+msgid "Monospaced"
+msgstr "Моноширинный"
+
+#: ../fmfontstrings.cpp:141
+msgid "Proportion"
+msgstr "Пропорции"
+
+#: ../fmfontstrings.cpp:147
+msgctxt "Contrast"
+msgid "None"
+msgstr "Нет"
+
+#: ../fmfontstrings.cpp:148
+msgctxt "Contrast"
+msgid "Very Low"
+msgstr "Очень низкий"
+
+#: ../fmfontstrings.cpp:149
+msgctxt "Contrast"
+msgid "Low"
+msgstr "Низкий"
+
+#: ../fmfontstrings.cpp:150
+msgctxt "Contrast"
+msgid "Medium Low"
+msgstr "Умеренно низкий"
+
+#: ../fmfontstrings.cpp:151
+msgctxt "Contrast"
+msgid "Medium"
+msgstr "Средний"
+
+#: ../fmfontstrings.cpp:152
+msgctxt "Contrast"
+msgid "Medium High"
+msgstr "Умеренно высокий"
+
+#: ../fmfontstrings.cpp:153
+msgctxt "Contrast"
+msgid "High"
+msgstr "Высокий"
+
+#: ../fmfontstrings.cpp:154
+msgctxt "Contrast"
+msgid "Very High"
+msgstr "Очень высокий"
+
+#: ../fmfontstrings.cpp:157
+msgid "Contrast"
+msgstr "Контраст"
+
+#: ../fmfontstrings.cpp:163
+msgctxt "Stroke Variation"
+msgid "Gradual/Diagonal"
+msgstr "Постепенное, диагональное"
+
+#: ../fmfontstrings.cpp:164
+msgctxt "Stroke Variation"
+msgid "Gradual/Transitional"
+msgstr "Постепенное, переходное"
+
+#: ../fmfontstrings.cpp:165
+msgctxt "Stroke Variation"
+msgid "Gradual/Vertical"
+msgstr "Постепенное, вертикальное"
+
+#: ../fmfontstrings.cpp:166
+msgctxt "Stroke Variation"
+msgid "Gradual/Horizontal"
+msgstr "Постепенное, горизонтальное"
+
+#: ../fmfontstrings.cpp:167
+msgctxt "Stroke Variation"
+msgid "Rapid/Vertical"
+msgstr "Резкое, вертикальное"
+
+#: ../fmfontstrings.cpp:168
+msgctxt "Stroke Variation"
+msgid "Rapid/Horizontal"
+msgstr "Резкое, горизонтальное"
+
+#: ../fmfontstrings.cpp:169
+msgctxt "Stroke Variation"
+msgid "Instant/Vertical"
+msgstr "Постоянное, вертикальное"
+
+#: ../fmfontstrings.cpp:172
+msgid "Stroke Variation"
+msgstr "Изменение штриха"
+
+#: ../fmfontstrings.cpp:178
+msgctxt "Arm Style"
+msgid "Straight Arms/Horizontal"
+msgstr "Прямой штрих, горизонтальные"
+
+#: ../fmfontstrings.cpp:179
+msgctxt "Arm Style"
+msgid "Straight Arms/Wedge"
+msgstr "Прямой штрих, клинообразные"
+
+#: ../fmfontstrings.cpp:180
+msgctxt "Arm Style"
+msgid "Straight Arms/Vertical"
+msgstr "Прямой штрих, вертикальные"
+
+#: ../fmfontstrings.cpp:181
+msgctxt "Arm Style"
+msgid "Straight Arms/Single Serif"
+msgstr "Прямой штрих, одиночная засечка"
+
+#: ../fmfontstrings.cpp:182
+msgctxt "Arm Style"
+msgid "Straight Arms/Double Serif"
+msgstr "Прямой штрих, двойная засечка"
+
+#: ../fmfontstrings.cpp:183
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Horizontal"
+msgstr "Непрямой штрих, горизонтальные"
+
+#: ../fmfontstrings.cpp:184
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Wedge"
+msgstr "Непрямой штрих, клинообразные"
+
+#: ../fmfontstrings.cpp:185
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Vertical"
+msgstr "Непрямой штрих, вертикальные"
+
+#: ../fmfontstrings.cpp:186
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Single Serif"
+msgstr "Непрямой штрих, одиночная засечка"
+
+#: ../fmfontstrings.cpp:187
+msgctxt "Arm Style"
+msgid "Non-Straight Arms/Double Serif"
+msgstr "Непрямой штрих, двойная засечка"
+
+#: ../fmfontstrings.cpp:190
+msgid "Arm Style"
+msgstr "Горизонтальный штрих и концевые элементы"
+
+#: ../fmfontstrings.cpp:196
+msgctxt "Letterform"
+msgid "Normal/Contact"
+msgstr "Прямой, окружность"
+
+#: ../fmfontstrings.cpp:197
+msgctxt "Letterform"
+msgid "Normal/Weighted"
+msgstr "Прямой, утяжеленный"
+
+#: ../fmfontstrings.cpp:198
+msgctxt "Letterform"
+msgid "Normal/Boxed"
+msgstr "Прямой, оквадраченный"
+
+#: ../fmfontstrings.cpp:199
+msgctxt "Letterform"
+msgid "Normal/Flattened"
+msgstr "Прямой, плоский"
+
+#: ../fmfontstrings.cpp:200
+msgctxt "Letterform"
+msgid "Normal/Rounded"
+msgstr "Прямой, закругленный"
+
+#: ../fmfontstrings.cpp:201
+msgctxt "Letterform"
+msgid "Normal/Off Center"
+msgstr "Прямой, со смещенным центром"
+
+#: ../fmfontstrings.cpp:202
+msgctxt "Letterform"
+msgid "Normal/Square"
+msgstr "Прямой, квадрат"
+
+#: ../fmfontstrings.cpp:203
+msgctxt "Letterform"
+msgid "Oblique/Contact"
+msgstr "Наклонный, окружность"
+
+#: ../fmfontstrings.cpp:204
+msgctxt "Letterform"
+msgid "Oblique/Weighted"
+msgstr "Наклонный, утяжеленный"
+
+#: ../fmfontstrings.cpp:205
+msgctxt "Letterform"
+msgid "Oblique/Boxed"
+msgstr "Наклонный, оквадраченный"
+
+#: ../fmfontstrings.cpp:206
+msgctxt "Letterform"
+msgid "Oblique/Flattened"
+msgstr "Наклонный, плоский"
+
+#: ../fmfontstrings.cpp:207
+msgctxt "Letterform"
+msgid "Oblique/Rounded"
+msgstr "Наклонный, закругленный"
+
+#: ../fmfontstrings.cpp:208
+msgctxt "Letterform"
+msgid "Oblique/Off Center"
+msgstr "Наклонный, со смещенным центром"
+
+#: ../fmfontstrings.cpp:209
+msgctxt "Letterform"
+msgid "Oblique/Square"
+msgstr "Наклонный, квадрат"
+
+#: ../fmfontstrings.cpp:212
+msgid "Letterform"
+msgstr "Форма символа"
+
+#: ../fmfontstrings.cpp:218
+msgctxt "Midline"
+msgid "Standard/Trimmed"
+msgstr "Обычная, вершина укорочена"
+
+#: ../fmfontstrings.cpp:219
+msgctxt "Midline"
+msgid "Standard/Pointed"
+msgstr "Обычная, вершина остроконечна"
+
+#: ../fmfontstrings.cpp:220
+msgctxt "Midline"
+msgid "Standard/Serifed"
+msgstr "Обычная, вершина с засечкой"
+
+#: ../fmfontstrings.cpp:221
+msgctxt "Midline"
+msgid "High/Trimmed"
+msgstr "Высокая, вершина укорочена"
+
+#: ../fmfontstrings.cpp:222
+msgctxt "Midline"
+msgid "High/Pointed"
+msgstr "Высокая, вершина остроконечна"
+
+#: ../fmfontstrings.cpp:223
+msgctxt "Midline"
+msgid "High/Serifed"
+msgstr "Высокая, вершина с засечкой"
+
+#: ../fmfontstrings.cpp:224
+msgctxt "Midline"
+msgid "Constant/Trimmed"
+msgstr "Постоянная, вершина укорочена"
+
+#: ../fmfontstrings.cpp:225
+msgctxt "Midline"
+msgid "Constant/Pointed"
+msgstr "Постоянная, вершина остроконечна"
+
+#: ../fmfontstrings.cpp:226
+msgctxt "Midline"
+msgid "Constant/Serifed"
+msgstr "Постоянная, вершина с засечкой"
+
+#: ../fmfontstrings.cpp:227
+msgctxt "Midline"
+msgid "Low/Trimmed"
+msgstr "Низкая, вершина укорочена"
+
+#: ../fmfontstrings.cpp:228
+msgctxt "Midline"
+msgid "Low/Pointed"
+msgstr "Низкая, вершина остроконечна"
+
+#: ../fmfontstrings.cpp:229
+msgctxt "Midline"
+msgid "Low/Serifed"
+msgstr "Низкая, вершина с засечкой"
+
+#: ../fmfontstrings.cpp:232
+msgid "Midline"
+msgstr "Средняя линия"
+
+#: ../fmfontstrings.cpp:238
+msgctxt "X-Height"
+msgid "Constant/Small"
+msgstr "Постоянный, небольшой"
+
+#: ../fmfontstrings.cpp:239
+msgctxt "X-Height"
+msgid "Constant/Standard"
+msgstr "Постоянный, обычный"
+
+#: ../fmfontstrings.cpp:240
+msgctxt "X-Height"
+msgid "Constant/Large"
+msgstr "Постоянный, большой"
+
+#: ../fmfontstrings.cpp:241
+msgctxt "X-Height"
+msgid "Ducking/Small"
+msgstr "Ныряющий, небольшой"
+
+#: ../fmfontstrings.cpp:242
+msgctxt "X-Height"
+msgid "Ducking/Standard"
+msgstr "Ныряющий, обычный"
+
+#: ../fmfontstrings.cpp:243
+msgctxt "X-Height"
+msgid "Ducking/Large"
+msgstr "Ныряющий, большой"
+
+#: ../fmfontstrings.cpp:246
+msgid "X-Height"
+msgstr "Рост строчных"
+
+#: ../fmfontstrings.cpp:270
+msgid "This value is deprecated and was never used nor reported by FreeType. Don't use or test for it."
+msgstr "Это значение устарело и никогда не использовалось во FreeType. Не используйте его и не пытайтесь его тестировать."
+
+#: ../fmfontstrings.cpp:283
+msgid "Character to glyph mapping"
+msgstr "Привязка символов к глифам"
+
+#: ../fmfontstrings.cpp:284
+msgid "Font header"
+msgstr "Заголовок шрифта"
+
+#: ../fmfontstrings.cpp:285
+msgid "Horizontal header"
+msgstr "Заголовок горизонтального размещения"
+
+#: ../fmfontstrings.cpp:286
+msgid "Horizontal metrics"
+msgstr "Горизонтальные метрики"
+
+#: ../fmfontstrings.cpp:287
+msgid "Maximum profile"
+msgstr "Профиль максимума"
+
+#: ../fmfontstrings.cpp:288
+msgid "Naming table"
+msgstr "Таблица имен"
+
+#: ../fmfontstrings.cpp:289
+msgid "OS/2 and Windows specific metrics"
+msgstr "Специфичные для OS/2 и Windows метрики"
+
+#: ../fmfontstrings.cpp:290
+msgid "PostScript information"
+msgstr "Данные для PostScript-принтеров"
+
+#: ../fmfontstrings.cpp:293
+msgid "Control Value Table"
+msgstr "Таблица контрольных значений (CVT)"
+
+#: ../fmfontstrings.cpp:294
+msgid "Font program"
+msgstr "Программа шрифта"
+
+#: ../fmfontstrings.cpp:295
+msgid "Glyph data"
+msgstr "Данные глифов"
+
+#: ../fmfontstrings.cpp:296
+msgid "Index to location"
+msgstr "Смещения относительно расположения глифов в шрифте"
+
+#: ../fmfontstrings.cpp:297
+msgid "CVT Program"
+msgstr "Программа таблицы контрольных значений (CVT)"
+
+#: ../fmfontstrings.cpp:300
+msgid "PostScript font program"
+msgstr "Компактное представление шрифта PostScript Type1 (CFF)"
+
+#: ../fmfontstrings.cpp:301
+msgid "Vertical Origin"
+msgstr "Начальная координата Y каждого глифа в шрифте"
+
+#: ../fmfontstrings.cpp:304
+msgid "Embedded bitmap data"
+msgstr "Встроенные растровые данные"
+
+#: ../fmfontstrings.cpp:305
+msgid "Embedded bitmap location data"
+msgstr "Адрес встроенных растровых данных"
+
+#: ../fmfontstrings.cpp:306
+msgid "Embedded bitmap scaling data"
+msgstr "Масштабирование встроенных растровых данных"
+
+#: ../fmfontstrings.cpp:309
+msgid "Baseline data"
+msgstr "Данные линии шрифта"
+
+#: ../fmfontstrings.cpp:310
+msgid "Glyph definition data"
+msgstr "Данные определения глифов"
+
+#: ../fmfontstrings.cpp:311
+msgid "Glyph positioning data"
+msgstr "Данные позиционирования глифов"
+
+#: ../fmfontstrings.cpp:312
+msgid "Glyph substitution data"
+msgstr "Данные подстановки глифов"
+
+#: ../fmfontstrings.cpp:313
+msgid "Justification data"
+msgstr "Данные выключки"
+
+#: ../fmfontstrings.cpp:316
+msgid "Digital signature"
+msgstr "Цифровая подпись"
+
+#: ../fmfontstrings.cpp:317
+msgid "Grid-fitting/Scan-conversion"
+msgstr "Вписывание в пиксельную сетку"
+
+#: ../fmfontstrings.cpp:318
+msgid "Horizontal device metrics"
+msgstr ""
+
+#: ../fmfontstrings.cpp:319
+msgid "Kerning"
+msgstr "Кернинг"
+
+#: ../fmfontstrings.cpp:320
+msgid "Linear threshold data"
+msgstr "Данные линейного порога"
+
+#: ../fmfontstrings.cpp:321
+msgid "PCL 5 data"
+msgstr "Данные PCL5"
+
+#: ../fmfontstrings.cpp:322
+msgid "Vertical device metrics"
+msgstr ""
+
+#: ../fmfontstrings.cpp:323
+msgid "Vertical Metrics header"
+msgstr "Заголовок вертикального размещения"
+
+#: ../fmfontstrings.cpp:324
+msgid "Vertical Metrics"
+msgstr "Вертикальные метрики"
+
+#: ../fmfontstrings.cpp:332
+msgid "This font may be embedded and permanently installed on the remote system by an application. The user of the remote system acquires the identical rights, obligations and licenses for that font as the original purchaser of the font, and is subject to the same end-user license agreement, copyright, design patent, and/or trademark as was the original purchaser."
+msgstr "Этот шрифт можно встраивать в документы и постоянно устанавливать в другие системы. Пользователь другой системы имеет те же права, обязанности и лицензию на этот шрифт, что и первоначальный покупатель этого шрифта, и является субъектом того же лицензионного соглашения, авторских прав, патента на дизайн и/или торговой марки."
+
+#: ../fmfontstrings.cpp:333
+msgid "This font must not be modified, embedded or exchanged in any manner without first obtaining permission of the legal owner."
+msgstr "Этот шрифт нельзя изменять, встраивать или передавать третьим лицам без предварительного разрешения от владельца авторских права."
+
+#: ../fmfontstrings.cpp:334
+msgid "This font may be embedded, and temporarily loaded on the remote system. Documents containing this font must be opened \"read-only;\" no edits can be applied to the document."
+msgstr "Этот шрифт может быть встроен в документ и временно загружен в других системах. Содержащие этот шрифт документы могут открываться только для чтения; изменение таких документов запрещено."
+
+#: ../fmfontstrings.cpp:335
+msgid "This font may be embedded but must only be installed  temporarily  on other systems. In contrast to Preview &amp; Print fonts, documents containing this font may be opened for reading, editing is permitted, and changes may be saved."
+msgstr "Этот шрифт может быть встроен в документ, но на других системах он может быть установлен лишь временно. В отличии от шрифтов, которые можно только читать и печатать, содержащие этот шрифт документы можно читать, редактировать и сохранять изменения."
+
+#: ../fmfontstrings.cpp:336
+#, fuzzy
+msgid "This font may not be subsetted prior to embedding. Other embedding restrictions specified in bits 0-3 and 9 also apply."
+msgstr "Подмножество глифов этого шрифта нельзя встраивать в документы."
+
+#: ../fmfontstrings.cpp:337
+msgid "Only bitmaps contained in this font may be embedded. No outline data may be embedded. If there are no bitmaps available in this font, then it is considered unembeddable and the embedding services will fail. Other embedding restrictions specified in bits 0-3 and 8 also apply."
+msgstr ""
+
+#: ../fmfontstrings.cpp:342
+msgid "Mark, NonSpacing"
+msgstr ""
+
+#: ../fmfontstrings.cpp:343
+msgid "Mark, SpacingCombining"
+msgstr ""
+
+#: ../fmfontstrings.cpp:344
+msgid "Mark, Enclosing"
+msgstr ""
+
+#: ../fmfontstrings.cpp:345
+#, fuzzy
+msgid "Number, DecimalDigit"
+msgstr "Числа, десятичные"
+
+#: ../fmfontstrings.cpp:346
+msgid "Number, Letter"
+msgstr ""
+
+#: ../fmfontstrings.cpp:347
+msgid "Number, Other"
+msgstr "Числа, прочие"
+
+#: ../fmfontstrings.cpp:348
+msgid "Separator, Space"
+msgstr "Разделители, пробелы"
+
+#: ../fmfontstrings.cpp:349
+msgid "Separator, Line"
+msgstr "Разделители, строки"
+
+#: ../fmfontstrings.cpp:350
+msgid "Separator, Paragraph"
+msgstr "Разделители, абзацы"
+
+#: ../fmfontstrings.cpp:351
+msgid "Other, Control"
+msgstr ""
+
+#: ../fmfontstrings.cpp:352
+msgid "Other, Format"
+msgstr ""
+
+#: ../fmfontstrings.cpp:353
+msgid "Other, Surrogate"
+msgstr ""
+
+#: ../fmfontstrings.cpp:354
+msgid "Other, PrivateUse"
+msgstr ""
+
+#: ../fmfontstrings.cpp:355
+msgid "Other, NotAssigned"
+msgstr ""
+
+#: ../fmfontstrings.cpp:356
+msgid "Letter, Uppercase"
+msgstr "Буквы, прописные"
+
+#: ../fmfontstrings.cpp:357
+msgid "Letter, Lowercase"
+msgstr "Буквы, строчные"
+
+#: ../fmfontstrings.cpp:358
+msgid "Letter, Titlecase"
+msgstr "Буквы, Заглавные"
+
+#: ../fmfontstrings.cpp:359
+msgid "Letter, Modifier"
+msgstr "Буквы, модификаторы"
+
+#: ../fmfontstrings.cpp:360
+msgid "Letter, Other"
+msgstr "Буквы, прочие"
+
+#: ../fmfontstrings.cpp:361
+msgid "Punctuation, Connector"
+msgstr "Знаки препинания, соединители"
+
+#: ../fmfontstrings.cpp:362
+msgid "Punctuation, Dash"
+msgstr "Знаки препинания, тире"
+
+#: ../fmfontstrings.cpp:363
+msgid "Punctuation, Open"
+msgstr "Знаки препинания, открывающие"
+
+#: ../fmfontstrings.cpp:364
+msgid "Punctuation, Close"
+msgstr "Знаки препинания, закрывающие"
+
+#: ../fmfontstrings.cpp:365
+msgid "Punctuation, InitialQuote"
+msgstr "Знаки препинания, открывающие кавычки"
+
+#: ../fmfontstrings.cpp:366
+msgid "Punctuation, FinalQuote"
+msgstr "Знаки препинания, закрывающие кавычки"
+
+#: ../fmfontstrings.cpp:367
+msgid "Punctuation, Other"
+msgstr "Знаки препинания, прочие"
+
+#: ../fmfontstrings.cpp:368
+msgid "Symbol, Math"
+msgstr "Символы, математика"
+
+#: ../fmfontstrings.cpp:369
+msgid "Symbol, Currency"
+msgstr "Символы, валюта"
+
+#: ../fmfontstrings.cpp:370
+msgid "Symbol, Modifier"
+msgstr "Символы, модификаторы"
+
+#: ../fmfontstrings.cpp:371
+msgid "Symbol, Other"
+msgstr "Символы, прочее"
+
+#: ../fmfontstrings.cpp:376
+msgid "Arabic"
+msgstr "Арабский"
+
+#: ../fmfontstrings.cpp:377
+msgid "Armenian"
+msgstr "Армянский"
+
+#: ../fmfontstrings.cpp:378
+msgid "Balinese"
+msgstr "Балинезийский"
+
+#: ../fmfontstrings.cpp:379
+msgid "Bengali"
+msgstr "Бенгали"
+
+#: ../fmfontstrings.cpp:380
+msgid "Bopomofo"
+msgstr "Бопомото"
+
+#: ../fmfontstrings.cpp:381
+msgid "Braille"
+msgstr "Азбука Брейля"
+
+#: ../fmfontstrings.cpp:382
+msgid "Buginese"
+msgstr "Бугинский"
+
+#: ../fmfontstrings.cpp:383
+msgid "Buhid"
+msgstr "Бухид"
+
+#: ../fmfontstrings.cpp:384
+msgid "Byzantine Music"
+msgstr ""
+
+#: ../fmfontstrings.cpp:385
+msgid "Canadian Syllabics"
+msgstr ""
+
+#: ../fmfontstrings.cpp:386
+msgid "Cherokee"
+msgstr "Чероки"
+
+#: ../fmfontstrings.cpp:387
+msgid "CJK Ideographic"
+msgstr ""
+
+#: ../fmfontstrings.cpp:388
+msgid "Coptic"
+msgstr "Коптский"
+
+#: ../fmfontstrings.cpp:389
+msgid "Cypriot Syllabary"
+msgstr "Кипрское письмо"
+
+#: ../fmfontstrings.cpp:390
+msgid "Cyrillic"
+msgstr "Кириллица"
+
+#: ../fmfontstrings.cpp:391
+msgid "Default"
+msgstr "По умолчанию"
+
+#: ../fmfontstrings.cpp:392
+msgid "Deseret"
+msgstr "Дезерет"
+
+#: ../fmfontstrings.cpp:393
+msgid "Devanagari"
+msgstr "Деванагари"
+
+#: ../fmfontstrings.cpp:394
+msgid "Ethiopic"
+msgstr "Эфиопский"
+
+#: ../fmfontstrings.cpp:395
+msgid "Georgian"
+msgstr "Грузинский"
+
+#: ../fmfontstrings.cpp:396
+msgid "Glagolitic"
+msgstr "Глаголица"
+
+#: ../fmfontstrings.cpp:397
+msgid "Gothic"
+msgstr "Готское письмо"
+
+#: ../fmfontstrings.cpp:398
+msgid "Greek"
+msgstr "Греческий"
+
+#: ../fmfontstrings.cpp:399
+msgid "Gujarati"
+msgstr "Гуджарати"
+
+#: ../fmfontstrings.cpp:400
+msgid "Gurmukhi"
+msgstr "Гурмухи"
+
+#: ../fmfontstrings.cpp:401
+msgid "Hangul Jamo"
+msgstr "Хангул Ямо"
+
+#: ../fmfontstrings.cpp:402
+msgid "Hangul"
+msgstr "Замена глифов ханджи глифами хангула"
+
+#: ../fmfontstrings.cpp:403
+msgid "Hanunoo"
+msgstr "Хануноо"
+
+#: ../fmfontstrings.cpp:404
+msgid "Hebrew"
+msgstr "Иврит"
+
+#: ../fmfontstrings.cpp:405
+msgid "Hiragana and Katakana"
+msgstr "Хирагана и катакана"
+
+#: ../fmfontstrings.cpp:406
+msgid "Javanese"
+msgstr ""
+
+#: ../fmfontstrings.cpp:407
+msgid "Kannada"
+msgstr "Каннада"
+
+#: ../fmfontstrings.cpp:408
+msgid "Kharosthi"
+msgstr ""
+
+#: ../fmfontstrings.cpp:409
+msgid "Khmer"
+msgstr "Кхмерский"
+
+#: ../fmfontstrings.cpp:410
+msgid "Lao"
+msgstr "Лаосский"
+
+#: ../fmfontstrings.cpp:411
+msgid "Latin"
+msgstr "Латиница"
+
+#: ../fmfontstrings.cpp:412
+msgid "Limbu"
+msgstr "Лимбу"
+
+#: ../fmfontstrings.cpp:413
+msgid "Linear B"
+msgstr ""
+
+#: ../fmfontstrings.cpp:414
+msgid "Malayalam"
+msgstr "Малайский"
+
+#: ../fmfontstrings.cpp:415
+msgid "Mathematical Alphanumeric Symbols"
+msgstr "Математические алфавитно-цифровые символы"
+
+#: ../fmfontstrings.cpp:416
+msgid "Mongolian"
+msgstr "Монгольский"
+
+#: ../fmfontstrings.cpp:417
+msgid "Musical Symbols"
+msgstr "Нотная грамота"
+
+#: ../fmfontstrings.cpp:418
+msgid "Myanmar"
+msgstr ""
+
+#: ../fmfontstrings.cpp:419
+msgid "N'ko"
+msgstr ""
+
+#: ../fmfontstrings.cpp:420
+msgid "Ogham"
+msgstr "Огамическое письмо"
+
+#: ../fmfontstrings.cpp:421
+msgid "Old Italic"
+msgstr "Этрусский"
+
+#: ../fmfontstrings.cpp:422
+msgid "Old Persian Cuneiform"
+msgstr ""
+
+#: ../fmfontstrings.cpp:423
+msgid "Oriya"
+msgstr "Орийя"
+
+#: ../fmfontstrings.cpp:424
+msgid "Osmanya"
+msgstr "Сомалийское письмо"
+
+#: ../fmfontstrings.cpp:425
+msgid "Phags-pa"
+msgstr "Фагс-па"
+
+#: ../fmfontstrings.cpp:426
+msgid "Phoenician"
+msgstr "Финикийский"
+
+#: ../fmfontstrings.cpp:427
+msgid "Runic"
+msgstr "Руническое письмо"
+
+#: ../fmfontstrings.cpp:428
+msgid "Shavian"
+msgstr "Скорописный алфавит Бернарда Шоу"
+
+#: ../fmfontstrings.cpp:429
+msgid "Sinhala"
+msgstr "Сингалезский"
+
+#: ../fmfontstrings.cpp:430
+msgid "Sumero-Akkadian Cuneiform"
+msgstr ""
+
+#: ../fmfontstrings.cpp:431
+msgid "Syloti Nagri"
+msgstr "Силоти Нагри"
+
+#: ../fmfontstrings.cpp:432
+msgid "Syriac"
+msgstr "Сирийский"
+
+#: ../fmfontstrings.cpp:433
+msgid "Tagalog"
+msgstr "Тагалог"
+
+#: ../fmfontstrings.cpp:434
+msgid "Tagbanwa"
+msgstr "Тагбанва"
+
+#: ../fmfontstrings.cpp:435
+msgid "Tai Le"
+msgstr "Тайский Ле"
+
+#: ../fmfontstrings.cpp:436
+msgid "Tai Lu"
+msgstr ""
+
+#: ../fmfontstrings.cpp:437
+msgid "Tamil"
+msgstr "Тамильский"
+
+#: ../fmfontstrings.cpp:438
+msgid "Telugu"
+msgstr "Телугу"
+
+#: ../fmfontstrings.cpp:439
+msgid "Thaana"
+msgstr "Таана"
+
+#: ../fmfontstrings.cpp:440
+msgid "Thai"
+msgstr "Тайский"
+
+#: ../fmfontstrings.cpp:441
+msgid "Tibetan"
+msgstr "Тибетский"
+
+#: ../fmfontstrings.cpp:442
+msgid "Tifinagh"
+msgstr "Тифинаг"
+
+#: ../fmfontstrings.cpp:443
+msgid "Ugaritic Cuneiform"
+msgstr ""
+
+#: ../fmfontstrings.cpp:444
+msgid "Yi"
+msgstr ""
+
+#: ../fmfontstrings.cpp:491
+msgid "Not Restricted"
+msgstr "Нет ограничений"
+
+#: ../fmfontstrings.cpp:493
+msgid "Restricted"
+msgstr "Есть ограничения"
+
+#: ../fmfontstrings.cpp:495
+msgid "Preview/Print"
+msgstr "Просмотр и печать"
+
+#: ../fmfontstrings.cpp:497
+msgid "Edit/Embed"
+msgstr "Встраивание и правка документов"
+
+#: ../fmfontstrings.cpp:499
+msgid "No Subset"
+msgstr "Без подмножества"
+
+#: ../fmfontstrings.cpp:501
+msgid "Bitmap Only"
+msgstr "Только растр"
+
+#: ../help.ui:13
+msgid "Fontmatrix Help"
+msgstr "Справка по Fontmatrix"
+
+#: ../helpbrowser.cpp:293
+msgid "&File"
+msgstr "&Файл"
+
+#: ../helpbrowser.cpp:294
+msgid "&Edit"
+msgstr "&Правка"
+
+#: ../helpbrowser.cpp:295
+msgid "&Bookmarks"
+msgstr "&Закладки"
+
+#: ../helpbrowser.ui:148 ../helpbrowser.cpp:297
+msgid "&Print..."
+msgstr "&Печать..."
+
+#: ../helpbrowser.cpp:298
+msgid "&Quit"
+msgstr "В&ыход"
+
+#: ../helpbrowser.ui:158 ../helpbrowser.cpp:299
+msgid "&Find..."
+msgstr "&Найти..."
+
+#: ../helpbrowser.cpp:300
+msgid "Find &Next"
+msgstr "Найти &следующее совпадение"
+
+#: ../helpbrowser.cpp:301
+msgid "Find &Previous"
+msgstr "Найти &предыдущее совпадение"
+
+#: ../helpbrowser.cpp:302
+msgid "&Add Bookmark"
+msgstr "&Добавить закладку"
+
+#: ../helpbrowser.ui:103 ../helpbrowser.ui:178 ../helpbrowser.cpp:303
+msgid "&Delete"
+msgstr "&Удалить"
+
+#: ../helpbrowser.ui:110 ../helpbrowser.ui:183 ../helpbrowser.cpp:304
+msgid "D&elete All"
+msgstr "&Удалить все"
+
+#: ../helpbrowser.cpp:381
+msgid "Find"
+msgstr "Искать"
+
+#: ../helpbrowser.cpp:381
+msgid "Search Term:"
+msgstr "Искомый термин:"
+
+#: ../helpbrowser.cpp:413
+msgid "New Bookmark"
+msgstr "Новая закладка"
+
+#: ../helpbrowser.cpp:413
+msgid "New Bookmark's Title:"
+msgstr "Название новой закладки:"
+
+#: ../helpbrowser.cpp:672
+msgctxt "HTML message for no documentation available to show"
+msgid "<h2><p>Sorry, no manual is installed!</p><p>Please contact your package provider or Fontmatrix team if you built the application yourself</p></h2>"
+msgstr "<h2><p>Извините, но руководство пользователя не установлено!</p><p>Свяжитесь с создателем пакета дял вашего дистрибутива, либо, если вы самостоятельно собирали Fontmatrix, с разработчиками программы.</p></h2>"
+
+#: ../helpbrowser.ui:31
+msgid "&Contents"
+msgstr "&Содержание"
+
+#: ../helpbrowser.ui:45
+msgid "Se&arch"
+msgstr "Ис&кать"
+
+#: ../helpbrowser.ui:53
+msgid "Searching is case insensitive"
+msgstr "Поиск регистронезависим"
+
+#: ../helpbrowser.ui:60
+msgid "&Search"
+msgstr "&Искать"
+
+#: ../helpbrowser.ui:70 ../helpbrowser.ui:86
+msgid "1"
+msgstr "1"
+
+#: ../helpbrowser.ui:79
+msgid "Book&marks"
+msgstr "&Закладки"
+
+#: ../helpbrowser.ui:96
+msgid "&New"
+msgstr "&Добавить"
+
+#: ../helpbrowser.ui:153
+msgid "&Exit"
+msgstr "В&ыход"
+
+#: ../helpbrowser.ui:163
+msgid "Find &Next..."
+msgstr "Найти &следующее совпадение..."
+
+#: ../helpbrowser.ui:168
+msgid "Find &Previous..."
+msgstr "Найти &предыдущее совпадение..."
+
+#: ../helpbrowser.ui:173
+msgid "&Add"
+msgstr "&Добавить"
+
+#: ../helpbrowser.cpp:291
+msgid "Fontmatrix Online Help"
+msgstr "Справка по Fontmatrix"
+
+#: ../importtags.ui:72
+msgid "Ok"
+msgstr "ОК"
+
+#: ../importtags.ui:13
+msgid "Fontmatrix - Tags"
+msgstr "Fontmatrix — Метки"
+
+#: ../importedfonts.ui:52
+msgid ""
+"<qt>Instead of showing this dialog imported font count\n"
+"will be shown in the status bar. If you choose not to\n"
+"show this dialog anymore you can reset the state\n"
+"in preferences.</qt>"
+msgstr ""
+"<qt>Вместо этого диалога показывать число\n"
+"импортированных шрифтов в статусной строке.\n"
+"Вы можете отменить этот выбор в диалоге\n"
+"настройки программы.</qt>"
+
+#: ../importedfonts.ui:13
+msgid "Imported fonts"
+msgstr "Импортированные шрифты"
+
+#: ../importedfonts.ui:24
+msgid "Imported Fonts:"
+msgstr "Импортированы следующие шрифты:"
+
+#: ../importedfonts.ui:58
+msgid "&Do not show this dialog again"
+msgstr "&Больше не показывать этот диалог"
+
+#: ../importedfonts.ui:84
+msgid "&OK"
+msgstr "&ОК"
+
+#: ../importedfontsdialog.cpp:37
+msgid " (not loaded)"
+msgstr " (не загружено)"
+
+#: ../importedfontsdialog.cpp:44
+msgid "Number of Imported Fonts "
+msgstr "Количество импортированных шрифтов:"
+
+#: ../layoutoptions.ui:25
+msgid "Weights"
+msgstr "Вес переменных"
+
+#: ../layoutoptions.ui:78 ../layoutoptions.ui:124 ../layoutoptions.ui:222
+#: ../layoutoptions.ui:294
+msgid "score"
+msgstr ""
+
+#: ../layoutoptions.ui:360
+msgid "penalty"
+msgstr ""
+
+#: ../layoutoptions.ui:373
+msgid "H-penalty"
+msgstr ""
+
+#: ../layoutoptions.ui:429
+msgid "space"
+msgstr "Пробел"
+
+#: ../layoutoptions.ui:19
+msgid "Text layout engine options"
+msgstr "Параметры текстового движка"
+
+#: ../layoutoptions.ui:91
+msgid "Before"
+msgstr "До"
+
+#: ../layoutoptions.ui:137
+msgid "Exact"
+msgstr "Точно"
+
+#: ../layoutoptions.ui:235
+msgid "After"
+msgstr "После"
+
+#: ../layoutoptions.ui:307
+msgid "End"
+msgstr "В конце"
+
+#: ../layoutoptions.ui:442
+msgid "Max. compression"
+msgstr "Макс. сжатие"
+
+#: ../listsdock.ui:128
+msgid "Filter view by chosing tag"
+msgstr "Отфильтровать список шрифтов выбором метки"
+
+#: ../listsdock.ui:282 ../listsdock.ui:343
+msgid "Names"
+msgstr "Названия"
+
+#: ../listsdock.ui:201
+msgid "Show complete collection of available fonts"
+msgstr "Показать всю коллекцию шрифтов"
+
+#: ../listsdock.ui:87
+msgid "F"
+msgstr "П"
+
+#: ../listsdock.ui:399
+msgid "Folders"
+msgstr "Папки"
+
+#: ../listsdock.ui:204
+msgid "reset"
+msgstr "Сбросить"
+
+#: ../listsdock.ui:74
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you want to negate the filter,</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">prefix the word with \"!\" such as in:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">\"!pattern\"</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">If you want to enqueue the filter,</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">prefix it with \"+\".</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Finally, you can mix negate and queue in:</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">\"+!pattern\"</span> or \"!+pattern\"</p></body></html>"
+msgstr ""
+
+#: ../listsdock.ui:251
+msgid "save"
+msgstr "Сохранить"
+
+#: ../listsdock.ui:355
+msgid "Collapse or expand"
+msgstr "Развернуть/Свернуть"
+
+#: ../listsdock.ui:371
+msgid "Show face boxes"
+msgstr "Отключаемые начертания"
+
+#: ../listdockwidget.cpp:450
+msgid "All activated"
+msgstr "Все активированные"
+
+#: ../listdockwidget.cpp:132
+msgid "Unicode character"
+msgstr "Юникодный символ"
+
+#: ../listdockwidget.cpp:451
+msgid "Similar to current"
+msgstr "Схожие с текущим"
+
+#: ../listdockwidget.cpp:165
+msgid "Collapse Top Level"
+msgstr "Свернуть верхний уровень"
+
+#: ../listdockwidget.cpp:167
+msgid "Collapse Families"
+msgstr "Свернуть гарнитуры"
+
+#: ../listdockwidget.cpp:170
+msgid "Expand Top Level"
+msgstr "Развернуть верхний уровень"
+
+#: ../listdockwidget.cpp:172
+msgid "Expand Families"
+msgstr "Развернуть гарнитуры"
+
+#: ../mainview.ui:24
+msgid "main view widget"
+msgstr "main view widget"
+
+#: ../mainview.ui:103
+msgid "Quick Search:"
+msgstr "Быстрый поиск:"
+
+#: ../mainview.ui:185
+msgid "Save this filter for later use"
+msgstr "Сохранить этот фильтр для дальнейшего использования"
+
+#: ../mainview.ui:188
+msgid "Save"
+msgstr "Сохранить"
+
+#: ../mainview.ui:195
+msgid "Reset the filter to show all fonts"
+msgstr "Очистить фильтр и показать все шрифты"
+
+#: ../mainview.ui:198
+msgid "Clear"
+msgstr "Очистить"
+
+#: ../mainviewwidget.cpp:1168
+msgid "Fontmatrix takes care of you"
+msgstr "Fontmatrix заботится о вас"
+
+#: ../mainviewwidget.cpp:1168
+msgid ""
+" is activated.\n"
+"If you want to remove it from Fontmatrix database, please deactivate it first."
+msgstr ""
+" активирован.\n"
+"Если вы хотите убрать его из базы данных Fontmatrix, деактивируйте его для начала."
+
+#: ../mainviewwidget.cpp:1171
+msgid "Fontmatrix safe"
+msgstr "Fontmatrix волнуется"
+
+#: ../mainviewwidget.cpp:1171
+msgid "You are about to remove a font from Fontmatrix database"
+msgstr "Вы собираетесь удалить шрифт из базы данных Fontmatrix"
+
+#: ../mainviewwidget.cpp:1171
+msgid "Do you want to continue?"
+msgstr "Вы хотите продолжить?"
+
+#: ../matchraster.ui:32
+msgid "Input Image"
+msgstr "Изображение символа"
+
+#: ../matchraster.ui:169
+msgid "A unique character or a four digits hexadecimal Unicode value"
+msgstr "Значение символа по таблице Unicode (четыре символа в шестнадцатеричной кодировке)"
+
+#: ../matchraster.ui:279
+msgid "Compare with:"
+msgstr "Образец сравнивается с:"
+
+#: ../matchraster.ui:153
+msgid "C&haracter:"
+msgstr "&Символ:"
+
+#: ../matchraster.ui:336
+msgid "&Cancel"
+msgstr "О&тменить"
+
+#: ../matchraster.ui:13
+msgid "Find a font using raster sample"
+msgstr "Поиск шрифта по растровому образцу"
+
+#: ../matchraster.ui:126
+msgid "Raster sample preview"
+msgstr "Предпросмотр образца символа"
+
+#: ../matchraster.ui:204
+msgid "Interactive"
+msgstr "Интерактивно"
+
+#: ../matchraster.ui:220
+msgid "Click on the letter to let Fontmatrix compute the bounding box"
+msgstr "Щёлкните по символу, чтобы Fontmatrix вычислил его площадку"
+
+#: ../matchraster.ui:322
+msgid "Stop"
+msgstr "Стоп"
+
+#: ../matchraster.ui:40
+msgid "Grab mode"
+msgstr "Режим захвата"
+
+#: ../matchraster.ui:69
+msgid "Zoom level"
+msgstr "Масштаб"
+
+#: ../matchraster.ui:201
+msgid "If set, you will be prompted for each matching font"
+msgstr "Если включено, будет запрашиваться подтверждение на каждый подходящий шрифт"
+
+#: ../matchraster.ui:236
+msgid "Tweak rect"
+msgstr "Редактируемый прямоугольник"
+
+#: ../metawidget.ui:26
+msgid "Fill-in text fields and press enter key  or click \"Add Filters\" button to process filters."
+msgstr ""
+
+#: ../metawidget.ui:66
+msgid "Add Filters"
+msgstr "Добавить фильтры"
+
+#: ../panosedialog.ui:13
+msgid "Fontmatrix - Panose Editor"
+msgstr "Fontmatrix — Редактор PANOSE"
+
+#: ../panosewidget.ui:14
+msgid "Panose Metadata"
+msgstr "Метаданные Panose"
+
+#: ../panosewidget.ui:57
+msgid "Panose Attributes"
+msgstr "Атрибуты Panose"
+
+#: ../playwidget.ui:49
+msgid "Font Size:"
+msgstr "Кегль шрифта:"
+
+#: ../playwidget.ui:59
+msgid " pt"
+msgstr " pt"
+
+#: ../playwidget.cpp:35
+msgid "Playground"
+msgstr "Песочница"
+
+#: ../playwidget.cpp:107
+msgid "Print Playground"
+msgstr "Печать содержимого песочницы"
+
+#: ../prefs_panel.ui:13
+msgid "Preferences Panel"
+msgstr "Диалог настройки"
+
+#: ../prefs_panel.ui:74 ../prefs_panel.ui:123
+msgid "General"
+msgstr "Общие"
+
+#: ../prefs_panel.ui:170
+msgid "Show Fontmatrix in System Tray"
+msgstr "Показывать Fontmatrix в области уведомления"
+
+#: ../prefs_panel.ui:202
+msgid "Show \"All\" actions"
+msgstr "Показывать «все» действия"
+
+#: ../prefs_panel.ui:257
+msgid "Preview Word"
+msgstr "Слово в области предпросмотра"
+
+#: ../prefs_panel.ui:350
+msgid "is RTL"
+msgstr "Справа налево"
+
+#: ../prefs_panel.ui:498
+msgid "Add the full path to your preferred font editor"
+msgstr "Полный путь к исполняемому файлу предпочитаемого редактора шрифтов"
+
+#: ../prefs_panel.ui:501
+msgid "/usr/bin/fontforge"
+msgstr "/usr/bin/fontforge"
+
+#: ../prefs_panel.ui:129
+msgid "Ask for tag names when importing fonts"
+msgstr "Спрашивать имена меток при импорте шрифтов"
+
+#: ../prefs_panel.ui:407
+msgid "Initial Layout"
+msgstr "Исходный макет"
+
+#: ../prefs_panel.ui:819
+msgid "Templates Folder"
+msgstr "Каталог со шрифтами"
+
+#: ../prefs_panel.ui:858
+msgid "Remote directories"
+msgstr "Удаленные каталоги"
+
+#: ../prefs_panel.ui:866
+msgid "http://"
+msgstr "http://"
+
+#: ../prefs_panel.ui:928
+msgid "Local storage"
+msgstr "Локальное хранилище"
+
+#: ../prefs_panel.ui:136
+msgid "Show names of imported fonts after import process"
+msgstr "Показывать названия импортированных шрифтов после импорта"
+
+#: ../prefs_panel.ui:962
+msgid "Change"
+msgstr "Изменить"
+
+#: ../prefs_panel.ui:143
+msgid "Show splash at startup"
+msgstr "Показывать заставку при старте"
+
+#: ../prefs_panel.ui:631
+msgid "Left:"
+msgstr "Слева:"
+
+#: ../prefs_panel.ui:644
+msgid "Right:"
+msgstr "Справа:"
+
+#: ../prefs_panel.ui:608
+msgid "Browse"
+msgstr "Указать..."
+
+#: ../prefs_panel.ui:99
+msgid "Files & Folders"
+msgstr "Файлы и папки"
+
+#: ../prefs_panel.ui:185
+msgid "Close to system tray"
+msgstr "Закрывать в область уведомления"
+
+#: ../prefs_panel.ui:195
+msgid "Start minimized to system tray"
+msgstr "При запуске прятать главное окно в область уведомления"
+
+#: ../prefs_panel.ui:343
+msgid "subtitled"
+msgstr "Подписывать"
+
+#: ../prefs_panel.ui:360
+msgid "Chart Subtitle Font"
+msgstr "Шрифт для подписи под эскизом"
+
+#: ../prefs_panel.ui:433
+msgid "linespacing:"
+msgstr "Интерлиньяж:"
+
+#: ../prefs_panel.ui:596
+msgid "Select an  hyphenation dict file as it comes with OpenOffice or Scribus"
+msgstr "Укажите файл с таблицей переноса, который обычно есть в комплекте с OpenOffice.org и Scribus"
+
+#: ../prefs_panel.ui:686
+msgid "Sample Texts"
+msgstr "Образцы текста"
+
+#: ../prefs_panel.ui:726
+msgid "+"
+msgstr "+"
+
+#: ../prefs_panel.ui:745
+msgid "−"
+msgstr "−"
+
+#: ../prefs_panel.ui:486
+msgid "Fonts Editor"
+msgstr "Редактор шрифтов"
+
+#: ../prefs_panel.ui:550
+msgid "Extra options:"
+msgstr "Дополнительные параметры:"
+
+#: ../prefs_panel.ui:79
+msgid "System tray"
+msgstr "Область уведомления"
+
+#: ../prefs_panel.ui:84
+msgid "Display"
+msgstr "Отображение"
+
+#: ../prefs_panel.ui:94
+msgid "Samples collection"
+msgstr "Образцы текста"
+
+#: ../prefs_panel.ui:104
+msgid "Shortcuts"
+msgstr "Комбинации клавиш"
+
+#: ../prefs_panel.ui:263
+msgid "Word:"
+msgstr "Слово:"
+
+#: ../prefs_panel.ui:599
+msgid "Hyphenation dictionary"
+msgstr "Словарь переносов"
+
+#: ../prefs_panel.ui:89
+msgid "Tools"
+msgstr "Инструменты"
+
+#: ../prefs_panel.ui:388
+msgid "Size:"
+msgstr "Кегль шрифта:"
+
+#: ../prefs_panel.ui:302
+msgid "Default font size:"
+msgstr "Кегль шрифта по умолчанию:"
+
+#: ../prefs_panel.ui:460
+msgid "Information Style"
+msgstr "Стиль оформления сводки"
+
+#: ../prefs_panel.ui:466
+msgid "Select Style"
+msgstr "Выберите стиль:"
+
+#: ../prefs_panel.ui:217
+msgid "Ask for confirmation when activating or deactivating all fonts"
+msgstr "Запрашивать подтверждение на активацию и деактивацию всех шрифтов"
+
+#: ../prefs_panel.ui:230
+msgid "Ask for confirmation when activating or deactivating fonts by tags"
+msgstr "Запрашивать подтверждение на активацию и деактивацию по меткам"
+
+#: ../prefs_panel.ui:531
+msgid "Help Browser"
+msgstr "Браузер по справке"
+
+#: ../prefspaneldialog.cpp:88
+msgid "Looks like your setup does not have a system tray available."
+msgstr "Похоже, в вашей системе нет области уведомления."
+
+#: ../prefspaneldialog.cpp:347
+msgid "Select font editor"
+msgstr "Укажите редактор шрифтов"
+
+#: ../prefspaneldialog.cpp:417
+msgid "Select Templates Folder"
+msgstr "Укажите каталог с шаблонами"
+
+#: ../prefspaneldialog.cpp:476
+msgid "Select Where remote font files will be stored"
+msgstr "Укажите расположение разделяемых шрифтов"
+
+#: ../prefspaneldialog.cpp:703
+msgid "Shortcut"
+msgstr "Комбинация"
+
+#: ../prefspaneldialog.cpp:50
+msgid "Please select an item in the list or create a new one."
+msgstr "Выберите вариант из списка или добавьте собственный."
+
+#: ../prefspaneldialog.cpp:555 ../prefspaneldialog.cpp:601
+msgid "Alt"
+msgstr "Alt"
+
+#: ../prefspaneldialog.cpp:555 ../prefspaneldialog.cpp:601
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: ../prefspaneldialog.cpp:555 ../prefspaneldialog.cpp:601
+msgid "Shift"
+msgstr "Shift"
+
+#: ../prefspaneldialog.cpp:555 ../prefspaneldialog.cpp:601
+msgid "Meta"
+msgstr "Meta"
+
+#: ../prefspaneldialog.cpp:563
+msgid "Meta+"
+msgstr "Meta+"
+
+#: ../prefspaneldialog.cpp:567
+msgid "Shift+"
+msgstr "Shift+"
+
+#: ../prefspaneldialog.cpp:571
+msgid "Alt+"
+msgstr "Alt+"
+
+#: ../prefspaneldialog.cpp:575
+msgid "Ctrl+"
+msgstr "Ctrl+"
+
+#: ../prefspaneldialog.cpp:662
+msgid "Replace"
+msgstr "Заменить"
+
+#: ../prefspaneldialog.cpp:663
+msgctxt "action name will be appended to this"
+msgid "Shortcut is already in use for"
+msgstr "Комбинация уже используется для"
+
+#: ../prefspaneldialog.cpp:665
+msgid "Do you still want to assign it?"
+msgstr "Вы все еще хотите назначить ее?"
+
+#: ../prefspaneldialog.cpp:704
+msgid "Tip"
+msgstr "Подсказка"
+
+#: ../prefspaneldialog.cpp:738
+msgid "Select hyphenation dictionary"
+msgstr "Выберите словарь переносов"
+
+#: ../prefspaneldialog.cpp:237
+msgctxt "PrefsPanelDialog|A default sample text inserted when creating a new sample"
+msgid "Sample Text"
+msgstr ""
+"Образец текста\n"
+"\n"
+"Sample text\n"
+"\n"
+"Ein Textbeispiel"
+
+#: ../prefspaneldialog.cpp:251
+msgctxt "PrefsPanelDialog|the name of a sample text will be append to the string"
+msgid "Do you confirm that you want to remove:"
+msgstr "Вы действительно хотите удалить:"
+
+#: ../prefspaneldialog.cpp:356
+msgid "Select web browser"
+msgstr "Выберите веб-браузер"
+
+#: ../prefspaneldialog.cpp:35
+msgid "You can use the following keywords to be replaced by data from fonts: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"
+msgstr "Вы можете использовать следующие ключевые слова для подстановки метаданных шрифтов: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"
+
+#: ../dataexport.cpp:75
+msgid "Copying files"
+msgstr "Копируются файлы"
+
+#: ../dataexport.cpp:75
+msgid "cancel"
+msgstr "Отменить"
+
+#: ../fontitem.cpp:2269
+msgid "codepoint is U+"
+msgstr ""
+
+#: ../opentypetags.h:32
+msgid "Access All Alternates"
+msgstr "Все альтернативные варианты"
+
+#: ../opentypetags.h:33
+msgid "Above-Base Forms"
+msgstr ""
+
+#: ../opentypetags.h:34
+msgid "Above-Base Mark Positioning"
+msgstr ""
+
+#: ../opentypetags.h:35
+msgid "Above-Base Substitutions"
+msgstr ""
+
+#: ../opentypetags.h:36
+msgid "Alternative Fractions"
+msgstr "Альтернативные дроби"
+
+#: ../opentypetags.h:37
+msgid "Akhands"
+msgstr ""
+
+#: ../opentypetags.h:38
+msgid "Below-Base Forms"
+msgstr ""
+
+#: ../opentypetags.h:39
+msgid "Below-Base Mark Positioning"
+msgstr ""
+
+#: ../opentypetags.h:40
+msgid "Below-Base Substitutions"
+msgstr ""
+
+#: ../opentypetags.h:41
+msgid "Petite Capitals From Capitals"
+msgstr "Маленькая капитель из прописных"
+
+#: ../opentypetags.h:42
+msgid "Small Capitals From Capitals"
+msgstr "Капитель из прописных"
+
+#: ../opentypetags.h:43
+msgid "Contextual Alternates"
+msgstr "Контекстные альтернативы"
+
+#: ../opentypetags.h:44
+msgid "Case-Sensitive Forms"
+msgstr "Формы с учетом регистра"
+
+#: ../opentypetags.h:45
+msgid "Glyph Composition/Decomposition"
+msgstr "Композиция/декомпозиция глифа"
+
+#: ../opentypetags.h:46
+msgid "Contextual Ligatures"
+msgstr "Контекстные лигатуры"
+
+#: ../opentypetags.h:47
+msgid "Conjunct Forms"
+msgstr "Объединенные формы"
+
+#: ../opentypetags.h:48
+msgid "Capital Spacing"
+msgstr "Интервал прописных"
+
+#: ../opentypetags.h:49
+msgid "Contextual Swash"
+msgstr "Контекстный росчерк"
+
+#: ../opentypetags.h:50
+msgid "Cursive Positioning"
+msgstr "Курсивное размещение"
+
+#: ../opentypetags.h:51
+msgid "Default Processing"
+msgstr ""
+
+#: ../opentypetags.h:52
+msgid "Distances"
+msgstr "Расстояния"
+
+#: ../opentypetags.h:53
+msgid "Discretionary Ligatures"
+msgstr "Дискреционные лигатуры"
+
+#: ../opentypetags.h:54
+msgid "Denominators"
+msgstr "Знаменатели"
+
+#: ../opentypetags.h:55
+msgid "Expert Forms"
+msgstr "Экспертные формы"
+
+#: ../opentypetags.h:56
+msgid "Final glyph Alternates"
+msgstr "Альтернативные формы последнего глифа строки"
+
+#: ../opentypetags.h:57
+msgid "Terminal Forms #2"
+msgstr "Конечные формы #2"
+
+#: ../opentypetags.h:58
+msgid "Terminal Forms #3"
+msgstr "Конечные формы #3"
+
+#: ../opentypetags.h:59
+msgid "Terminal Forms"
+msgstr "Конечные формы"
+
+#: ../opentypetags.h:60
+msgid "Fractions"
+msgstr "Дроби"
+
+#: ../opentypetags.h:61
+msgid "Full Width"
+msgstr "Замена глифами шириной в 1 em"
+
+#: ../opentypetags.h:62
+msgid "Half Forms"
+msgstr "Половинные формы согласных"
+
+#: ../opentypetags.h:63
+msgid "Halant Forms"
+msgstr ""
+
+#: ../opentypetags.h:64
+msgid "Alternate Half Width"
+msgstr "Перестройка глифов из 1 em в 1/2 em"
+
+#: ../opentypetags.h:65
+msgid "Historical Forms"
+msgstr "Исторические формы"
+
+#: ../opentypetags.h:66
+msgid "Horizontal Kana Alternates"
+msgstr "Замена горизонт. альтернативами глифов каны"
+
+#: ../opentypetags.h:67
+msgid "Historical Ligatures"
+msgstr "Исторические лигатуры"
+
+#: ../opentypetags.h:69
+msgid "Hojo Kanji Forms (JIS x 212-1990 Kanji Forms)"
+msgstr ""
+
+#: ../opentypetags.h:70
+msgid "Half Width"
+msgstr "Замена глифами в 1/2 em"
+
+#: ../opentypetags.h:71
+msgid "Initial Forms"
+msgstr "Начальные формы"
+
+#: ../opentypetags.h:72
+msgid "Isolated Forms"
+msgstr "Изолированные формы"
+
+#: ../opentypetags.h:73
+msgid "Italics"
+msgstr "Курсивные варианты"
+
+#: ../opentypetags.h:74
+msgid "Justification Alternatives"
+msgstr "Улучшающие выключку варианты"
+
+#: ../opentypetags.h:75
+msgid "JIS78 Forms"
+msgstr "Формы из спецификации JIS78"
+
+#: ../opentypetags.h:76
+msgid "JIS83 Forms"
+msgstr "Формы из спецификации JIS83"
+
+#: ../opentypetags.h:77
+msgid "JIS90 Forms"
+msgstr "Формы из спецификации JIS90"
+
+#: ../opentypetags.h:78
+msgid "JIS2004 Forms"
+msgstr "Формы из спецификации JIS2004"
+
+#: ../opentypetags.h:80
+msgid "Left Bounds"
+msgstr "Визуальная выключка по левому краю"
+
+#: ../opentypetags.h:81
+msgid "Standard Ligatures"
+msgstr "Стандартные лигатуры"
+
+#: ../opentypetags.h:82
+msgid "Leading Jamo Forms"
+msgstr "Начальные формы Жамо"
+
+#: ../opentypetags.h:83
+msgid "Lining Figures"
+msgstr "Выстраивание цифр"
+
+#: ../opentypetags.h:84
+msgid "Localized Forms"
+msgstr "Локализованные формы"
+
+#: ../opentypetags.h:85
+msgid "Mark Positioning"
+msgstr "Размещение значка"
+
+#: ../opentypetags.h:86
+msgid "Medial Forms #2"
+msgstr "Срединные формы 2"
+
+#: ../opentypetags.h:87
+msgid "Medial Forms"
+msgstr "Срединные формы"
+
+#: ../opentypetags.h:88
+msgid "Mathematical Greek"
+msgstr "Математические символы из греческого алфавита"
+
+#: ../opentypetags.h:89
+msgid "Mark to Mark Positioning"
+msgstr "Размещение одного значка по отношению к другому"
+
+#: ../opentypetags.h:90
+msgid "Mark Positioning via Substitution"
+msgstr "Размещение значка через подстановку"
+
+#: ../opentypetags.h:91
+msgid "Alternate Annotation Forms"
+msgstr "Альтернативные формы аннотации"
+
+#: ../opentypetags.h:92
+msgid "NLC Kanji Forms"
+msgstr "Формы кандзи по NLC"
+
+#: ../opentypetags.h:93
+msgid "Nukta Forms"
+msgstr ""
+
+#: ../opentypetags.h:94
+msgid "Numerators"
+msgstr "Числители"
+
+#: ../opentypetags.h:95
+msgid "Old Style Figures"
+msgstr "Минускульные цифры"
+
+#: ../opentypetags.h:96
+msgid "Optical Bounds"
+msgstr "Визуальная выключка"
+
+#: ../opentypetags.h:97
+msgid "Ordinals"
+msgstr "Порядковые числительные"
+
+#: ../opentypetags.h:98
+msgid "Ornaments"
+msgstr "Орнаменты"
+
+#: ../opentypetags.h:99
+msgid "Proportional Alternate Width"
+msgstr "Перестройка глифов из 1 em в пропорциональную ширину"
+
+#: ../opentypetags.h:100
+msgid "Petite Capitals"
+msgstr "Маленькая капитель"
+
+#: ../opentypetags.h:101
+msgid "Proportional Figures"
+msgstr "Пропорциональные цифры"
+
+#: ../opentypetags.h:102
+msgid "Pre-base Forms"
+msgstr ""
+
+#: ../opentypetags.h:103
+msgid "Pre-base Substitutions"
+msgstr ""
+
+#: ../opentypetags.h:104
+msgid "Post-base Forms"
+msgstr ""
+
+#: ../opentypetags.h:105
+msgid "Post-base Substitutions"
+msgstr ""
+
+#: ../opentypetags.h:106
+msgid "Proportional Widths"
+msgstr "Замена единообразных глифов пропорциональными"
+
+#: ../opentypetags.h:107
+msgid "Quarter Widths"
+msgstr "Замена на глифы в 1/4 em"
+
+#: ../opentypetags.h:108
+msgid "Randomize"
+msgstr "Случайный выбор альтернативных форм"
+
+#: ../opentypetags.h:109
+msgid "Rakar Forms"
+msgstr ""
+
+#: ../opentypetags.h:110
+msgid "Required Ligatures"
+msgstr "Необходимые лигатуры"
+
+#: ../opentypetags.h:111
+msgid "Reph Form"
+msgstr ""
+
+#: ../opentypetags.h:112
+msgid "Right Bounds"
+msgstr "Визуальная выключка по правому краю"
+
+#: ../opentypetags.h:113
+msgid "Right-To-Left Alternates"
+msgstr "Альтернативы для письменностей слева направо"
+
+#: ../opentypetags.h:114
+msgid "Ruby Notation Forms"
+msgstr "Рубиновые формы письма"
+
+#: ../opentypetags.h:115
+msgid "Stylistic Alternates"
+msgstr "Стилистические альтернативы"
+
+#: ../opentypetags.h:116
+msgid "Scientific Inferiors"
+msgstr "Научные подстрочные знаки"
+
+#: ../opentypetags.h:117
+msgid "Optical Size"
+msgstr "Оптический размер"
+
+#: ../opentypetags.h:118
+msgid "Small Capitals"
+msgstr "Капитель"
+
+#: ../opentypetags.h:119
+msgid "Simplified Forms"
+msgstr "Упрощенные формы"
+
+#: ../opentypetags.h:140
+msgid "Subscript"
+msgstr "Нижний индекс"
+
+#: ../opentypetags.h:141
+msgid "Superscript"
+msgstr "Верхний индекс"
+
+#: ../opentypetags.h:142
+msgid "Swash"
+msgstr "Росчерк"
+
+#: ../opentypetags.h:143
+msgid "Titling"
+msgstr "Формы для заголовков"
+
+#: ../opentypetags.h:144
+msgid "Trailing Jamo Forms"
+msgstr "Замыкающие формы Жамо"
+
+#: ../opentypetags.h:145
+msgid "Traditional Name Forms"
+msgstr "Формы для имен собственных (кандзи)"
+
+#: ../opentypetags.h:146
+msgid "Tabular Figures"
+msgstr "Табличные цифры"
+
+#: ../opentypetags.h:147
+msgid "Traditional Forms"
+msgstr "Традиционные формы"
+
+#: ../opentypetags.h:148
+msgid "Third Widths"
+msgstr "Замена на глифы в 1/3 em"
+
+#: ../opentypetags.h:149
+msgid "Unicase"
+msgstr "Единый регистр"
+
+#: ../opentypetags.h:150
+msgid "Alternate Vertical Metrics"
+msgstr "Альтернативные вертикальные метрики"
+
+#: ../opentypetags.h:151
+msgid "Vattu Variants"
+msgstr ""
+
+#: ../opentypetags.h:152
+msgid "Vertical Writing"
+msgstr "Замена вариантами для вертикального письма"
+
+#: ../opentypetags.h:153
+msgid "Alternate Vertical Half Metrics"
+msgstr "Перестройка глифов с 1 em на 1/2 em в высоту"
+
+#: ../opentypetags.h:154
+msgid "Vowel Jamo Forms"
+msgstr "Гласные формы Жамо"
+
+#: ../opentypetags.h:155
+msgid "Vertical Kana Alternates"
+msgstr "Вертикальные альтернативы каны"
+
+#: ../opentypetags.h:156
+msgid "Vertical Kerning"
+msgstr "Вертикальный кернинг"
+
+#: ../opentypetags.h:157
+msgid "Proportional Alternate Vertical Metrics"
+msgstr "Перестройка глифов с 1em на пропорциональную высоту"
+
+#: ../opentypetags.h:158
+msgid "Vertical Rotation"
+msgstr "Замена вариантами для вертикального письма"
+
+#: ../opentypetags.h:159
+msgid "Slashed Zero"
+msgstr "Перечеркнутый ноль"
+
+#: ../opentypetags.h:120
+msgid "Stylistic Set 1"
+msgstr "Стилистический набор 1"
+
+#: ../opentypetags.h:121
+msgid "Stylistic Set 2"
+msgstr "Стилистический набор 2"
+
+#: ../opentypetags.h:122
+msgid "Stylistic Set 3"
+msgstr "Стилистический набор 3"
+
+#: ../opentypetags.h:123
+msgid "Stylistic Set 4"
+msgstr "Стилистический набор 4"
+
+#: ../opentypetags.h:124
+msgid "Stylistic Set 5"
+msgstr "Стилистический набор 5"
+
+#: ../opentypetags.h:125
+msgid "Stylistic Set 6"
+msgstr "Стилистический набор 6"
+
+#: ../opentypetags.h:126
+msgid "Stylistic Set 7"
+msgstr "Стилистический набор 7"
+
+#: ../opentypetags.h:127
+msgid "Stylistic Set 8"
+msgstr "Стилистический набор 8"
+
+#: ../opentypetags.h:128
+msgid "Stylistic Set 9"
+msgstr "Стилистический набор 9"
+
+#: ../opentypetags.h:129
+msgid "Stylistic Set 10"
+msgstr "Стилистический набор 10"
+
+#: ../opentypetags.h:130
+msgid "Stylistic Set 11"
+msgstr "Стилистический набор 11"
+
+#: ../opentypetags.h:131
+msgid "Stylistic Set 12"
+msgstr "Стилистический набор 12"
+
+#: ../opentypetags.h:132
+msgid "Stylistic Set 13"
+msgstr "Стилистический набор 13"
+
+#: ../opentypetags.h:133
+msgid "Stylistic Set 14"
+msgstr "Стилистический набор 14"
+
+#: ../opentypetags.h:134
+msgid "Stylistic Set 15"
+msgstr "Стилистический набор 15"
+
+#: ../opentypetags.h:135
+msgid "Stylistic Set 16"
+msgstr "Стилистический набор 16"
+
+#: ../opentypetags.h:136
+msgid "Stylistic Set 17"
+msgstr "Стилистический набор 17"
+
+#: ../opentypetags.h:137
+msgid "Stylistic Set 18"
+msgstr "Стилистический набор 18"
+
+#: ../opentypetags.h:138
+msgid "Stylistic Set 19"
+msgstr "Стилистический набор 19"
+
+#: ../opentypetags.h:139
+msgid "Stylistic Set 20"
+msgstr "Стилистический набор 20"
+
+#: ../fminfodisplay.cpp:177
+msgid "File"
+msgstr "Файл"
+
+#: ../fminfodisplay.cpp:179
+msgid "Glyphs count"
+msgstr "Число глифов"
+
+#: ../fminfodisplay.cpp:181
+msgid "Font Type"
+msgstr "Тип шрифта"
+
+#: ../fminfodisplay.cpp:196
+msgid "Charmaps List"
+msgstr "Список кодировок"
+
+#: ../fminfodisplay.cpp:119
+msgid "Unicode Ranges"
+msgstr "Блоки Unicode"
+
+#: ../remotedir.cpp:55 ../remotedir.cpp:239
+msgid "Downloading"
+msgstr "Скачивается"
+
+#: ../sampletoolbar.ui:37
+msgid "Samples"
+msgstr "Образцы"
+
+#: ../sampletoolbar.ui:56
+msgid "OpenType"
+msgstr "OpenType"
+
+#: ../sampletoolbar.ui:75
+msgid ""
+"Depending of the font, some scripts \n"
+"are especially supported if processed \n"
+"through some logic (ICU here)."
+msgstr ""
+
+#: ../sampletoolbar.ui:84
+msgid "Shaping:"
+msgstr "Шейпер:"
+
+#: ../sampletoolbar.cpp:92
+msgid "Select language"
+msgstr "Выберите язык"
+
+#: ../samplewidget.ui:193
+msgid "OpenType Features"
+msgstr "Функции OpenType"
+
+#: ../samplewidget.ui:198
+msgid "Friendly Name"
+msgstr "Удобочитаемое название"
+
+#: ../samplewidget.ui:207
+msgid "Save as default"
+msgstr "Запомнить"
+
+#: ../samplewidget.ui:214
+msgid "Reset Default"
+msgstr "Сбросить"
+
+#: ../samplewidget.ui:80
+msgid "World is wide"
+msgstr "Мир велик"
+
+#: ../samplewidget.ui:118
+msgctxt "Writing system"
+msgid "Script"
+msgstr "Письменность"
+
+#: ../samplewidget.ui:134
+msgid "Shaper type"
+msgstr "Шейпер:"
+
+#: ../samplewidget.ui:150
+msgid "Use shaper"
+msgstr "Использовать шейпер"
+
+#. Identify root of user defined sample texts
+#: ../samplewidget.cpp:797
+msgid "User"
+msgstr "Добавленный"
+
+#: ../samplewidget.cpp:862
+msgid "Print Sample"
+msgstr "Печать образца текста"
+
+#: ../samplewidget.cpp:955
+msgid "New Sample"
+msgstr ""
+
+#: ../scriptconsole.ui:13
+msgid "Script Console"
+msgstr "Консоль"
+
+#: ../scriptconsole.ui:172
+msgid "clear"
+msgstr "Очистить"
+
+#: ../scriptconsole.ui:29
+msgid "Input"
+msgstr "Ввод"
+
+#: ../scriptconsole.ui:42
+msgid "# Type your script right here\n"
+msgstr "# Введите сюда свой сценарий\n"
+
+#: ../scriptconsole.ui:143
+msgid "Standard Output"
+msgstr "Поток вывода"
+
+#: ../scriptconsole.ui:188
+msgid "Standard Error"
+msgstr "Поток ошибок"
+
+#: ../scriptconsole.ui:68
+msgid "Load"
+msgstr "Загрузить"
+
+#: ../scriptconsole.ui:98
+msgid "Execute"
+msgstr "Выполнить"
+
+#: ../scriptconsole.ui:111
+msgid "Running label"
+msgstr ""
+
+#: ../systray.cpp:257
+msgid "&Activate all"
+msgstr "&Активировать все"
+
+#: ../systray.cpp:260
+msgid "&Deactivate all"
+msgstr "&Деактивировать все"
+
+#: ../systray.cpp:263
+msgid "Mi&nimize"
+msgstr "&Свернуть"
+
+#: ../systray.cpp:266
+msgid "&Restore"
+msgstr "&Развернуть"
+
+#: ../systray.cpp:269
+msgid "E&xit"
+msgstr "В&ыход"
+
+#: ../systray.cpp:280
+msgid "&Tags"
+msgstr "&Метки"
+
+#: ../tttableview.cpp:91
+msgid "Save File"
+msgstr "Сохранить файл"
+
+#: ../tttablewidget.ui:19
+msgid "TrueType Tables "
+msgstr "Таблицы TrueType"
+
+#: ../tttablewidget.ui:34
+msgid "Tag"
+msgstr "Обозначение"
+
+#: ../tttablewidget.ui:44
+msgid "Size"
+msgstr "Размер"
+
+#: ../tttablewidget.ui:13
+msgid "TrueType tables display"
+msgstr "Отображение таблиц TrueType"
+
+#: ../tttablewidget.ui:85
+msgid "&Export"
+msgstr "&Экспортировать"
+
+#: ../tagset.ui:19
+msgid "TagSet editor"
+msgstr "Редактор наборов шрифтов"
+
+#: ../tagset.ui:64
+msgid "Collections of Tags"
+msgstr "Наборы меток"
+
+#: ../tagset.ui:80
+msgid "Available Tags"
+msgstr "Доступные метки"
+
+#: ../tagset.ui:115
+msgid "Add selected tag to current set."
+msgstr "Добавить выбранную метку в активный набор"
+
+#: ../tagset.ui:138
+msgid "Collections"
+msgstr "Наборы"
+
+#: ../tagset.ui:153
+msgid "New"
+msgstr "Создать"
+
+#: ../tagset.ui:160
+msgid "delete"
+msgstr "Удалить"
+
+#: ../tagswidget.cpp:68
+msgid ""
+"Please confirm that you want to remove\n"
+"the following tag from database:"
+msgstr ""
+"Подтвердите желание удалить из базы данных\n"
+"следующую метку:"
+
+#: ../tagswidget_listmodel.cpp:20
+msgid "New Tag"
+msgstr "Новая метка"
+
+#: ../textprogression.ui:25
+msgid "Inline progression"
+msgstr "Направление строки"
+
+#: ../textprogression.ui:40 ../textprogression.ui:101
+msgid "e.g. Latin text"
+msgstr "Например, текст на латыни"
+
+#: ../textprogression.ui:43 ../textprogression.ui:127
+msgid "Left to right"
+msgstr "Слева направо"
+
+#: ../textprogression.ui:53
+msgid "e.g. Arabic text"
+msgstr "Например, арабский текст"
+
+#: ../textprogression.ui:56 ../textprogression.ui:117
+msgid "Right to left"
+msgstr "Справа налево"
+
+#: ../textprogression.ui:63
+msgid "e.g. Traditional Chinese & Japanese text"
+msgstr "Например, текст на традицонном китайском или японском языках"
+
+#: ../textprogression.ui:66 ../textprogression.ui:104
+msgid "Top to bottom"
+msgstr "Сверху вниз"
+
+#: ../textprogression.ui:73
+msgid "e.g. Runic text"
+msgstr "Например, рунический текст"
+
+#: ../textprogression.ui:76
+msgid "Bottom to top"
+msgstr "Снизу вверх"
+
+#: ../textprogression.ui:86
+msgid "Block progression"
+msgstr "Направление блока"
+
+#: ../textprogression.ui:124
+msgid "e.g. Traditional Mongolian text"
+msgstr "Например, текст на традиционном монгольском"
+
+#: ../textprogression.ui:114
+msgid "e.g. Tarditionnal Chinese & Japanes text"
+msgstr "Например, текст на традицонном китайском или японском языках"
+
+#: ../multiprintdialog.ui:41
+msgid "Views"
+msgstr "Панели"
+
+#: ../multiprintdialog.ui:47
+msgid "Informations"
+msgstr "Данные"
+
+#: ../multiprintdialog.ui:54
+msgid "Preview"
+msgstr "Предпросмотр"
+
+#: ../multiprintdialog.ui:61
+msgid "Glyphs chart"
+msgstr "Карта глифов"
+
+#: ../multiprintdialog.ui:19
+msgid "Printing multiple items"
+msgstr "Печать нескольких типов данных"
+
+#: ../repair.ui:47
+msgid "Dead links"
+msgstr "Мертвые ссылки"
+
+#: ../repair.ui:63 ../repair.ui:107 ../repair.ui:158 ../repair.ui:202
+msgid "Select all"
+msgstr "Выбрать все"
+
+#: ../repair.ui:91
+msgid "Activated Not Linked"
+msgstr "Активированные несвязанные"
+
+#: ../repair.ui:127
+msgid "Re-link"
+msgstr "Повторно связать"
+
+#: ../repair.ui:134
+msgid "Deactivate"
+msgstr "Деактивировать"
+
+#: ../repair.ui:142
+msgid "Deactivated Linked"
+msgstr "Деактивированные связанные"
+
+#: ../repair.ui:178
+msgid "De-link"
+msgstr "Убрать ссылку"
+
+#: ../repair.ui:13
+msgid "Database repair"
+msgstr "Проверка и восстановление базы данных"
+
+#: ../repair.ui:193
+msgid "Unreferenced Files"
+msgstr "Несвязанные файлы"
+
+#: ../tagswidget.ui:67
+msgid "Remove Tag"
+msgstr "Удалить метку"
+
+#: ../tagswidget.ui:77
+msgid "Right mouse click on a tag to add it or remove it from TagSet"
+msgstr "Щелкните правой клавишей мыши метку, чтобы добавить или удалить ее из набора меток"
+
+#: ../tagswidget.ui:54
+msgid "Add a tag"
+msgstr "Добавить метку"
+
+#: ../typotek.cpp:1634
+msgid "default"
+msgstr "По умолчанию"
+
+#: ../typotek.cpp:315
+msgid "Fontmatrix"
+msgstr "Fontmatrix"
+
+#: ../typotek.cpp:316
+msgid "The program will keep running in the system tray. To terminate the program, choose <b>Exit</b> in the context menu of the system tray entry."
+msgstr "Программа останется в области уведомления. Для завершения работы с ней выберите команду «Выйти» в контекстном меню программы из области уведомления."
+
+#: ../typotek.cpp:367
+msgid "Add Directory"
+msgstr "Добавить каталог"
+
+#: ../typotek.cpp:440 ../typotek.cpp:567
+msgid "Importing font files... "
+msgstr "Импортируются шрифтовые файлы..."
+
+#: ../typotek.cpp:660
+msgid "Import a directory"
+msgstr "Импортировать шрифты из каталога"
+
+#: ../typotek.cpp:671
+msgid "Export a fontset"
+msgstr "Экспортировать набор шрифтов"
+
+#: ../typotek.cpp:676
+msgid "Export font book..."
+msgstr "Создать каталог шрифтов..."
+
+#: ../typotek.cpp:687
+msgid "Exit the application"
+msgstr "Завершить работу с программой"
+
+#: ../typotek.cpp:693
+msgid "&About"
+msgstr "&О программе"
+
+#: ../typotek.cpp:699
+msgid "About &Qt"
+msgstr "О &Qt"
+
+#: ../typotek.cpp:705
+msgid "Help"
+msgstr "Справка"
+
+#: ../typotek.cpp:718
+msgid "Activate all current"
+msgstr "Активировать все выбранные"
+
+#: ../typotek.cpp:723
+msgid "Deactivate all current"
+msgstr "Деактивировать все выбранные"
+
+#: ../typotek.cpp:728
+msgid "Edit current font"
+msgstr "Изменить выбранный шрифт"
+
+#: ../typotek.cpp:783
+msgid "Show/Hide Playground"
+msgstr "Показать или скрыть песочницу"
+
+#: ../typotek.cpp:789
+msgid "Compare"
+msgstr "Сравнение глифов..."
+
+#: ../typotek.cpp:791
+msgid "Show/Hide Compare glyphs"
+msgstr "Показать или скрыть диалог сравнения глифов"
+
+#: ../typotek.cpp:797
+msgid "Close All"
+msgstr "Закрыть все"
+
+#: ../typotek.cpp:798
+msgid "Close all floating windows"
+msgstr "Закрыть все плавающие окна"
+
+#: ../typotek.cpp:802
+msgid "Show All"
+msgstr "Показать все"
+
+#: ../typotek.cpp:803
+msgid "Show all floating windows"
+msgstr "Показать все плавающие окна"
+
+#: ../typotek.cpp:807
+msgid "Hide All"
+msgstr "Скрыть все"
+
+#: ../typotek.cpp:808
+msgid "Hide all floating windows"
+msgstr "Скрыть все плавающие окна"
+
+#: ../typotek.cpp:933
+msgid "Browse Directories"
+msgstr "Просматривать каталоги"
+
+#: ../typotek.cpp:935
+msgid "Toggle Files/Collection view"
+msgstr "Переключиться между просмотром файлов и коллекции"
+
+#: ../typotek.cpp:1549
+msgid "Edit me!"
+msgstr ""
+
+#: ../typotek.cpp:1710
+msgid "Try to run font editor with the selected font as argument"
+msgstr "Попытаться открыть текущий шрифт в редакторе шрифтов"
+
+#: ../typotek.cpp:1715
+msgid "You don't seem to have font editor installed. Path to font editor can be set in preferences."
+msgstr "Похоже, редактор шрифтов не установлен. Его расположение можно указать в диалоге настройки."
+
+#: ../typotek.cpp:2310
+msgctxt "followed by currently selected font name (in status bar)"
+msgid "Current Font"
+msgstr "Текущий шрифт"
+
+#: ../typotek.cpp:751
+msgid "Preferences"
+msgstr "Параметры"
+
+#: ../typotek.cpp:757
+msgid "Check Database"
+msgstr "Проверить базу данных"
+
+#: ../typotek.cpp:903
+msgid "&Help"
+msgstr "&Справка"
+
+#: ../typotek.cpp:941
+msgid "Load settings"
+msgstr "Загрузка параметров"
+
+#: ../typotek.cpp:1055
+msgid "Check for Fontmatrix own dir"
+msgstr "Проверка каталога Fontmatrix"
+
+#: ../typotek.cpp:1245 ../typotek.cpp:1246
+msgid "Adding"
+msgstr "Добавляется"
+
+#: ../typotek.cpp:1332
+msgid "font descriptions imported from network"
+msgstr "Взятые из сети описания шрифтов"
+
+#: ../typotek.cpp:1359 ../typotek.cpp:1365
+msgid "Fontmatrix care"
+msgstr "Fontmatrix заботится о вас"
+
+#: ../typotek.cpp:1359
+msgid ""
+"You are about to activate a bunch of fonts,\n"
+"it is time to cancel if it was not your intent"
+msgstr ""
+"Сейчас будет активирована куча шрифтов, самое время \n"
+"отменить активацию, если вы это нечаянно затеяли."
+
+#: ../typotek.cpp:1365
+msgid ""
+"You are about to deactivate a bunch of fonts,\n"
+"it is time to cancel if it was not your intent"
+msgstr "Сейчас будет деактивирована куча шрифтов, самое время отменить деактивацию, если вы это нечаянно затеяли."
+
+#: ../typotek.cpp:1397
+msgid "There is no font selected"
+msgstr "Ни один шрифт не выбран"
+
+#: ../typotek.cpp:1452
+msgid "Support of DragNDrop over http is sheduled but not yet effective"
+msgstr "Поддержка перетаскивания с http запланирована, но пока не реализована"
+
+#: ../typotek.cpp:1477
+msgid "You bring something over me I canât handle"
+msgstr "Программа не умеет обрабатывать данные такого типа"
+
+#: ../typotek.cpp:512 ../typotek.cpp:618
+#, qt-format
+msgid "Fonts imported: %1"
+msgstr "Импортировано шрифтов: %1"
+
+#: ../typotek.cpp:770
+msgid "Show TrueType tables"
+msgstr "Показать таблицы TrueType"
+
+#: ../typotek.cpp:876
+msgid "&View"
+msgstr "&Вид"
+
+#: ../typotek.cpp:1209
+msgid "System Fonts"
+msgstr "Системные шрифты"
+
+#: ../typotek.cpp:1272
+msgid "system fonts added."
+msgstr "системных шрифтов добавлено."
+
+#: ../typotek.cpp:1245 ../typotek.cpp:1246
+msgctxt "followed by a directory name"
+msgid "fonts from"
+msgstr "шрифтов из"
+
+#: ../typotek.cpp:833
+msgid "Execute Last Script"
+msgstr "Выполнить последний сценарий"
+
+#: ../typotek.cpp:883
+msgid "&Scripts"
+msgstr "С&ценарии"
+
+#: ../typotek.cpp:2256
+msgid "Python scripts (*.py)"
+msgstr "Сценарии на Python (*.py)"
+
+#: ../typotek.cpp:816
+msgid "Extract fonts..."
+msgstr "Извлечь шрифты..."
+
+#: ../typotek.cpp:591
+msgid "Cannot import this font because it is broken: "
+msgstr "Не удалось импортировать этот испорченный шрифт:"
+
+#: ../typotek.cpp:480
+msgid "Cannot import this font because it is broken:"
+msgstr "Не удалось импортировать этот испорченный шрифт:"
+
+#: ../typotek.cpp:2304
+#, qt-format
+msgctxt "number of filtererd fonts showed in status bar"
+msgid "Filtered Font: %1"
+msgid_plural "Filtered Fonts: %1"
+msgstr[0] "Отфильтровано шрифтов: %1"
+msgstr[1] "Отфильтровано шрифтов: %1"
+msgstr[2] "Отфильтровано шрифтов: %1"
+
+#: ../typotek.cpp:677
+msgid "Export a PDF document that shows selected fonts"
+msgstr "Создать шрифтовый альбом в формате PDF"
+
+#: ../typotek.cpp:694
+msgid "Show information about Fontmatrix"
+msgstr "Показывать информацию о Fontmatrix"
+
+#: ../typotek.cpp:700
+msgid "Show information about Qt"
+msgstr "Показывать информацию о Qt"
+
+#: ../typotek.cpp:707
+msgid "Read documentation on Fontmatrix"
+msgstr "Открыть документацию по Fontmatrix"
+
+#: ../typotek.cpp:719
+msgid "Activate all currently visible fonts"
+msgstr "Активировать все видимые сейчас в списке шрифты"
+
+#: ../typotek.cpp:724
+msgid "Deactivate all currently visible fonts"
+msgstr "Деактивировать все видимые сейчас в списке шрифты"
+
+#: ../typotek.cpp:733
+msgid "Edit currently selected font in a font editor of your choice"
+msgstr "Изменить выбранный шрифтовый файл в избранном редакторе шрифтов"
+
+#: ../typotek.cpp:738
+msgid "You don't seem to have a font editor installed. Path to font editor can be set in Preferences dialog."
+msgstr "Похоже, что у вас не установлен или не найден редактор шрифтов. Укажите путь к нему в диалоге настройки программы."
+
+#: ../typotek.cpp:752
+msgid "Setup Fontmatrix"
+msgstr "Настроить Fontmatrix"
+
+#: ../typotek.cpp:758
+msgid "Check Fontmatrix database for dead links to font files"
+msgstr "Проверить базу данных Fontmatrix на ссылки к несуществующим шрифтам"
+
+#: ../typotek.cpp:766
+msgid "Tag all currently visible files"
+msgstr "Присвоить метки всем видимым сейчас в списке шрифтам"
+
+#: ../typotek.cpp:771
+msgid "View hexadecimal values of TrueType tables for currently selected font file"
+msgstr "Просмотреть шестнадцатиричные значения таблиц TrueType для выбранного шрифтового файла"
+
+#: ../typotek.cpp:775
+msgid "Edit PANOSE metadata"
+msgstr "Изменить метаданные PANOSE..."
+
+#: ../typotek.cpp:776
+msgid "Edit PANOSE metadata without saving changes to font files"
+msgstr "Изменить метаданные PANOSE, не сохраняя изменения в сами шрифтовые файлы"
+
+#: ../typotek.cpp:817
+msgid "Extract fonts from documents like PDF to PFM file format"
+msgstr "Извлечь встроенные в PDF грифты в файлы формата PFM"
+
+#: ../typotek.cpp:828
+msgid "Execute Script..."
+msgstr "Исполнить сценарий..."
+
+#: ../typotek.cpp:829
+msgid "Execute a Python script"
+msgstr "Исполнить сценарий на языке Python"
+
+#: ../typotek.cpp:834
+msgid "Execute the last chosen Python script"
+msgstr "Исполнить последний выбранный сценарий на языке Python"
+
+#: ../typotek.cpp:838
+msgid "Script Console..."
+msgstr "Консоль..."
+
+#: ../typotek.cpp:839
+msgid "Open Python scripting console"
+msgstr "Открыть консоль для тестирования сценариев на языке Python"
+
+#: ../typotek.cpp:682
+msgid "Fill a template file with metadata for packaging currently selected font to a Linux distribution"
+msgstr "Заполнить метаданными шаблон для упаковки выбранного шрифта в дистрибутив Linux"
+
+#: ../typotek.cpp:821
+msgid "Find a font using raster sample..."
+msgstr "Найти шрифты по растровому образцу..."
+
+#: ../typotek.cpp:822
+msgid "Find a font using a raster sample of a letter"
+msgstr "Найти шрифты по растровому образцу одного символа"
+
+#: ../typotek.cpp:1208
+msgid "Loading System Fonts"
+msgstr "Загружаются системные шрифты"
+
+#: ../typotek.cpp:670
+msgid "Export &fonts"
+msgstr "&Экспортировать шрифты..."
+
+#: ../typotek.cpp:681
+msgid "Export font info for packaging..."
+msgstr "Экспортировать данные для упаковки..."
+
+#: ../typotek.cpp:765
+msgid "Tag All Filtered..."
+msgstr "Метки для всех отфильтрованных..."
+
+#: ../fontmatrixui.rc:35
+msgid "&Tools"
+msgstr "&Инструменты"
+
+#: ../typotek.cpp:741
+msgid "Reload Filtered"
+msgstr "Повторно загрузить отфильтрованные"
+
+#: ../typotek.cpp:420
+msgid "Confirmation"
+msgstr ""
+
+#: ../typotek.cpp:421
+#, qt-format
+msgid "Do you confirm you want to import %1 font?"
+msgid_plural "Do you confirm you want to import %1 fonts?"
+msgstr[0] "Вы действительно хотите импортировать %1 шрифт?"
+msgstr[1] "Вы действительно хотите импортировать %1 шрифта?"
+msgstr[2] "Вы действительно хотите импортировать %1 шрифтов?"
+
+#: ../typotek.cpp:524
+msgid "Select Files to Import"
+msgstr "Выберите импортируемые файлы"
+
+#: ../typotek.cpp:526
+msgid "Font Files"
+msgstr "Файлы шрифтов"
+
+#: ../typotek.cpp:658
+msgid "&Import Directory..."
+msgstr "Импортировать &каталог..."
+
+#: ../typotek.cpp:664
+msgid "Import &Files..."
+msgstr "&Импортировать файлы..."
+
+#: ../typotek.cpp:666
+msgid "Import Files"
+msgstr "Импортировать файлы"
+
+#: ../typotek.cpp:742
+msgid "Reload informations for filtered fonts from the font files they belong to"
+msgstr "Повторно загрузить информацию об отфильтрованных шрифтах из их файлов"
+
+#: ../typotek.cpp:746
+msgid "Reload Selected"
+msgstr "Повторно загрузить выбранный"
+
+#: ../typotek.cpp:747
+msgid "Reload informations for selected font from the font file"
+msgstr "Повторно загрузить информацию о текущем выбранном шрифте из его файла"
+
+#: ../typotek.cpp:2209
+#, qt-format
+msgid "Failed to reload %1 font"
+msgid_plural "Failed to reload %1 fonts"
+msgstr[0] "Не удалось загрузить %1 шрифт"
+msgstr[1] "Не удалось загрузить %1 шрифта"
+msgstr[2] "Не удалось загрузить %1 шрифтов"
+
+#, fuzzy
+#~ msgctxt "CompareWidget|"
+#~ msgid "Form"
+#~ msgstr "Form"
+
+#, fuzzy
+#~ msgctxt "FMLayout|"
+#~ msgid "Text engine options"
+#~ msgstr "Параметры текстового движка"
+
+#, fuzzy
+#~ msgctxt "FamilyWidget|"
+#~ msgid "Activate"
+#~ msgstr "Активировать"
+
+#, fuzzy
+#~ msgctxt "FamilyWidget|"
+#~ msgid "Deactivate"
+#~ msgstr "Деактивировать"
+
+#, fuzzy
+#~ msgctxt "FilterBar|"
+#~ msgid "Add Filter:"
+#~ msgstr "Добавить фильтр:"
+
+#, fuzzy
+#~ msgctxt "FilterBar|"
+#~ msgid "Meta"
+#~ msgstr "Мета"
+
+#, fuzzy
+#~ msgctxt "FilterBar|"
+#~ msgid "Add a generic metadata field to the filter"
+#~ msgstr "Добавить в фильтр поле из типовых метаданных шрифта"
+
+#, fuzzy
+#~ msgctxt "FilterBar|"
+#~ msgid "Add a Panose metadata field to the filter"
+#~ msgstr "Добавить в фильтр поле из метаданных Panose"
+
+#, fuzzy
+#~ msgctxt "FilterBar|"
+#~ msgid "Manage named filters"
+#~ msgstr "Управление именованными фильтрами"
+
+#, fuzzy
+#~ msgctxt "FilterBar|"
+#~ msgid "Clear"
+#~ msgstr "Очистить"
+
+#, fuzzy
+#~ msgctxt "FilterBar|"
+#~ msgid "All activated"
+#~ msgstr "Все активированные"
+
+#, fuzzy
+#~ msgctxt "FiltersDialog|"
+#~ msgid "Dialog"
+#~ msgstr "Диалог"
+
+#, fuzzy
+#~ msgctxt "FiltersDialog|"
+#~ msgid "OK"
+#~ msgstr "ОК"
+
+#, fuzzy
+#~ msgctxt "FiltersDialogItem|"
+#~ msgid "TextLabel"
+#~ msgstr "TextLabel"
+
+#, fuzzy
+#~ msgctxt "FloatingWidgetToolBar|"
+#~ msgid "Close"
+#~ msgstr "Закрыть"
+
+#, fuzzy
+#~ msgctxt "FloatingWidgetToolBar|"
+#~ msgid "Hide"
+#~ msgstr "Скрыть"
+
+#, fuzzy
+#~ msgctxt "FloatingWidgetToolBar|"
+#~ msgid "Detach"
+#~ msgstr "Отцепить"
+
+#, fuzzy
+#~ msgctxt "FolderViewMenu|"
+#~ msgid "Reload Tree"
+#~ msgstr "Повторно загрузить дерево"
+
+#, fuzzy
+#~ msgctxt "FontItem|"
+#~ msgid "Category"
+#~ msgstr "Категория"
+
+#, fuzzy
+#~ msgctxt "ListDock|"
+#~ msgid "Previews"
+#~ msgstr "Миниатюры"
+
+#, fuzzy
+#~ msgctxt "ListDockWidget|"
+#~ msgid "You can use the following keywords to be replaced by data from fonts: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"
+#~ msgstr "Вы можете использовать следующие ключевые слова для подстановки метаданных шрифтов: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</strong>"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "clear"
+#~ msgstr "Очистить"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Font Information"
+#~ msgstr "Сводка"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Sample Text"
+#~ msgstr "Образец текста"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Font Size"
+#~ msgstr "Кегль шрифта"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid " pt"
+#~ msgstr " pt"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Use shaper"
+#~ msgstr "Использовать шейпер"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "OpenType Features"
+#~ msgstr "Функции OpenType"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Friendly Name"
+#~ msgstr "Удобочитаемое название"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Glyphs"
+#~ msgstr "Глифы"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Clicking on a glyph will show details about it"
+#~ msgstr "Щелкните по символу для подробного просмотра"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Playground"
+#~ msgstr "Песочница"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "push"
+#~ msgstr "Добавить"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Settings"
+#~ msgstr "Параметры"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "OpenType"
+#~ msgstr "OpenType"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Save as default"
+#~ msgstr "Запомнить"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Reset Default"
+#~ msgstr "Сбросить"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "FreeType"
+#~ msgstr "Отрисовка через FreeType"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Native Qt objects"
+#~ msgstr "Отрисовка средствами Qt"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "World is wide"
+#~ msgstr "Мир велик"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Shaper type"
+#~ msgstr "Шейпер:"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Set Mode \"Copy Character to Clipboard\""
+#~ msgstr "Включить режим копирования символов в буфер обмена"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "No hinting"
+#~ msgstr "Без уточнения"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Light Hinting"
+#~ msgstr "Слабое уточнение"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Normal Hinting"
+#~ msgstr "Обычное уточнение"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Display Settings"
+#~ msgstr "Параметры отображения"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Classification"
+#~ msgstr "Классификация"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Compare"
+#~ msgstr "Сравнение глифов"
+
+#, fuzzy
+#~ msgctxt "MainView|Writing system"
+#~ msgid "Script"
+#~ msgstr "Письменность:"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Edit sample text"
+#~ msgstr "Изменить текст образца"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Edit"
+#~ msgstr "Изменить"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "FreeType based rasterized rendering"
+#~ msgstr "Растрированный рендеринг на основе FreeType"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Vectorized rendering using native toolkit (Qt)"
+#~ msgstr "Векторный рендеринг средствами графической библиотеки Qt"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Coverage of Unicode Interval"
+#~ msgstr "Охват блока Unicode"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Block:"
+#~ msgstr "Блок:"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "More Options"
+#~ msgstr "Больше параметров"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "..."
+#~ msgstr "..."
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Search:"
+#~ msgstr "Искать:"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Copy Mode"
+#~ msgstr "Режим копирования"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "1"
+#~ msgstr "1"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid ""
+#~ "Search a character by its codepoint (expressed in hexadecimal \n"
+#~ "and prefixed with \"U+\", \"u+\" or \"+\") or a glyph by its name.\n"
+#~ "Press enter after editing to run the search."
+#~ msgstr ""
+#~ "Поиск глифа по его коду (шестнадцатиричное значение\n"
+#~ "с префиксом в виде  \"U+\", \"u+\" или \"+\") или названию.\n"
+#~ "Нажатие клавиши ввода запускает поиск."
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Sample"
+#~ msgstr "Выбор текста"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Appearance"
+#~ msgstr "Отрисовка"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Font Size:"
+#~ msgstr "Кегль шрифта:"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Sample text rendering options"
+#~ msgstr "Параметры отрисовки образца текста"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Display settings"
+#~ msgstr "Параметры отображения"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Enable and disable OpenType features implemented in the font"
+#~ msgstr "Включение и отключение функций OpenType, доступных в выбранном шрифте"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "OpenType features"
+#~ msgstr "Функции OpenType"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Choose a sample text from your collection"
+#~ msgstr "Выбор образцов текста из коллекции"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Samples collection"
+#~ msgstr "Образцы текста"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Rasterized"
+#~ msgstr "Растрированная"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Freely scalable vector rendering using native toolkit (Qt)"
+#~ msgstr "Свободно масштабируемая отрисовка текста"
+
+#, fuzzy
+#~ msgctxt "MainView|"
+#~ msgid "Vector"
+#~ msgstr "Векторная"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Names"
+#~ msgstr "Названия"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Welcome to Fontmatrix"
+#~ msgstr "Добро пожаловать в Fontmatrix"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Load"
+#~ msgstr "Загрузить"
+
+#, fuzzy, qt-format
+#~ msgctxt "MainViewWidget|%1 is an url and %2 a program"
+#~ msgid ""
+#~ "An error occured when tried to load %1\n"
+#~ "with command: %2"
+#~ msgstr ""
+#~ "Произошла ошибка при попытке загрузить %1\n"
+#~ "командой: %2"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|Size of the welcome message"
+#~ msgid "122.0"
+#~ msgstr "18.0"
+
+#, fuzzy, qt-format
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Block (%1):"
+#~ msgstr "Блок (%1):"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "User"
+#~ msgstr "Добавленный"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "Un-Mapped Glyphs"
+#~ msgstr "Несвязанные глифы"
+
+#, fuzzy
+#~ msgctxt "MainViewWidget|"
+#~ msgid "View all mapped glyphs"
+#~ msgstr "Все связанные глифы"
+
+#, fuzzy
+#~ msgctxt "PanoseWidget|"
+#~ msgid "Form"
+#~ msgstr "Form"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Unable to copy"
+#~ msgstr "Не удалось скопировать"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Creating font book... "
+#~ msgstr "Создается каталог шрифтов... "
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Number, DecimalDigit"
+#~ msgstr "Числа, десятичные"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Number, Other"
+#~ msgstr "Числа, прочие"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Separator, Space"
+#~ msgstr "Разделители, пробелы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Separator, Line"
+#~ msgstr "Разделители, строки"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Separator, Paragraph"
+#~ msgstr "Разделители, абзацы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Letter, Uppercase"
+#~ msgstr "Буквы, прописные"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Letter, Lowercase"
+#~ msgstr "Буквы, строчные"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Letter, Titlecase"
+#~ msgstr "Буквы, Заглавные"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Letter, Modifier"
+#~ msgstr "Буквы, модификаторы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Letter, Other"
+#~ msgstr "Буквы, прочие"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, Connector"
+#~ msgstr "Знаки препинания, соединители"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, Dash"
+#~ msgstr "Знаки препинания, тире"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, Open"
+#~ msgstr "Знаки препинания, открывающие"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, Close"
+#~ msgstr "Знаки препинания, закрывающие"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, InitialQuote"
+#~ msgstr "Знаки препинания, открывающие кавычки"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, FinalQuote"
+#~ msgstr "Знаки препинания, закрывающие кавычки"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Punctuation, Other"
+#~ msgstr "Знаки препинания, прочие"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Symbol, Math"
+#~ msgstr "Символы, математика"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Symbol, Currency"
+#~ msgstr "Символы, валюта"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Symbol, Modifier"
+#~ msgstr "Символы, модификаторы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Symbol, Other"
+#~ msgstr "Символы, прочее"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Basic Latin"
+#~ msgstr "Основная латиница"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Latin-1 Supplement"
+#~ msgstr "Latin-1, дополнение 1"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Latin Extended-A"
+#~ msgstr "Латиница, расширение А"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Latin Extended-B"
+#~ msgstr "Латиница, расширение B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "IPA Extensions"
+#~ msgstr "Расширения IPA"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Spacing Modifier Letters"
+#~ msgstr "Модификаторы пробелов"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Combining Diacritical Marks"
+#~ msgstr "Объединяющие диакритические знаки"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Greek and Coptic"
+#~ msgstr "Греческий и коптский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cyrillic"
+#~ msgstr "Кириллица"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cyrillic Supplement"
+#~ msgstr "Кириллица, дополнение"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Armenian"
+#~ msgstr "Армянский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Hebrew"
+#~ msgstr "Иврит"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Arabic"
+#~ msgstr "Арабский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Syriac"
+#~ msgstr "Сирийский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Arabic Supplement"
+#~ msgstr "Арабские дополнительные"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Thaana"
+#~ msgstr "Таана"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "NKo"
+#~ msgstr "Н'ко"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Devanagari"
+#~ msgstr "Деванагари"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Bengali"
+#~ msgstr "Бенгали"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Gurmukhi"
+#~ msgstr "Гурмухи"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Gujarati"
+#~ msgstr "Гуджарати"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Oriya"
+#~ msgstr "Орийя"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Tamil"
+#~ msgstr "Тамильский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Telugu"
+#~ msgstr "Телугу"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Kannada"
+#~ msgstr "Каннада"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Malayalam"
+#~ msgstr "Малайский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Sinhala"
+#~ msgstr "Сингалезский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Thai"
+#~ msgstr "Тайский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Lao"
+#~ msgstr "Лаосский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Tibetan"
+#~ msgstr "Тибетский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Georgian"
+#~ msgstr "Грузинский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Hangul Jamo"
+#~ msgstr "Хангул Ямо"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ethiopic"
+#~ msgstr "Эфиопский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ethiopic Supplement"
+#~ msgstr "Эфиопский, дополнение"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cherokee"
+#~ msgstr "Чероки"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ogham"
+#~ msgstr "Огамическое письмо"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Runic"
+#~ msgstr "Руническое письмо"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Tagalog"
+#~ msgstr "Тагалог"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Hanunoo"
+#~ msgstr "Хануноо"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Buhid"
+#~ msgstr "Бухид"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Tagbanwa"
+#~ msgstr "Тагбанва"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Khmer"
+#~ msgstr "Кхмерский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Mongolian"
+#~ msgstr "Монгольский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Limbu"
+#~ msgstr "Лимбу"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Tai Le"
+#~ msgstr "Тайский Ле"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "New Tai Lue"
+#~ msgstr "Новый Тайский Ле"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Khmer Symbols"
+#~ msgstr "Кхмерские символы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Buginese"
+#~ msgstr "Бугинский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Balinese"
+#~ msgstr "Балинезийский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Sundanese"
+#~ msgstr "Сунданский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Lepcha"
+#~ msgstr "Лепча"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ol Chiki"
+#~ msgstr "Ол Чики"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Phonetic Extensions"
+#~ msgstr "Фонетические расширения"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Phonetic Extensions Supplement"
+#~ msgstr "Фонетические расширения, дополнение"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Combining Diacritical Marks Supplement"
+#~ msgstr "Комбинированные диакритические знаки, дополнение"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Latin Extended Additional"
+#~ msgstr "Латиница расширенная дополнительная"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Greek Extended"
+#~ msgstr "Греческий расширенный"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "General Punctuation"
+#~ msgstr "Общая пунктуация"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Superscripts and Subscripts"
+#~ msgstr "Надстрочные и подстрочные"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Currency Symbols"
+#~ msgstr "Символы валют"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Combining Diacritical Marks for Symbols"
+#~ msgstr "Комбинированные диакритические знаки для символов"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Letterlike Symbols"
+#~ msgstr "Буквообразные символы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Number Forms"
+#~ msgstr "Формы чисел"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Arrows"
+#~ msgstr "Стрелки"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Mathematical Operators"
+#~ msgstr "Математические операторы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Miscellaneous Technical"
+#~ msgstr "Различные технические символы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Control Pictures"
+#~ msgstr "Управляющие картинки"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Optical Character Recognition"
+#~ msgstr "Оптическое распознавание символов"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Enclosed Alphanumerics"
+#~ msgstr "Алфавитно-цифровые символы в рамке"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Box Drawing"
+#~ msgstr "Для рисования рамок"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Block Elements"
+#~ msgstr "Блочные элементы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Geometric Shapes"
+#~ msgstr "Геометрические фигуры"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Miscellaneous Symbols"
+#~ msgstr "Различные символы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Dingbats"
+#~ msgstr "Условные знаки"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Miscellaneous Mathematical Symbols-A"
+#~ msgstr "Различные математические символы A"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Supplemental Arrows-A"
+#~ msgstr "Дополнительные стрелки A"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Braille Patterns"
+#~ msgstr "Азбука Брайля"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Supplemental Arrows-B"
+#~ msgstr "Дополнительные стрелки B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Miscellaneous Mathematical Symbols-B"
+#~ msgstr "Различные математические символы B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Supplemental Mathematical Operators"
+#~ msgstr "Дополнительные математические операторы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Miscellaneous Symbols and Arrows"
+#~ msgstr "Различные символы и стрелки"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Glagolitic"
+#~ msgstr "Глаголица"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Latin Extended-C"
+#~ msgstr "Латиница, расширение C"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Coptic"
+#~ msgstr "Коптский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Georgian Supplement"
+#~ msgstr "Грузинский, дополнения"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Tifinagh"
+#~ msgstr "Тифинаг"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ethiopic Extended"
+#~ msgstr "Эфиопский, расширенный"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cyrillic Extended-A"
+#~ msgstr "Кириллица, расширение А"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Supplemental Punctuation"
+#~ msgstr "Дополнительные знаки препинания"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Radicals Supplement"
+#~ msgstr "Дополнения корней CJK"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Kangxi Radicals"
+#~ msgstr "Корни Кангхи"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ideographic Description Characters"
+#~ msgstr "Символы идеографического описания"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Symbols and Punctuation"
+#~ msgstr "Символы и знаки препинания CJK"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Hiragana"
+#~ msgstr "Хирагана"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Katakana"
+#~ msgstr "Катакана"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Bopomofo"
+#~ msgstr "Бопомото"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Hangul Compatibility Jamo"
+#~ msgstr "Хангул, совместимый с Ямо"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Kanbun"
+#~ msgstr "Канбун"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Bopomofo Extended"
+#~ msgstr "Бопомото, расширенный"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Strokes"
+#~ msgstr "Росчерки CJK"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Katakana Phonetic Extensions"
+#~ msgstr "Катакана, фонетические расширения"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Enclosed CJK Letters and Months"
+#~ msgstr "Знаки и месяца CJK в рамке"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Compatibility"
+#~ msgstr "CJK, совместимость"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Unified Ideographs Extension A"
+#~ msgstr "CJK, объединенные идеограммы, расширение A"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Yijing Hexagram Symbols"
+#~ msgstr "Гексаграммы Юиджинг"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Unified Ideographs"
+#~ msgstr "CJK, объединенные идеограммы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Yi Syllables"
+#~ msgstr "Слоги Юи"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Yi Radicals"
+#~ msgstr "Корни Юи"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Vai"
+#~ msgstr "Ваи"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cyrillic Extended-B"
+#~ msgstr "Кириллица, расширение B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Modifier Tone Letters"
+#~ msgstr "Модификаторы тона"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Latin Extended-D"
+#~ msgstr "Латиница, расширение D"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Syloti Nagri"
+#~ msgstr "Силоти Нагри"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Phags-pa"
+#~ msgstr "Фагс-па"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Hangul Syllables"
+#~ msgstr "Слоги Хангул"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "High Surrogates"
+#~ msgstr "Заменители в верхнем регистре"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "High Private Use Surrogates"
+#~ msgstr "Заменители в верхнем регистре, пользовательские"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Low Surrogates"
+#~ msgstr "Заменители в нижнем регистре"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Private Use Area"
+#~ msgstr "Область пользователя"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Compatibility Ideographs"
+#~ msgstr "CJK, идеограммы для совместимости"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Alphabetic Presentation Forms"
+#~ msgstr "Формы алфавитного представления (лигатуры)"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Arabic Presentation Forms-A"
+#~ msgstr "Арабские формы представления A"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Vertical Forms"
+#~ msgstr "Вертикальные формы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Compatibility Forms"
+#~ msgstr "CJK, формы для совместимости"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Small Form Variants"
+#~ msgstr "Малые варианты форм"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Arabic Presentation Forms-B"
+#~ msgstr "Арабские формы представления B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Specials"
+#~ msgstr "Специальные"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Linear B Syllabary"
+#~ msgstr "Линейное слоговое письмо Б"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Linear B Ideograms"
+#~ msgstr "Линейное идеографическое письмо Б"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Aegean Numbers"
+#~ msgstr "Эгейские числа"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ancient Greek Numbers"
+#~ msgstr "Древнегреческие числа"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Phaistos Disc"
+#~ msgstr "Фестский диск"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Lycian"
+#~ msgstr "Ликийский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Carian"
+#~ msgstr "Карийский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Old Italic"
+#~ msgstr "Этрусский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Gothic"
+#~ msgstr "Готское письмо"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ugaritic"
+#~ msgstr "Угаритский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Old Persian"
+#~ msgstr "Древнеперсидский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Deseret"
+#~ msgstr "Дезерет"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Shavian"
+#~ msgstr "Скорописный алфавит Бернарда Шоу"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Osmanya"
+#~ msgstr "Сомалийское письмо"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cypriot Syllabary"
+#~ msgstr "Кипрское письмо"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Phoenician"
+#~ msgstr "Финикийский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Lydian"
+#~ msgstr "Лидийский"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Kharoshthi"
+#~ msgstr "Кхароштхи"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cuneiform"
+#~ msgstr "Клинопись"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Cuneiform Numbers and Punctuation"
+#~ msgstr "Клинописные числа и знаки препинания"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Byzantine Musical Symbols"
+#~ msgstr "Визайнтийская нотная грамота"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Musical Symbols"
+#~ msgstr "Нотная грамота"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Ancient Greek Musical Notation"
+#~ msgstr "Древнегреческая нотная грамота"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Counting Rod Numerals"
+#~ msgstr "Счетные палочки"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Mathematical Alphanumeric Symbols"
+#~ msgstr "Математические алфавитно-цифровые символы"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Mahjong Tiles"
+#~ msgstr "Кости для игры в маджонг"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Domino Tiles"
+#~ msgstr "Кости для игры в домино"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "CJK Unified Ideographs Extension B"
+#~ msgstr "CJK, объединенные идеограммы, расширение B"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Tags"
+#~ msgstr "Метки"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Supplementary Private Use Area-A"
+#~ msgstr "Дополнительная область пользователя A"
+
+#, fuzzy
+#~ msgctxt "QObject|"
+#~ msgid "Supplementary Private Use Area-B"
+#~ msgstr "Дополнительная область пользователя B"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Appearance"
+#~ msgstr "Отрисовка"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Font Size"
+#~ msgstr "Кегль шрифта"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid " pt"
+#~ msgstr " pt"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "FreeType based rasterized rendering"
+#~ msgstr "Растрированный рендеринг на основе FreeType"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Rasterized"
+#~ msgstr "Растрированная"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "No hinting"
+#~ msgstr "Без уточнения"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Light Hinting"
+#~ msgstr "Слабое уточнение"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Normal Hinting"
+#~ msgstr "Обычное уточнение"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Freely scalable vector rendering using native toolkit (Qt)"
+#~ msgstr "Свободно масштабируемая отрисовка текста"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Vector"
+#~ msgstr "Векторная"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Edit sample text"
+#~ msgstr "Изменить текст образца"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Edit"
+#~ msgstr "Изменить"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Sample text rendering options"
+#~ msgstr "Параметры отрисовки образца текста"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Display settings"
+#~ msgstr "Параметры отображения"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Enable and disable OpenType features implemented in the font"
+#~ msgstr "Включение и отключение функций OpenType, доступных в выбранном шрифте"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "OpenType features"
+#~ msgstr "Функции OpenType"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Choose a sample text from your collection"
+#~ msgstr "Выбор образцов текста из коллекции"
+
+#, fuzzy
+#~ msgctxt "SampleWidget|"
+#~ msgid "Samples collection"
+#~ msgstr "Образцы текста"
+
+#, fuzzy
+#~ msgctxt "TagsWidget|followed by a tag name"
+#~ msgid "Edit"
+#~ msgstr "Изменить метку"
+
+#, fuzzy, qt-format
+#~ msgctxt "TagsWidget|the %%1 is a tag name"
+#~ msgid "Remove tag \"%1\" from database"
+#~ msgstr "Удалить метку «%1» из базы данных"
+
+#, fuzzy
+#~ msgctxt "TagsWidget|"
+#~ msgid ""
+#~ "Please provide a replacement name for\n"
+#~ "the following tag:"
+#~ msgstr "Укажите новой название следующей метки:"
+
+#, fuzzy
+#~ msgctxt "tagsWidget|"
+#~ msgid "Nothing selected"
+#~ msgstr "Ничего не выбрано"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Browse Fonts"
+#~ msgstr "Поиск шрифтов"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Choose the tag for filter exported fonts"
+#~ msgstr ""
+#~ "Выберите метку для фильтрации\n"
+#~ "экспортируемых шрифтов"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Choose Directory"
+#~ msgstr "Укажите каталог"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "&Import..."
+#~ msgstr "&Импортировать..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Ctrl+O"
+#~ msgstr "Ctrl+O"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Ctrl+S"
+#~ msgstr "Ctrl+S"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Info..."
+#~ msgstr "Напечатать сводку..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print informations about the current font"
+#~ msgstr "Напечатать сводку по текущему шрифту"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Sample..."
+#~ msgstr "Напечатать образец..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print the sample as a specimen"
+#~ msgstr "Напечатать образец текста"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Chart..."
+#~ msgstr "Напечатать таблицу символов..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print a chart of the current font"
+#~ msgstr "Напечатать таблицу символов текущего шрифта"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Playground..."
+#~ msgstr "Напечатать песочницу..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print the playground"
+#~ msgstr "Напечатать содержимое песочницы"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Family..."
+#~ msgstr "Напечатать всю гарнитуру..."
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print a specimen of the whole family the current face belongs to"
+#~ msgstr "Напечатать образец гарнитуры, которой принадлежит выбранное начертание"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Ctrl+Q"
+#~ msgstr "Ctrl+Q"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print"
+#~ msgstr "Печать"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Ready"
+#~ msgstr "Готово"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Welcome maessage"
+#~ msgstr "Приветственное сообщение"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Infos"
+#~ msgstr "Печати сводки"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Chart"
+#~ msgstr "Печать таблицы символов"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Playground"
+#~ msgstr "Печать содержимого песочницы"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Family"
+#~ msgstr "Печать гарнитуры"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Next Family"
+#~ msgstr "Следующая гарнитура"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Next Face"
+#~ msgstr "Следующее начертание"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Previous Family"
+#~ msgstr "Предыдущая гарнитура"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Previous Face"
+#~ msgstr "Предыдущее начертание"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "&Browse"
+#~ msgstr "Пере&ход"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Not enough text to make a sample"
+#~ msgstr "Недостаточно текста для создания образца"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "&Sync"
+#~ msgstr "&Синхронизироваться"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Sync with the DB file"
+#~ msgstr "Синхронизироваться с базой данных"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Print Sample"
+#~ msgstr "Печать образца текста"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Tags"
+#~ msgstr "Метки"
+
+#, fuzzy
+#~ msgctxt "typotek|followed by currently selected font name (in status bar)"
+#~ msgid "Current Font:"
+#~ msgstr "Текущий шрифт: "
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Show/hide fonts browsing sidebar"
+#~ msgstr "Показать или скрыть боковую панель для поиска шрифтов"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Show/hide tags list sidebar"
+#~ msgstr "Показать или скрыть боковую панель со списком меток"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Fontmatrix Tags"
+#~ msgstr "Метки Fontmatrix"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "F1"
+#~ msgstr "F1"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Switch to the next font family in the list"
+#~ msgstr "Перейти к следующей в списке гарнитуре"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Switch to the next font face in the list"
+#~ msgstr "Перейти к следующему в списке начертанию"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Switch to the previous font family in the list"
+#~ msgstr "Перейти к предыдущей в списке гарнитуре"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Switch to the previous font face in the list"
+#~ msgstr "Перейти к предыдущему в списке начертанию"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "Text layout engine options"
+#~ msgstr "Параметры текстового движка"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "View and edit text layout engine variables"
+#~ msgstr "Просмотреть и изменить переменные текстового движка"
+
+#, fuzzy
+#~ msgctxt "typotek|"
+#~ msgid "confirmation"
+#~ msgstr "Подтверждение"
+
+#, fuzzy, qt-format
+#~ msgctxt "typotek|"
+#~ msgid "Do you confirm you want to import these %1 fonts?"
+#~ msgstr "Вы действительно хотите импортировать %1 шрифтов?"

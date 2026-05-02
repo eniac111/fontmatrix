@@ -53,7 +53,7 @@ void SaveData::doSave()
 	
 // 	//save fonts
 // 	QList<FontItem*> flist = FMFontDb::DB()->AllFonts();
-// 	foreach ( FontItem* fitem,flist )
+// 	for (auto* fitem : flist)
 // 	{
 // 		if(!fitem->isLocked() && !fitem->isRemote())
 // 		{
@@ -95,7 +95,7 @@ void SaveData::doSave()
 // 			writeEndElement();//info
 // 			
 // 			QStringList tl = fitem->tags();
-// 			foreach(QString tag, tl)
+// 			for (const auto& tag : tl)
 // 			{
 // 				writeStartElement("tag");
 // 				writeCharacters( tag );
@@ -108,14 +108,14 @@ void SaveData::doSave()
 // 	
 	//save tagsets
 // 	QStringList tlist = m_typo->tagsets();
-// 	foreach(QString tagset, tlist)
+// 	for (const auto& tagset : tlist)
 // 	{
 // 		
 // 		writeStartElement("tagset");
 // 		writeAttribute("name", tagset);
 // 		QStringList tl = m_typo->tagsOfSet(tagset);
 // // 		qDebug()<<tagset <<" : "<< tl.join("+");
-// 		foreach(QString tag, tl)
+// 		for (const auto& tag : tl)
 // 		{
 // 			writeStartElement("tag");
 // 			writeCharacters( tag );
@@ -125,10 +125,10 @@ void SaveData::doSave()
 // 	}
 	
 	//save sample text
-	foreach(QString samplename, m_typo->namedSamplesNames())
+	for (const auto& samplename : m_typo->namedSamplesNames())
 	{
 		QStringList sampleT= m_typo->namedSample(samplename).split("\n");
-		foreach(QString sline, sampleT)
+		for (const auto& sline : sampleT)
 		{
 			writeStartElement("sampleline");
 			writeAttribute("name", samplename);

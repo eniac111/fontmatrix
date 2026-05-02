@@ -19,37 +19,42 @@
  ***************************************************************************/
 
 #include "systray.h"
+#include "fmconfig.h"
 #include "mainviewwidget.h"
 #include "typotek.h"
 #include "fontitem.h"
 #include "fmfontdb.h"
+#include <KLocalizedString>
 #include <QtGui>
+#include <QMenu>
 #include <QDebug>
+#include <KStatusNotifierItem>
 
-typotek* Systray::ttek = 0;
+typotek* Systray::ttek = nullptr;
 
 Systray::Systray()
 {
-    createActions();
-    createTrayIcon();
-    createTagMenu();
+	createActions();
+	createTrayIcon();
+	createTagMenu();
 
-    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
-            this, SLOT(trayIconClicked(QSystemTrayIcon::ActivationReason)));
-	connect(trayIconMenu, SIGNAL(aboutToShow()), this, SLOT(slotPrepareMenu()));
+	connect(trayIconMenu, &QMenu::aboutToShow, this, &Systray::slotPrepareMenu);
 
-	settings = new QSettings;
+	showAllConfirmation = FMConfig::value(QStringLiteral("Systray/AllConfirmation"), true).toBool();
+	showTagsConfirmation = FMConfig::value(QStringLiteral("Systray/TagsConfirmation"), false).toBool();
 
-	showAllConfirmation = settings->value("Systray/AllConfirmation", true).toBool();
-	showTagsConfirmation = settings->value("Systray/TagsConfirmation", false).toBool();
+	slotSetActivateAll(FMConfig::value(QStringLiteral("Systray/ActivateAllVisible"), false).toBool());
 
-	slotSetActivateAll(settings->value("Systray/ActivateAllVisible", false).toBool());
+	const QIcon trayThemed = QIcon::fromTheme(QStringLiteral("fontmatrix-tray"),
+	                                          QIcon(QStringLiteral(":/fontmatrix_systray_icon.png")));
+	trayIcon->setIconByPixmap(trayThemed);
+	trayIcon->setToolTipIconByPixmap(trayThemed);
+	trayIcon->setToolTipTitle(QStringLiteral("Fontmatrix"));
 
-	trayIcon->setIcon(QIcon(":/fontmatrix_systray_icon.png"));
-	if (settings->value("Systray/Visible", false).toBool())
-		trayIcon->show();
+	if (FMConfig::value(QStringLiteral("Systray/Visible"), false).toBool())
+		trayIcon->setStatus(KStatusNotifierItem::Active);
 	else
-		trayIcon->hide();
+		trayIcon->setStatus(KStatusNotifierItem::Passive);
 }
 
 Systray::~Systray()
@@ -59,43 +64,26 @@ Systray::~Systray()
 
 void Systray::slotSetVisible(bool isVisible)
 {
-	if (isVisible)
-		trayIcon->show();
-	else
-		trayIcon->hide();
-
-	settings->setValue("Systray/Visible", isVisible);
+	trayIcon->setStatus(isVisible ? KStatusNotifierItem::Active
+	                              : KStatusNotifierItem::Passive);
+	FMConfig::setValue(QStringLiteral("Systray/Visible"), isVisible);
 }
 
 void Systray::slotSetActivateAll(bool isVisible)
 {
 	activateAllAction->setVisible(isVisible);
 	deactivateAllAction->setVisible(isVisible);
-	settings->setValue("Systray/ActivateAllVisible", isVisible);
+	FMConfig::setValue(QStringLiteral("Systray/ActivateAllVisible"), isVisible);
 }
 
 void Systray::show()
 {
-    trayIcon->show();
+	trayIcon->setStatus(KStatusNotifierItem::Active);
 }
 
 void Systray::hide()
 {
-    trayIcon->hide();
-}
-
-void Systray::trayIconClicked(QSystemTrayIcon::ActivationReason reason)
-{
-	switch (reason) {
-	case QSystemTrayIcon::Trigger:
-	case QSystemTrayIcon::DoubleClick:
-		ttek->isVisible() ? ttek->hide() : ttek->show();
-		break;
-	case QSystemTrayIcon::MiddleClick:
-		break;
-	default:
-		;
-	}
+	trayIcon->setStatus(KStatusNotifierItem::Passive);
 }
 
 void Systray::slotMinimize()
@@ -123,7 +111,7 @@ void Systray::slotActivateAll()
 
 //	disconnect(tagMenu, SIGNAL(triggered(QAction*)), this, SLOT(slotTagMenuClicked(QAction*)));
 //	QList<QAction*> tags = tagActions.values();
-//	foreach (QAction* a, tags) {
+//	for (auto* a : tags) {
 //		a->setChecked(true);
 //	}
 //	connect(tagMenu, SIGNAL(triggered(QAction*)), this, SLOT(slotTagMenuClicked(QAction*)));
@@ -143,13 +131,13 @@ void Systray::slotDeactivateAll()
 //		ttek->theMainView->slotDesactivateAll();
 //	disconnect(tagMenu, SIGNAL(triggered(QAction*)), this, SLOT(slotTagMenuClicked(QAction*)));
 //	QList<QAction*> tags = tagActions.values();
-//	foreach (QAction* a, tags) {
+//	for (auto* a : tags) {
 //		a->setChecked(false);
 //	}
 //	connect(tagMenu, SIGNAL(triggered(QAction*)), this, SLOT(slotTagMenuClicked(QAction*)));
 }
 
-void Systray::slotTagMenuClicked(QAction *action)
+void Systray::slotTagMenuClicked(QAction *)
 {
 
 	// Deactivate the feature atm
@@ -185,8 +173,9 @@ void Systray::slotTagMenuClicked(QAction *action)
 
 void Systray::slotQuit()
 {
-		ttek->writeSettings();
-		qApp->quit();
+	// Route through typotek::slotQuit() so the same cleanup runs as File → Quit
+	// (force-quit flag, floating-widget close, writeSettings, singleton deletes).
+	ttek->slotQuit();
 }
 
 void Systray::slotPrepareMenu()
@@ -254,39 +243,52 @@ void Systray::deleteTag(const QString &name)
 
 void Systray::createActions()
 {
-    activateAllAction = new QAction(tr("&Activate all"), this);
+    activateAllAction = new QAction(i18n("&Activate all"), this);
     connect(activateAllAction, SIGNAL(triggered()), this, SLOT(slotActivateAll()));
 
-    deactivateAllAction = new QAction(tr("&Deactivate all"), this);
+    deactivateAllAction = new QAction(i18n("&Deactivate all"), this);
     connect(deactivateAllAction, SIGNAL(triggered()), this, SLOT(slotDeactivateAll()));
 
-    minimizeAction = new QAction(tr("Mi&nimize"), this);
+    minimizeAction = new QAction(i18n("Mi&nimize"), this);
     connect(minimizeAction, SIGNAL(triggered()), this, SLOT(slotMinimize()));
 
-    restoreAction = new QAction(tr("&Restore"), this);
+    restoreAction = new QAction(i18n("&Restore"), this);
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(slotRestore()));
 
-    quitAction = new QAction(tr("E&xit"), this);
+    quitAction = new QAction(i18n("E&xit"), this);
     connect(quitAction, SIGNAL(triggered()), this, SLOT(slotQuit()));
 }
 
 void Systray::createTrayIcon()
 {
-    trayIconMenu = new QMenu(0);
-    trayIconMenu->addAction(activateAllAction);
-    trayIconMenu->addAction(deactivateAllAction);
-// 	trayIconMenu->addSeparator();
-// 	tagSetMenu = trayIconMenu->addMenu(tr("&Collections"));
-    tagMenu = trayIconMenu->addMenu(tr("&Tags"));
-    trayIconMenu->addSeparator();
-    trayIconMenu->addAction(minimizeAction);
-    trayIconMenu->addAction(restoreAction);
-    trayIconMenu->addSeparator();
-    trayIconMenu->addAction(quitAction);
+	if (!ttek)
+		ttek = typotek::getInstance();
 
-    trayIcon = new QSystemTrayIcon(this);
-    trayIcon->setContextMenu(trayIconMenu);
-    trayIcon->installEventFilter(this);
+	trayIconMenu = new QMenu(nullptr);
+	trayIconMenu->addAction(activateAllAction);
+	trayIconMenu->addAction(deactivateAllAction);
+	tagMenu = trayIconMenu->addMenu(i18n("&Tags"));
+	trayIconMenu->addSeparator();
+	trayIconMenu->addAction(minimizeAction);
+	trayIconMenu->addAction(restoreAction);
+	trayIconMenu->addSeparator();
+	trayIconMenu->addAction(quitAction);
+
+	trayIcon = new KStatusNotifierItem(QStringLiteral("fontmatrix"), this);
+	trayIcon->setCategory(KStatusNotifierItem::ApplicationStatus);
+	trayIcon->setTitle(QStringLiteral("Fontmatrix"));
+	trayIcon->setStandardActionsEnabled(false);
+	trayIcon->setContextMenu(trayIconMenu);
+
+	connect(trayIcon, &KStatusNotifierItem::activateRequested,
+	        this, [](bool /*active*/, const QPoint & /*pos*/) {
+		if (!ttek)
+			return;
+		if (ttek->isVisible())
+			ttek->hide();
+		else
+			ttek->show();
+	});
 }
 
 void Systray::createTagMenu()
@@ -296,7 +298,7 @@ void Systray::createTagMenu()
 
 	QStringList tmp(FMFontDb::DB()->getTags());
 	tmp.sort();
-	foreach (QString tagName, tmp) {
+	for (const auto& tagName : tmp) {
 // 		if (tagName != "Activated_On" && tagName != "Activated_Off")
 			newTag(tagName);
 	}
@@ -306,7 +308,7 @@ void Systray::createTagMenu()
 
 bool Systray::isVisible()
 {
-	return trayIcon->isVisible();
+	return trayIcon->status() != KStatusNotifierItem::Passive;
 }
 
 bool Systray::hasActivateAll()
@@ -327,24 +329,24 @@ bool Systray::tagsConfirmation()
 void Systray::requireAllConfirmation(bool doRequire)
 {
 	showAllConfirmation = doRequire;
-	settings->setValue("Systray/AllConfirmation", doRequire);
+	FMConfig::setValue(QStringLiteral("Systray/AllConfirmation"), doRequire);
 }
 
 void Systray::requireTagsConfirmation(bool doRequire)
 {
 	showTagsConfirmation = doRequire;
-	settings->setValue("Systray/TagsConfirmation", doRequire);
+	FMConfig::setValue(QStringLiteral("Systray/TagsConfirmation"), doRequire);
 }
 
 void Systray::updateTagMenu(const QStringList& nameOfFontWhichCausedThisUpdate)
 {
 	QStringList tags(tagActions.keys());
 	bool lazy = true;
-	foreach(QString tag, tags)
+	for (const auto& tag : tags)
 	{
 		QList<FontItem*> taggedFonts = FMFontDb::DB()->Fonts( tag , FMFontDb::Tags );
 //		ttek->resetFilter();
-		foreach(FontItem* fit, taggedFonts)
+		for (auto* fit : taggedFonts)
 		{
 			if( nameOfFontWhichCausedThisUpdate.contains(fit->path()))
 			{	// we’re concerned
@@ -355,7 +357,7 @@ void Systray::updateTagMenu(const QStringList& nameOfFontWhichCausedThisUpdate)
 	}
 	if(lazy)
 		return;
-	foreach(QString tag, tags)
+	for (const auto& tag : tags)
 	{
 		deleteTag(tag);
 	}
@@ -365,23 +367,10 @@ void Systray::updateTagMenu(const QStringList& nameOfFontWhichCausedThisUpdate)
 
 	QStringList tmp(FMFontDb::DB()->getTags());
 	tmp.sort();
-	foreach (QString tagName, tmp) {
+	for (const auto& tagName : tmp) {
 // 		if (tagName != "Activated_On" && tagName != "Activated_Off")
 			newTag(tagName);
 	}
 	
 }
-
-// bool Systray::eventFilter(QObject * watched, QEvent * event)
-// {
-// 	if (watched == trayIcon) {
-// // 		qDebug() << event;
-// 		}
-// 	
-// 	return Systray::eventFilter(watched, event);
-// 	
-// }
-
-
-
 

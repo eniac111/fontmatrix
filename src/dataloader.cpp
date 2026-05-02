@@ -20,7 +20,6 @@
 #include "dataloader.h"
 #include "fmpaths.h"
 
-#include <QDebug>
 #include <QDir>
 #include <QFile>
 #include <QLocale>
@@ -39,36 +38,36 @@ void DataLoader::load()
 {
 	sm.clear();
 	pm.clear();
-	// First we load system samples
-	QDir samplesDir(FMPaths::ResourcesDir() + "Samples" );
-	foreach(QString ld,
-		samplesDir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs) )
+
+	// System samples — skip silently if the directory is absent (e.g. not yet installed)
+	QDir samplesDir(FMPaths::ResourcesDir() + "Samples");
+	if (samplesDir.exists())
 	{
-		QDir lang(samplesDir.absoluteFilePath(ld));
-		QLocale locale(ld);
-		QString loclang(QLocale::languageToString(locale.language()));
-		qDebug()<<ld<<loclang;
-		foreach(QString st,
-			lang.entryList(QDir::NoDotAndDotDot | QDir::NoSymLinks | QDir::Files) )
+		for (const auto& ld : samplesDir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs))
 		{
-			QFile fp(lang.absoluteFilePath(st));
-			if(fp.open(QIODevice::ReadOnly))
+			QDir lang(samplesDir.absoluteFilePath(ld));
+			QLocale locale(ld);
+			QString loclang(QLocale::languageToString(locale.language()));
+			for (const auto& st : lang.entryList(QDir::NoDotAndDotDot | QDir::NoSymLinks | QDir::Files))
 			{
-				sm[loclang][st] = QString::fromUtf8(fp.readAll());
+				QFile fp(lang.absoluteFilePath(st));
+				if(fp.open(QIODevice::ReadOnly))
+				{
+					sm[loclang][st] = QString::fromUtf8(fp.readAll());
+				}
 			}
 		}
 	}
 
-	// Then personals
+	// User samples
 	QDir uDir(FMPaths::SamplesDir());
 	if(!uDir.exists())
 	{
-		qDebug()<<"Create Directory:"<<uDir.absolutePath();
 		uDir.mkpath(uDir.absolutePath());
 	}
 	else
 	{
-		foreach(QString ld, uDir.entryList(QDir::NoDotAndDotDot | QDir::NoSymLinks | QDir::Files) )
+		for (const auto& ld : uDir.entryList(QDir::NoDotAndDotDot | QDir::NoSymLinks | QDir::Files))
 		{
 			QFile fp(uDir.absoluteFilePath(ld));
 			if(fp.open(QIODevice::ReadOnly))
@@ -78,29 +77,27 @@ void DataLoader::load()
 		}
 	}
 
-	// Emergency !!
+	// Fallback — keeps the UI functional when no samples are installed
 	if(sm.isEmpty() && pm.isEmpty())
 	{
 		sm["Emergency"]["Text"] = QString("Emergency Text");
 	}
 }
 
-// TODO
 bool DataLoader::update(const QString& name, const QString& sample)
 {
-	qDebug()<<"DataLoader::update"<<name<<sample;
 	QDir uDir(FMPaths::SamplesDir());
 	QFile fp(uDir.absoluteFilePath(name));
 	if(fp.open(QIODevice::WriteOnly | QIODevice::Truncate))
 	{
-		if(fp.write(sample.toUtf8()) == sample.toUtf8().size())
+		const QByteArray utf8 = sample.toUtf8();
+		if(fp.write(utf8) == utf8.size())
 		{
 			pm[name] = sample;
 			return true;
 		}
 	}
 	return false;
-
 }
 
 bool DataLoader::remove(const QString& name)

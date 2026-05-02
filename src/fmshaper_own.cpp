@@ -14,7 +14,7 @@
 
 #include <QDebug>
 #include <QFile>
-#include <QSettings>
+#include "fmconfig.h"
 #include <QDir>
 
 FMOwnShaper::FMOwnShaper(QString s, QString lang)
@@ -55,9 +55,8 @@ FMOwnShaper::~ FMOwnShaper()
 
 int FMOwnShaper::loadRules(QString lang)
 {
-	QSettings stg;
 	QString actualSDir;
-	QString ShaperDir(stg.value("Places/ShaperDataDir").toString());
+	QString ShaperDir(FMConfig::value(QStringLiteral("Places/ShaperDataDir")).toString());
 	if(ShaperDir.isEmpty())
 	{
 		actualSDir = ":/shapers/";
@@ -214,7 +213,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 		{
 			if(mat.MatchAll)
 			{
-				foreach(QString prop, mat.CustomProperties)
+				for (const auto& prop : mat.CustomProperties)
 				{
 					if(!prop.isEmpty())
 					{
@@ -222,7 +221,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 						return 0;
 					}
 				}
-				foreach(QString prop, car.CustomProperties)
+				for (const auto& prop : car.CustomProperties)
 				{
 					if(!prop.isEmpty())
 					{
@@ -233,7 +232,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 			}
 			else
 			{
-				foreach(QString prop, mat.CustomProperties)
+				for (const auto& prop : mat.CustomProperties)
 				{
 					if(!prop.isEmpty())
 					{
@@ -253,12 +252,12 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 			{
 				if(mat.MatchAll)
 				{
-					foreach(QString prop, mat.CustomProperties)
+					for (const auto& prop : mat.CustomProperties)
 					{
 						if(!car.CustomProperties.contains(prop))
 							return 0;
 					}
-					foreach(QString prop, car.CustomProperties)
+					for (const auto& prop : car.CustomProperties)
 					{
 						if(!mat.CustomProperties.contains(prop))
 							return 0;
@@ -266,7 +265,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 				}
 				else
 				{
-					foreach(QString prop, mat.CustomProperties)
+					for (const auto& prop : mat.CustomProperties)
 					{
 						if(!car.CustomProperties.contains(prop))
 							return 0;
@@ -277,7 +276,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 		}
 	}
 	// It match
-	foreach(int idx, matchedGroup)
+	for (const auto& idx : matchedGroup)
 	{
 		In[idx].isMatchedGroup = true;
 // 		qDebug()<<"MATCHED" <<In[idx].unicode() << In[idx].DumpCustom();
@@ -292,7 +291,7 @@ void FMOwnShaper::Replace(int repIndex, QList< Character > chunk)
 	QMap<int, Character> matchedPos;
 	//load matchedPos first
 	int mIndex(0);
-	foreach(Character car, chunk)
+	for (const auto& car : chunk)
 	{
 		if(car.isMatchedGroup)
 		{
@@ -301,8 +300,7 @@ void FMOwnShaper::Replace(int repIndex, QList< Character > chunk)
 		}
 	}
 	// Let replace :)
-	int rIndex(0);
-	foreach(Character rep, Replacements[repIndex].Properties)
+	for (const auto& rep : Replacements[repIndex].Properties)
 	{
 		if(rep.isNull())
 		{
@@ -315,7 +313,7 @@ void FMOwnShaper::Replace(int repIndex, QList< Character > chunk)
 		}
 	}
 	// Push in Out
-	foreach(Character b, buffer)
+	for (const auto& b : buffer)
 	{
 		Out << b;
 	}
@@ -356,7 +354,7 @@ QString Character::DumpCustom()
 {
 	QString ret;
 	bool first = true;
-	foreach (QString value, CustomProperties)
+	for (const auto& value : CustomProperties)
 	{
 		if(first)
 		{
@@ -412,7 +410,7 @@ void MatchSequence::SetMatch(const QString &b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				foreach(QString prop, pl)
+				for (const auto& prop : pl)
 				{
 					pList << prop.trimmed();
 				}
@@ -428,7 +426,7 @@ void MatchSequence::SetMatch(const QString &b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				foreach(QString prop, pl)
+				for (const auto& prop : pl)
 				{
 					pList << prop.trimmed();
 				}
@@ -458,7 +456,7 @@ void MatchSequence::SetMatch(const QString &b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				foreach(QString prop, pl)
+				for (const auto& prop : pl)
 				{
 					pList << prop.trimmed();
 				}
@@ -474,7 +472,7 @@ void MatchSequence::SetMatch(const QString &b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				foreach(QString prop, pl)
+				for (const auto& prop : pl)
 				{
 					pList << prop.trimmed();
 				}
@@ -525,7 +523,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				foreach(QString prop, pl)
+				for (const auto& prop : pl)
 				{
 					pList << prop.trimmed();
 				}
@@ -560,7 +558,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				foreach(QString prop, pl)
+				for (const auto& prop : pl)
 				{
 					pList << prop.trimmed();
 				}

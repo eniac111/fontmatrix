@@ -51,11 +51,11 @@ public:
 	};
 
 	TagListModel(QObject * parent);
-	int rowCount ( const QModelIndex & parent = QModelIndex() ) const;
-	int columnCount ( const QModelIndex & parent = QModelIndex() ) const;
-	QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const;
-	bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole );
-	Qt::ItemFlags flags ( const QModelIndex & index ) const;
+	int rowCount ( const QModelIndex & parent = QModelIndex() ) const override;
+	int columnCount ( const QModelIndex & parent = QModelIndex() ) const override;
+	QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const override;
+	bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole ) override;
+	Qt::ItemFlags flags ( const QModelIndex & index ) const override;
 
 	void clearCurrents();
 	void addToCurrents(const QString& t);
@@ -78,10 +78,10 @@ public:
 			m_andOrKey(0)
 	{}
 
-	int getAndKey(){int ret(m_andOrKey), m_andOrKey = 0; return ret;}
+	int getAndKey(){int ret(m_andOrKey); m_andOrKey = 0; return ret;}
 
 protected:
-	void mouseReleaseEvent(QMouseEvent *event)
+	void mouseReleaseEvent(QMouseEvent *event) override
 	{
 		if(event->modifiers().testFlag(Qt::ShiftModifier))
 			m_andOrKey = 1;
@@ -103,14 +103,14 @@ class FilterBar : public QWidget
     Q_OBJECT
 
 public:
-    explicit FilterBar(QWidget *parent = 0);
-    ~FilterBar();
+    explicit FilterBar(QWidget *parent = nullptr);
+    ~FilterBar() override;
 
     void setFilterListLayout(QHBoxLayout *l){filterListLayout = l;}
     void setCurFilterWidget(QWidget * w){curFilterWidget = w;}
 
 protected:
-    void changeEvent(QEvent *e);
+    void changeEvent(QEvent *e) override;
 
 private:
     Ui::FilterBar *ui;
@@ -127,9 +127,11 @@ private:
     QString filterString(FilterData *d, bool first = false);
     void loadFilters();
     QList<FiltersDialogItem*> items;
-    static QString andOpString;
-    static QString notOpString;
-    static QString orOpString;
+    // Lazy-initialised translated strings; static-init i18n() would run before
+    // KLocalizedString::setApplicationDomain() and fall back to source text.
+    static const QString &andOp();
+    static const QString &notOp();
+    static const QString &orOp();
 
     QStringListModel *mModel;
     QStringList mList;

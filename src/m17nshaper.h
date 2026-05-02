@@ -23,7 +23,7 @@ class M17NShaper : public FMBaseShaper
 		M17NShaper(FMOtf* o, QString s);
 		~M17NShaper();
 	
-		GlyphList doShape( const QString& s );
+		GlyphList doShape( const QString& s ) override;
 		
 		
 		static int impl_get_glyph_id( struct _MFLTFont *font, MFLTGlyphString *gstring, int from, int to );

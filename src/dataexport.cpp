@@ -18,6 +18,7 @@
 #include "fmfontdb.h"
 #include "fminfodisplay.h"
 
+#include <KLocalizedString>
 #include <QFile>
 #include <QXmlStreamWriter>
 #include <QDebug>
@@ -39,7 +40,7 @@ DataExport::DataExport(QWidget* parent):
 	setAttribute(Qt::WA_DeleteOnClose, true);
 	ui->setupUi(this);
 	fonts = FMFontDb::DB()->getFilteredFonts();
-	foreach(FontItem* f, fonts)
+	for (auto* f : fonts)
 	{
 		QListWidgetItem *it(new QListWidgetItem(f->path()));
 		it->setCheckState(Qt::Checked);
@@ -59,7 +60,7 @@ DataExport::~DataExport()
 void DataExport::doExport()
 {
 	QString dir( QDir::homePath() );
-	dir = QFileDialog::getExistingDirectory ( this, tr ( "Choose Directory" ), dir  ,  QFileDialog::ShowDirsOnly );
+	dir = QFileDialog::getExistingDirectory ( this, i18n( "Choose Directory" ), dir  ,  QFileDialog::ShowDirsOnly );
 	if ( dir.isEmpty() )
 		return ;
 	exDir = QDir(dir);
@@ -72,7 +73,7 @@ void DataExport::doExport()
 
 int DataExport::copyFiles()
 {
-	QProgressDialog progress ( QObject::tr ( "Copying files" ), QObject::tr ( "cancel" ), 0, fonts.count(), this );
+	QProgressDialog progress ( i18n( "Copying files" ), i18n( "cancel" ), 0, fonts.count(), this );
 	progress.setWindowModality ( Qt::WindowModal );
 	int progressindex(0);
 	QList<int> toRemove;
@@ -145,7 +146,7 @@ int DataExport::buildIndex()
 			QStringList tl = fitem->tags();
 			// 			tl.removeAll("Activated_On");
 			// 			tl.removeAll("Activated_Off");
-			foreach(QString tag, tl)
+			for (const auto& tag : tl)
 			{
 				xmlStream.writeStartElement("tag");
 				xmlStream.writeCharacters( tag );
@@ -217,7 +218,7 @@ int DataExport::buildHtml()
 			QStringList tl = fitem->tags();
 			// 			tl.removeAll("Activated_On");
 			// 			tl.removeAll("Activated_Off");
-			foreach(QString tag, tl)
+			for (const auto& tag : tl)
 			{
 				xmlStream.writeStartElement("div");
 				xmlStream.writeAttribute("class", "tagbox");

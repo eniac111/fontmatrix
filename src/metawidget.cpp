@@ -23,6 +23,7 @@
 #include "fmfontstrings.h"
 
 
+#include <KLocalizedString>
 #include <QStringListModel>
 #include <QCompleter>
 #include <QGridLayout>
@@ -33,7 +34,7 @@
 #include <QComboBox>
 #include <QVariant>
 
-QStringListModel * MetaWidget::mModel = 0;
+QStringListModel * MetaWidget::mModel = nullptr;
 QStringList MetaWidget::mList = QStringList();
 
 MetaWidget::MetaWidget(QWidget *parent) :
@@ -41,7 +42,7 @@ MetaWidget::MetaWidget(QWidget *parent) :
 		ui(new Ui::MetaWidget)
 {
 	ui->setupUi(this);
-	if(mModel == 0)
+	if(mModel == nullptr)
 	{
 		mModel = new QStringListModel;
 		mModel->setStringList(mList);
@@ -50,7 +51,7 @@ MetaWidget::MetaWidget(QWidget *parent) :
 	QCompleter * completer(new QCompleter(mModel));
 
 	//	dont know why but it doesn't want to be placed in the ui->grid ###
-//	QLabel *lab(new QLabel(tr("<div style=\"font-weight:bold;\">Fill-in a text field and press enter.</div>"), this));
+//	QLabel *lab(new QLabel(i18n("<div style=\"font-weight:bold;\">Fill-in a text field and press enter.</div>"), this));
 //	ui->grid->addWidget(lab,0,0,0,-1);
 
 	QList<FMFontDb::InfoItem> ln;
@@ -131,7 +132,7 @@ void MetaWidget::addFilter()
 //	}
 //	else
 	{
-		foreach(QLineEdit *l, metFields.keys())
+		for (auto* l : metFields.keys())
 		{
 			QString t(l->text());
 			FMFontDb::InfoItem it(metFields[l]);

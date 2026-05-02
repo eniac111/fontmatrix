@@ -17,8 +17,6 @@ MESSAGE(STATUS "Building Fontmatrix ${VERSION}")
 
 IF(UNIX AND NOT APPLE)
 	SET (CMAKE_INSTALL_PREFIX /usr/local CACHE PATH "Installation path")
-	SET (FONTMATRIX_BIN bin )
-	SET (FONTMATRIX_QMDIR "share/fontmatrix/qm" )
 ENDIF(UNIX AND NOT APPLE)
 
 IF(APPLE)
@@ -30,7 +28,6 @@ ENDIF(APPLE)
 IF(WIN32)
 	SET (CMAKE_INSTALL_PREFIX c:/fontmatrix CACHE PATH "Installation path")
 	SET (FONTMATRIX_BIN ".")
-	SET (FONTMATRIX_QMDIR "share/qm" )
 ENDIF(WIN32)
 
 ADD_DEFINITIONS(-DPREFIX="${CMAKE_INSTALL_PREFIX}")
@@ -38,7 +35,51 @@ MESSAGE(STATUS "Fontmatrix will be installed under ${CMAKE_INSTALL_PREFIX}")
 
 
 
-SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
+# ECM and KDE Frameworks are required on every platform. The application
+# code is uniform across Linux, macOS, and Windows; only the Windows CI
+# pipeline (packaging, vcpkg-based KF6 acquisition) is deferred.
+find_package(ECM 6.0 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
+
+# Set before KDECompilerSettings so it doesn't override us.
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+include(ECMInstallIcons)
+# These Qt strictness flags require mass codebase changes — deferred to later phases:
+#   QT_NO_CAST_FROM_ASCII / TO_ASCII / FROM_BYTEARRAY  → Phase 5 (i18n migration)
+#   QT_NO_KEYWORDS (signals/slots/foreach)             → Phase 2 (main window refactor)
+remove_definitions(
+    -DQT_NO_CAST_FROM_ASCII
+    -DQT_NO_CAST_TO_ASCII
+    -DQT_NO_CAST_FROM_BYTEARRAY
+    -DQT_NO_KEYWORDS
+    -DQT_NO_FOREACH
+    -DQT_USE_QSTRINGBUILDER
+)
+
+include(FeatureSummary)
+
+find_package(KF6 REQUIRED COMPONENTS
+    CoreAddons
+    I18n
+    Config
+    XmlGui
+    ConfigWidgets
+    WidgetsAddons
+    StatusNotifierItem
+    DBusAddons
+)
+# KDocTools is optional — if absent, the handbook is skipped but the app still builds.
+find_package(KF6DocTools)
+set_package_properties(KF6DocTools PROPERTIES
+    DESCRIPTION "Tools to generate documentation in various formats from DocBook"
+    TYPE OPTIONAL
+    PURPOSE "Required to build the Fontmatrix handbook")
+SET(FONTMATRIX_BIN ${KDE_INSTALL_BINDIR})
 
 # Very generic definition, mainly to sort out bugs reported by mrdocs
 IF(APPLE)
@@ -118,7 +159,7 @@ ENDIF(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
 # A lot from Scribus
 #<< Qt
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets Svg SvgWidgets Sql Xml PrintSupport WebEngineWidgets LinguistTools)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Svg SvgWidgets Sql Xml PrintSupport)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -160,33 +201,6 @@ ${CMAKE_SOURCE_DIR}/src/graphic-resources/template_oneline.png
 ${CMAKE_SOURCE_DIR}/src/graphic-resources/template_default.xml
 ${CMAKE_SOURCE_DIR}/src/graphic-resources/template_default.png
 )
-SET(FM_STYLE_FILES
-${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/info.css
-${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/fontmatrix.js
-${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/img/css-info-propertyname.png
-${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/img/css-info-property.png
-${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/img/css-shadow.png
-${CMAKE_SOURCE_DIR}/src/graphic-resources/html-css/img/css-tech-info.png
-)
-SET(FM_WELCOME_FILES
-${CMAKE_SOURCE_DIR}/src/messages/welcome_cs.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_da.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_de.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_en.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_fi.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_fr.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_hi.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_nb.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_nl.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_no.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_ru.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_sr.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_sv.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_uk.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_zh_CN.html
-${CMAKE_SOURCE_DIR}/src/messages/welcome_zh_TW.html
-)
-
 # tell cmake to process CMakeLists.txt in that subdirectory
 SET(HYPHENATE_DIR src/hyphenate)
 ADD_SUBDIRECTORY(${HYPHENATE_DIR})
@@ -196,6 +210,11 @@ SET(HYPHENATE_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/${HYPHENATE_DIR})
 
 ADD_SUBDIRECTORY(src)
 
+# Handbook (DocBook → khelpcenter). Skipped silently when KDocTools is absent.
+IF(KF6DocTools_FOUND)
+    ADD_SUBDIRECTORY(doc)
+ENDIF()
+
 # dodict
 # ADD_SUBDIRECTORY(src/langs)
 
@@ -203,38 +222,46 @@ ADD_SUBDIRECTORY(src)
 ######## Installation ##################
 
 IF(UNIX AND NOT APPLE)
-	SET(DESKTOPDIR "share/applications/")
-	SET(MANDIR "share/man/")
-	SET(ICONDIR "share/icons/hicolor/48x48/apps/")
-	SET(RESOURCESDIR "share/fontmatrix/resources/")
-	SET(HELPDIR "share/fontmatrix/help/")
-	
 	INSTALL(FILES
 	fontmatrix.desktop
-	DESTINATION ${DESKTOPDIR}
+	DESTINATION ${KDE_INSTALL_APPDIR}
 	)
-	
-	INSTALL(FILES
-	fontmatrix.png
-	DESTINATION ${ICONDIR}
-	)
-	
-	INSTALL(FILES
-	fontmatrix.1
-	DESTINATION "${MANDIR}man1"
-	)
-	
-	INSTALL(FILES
-	${FM_TEMPLATES_FILES}
-	${FM_STYLE_FILES}
-	${FM_WELCOME_FILES}
-	DESTINATION "${RESOURCESDIR}"
+
+	# Multi-size hicolor app icon + symbolic systray icon, installed via ECM.
+	# Source files in src/icons/ follow the ECM naming convention
+	# (<size>-<context>-<name>.<ext>), so ecm_install_icons resolves the
+	# destination automatically.
+	ecm_install_icons(ICONS
+		src/icons/16-apps-fontmatrix.png
+		src/icons/22-apps-fontmatrix.png
+		src/icons/32-apps-fontmatrix.png
+		src/icons/48-apps-fontmatrix.png
+		src/icons/64-apps-fontmatrix.png
+		src/icons/128-apps-fontmatrix.png
+		src/icons/sc-apps-fontmatrix.svg
+		src/icons/22-status-fontmatrix-tray.png
+		src/icons/sc-status-fontmatrix-tray.svg
+		DESTINATION "${KDE_INSTALL_ICONDIR}"
+		THEME hicolor
 	)
 
 	INSTALL(FILES
-	${FM_HELP_FILES}
-	DESTINATION "${HELPDIR}"
+	fontmatrix.1
+	DESTINATION "${KDE_INSTALL_MANDIR}/man1"
 	)
+
+	INSTALL(FILES
+	${FM_TEMPLATES_FILES}
+	DESTINATION "${KDE_INSTALL_DATADIR}/fontmatrix/resources"
+	)
+
+	# Compile po/<lang>/fontmatrix.po into <lang>/LC_MESSAGES/fontmatrix.mo
+	# at build time and install under ${KDE_INSTALL_LOCALEDIR}.
+	# KLocalizedString reads from ${KDE_INSTALL_LOCALEDIR}/<lang>/LC_MESSAGES/
+	# at runtime once the source uses i18n() — for now (Stage A of the Ki18n
+	# migration) the translations still flow through QTranslator + .qm files;
+	# the .mo build runs in parallel so translators can move to .po.
+	ki18n_install(po)
 ENDIF(UNIX AND NOT APPLE)
 
 IF(APPLE)
@@ -243,12 +270,8 @@ ENDIF(APPLE)
 
 IF(WIN32)
 	SET(RESOURCESDIR "share/resources/")
-	SET(HELPDIR "help/")
 	INSTALL(FILES
 	${FM_TEMPLATES_FILES}
-	${FM_STYLE_FILES}
-	${FM_WELCOME_FILES}
-	${FM_HELP_FILES}
 	DESTINATION "${RESOURCESDIR}"
 	)
 
@@ -279,29 +302,15 @@ IF(WIN32)
 	set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION ".")
 	include(InstallRequiredSystemLibraries)
 
-	# Copy FreeType DLL from vcpkg (resolved at configure time via VCPKG_INSTALLATION_ROOT).
-	# Use file(TO_CMAKE_PATH) to convert Windows backslashes (e.g. C:\vcpkg) to forward
-	# slashes so the path is safe to embed in the generated cmake_install.cmake script.
-	if(DEFINED ENV{VCPKG_INSTALLATION_ROOT})
-		set(_vcpkg_root "$ENV{VCPKG_INSTALLATION_ROOT}")
-		file(TO_CMAKE_PATH "${_vcpkg_root}" _vcpkg_root)
-		# freetype and its transitive vcpkg dependencies (brotli, bzip2, libpng, zlib).
-		file(GLOB _vcpkg_dlls
-			"${_vcpkg_root}/installed/x64-windows/bin/freetype*.dll"
-			"${_vcpkg_root}/installed/x64-windows/bin/zlib1.dll"
-			"${_vcpkg_root}/installed/x64-windows/bin/bz2.dll"
-			"${_vcpkg_root}/installed/x64-windows/bin/libpng16.dll"
-			"${_vcpkg_root}/installed/x64-windows/bin/brotlidec.dll"
-			"${_vcpkg_root}/installed/x64-windows/bin/brotlicommon.dll"
-		)
-		foreach(_dll ${_vcpkg_dlls})
-			install(FILES "${_dll}" DESTINATION ".")
-		endforeach()
-	endif()
+	# FreeType + transitive DLLs are bundled by Craft's libs/freetype
+	# blueprint and Craft's `--package` step on Windows. Earlier vcpkg-
+	# specific copy logic was removed in Phase 8 along with the vcpkg CI
+	# path. For non-Craft local Windows builds (e.g. Qt+vcpkg + manual
+	# CMake), windeployqt above handles Qt DLLs and the developer is
+	# expected to make FreeType/PoDoFo DLLs available on PATH.
 
 ENDIF(WIN32)
 
-ADD_SUBDIRECTORY(help)
 ADD_SUBDIRECTORY(samples)
 
 SET(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
@@ -349,5 +358,7 @@ GNU GENERAL PUBLIC LICENSE\n\
 ${_gpl_text}")
 	SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_BINARY_DIR}/LICENSE.txt")
 ENDIF(WIN32)
+
+feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 INCLUDE(CPack)

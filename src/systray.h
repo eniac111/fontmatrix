@@ -21,12 +21,12 @@
 #ifndef SYSTRAY_H
 #define SYSTRAY_H
 
-#include <QSystemTrayIcon>
 #include <QObject>
 #include <QMap>
 
-class QSettings;
 class QAction;
+class QMenu;
+class KStatusNotifierItem;
 class typotek;
 
 class Systray : public QObject
@@ -35,7 +35,7 @@ class Systray : public QObject
 
 public:
 	Systray();
-	~Systray();
+	~Systray() override;
 
 	bool isVisible();
 	bool hasActivateAll();
@@ -54,7 +54,6 @@ public slots:
 	void requireTagsConfirmation(bool doRequire);
 
 private slots:
-	void trayIconClicked(QSystemTrayIcon::ActivationReason reason);
 	void slotActivateAll();
 	void slotDeactivateAll();
 	void slotMinimize();
@@ -70,16 +69,16 @@ private:
 	void createActions();
 	void createTrayIcon();
 	void createTagMenu();
-	
+
 	QAction *activateAllAction;
 	QAction *deactivateAllAction;
 	QAction *minimizeAction;
 	QAction *restoreAction;
 	QAction *quitAction;
-	
-	QSystemTrayIcon *trayIcon;
-	QMenu           *trayIconMenu;
-	QMenu           *tagMenu;
+
+	KStatusNotifierItem *trayIcon;
+	QMenu               *trayIconMenu;
+	QMenu               *tagMenu;
 // 	QMenu           *tagSetMenu;
 	
 	QMap<QString, QAction*> tagActions;
@@ -89,11 +88,8 @@ private:
 	bool showAllConfirmation;
 	bool showTagsConfirmation;
 
-	QSettings *settings;
-
-	/*** hide these systray is not ment to be copied ***/
-	Systray(const Systray&) {};
-	void operator= (const Systray&) {};
+	Systray(const Systray&) = delete;
+	Systray& operator=(const Systray&) = delete;
 	
 // 	protected:
 // 		bool eventFilter ( QObject * watched, QEvent * event ) ;

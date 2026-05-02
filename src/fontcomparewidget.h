@@ -25,7 +25,7 @@ class FontCompareWidget : public QWidget, private Ui::CompareWidget
 
 	public:
 		static FontCompareWidget* getInstance();
-		~FontCompareWidget();
+		~FontCompareWidget() override;
 		
 	private:
 		QString curFont;
@@ -49,7 +49,7 @@ class FontCompareWidget : public QWidget, private Ui::CompareWidget
 		void offsetChange(int o);
 		void characterChange(int v);
 		void characterBoxChange(int i);
-		void fontChange(QListWidgetItem * witem, QListWidgetItem * olditem = 0);
+		void fontChange(QListWidgetItem * witem, QListWidgetItem * olditem = nullptr);
 		void syncChange(int state);
 		
 };

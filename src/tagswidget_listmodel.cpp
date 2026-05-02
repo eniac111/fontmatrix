@@ -9,6 +9,7 @@
 #include "fontitem.h"
 #include "fmfontdb.h"
 
+#include <KLocalizedString>
 #include <QFont>
 #include <QStringList>
 #include <QModelIndex>
@@ -17,7 +18,7 @@
 
 TagsWidget_ListModel::TagsWidget_ListModel(QObject *parent)
 		:QAbstractListModel(parent),
-		newTagString(tr("New Tag"))
+		newTagString(i18n("New Tag"))
 {
 	connect(FMFontDb::DB(), SIGNAL(tagsChanged()), this, SLOT(updateTags()));
 }
@@ -93,7 +94,7 @@ bool TagsWidget_ListModel::setData(const QModelIndex &index, const QVariant &val
 			if(!tags.contains(tag))
 			{
 				FMFontDb::DB()->TransactionBegin();
-				foreach(FontItem* f, fonts)
+				for (auto* f : fonts)
 					f->addTag(tag);
 				FMFontDb::DB()->TransactionEnd();
 				tags.append(tag);
@@ -108,7 +109,7 @@ bool TagsWidget_ListModel::setData(const QModelIndex &index, const QVariant &val
 			if(tags.contains(tag))
 			{
 				FMFontDb::DB()->TransactionBegin();
-				foreach(FontItem* f, fonts)
+				for (auto* f : fonts)
 					FMFontDb::DB()->removeTag(f->path(), tag);
 				FMFontDb::DB()->TransactionEnd();
 				tags.removeAll(tag);
@@ -132,7 +133,7 @@ bool TagsWidget_ListModel::setData(const QModelIndex &index, const QVariant &val
 	return false;
 }
 
-Qt::ItemFlags TagsWidget_ListModel::flags(const QModelIndex &index) const
+Qt::ItemFlags TagsWidget_ListModel::flags(const QModelIndex & ) const
 {
 	return  Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable;
 }

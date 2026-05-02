@@ -41,7 +41,7 @@ class FMFontDb : public QObject, public QSqlDatabase
 		// No surprise, we want it to be a singleton
 		static FMFontDb *instance;
 		FMFontDb();
-		~FMFontDb() {}
+		~FMFontDb() override {}
 		enum Table
 		{
 			InternalId = 0,

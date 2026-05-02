@@ -23,6 +23,7 @@
 #include "fmpaths.h"
 #include "fmfontdb.h"
 
+#include <KLocalizedString>
 #include <QFileDialog>
 #include <QDebug>
 #include <QGraphicsScene>
@@ -37,7 +38,7 @@ FontBookDialog::FontBookDialog ( QWidget *parent )
 	m_isTemplate = false;
 // 	loadTemplateButton->setVisible(false);
 // 	templateLabel->setVisible(false);
-	curTemplatePreview = 0;
+	curTemplatePreview = nullptr;
 
 // 	fillSizeList();
 	fillFontsList();
@@ -76,7 +77,7 @@ FontBookDialog::FontBookDialog ( QWidget *parent )
 // 	spinList << styleFontSizeSpin;
 // 	spinList << headlineFontSizeSpin;
 // 	spinList << bodyFontSizeSpin;
-// 	foreach(QSpinBox *sp, spinList)
+// 	for (auto* sp : spinList)
 // 	{
 // 		connect(sp,SIGNAL(valueChanged ( int  )),this,SIGNAL(updateView()));
 // 	}
@@ -108,14 +109,14 @@ void FontBookDialog::slotCancel()
 
 void FontBookDialog::slotFileDialog()
 {
-	QString theFile = QFileDialog::getSaveFileName ( this, tr("Save fontBook"), QDir::homePath() , "Portable Document Format (*.pdf)" );
+	QString theFile = QFileDialog::getSaveFileName ( this, i18n("Save fontBook"), QDir::homePath() , "Portable Document Format (*.pdf)" );
 	fileNameEdit->setText ( theFile );
 }
 
 void FontBookDialog::fillFontsList()
 {
 	QList<FontItem*> localFontMap = FMFontDb::DB()->getFilteredFonts();
-	foreach(FontItem* fit, localFontMap)
+	for (auto* fit : localFontMap)
 	{
 		selectedFontsList->addItem(fit->fancyName());
 	}
@@ -134,7 +135,7 @@ QString FontBookDialog::getFileName()
 */
 void FontBookDialog::slotLoadTemplate(const QString &theTemplate)
 {
-// 	QString theTemplate = QFileDialog::getOpenFileName ( this, "Get template", QDir::homePath(), tr("Templates (*.xml)"));
+// 	QString theTemplate = QFileDialog::getOpenFileName ( this, "Get template", QDir::homePath(), i18n("Templates (*.xml)"));
 	qDebug() << "FontBookDialog::slotLoadTemplate("<<theTemplate<<") -> " << templatesMap[theTemplate];
 	if(theTemplate.isEmpty())
 		return;
@@ -143,14 +144,14 @@ void FontBookDialog::slotLoadTemplate(const QString &theTemplate)
 	QDomDocument doc("template");
 	if ( !file.open ( QFile::ReadOnly ) )
 	{
-		QMessageBox::warning (0, QString ( "Fontmatrix" ),
+		QMessageBox::warning (nullptr, QString ( "Fontmatrix" ),
 				      QString ( "Can’t read %1." ).arg(file.fileName()) );
 		return;
 	}
 	if ( !doc.setContent ( &file ) )
 	{
 		file.close();
-		QMessageBox::warning (0, QString ( "Fontmatrix" ),
+		QMessageBox::warning (nullptr, QString ( "Fontmatrix" ),
 				      QString ( "%1 is an invalid XML tree." ).arg(file.fileName()) );
 		return;
 	}
@@ -174,14 +175,14 @@ void FontBookDialog::fillTemplates()
 		QDomDocument doc("template");
 		if ( !file.open ( QFile::ReadOnly ) )
 		{
-			QMessageBox::warning (0, QString ( "Fontmatrix" ),
+			QMessageBox::warning (nullptr, QString ( "Fontmatrix" ),
 					      QString ( "Can’t read %1." ).arg(file.fileName()) );
 			return;
 		}
 		if ( !doc.setContent ( &file ) )
 		{
 			file.close();
-			QMessageBox::warning (0, QString ( "Fontmatrix" ),
+			QMessageBox::warning (nullptr, QString ( "Fontmatrix" ),
 					      QString ( "%1 is an invalid XML tree." ).arg(file.fileName()) );
 			return;
 		}

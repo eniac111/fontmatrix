@@ -28,12 +28,25 @@
 #include "fmpaths.h"
 #include "filteritem.h"
 
+#include <KLocalizedString>
 #include <QDir>
 #include <QFile>
 
-QString FiltersDialog::andOpString = FiltersDialog::tr("And");
-QString FiltersDialog::notOpString = FiltersDialog::tr("Not");
-QString FiltersDialog::orOpString = FiltersDialog::tr("Or");
+const QString &FiltersDialog::andOp()
+{
+	static const QString s = i18n("And");
+	return s;
+}
+const QString &FiltersDialog::notOp()
+{
+	static const QString s = i18n("Not");
+	return s;
+}
+const QString &FiltersDialog::orOp()
+{
+	static const QString s = i18n("Or");
+	return s;
+}
 
 
 FiltersDialog::FiltersDialog(const QList<FilterItem*>& currentFilters, QWidget *parent) :
@@ -52,7 +65,7 @@ FiltersDialog::FiltersDialog(const QList<FilterItem*>& currentFilters, QWidget *
 	{
 		QString fs;
 		bool first(true);
-		foreach(FilterItem *f, currentFilters)
+		for (auto* f : currentFilters)
 		{
 			FilterData *d(f->filter());
 			if(first)
@@ -86,19 +99,19 @@ QString FiltersDialog::filterString(FilterData *d, bool first)
 	{
 		first = false;
 		if(d->data(FilterData::Not).toBool())
-			fs += notOpString + QString(" [%1] ").arg(d->getText());
+			fs += notOp() + QString(" [%1] ").arg(d->getText());
 		else
 			fs += QString("[%1] ").arg(d->getText());
 	}
 	else
 	{
 		if(d->data(FilterData::Or).toBool())
-			fs += orOpString;
+			fs += orOp();
 		else
-			fs += andOpString;
+			fs += andOp();
 
 		if(d->data(FilterData::Not).toBool())
-			fs += QString(" %1").arg(notOpString);
+			fs += QString(" %1").arg(notOp());
 		fs += QString(" [%1] ").arg(d->getText());
 	}
 	return fs;
@@ -106,19 +119,19 @@ QString FiltersDialog::filterString(FilterData *d, bool first)
 
 void FiltersDialog::loadFilters()
 {
-	foreach(FiltersDialogItem* i, items)
+	for (auto* i : items)
 		delete i;
 	items.clear();
 
 	QDir fbasedir(FMPaths::FiltersDir());
 	QStringList fbaselist(fbasedir.entryList(QDir::NoDotAndDotDot|QDir::Dirs,QDir::Name));
-	foreach(QString fname, fbaselist)
+	for (const auto& fname : fbaselist)
 	{
 		QDir fdir(FMPaths::FiltersDir() + fname);
 		QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files, QDir::Name));
 		QString fString;
 		bool first(true);
-		foreach(QString fn, flist)
+		for (const auto& fn : flist)
 		{
 			QStringList l(fn.split(QString("-")));
 			if(l.count() == 2)

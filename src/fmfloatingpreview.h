@@ -69,15 +69,15 @@ class FMFloatingPreview : public QWidget
 
 	FMFloatingPreview(QWidget * parent, FontItem * item);
 public:
-	~FMFloatingPreview();
+	~FMFloatingPreview() override;
 	static void create(FontItem* item, QRect pos=QRect());
 
 protected:
-	void mousePressEvent(QMouseEvent * e);
-	void mouseReleaseEvent(QMouseEvent * e);
-	void mouseMoveEvent(QMouseEvent * e);
+	void mousePressEvent(QMouseEvent * e) override;
+	void mouseReleaseEvent(QMouseEvent * e) override;
+	void mouseMoveEvent(QMouseEvent * e) override;
 	void enterEvent(QEvent *e);
-	void leaveEvent(QEvent *e);
+	void leaveEvent(QEvent *e) override;
 
 private:
 	FontItem *fontItem;

@@ -35,15 +35,15 @@ class PanoseWidget : public QWidget {
 	Q_OBJECT
 
 public:
-	PanoseWidget(QWidget *parent = 0);
-	~PanoseWidget();
+	PanoseWidget(QWidget *parent = nullptr);
+	~PanoseWidget() override;
 
 	void setFilter(const QMap<int, QList<int> >& filter);
 	QMap<int, QList<int> > getFilter() const{return m_filter;}
 
 protected:
 	//    void changeEvent(QEvent *e);
-	void closeEvent(QCloseEvent *);
+	void closeEvent(QCloseEvent *) override;
 
 private:
 	Ui::PanoseWidget *m_ui;

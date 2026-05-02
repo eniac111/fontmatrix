@@ -21,18 +21,19 @@
 #include "playwidget.h"
 #include "ui_playwidget.h"
 
+#include <KLocalizedString>
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QDialog>
 #include <QRectF>
 #include <QPainter>
 
-PlayWidget* PlayWidget::instance = 0;
+PlayWidget* PlayWidget::instance = nullptr;
 PlayWidget::PlayWidget() :
     ui(new Ui::PlayWidget)
 {
     ui->setupUi(this);
-    setWindowTitle(tr("Playground"));
+    setWindowTitle(i18n("Playground"));
     ui->toolbar->setDetached();
     ui->toolbar->setNoClose(true);
     playScene = new QGraphicsScene;
@@ -51,7 +52,7 @@ PlayWidget::~PlayWidget()
 
 PlayWidget* PlayWidget::getInstance()
 {
-	if(instance == 0)
+	if(instance == nullptr)
 	{
 		instance = new PlayWidget;
 		Q_ASSERT(instance);
@@ -104,7 +105,7 @@ void PlayWidget::print()
 {
 	QPrinter thePrinter ( QPrinter::HighResolution );
 	QPrintDialog dialog(&thePrinter, this);
-	dialog.setWindowTitle("Fontmatrix - " + tr("Print Playground")  );
+	dialog.setWindowTitle("Fontmatrix - " + i18n("Print Playground")  );
 
 	if ( dialog.exec() != QDialog::Accepted )
 		return;

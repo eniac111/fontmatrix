@@ -89,81 +89,307 @@ jobs:
             PATCH=$(echo $VER | cut -d. -f3)
             echo "version=$VER"         >> "$GITHUB_OUTPUT"
             echo "is_release=true"      >> "$GITHUB_OUTPUT"
+            # Tag build: forward the triple to Craft so the blueprint
+            # passes -DVERSION_MAJOR/MINOR/PATCH to CMake. For untagged
+            # builds we deliberately do NOT export these — letting
+            # CMakeLists' in-tree defaults (currently 0.11.0) take over,
+            # rather than stamping 0.0.0 on dev builds.
+            {
+              echo "CRAFT_FONTMATRIX_VERSION_MAJOR=$MAJOR"
+              echo "CRAFT_FONTMATRIX_VERSION_MINOR=$MINOR"
+              echo "CRAFT_FONTMATRIX_VERSION_PATCH=$PATCH"
+            } >> "$GITHUB_ENV"
           else
             SHORT="${{ github.sha }}"
             SHORT="${SHORT:0:7}"
             MAJOR=0; MINOR=0; PATCH=0
-            echo "version=git-${SHORT}" >> "$GITHUB_OUTPUT"
+            VER="git-${SHORT}"
+            echo "version=${VER}"       >> "$GITHUB_OUTPUT"
             echo "is_release=false"     >> "$GITHUB_OUTPUT"
           fi
           echo "major=$MAJOR"           >> "$GITHUB_OUTPUT"
           echo "minor=$MINOR"           >> "$GITHUB_OUTPUT"
           echo "patch=$PATCH"           >> "$GITHUB_OUTPUT"
+          # Always export the FULL version string. The blueprint reads it
+          # in setTargets() to use as the Craft target name, which ends
+          # up in the package filename (fontmatrix-<full>-windows-...exe).
+          # For untagged builds this is "git-<short-sha>"; for tag builds
+          # it's "1.2.3".
+          echo "CRAFT_FONTMATRIX_VERSION_FULL=$VER" >> "$GITHUB_ENV"
 
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v4
+      - name: Scrub conflicting POSIX toolchains from PATH
+        # The windows-latest runner ships with MinGW (C:\mingw64\bin) and
+        # Git for Windows posix bin (C:\Program Files\Git\{bin,usr\bin})
+        # on PATH. Craft warns about these at startup, and for autotools
+        # sub-builds (pkgconf, openssl, icu, …) Craft picks up
+        # /c/mingw64/bin/make.exe instead of MSYS2's make, breaking the
+        # build (MinGW make and MSYS2 make handle /c/... POSIX paths
+        # differently). Strip them once here; persists for the whole job
+        # via $GITHUB_ENV.
+        shell: pwsh
+        run: |
+          $cleaned = ($env:PATH -split ';' | Where-Object {
+            $_ -and `
+            $_ -notlike '*\mingw64\bin*' -and `
+            $_ -notlike '*\mingw32\bin*' -and `
+            $_ -notlike '*\Strawberry\*' -and `
+            $_ -notlike '*\Git\bin*' -and `
+            $_ -notlike '*\Git\usr\bin*' -and `
+            $_ -notlike '*\Git\mingw64\bin*'
+          }) -join ';'
+          Write-Host "Original PATH segments: $((($env:PATH -split ';').Count))"
+          Write-Host "Cleaned  PATH segments: $((($cleaned -split ';').Count))"
+          "PATH=$cleaned" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      # Build Fontmatrix on Windows using KDE Craft. Craft is the official
+      # KDE tooling for cross-platform packaging and provides full KF6
+      # blueprints — vcpkg's KF6 coverage is incomplete, so Craft is the
+      # supported path for KF6-based applications on Windows.
+      #
+      # Steps:
+      #   1. Cache CraftRoot (multi-GB; first run builds Qt6 + KF6 from source).
+      #   2. Bootstrap Craft non-interactively into C:\CraftRoot, including
+      #      NSIS so the cached CraftRoot has everything packaging needs.
+      #   3. Drop our blueprint into Craft's blueprint search path.
+      #   4. Build Fontmatrix from the checked-out source via --options srcDir.
+      #   5. Package as NSIS installer + 7z archive and upload as artifacts.
+
+      - name: Restore Craft cache
+        id: cache-craft
+        uses: actions/cache/restore@v4
         with:
-          version: '6.10.*'
-          arch: win64_msvc2022_64
-          modules: 'qtwebengine qtpositioning qtwebchannel'
+          # Exact key includes the blueprint hash. Different blueprint =
+          # different key = no exact match. restore-keys gives us a
+          # most-recent-match fallback so we don't go fully cold every
+          # time we iterate on the blueprint — Craft will rebuild only
+          # the packages whose signature actually changed.
+          key: craft-windows-x86_64-nsis1-${{ hashFiles('craft-blueprints/**/*.py') }}
+          restore-keys: |
+            craft-windows-x86_64-nsis1-
+          path: |
+            C:\CraftRoot
+            !C:\CraftRoot\build\fontmatrix
+            !C:\CraftRoot\tmp
 
-      - name: Install dependencies via vcpkg
-        run: |
-          vcpkg install freetype:x64-windows-static-md
-          vcpkg install podofo:x64-windows-static-md
-
-      - name: Configure CMake
-        run: >
-          cmake -B build -DCMAKE_BUILD_TYPE=Release
-          -DVERSION_MAJOR=${{ steps.version.outputs.major }}
-          -DVERSION_MINOR=${{ steps.version.outputs.minor }}
-          -DVERSION_PATCH=${{ steps.version.outputs.patch }}
-          -DVCPKG_TARGET_TRIPLET=x64-windows-static-md
-          -DLIBPODOFO_SHARED=0
-          "-DCMAKE_TOOLCHAIN_FILE=$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
-
-      - name: Build
-        run: cmake --build build --config Release --parallel
-
-      - name: Deploy
-        shell: pwsh
-        run: cmake --install build --config Release --prefix (Join-Path $PWD "dist")
-
-      - name: Create ZIP archive
-        shell: pwsh
-        run: Compress-Archive -Path dist\* -DestinationPath fontmatrix-windows-${{ steps.version.outputs.version }}.zip
-
-      - name: Install WiX toolset
-        run: |
-          dotnet tool install --global wix --version 6.0.2
-          wix extension add --global WixToolset.UI.wixext/6.0.2
-
-      - name: Build MSI installer
-        id: msi
+      # Whether to skip the (slow, network-heavy, sometimes flaky)
+      # bootstrap depends on whether a cached CraftRoot was actually
+      # restored — exact hit OR partial restore-keys hit, both fine.
+      # actions/cache only sets cache-hit=true for exact matches, so we
+      # check craftenv.ps1's existence directly.
+      - name: Check if Craft is already bootstrapped
+        id: craft-check
         shell: pwsh
         run: |
-          cd build
-          cpack -G WIX -C Release
+          $exists = Test-Path 'C:\CraftRoot\craft\craftenv.ps1'
+          "bootstrapped=$($exists.ToString().ToLower())" |
+            Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          Write-Host "Craft already bootstrapped: $exists"
 
-      - name: Upload WiX log on failure
-        if: failure()
+      - name: Bootstrap KDE Craft
+        if: steps.craft-check.outputs.bootstrapped != 'true'
+        shell: pwsh
+        run: |
+          # We bypass the upstream `install_craft.ps1` PowerShell wrapper
+          # and invoke `CraftBootstrap.py` directly. install_craft.ps1 has
+          # two CI-fatal bugs:
+          #
+          #   1. Its `[switch]$Script:useDefaults` parameter (scope-qualified
+          #      switch) does not reliably bind when invoked via
+          #      `powershell -File`, so `--use-defaults` is never forwarded
+          #      to Python — leaving CraftBootstrap.py interactive in CI.
+          #
+          #   2. It does not propagate Python's exit code; a failed
+          #      bootstrap reports success spuriously.
+          #
+          # Calling CraftBootstrap.py ourselves sidesteps both. This is
+          # also closer to what KDE's own CI does (they use a pre-baked
+          # VM image with Craft installed; install_craft.ps1 is the
+          # developer-machine installer, not a CI bootstrap tool).
+          if (Test-Path 'C:\CraftRoot') {
+            Remove-Item -Recurse -Force 'C:\CraftRoot'
+          }
+          New-Item -ItemType Directory -Force -Path 'C:\CraftRoot' | Out-Null
+          New-Item -ItemType Directory -Force -Path 'C:\CraftRoot\download' | Out-Null
+
+          $pythonExe = Get-Command python -ErrorAction Stop |
+            Select-Object -First 1 -ExpandProperty Source
+          Write-Host "Using python: $pythonExe"
+          & $pythonExe --version
+
+          Invoke-WebRequest `
+            -Uri 'https://raw.githubusercontent.com/KDE/craft/master/setup/CraftBootstrap.py' `
+            -OutFile 'C:\CraftRoot\download\CraftBootstrap.py'
+
+          # Force BuildType=Release in the settings the bootstrap writes.
+          # Why this is necessary:
+          #  - The CraftSettings.ini.template default is "RelWithDebInfo"
+          #    which has a populated KDE binary cache.
+          #  - In practice on master, our bootstrap ends up with
+          #    BuildType=MinSizeRel which has NO populated cache, so Craft
+          #    falls back to building Qt+KF6 from source (1+ hour, plus
+          #    the gettext-on-MSVC blueprint bug bites us).
+          #  - Patching the bootstrap to inject the BuildType after the
+          #    other setSettingsValue calls is a one-liner and matches
+          #    KDE's binary cache layout.
+          # Insert a line `boot.setSettingsValue("Compile", "BuildType", "Release")`
+          # immediately before the existing `boot.writeSettings()` call.
+          $bootstrapPath = 'C:\CraftRoot\download\CraftBootstrap.py'
+          $content = Get-Content $bootstrapPath -Raw
+          # Build the replacement via -join so we avoid (a) a here-string
+          # whose closing `'@` would have to be at column 0, breaking the
+          # YAML block scalar's indentation, and (b) PowerShell's
+          # comma-vs-plus precedence trap that turns `'a','b'+'c'` into
+          # a 3-element array instead of a 2-element comma operand.
+          $replaceLines = @(
+            '    boot.setSettingsValue("Compile", "BuildType", "Release")',
+            '    boot.writeSettings()'
+          )
+          $replacement = $replaceLines -join "`n"
+          $patched = $content -replace '    boot\.writeSettings\(\)', $replacement
+          if ($patched -eq $content) {
+            throw 'Failed to patch CraftBootstrap.py: writeSettings() call not found in expected form'
+          }
+          Set-Content -Path $bootstrapPath -Value $patched -NoNewline
+
+          # Capture full output to a log file for post-mortem on failure.
+          & $pythonExe -u $bootstrapPath `
+            --prefix 'C:\CraftRoot' `
+            --branch master `
+            --use-defaults 2>&1 | Tee-Object -FilePath craft-install.log
+          $bootstrapExit = $LASTEXITCODE
+
+          $craftEnv = 'C:\CraftRoot\craft\craftenv.ps1'
+          if ($bootstrapExit -ne 0 -or -not (Test-Path $craftEnv)) {
+            Write-Host '::group::CraftRoot tree after failed bootstrap'
+            if (Test-Path 'C:\CraftRoot') {
+              Get-ChildItem -Recurse -Force 'C:\CraftRoot' |
+                Select-Object FullName, Length, Mode |
+                Format-Table -AutoSize | Out-String -Width 200 | Write-Host
+            } else {
+              Write-Host 'C:\CraftRoot does not exist'
+            }
+            Write-Host '::endgroup::'
+            Write-Host '::group::Last 200 lines of bootstrap log'
+            Get-Content craft-install.log -Tail 200 | Out-String | Write-Host
+            Write-Host '::endgroup::'
+            throw "Craft bootstrap failed: exit=$bootstrapExit, craftenv.ps1 present=$(Test-Path $craftEnv)"
+          }
+          Write-Host "Craft bootstrap OK: $craftEnv exists"
+
+          # Install NSIS (Craft's default Windows packager). We do this
+          # inside the bootstrap step so it lands in the cached CraftRoot
+          # alongside Qt/KF6/etc. — once the cache is warm, no separate
+          # always-running NSIS step is needed. Mirrors KDE practice in
+          # sysadmin/craft-ci/gitlab-templates/blocks/windows-base.yml,
+          # which runs `--update nsis` before `--package`.
+          # Clear-Host shim: craftenv.ps1's first instruction is `cls`,
+          # which throws on a missing console handle in non-interactive
+          # pwsh. Same workaround as in the Build/Package steps.
+          function Clear-Host { }
+          . $craftEnv
+          craft --update nsis
+
+      - name: Upload bootstrap log on failure
+        if: failure() && steps.craft-check.outputs.bootstrapped != 'true'
         uses: actions/upload-artifact@v7
         with:
-          name: wix-log
-          path: build/_CPack_Packages/win64/WIX/wix.log
+          name: craft-install-log
+          path: craft-install.log
           if-no-files-found: ignore
 
-      - name: Upload Windows ZIP artifact
+      - name: Install Fontmatrix blueprints
+        shell: pwsh
+        run: |
+          # Drop our entire craft-blueprints/ tree under Craft's
+          # blueprint locations dir. Pattern: each blueprint lives at
+          #   <CraftRoot>/etc/blueprints/locations/<repo>/<category>/<name>/<name>.py
+          # We use `fontmatrix` as the repo namespace and mirror our
+          # local craft-blueprints/ category structure (fontmatrix/,
+          # libs/) underneath it.
+          $blueprintRoot = 'C:\CraftRoot\etc\blueprints\locations\fontmatrix'
+          New-Item -ItemType Directory -Force -Path $blueprintRoot | Out-Null
+          Copy-Item -Recurse -Force craft-blueprints\* $blueprintRoot\
+          Get-ChildItem -Recurse $blueprintRoot -Filter '*.py' |
+            ForEach-Object { Write-Host "  installed: $($_.FullName)" }
+
+      - name: Build Fontmatrix with Craft
+        shell: pwsh
+        run: |
+          # craftenv.ps1's first instruction is `cls`, which under
+          # non-interactive pwsh tries to set cursor position on a
+          # missing console handle and throws. Shadow Clear-Host (the
+          # function `cls` aliases to) with a no-op before sourcing.
+          function Clear-Host { }
+          # craftenv.ps1's tail invokes `cr` which `cd`s to $env:CraftRoot/..,
+          # so $pwd after sourcing is C:\CraftRoot — NOT our checkout. Use
+          # $env:GITHUB_WORKSPACE which is always the checkout root.
+          $srcDir = $env:GITHUB_WORKSPACE
+          . C:\CraftRoot\craft\craftenv.ps1
+          # CRAFT_FONTMATRIX_VERSION_{MAJOR,MINOR,PATCH,FULL} are exported
+          # to job env by the "Determine version" step — picked up here by
+          # the in-tree CMakeLists *and* by the fontmatrix blueprint's
+          # setTargets() to set the package filename version label.
+          # --ignoreInstalled forces a rebuild against the local source.
+          # --options fontmatrix.srcDir=<path> uses the checkout as the source
+          # tree, bypassing Craft's own VCS clone.
+          craft --ignoreInstalled --options "fontmatrix.srcDir=$srcDir" fontmatrix
+
+      - name: Package Fontmatrix (NSIS installer + 7z)
+        shell: pwsh
+        run: |
+          function Clear-Host { }
+          $srcDir = $env:GITHUB_WORKSPACE
+          . C:\CraftRoot\craft\craftenv.ps1
+          # Craft's default --package on Windows runs the NSIS packager,
+          # producing a self-contained `<app>-<version>-windows-cl-msvc2022-x86_64.exe`
+          # plus a matching 7z portable archive and a .sha256 checksum.
+          # We do not produce MSI: KDE's binary factory does not ship MSI
+          # for any of its applications (Kate, Krita, Okular, …) — NSIS is
+          # the canonical format. AppX is opt-in via the blueprint's
+          # `subinfo.options.dynamic.packageAppx` flag, which we don't set.
+          craft --options "fontmatrix.srcDir=$srcDir" --package fontmatrix
+
+      - name: Collect Craft artifacts
+        id: collect
+        shell: pwsh
+        run: |
+          $outDir = 'fontmatrix-craft-out'
+          New-Item -ItemType Directory -Force -Path $outDir | Out-Null
+          # Craft drops package output under <CraftRoot>/tmp by default.
+          # Mirroring KDE's windows-base.yml, we collect the NSIS installer
+          # (.exe), the portable archive (.7z), and the checksum (.sha256).
+          Get-ChildItem -Path 'C:\CraftRoot\tmp' -Recurse `
+            -Include 'fontmatrix-*.exe', 'fontmatrix-*.7z', 'fontmatrix-*.sha256' `
+            -ErrorAction SilentlyContinue |
+            Copy-Item -Destination $outDir
+          Get-ChildItem $outDir | Format-Table -AutoSize
+
+      - name: Upload Windows artifacts
         uses: actions/upload-artifact@v7
         with:
           name: fontmatrix-windows
-          path: fontmatrix-windows-${{ steps.version.outputs.version }}.zip
+          path: fontmatrix-craft-out/*
+          if-no-files-found: error
 
-      - name: Upload Windows MSI artifact
-        uses: actions/upload-artifact@v7
+      # Split restore/save pattern: actions/cache@v4 only saves on full job
+      # success, so any failure downstream of Bootstrap meant the next run
+      # started from scratch — we burned an hour on Qt+KF6 every iteration.
+      # cache/save with `if: always()` saves even if Build/Package failed,
+      # so the bootstrapped CraftRoot survives across iterations.
+      #
+      # Skip the save when we got an exact cache hit (cache-hit=='true'):
+      # the content already matches the key, re-uploading is pure waste.
+      # On a partial restore-keys hit, cache-hit is 'false' and we DO want
+      # to save under the new (current-blueprint-hash) key.
+      - name: Save Craft cache
+        if: always() && steps.cache-craft.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
         with:
-          name: fontmatrix-windows-msi
-          path: build/fontmatrix-*.msi
+          key: craft-windows-x86_64-nsis1-${{ hashFiles('craft-blueprints/**/*.py') }}
+          path: |
+            C:\CraftRoot
+            !C:\CraftRoot\build\fontmatrix
+            !C:\CraftRoot\tmp
 
   release:
     name: Publish to Release
@@ -202,18 +428,11 @@ jobs:
           name: fontmatrix-flatpak
           path: release-artifacts/
 
-      - name: Download Windows ZIP artifact
+      - name: Download Windows artifacts
         if: steps.check-branch.outputs.on_master == 'true'
         uses: actions/download-artifact@v7
         with:
           name: fontmatrix-windows
-          path: release-artifacts/
-
-      - name: Download Windows MSI artifact
-        if: steps.check-branch.outputs.on_master == 'true'
-        uses: actions/download-artifact@v7
-        with:
-          name: fontmatrix-windows-msi
           path: release-artifacts/
 
       - name: Upload artifacts to GitHub Release
@@ -222,5 +441,6 @@ jobs:
         with:
           files: |
             release-artifacts/fontmatrix-*.flatpak
-            release-artifacts/fontmatrix-windows-*.zip
-            release-artifacts/*.msi
+            release-artifacts/fontmatrix-*.exe
+            release-artifacts/fontmatrix-*.7z
+            release-artifacts/fontmatrix-*.sha256

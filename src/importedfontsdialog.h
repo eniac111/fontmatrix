@@ -33,7 +33,7 @@ class ImportedFontsDialog : public QDialog, private Ui::ImportedFonts
 public:
     ImportedFontsDialog(QWidget *parent, QStringList fontlist );
 
-    ~ImportedFontsDialog();
+    ~ImportedFontsDialog() override;
 
 };
 

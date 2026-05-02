@@ -139,7 +139,7 @@ Press enter after editing to run the search.</string>
         <string>Copy Mode</string>
        </property>
        <property name="icon">
-        <iconset resource="application.qrc">
+        <iconset theme="edit-copy" resource="application.qrc">
          <normaloff>:/action-copy-char</normaloff>:/action-copy-char</iconset>
        </property>
        <property name="checkable">

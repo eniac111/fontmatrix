@@ -22,7 +22,7 @@
 
 #include "floatingwidget.h"
 
-FloatingWidgetsRegister * FloatingWidgetsRegister::instance = 0;
+FloatingWidgetsRegister * FloatingWidgetsRegister::instance = nullptr;
 
 FloatingWidgetsRegister::FloatingWidgetsRegister()
 {
@@ -30,7 +30,7 @@ FloatingWidgetsRegister::FloatingWidgetsRegister()
 
 FloatingWidgetsRegister * FloatingWidgetsRegister::that()
 {
-	if(instance == 0)
+	if(instance == nullptr)
 		instance = new FloatingWidgetsRegister;
 	return instance;
 }
@@ -55,7 +55,7 @@ FloatingWidget * FloatingWidgetsRegister::Widget(const QString &fid, const QStri
 				return fwr->fwMap[typ][fid];
 		}
 	}
-	return 0;
+	return nullptr;
 }
 
 QList<FloatingWidget*> FloatingWidgetsRegister::AllWidgets()
@@ -63,9 +63,9 @@ QList<FloatingWidget*> FloatingWidgetsRegister::AllWidgets()
 	QList<FloatingWidget*> ret;
 	FloatingWidgetsRegister *fwr(that());
 	ret.clear();
-	foreach(QString t, fwr->fwMap.keys())
+	for (const auto& t : fwr->fwMap.keys())
 	{
-		foreach(QString f, fwr->fwMap[t].keys())
+		for (const auto& f : fwr->fwMap[t].keys())
 		{
 			if(fwr->fwMap[t][f].isNull())
 				fwr->fwMap[t].remove(f);

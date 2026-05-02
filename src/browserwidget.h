@@ -46,8 +46,8 @@ class BrowserWidget : public QWidget
 	Q_OBJECT
 
 public:
-	explicit BrowserWidget(QWidget *parent = 0);
-	~BrowserWidget();
+	explicit BrowserWidget(QWidget *parent = nullptr);
+	~BrowserWidget() override;
 
 private:
 	Ui::BrowserWidget *ui;
@@ -101,7 +101,7 @@ class FolderViewMenu : public QMenu
 	Q_OBJECT
 public:
 	FolderViewMenu();
-	~FolderViewMenu();
+	~FolderViewMenu() override;
 
 	void exec(const QFileInfo &fi, const QPoint &p);
 

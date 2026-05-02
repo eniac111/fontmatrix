@@ -18,10 +18,10 @@
 #include <QPen>
 #include <QDebug>	
 
-FMGlyphHighlight::FMGlyphHighlight(QGraphicsScene* scene, const QRectF& rect, int time, int frames)
+FMGlyphHighlight::FMGlyphHighlight(QGraphicsScene*, const QRectF& rect, int time, int frames)
 {
 // 	qDebug()<<"Create an HighLight";
-	m_rect = new QGraphicsRectItem(rect, 0); // FCO Not sure of this change
+	m_rect = new QGraphicsRectItem(rect, nullptr); // FCO Not sure of this change
 	m_rect->setZValue(10000);
 	initialPos = m_rect->pos();
 	m_timeline = new QTimeLine(time);

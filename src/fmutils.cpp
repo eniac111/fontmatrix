@@ -22,7 +22,7 @@
 void printBacktrace ( int frames )
 {
 	void ** trace = new void*[frames + 1];
-	char **messages = ( char ** ) NULL;
+	char **messages = ( char ** ) nullptr;
 	int i, trace_size = 0;
 
 	trace_size = backtrace ( trace, frames + 1 );
@@ -39,7 +39,7 @@ void printBacktrace ( int frames )
 			QString name;
 			if ( mName.startsWith ( "_Z" ) )
 			{
-				char* outbuf = 0;
+				char* outbuf = nullptr;
 				size_t length = 0;
 				int status = 0;
 				outbuf = abi::__cxa_demangle ( mName.trimmed().toLatin1().data(), outbuf, &length, &status );

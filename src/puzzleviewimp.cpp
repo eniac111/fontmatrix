@@ -56,7 +56,7 @@ void PuzzleViewImp::init(const QImage & qimg)
 	for(unsigned int y(0);y < ih;++y)
 	{
 		sum = 0;
-		for(int x(0);x < iw;++x)
+		for(unsigned int x(0);x < iw;++x)
 		{
 			if(qimg.pixel(x,y) == pc)
 				sum += 1.0;
@@ -67,7 +67,7 @@ void PuzzleViewImp::init(const QImage & qimg)
 	for(unsigned int x(0);x < iw;++x)
 	{
 		sum = 0;
-		for(int y(0);y < ih;++y)
+		for(unsigned int y(0);y < ih;++y)
 		{
 			if(qimg.pixel(x,y) == pc)
 				sum += 1.0;

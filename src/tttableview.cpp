@@ -10,6 +10,7 @@
 //
 //
 
+#include <KLocalizedString>
 #include <QDebug>
 #include <QFileDialog>
 #include <QFile>
@@ -26,7 +27,7 @@ TTTableView::TTTableView(FontItem * font, QWidget * parent)
 // 	tView->setColumnCount (3);
 	bool hasTable(false);
 	QTreeWidgetItem *first;
-	foreach( QString tname, FontStrings::Tables().keys() )
+	for (const auto& tname : FontStrings::Tables().keys())
 	{
 		int len(font->table(tname));
 		if(len > 0)
@@ -61,7 +62,7 @@ TTTableView::TTTableView(FontItem * font, QWidget * parent)
 
 TTTableView::~ TTTableView()
 {
-	foreach(QTreeWidgetItem *twi, twiList)
+	for (auto* twi : twiList)
 	{
 		delete twi;
 	}
@@ -88,7 +89,7 @@ void TTTableView::exportHex()
 	if(curTable.isEmpty())
 		return;
 	
-	QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"));
+	QString fileName = QFileDialog::getSaveFileName(this, i18n("Save File"));
 	if(fileName.isEmpty())
 		return;
 	QFile f(fileName);

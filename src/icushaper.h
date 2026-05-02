@@ -57,7 +57,7 @@ class IcuShaper : public FMBaseShaper
 		IcuShaper ( FMOtf* o, QString s );
 		~IcuShaper();
 
-		GlyphList doShape ( const QString& s );
+		GlyphList doShape ( const QString& s ) override;
 
 	private:
 		LayoutEngine *icuLE;

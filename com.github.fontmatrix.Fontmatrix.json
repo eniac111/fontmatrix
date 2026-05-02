@@ -48,11 +48,6 @@
         {
             "name": "fontmatrix",
             "buildsystem": "cmake-ninja",
-            "post-install": [
-                "install -Dm644 -T src/icons/application-fontmatrix_64.png /app/share/icons/hicolor/64x64/apps/fontmatrix.png",
-                "install -Dm644 -T src/icons/application-fontmatrix_128.png /app/share/icons/hicolor/128x128/apps/fontmatrix.png",
-                "install -Dm644 -T src/icons/application-fontmatrix-vectors.svg /app/share/icons/hicolor/scalable/apps/fontmatrix.svg"
-            ],
             "sources": [
                 {
                     "type": "dir",
