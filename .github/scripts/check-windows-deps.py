@@ -258,8 +258,13 @@ def audit_imports(root: Path, extra_allowed: set[str]) -> tuple[int, int]:
           "providing Craft package to setDependencies() in "
           "craft-blueprints/fontmatrix/fontmatrix.py and stop excluding it in "
           "ignoredPackages, or \u2014 when the importer is something we "
-          "deliberately do not use \u2014 drop that file in blacklist.txt, so "
-          "the package stops carrying a library it cannot load.")
+          "deliberately do not use \u2014 drop that file in blacklist.txt.")
+    print("")
+    print("Note when writing a blacklist pattern: the paths above are from "
+          "the finished package, but blacklist.txt is matched earlier, while "
+          "files are copied out of each package's image dir. Anything under "
+          "bin/ that is really a plugin lives at plugins/<...> at that point "
+          "\u2014 bin/kf6/x.dll has to be matched as plugins/kf6/x.dll.")
     return (1, len(binaries))
 
 
