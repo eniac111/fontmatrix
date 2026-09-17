@@ -35,6 +35,14 @@ class subinfo(info.infoclass):
         self.defaultTarget = version
 
     def setDependencies(self):
+        # virtual/base is what drags in libs/runtime — the package that
+        # installs the MSVC redistributable DLLs (vcruntime140.dll,
+        # msvcp140.dll, …) into bin/. Without it the packaged installer has
+        # no CRT and the app only starts on machines that happen to have the
+        # VC++ redist installed, which is why this has to be declared even
+        # though it looks like build-only plumbing. Every upstream KDE
+        # blueprint (kate, filelight, kcalc, …) declares it.
+        self.runtimeDependencies["virtual/base"] = None
         self.buildDependencies["kde/frameworks/extra-cmake-modules"] = None
 
         # qttools / qtdeclarative are NOT runtime deps. qtdeclarative pulls
@@ -52,6 +60,14 @@ class subinfo(info.infoclass):
         self.runtimeDependencies["kde/frameworks/tier3/kxmlgui"] = None
         self.runtimeDependencies["kde/frameworks/tier3/kconfigwidgets"] = None
 
+        # The UI loads its icons through QIcon::fromTheme(), so the theme and
+        # the loader that reads it have to be in the package. Both arrive
+        # transitively via kxmlgui → kiconthemes → breeze-icons, but they are
+        # named here so a future dependency trim can't silently leave the app
+        # with blank toolbars.
+        self.runtimeDependencies["kde/frameworks/tier3/kiconthemes"] = None
+        self.runtimeDependencies["kde/frameworks/tier1/breeze-icons"] = None
+
         self.runtimeDependencies["libs/freetype"] = None
         self.runtimeDependencies["libs/podofo"] = None
 
@@ -60,10 +76,14 @@ class Package(CMakePackageBase):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+        # No -DCMAKE_BUILD_TYPE here: Craft appends its own
+        # -DCMAKE_BUILD_TYPE=<buildType()> after the blueprint's args, so
+        # ours was being silently overridden anyway. The build type comes from
+        # Craft's own setting (default RelWithDebInfo, which is what KDE keeps
+        # a populated binary cache for).
         cmake_args = [
             "-DWANT_HARFBUZZ=true",
             "-DWANT_FONTCONFIG=false",
-            "-DCMAKE_BUILD_TYPE=Release",
         ]
         for component in ("MAJOR", "MINOR", "PATCH"):
             value = os.environ.get(f"CRAFT_FONTMATRIX_VERSION_{component}")
@@ -99,6 +119,23 @@ class Package(CMakePackageBase):
             {"name": "Fontmatrix", "target": "bin/fontmatrix.exe"},
         ]
 
+        # Without these the NSIS packager falls back to Craft's own defaults,
+        # which means the installer, the uninstaller and the Add/Remove
+        # Programs entry all show the Craft mascot and no licence page.
+        # Guarded: a packaging run must not die over an installer icon.
+        try:
+            src = self.sourceDir()
+        except Exception as exc:  # noqa: BLE001 - cosmetic defines only
+            CraftCore.log.warning(f"fontmatrix: no source dir for installer assets: {exc}")
+            src = None
+        if src:
+            icon = src / "src/icons/fontmatrix.ico"
+            if icon.exists():
+                self.defines["icon"] = icon
+            licence = src / "COPYING"
+            if licence.exists():
+                self.defines["license"] = licence
+
         # Drop random executables that came along with build deps but aren't
         # ours (e.g. qmldom.exe, androiddeployqt.exe, openssl.exe). Same
         # pattern as kate.py.
@@ -109,6 +146,12 @@ class Package(CMakePackageBase):
         # dep for their QML bindings (KConfig.QML, KLocalizedContext, …).
         # Fontmatrix is a pure QtWidgets app — strip the QML chain at
         # packaging time so the installer doesn't ship Qt6Quick/Qml/etc.
+        #
+        # Consequence to keep in mind: the KF6 *Qml wrapper libraries live in
+        # their parent framework's image dir, so they are still collected and
+        # would ship importing a Qt6Qml.dll that isn't there. blacklist.txt
+        # drops them; check-windows-deps.py is what catches it if a new one
+        # appears.
         self.ignoredPackages.extend([
             "libs/qt6/qtdeclarative",
             "libs/qt6/qtshadertools",

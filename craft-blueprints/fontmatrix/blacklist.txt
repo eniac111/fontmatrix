@@ -58,5 +58,14 @@ bin/qsb(\.exe)?
 bin/balsam(\.exe)?
 bin/balsamui(\.exe)?
 
+# KF6 QML wrapper libraries and QML plugin trees.
+# fontmatrix.py puts libs/qt6/qtdeclarative in ignoredPackages, so Qt6Qml.dll
+# is not shipped — but these libraries live inside their parent framework's
+# image dir (kconfig, ki18n, …) and would otherwise be collected with a
+# dangling Qt6Qml import. A QtWidgets-only app never loads them.
+bin/KF6[A-Za-z0-9]*Qml\.dll
+bin/declarative/.*
+qml/.*
+
 # Symbol files — debug, never shipped.
 .*\.pdb
