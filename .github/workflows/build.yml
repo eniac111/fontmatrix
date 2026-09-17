@@ -71,7 +71,24 @@ jobs:
 
   windows:
     name: Build Windows
-    runs-on: windows-latest
+    # Pinned, NOT windows-latest. In June 2026 the windows-latest and
+    # windows-2025 labels moved to the Windows Server 2025 + Visual Studio
+    # 2026 image, and VS 2022 is gone from it. Craft's bootstrap still selects
+    # the msvc2022 ABI under --use-defaults (its MSVC 2026 entry is commented
+    # out upstream as "neither ready nor tested"), so it asks vswhere for
+    # version [17,18), finds nothing, and aborts with "Unable to locate Visual
+    # Studio" before it has done anything.
+    #
+    # windows-2022 is the only x64 hosted image that still carries VS 2022.
+    # It is also the toolchain KDE actually populates its binary cache for:
+    # files.kde.org/craft/Qt6/26.05/windows/cl/ serves a ~1.3 MB manifest for
+    # msvc2022 against ~230 KB for msvc2026, so building as msvc2026 would
+    # mean compiling most of Qt and KF6 from source on every cold cache.
+    #
+    # Revisit when upstream Craft un-comments MSVC 2026 in
+    # setup/CraftBootstrap.py and the msvc2026 cache fills out; GitHub will
+    # retire windows-2022 eventually.
+    runs-on: windows-2022
     permissions:
       contents: read
     steps:
@@ -130,6 +147,34 @@ jobs:
           Write-Host "Cleaned  PATH segments: $((($cleaned -split ';').Count))"
           "PATH=$cleaned" | Out-File -FilePath $env:GITHUB_ENV -Append
 
+      # Craft looks up the compiler with its own bundled vswhere and, when it
+      # finds nothing, fails with a bare "Unable to locate Visual Studio"
+      # during bootstrap — no mention of which version it wanted. Check it
+      # here instead, where the mismatch can be named.
+      - name: Verify the expected Visual Studio is present
+        shell: pwsh
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          if (-not (Test-Path $vswhere)) {
+            throw "vswhere.exe not found at $vswhere — no Visual Studio installer on this image"
+          }
+          # No -property here: vswhere honours only the last one given, and
+          # the default listing already shows product, version and path.
+          Write-Host "Visual Studio installations on this runner:"
+          & $vswhere -products '*' -nologo | Write-Host
+
+          # 17.x is VS 2022, which is the ABI Craft's bootstrap selects under
+          # --use-defaults (windows-msvc2022_64-cl).
+          $vs2022 = & $vswhere -products '*' -version '[17,18)' `
+                               -property installationPath -nologo
+          if (-not $vs2022) {
+            throw ("No Visual Studio 2022 (17.x) on this runner, but Craft's " +
+                   "bootstrap selects the msvc2022 ABI. Either the runner " +
+                   "image changed under us or runs-on needs revisiting — see " +
+                   "the comment on this job.")
+          }
+          Write-Host "OK: VS 2022 found at $vs2022"
+
       # Build with KDE Craft. Step ordering mirrors KDE's
       # sysadmin/craft-ci/gitlab-templates/blocks/windows-base.yml.
 
@@ -140,9 +185,9 @@ jobs:
           # Exclusions need forward slashes + /** — actions/cache's
           # fnmatch-style matcher treats `\` as a literal on Windows,
           # so backslash patterns silently match nothing.
-          key: craft-windows-x86_64-slim1-${{ hashFiles('craft-blueprints/**/*') }}
+          key: craft-win2022-msvc2022-x86_64-v2-${{ hashFiles('craft-blueprints/**/*') }}
           restore-keys: |
-            craft-windows-x86_64-slim1-
+            craft-win2022-msvc2022-x86_64-v2-
           path: |
             C:/CraftRoot
             !C:/CraftRoot/build/fontmatrix/**
@@ -365,13 +410,27 @@ jobs:
             fontmatrix-craft-out/fontmatrix-*.7z.sha256
           if-no-files-found: error
 
+      # Guard against caching a half-built CraftRoot. The previous run failed
+      # inside the bootstrap, leaving only craft-tmp/ + download/ + etc/
+      # behind, and `if: always()` below happily stored that under the good
+      # key for every later run to restore and throw away.
+      - name: Check CraftRoot is worth caching
+        id: craft-usable
+        if: always()
+        shell: pwsh
+        run: |
+          $ok = Test-Path 'C:\CraftRoot\craft\craftenv.ps1'
+          "ok=$($ok.ToString().ToLower())" |
+            Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          Write-Host "CraftRoot bootstrapped, cacheable: $ok"
+
       # `if: always()` saves the bootstrapped CraftRoot even when later
       # steps fail; skip on exact-key hits since the content is unchanged.
       - name: Save Craft cache
-        if: always() && steps.cache-craft.outputs.cache-hit != 'true'
+        if: always() && steps.cache-craft.outputs.cache-hit != 'true' && steps.craft-usable.outputs.ok == 'true'
         uses: actions/cache/save@v5
         with:
-          key: craft-windows-x86_64-slim1-${{ hashFiles('craft-blueprints/**/*') }}
+          key: craft-win2022-msvc2022-x86_64-v2-${{ hashFiles('craft-blueprints/**/*') }}
           path: |
             C:/CraftRoot
             !C:/CraftRoot/build/fontmatrix/**
