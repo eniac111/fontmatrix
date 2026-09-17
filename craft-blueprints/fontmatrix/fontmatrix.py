@@ -133,21 +133,22 @@ class Package(CMakePackageBase):
         self.addExecutableFilter(r"(bin|libexec)/(?!fontmatrix\.exe).*")
 
         self.ignoredPackages.append("binary/mysql")
-        # KF6 kconfig/ki18n/kguiaddons declare qtdeclarative as a runtime
-        # dep for their QML bindings (KConfig.QML, KLocalizedContext, …).
-        # Fontmatrix is a pure QtWidgets app — strip the QML chain at
-        # packaging time so the installer doesn't ship Qt6Quick/Qml/etc.
+        # qtdeclarative is NOT ignored, even though Fontmatrix is a pure
+        # QtWidgets app that loads no QML itself. kconfig, ki18n and
+        # kguiaddons declare it as a runtime dependency and ship QML wrappers
+        # (KF6ConfigQml, KLocalizedQmlContext, ki18n's Transcript plugin, …)
+        # inside their own image dirs. Excluding it dropped Qt6Qml.dll while
+        # those wrappers were still collected, so the package carried
+        # libraries that could not load, and each one had to be hunted down
+        # and blacklisted separately.
         #
-        # The KF6 QML wrappers live in their parent framework's image dir, so
-        # they are still collected and would import a Qt6Qml.dll that is not
-        # shipped. blacklist.txt drops them; check-windows-deps.py catches any
-        # that are missed.
+        # qttools and libs/llvm stay ignored: qttools declares llvm as a
+        # *runtime* dependency, which would add clang to the installer. It is
+        # only a build dependency of qtdeclarative, so this is insurance
+        # against a future runtime path to it rather than something currently
+        # in the graph.
         self.ignoredPackages.extend([
-            "libs/qt6/qtdeclarative",
-            "libs/qt6/qtshadertools",
-            "libs/qt6/qtlanguageserver",
             "libs/qt6/qttools",
-            "libs/qt6/qtquick3d",
             "libs/llvm",
         ])
         # D-Bus is Linux-only for our use case; KDBusAddons gracefully no-ops

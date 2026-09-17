@@ -52,32 +52,16 @@ bin/(autoconf|autoheader|automake|aclocal|autoreconf)(-[0-9.]+)?(\.exe)?
 bin/(icotool|wrestool|extresso|geniconvtbl|gendict|genrb|makeconv|pkgdata)(\.exe)?
 
 # Qt build tools not covered by Craft's default blacklist.
+#
+# Note on paths: blacklist.txt is matched while files are copied out of each
+# package's image dir, before movePluginsToBin merges plugins/ and qml/ into
+# bin/. A plugin the finished package shows at bin/<x>/y.dll has to be matched
+# as plugins/<x>/y.dll here.
 bin/qmltyperegistrar(\.exe)?
 bin/qmlformat(\.exe)?
 bin/qsb(\.exe)?
 bin/balsam(\.exe)?
 bin/balsamui(\.exe)?
-
-# KF6 QML wrapper libraries and QML plugin trees.
-# fontmatrix.py puts libs/qt6/qtdeclarative in ignoredPackages, so Qt6Qml.dll
-# is not shipped — but these libraries live inside their parent framework's
-# image dir (kconfig, ki18n, …) and would otherwise be collected with a
-# dangling Qt6Qml import. A QtWidgets-only app never loads them.
-#
-# Paths here are matched while files are copied out of each package's image
-# dir, which is before movePluginsToBin merges plugins/ and qml/ into bin/.
-# So a Qt or KF6 plugin must be matched at plugins/<…>, not at the bin/<…>
-# it ends up at in the finished package. The bin/ alternatives below are for
-# the case where that move does not happen.
-(bin/)?KF6[A-Za-z0-9]*Qml\.dll
-(bin/|plugins/)?declarative/.*
-(bin/|plugins/)?qml/.*
-
-# KI18n's Transcript plugin, which links Qt6Qml for the same reason. KI18n
-# loads it through QPluginLoader only when a catalogue uses scripted messages
-# ({@...@}); ours are plain gettext, and a missing plugin is a warning
-# ("Cannot find Transcript plugin."), not an error.
-(bin/|plugins/)?kf6/ktranscript\.dll
 
 # Symbol files — debug, never shipped.
 .*\.pdb
