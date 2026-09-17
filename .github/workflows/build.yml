@@ -135,7 +135,7 @@ jobs:
 
       - name: Restore Craft cache
         id: cache-craft
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           # Exclusions need forward slashes + /** — actions/cache's
           # fnmatch-style matcher treats `\` as a literal on Windows,
@@ -181,22 +181,21 @@ jobs:
             -Uri 'https://raw.githubusercontent.com/KDE/craft/master/setup/CraftBootstrap.py' `
             -OutFile 'C:\CraftRoot\download\CraftBootstrap.py'
 
-          # Force BuildType=Release: bootstrap defaults to MinSizeRel,
-          # which has no populated KDE binary cache, so without this
-          # patch every run rebuilds Qt+KF6 from source (1+ hour, plus
-          # hits the gettext-on-MSVC blueprint bug).
+          # Run the bootstrap unmodified and take its default build type.
+          #
+          # This step used to rewrite CraftBootstrap.py to force
+          # BuildType=Release, because the bootstrap defaulted to MinSizeRel
+          # and KDE publishes no binary cache for that. Upstream now picks
+          # MinSizeRel on Android only, and the settings template defaults to
+          # RelWithDebInfo — which is the build type KDE actually populates:
+          # files.kde.org/craft/Qt6/26.05/windows/cl/msvc2022/x86_64 carries a
+          # ~1.3 MB RelWithDebInfo manifest refreshed daily, against a ~5 KB
+          # Release one. So the default now gives *better* cache hits than
+          # forcing Release did, and this drops a regex patch against upstream
+          # Python that breaks whenever that line is reformatted. PDBs are
+          # stripped by blacklist.txt, and the separate debug-symbol package
+          # is turned off at packaging time.
           $bootstrapPath = 'C:\CraftRoot\download\CraftBootstrap.py'
-          $content = Get-Content $bootstrapPath -Raw
-          $replaceLines = @(
-            '    boot.setSettingsValue("Compile", "BuildType", "Release")',
-            '    boot.writeSettings()'
-          )
-          $replacement = $replaceLines -join "`n"
-          $patched = $content -replace '    boot\.writeSettings\(\)', $replacement
-          if ($patched -eq $content) {
-            throw 'Failed to patch CraftBootstrap.py: writeSettings() call not found in expected form'
-          }
-          Set-Content -Path $bootstrapPath -Value $patched -NoNewline
 
           & $pythonExe -u $bootstrapPath `
             --prefix 'C:\CraftRoot' `
@@ -284,10 +283,32 @@ jobs:
           function Clear-Host { }
           $srcDir = $env:GITHUB_WORKSPACE
           . C:\CraftRoot\craft\craftenv.ps1
+          # PackageDebugSymbols defaults on, which would emit a second
+          # `fontmatrix-…-dbg.7z` next to the real portable archive and get
+          # swept up by the Collect step's glob (and then uploaded to the
+          # release). We ship no PDBs — blacklist.txt drops them — so turn
+          # the separate symbol package off rather than filter it later.
           craft --package `
                 --options "[CodeSigning]Enabled=False" `
+                --options "[Packager]PackageDebugSymbols=False" `
                 --options "fontmatrix.srcDir=$srcDir" `
                 fontmatrix
+
+      # This is the check that would have caught the installer shipping
+      # without its MSVC runtime, and without fontmatrixui.rc / icons /
+      # translations: `craft --package` exits 0 either way, and the runner has
+      # Visual Studio installed so the app runs here regardless.
+      - name: Verify packaged dependencies and data files
+        shell: pwsh
+        run: |
+          $stage = 'C:\CraftRoot\build\fontmatrix\archive'
+          if (-not (Test-Path $stage)) {
+            throw "No packaging staging dir at $stage"
+          }
+          python .github\scripts\check-windows-deps.py $stage
+          if ($LASTEXITCODE -ne 0) {
+            throw "Windows package audit failed — see the errors above"
+          }
 
       - name: Show package size & largest deployed files
         shell: pwsh
@@ -316,8 +337,12 @@ jobs:
         run: |
           $outDir = 'fontmatrix-craft-out'
           New-Item -ItemType Directory -Force -Path $outDir | Out-Null
+          # -Exclude '*-dbg.*' belongs here even with
+          # [Packager]PackageDebugSymbols=False at packaging time: a symbol
+          # archive must never be published as if it were the portable build.
           Get-ChildItem -Path 'C:\CraftRoot\tmp' -Recurse `
             -Include 'fontmatrix-*.exe', 'fontmatrix-*.7z', 'fontmatrix-*.sha256' `
+            -Exclude '*-dbg.*' `
             -ErrorAction SilentlyContinue |
             Copy-Item -Destination $outDir
           Get-ChildItem $outDir | Format-Table -AutoSize
@@ -344,7 +369,7 @@ jobs:
       # steps fail; skip on exact-key hits since the content is unchanged.
       - name: Save Craft cache
         if: always() && steps.cache-craft.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           key: craft-windows-x86_64-slim1-${{ hashFiles('craft-blueprints/**/*') }}
           path: |
@@ -405,7 +430,7 @@ jobs:
 
       - name: Upload artifacts to GitHub Release
         if: steps.check-branch.outputs.on_master == 'true'
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             release-artifacts/fontmatrix-*.flatpak
