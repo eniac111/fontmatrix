@@ -83,8 +83,14 @@ QString FMPaths::ResourcesDir()
 	dir = QApplication::applicationDirPath()
 	      + dirsep + QStringLiteral("..") + dirsep + QStringLiteral("Resources") + dirsep;
 #elif defined(_WIN32)
+	// ECM resolves KDE_INSTALL_DATAROOTDIR to "bin/data" on Windows, i.e.
+	// <appdir>/data — one of the locations QStandardPaths searches next to
+	// the executable. The install rule in the top-level CMakeLists.txt puts
+	// the resources in ${KDE_INSTALL_DATADIR}/fontmatrix/resources, so this
+	// has to be <appdir>/data/fontmatrix/resources, not <appdir>/share/...
 	dir = QApplication::applicationDirPath()
-	      + dirsep + QStringLiteral("share") + dirsep + QStringLiteral("resources") + dirsep;
+	      + dirsep + QStringLiteral("data")
+	      + dirsep + QStringLiteral("fontmatrix") + dirsep + QStringLiteral("resources") + dirsep;
 #else
 	// Relative to the executable so the app works both installed and from
 	// a build directory (build/bin/fontmatrix → build/share/fontmatrix/resources/).

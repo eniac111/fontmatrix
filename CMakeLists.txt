@@ -26,8 +26,13 @@ IF(APPLE)
 ENDIF(APPLE)
 
 IF(WIN32)
+	# Only a default; Craft passes -DCMAKE_INSTALL_PREFIX=<CraftRoot>.
+	# FONTMATRIX_BIN is deliberately NOT set to "." here: the KDE layout puts
+	# the executable in ${KDE_INSTALL_BINDIR} ("bin") on Windows too, and the
+	# data files in "bin/data" next to it. Installing the binary at the
+	# install root instead is what used to put the app one directory away
+	# from every path FMPaths resolves.
 	SET (CMAKE_INSTALL_PREFIX c:/fontmatrix CACHE PATH "Installation path")
-	SET (FONTMATRIX_BIN ".")
 ENDIF(WIN32)
 
 ADD_DEFINITIONS(-DPREFIX="${CMAKE_INSTALL_PREFIX}")
@@ -133,7 +138,7 @@ IF(podofo_FOUND)
 	MESSAGE(STATUS "PoDoFo Library Found OK (CMake config)")
 	ADD_DEFINITIONS(-DHAVE_PODOFO)
 	SET(PODOFO 1)
-	SET(LIBPODOFO_FOUND TRUE CACHE BOOLEAN "Was libpodofo found")
+	SET(LIBPODOFO_FOUND TRUE CACHE BOOL "Was libpodofo found")
 ELSE()
 	FIND_PACKAGE(LIBPODOFO REQUIRED)
 	IF(LIBPODOFO_FOUND)
@@ -221,47 +226,62 @@ ENDIF()
 
 ######## Installation ##################
 
+# The application's own data files install through the KDE_INSTALL_* variables
+# on every platform, so the layout is whatever ECM says it is. This is what
+# makes the Windows package work: ECM resolves KDE_INSTALL_DATAROOTDIR to
+# `bin/data`, which is one of the directories Qt's QStandardPaths searches
+# next to the executable. KXmlGui (fontmatrixui.rc), KIconLoader (the theme
+# icons) and KLocalizedString (the .mo catalogues) then all find their files
+# with no per-platform path plumbing, and FMPaths::ResourcesDir() resolves to
+# <appdir>/data/fontmatrix/resources.
+#
+# Only things that are genuinely platform-specific — the XDG desktop entry,
+# the man page, the MSVC runtime — stay in the IF() branches below.
+SET(RESOURCESDIR "${KDE_INSTALL_DATADIR}/fontmatrix/resources")
+
+INSTALL(FILES
+${FM_TEMPLATES_FILES}
+DESTINATION "${RESOURCESDIR}"
+)
+
+# Multi-size hicolor app icon + symbolic systray icon, installed via ECM.
+# Source files in src/icons/ follow the ECM naming convention
+# (<size>-<context>-<name>.<ext>), so ecm_install_icons resolves the
+# destination automatically. Required on Windows as well: the window icon,
+# the toolbar and the KStatusNotifierItem all resolve through
+# QIcon::fromTheme(), which has no icons to find if the theme isn't installed.
+ecm_install_icons(ICONS
+	src/icons/16-apps-fontmatrix.png
+	src/icons/22-apps-fontmatrix.png
+	src/icons/32-apps-fontmatrix.png
+	src/icons/48-apps-fontmatrix.png
+	src/icons/64-apps-fontmatrix.png
+	src/icons/128-apps-fontmatrix.png
+	src/icons/sc-apps-fontmatrix.svg
+	src/icons/22-status-fontmatrix-tray.png
+	src/icons/sc-status-fontmatrix-tray.svg
+	DESTINATION "${KDE_INSTALL_ICONDIR}"
+	THEME hicolor
+)
+
+# Compile po/<lang>/fontmatrix.po into <lang>/LC_MESSAGES/fontmatrix.mo at
+# build time and install under ${KDE_INSTALL_LOCALEDIR}. KLocalizedString
+# reads from ${KDE_INSTALL_LOCALEDIR}/<lang>/LC_MESSAGES/ at runtime.
+# find_package(KF6 COMPONENTS I18n) already makes Gettext a hard requirement
+# via KF6I18nMacros.cmake, so msgfmt is available on Windows too (Craft's
+# ki18n pulls libs/gettext) and this needs no platform guard.
+ki18n_install(po)
+
 IF(UNIX AND NOT APPLE)
 	INSTALL(FILES
 	fontmatrix.desktop
 	DESTINATION ${KDE_INSTALL_APPDIR}
 	)
 
-	# Multi-size hicolor app icon + symbolic systray icon, installed via ECM.
-	# Source files in src/icons/ follow the ECM naming convention
-	# (<size>-<context>-<name>.<ext>), so ecm_install_icons resolves the
-	# destination automatically.
-	ecm_install_icons(ICONS
-		src/icons/16-apps-fontmatrix.png
-		src/icons/22-apps-fontmatrix.png
-		src/icons/32-apps-fontmatrix.png
-		src/icons/48-apps-fontmatrix.png
-		src/icons/64-apps-fontmatrix.png
-		src/icons/128-apps-fontmatrix.png
-		src/icons/sc-apps-fontmatrix.svg
-		src/icons/22-status-fontmatrix-tray.png
-		src/icons/sc-status-fontmatrix-tray.svg
-		DESTINATION "${KDE_INSTALL_ICONDIR}"
-		THEME hicolor
-	)
-
 	INSTALL(FILES
 	fontmatrix.1
 	DESTINATION "${KDE_INSTALL_MANDIR}/man1"
 	)
-
-	INSTALL(FILES
-	${FM_TEMPLATES_FILES}
-	DESTINATION "${KDE_INSTALL_DATADIR}/fontmatrix/resources"
-	)
-
-	# Compile po/<lang>/fontmatrix.po into <lang>/LC_MESSAGES/fontmatrix.mo
-	# at build time and install under ${KDE_INSTALL_LOCALEDIR}.
-	# KLocalizedString reads from ${KDE_INSTALL_LOCALEDIR}/<lang>/LC_MESSAGES/
-	# at runtime once the source uses i18n() — for now (Stage A of the Ki18n
-	# migration) the translations still flow through QTranslator + .qm files;
-	# the .mo build runs in parallel so translators can move to .po.
-	ki18n_install(po)
 ENDIF(UNIX AND NOT APPLE)
 
 IF(APPLE)
@@ -269,17 +289,6 @@ IF(APPLE)
 ENDIF(APPLE)
 
 IF(WIN32)
-	SET(RESOURCESDIR "share/resources/")
-	INSTALL(FILES
-	${FM_TEMPLATES_FILES}
-	DESTINATION "${RESOURCESDIR}"
-	)
-
-	INSTALL(FILES
-	${UNICODE_RESOURCES}
-	DESTINATION "${RESOURCESDIR}/Unicode/"
-	)
-
 	# No windeployqt: Craft's qtbase image dir already contains Qt DLLs and
 	# plugins, and Craft's NullsoftInstallerPackager flattens plugins/<type>/
 	# into bin/<type>/ at packaging time (movePluginsToBin=True on Windows).
@@ -287,9 +296,13 @@ IF(WIN32)
 	# packager's mergeTree would fail on the duplicates. Same pattern as
 	# Kate's craft-blueprints-kde blueprint.
 
-	# Install MSVC runtime DLLs (vcruntime140.dll, msvcp140.dll, etc.)
-	# alongside fontmatrix.exe in ${KDE_INSTALL_BINDIR}; Windows resolves
-	# CRT imports from the executable's directory first.
+	# MSVC runtime DLLs (vcruntime140.dll, msvcp140.dll, …) for non-Craft
+	# local Windows builds only. Under Craft this is inert: Craft configures
+	# every CMake project with -DCMAKE_INSTALL_SYSTEM_RUNTIME_LIBS_SKIP=ON
+	# and ships the redistributable through its own libs/runtime package,
+	# which reaches us via the virtual/base runtime dependency declared in
+	# craft-blueprints/fontmatrix/fontmatrix.py. Do not rely on the block
+	# below for the packaged installer.
 	set(CMAKE_INSTALL_SYSTEM_RUNTIME_DESTINATION "${KDE_INSTALL_BINDIR}")
 	include(InstallRequiredSystemLibraries)
 
@@ -297,9 +310,8 @@ IF(WIN32)
 	# blueprint and Craft's `--package` step on Windows. Earlier vcpkg-
 	# specific copy logic was removed in Phase 8 along with the vcpkg CI
 	# path. For non-Craft local Windows builds (e.g. Qt+vcpkg + manual
-	# CMake), windeployqt above handles Qt DLLs and the developer is
-	# expected to make FreeType/PoDoFo DLLs available on PATH.
-
+	# CMake), the developer is expected to make Qt/FreeType/PoDoFo DLLs
+	# available on PATH.
 ENDIF(WIN32)
 
 ADD_SUBDIRECTORY(samples)
