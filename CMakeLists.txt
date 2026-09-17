@@ -27,11 +27,9 @@ ENDIF(APPLE)
 
 IF(WIN32)
 	# Only a default; Craft passes -DCMAKE_INSTALL_PREFIX=<CraftRoot>.
-	# FONTMATRIX_BIN is deliberately NOT set to "." here: the KDE layout puts
-	# the executable in ${KDE_INSTALL_BINDIR} ("bin") on Windows too, and the
-	# data files in "bin/data" next to it. Installing the binary at the
-	# install root instead is what used to put the app one directory away
-	# from every path FMPaths resolves.
+	# FONTMATRIX_BIN is not set to "." here: the KDE layout puts the
+	# executable in ${KDE_INSTALL_BINDIR} ("bin") on Windows too, with the
+	# data files in "bin/data" beside it.
 	SET (CMAKE_INSTALL_PREFIX c:/fontmatrix CACHE PATH "Installation path")
 ENDIF(WIN32)
 
@@ -226,17 +224,16 @@ ENDIF()
 
 ######## Installation ##################
 
-# The application's own data files install through the KDE_INSTALL_* variables
-# on every platform, so the layout is whatever ECM says it is. This is what
-# makes the Windows package work: ECM resolves KDE_INSTALL_DATAROOTDIR to
-# `bin/data`, which is one of the directories Qt's QStandardPaths searches
-# next to the executable. KXmlGui (fontmatrixui.rc), KIconLoader (the theme
-# icons) and KLocalizedString (the .mo catalogues) then all find their files
-# with no per-platform path plumbing, and FMPaths::ResourcesDir() resolves to
-# <appdir>/data/fontmatrix/resources.
+# The application's data files install through the KDE_INSTALL_* variables on
+# every platform, so the layout is whatever ECM says it is. On Windows ECM
+# resolves KDE_INSTALL_DATAROOTDIR to `bin/data`, one of the directories Qt's
+# QStandardPaths searches next to the executable, so KXmlGui
+# (fontmatrixui.rc), KIconLoader (theme icons) and KLocalizedString (.mo
+# catalogues) resolve with no per-platform path code, and
+# FMPaths::ResourcesDir() resolves to <appdir>/data/fontmatrix/resources.
 #
-# Only things that are genuinely platform-specific — the XDG desktop entry,
-# the man page, the MSVC runtime — stay in the IF() branches below.
+# Only platform-specific things stay in the IF() branches below: the XDG
+# desktop entry, the man page, the MSVC runtime.
 SET(RESOURCESDIR "${KDE_INSTALL_DATADIR}/fontmatrix/resources")
 
 INSTALL(FILES
@@ -247,9 +244,8 @@ DESTINATION "${RESOURCESDIR}"
 # Multi-size hicolor app icon + symbolic systray icon, installed via ECM.
 # Source files in src/icons/ follow the ECM naming convention
 # (<size>-<context>-<name>.<ext>), so ecm_install_icons resolves the
-# destination automatically. Required on Windows as well: the window icon,
-# the toolbar and the KStatusNotifierItem all resolve through
-# QIcon::fromTheme(), which has no icons to find if the theme isn't installed.
+# destination automatically. Required on Windows too: the window icon, the
+# toolbar and the KStatusNotifierItem all resolve through QIcon::fromTheme().
 ecm_install_icons(ICONS
 	src/icons/16-apps-fontmatrix.png
 	src/icons/22-apps-fontmatrix.png

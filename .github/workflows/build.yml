@@ -71,22 +71,15 @@ jobs:
 
   windows:
     name: Build Windows
-    # Pinned, NOT windows-latest. In June 2026 the windows-latest and
-    # windows-2025 labels moved to the Windows Server 2025 + Visual Studio
-    # 2026 image, and VS 2022 is gone from it. We build as msvc2022 (see
-    # .github/craft/CraftConfig.ini), so Craft asks vswhere for version
-    # [17,18), finds nothing, and aborts with "Unable to locate Visual Studio"
-    # before it has done anything.
+    # Pinned rather than windows-latest: that label moved to a Visual Studio
+    # 2026 image in June 2026, and we build as msvc2022 (see
+    # .github/craft/CraftConfig.ini). windows-2022 is the only x64 hosted
+    # image that still carries VS 2022.
     #
-    # windows-2022 is the only x64 hosted image that still carries VS 2022.
-    # It is also the toolchain KDE builds with — sysadmin/craft-ci pins
-    # windows-msvc2022_64-cl — and the one it populates its binary cache for:
-    # files.kde.org/craft/Qt6/26.05/windows/cl/ serves a ~1.3 MB manifest for
-    # msvc2022 against ~230 KB for msvc2026, so building as msvc2026 would
-    # mean compiling most of Qt and KF6 from source on every cold cache.
-    #
-    # Revisit when KDE moves its own Windows CI to msvc2026 and that cache
-    # fills out; GitHub will retire windows-2022 eventually.
+    # msvc2022 is also what KDE builds with, and the only Windows toolchain it
+    # populates a usable binary cache for: files.kde.org/craft/Qt6/26.05/
+    # windows/cl/ serves a ~1.3 MB package manifest for msvc2022 against
+    # ~230 KB for msvc2026. Revisit when KDE's own Windows CI moves.
     runs-on: windows-2022
     permissions:
       contents: read
@@ -155,10 +148,8 @@ jobs:
           Write-Host "Cleaned  PATH segments: $((($cleaned -split ';').Count))"
           "PATH=$cleaned" | Out-File -FilePath $env:GITHUB_ENV -Append
 
-      # Craft looks up the compiler with its own bundled vswhere and, when it
-      # finds nothing, fails with a bare "Unable to locate Visual Studio"
-      # during bootstrap — no mention of which version it wanted. Check it
-      # here instead, where the mismatch can be named.
+      # Craft's own failure for this is "Unable to locate Visual Studio",
+      # which does not say which version it wanted. Check it here instead.
       - name: Verify the expected Visual Studio is present
         shell: pwsh
         run: |
@@ -183,13 +174,12 @@ jobs:
           }
           Write-Host "OK: VS 2022 found at $vs2022"
 
-      # Build with KDE Craft, driven by CraftMaster — the same tool KDE uses
-      # for its own Windows builds (sysadmin/craft-ci
-      # gitlab-templates/blocks/windows-base.yml). CraftMaster writes
-      # etc/CraftSettings.ini from .github/craft/CraftConfig.ini before it
-      # runs craft at all, which is the property we need: Craft's build type
-      # decides which binary cache it looks in, and setup/CraftBootstrap.py
-      # invokes craft internally before any of our settings could apply.
+      # Build with KDE Craft, driven by CraftMaster, as KDE does in
+      # sysadmin/craft-ci gitlab-templates/blocks/windows-base.yml.
+      # CraftMaster writes etc/CraftSettings.ini from
+      # .github/craft/CraftConfig.ini before invoking craft, so the build type
+      # is already correct for the first command. setup/CraftBootstrap.py
+      # cannot offer that: it runs craft internally during installation.
 
       - name: Restore Craft cache
         id: cache-craft
@@ -231,11 +221,9 @@ jobs:
             --setup
           if ($LASTEXITCODE -ne 0) { throw 'CraftMaster --setup failed' }
 
-      # A wrong build type does not fail anything — it just misses the binary
-      # cache and quietly turns a ten-minute job into an hour of compiling Qt
-      # and KF6 from source, which is how run 35273180678 burned 57 minutes.
-      # Assert it, and print the settings so the log always records what Craft
-      # was actually given.
+      # A wrong build type does not fail anything by itself; it misses the
+      # binary cache, and Qt and KF6 get compiled from source instead. Assert
+      # it, and record the generated settings in the log.
       - name: Verify Craft settings
         shell: pwsh
         run: |
@@ -335,10 +323,9 @@ jobs:
             -c --package --options "fontmatrix.srcDir=$srcDir" fontmatrix
           if ($LASTEXITCODE -ne 0) { throw 'craft --package failed' }
 
-      # This is the check that would have caught the installer shipping
-      # without its MSVC runtime, and without fontmatrixui.rc / icons /
-      # translations: `craft --package` exits 0 either way, and the runner has
-      # Visual Studio installed so the app runs here regardless.
+      # `craft --package` exits 0 whether or not the package is complete, and
+      # the runner has Visual Studio installed, so an incomplete package still
+      # runs here. See .github/scripts/check-windows-deps.py.
       - name: Verify packaged dependencies and data files
         shell: pwsh
         run: |
@@ -378,9 +365,9 @@ jobs:
         run: |
           $outDir = 'fontmatrix-craft-out'
           New-Item -ItemType Directory -Force -Path $outDir | Out-Null
-          # -Exclude '*-dbg.*' belongs here even with
-          # [Packager]PackageDebugSymbols=False at packaging time: a symbol
-          # archive must never be published as if it were the portable build.
+          # -Exclude '*-dbg.*' as well as Packager/PackageDebugSymbols=False
+          # in CraftConfig.ini: a symbol archive must never be published as if
+          # it were the portable build.
           Get-ChildItem -Path "$env:CRAFT_ROOT\tmp" -Recurse `
             -Include 'fontmatrix-*.exe', 'fontmatrix-*.7z', 'fontmatrix-*.sha256' `
             -Exclude '*-dbg.*' `
@@ -406,9 +393,8 @@ jobs:
             fontmatrix-craft-out/fontmatrix-*.7z.sha256
           if-no-files-found: error
 
-      # Guard against caching a half-set-up Craft root: an earlier run failed
-      # mid-bootstrap and `if: always()` stored the stub under the good key
-      # for every later run to restore and throw away.
+      # `if: always()` on the save step would otherwise store a half-set-up
+      # Craft root under the good key for later runs to restore.
       - name: Check Craft root is worth caching
         id: craft-usable
         if: always()

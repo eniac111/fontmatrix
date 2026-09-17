@@ -497,8 +497,7 @@ IF(WIN32)
 	)
 ENDIF(WIN32)
 
-# typotek calls setXMLFile("fontmatrixui.rc") + createGUI(), so KXmlGui has to
-# find this file or the window comes up with no menu bar and no toolbar. It is
-# installed for every platform, not per-branch: leaving it out of the Windows
-# branch is exactly how the packaged app lost its menus.
+# typotek calls setXMLFile("fontmatrixui.rc") + createGUI(); without this file
+# KXmlGui builds no menu bar and no toolbar. Installed for every platform, not
+# per-branch.
 INSTALL(FILES fontmatrixui.rc DESTINATION "${KDE_INSTALL_KXMLGUIDIR}/fontmatrix")

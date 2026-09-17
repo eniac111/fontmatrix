@@ -67,5 +67,11 @@ bin/KF6[A-Za-z0-9]*Qml\.dll
 bin/declarative/.*
 qml/.*
 
+# KI18n's Transcript plugin, which links Qt6Qml for the same reason. KI18n
+# loads it through QPluginLoader only when a catalogue uses scripted messages
+# ({@...@}); ours are plain gettext, and a missing plugin is a warning
+# ("Cannot find Transcript plugin."), not an error.
+bin/kf6/ktranscript\.dll
+
 # Symbol files — debug, never shipped.
 .*\.pdb

@@ -2,19 +2,13 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 """Audit a staged Windows package for missing runtime dependencies.
 
-Two classes of breakage have bitten the Fontmatrix Windows installer, and
-neither shows up in CI just because `craft --package` exited 0:
+`craft --package` succeeds whether or not the package is complete, and the
+build machine has Visual Studio and the KDE stack installed, so an incomplete
+package still runs there. This checks two things the packaging step does not:
 
-1. A DLL the binaries import is not in the package. The build machine has
-   Visual Studio and a pile of SDKs installed, so the app runs there and the
-   problem only appears on a clean machine as "The code execution cannot
-   proceed because <x>.dll was not found".
-2. A data file the app looks up at runtime is not in the package, because an
-   install rule lived in the `IF(UNIX AND NOT APPLE)` branch only. The app
-   starts and then has no menu bar, no icons, or no translations.
-
-This script checks both against the staging tree, so a regression fails the
-build instead of reaching a user.
+1. Every DLL imported by a packaged binary is either in the package or
+   provided by Windows.
+2. The data files the application resolves at runtime are present.
 
 Usage:
     check-windows-deps.py <package-root> [--allow name.dll ...] [--no-payload]
@@ -27,43 +21,44 @@ import struct
 import sys
 from pathlib import Path
 
-# Windows itself provides these, so importing them is fine. Deliberately
-# absent: vcruntime140.dll, vcruntime140_1.dll, msvcp140*.dll, concrt140.dll,
-# vccorlib140.dll. Those are the Visual C++ *redistributable* — present on a
-# developer box, absent on a clean install — so they have to be shipped, and
-# an import of one that we do not ship is exactly the bug we are looking for.
+# DLLs Windows provides, so importing them without shipping them is fine.
+# The Visual C++ redistributable (vcruntime140*.dll, msvcp140*.dll,
+# concrt140.dll, vccorlib140.dll, mfc140*.dll) is deliberately not listed: it
+# is not part of Windows and has to be shipped.
 SYSTEM_DLLS = {
     "activeds.dll", "advapi32.dll", "authz.dll", "avicap32.dll", "avrt.dll",
-    "bcrypt.dll", "bcryptprimitives.dll", "bluetoothapis.dll", "cabinet.dll",
-    "cfgmgr32.dll", "clbcatq.dll", "combase.dll", "comctl32.dll",
-    "comdlg32.dll", "coml2.dll", "credui.dll", "crypt32.dll", "cryptbase.dll",
-    "cryptui.dll", "d2d1.dll", "d3d10.dll", "d3d11.dll", "d3d12.dll",
-    "d3d9.dll", "d3dcompiler_47.dll", "dbghelp.dll", "dcomp.dll",
-    "devobj.dll", "dinput8.dll", "dnsapi.dll", "dsound.dll", "dwmapi.dll",
-    "dwrite.dll", "dxgi.dll", "dxva2.dll", "faultrep.dll", "feclient.dll",
-    "firewallapi.dll", "fwpuclnt.dll", "gdi32.dll", "gdi32full.dll",
-    "gdiplus.dll", "glu32.dll", "hid.dll", "httpapi.dll", "icu.dll",
-    "imm32.dll", "iphlpapi.dll", "kernel32.dll", "kernelbase.dll",
-    "ksuser.dll", "ktmw32.dll", "mf.dll", "mfplat.dll", "mfreadwrite.dll",
-    "mfuuid.dll", "mpr.dll", "msacm32.dll", "msdmo.dll", "msimg32.dll",
-    "mswsock.dll", "msvcrt.dll", "mscoree.dll", "ncrypt.dll", "netapi32.dll",
-    "normaliz.dll", "ntdll.dll", "ole32.dll", "oleacc.dll", "oleaut32.dll",
-    "oledlg.dll", "opengl32.dll", "pdh.dll", "powrprof.dll", "profapi.dll",
-    "propsys.dll", "psapi.dll", "rpcrt4.dll", "rstrtmgr.dll", "sechost.dll",
-    "secur32.dll", "setupapi.dll", "shcore.dll", "shell32.dll",
-    "shlwapi.dll", "sspicli.dll", "tdh.dll", "ucrtbase.dll", "urlmon.dll",
-    "user32.dll", "userenv.dll", "usp10.dll", "uxtheme.dll", "version.dll",
-    "wer.dll", "wevtapi.dll", "win32u.dll", "windowscodecs.dll",
-    "winhttp.dll", "wininet.dll", "winmm.dll", "winspool.drv",
-    "wintrust.dll", "winusb.dll", "wldap32.dll", "ws2_32.dll", "wsock32.dll",
-    "wtsapi32.dll", "xinput1_3.dll", "xinput1_4.dll",
+    "bcrypt.dll", "bcryptprimitives.dll", "bluetoothapis.dll",
+    "cabinet.dll", "cfgmgr32.dll", "clbcatq.dll", "combase.dll",
+    "comctl32.dll", "comdlg32.dll", "coml2.dll", "credui.dll",
+    "crypt32.dll", "cryptbase.dll", "cryptui.dll", "d2d1.dll", "d3d10.dll",
+    "d3d11.dll", "d3d12.dll", "d3d9.dll", "d3dcompiler_47.dll",
+    "dbghelp.dll", "dcomp.dll", "devobj.dll", "dinput8.dll", "dnsapi.dll",
+    "dsound.dll", "dwmapi.dll", "dwrite.dll", "dxgi.dll", "dxva2.dll",
+    "faultrep.dll", "feclient.dll", "firewallapi.dll", "fwpuclnt.dll",
+    "gdi32.dll", "gdi32full.dll", "gdiplus.dll", "glu32.dll", "hid.dll",
+    "httpapi.dll", "icu.dll", "imm32.dll", "iphlpapi.dll", "kernel32.dll",
+    "kernelbase.dll", "ksuser.dll", "ktmw32.dll", "mf.dll", "mfplat.dll",
+    "mfreadwrite.dll", "mfuuid.dll", "mpr.dll", "msacm32.dll",
+    "mscoree.dll", "msctf.dll", "msdmo.dll", "msi.dll", "msimg32.dll",
+    "msvcrt.dll", "mswsock.dll", "ncrypt.dll", "netapi32.dll",
+    "normaliz.dll", "ntdll.dll", "odbc32.dll", "ole32.dll", "oleacc.dll",
+    "oleaut32.dll", "oledlg.dll", "opengl32.dll", "pdh.dll", "powrprof.dll",
+    "profapi.dll", "propsys.dll", "psapi.dll", "rpcrt4.dll", "rstrtmgr.dll",
+    "sechost.dll", "secur32.dll", "setupapi.dll", "shcore.dll",
+    "shell32.dll", "shlwapi.dll", "sspicli.dll", "tdh.dll", "ucrtbase.dll",
+    "uiautomationcore.dll", "urlmon.dll", "user32.dll", "userenv.dll",
+    "usp10.dll", "uxtheme.dll", "version.dll", "wer.dll", "wevtapi.dll",
+    "win32u.dll", "windowscodecs.dll", "winhttp.dll", "wininet.dll",
+    "winmm.dll", "winspool.drv", "wintrust.dll", "winusb.dll",
+    "wldap32.dll", "ws2_32.dll", "wsock32.dll", "wtsapi32.dll",
+    "xinput1_3.dll", "xinput1_4.dll",
 }
 
 # Virtualised API sets and OS component DLLs, matched by prefix.
 SYSTEM_PREFIXES = ("api-ms-win-", "ext-ms-win-", "windows.", "microsoft.windows.")
 
-# Data files the app resolves at runtime. Relative to the package root, with
-# `*` matching one path segment. Each entry names what breaks without it.
+# Data files the app resolves at runtime, relative to the package root, with
+# `*` matching one path segment. The second element names the consumer.
 EXPECTED_PAYLOAD = [
     ("bin/fontmatrix.exe", "the application itself"),
     ("bin/data/kxmlgui5/fontmatrix/fontmatrixui.rc",
@@ -256,11 +251,15 @@ def audit_imports(root: Path, extra_allowed: set[str]) -> tuple[int, int]:
             shown += f", … (+{len(importers) - 6} more)"
         print(f"::error::missing runtime dependency: {dep} — imported by {shown}")
     print("")
-    print(f"{len(missing)} DLL(s) are imported but not shipped. The installed "
-          "app will fail to start on a machine that does not happen to have "
-          "them. Add the providing Craft package to setDependencies() in "
-          "craft-blueprints/fontmatrix/fontmatrix.py, or stop excluding it in "
-          "ignoredPackages / blacklist.txt.")
+    print(f"{len(missing)} DLL(s) are imported but not shipped. Whatever "
+          "imports one cannot load without it: fatal at startup when the "
+          "importer is fontmatrix.exe or something it links, a silently dead "
+          "feature when it is a plugin loaded on demand. Either add the "
+          "providing Craft package to setDependencies() in "
+          "craft-blueprints/fontmatrix/fontmatrix.py and stop excluding it in "
+          "ignoredPackages, or \u2014 when the importer is something we "
+          "deliberately do not use \u2014 drop that file in blacklist.txt, so "
+          "the package stops carrying a library it cannot load.")
     return (1, len(binaries))
 
 

@@ -35,13 +35,9 @@ class subinfo(info.infoclass):
         self.defaultTarget = version
 
     def setDependencies(self):
-        # virtual/base is what drags in libs/runtime — the package that
-        # installs the MSVC redistributable DLLs (vcruntime140.dll,
-        # msvcp140.dll, …) into bin/. Without it the packaged installer has
-        # no CRT and the app only starts on machines that happen to have the
-        # VC++ redist installed, which is why this has to be declared even
-        # though it looks like build-only plumbing. Every upstream KDE
-        # blueprint (kate, filelight, kcalc, …) declares it.
+        # Pulls libs/runtime, which installs the MSVC redistributable DLLs
+        # (vcruntime140.dll, msvcp140.dll, …) into bin/. Without it the
+        # package has no C runtime. Every upstream KDE blueprint declares it.
         self.runtimeDependencies["virtual/base"] = None
         self.buildDependencies["kde/frameworks/extra-cmake-modules"] = None
 
@@ -60,11 +56,9 @@ class subinfo(info.infoclass):
         self.runtimeDependencies["kde/frameworks/tier3/kxmlgui"] = None
         self.runtimeDependencies["kde/frameworks/tier3/kconfigwidgets"] = None
 
-        # The UI loads its icons through QIcon::fromTheme(), so the theme and
-        # the loader that reads it have to be in the package. Both arrive
-        # transitively via kxmlgui → kiconthemes → breeze-icons, but they are
-        # named here so a future dependency trim can't silently leave the app
-        # with blank toolbars.
+        # The UI loads its icons through QIcon::fromTheme(). Both arrive
+        # transitively via kxmlgui -> kiconthemes -> breeze-icons; named here
+        # so a dependency trim cannot drop them silently.
         self.runtimeDependencies["kde/frameworks/tier3/kiconthemes"] = None
         self.runtimeDependencies["kde/frameworks/tier1/breeze-icons"] = None
 
@@ -76,11 +70,9 @@ class Package(CMakePackageBase):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        # No -DCMAKE_BUILD_TYPE here: Craft appends its own
-        # -DCMAKE_BUILD_TYPE=<buildType()> after the blueprint's args, so
-        # ours was being silently overridden anyway. The build type comes from
-        # Craft's own setting (default RelWithDebInfo, which is what KDE keeps
-        # a populated binary cache for).
+        # No -DCMAKE_BUILD_TYPE: Craft appends its own after the blueprint's
+        # args, so one set here has no effect. It comes from Compile/BuildType
+        # in .github/craft/CraftConfig.ini.
         cmake_args = [
             "-DWANT_HARFBUZZ=true",
             "-DWANT_FONTCONFIG=false",
@@ -119,10 +111,9 @@ class Package(CMakePackageBase):
             {"name": "Fontmatrix", "target": "bin/fontmatrix.exe"},
         ]
 
-        # Without these the NSIS packager falls back to Craft's own defaults,
-        # which means the installer, the uninstaller and the Add/Remove
-        # Programs entry all show the Craft mascot and no licence page.
-        # Guarded: a packaging run must not die over an installer icon.
+        # Without these the NSIS packager uses Craft's own defaults: its
+        # mascot icon, and no licence page. Guarded so packaging cannot fail
+        # over a cosmetic define.
         try:
             src = self.sourceDir()
         except Exception as exc:  # noqa: BLE001 - cosmetic defines only
@@ -147,11 +138,10 @@ class Package(CMakePackageBase):
         # Fontmatrix is a pure QtWidgets app — strip the QML chain at
         # packaging time so the installer doesn't ship Qt6Quick/Qml/etc.
         #
-        # Consequence to keep in mind: the KF6 *Qml wrapper libraries live in
-        # their parent framework's image dir, so they are still collected and
-        # would ship importing a Qt6Qml.dll that isn't there. blacklist.txt
-        # drops them; check-windows-deps.py is what catches it if a new one
-        # appears.
+        # The KF6 QML wrappers live in their parent framework's image dir, so
+        # they are still collected and would import a Qt6Qml.dll that is not
+        # shipped. blacklist.txt drops them; check-windows-deps.py catches any
+        # that are missed.
         self.ignoredPackages.extend([
             "libs/qt6/qtdeclarative",
             "libs/qt6/qtshadertools",
