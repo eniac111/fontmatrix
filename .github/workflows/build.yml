@@ -73,24 +73,32 @@ jobs:
     name: Build Windows
     # Pinned, NOT windows-latest. In June 2026 the windows-latest and
     # windows-2025 labels moved to the Windows Server 2025 + Visual Studio
-    # 2026 image, and VS 2022 is gone from it. Craft's bootstrap still selects
-    # the msvc2022 ABI under --use-defaults (its MSVC 2026 entry is commented
-    # out upstream as "neither ready nor tested"), so it asks vswhere for
-    # version [17,18), finds nothing, and aborts with "Unable to locate Visual
-    # Studio" before it has done anything.
+    # 2026 image, and VS 2022 is gone from it. We build as msvc2022 (see
+    # .github/craft/CraftConfig.ini), so Craft asks vswhere for version
+    # [17,18), finds nothing, and aborts with "Unable to locate Visual Studio"
+    # before it has done anything.
     #
     # windows-2022 is the only x64 hosted image that still carries VS 2022.
-    # It is also the toolchain KDE actually populates its binary cache for:
+    # It is also the toolchain KDE builds with — sysadmin/craft-ci pins
+    # windows-msvc2022_64-cl — and the one it populates its binary cache for:
     # files.kde.org/craft/Qt6/26.05/windows/cl/ serves a ~1.3 MB manifest for
     # msvc2022 against ~230 KB for msvc2026, so building as msvc2026 would
     # mean compiling most of Qt and KF6 from source on every cold cache.
     #
-    # Revisit when upstream Craft un-comments MSVC 2026 in
-    # setup/CraftBootstrap.py and the msvc2026 cache fills out; GitHub will
-    # retire windows-2022 eventually.
+    # Revisit when KDE moves its own Windows CI to msvc2026 and that cache
+    # fills out; GitHub will retire windows-2022 eventually.
     runs-on: windows-2022
     permissions:
       contents: read
+    env:
+      # Target name from .github/craft/CraftConfig.ini; CraftMaster creates
+      # one Craft root per target under Variables:Root.
+      CRAFT_TARGET: windows-msvc2022_64-cl
+      CRAFT_ROOT: C:\Craft\windows-msvc2022_64-cl
+      # Toolchain and build type are part of the identity of a Craft root, so
+      # they belong in the cache key: a root populated for one must never be
+      # restored into a job expecting another.
+      CRAFT_CACHE_KEY: craft-win2022-msvc2022-relwithdebinfo-x86_64-v4
     steps:
       - uses: actions/checkout@v6
 
@@ -163,20 +171,25 @@ jobs:
           Write-Host "Visual Studio installations on this runner:"
           & $vswhere -products '*' -nologo | Write-Host
 
-          # 17.x is VS 2022, which is the ABI Craft's bootstrap selects under
-          # --use-defaults (windows-msvc2022_64-cl).
+          # 17.x is VS 2022, matching the windows-msvc2022_64-cl target in
+          # .github/craft/CraftConfig.ini.
           $vs2022 = & $vswhere -products '*' -version '[17,18)' `
                                -property installationPath -nologo
           if (-not $vs2022) {
-            throw ("No Visual Studio 2022 (17.x) on this runner, but Craft's " +
-                   "bootstrap selects the msvc2022 ABI. Either the runner " +
-                   "image changed under us or runs-on needs revisiting — see " +
-                   "the comment on this job.")
+            throw ("No Visual Studio 2022 (17.x) on this runner, but " +
+                   ".github/craft/CraftConfig.ini pins the msvc2022 ABI. " +
+                   "Either the runner image changed under us or runs-on needs " +
+                   "revisiting — see the comment on this job.")
           }
           Write-Host "OK: VS 2022 found at $vs2022"
 
-      # Build with KDE Craft. Step ordering mirrors KDE's
-      # sysadmin/craft-ci/gitlab-templates/blocks/windows-base.yml.
+      # Build with KDE Craft, driven by CraftMaster — the same tool KDE uses
+      # for its own Windows builds (sysadmin/craft-ci
+      # gitlab-templates/blocks/windows-base.yml). CraftMaster writes
+      # etc/CraftSettings.ini from .github/craft/CraftConfig.ini before it
+      # runs craft at all, which is the property we need: Craft's build type
+      # decides which binary cache it looks in, and setup/CraftBootstrap.py
+      # invokes craft internally before any of our settings could apply.
 
       - name: Restore Craft cache
         id: cache-craft
@@ -185,108 +198,93 @@ jobs:
           # Exclusions need forward slashes + /** — actions/cache's
           # fnmatch-style matcher treats `\` as a literal on Windows,
           # so backslash patterns silently match nothing.
-          key: craft-win2022-msvc2022-x86_64-v2-${{ hashFiles('craft-blueprints/**/*') }}
+          key: ${{ env.CRAFT_CACHE_KEY }}-${{ hashFiles('craft-blueprints/**/*', '.github/craft/CraftConfig.ini') }}
           restore-keys: |
-            craft-win2022-msvc2022-x86_64-v2-
+            ${{ env.CRAFT_CACHE_KEY }}-
           path: |
-            C:/CraftRoot
-            !C:/CraftRoot/build/fontmatrix/**
-            !C:/CraftRoot/tmp/**
+            C:/Craft
+            !C:/Craft/windows-msvc2022_64-cl/build/fontmatrix/**
+            !C:/Craft/windows-msvc2022_64-cl/tmp/**
 
-      # cache-hit is only true for exact key matches, so check
-      # craftenv.ps1 directly to also benefit from restore-keys hits.
-      - name: Check if Craft is already bootstrapped
-        id: craft-check
+      - name: Set up Craft via CraftMaster
         shell: pwsh
         run: |
-          $exists = Test-Path 'C:\CraftRoot\craft\craftenv.ps1'
-          "bootstrapped=$($exists.ToString().ToLower())" |
-            Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          Write-Host "Craft already bootstrapped: $exists"
-
-      - name: Bootstrap KDE Craft
-        if: steps.craft-check.outputs.bootstrapped != 'true'
-        shell: pwsh
-        run: |
-          # Bypass install_craft.ps1: its `[switch]$Script:useDefaults`
-          # doesn't bind via `powershell -File` (so --use-defaults never
-          # reaches Python), and it swallows Python's exit code.
-          if (Test-Path 'C:\CraftRoot') {
-            Remove-Item -Recurse -Force 'C:\CraftRoot'
+          $cm = 'C:\craftmaster'
+          if (-not (Test-Path (Join-Path $cm 'CraftMaster.py'))) {
+            if (Test-Path $cm) { Remove-Item -Recurse -Force $cm }
+            git clone --depth 1 https://invent.kde.org/packaging/craftmaster.git $cm
+            if ($LASTEXITCODE -ne 0) { throw 'Failed to clone CraftMaster' }
           }
-          New-Item -ItemType Directory -Force -Path 'C:\CraftRoot' | Out-Null
-          New-Item -ItemType Directory -Force -Path 'C:\CraftRoot\download' | Out-Null
 
           $pythonExe = Get-Command python -ErrorAction Stop |
             Select-Object -First 1 -ExpandProperty Source
+          $pythonDir = Split-Path -Parent $pythonExe
           Write-Host "Using python: $pythonExe"
-          & $pythonExe --version
 
-          Invoke-WebRequest `
-            -Uri 'https://raw.githubusercontent.com/KDE/craft/master/setup/CraftBootstrap.py' `
-            -OutFile 'C:\CraftRoot\download\CraftBootstrap.py'
+          # --setup regenerates the settings every run, on a warm cache too,
+          # so a stale CraftSettings.ini can never outlive a change to
+          # CraftConfig.ini.
+          & $pythonExe -u (Join-Path $cm 'CraftMaster.py') `
+            --config .github\craft\CraftConfig.ini `
+            --variables "Python=$pythonDir" `
+            --targets $env:CRAFT_TARGET `
+            --setup
+          if ($LASTEXITCODE -ne 0) { throw 'CraftMaster --setup failed' }
 
-          # Run the bootstrap unmodified and take its default build type.
-          #
-          # This step used to rewrite CraftBootstrap.py to force
-          # BuildType=Release, because the bootstrap defaulted to MinSizeRel
-          # and KDE publishes no binary cache for that. Upstream now picks
-          # MinSizeRel on Android only, and the settings template defaults to
-          # RelWithDebInfo — which is the build type KDE actually populates:
-          # files.kde.org/craft/Qt6/26.05/windows/cl/msvc2022/x86_64 carries a
-          # ~1.3 MB RelWithDebInfo manifest refreshed daily, against a ~5 KB
-          # Release one. So the default now gives *better* cache hits than
-          # forcing Release did, and this drops a regex patch against upstream
-          # Python that breaks whenever that line is reformatted. PDBs are
-          # stripped by blacklist.txt, and the separate debug-symbol package
-          # is turned off at packaging time.
-          $bootstrapPath = 'C:\CraftRoot\download\CraftBootstrap.py'
+      # A wrong build type does not fail anything — it just misses the binary
+      # cache and quietly turns a ten-minute job into an hour of compiling Qt
+      # and KF6 from source, which is how run 35273180678 burned 57 minutes.
+      # Assert it, and print the settings so the log always records what Craft
+      # was actually given.
+      - name: Verify Craft settings
+        shell: pwsh
+        run: |
+          $ini = "$env:CRAFT_ROOT\etc\CraftSettings.ini"
+          if (-not (Test-Path $ini)) { throw "No Craft settings at $ini" }
 
-          & $pythonExe -u $bootstrapPath `
-            --prefix 'C:\CraftRoot' `
-            --branch master `
-            --use-defaults 2>&1 | Tee-Object -FilePath craft-install.log
-          $bootstrapExit = $LASTEXITCODE
+          Write-Host '::group::CraftSettings.ini'
+          Get-Content $ini | Where-Object { $_ -notmatch '^\s*($|[#;])' } | Write-Host
+          Write-Host '::endgroup::'
 
-          $craftEnv = 'C:\CraftRoot\craft\craftenv.ps1'
-          if ($bootstrapExit -ne 0 -or -not (Test-Path $craftEnv)) {
-            Write-Host '::group::CraftRoot tree after failed bootstrap'
-            if (Test-Path 'C:\CraftRoot') {
-              Get-ChildItem -Recurse -Force 'C:\CraftRoot' |
-                Select-Object FullName, Length, Mode |
-                Format-Table -AutoSize | Out-String -Width 200 | Write-Host
-            } else {
-              Write-Host 'C:\CraftRoot does not exist'
-            }
-            Write-Host '::endgroup::'
-            Write-Host '::group::Last 200 lines of bootstrap log'
-            Get-Content craft-install.log -Tail 200 | Out-String | Write-Host
-            Write-Host '::endgroup::'
-            throw "Craft bootstrap failed: exit=$bootstrapExit, craftenv.ps1 present=$(Test-Path $craftEnv)"
+          function Get-CraftSetting($pattern) {
+            $m = Select-String -Path $ini -Pattern $pattern | Select-Object -First 1
+            if (-not $m) { return $null }
+            return $m.Matches[0].Groups[1].Value.Trim()
           }
-          Write-Host "Craft bootstrap OK: $craftEnv exists"
+          $buildType = Get-CraftSetting '^\s*BuildType\s*=\s*(.+)$'
+          $abi       = Get-CraftSetting '^\s*ABI\s*=\s*(.+)$'
+          Write-Host "ABI       : $abi"
+          Write-Host "BuildType : $buildType"
 
-          # NSIS lives in the cached CraftRoot so it's only installed
-          # on cold cache. Clear-Host shim works around craftenv.ps1's
-          # `cls` throwing on a missing console handle in pwsh.
-          function Clear-Host { }
-          . $craftEnv
-          craft --update nsis
+          # Matches sysadmin/craft-ci qt6/CraftConfig.ini [windows-msvc2022_64-cl].
+          if ($abi -ne 'windows-cl-msvc2022-x86_64') {
+            throw "Unexpected ABI '$abi' (wanted windows-cl-msvc2022-x86_64)"
+          }
+          if ($buildType -ne 'RelWithDebInfo') {
+            throw ("BuildType is '$buildType', not RelWithDebInfo. KDE publishes " +
+                   "no binary cache for that, so every dependency would be built " +
+                   "from source.")
+          }
+          Write-Host 'OK: settings match KDE''s Windows Qt6 target'
 
-      - name: Upload bootstrap log on failure
-        if: failure() && steps.craft-check.outputs.bootstrapped != 'true'
-        uses: actions/upload-artifact@v7
-        with:
-          name: craft-install-log
-          path: craft-install.log
-          if-no-files-found: ignore
+      - name: Install Craft itself
+        shell: pwsh
+        run: |
+          # Mirrors KDE's `Run-CraftMaster -c -i --options virtual.ignored=True
+          # --update craft`. With the settings already in place this is served
+          # from the binary cache rather than built.
+          & python -u C:\craftmaster\CraftMaster.py `
+            --config .github\craft\CraftConfig.ini `
+            --targets $env:CRAFT_TARGET `
+            -c -i --options virtual.ignored=True --update craft
+          if ($LASTEXITCODE -ne 0) { throw 'craft --update craft failed' }
 
       - name: Install Fontmatrix blueprints
         shell: pwsh
         run: |
           # Blueprint location pattern:
           #   <CraftRoot>/etc/blueprints/locations/<repo>/<category>/<name>/<name>.py
-          $blueprintRoot = 'C:\CraftRoot\etc\blueprints\locations\fontmatrix'
+          $blueprintRoot = "$env:CRAFT_ROOT\etc\blueprints\locations\fontmatrix"
           if (Test-Path $blueprintRoot) { Remove-Item -Recurse -Force $blueprintRoot }
           New-Item -ItemType Directory -Force -Path $blueprintRoot | Out-Null
           Copy-Item -Recurse -Force craft-blueprints\* $blueprintRoot\
@@ -296,48 +294,46 @@ jobs:
       - name: Install Fontmatrix runtime deps
         shell: pwsh
         run: |
-          function Clear-Host { }
-          . C:\CraftRoot\craft\craftenv.ps1
-          craft --install-deps --options "[CodeSigning]Enabled=False" fontmatrix
+          & python -u C:\craftmaster\CraftMaster.py `
+            --config .github\craft\CraftConfig.ini --targets $env:CRAFT_TARGET `
+            -c --install-deps fontmatrix
+          if ($LASTEXITCODE -ne 0) { throw 'craft --install-deps failed' }
 
       - name: Build Fontmatrix from source
         shell: pwsh
         run: |
-          function Clear-Host { }
-          # craftenv.ps1 ends with `cr` which `cd`s to $env:CraftRoot/..,
-          # so capture the checkout root before sourcing.
           $srcDir = $env:GITHUB_WORKSPACE
-          . C:\CraftRoot\craft\craftenv.ps1
-          craft --no-cache --ignoreInstalled `
-                --options "[CodeSigning]Enabled=False" `
-                --options "fontmatrix.srcDir=$srcDir" `
-                fontmatrix
+          & python -u C:\craftmaster\CraftMaster.py `
+            --config .github\craft\CraftConfig.ini --targets $env:CRAFT_TARGET `
+            -c --no-cache --ignoreInstalled --options "fontmatrix.srcDir=$srcDir" fontmatrix
+          if ($LASTEXITCODE -ne 0) { throw 'craft fontmatrix failed' }
+
+      - name: Install NSIS
+        shell: pwsh
+        run: |
+          # Packaging tool, installed after the build like KDE does it.
+          & python -u C:\craftmaster\CraftMaster.py `
+            --config .github\craft\CraftConfig.ini --targets $env:CRAFT_TARGET `
+            -c -i --update nsis
+          if ($LASTEXITCODE -ne 0) { throw 'craft --update nsis failed' }
 
       - name: Clean Craft tmp before packaging
         shell: pwsh
         run: |
           # Guards against any stray `fontmatrix-*` files in tmp/
           # being picked up by the Collect step's recursive glob.
-          if (Test-Path 'C:\CraftRoot\tmp') {
-            Remove-Item -Recurse -Force 'C:\CraftRoot\tmp\*' -ErrorAction SilentlyContinue
+          if (Test-Path "$env:CRAFT_ROOT\tmp") {
+            Remove-Item -Recurse -Force "$env:CRAFT_ROOT\tmp\*" -ErrorAction SilentlyContinue
           }
 
       - name: Package Fontmatrix (NSIS installer + 7z)
         shell: pwsh
         run: |
-          function Clear-Host { }
           $srcDir = $env:GITHUB_WORKSPACE
-          . C:\CraftRoot\craft\craftenv.ps1
-          # PackageDebugSymbols defaults on, which would emit a second
-          # `fontmatrix-…-dbg.7z` next to the real portable archive and get
-          # swept up by the Collect step's glob (and then uploaded to the
-          # release). We ship no PDBs — blacklist.txt drops them — so turn
-          # the separate symbol package off rather than filter it later.
-          craft --package `
-                --options "[CodeSigning]Enabled=False" `
-                --options "[Packager]PackageDebugSymbols=False" `
-                --options "fontmatrix.srcDir=$srcDir" `
-                fontmatrix
+          & python -u C:\craftmaster\CraftMaster.py `
+            --config .github\craft\CraftConfig.ini --targets $env:CRAFT_TARGET `
+            -c --package --options "fontmatrix.srcDir=$srcDir" fontmatrix
+          if ($LASTEXITCODE -ne 0) { throw 'craft --package failed' }
 
       # This is the check that would have caught the installer shipping
       # without its MSVC runtime, and without fontmatrixui.rc / icons /
@@ -346,7 +342,7 @@ jobs:
       - name: Verify packaged dependencies and data files
         shell: pwsh
         run: |
-          $stage = 'C:\CraftRoot\build\fontmatrix\archive'
+          $stage = "$env:CRAFT_ROOT\build\fontmatrix\archive"
           if (-not (Test-Path $stage)) {
             throw "No packaging staging dir at $stage"
           }
@@ -359,13 +355,13 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "=== Package outputs in tmp/ ==="
-          Get-ChildItem 'C:\CraftRoot\tmp' -File -ErrorAction SilentlyContinue |
+          Get-ChildItem "$env:CRAFT_ROOT\tmp" -File -ErrorAction SilentlyContinue |
             Sort-Object Length -Descending |
             Format-Table @{n='MB';e={[math]::Round($_.Length/1MB,1)}}, Name -AutoSize |
             Out-String -Width 200 | Write-Host
           Write-Host ""
           Write-Host "=== Top 30 largest files in deploy staging ==="
-          $stage = 'C:\CraftRoot\build\fontmatrix\archive'
+          $stage = "$env:CRAFT_ROOT\build\fontmatrix\archive"
           if (Test-Path $stage) {
             Get-ChildItem $stage -Recurse -File -ErrorAction SilentlyContinue |
               Sort-Object Length -Descending |
@@ -385,7 +381,7 @@ jobs:
           # -Exclude '*-dbg.*' belongs here even with
           # [Packager]PackageDebugSymbols=False at packaging time: a symbol
           # archive must never be published as if it were the portable build.
-          Get-ChildItem -Path 'C:\CraftRoot\tmp' -Recurse `
+          Get-ChildItem -Path "$env:CRAFT_ROOT\tmp" -Recurse `
             -Include 'fontmatrix-*.exe', 'fontmatrix-*.7z', 'fontmatrix-*.sha256' `
             -Exclude '*-dbg.*' `
             -ErrorAction SilentlyContinue |
@@ -410,31 +406,31 @@ jobs:
             fontmatrix-craft-out/fontmatrix-*.7z.sha256
           if-no-files-found: error
 
-      # Guard against caching a half-built CraftRoot. The previous run failed
-      # inside the bootstrap, leaving only craft-tmp/ + download/ + etc/
-      # behind, and `if: always()` below happily stored that under the good
-      # key for every later run to restore and throw away.
-      - name: Check CraftRoot is worth caching
+      # Guard against caching a half-set-up Craft root: an earlier run failed
+      # mid-bootstrap and `if: always()` stored the stub under the good key
+      # for every later run to restore and throw away.
+      - name: Check Craft root is worth caching
         id: craft-usable
         if: always()
         shell: pwsh
         run: |
-          $ok = Test-Path 'C:\CraftRoot\craft\craftenv.ps1'
+          $ok = (Test-Path "$env:CRAFT_ROOT\etc\CraftSettings.ini") -and
+                (Test-Path 'C:\Craft\craft-clone\bin\craft.py')
           "ok=$($ok.ToString().ToLower())" |
             Out-File -FilePath $env:GITHUB_OUTPUT -Append
-          Write-Host "CraftRoot bootstrapped, cacheable: $ok"
+          Write-Host "Craft root set up, cacheable: $ok"
 
-      # `if: always()` saves the bootstrapped CraftRoot even when later
-      # steps fail; skip on exact-key hits since the content is unchanged.
+      # `if: always()` saves the populated Craft root even when later steps
+      # fail; skip on exact-key hits since the content is unchanged.
       - name: Save Craft cache
         if: always() && steps.cache-craft.outputs.cache-hit != 'true' && steps.craft-usable.outputs.ok == 'true'
         uses: actions/cache/save@v5
         with:
-          key: craft-win2022-msvc2022-x86_64-v2-${{ hashFiles('craft-blueprints/**/*') }}
+          key: ${{ env.CRAFT_CACHE_KEY }}-${{ hashFiles('craft-blueprints/**/*', '.github/craft/CraftConfig.ini') }}
           path: |
-            C:/CraftRoot
-            !C:/CraftRoot/build/fontmatrix/**
-            !C:/CraftRoot/tmp/**
+            C:/Craft
+            !C:/Craft/windows-msvc2022_64-cl/build/fontmatrix/**
+            !C:/Craft/windows-msvc2022_64-cl/tmp/**
 
   release:
     name: Publish to Release
