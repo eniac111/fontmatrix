@@ -742,16 +742,12 @@ void FMLayout::doLines()
 
 		GlyphList& lg ( lines[lI] );
 		
-		if ( QChar ( lg.first().lChar ).category() == QChar::Separator_Space )
-		{
-			while ( QChar ( lg.first().lChar ).category() == QChar::Separator_Space  && !lg.isEmpty() )
-				lg.takeFirst();
-		}
-		if ( QChar ( lg.last().lChar ).category() == QChar::Separator_Space )
-		{
-			while ( QChar ( lg.last().lChar ).category() == QChar::Separator_Space  && !lg.isEmpty() )
-				lg.takeLast();
-		}
+		// Strip leading and trailing spaces; the emptiness test must come
+		// first, as a line made only of spaces is emptied by the loop.
+		while ( !lg.isEmpty() && QChar ( lg.first().lChar ).category() == QChar::Separator_Space )
+			lg.takeFirst();
+		while ( !lg.isEmpty() && QChar ( lg.last().lChar ).category() == QChar::Separator_Space )
+			lg.takeLast();
 		
 		clearCaches();
 		double refW ( lineWidth( lI ) );

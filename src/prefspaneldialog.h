@@ -98,18 +98,8 @@ class PrefsPanelDialog : public KPageDialog, private Ui::PrefsPanel
 		void setupFontEditor(QString);
 		void slotFontEditorBrowse();
 		
-		void addAndSelectWebBrowser();
-		void selectWebBrowser(const QString & text );
-		void setupWebBrowserOptions(const QString & text );
-
 		void setupTemplates(const QString&);
 		void slotTemplatesBrowse();
-
-		void slotAddRemote();
-		void slotRemoveRemote();
-
-		void slotSetLocalStorage(QString s);
-		void slotBrowseLocalStorage();
 
 		void slotShowImportedFonts(int i);
 // 		void slotFamilyNotPreferred(bool state);

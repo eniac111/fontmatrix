@@ -446,7 +446,7 @@ void FilterBar::loadFilters()
 				QFile file(fdir.absoluteFilePath(fn));
 				if(file.open(QIODevice::ReadOnly))
 				{
-					FilterData *f;
+					FilterData *f = nullptr;
 					if(type == QString("Meta"))
 					{
 						f = new FilterMeta;
@@ -459,6 +459,8 @@ void FilterBar::loadFilters()
 					{
 						f = new FilterTag;
 					}
+					if(!f)
+						continue;
 					f->fromByteArray(file.readAll());
 					if(first)
 					{
@@ -567,7 +569,7 @@ void FilterBar::slotClearFilter()
 
 void FilterBar::slotSaveFilter()
 {
-	if(filters.isEmpty() /*|| fname.isEmpty()*/)
+	if(filters.isEmpty())
 		return;
 
 	bool ok;
@@ -575,6 +577,14 @@ void FilterBar::slotSaveFilter()
 					     i18n("Filter name:"), QLineEdit::Normal,
 					     QString(""), &ok);
 	if (!ok || fname.isEmpty())
+		return;
+
+	slotSaveFilter(fname);
+}
+
+void FilterBar::slotSaveFilter(const QString &fname)
+{
+	if(filters.isEmpty() || fname.isEmpty())
 		return;
 
 	QDir fdir(FMPaths::FiltersDir());
@@ -607,7 +617,7 @@ void FilterBar::slotLoadFilter(const QString &fname)
 			QFile file(fdir.absoluteFilePath(fn));
 			if(file.open(QIODevice::ReadOnly))
 			{
-				FilterData *f;
+				FilterData *f = nullptr;
 				if(type == QString("Meta"))
 				{
 					f = new FilterMeta;
@@ -620,6 +630,8 @@ void FilterBar::slotLoadFilter(const QString &fname)
 				{
 					f = new FilterTag;
 				}
+				if(!f)
+					continue;
 				f->fromByteArray(file.readAll());
 				addFilterItem(f);
 			}

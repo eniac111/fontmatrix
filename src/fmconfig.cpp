@@ -19,7 +19,14 @@ std::pair<QString, QString> splitKey(const QString &fullKey)
 QVariant FMConfig::value(const QString &fullKey, const QVariant &def)
 {
     auto [grp, key] = splitKey(fullKey);
-    return KSharedConfig::openConfig()->group(grp).readEntry(key, def);
+    const KConfigGroup group = KSharedConfig::openConfig()->group(grp);
+    // KConfigGroup::readEntry() converts the stored text using the type of the
+    // default, and for an invalid default it returns an invalid QVariant even
+    // when the key exists. QSettings returned the stored value, so callers
+    // that pass no default expect one back: read those as text.
+    if (!def.isValid())
+        return group.hasKey(key) ? QVariant(group.readEntry(key, QString())) : QVariant();
+    return group.readEntry(key, def);
 }
 
 void FMConfig::setValue(const QString &fullKey, const QVariant &val)

@@ -164,7 +164,7 @@ QMenu *QHexView::createStandardContextMenu() {
 	wordWidthMapper->setMapping(a3, 4);
 	wordWidthMapper->setMapping(a4, 8);
 	
-	connect(wordWidthMapper, SIGNAL(mapped(int)), SLOT(setWordWidth(int)));
+	connect(wordWidthMapper, SIGNAL(mappedInt(int)), SLOT(setWordWidth(int)));
 	
 	QSignalMapper *rowWidthMapper = new QSignalMapper(this);
 
@@ -181,7 +181,7 @@ QMenu *QHexView::createStandardContextMenu() {
 	rowWidthMapper->setMapping(a8, 8);
 	rowWidthMapper->setMapping(a9, 16);
 	
-	connect(rowWidthMapper, SIGNAL(mapped(int)), SLOT(setRowWidth(int)));
+	connect(rowWidthMapper, SIGNAL(mappedInt(int)), SLOT(setRowWidth(int)));
 
 	menu->addSeparator();
 	menu->addMenu(wordMenu);

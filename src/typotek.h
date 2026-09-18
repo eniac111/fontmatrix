@@ -89,6 +89,7 @@ private slots:
 
 	void slotExtractFont();
 	void slotMatchRaster();
+	void slotHelpContents();
 
 public slots:
 	void open( QString path = QString(), bool recursive = true, bool announce = true, bool collect = false );
@@ -232,9 +233,6 @@ private:
 
 	int panoseMatchTreshold;
 
-	QString webBrowser;
-	QString webBrowserOptions;
-
 	double m_dpiX;
 	double m_dpiY;
 
@@ -352,11 +350,6 @@ public:
 
 	void setPanoseMatchTreshold ( int theValue );
 	int getPanoseMatchTreshold() const;
-
-	void setWebBrowser ( const QString& theValue );
-	QString getWebBrowser() const;
-	void setWebBrowserOptions ( const QString& theValue );
-	QString getWebBrowserOptions() const;
 
 	double getPreviewInfoFontSize() const{return previewInfoFontSize;}
 

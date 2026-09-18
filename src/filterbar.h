@@ -164,6 +164,7 @@ private slots:
 
 public slots:
     void slotSaveFilter();
+    void slotSaveFilter(const QString &fname);
 
 };
 
