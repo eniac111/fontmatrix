@@ -667,7 +667,7 @@ void SampleWidget::slotZoom ( int z )
 	QTransform trans;
 	trans.scale ( delta,delta );
 
-	QGraphicsView * concernedView;
+	QGraphicsView * concernedView = nullptr;
 	if ( ui->loremView_FT->isVisible() )
 		concernedView = ui->loremView_FT;
 	else if ( ui->loremView->isVisible() )
@@ -681,6 +681,10 @@ void SampleWidget::slotZoom ( int z )
 			trans =  adjustAbsoluteViewT;
 		}
 	}
+	// Neither view is visible while the Sample tab is in the background; a
+	// restored zoom state reaches this slot in that condition.
+	if ( !concernedView )
+		return;
 	concernedView->setTransform ( trans, ( z == 0 ) ? false : true );
 
 }

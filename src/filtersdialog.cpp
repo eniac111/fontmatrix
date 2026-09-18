@@ -140,7 +140,7 @@ void FiltersDialog::loadFilters()
 				QFile file(fdir.absoluteFilePath(fn));
 				if(file.open(QIODevice::ReadOnly))
 				{
-					FilterData *f;
+					FilterData *f = nullptr;
 					if(type == QString("Meta"))
 					{
 						f = new FilterMeta;
@@ -153,6 +153,8 @@ void FiltersDialog::loadFilters()
 					{
 						f = new FilterTag;
 					}
+					if(!f)
+						continue;
 					f->fromByteArray(file.readAll());
 					if(first)
 					{
