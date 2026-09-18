@@ -90,13 +90,22 @@ void SampleToolBar::enableButton(Button b, bool c)
 
 void SampleToolBar::setScripts(const QStringList &ll)
 {
+	// Called from SampleWidget::fillOTTree() on every font selection, so the
+	// combo has to be emptied first: without this each font appends another
+	// "Select language" entry plus a duplicate of every script, and the
+	// selection is left pointing into the previous font's entries. A stale
+	// non-default selection matters, because SampleWidget::doRender() gives
+	// the script shaper precedence over the OpenType feature checkboxes —
+	// they then silently stop having any effect.
+	ui->languageCombo->clear();
 	ui->languageCombo->addItem(i18n("Select language"), QString("NOSHAPER"));
 	for (const auto& l : ll)
 	{
 		ui->languageCombo->addItem(FontStrings::scriptTagName(l), l);
 	}
-	if(ll.isEmpty())
-		ui->languageCombo->setEnabled(false);
+	// Re-enable as well as disable: a font with no scripts used to leave the
+	// combo disabled for every font selected afterwards.
+	ui->languageCombo->setEnabled(!ll.isEmpty());
 }
 
 QString SampleToolBar::getScript()
