@@ -798,6 +798,18 @@ void typotek::createActions()
 	floatSep = new QAction(this);
 	floatSep->setSeparator(true);
 
+	// Connected only now: updateFloatingStatus() dereferences closeAllFloat,
+	// showAllFloat, hideAllFloat and floatSep, which are created just above.
+	//
+	// Neither window routes a close through its action — the user can shut
+	// them from their own title bar — so without these the Playground and
+	// Compare buttons stay checked until the View menu is next opened, which
+	// is what refreshed them before.
+	connect(PlayWidget::getInstance(), SIGNAL(visibilityChanged()),
+	        this, SLOT(updateFloatingStatus()));
+	connect(FontCompareWidget::getInstance(), SIGNAL(visibilityChanged()),
+	        this, SLOT(updateFloatingStatus()));
+
 	
 	extractFontAction = new QAction(i18n("Extract fonts..."),this);
 	extractFontAction->setStatusTip ( i18n( "Extract fonts from documents like PDF to PFM file format" ) );

@@ -44,9 +44,18 @@ public:
 	void clearSelection();
 	QGraphicsScene* getPlayScene(){return playScene;}
 
+signals:
+	// Emitted whenever this window is shown or hidden, including when the
+	// user closes it from its own title bar. typotek's checkable Playground
+	// action is toggled on by the action itself, so without this it stays
+	// checked after the window goes away.
+	void visibilityChanged();
+
 protected:
 	void changeEvent(QEvent *e) override;
 	void closeEvent(QCloseEvent *) override;
+	void hideEvent(QHideEvent *) override;
+	void showEvent(QShowEvent *) override;
 
 private:
 	Ui::PlayWidget *ui;

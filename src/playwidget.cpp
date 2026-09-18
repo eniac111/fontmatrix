@@ -77,6 +77,18 @@ void PlayWidget::closeEvent(QCloseEvent *)
 	hide();
 }
 
+void PlayWidget::hideEvent(QHideEvent *e)
+{
+	QWidget::hideEvent(e);
+	emit visibilityChanged();
+}
+
+void PlayWidget::showEvent(QShowEvent *e)
+{
+	QWidget::showEvent(e);
+	emit visibilityChanged();
+}
+
 
 void PlayWidget::slotZoom ( int z )
 {

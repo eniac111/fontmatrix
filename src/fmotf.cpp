@@ -502,7 +502,7 @@ QList< RenderedGlyph > FMOtf::procstring( QList<Character> shaped , QString scri
 		
 // 		qDebug() << "Adding "<< QString::number(shaped[i].unicode(),16) << "["<< QString::number( ~prop, 2 )<<"]";
 		if ( error !=  HB_Err_Ok )
-			qDebug() << "hb_buffer_add_glyph () failed";
+			qWarning() << "hb_buffer_add_glyph () failed";
 
 	}
 
@@ -526,12 +526,12 @@ QList< RenderedGlyph > FMOtf::procstring( QList<Character> shaped , QString scri
 				qDebug() << "GSUB_ADD "<< feature <<" => "<<QString::number( props[feature], 2 );
 			}
 			else
-				qDebug() << QString ( "adding gsub feature [%1] failed : %2" ).arg ( feature ).arg ( error );
+				qWarning() << QString ( "adding gsub feature [%1] failed : %2" ).arg ( feature ).arg ( error );
 		}
 
 		error = HB_GSUB_Apply_String ( _gsub, _buffer );
 		if ( error && error != HB_Err_Not_Covered )
-			qDebug () << QString ( "applying gsub features to string  returned %2" ).arg ( error );
+			qWarning () << QString ( "applying gsub features to string  returned %2" ).arg ( error );
 
 	}
 	if ( GPOS )
@@ -550,14 +550,14 @@ QList< RenderedGlyph > FMOtf::procstring( QList<Character> shaped , QString scri
 				HB_GPOS_Add_Feature ( _gpos, fidx,  props[feature]  );
 			}
 			else
-				qDebug() << QString ( "adding gpos feature [%1] failed : %2" ).arg ( feature ).arg ( error );
+				qWarning() << QString ( "adding gpos feature [%1] failed : %2" ).arg ( feature ).arg ( error );
 		}
 
 		error = HB_GPOS_Apply_String ( &hbFont, _gpos, FT_LOAD_NO_SCALE, _buffer,
 		        /*while dvi is true font klass is not used */ true,
 		        /*r2l */ true );
 		if ( error && error != HB_Err_Not_Covered )
-			qDebug () << QString ( "applying gpos features to string returned %2" ).arg ( error ) ;
+			qWarning () << QString ( "applying gpos features to string returned %2" ).arg ( error ) ;
 
 	}
 	
@@ -597,7 +597,7 @@ QList< RenderedGlyph > FMOtf::procstring(QList< unsigned int > glyList, QString 
 						prop,
       i );
 		if ( error !=  HB_Err_Ok )
-			qDebug() << "hb_buffer_add_glyph ("<< glyList[i] <<") failed";
+			qWarning() << "hb_buffer_add_glyph ("<< glyList[i] <<") failed";
 	}
 
 	if ( ! gsub.isEmpty() )
@@ -618,11 +618,11 @@ QList< RenderedGlyph > FMOtf::procstring(QList< unsigned int > glyList, QString 
 				HB_GSUB_Add_Feature ( _gsub, fidx, ~all );
 			}
 			else
-				qDebug() << QString ( "adding gsub feature [%1] failed : %2" ).arg ( *ife ).arg ( error );
+				qWarning() << QString ( "adding gsub feature [%1] failed : %2" ).arg ( *ife ).arg ( error );
 		}
 		error = HB_GSUB_Apply_String ( _gsub, _buffer );
 		if ( error && error != HB_Err_Not_Covered )
-			qDebug () << QString ( "applying gsub features returned %1" ).arg ( error );
+			qWarning () << QString ( "applying gsub features returned %1" ).arg ( error );
 
 	}
 	if ( !gpos.isEmpty() )
@@ -645,13 +645,13 @@ QList< RenderedGlyph > FMOtf::procstring(QList< unsigned int > glyList, QString 
 				HB_GPOS_Add_Feature ( _gpos, fidx,fprop );
 			}
 			else
-				qDebug () << QString ( "adding gsub feature [%1] failed : %2" ).arg ( *ife ).arg ( error ) ;
+				qWarning () << QString ( "adding gpos feature [%1] failed : %2" ).arg ( *ife ).arg ( error ) ;
 		}
 		error = HB_GPOS_Apply_String ( &hbFont, _gpos, FT_LOAD_NO_SCALE, _buffer,
 		        /*while dvi is true font klass is not used */ true,
 		        /*r2l */ true );
 		if ( error && error != HB_Err_Not_Covered )
-			qDebug () << QString ( "applying gpos features  returned %1 ").arg  ( error ) ;
+			qWarning () << QString ( "applying gpos features  returned %1 ").arg  ( error ) ;
 
 	}
 	
@@ -675,7 +675,7 @@ int FMOtf::procstring( QString s, QString script, QString lang, QStringList gsub
 		                                        prop,
 		                                        i );
 		if ( error !=  HB_Err_Ok )
-			qDebug() << "hb_buffer_add_glyph ("<< s[i] <<") failed";
+			qWarning() << "hb_buffer_add_glyph ("<< s[i] <<") failed";
 // 		else
 // 			qDebug() << "hb_buffer_add_glyph ("<< s[i] <<") success";
 
@@ -715,7 +715,7 @@ int FMOtf::procstring( QString s, QString script, QString lang, QStringList gsub
 // 				qDebug()<< QString("adding gsub feature [%1] success : %2").arg(*ife).arg(fidx );
 			}
 			else
-				qDebug() << QString ( "adding gsub feature [%1] failed : %2" ).arg ( *ife ).arg ( error );
+				qWarning() << QString ( "adding gsub feature [%1] failed : %2" ).arg ( *ife ).arg ( error );
 		}
 
 // 		qDebug() << "APPLY";
@@ -723,7 +723,7 @@ int FMOtf::procstring( QString s, QString script, QString lang, QStringList gsub
 // 		qDebug() << "YLPPA";
 //
 		if ( error && error != HB_Err_Not_Covered )
-			qDebug () << QString ( "applying gsub features to string \"%1\" returned %2" ).arg ( s ).arg ( error );
+			qWarning () << QString ( "applying gsub features to string \"%1\" returned %2" ).arg ( s ).arg ( error );
 
 	}
 	if ( !gpos.isEmpty() )
@@ -750,13 +750,13 @@ int FMOtf::procstring( QString s, QString script, QString lang, QStringList gsub
 // 				qDebug()<< QString("GPOS [%2] feature.lookupcount = %1").arg(_gpos->FeatureList.FeatureRecord[fidx].Feature.LookupListCount).arg(*ife);
 			}
 			else
-				qDebug () << QString ( "adding gsub feature [%1] failed : %2" ).arg ( *ife ).arg ( error ) ;
+				qWarning () << QString ( "adding gpos feature [%1] failed : %2" ).arg ( *ife ).arg ( error ) ;
 		}
 		error = HB_GPOS_Apply_String ( &hbFont, _gpos, FT_LOAD_NO_SCALE, _buffer,
 		         true,/*while dvi is true font klass is not used */
 		        true /*r2l  */);
 		if ( error && error != HB_Err_Not_Covered )
-			qDebug () << QString ( "applying gpos features to string \"%1\" returned %2" ).arg ( s ).arg ( error ) ;
+			qWarning () << QString ( "applying gpos features to string \"%1\" returned %2" ).arg ( s ).arg ( error ) ;
 
 	}
 
