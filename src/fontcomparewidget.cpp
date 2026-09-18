@@ -432,3 +432,15 @@ void FontCompareWidget::syncChange(int state)
 }
 
 
+
+void FontCompareWidget::hideEvent(QHideEvent *e)
+{
+	QWidget::hideEvent(e);
+	emit visibilityChanged();
+}
+
+void FontCompareWidget::showEvent(QShowEvent *e)
+{
+	QWidget::showEvent(e);
+	emit visibilityChanged();
+}
