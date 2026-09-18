@@ -348,7 +348,7 @@ QString FMInfoDisplay::url2href (QString value )
 	QRegularExpression rx("(http[s]?://\\S+?)([" + punctuationAfter + "](?:\\s|$))"); // prepare a regexp (non-greedy)
 	value.replace(rx, "\\1 \\2"); // add a space before  punctuation "attached" to url
 	value.replace(rx, "\\1 \\2"); // run the prepared regexp twice for ")."
-	value.replace ( QRegularExpression( "(http[s]?://\\S+?)[\\.]?" ), "<a href=\"\\1\">\\1</a>" ); // Make HTTP links
+	value.replace ( QRegularExpression( "(http[s]?://\\S+)[\\.]?" ), "<a href=\"\\1\">\\1</a>" ); // Make HTTP links
 	value.replace ( QRegularExpression( "(</a>)\\s([" + punctuationAfter + "])" ), "\\1\\2" ); // remove extra space after </a>
 	return value;
 } // url2href
