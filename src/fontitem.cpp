@@ -2670,17 +2670,10 @@ FontInfoMap FontItem::moreInfo_sfnt()
 		{
 			avalue = "Here, imagine some nice symbols!";
 		}
-		else if ( tname.platform_id == TT_PLATFORM_APPLE_UNICODE  && tname.encoding_id == TT_APPLE_ID_DEFAULT ) // Unicode version 1.0
+		else if ( tname.platform_id == TT_PLATFORM_APPLE_UNICODE ) // every Unicode platform encoding is UTF-16BE
 		{
 			QByteArray array ( ( const char* ) tname.string, tname.string_len );
-			QStringDecoder decoder("ISO-8859-1"); // ### give better result than UTF ???
-			avalue = decoder(array);
-		}
-		// from  Pajarico, pajarico chez gmail point com
-		else if ( tname.platform_id == TT_PLATFORM_APPLE_UNICODE  && tname.encoding_id == TT_APPLE_ID_UNICODE_2_0 )
-		{
-			QByteArray array ( ( const char* ) tname.string, tname.string_len );
-			QStringDecoder decoder(QStringDecoder::Utf16);
+			QStringDecoder decoder(QStringDecoder::Utf16BE);
 			avalue = decoder(array);
 		}
 		else if ( tname.platform_id == TT_PLATFORM_MACINTOSH )
