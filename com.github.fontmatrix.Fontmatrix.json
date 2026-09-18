@@ -2,8 +2,6 @@
     "id": "com.github.fontmatrix.Fontmatrix",
     "runtime": "org.kde.Platform",
     "runtime-version": "6.10",
-    "base": "io.qt.qtwebengine.BaseApp",
-    "base-version": "6.10",
     "sdk": "org.kde.Sdk",
     "rename-icon": "fontmatrix",
     "rename-desktop-file": "fontmatrix.desktop",
@@ -23,9 +21,6 @@
     "cleanup": [
         "/share/man"
     ],
-    "cleanup-commands": [
-        "/app/cleanup-BaseApp.sh"
-    ],
     "modules": [
         {
             "name": "podofo",
@@ -33,6 +28,7 @@
             "builddir": true,
             "config-opts": [
                 "-DBUILD_SHARED_LIBS=OFF",
+                "-DPODOFO_WITH_FONTMANAGER=OFF",
                 "-DPODOFO_BUILD_TEST=OFF",
                 "-DPODOFO_BUILD_EXAMPLES=OFF",
                 "-DPODOFO_BUILD_UNSUPPORTED_TOOLS=OFF"
@@ -40,8 +36,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/podofo/podofo/archive/refs/tags/1.0.3.tar.gz",
-                    "sha256": "02815b21a51632c2849d41b067597e9356bbc54bad0efcd84c902b555c203ce7"
+                    "url": "https://github.com/podofo/podofo/archive/refs/tags/1.1.2.tar.gz",
+                    "sha256": "d6ffe6fc173ac6d6e5b00f5cb9db01990cab1bdf7cc03bdeffce3013bc9ec63a"
                 }
             ]
         },

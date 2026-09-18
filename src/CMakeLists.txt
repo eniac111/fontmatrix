@@ -311,7 +311,6 @@ IF(UNIX AND NOT APPLE)
 	INSTALL(TARGETS fontmatrix
 	RUNTIME DESTINATION ${FONTMATRIX_BIN}
 	)
-	INSTALL(FILES fontmatrixui.rc DESTINATION "${KDE_INSTALL_KXMLGUIDIR}/fontmatrix")
 
 	# Dev launcher: prepend ${CMAKE_BINARY_DIR}/data to XDG_DATA_DIRS so the
 	# handbook (mirrored by doc/fontmatrix/CMakeLists.txt) is found by
@@ -497,3 +496,8 @@ IF(WIN32)
 	RUNTIME DESTINATION ${FONTMATRIX_BIN}
 	)
 ENDIF(WIN32)
+
+# typotek calls setXMLFile("fontmatrixui.rc") + createGUI(); without this file
+# KXmlGui builds no menu bar and no toolbar. Installed for every platform, not
+# per-branch.
+INSTALL(FILES fontmatrixui.rc DESTINATION "${KDE_INSTALL_KXMLGUIDIR}/fontmatrix")

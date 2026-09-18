@@ -10,35 +10,34 @@
 # (Skanpage, Okular's PDF backends, etc.), this is a candidate for
 # upstream contribution.
 #
-# Version pinning: the project's CLAUDE.md mandates PoDoFo >= 0.10.x.
-# Local Linux builds use 0.10.4 (Manjaro). We pin to 0.10.5 — newest
-# patch in the 0.10 series, ABI-compatible with 0.10.4. PoDoFo 1.0.x
-# has API changes; we deliberately do NOT track it until Fontmatrix's
-# PDF code is verified to compile against it.
+# Version: 1.1.2, matching the Flatpak manifest so Windows and Linux build
+# against the same API. `src/fmpdffontextractor.cpp` was ported to the
+# 0.10/1.x API and compiles unchanged against 1.1.2. Distro builds on
+# 0.10.x keep working — that remains the documented minimum.
 #
-# CMake options (from PoDoFo 0.10.5's CMakeLists.txt):
+# CMake options (from PoDoFo 1.1.2's CMakeLists.txt):
 #   REQUIRED   ZLIB, OpenSSL, Freetype, LibXml2
-#   OPTIONAL   Libidn, JPEG, TIFF, PNG, Fontconfig
+#   OPTIONAL   Libidn, JPEG, TIFF, PNG
+#   Fontconfig REQUIRED, but only when PODOFO_WITH_FONTMANAGER is on
 #
 # We keep the optional deps minimal: PNG (already a small dep), no
 # JPEG/TIFF (not used by Fontmatrix's font-extraction code), no Libidn
-# (niche), no Fontconfig (no Windows blueprint anyway).
+# (niche).
 
 import info
-from CraftCore import CraftCore
 from Package.CMakePackageBase import CMakePackageBase
 from Utils import CraftHash
 
 
 class subinfo(info.infoclass):
     def setTargets(self):
-        self.targets["0.10.5"] = "https://github.com/podofo/podofo/archive/refs/tags/0.10.5.tar.gz"
-        self.targetInstSrc["0.10.5"] = "podofo-0.10.5"
-        self.targetDigests["0.10.5"] = (
-            ["49b159e88ba177ad2561b5cf6cbd68ecbe83272f5488bc527e44f97dbf695273"],
+        self.targets["1.1.2"] = "https://github.com/podofo/podofo/archive/refs/tags/1.1.2.tar.gz"
+        self.targetInstSrc["1.1.2"] = "podofo-1.1.2"
+        self.targetDigests["1.1.2"] = (
+            ["d6ffe6fc173ac6d6e5b00f5cb9db01990cab1bdf7cc03bdeffce3013bc9ec63a"],
             CraftHash.HashAlgorithm.SHA256,
         )
-        self.defaultTarget = "0.10.5"
+        self.defaultTarget = "1.1.2"
         self.description = "C++ PDF parsing/manipulation library"
         self.webpage = "https://github.com/podofo/podofo"
 
@@ -58,11 +57,17 @@ class Package(CMakePackageBase):
         super().__init__(**kwargs)
         self.subinfo.options.configure.args += [
             "-DPODOFO_BUILD_STATIC=FALSE",
+            # PoDoFo 1.x's font manager is its system-font lookup, which
+            # pulls in a REQUIRED Fontconfig on every platform unless
+            # PODOFO_WITH_WIN32GDI_FONT_SEARCH is also on. Fontmatrix only
+            # reads embedded font streams out of PDF objects and never asks
+            # PoDoFo to find a font, so turn the whole thing off rather than
+            # add a Fontconfig dependency for nothing.
+            "-DPODOFO_WITH_FONTMANAGER=OFF",
             # Skip optional deps Fontmatrix doesn't need.
             "-DCMAKE_DISABLE_FIND_PACKAGE_Libidn=TRUE",
             "-DCMAKE_DISABLE_FIND_PACKAGE_JPEG=TRUE",
             "-DCMAKE_DISABLE_FIND_PACKAGE_TIFF=TRUE",
-            "-DCMAKE_DISABLE_FIND_PACKAGE_Fontconfig=TRUE",
             # PoDoFo's tests need a writable test-data directory and
             # are not useful in CI; skip them entirely.
             "-DPODOFO_BUILD_TEST=FALSE",

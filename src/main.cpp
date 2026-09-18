@@ -44,6 +44,13 @@
 #include "fmpaths.h"
 #include "systray.h"
 
+#ifdef Q_OS_WIN
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+#include <windows.h>
+#include <cstdio>
+#endif
+
 
 bool __FM_SHOW_FONTLOADED;
 
@@ -55,6 +62,25 @@ bool __FM_SHOW_FONTLOADED;
  */
 int main ( int argc, char *argv[] )
 {
+#ifdef Q_OS_WIN
+	// The Windows executable is built for the GUI subsystem, so it has no
+	// console of its own and qWarning()/qCritical() are discarded when it is
+	// started from cmd.exe. Adopt the parent console when there is one; a
+	// launch from Explorer has none and stays windowless.
+	if ( AttachConsole ( ATTACH_PARENT_PROCESS ) )
+	{
+		FILE *stream = nullptr;
+#ifdef _MSC_VER
+		freopen_s ( &stream, "CONOUT$", "w", stdout );
+		freopen_s ( &stream, "CONOUT$", "w", stderr );
+#else
+		stream = freopen ( "CONOUT$", "w", stdout );
+		stream = freopen ( "CONOUT$", "w", stderr );
+		(void) stream;
+#endif
+	}
+#endif
+
 	// Must be set before QApplication so QSettings picks up the right scope.
 	QCoreApplication::setOrganizationName ( "Fontmatrix" );
 	QCoreApplication::setOrganizationDomain ( "io.fontmatrix" );
@@ -247,7 +273,21 @@ int main ( int argc, char *argv[] )
 	// activateRequested signal so it can raise its window. Done before
 	// typotek::getInstance() so we don't pay the font-DB init cost twice
 	// on a duplicate launch.
-	KDBusService dbusService(KDBusService::Unique);
+	//
+	// NoExitOnFailure is required for Windows, where there is no session bus
+	// to register with: without it KDBusService calls exit(1) from its
+	// constructor and the application terminates before showing a window.
+	// It does not weaken the guard on Linux — a duplicate instance exits from
+	// a separate branch of KDBusService that activates the running process,
+	// and that branch is not governed by this flag.
+	KDBusService dbusService(KDBusService::Unique | KDBusService::NoExitOnFailure);
+	if (!dbusService.isRegistered())
+	{
+		// Expected on Windows; on Linux it means the single-instance guard is
+		// inactive for this run.
+		qWarning() << "D-Bus service not registered, continuing without the"
+		           << "single-instance guard:" << dbusService.errorMessage();
+	}
 
 	typotek * mw = typotek::getInstance();
 
