@@ -89,11 +89,11 @@ void PanoseWidget::doConnect(const bool &c)
 {
 	if(c)
 	{
-		connect(m_ui->pTree, SIGNAL(clicked(QTreeWidgetItem * , int )), this, SLOT(slotSelect(QTreeWidgetItem * , int )));
+		connect(m_ui->pTree, SIGNAL(itemClicked(QTreeWidgetItem * , int )), this, SLOT(slotSelect(QTreeWidgetItem * , int )));
 	}
 	else
 	{
-		disconnect(m_ui->pTree, SIGNAL(clicked(QTreeWidgetItem * , int )), this, SLOT(slotSelect(QTreeWidgetItem * , int )));
+		disconnect(m_ui->pTree, SIGNAL(itemClicked(QTreeWidgetItem * , int )), this, SLOT(slotSelect(QTreeWidgetItem * , int )));
 	}
 }
 

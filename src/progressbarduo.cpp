@@ -26,7 +26,7 @@ ProgressBarDuo::ProgressBarDuo(QWidget *parent) :
     ui(new Ui::ProgressBarDuo)
 {
     ui->setupUi(this);
-    connect(ui->cancelButton, SIGNAL(Canceled()), this, SIGNAL(Canceled()));
+    connect(ui->cancelButton, SIGNAL(clicked()), this, SIGNAL(Canceled()));
 }
 
 ProgressBarDuo::~ProgressBarDuo()
