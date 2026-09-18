@@ -114,18 +114,6 @@ PrefsPanelDialog::PrefsPanelDialog ( QWidget *parent )
 	namedSampleTextText->setText ( i18n( "Please select an item in the list or create a new one." ) );
 	namedSampleTextText->setEnabled ( false );
 	
-	/// browser
-	QStringList webBrowsers;
-	webBrowsers << "Fontmatrix" << "firefox" << "konqueror"; // TODO fill in
-	QString browser(typotek::getInstance()->getWebBrowser()); 
-	if(!webBrowsers.contains(browser))
-		webBrowsers << browser;
-// 	qDebug()<<"Browsers ("<< browser <<"):"<< webBrowsers.join(" ; ");
-	browserCombo->addItems(webBrowsers);
-	browserCombo->setCurrentIndex(webBrowsers.indexOf(browser));
-	
-	browserOptions->setText(typotek::getInstance()->getWebBrowserOptions());
-
 	doConnect();
 }
 
@@ -169,10 +157,6 @@ void PrefsPanelDialog::initSampleTextPrefs()
 void PrefsPanelDialog::initFilesAndFolders()
 {
 	templatesFolder->setText ( typotek::getInstance()->getTemplatesDir() );
-	QStringList remoteDirV ( FMConfig::value ( QStringLiteral("RemoteDirectories") ).toStringList() );
-	remoteDirList->addItems ( remoteDirV );
-	localStorageLine->setText ( typotek::getInstance()->remoteTmpDir() );
-
 }
 
 void PrefsPanelDialog::initShortcuts()
@@ -225,10 +209,6 @@ void PrefsPanelDialog::doConnect()
 	connect ( fontEditorPath, SIGNAL ( textChanged ( const QString ) ), this, SLOT ( setupFontEditor ( QString ) ) );
 	connect ( fontEditorBrowse, SIGNAL ( clicked() ), this, SLOT ( slotFontEditorBrowse() ) );
 	
-	connect(browserButton,SIGNAL(clicked( )), this, SLOT(addAndSelectWebBrowser()));
-	connect(browserCombo, SIGNAL(activated( const QString& )), this, SLOT( selectWebBrowser(const QString& ) ));
-	connect(browserOptions, SIGNAL(textChanged( const QString& )), this, SLOT(setupWebBrowserOptions(const QString& )));
-
 	connect ( initTagBox, SIGNAL ( clicked ( bool ) ), typotek::getInstance(), SLOT ( slotUseInitialTags ( bool ) ) );
 // 	connect ( familyNameScheme,SIGNAL ( toggled ( bool ) ),this,SLOT ( slotFamilyNotPreferred ( bool ) ) );
 	connect ( splashCheck,SIGNAL ( toggled ( bool ) ),this,SLOT ( slotSplashScreen ( bool ) ) );
@@ -236,10 +216,6 @@ void PrefsPanelDialog::doConnect()
 	connect ( templatesDirBrowse,SIGNAL ( clicked( ) ),this, SLOT ( slotTemplatesBrowse() ) );
 	connect ( templatesFolder,SIGNAL ( textChanged ( const QString& ) ),this,SLOT ( setupTemplates ( const QString& ) ) );
 
-	connect ( remoteDirAdd,SIGNAL ( clicked() ),this,SLOT ( slotAddRemote() ) );
-	connect ( remoteDirRemove,SIGNAL ( clicked() ),this,SLOT ( slotRemoveRemote() ) );
-	connect ( localStorageLine,SIGNAL ( textChanged ( const QString& ) ),this,SLOT ( slotSetLocalStorage ( QString ) ) );
-	connect ( localStorageButton,SIGNAL ( clicked( ) ),this,SLOT ( slotBrowseLocalStorage() ) );
 
 	connect ( showNamesBox, SIGNAL ( stateChanged ( int ) ), this, SLOT ( slotShowImportedFonts ( int ) ) );
 
@@ -403,41 +379,6 @@ void PrefsPanelDialog::slotFontEditorBrowse()
 	}
 }
 
-void PrefsPanelDialog::addAndSelectWebBrowser()
-{
-	QString s = QFileDialog::getOpenFileName ( this, i18n( "Select web browser" ) );
-	if ( !s.isEmpty() )
-	{
-		QStringList l;
-		for(int i(0); i < browserCombo->count(); i++)
-		{
-			l << browserCombo->itemText(i);
-		}
-		if(!l.contains(s))
-		{
-			browserCombo->addItem(s);
-			browserCombo->setCurrentIndex(browserCombo->count() - 1);
-		}
-		else
-		{
-			browserCombo->setCurrentIndex(l.indexOf(s));
-		}
-		selectWebBrowser(s);
-	}
-}
-
-void PrefsPanelDialog::selectWebBrowser(const QString & text)
-{
-	FMConfig::setValue(QStringLiteral("Info/Browser"), text);
-	typotek::getInstance()->setWebBrowser(text);
-}
-
-void PrefsPanelDialog::setupWebBrowserOptions(const QString & text)
-{
-	FMConfig::setValue(QStringLiteral("Info/BrowserOptions"), text);
-	typotek::getInstance()->setWebBrowserOptions(text);
-}
-
 void PrefsPanelDialog::showPage ( PAGE page )
 {
 	KPageWidgetItem *target = nullptr;
@@ -468,56 +409,6 @@ void PrefsPanelDialog::setupTemplates ( const QString &tdir )
 {
 	if ( !tdir.isEmpty() )
 		typotek::getInstance()->setTemplatesDir ( tdir );
-}
-
-void PrefsPanelDialog::slotAddRemote()
-{
-	QString rem ( newUrlText->text() );
-	remoteDirList->addItem ( rem );
-	QList<QVariant> tmpL ( FMConfig::value ( QStringLiteral("RemoteDirectories") ).toList() );
-	tmpL << rem;
-	FMConfig::setValue ( QStringLiteral("RemoteDirectories"), tmpL );
-	newUrlText->clear();
-}
-
-void PrefsPanelDialog::slotRemoveRemote()
-{
-	if ( remoteDirList->currentItem() )
-	{
-		QString url ( remoteDirList->currentItem()->text() );
-		qDebug() <<"about to remove "<< url;
-		for ( int i ( 0 );i < remoteDirList->count();++i )
-		{
-			if ( remoteDirList->item ( i )->text() == url )
-				remoteDirList->takeItem ( i );
-		}
-		QStringList tmpL ( FMConfig::value ( QStringLiteral("RemoteDirectories") ).toStringList() );
-		QStringList remoteDirStrings;
-		for (const auto& s : tmpL)
-		{
-			if ( s != url )
-				remoteDirStrings << s;
-			else
-				qDebug() << "Exclude "<<url<< " from remote dirs";
-		}
-		qDebug() <<"RemoteDirectories : "<<remoteDirStrings.join ( ", " );
-		FMConfig::setValue ( QStringLiteral("RemoteDirectories"), remoteDirStrings );
-
-	}
-}
-
-void PrefsPanelDialog::slotSetLocalStorage ( QString s )
-{
-	typotek::getInstance()->setRemoteTmpDir ( s );
-}
-
-void PrefsPanelDialog::slotBrowseLocalStorage()
-{
-	QString s = QFileDialog::getExistingDirectory ( this, i18n( "Select Where remote font files will be stored" ) );
-	if ( !s.isEmpty() )
-	{
-		localStorageLine->setText ( s );
-	}
 }
 
 void PrefsPanelDialog::slotShowImportedFonts ( int show )

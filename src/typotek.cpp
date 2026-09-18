@@ -78,9 +78,13 @@
 #include <fontconfig/fontconfig.h>
 #endif
 
+#include <KAboutData>
 #include <KActionCollection>
 #include <KConfigGroup>
 #include <KHamburgerMenu>
+#include <KHelpClient>
+#include <KMessageBox>
+#include <KSandbox>
 #include <KSharedConfig>
 #include <KStandardAction>
 #include <KToolBar>
@@ -233,6 +237,15 @@ void typotek::initMatrix()
 	setStandardToolBarMenuEnabled(true);
 	setXMLFile(QStringLiteral("fontmatrixui.rc"));
 	createGUI(xmlFile());
+
+	// KHelpMenu connects help_contents to KHelpClient::invokeHelp(), which
+	// opens a help: URL and does nothing where no handler for that scheme is
+	// installed.
+	if (QAction *helpAction = actionCollection()->action(QStringLiteral("help_contents")))
+	{
+		disconnect(helpAction, &QAction::triggered, nullptr, nullptr);
+		connect(helpAction, &QAction::triggered, this, &typotek::slotHelpContents);
+	}
 
 	// Restore Show Menu Bar from the General group; must run after createGUI().
 	{
@@ -860,9 +873,6 @@ void typotek::createActions()
 
 	KStandardAction::quit(this, &typotek::slotQuit, ac);
 	KStandardAction::preferences(this, &typotek::slotPrefsPanelDefault, ac);
-	// help_contents is provided automatically by KHelpMenu (auto-installed by
-	// KXmlGuiWindow::createGUI()) and routes to khelpcenter via the
-	// "help:/fontmatrix" URL — no custom handler needed.
 
 	// KDE theme icons (XDG standard names) for menu and toolbar actions.
 	openAct->setIcon(QIcon::fromTheme(QStringLiteral("folder-open")));
@@ -951,8 +961,6 @@ void typotek::readSettings()
 
 	panoseMatchTreshold = FMConfig::value(QStringLiteral("Panose/MatchTreshold"), 1000).toInt();
 
-	webBrowser = FMConfig::value(QStringLiteral("Info/Browser"), "Fontmatrix").toString();
-	webBrowserOptions = FMConfig::value(QStringLiteral("Info/BrowserOptions"), "").toString();
 	previewInfoFontSize = FMConfig::value(QStringLiteral("Info/PreviewSize"), 20.0).toDouble();
 
 	templatesDir = FMConfig::value(QStringLiteral("Places/TemplatesDir"), "./").toString();
@@ -2388,27 +2396,20 @@ void typotek::setPanoseMatchTreshold ( int theValue )
 }
 
 
-QString typotek::getWebBrowser() const
+void typotek::slotHelpContents()
 {
-	return webBrowser;
-}
-
-
-void typotek::setWebBrowser ( const QString& theValue )
-{
-	webBrowser = theValue;
-}
-
-
-QString typotek::getWebBrowserOptions() const
-{
-	return webBrowserOptions;
-}
-
-
-void typotek::setWebBrowserOptions ( const QString& theValue )
-{
-	webBrowserOptions = theValue;
+	// The handbook is a DocBook document shown by KDE Help Center. Try the
+	// help: URL only where a handler can exist, as QDesktopServices::openUrl()
+	// reports no failure for an unhandled scheme.
+	if (KSandbox::isFlatpak() || !QStandardPaths::findExecutable(QStringLiteral("khelpcenter")).isEmpty())
+	{
+		KHelpClient::invokeHelp();
+		return;
+	}
+	KMessageBox::information(this,
+	                         xi18nc("@info", "The Fontmatrix handbook is displayed by <application>KDE Help Center</application>, which is not installed on this system.<nl/>The project page is at <link>%1</link>.",
+	                                KAboutData::applicationData().homepage()),
+	                         i18nc("@title:window", "Handbook Not Available"));
 }
 
 void typotek::hide()
