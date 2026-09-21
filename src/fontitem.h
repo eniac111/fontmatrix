@@ -20,6 +20,8 @@
 #ifndef FONTITEM_H
 #define FONTITEM_H
 
+#include <functional>
+
 #include <QString>
 #include <QStringList>
 #include <QByteArray>
@@ -177,6 +179,8 @@ class FontItem : public QObject
 		
 		bool m_isOpenType;
 		FMOtf *otf;
+		// words, spaces and hyphenation around whatever shapes one word
+		GlyphList shapeWords(const QString& spec, double fsize, const std::function<GlyphList(const QString&)>& shapeWord);
 
 //		FT_Library theLibrary;
 		FT_Face	m_face;
@@ -276,6 +280,8 @@ class FontItem : public QObject
 		/// We prepare ejection of renderLine methods
 		GlyphList glyphs(QString spec, double fsize);
 		GlyphList glyphs(QString spec, double fsize, OTFSet set);
+		// Shaped the way applications do, with the features the script asks for
+		GlyphList glyphsShaped(const QString& spec, double fsize);
 		GlyphList glyphs(QString spec, double fsize, QString script);
 		
 		// experiences go there

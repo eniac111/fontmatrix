@@ -419,6 +419,13 @@ void SampleWidget::doRender()
 		for(int p(0); p < stl.count(); ++p)
 			list << f->glyphs(stl[p], fSize, deFillOTTree());
 	}
+	else if(f->isOpenType())
+	{
+		// Nothing picked: what an application would show, kerning, ligatures
+		// and the shaping of the script included
+		for(int p(0); p < stl.count(); ++p)
+			list << f->glyphsShaped(stl[p], fSize);
+	}
 	else
 	{
 		for(int p(0); p < stl.count(); ++p)

@@ -196,9 +196,16 @@ GlyphList FMOtf::shapeBuffer ( hb_buffer_t *buffer, hb_font_t *font, const QStri
 {
 	// Glyphs stay in logical order, the layout engine takes care of the
 	// progression. A script still gets its shaper: joining, reordering.
+	// Without a script name the text tells, from its first character that has
+	// one. The direction and the language this also guesses are set below.
+	if ( script.isEmpty() )
+		hb_buffer_guess_segment_properties ( buffer );
+	else
+	{
+		// 'DFLT' gives no script, and HarfBuzz then takes the DFLT table
+		hb_buffer_set_script ( buffer, hb_ot_tag_to_script ( tagOf ( script ) ) );
+	}
 	hb_buffer_set_direction ( buffer, ltr ? HB_DIRECTION_LTR : HB_DIRECTION_RTL );
-	// 'DFLT' gives no script, and HarfBuzz then takes the DFLT table
-	hb_buffer_set_script ( buffer, hb_ot_tag_to_script ( tagOf ( script ) ) );
 	// Not guessed from the locale: it would pick the forms of one language
 	hb_buffer_set_language ( buffer, isDefaultLanguage ( lang ) ? HB_LANGUAGE_INVALID : hb_ot_tag_to_language ( tagOf ( lang ) ) );
 	// A mark keeps the index of its own character

@@ -3603,7 +3603,7 @@ GlyphList FontItem::glyphs ( QString spec, double fsize )
 	return ret;
 }
 
-GlyphList FontItem::glyphs(QString spec, double fsize, OTFSet set)
+GlyphList FontItem::shapeWords(const QString& spec, double fsize, const std::function<GlyphList(const QString&)>& shapeWord)
 {
 	FMHyphenator *hyph = typotek::getInstance()->getHyphenator();
 	GlyphList Gret;
@@ -3611,31 +3611,30 @@ GlyphList FontItem::glyphs(QString spec, double fsize, OTFSet set)
 		return Gret;
 	if(!ensureFace())
 		return Gret;
-	
-	otf = new FMOtf ( m_face, 0x10000 );
-	if ( !otf )
-	{
-		releaseFace();
-		return Gret;
-	}
+	otf = new FMOtf ( m_face );
 
-//	FMAltContext * actx ( FMAltContextLib::GetCurrentContext());
-//	int cword(0);
-//	int cchunk(0);
-	QStringList stl(spec.split(' ',Qt::SkipEmptyParts));
-	
-	double scalefactor = fsize / m_face->units_per_EM  ;
-	
+	// the engine works in font units
+	const double scalefactor = fsize / m_face->units_per_EM  ;
+	const auto scaled = [scalefactor](GlyphList gl)
+	{
+		for(RenderedGlyph& g : gl)
+		{
+			g.xadvance *= scalefactor;
+			g.yadvance *= scalefactor;
+			g.xoffset *= scalefactor;
+			g.yoffset *= scalefactor;
+		}
+		return gl;
+	};
+
 	QGraphicsPathItem *glyph = itemFromChar ( QChar(' ').unicode() , fsize );
 	RenderedGlyph wSpace(glyph->data(GLYPH_DATA_GLYPH).toInt(),0, glyph->data(GLYPH_DATA_HADVANCE).toDouble() * scalefactor ,0,0,0,' ',false);
 	wSpace.lChar = 0x20;
 	delete glyph;
+
+	const QStringList stl(spec.split(' ',Qt::SkipEmptyParts));
 	for(QStringList::const_iterator sIt(stl.constBegin());sIt != stl.constEnd(); ++ sIt)
 	{
-//		actx->setWord(cword);
-//		actx->setChunk(cchunk);
-//		actx->fileWord(*sIt);
-//		actx->fileChunk(*sIt);
 		if(sIt != stl.constBegin())
 		{
 			Gret << wSpace;
@@ -3644,58 +3643,38 @@ GlyphList FontItem::glyphs(QString spec, double fsize, OTFSet set)
 		if(hyph)
 		{
 			hl = hyph->hyphenate(*sIt) ;
-// 			qDebug()<<"Hyph W C"<<*sIt<<hl.size();
 		}
-		GlyphList ret( otf->procstring ( *sIt , set ) );
-		// otf->procstring works in font unit, so...
+		GlyphList ret( scaled ( shapeWord ( *sIt ) ) );
 		for(int i(0); i < ret.size(); ++i)
 		{
-			ret[i].xadvance *= scalefactor;
-			ret[i].yadvance *= scalefactor;
-			ret[i].xoffset *= scalefactor;
-			ret[i].yoffset *= scalefactor;
-			
-			if(hl.contains( ret[i].log ))
+			// the breaks are keyed by character, which is log, not by glyph
+			const auto brk ( hl.constFind ( ret[i].log ) );
+			if(brk != hl.constEnd())
 			{
-// 				qDebug()<<"L R"<<hl[ret[i].log].first<<hl[ret[i].log].second;
 				ret[i].isBreak = true;
-				QString addOnFirst;
-				QString addOnSecond;
-				addOnFirst =  hl[i].first.endsWith("-") ? "": "-";
-// 				addOnSecond = (*sIt).endsWith(".")?".":"";
-//				actx->setChunk(++cchunk);
-//				actx->fileChunk( hl[ret[i].log].first + addOnFirst);
-				ret[i].hyphen.first = otf->procstring ( hl[ret[i].log].first + addOnFirst, set );
-				for(int f(0); f < ret[i].hyphen.first.size(); ++f)
-				{
-					ret[i].hyphen.first[f].xadvance *= scalefactor;
-					ret[i].hyphen.first[f].yadvance *= scalefactor;
-					ret[i].hyphen.first[f].xoffset *= scalefactor;
-					ret[i].hyphen.first[f].yoffset *= scalefactor;
-				}
-
-//				actx->setChunk(++cchunk);
-//				actx->fileChunk( hl[ret[i].log].second + addOnSecond );
-				ret[i].hyphen.second = otf->procstring ( hl[ret[i].log].second + addOnSecond, set );
-				for(int f(0); f < ret[i].hyphen.second.size(); ++f)
-				{
-					ret[i].hyphen.second[f].xadvance *= scalefactor;
-					ret[i].hyphen.second[f].yadvance *= scalefactor;
-					ret[i].hyphen.second[f].xoffset *= scalefactor;
-					ret[i].hyphen.second[f].yoffset *= scalefactor;
-				}
+				const QString addOnFirst ( brk.value().first.endsWith("-") ? "": "-" );
+				ret[i].hyphen.first = scaled ( shapeWord ( brk.value().first + addOnFirst ) );
+				ret[i].hyphen.second = scaled ( shapeWord ( brk.value().second ) );
 			}
 		}
-		
 		Gret << ret;
-//		cchunk = 0;
-//		++cword;
-		
 	}
+
 	delete otf;
 	otf = nullptr;
 	releaseFace();
 	return Gret;
+}
+
+GlyphList FontItem::glyphs(QString spec, double fsize, OTFSet set)
+{
+	return shapeWords ( spec, fsize, [&] ( const QString& word ) { return otf->procstring ( word, set ); } );
+}
+
+GlyphList FontItem::glyphsShaped(const QString& spec, double fsize)
+{
+	// no script named: the engine takes it from each word
+	return shapeWords ( spec, fsize, [&] ( const QString& word ) { return otf->shape ( word, QString(), true ); } );
 }
 
 GlyphList FontItem::glyphs(QString spec, double fsize, QString script)
