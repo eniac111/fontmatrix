@@ -1,6 +1,0 @@
-# SPDX-FileCopyrightText: none
-# SPDX-License-Identifier: CC0-1.0
-#
-# libhnj is not ours to reformat.
-DisableFormat: true
-SortIncludes: false

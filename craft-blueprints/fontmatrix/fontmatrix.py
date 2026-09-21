@@ -67,6 +67,7 @@ class subinfo(info.infoclass):
         # HarfBuzz. Fontmatrix links it itself, so it is named.
         self.runtimeDependencies["libs/harfbuzz"] = None
         self.runtimeDependencies["libs/podofo"] = None
+        self.runtimeDependencies["libs/hyphen"] = None
 
 
 class Package(CMakePackageBase):

@@ -227,9 +227,15 @@ ${CMAKE_SOURCE_DIR}/src/graphic-resources/template_default.xml
 ${CMAKE_SOURCE_DIR}/src/graphic-resources/template_default.png
 )
 # tell cmake to process CMakeLists.txt in that subdirectory
-SET(HYPHENATE_DIR src/hyphenate)
-ADD_SUBDIRECTORY(${HYPHENATE_DIR})
-SET(HYPHENATE_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/${HYPHENATE_DIR})
+# libhyphen (hunspell) hyphenates the sample text when a dictionary is set.
+# It comes with every platform: Arch "hyphen", Debian "libhyphen-dev", the
+# KDE Flatpak runtime, and craft-blueprints/libs/hyphen for Windows.
+find_package(Hyphen REQUIRED)
+set_package_properties(Hyphen PROPERTIES
+    DESCRIPTION "Hyphenation library of the hunspell project"
+    URL "https://github.com/hunspell/hyphen"
+    TYPE REQUIRED
+    PURPOSE "Hyphenation of the sample texts")
 
 
 
@@ -389,10 +395,8 @@ ${_gpl_text}")
 ENDIF(WIN32)
 
 # The KDE coding style: "ninja clang-format" formats everything, the pre-commit hook checks
-# the lines a commit changes. src/hyphenate is somebody else's code and has its own
-# .clang-format that switches the formatting off.
+# the lines a commit changes.
 file(GLOB_RECURSE FONTMATRIX_CLANG_FORMAT_SOURCES src/*.cpp src/*.h dodict/*.cpp)
-list(FILTER FONTMATRIX_CLANG_FORMAT_SOURCES EXCLUDE REGEX "/src/hyphenate/")
 kde_clang_format(${FONTMATRIX_CLANG_FORMAT_SOURCES})
 kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)
 
