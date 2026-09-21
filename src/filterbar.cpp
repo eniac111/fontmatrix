@@ -100,15 +100,12 @@ int TagListModel::columnCount(const QModelIndex &parent) const
 
 QVariant TagListModel::data(const QModelIndex &index, int role) const
 {
-	if(!index.isValid() && index.column() != 0)
+	if(!index.isValid() || index.column() != 0)
 		return QVariant();
-	QStringList tl_tmp = FMFontDb::DB()->getTags();
-	tl_tmp.sort();
-	// specials
-	QString tagActivated(i18n("Activated"));
-	tl_tmp.prepend(tagActivated);
-
-	QString tag(tl_tmp.at(index.row()));
+	// getTags() is cached and sorted, the specials come first
+	const bool special(index.row() < specialTagsCount);
+	const QString tag(special ? i18n("Activated")
+				  : FMFontDb::DB()->getTags().value(index.row() - specialTagsCount));
 	if(role == Qt::DisplayRole)
 	{
 //		return tag;
@@ -121,14 +118,15 @@ QVariant TagListModel::data(const QModelIndex &index, int role) const
 	{
 //		return QVariant();
 		QString ts("%1 (%2)");
-		int tc(tag == tagActivated ?
+		int tc(special ?
 		       FMFontDb::DB()->Fonts(1, FMFontDb::Activation ).count()
 			       :FMFontDb::DB()->Fonts(tag, FMFontDb::Tags ).count());
 		QRect pr(0,0,1024,18);
 		QPixmap pm(pr.size());
 		QPainter p;
 		p.begin(&pm);
-		p.drawText(pr,Qt::AlignLeft | Qt::TextDontClip | Qt::TextSingleLine, ts.arg(tag).arg(tc) , &pr);
+		const QString label(ts.arg(tag, QString::number(tc)));
+		p.drawText(pr,Qt::AlignLeft | Qt::TextDontClip | Qt::TextSingleLine, label , &pr);
 		p.end();
 		QPixmap tagPix(pr.width() + 18, 18);
 		tagPix.fill(Qt::transparent);
@@ -142,7 +140,7 @@ QVariant TagListModel::data(const QModelIndex &index, int role) const
 		p.drawRoundedRect(tagPix.rect(), 5,5);
 		p.restore();
 		pr.translate(9,0);
-		p.drawText(pr, ts.arg(tag).arg(tc));
+		p.drawText(pr, label);
 		p.end();
 		return tagPix;
 	}
@@ -167,8 +165,9 @@ bool TagListModel::setData(const QModelIndex &index, const QVariant &value, int 
 		return false;
 	if(value.toString().isEmpty())
 		return false;
-	QStringList tl_tmp = FMFontDb::DB()->getTags();
-	tl_tmp.sort();
+	if(index.row() < specialTagsCount)
+		return false;
+	const QStringList tl_tmp = FMFontDb::DB()->getTags();
 	if(value.toString() == tl_tmp.at(index.row() - specialTagsCount))
 		return false;
 	FMFontDb::DB()->editTag ( tl_tmp.at(index.row() - specialTagsCount), value.toString());
@@ -213,7 +212,9 @@ void TagListModel::removeFromCurrents(const QString &t)
 
 void TagListModel::tagsDBChanged()
 {
-	emit dataChanged(index(0,0),index(FMFontDb::DB()->getTags().count() + specialTagsCount -1 ,columnCount() -1));
+	// The number of rows may have changed, dataChanged() is not enough
+	beginResetModel();
+	endResetModel();
 }
 
 FilterBar::FilterBar(QWidget *parent) :

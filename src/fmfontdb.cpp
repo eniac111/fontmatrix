@@ -48,6 +48,7 @@ FMFontDb::FMFontDb()
 	tableName[Info] 	= "fontmatrix_info";
 
 	transactionDeep = 0;
+	tagsCacheValid = false;
 
 	priorList <<	QString("Book")
 			<<	QString("Normal")
@@ -84,6 +85,15 @@ bool FMFontDb::execBound ( QSqlQuery & query, const QString & statement, const Q
 		return false;
 	}
 	return true;
+}
+
+void FMFontDb::invalidateTags ( const QString & id )
+{
+	tagsCacheValid = false;
+	if ( id.isEmpty() )
+		rValueCache.clear();
+	else
+		rValueCache.remove ( id );
 }
 
 void FMFontDb::initRecord ( const QString & id )
@@ -345,7 +355,7 @@ void FMFontDb::addTag ( const QString & id, const QString & t )
 	             .arg ( tableName[Tag], fieldName[Id], fieldName[Tags] ) );
 	QSqlQuery query ( *this );
 	execBound ( query, ts, QVariantList() << nId << t );
-	rValueCache.remove ( id );
+	invalidateTags ( id );
 }
 
 void FMFontDb::addTag(const QStringList & idlist, const QString & t)
@@ -361,7 +371,7 @@ void FMFontDb::addTag(const QStringList & idlist, const QString & t)
 		nidlist << getId ( id );
 		taglist << t;
 	}
-	rValueCache.clear();
+	invalidateTags();
 	query.addBindValue ( nidlist );
 	query.addBindValue ( taglist );
 
@@ -379,7 +389,7 @@ void FMFontDb::removeTag ( const QString & id, const QString & t )
 	             .arg ( tableName[Tag], fieldName[Id], fieldName[Tags] ) );
 	QSqlQuery query ( *this );
 	execBound ( query, qs, QVariantList() << nId << t );
-	rValueCache.remove ( id );
+	invalidateTags ( id );
 }
 
 void FMFontDb::setTags ( const QString & id, const QStringList & tl )
@@ -389,7 +399,7 @@ void FMFontDb::setTags ( const QString & id, const QStringList & tl )
 	             .arg ( tableName[Tag], fieldName[Id] ) );
 	QSqlQuery query ( *this );
 	execBound ( query, qs, QVariantList() << nId );
-	rValueCache.remove ( id );
+	invalidateTags ( id );
 	// 	TransactionBegin();
 	for (const auto& t : tl)
 	{
@@ -401,21 +411,22 @@ void FMFontDb::setTags ( const QString & id, const QStringList & tl )
 QStringList FMFontDb::getTags()
 {
 	// 	qDebug() <<"getTags";
+	if ( tagsCacheValid )
+		return tagsCache;
+
+	tagsCache.clear();
 	QString qs ( QString ( "SELECT %1 FROM %2" )
 	             .arg ( fieldName[Tags], tableName[Tag] ) );
 	QSqlQuery query ( *this );
 	if ( execBound ( query, qs ) )
 	{
-		QStringList tl;
 		while ( query.next() )
-		{
-			QString t ( query.value ( 0 ).toString() );
-			if ( !tl.contains ( t ) )
-				tl << t;
-		}
-		return tl;
+			tagsCache << query.value ( 0 ).toString();
+		tagsCache.removeDuplicates();
+		tagsCache.sort();
+		tagsCacheValid = true;
 	}
-	return QStringList();
+	return tagsCache;
 }
 
 void FMFontDb::addTagToDB ( const QString & t )
@@ -425,7 +436,7 @@ void FMFontDb::addTagToDB ( const QString & t )
 	             .arg ( tableName[Tag], fieldName[Id], fieldName[Tags] ) );
 	QSqlQuery query ( *this );
 	execBound ( query, vs, QVariantList() << 0 << t );
-	rValueCache.clear();
+	invalidateTags();
 	emit tagsChanged();
 }
 
@@ -435,7 +446,7 @@ void FMFontDb::removeTagFromDB(const QString & t)
 		     .arg ( tableName[Tag], fieldName[Tags] ) );
 	QSqlQuery query ( *this );
 	execBound ( query, qs, QVariantList() << t );
-	rValueCache.clear();
+	invalidateTags();
 	emit tagsChanged();
 }
 
@@ -445,7 +456,7 @@ void FMFontDb::editTag(const QString & tOld, const QString & tNew)
 		     .arg ( tableName[Tag], fieldName[Tags] ) );
 	QSqlQuery query ( *this );
 	execBound ( query, qs, QVariantList() << tNew << tOld );
-	rValueCache.clear();
+	invalidateTags();
 	emit tagsChanged();
 }
 
@@ -825,7 +836,7 @@ bool FMFontDb::Remove ( const QString & id )
 	reverseCacheId.remove(nId);
 	cacheId.remove(id);
 
-	rValueCache.remove ( id );
+	invalidateTags ( id );
 
 	// Every table is tried even after a failure, so that a font never
 	// survives in one of them only.
