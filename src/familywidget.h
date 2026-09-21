@@ -7,11 +7,10 @@
 #ifndef FAMILYWIDGET_H
 #define FAMILYWIDGET_H
 
-#include <QWidget>
 #include <QList>
 #include <QModelIndex>
 #include <QStringList>
-
+#include <QWidget>
 
 constexpr int FAMILY_VIEW_INFO = 0;
 constexpr int FAMILY_VIEW_SAMPLE = 1;
@@ -23,8 +22,9 @@ class FontItem;
 class TagsWidget;
 class FloatingWidget;
 
-namespace Ui {
-    class FamilyWidget;
+namespace Ui
+{
+class FamilyWidget;
 }
 
 class FamilyWidget : public QWidget
@@ -35,20 +35,20 @@ public:
     explicit FamilyWidget(QWidget *parent = nullptr);
     ~FamilyWidget() override;
 
-    void setFamily(const QString& f);
-    TagsWidget* tagWidget();
+    void setFamily(const QString &f);
+    TagsWidget *tagWidget();
     QString family;
     QString curVariant;
 
 protected:
     void changeEvent(QEvent *e) override;
-    void keyPressEvent ( QKeyEvent * event ) override;
+    void keyPressEvent(QKeyEvent *event) override;
 
-    void buildList(const QList<FontItem*>& fl);
+    void buildList(const QList<FontItem *> &fl);
 
 private:
     Ui::FamilyWidget *const ui;
-    FMPreviewModel * previewModel = nullptr;
+    FMPreviewModel *previewModel = nullptr;
     FloatingWidget *sample = nullptr;
     FloatingWidget *chart = nullptr;
     FloatingWidget *activation = nullptr;
@@ -61,20 +61,20 @@ private:
 
 Q_SIGNALS:
     void backToList();
-    void fontSelected(const QString& path);
+    void fontSelected(const QString &path);
     void familyStateChanged();
 
 private Q_SLOTS:
     void slotPreviewUpdate();
     void slotPreviewUpdateSize(int);
-    void slotPreviewSelected(const QModelIndex & index);
+    void slotPreviewSelected(const QModelIndex &index);
     void slotShowInfo();
     void slotShowSample();
     void slotShowChart();
     void slotShowActivation();
     void slotDetachSample();
     void slotDetachChart();
-//    void slotDetachActivation();
+    //    void slotDetachActivation();
     void slotStateChange();
 };
 

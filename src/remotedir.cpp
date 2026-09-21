@@ -10,37 +10,37 @@
 
 // #include <QHttp>
 #include <KLocalizedString>
-#include <QByteArray>
 #include <QBuffer>
-#include <QUrl>
-#include <QDomDocument>
-#include <QWaitCondition>
+#include <QByteArray>
 #include <QDebug>
+#include <QDomDocument>
+#include <QUrl>
+#include <QWaitCondition>
 
 extern QWaitCondition remoteDirsCond;
 
 RemoteDir::RemoteDir(const QStringList &dirs)
-	: argDirs(dirs), m_ready(false)
+    : argDirs(dirs)
+    , m_ready(false)
 {
-	qCDebug(FONTMATRIX_LOG)<<"RemoteDir::RemoteDir("<<dirs.join(";")<<")";
-	if (argDirs.isEmpty())
-		m_ready = true;
-	
-	stopper = stopperEndPreviews = stopperEndReq = false;
+    qCDebug(FONTMATRIX_LOG) << "RemoteDir::RemoteDir(" << dirs.join(";") << ")";
+    if (argDirs.isEmpty())
+        m_ready = true;
+
+    stopper = stopperEndPreviews = stopperEndReq = false;
 }
 
 void RemoteDir::run()
 {
-	qCDebug(FONTMATRIX_LOG)<<"RemoteDir::run()";
-	for(int ridx(0); ridx < argDirs.size(); ++ridx)
-	{
-		auto ba = new QByteArray;
-		auto buffer = new QBuffer;
-		buffers << buffer;
-		buffer->setBuffer(ba);
-		buffer->open(QIODevice::WriteOnly);
-		
-		QUrl url(argDirs.at ( ridx ));
+    qCDebug(FONTMATRIX_LOG) << "RemoteDir::run()";
+    for (int ridx(0); ridx < argDirs.size(); ++ridx) {
+        auto ba = new QByteArray;
+        auto buffer = new QBuffer;
+        buffers << buffer;
+        buffer->setBuffer(ba);
+        buffer->open(QIODevice::WriteOnly);
+
+        QUrl url(argDirs.at(ridx));
 #if 0 // TODO Replace this part of code
 		QHttp *rd = new QHttp(url.host());
 		rd->setObjectName(argDirs[ridx]);
@@ -57,9 +57,8 @@ void RemoteDir::run()
 		reverseHttp[rdId] = rd;
 		httpPaths[rdId] = url.path();
 #endif
-	}
+    }
 }
-
 
 RemoteDir::~RemoteDir()
 {
@@ -69,25 +68,24 @@ RemoteDir::~RemoteDir()
 		delete h;
 	}
 #endif
-	for (auto* b : std::as_const(buffers))
-	{
-		delete b;
-	}
-	for(QMap<int, QByteArray*>::iterator ba = httpBuffers.begin(); ba != httpBuffers.end(); ++ba)
-		delete ba.value();
+    for (auto *b : std::as_const(buffers)) {
+        delete b;
+    }
+    for (QMap<int, QByteArray *>::iterator ba = httpBuffers.begin(); ba != httpBuffers.end(); ++ba)
+        delete ba.value();
 }
 
 void RemoteDir::slotEndPreviews(int id, bool error)
 {
-// 	qDebug()<<"RemoteDir::slotEndPreviews("<< id<<", "<<error<<")";
-	if(stopperEndPreviews)
-		return;
-	if(error)
-		pendingPixmaps[id] = 0;
-	else
-		pendingPixmaps[id] = 2;
-	
-	int pendingReqs(0);
+    // 	qDebug()<<"RemoteDir::slotEndPreviews("<< id<<", "<<error<<")";
+    if (stopperEndPreviews)
+        return;
+    if (error)
+        pendingPixmaps[id] = 0;
+    else
+        pendingPixmaps[id] = 2;
+
+    int pendingReqs(0);
 #if 0 // TODO Replace this code
 	for(int i(0);i < https.size(); ++i)
 	{
@@ -101,26 +99,24 @@ void RemoteDir::slotEndPreviews(int id, bool error)
 		}
 	}
 #endif
-	if(!pendingReqs)
-	{
-		qCDebug(FONTMATRIX_LOG) <<"Get all previews";
-		stopperEndPreviews = true;
-		eventEndDownload();
-	}
-	
+    if (!pendingReqs) {
+        qCDebug(FONTMATRIX_LOG) << "Get all previews";
+        stopperEndPreviews = true;
+        eventEndDownload();
+    }
 }
 
 void RemoteDir::slotEndReq(int id, bool error)
 {
-	qCDebug(FONTMATRIX_LOG)<<"RemoteDir::slotEndReq("<< id<<", "<<error<<")";
-	if(stopperEndReq)
-		return;
-	if(error)
-		httpRequests[id] = 0;
-	else
-		httpRequests[id] = 2;
-	
-	bool hFound = false;
+    qCDebug(FONTMATRIX_LOG) << "RemoteDir::slotEndReq(" << id << ", " << error << ")";
+    if (stopperEndReq)
+        return;
+    if (error)
+        httpRequests[id] = 0;
+    else
+        httpRequests[id] = 2;
+
+    bool hFound = false;
 #if 0 // TODO Replace this code
 	int ih(0);
 	for(;ih < https.size();++ih)
@@ -132,15 +128,14 @@ void RemoteDir::slotEndReq(int id, bool error)
 		}
 	}
 #endif
-	if(!hFound)
-	{
-		qCDebug(FONTMATRIX_LOG)<< "Oops - Can’t determine which Http object called me";
-		return;
-	}
+    if (!hFound) {
+        qCDebug(FONTMATRIX_LOG) << "Oops - Can’t determine which Http object called me";
+        return;
+    }
 #if 0 // TODO Replace this code
 	disconnect( https[ih],SIGNAL(requestFinished( int, bool )),this,SLOT(slotEndReq(int, bool)));
 #endif
-	int pendingReqs(0);
+    int pendingReqs(0);
 #if 0 // TODO Replace this code
 	for(int i(0);i < https.size(); ++i)
 	{
@@ -154,89 +149,80 @@ void RemoteDir::slotEndReq(int id, bool error)
 // 		}
 	}
 #endif
-	if(!pendingReqs)
-	{
-		stopperEndReq = true;
-		getPreviews();
-	}
+    if (!pendingReqs) {
+        stopperEndReq = true;
+        getPreviews();
+    }
 }
 
 void RemoteDir::eventEndDownload()
 {
-	if(stopper)
-		return;
-	QMap<int, QByteArray*>::const_iterator bIt;
-	for(bIt = httpBuffers.constBegin(); bIt != httpBuffers.constEnd(); ++bIt)
-	{
-		if(httpRequests.value ( bIt.key() ) == 0)
-			continue;
-		QString path(rDirs.value ( bIt.key() ));
-		qCDebug(FONTMATRIX_LOG)<< "Path("<<bIt.key()<<")->"<< path;
-		QDomDocument doc ( "fontdata" );
-		doc.setContent(*(bIt.value()));
-		//loading fonts
-		QDomNodeList colList = doc.elementsByTagName ( "fontfile" );
-		for ( int i = 0; i < colList.length(); ++i )
-		{
-			QDomNode col = colList.item ( i );
-			
-			FontInfo fi;
+    if (stopper)
+        return;
+    QMap<int, QByteArray *>::const_iterator bIt;
+    for (bIt = httpBuffers.constBegin(); bIt != httpBuffers.constEnd(); ++bIt) {
+        if (httpRequests.value(bIt.key()) == 0)
+            continue;
+        QString path(rDirs.value(bIt.key()));
+        qCDebug(FONTMATRIX_LOG) << "Path(" << bIt.key() << ")->" << path;
+        QDomDocument doc("fontdata");
+        doc.setContent(*(bIt.value()));
+        // loading fonts
+        QDomNodeList colList = doc.elementsByTagName("fontfile");
+        for (int i = 0; i < colList.length(); ++i) {
+            QDomNode col = colList.item(i);
 
-			fi.family = col.toElement().attributeNode("family").value();
-			fi.variant = col.toElement().attributeNode("variant").value();
-			fi.type = col.toElement().attributeNode("type").value();
-			QString basename(col.namedItem ( "file" ).toElement().text());
-			fi.file  = path + basename;
-			fi.info = col.namedItem ( "info" ).toElement().text();
-			if(pixmaps.contains(basename))
-			{
-				fi.pix = QPixmap::fromImage (QImage::fromData( (const uchar*)pixmaps[basename]->data(), pixmaps[basename]->size() ));
-			}
-			else
-			{
-				qCDebug(FONTMATRIX_LOG) << "No pixmap for " + fi.file;
-				fi.pix = QPixmap();
-			}
+            FontInfo fi;
 
-			QDomNodeList taglist = col.toElement().elementsByTagName ( "tag" );
-			fi.tags.clear();
-			for(int ti = 0; ti < taglist.size(); ++ti)
-			{
-				if(!fi.tags.contains(taglist.at(ti).toElement().text()))
-					fi.tags  << taglist.at(ti).toElement().text();
-			}
-			
-			m_fonts << fi;
-		}
-	}
-	m_ready = true;
-	stopper = true;
-	Q_EMIT listIsReady();
+            fi.family = col.toElement().attributeNode("family").value();
+            fi.variant = col.toElement().attributeNode("variant").value();
+            fi.type = col.toElement().attributeNode("type").value();
+            QString basename(col.namedItem("file").toElement().text());
+            fi.file = path + basename;
+            fi.info = col.namedItem("info").toElement().text();
+            if (pixmaps.contains(basename)) {
+                fi.pix = QPixmap::fromImage(QImage::fromData((const uchar *)pixmaps[basename]->data(), pixmaps[basename]->size()));
+            } else {
+                qCDebug(FONTMATRIX_LOG) << "No pixmap for " + fi.file;
+                fi.pix = QPixmap();
+            }
+
+            QDomNodeList taglist = col.toElement().elementsByTagName("tag");
+            fi.tags.clear();
+            for (int ti = 0; ti < taglist.size(); ++ti) {
+                if (!fi.tags.contains(taglist.at(ti).toElement().text()))
+                    fi.tags << taglist.at(ti).toElement().text();
+            }
+
+            m_fonts << fi;
+        }
+    }
+    m_ready = true;
+    stopper = true;
+    Q_EMIT listIsReady();
 }
 
 void RemoteDir::getPreviews()
 {
-	QMap<int, QByteArray*>::const_iterator bIt;
-	for(bIt = httpBuffers.constBegin(); bIt != httpBuffers.constEnd(); ++bIt)
-	{
-		if(httpRequests.value ( bIt.key() ) == 0)
-			continue;
-		
-		QDomDocument doc ( "fontdata" );
-		doc.setContent(*(bIt.value()));
-		QDomNodeList colList = doc.elementsByTagName ( "fontfile" );
-		for ( int i = 0; i < colList.length(); ++i )
-		{
-			QDomNode col = colList.item ( i );
-			QString p = col.namedItem ( "file" ).toElement().text();
-			
-			auto ba = new QByteArray;
-			auto buffer = new QBuffer;
-			buffers << buffer;
-			buffer->setBuffer(ba);
-			buffer->open(QIODevice::WriteOnly);
-			pixmaps[p] = ba;
-			
+    QMap<int, QByteArray *>::const_iterator bIt;
+    for (bIt = httpBuffers.constBegin(); bIt != httpBuffers.constEnd(); ++bIt) {
+        if (httpRequests.value(bIt.key()) == 0)
+            continue;
+
+        QDomDocument doc("fontdata");
+        doc.setContent(*(bIt.value()));
+        QDomNodeList colList = doc.elementsByTagName("fontfile");
+        for (int i = 0; i < colList.length(); ++i) {
+            QDomNode col = colList.item(i);
+            QString p = col.namedItem("file").toElement().text();
+
+            auto ba = new QByteArray;
+            auto buffer = new QBuffer;
+            buffers << buffer;
+            buffer->setBuffer(ba);
+            buffer->open(QIODevice::WriteOnly);
+            pixmaps[p] = ba;
+
 #if 0 // TODO Replace this code
 			connect(reverseHttp[bIt.key()],SIGNAL(requestFinished( int, bool )),this,SLOT(slotEndPreviews(int, bool)));
 			int rdId(reverseHttp[bIt.key()]->get(httpPaths[bIt.key()]+"/"+ p + ".png", buffer));
@@ -244,15 +230,14 @@ void RemoteDir::getPreviews()
 // 			qDebug() << "Started download of " << httpPaths[bIt.key()]+"/"+ p + ".png";
 			typotek::getInstance()->showStatusMessage(i18n("Downloading") +" "+ httpPaths[bIt.key()]+"/"+ p + ".png");
 #endif
-		}
-	}
+        }
+    }
 }
 
-
-void RemoteDir::slotProgress(int , int )
+void RemoteDir::slotProgress(int, int)
 {
-// 	qDebug()<<"RemoteDir::slotProgress(int done, int total)";
-	bool hFound = false;
+    // 	qDebug()<<"RemoteDir::slotProgress(int done, int total)";
+    bool hFound = false;
 #if 0 // TODO Replace this code
 	for(;ih < https.size();++ih)
 	{
@@ -263,11 +248,10 @@ void RemoteDir::slotProgress(int , int )
 		}
 	}
 #endif
-	if(!hFound)
-	{
-		qCDebug(FONTMATRIX_LOG)<< "Oops - Can’t determine which Http object called me";
-		return;
-	}
+    if (!hFound) {
+        qCDebug(FONTMATRIX_LOG) << "Oops - Can’t determine which Http object called me";
+        return;
+    }
 #if 0
 	QString file(https[ih]->objectName()); // TODO Replace this code
 	qCDebug(FONTMATRIX_LOG)<< file <<" [" <<done << "/"<< total<<"]";
@@ -277,8 +261,8 @@ void RemoteDir::slotProgress(int , int )
 /// FontInfo **********************************************
 QString RemoteDir::FontInfo::dump()
 {
-	QString sep(" | ");
-	return file + sep + family + sep + variant + sep + type + sep +tags.join(sep);
+    QString sep(" | ");
+    return file + sep + family + sep + variant + sep + type + sep + tags.join(sep);
 }
 
 #include "moc_remotedir.cpp"

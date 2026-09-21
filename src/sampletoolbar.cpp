@@ -4,17 +4,17 @@
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
-#include <KLocalizedString>
 #include "sampletoolbar.h"
-#include "ui_sampletoolbar.h"
 #include "fmfontstrings.h"
+#include "ui_sampletoolbar.h"
+#include <KLocalizedString>
 
-SampleToolBar::SampleToolBar(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::SampleToolBar)
+SampleToolBar::SampleToolBar(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::SampleToolBar)
 {
     ui->setupUi(this);
-//    setAutoFillBackground(true);
+    //    setAutoFillBackground(true);
 
     connect(ui->liveSize, &QDoubleSpinBox::valueChanged, this, &SampleToolBar::SizeChanged);
     connect(ui->sampleButton, &QToolButton::toggled, this, &SampleToolBar::SampleToggled);
@@ -41,65 +41,64 @@ void SampleToolBar::changeEvent(QEvent *e)
 
 double SampleToolBar::getFontSize() const
 {
-	return ui->liveSize->value();
+    return ui->liveSize->value();
 }
 
 void SampleToolBar::setFontSize(double fs)
 {
-	ui->liveSize->setValue(fs);
+    ui->liveSize->setValue(fs);
 }
 
 bool SampleToolBar::isChecked(Button b)
 {
-	if(b == SampleButton)
-		return ui->sampleButton->isChecked();
-	else if(b == OpenTypeButton)
-		return ui->opentypeButton->isChecked();
-	return false;
+    if (b == SampleButton)
+        return ui->sampleButton->isChecked();
+    else if (b == OpenTypeButton)
+        return ui->opentypeButton->isChecked();
+    return false;
 }
 
 void SampleToolBar::toggle(Button b, bool c)
 {
-	if(b == SampleButton)
-		ui->sampleButton->setChecked(c);
-	else if(b == OpenTypeButton)
-		ui->opentypeButton->setChecked(c);
+    if (b == SampleButton)
+        ui->sampleButton->setChecked(c);
+    else if (b == OpenTypeButton)
+        ui->opentypeButton->setChecked(c);
 }
 
 void SampleToolBar::enableButton(Button b, bool c)
 {
-	if(b == SampleButton)
-		ui->sampleButton->setEnabled(c);
-	else if(b == OpenTypeButton)
-		ui->opentypeButton->setEnabled(c);
+    if (b == SampleButton)
+        ui->sampleButton->setEnabled(c);
+    else if (b == OpenTypeButton)
+        ui->opentypeButton->setEnabled(c);
 }
 
 void SampleToolBar::setScripts(const QStringList &ll)
 {
-	// Called from SampleWidget::fillOTTree() on every font selection, so the
-	// combo has to be emptied first: without this each font appends another
-	// "Select language" entry plus a duplicate of every script, and the
-	// selection is left pointing into the previous font's entries. A stale
-	// non-default selection matters, because SampleWidget::doRender() gives
-	// the script shaper precedence over the OpenType feature checkboxes —
-	// they then silently stop having any effect.
-	ui->languageCombo->clear();
-	ui->languageCombo->addItem(i18n("Select language"), QString("NOSHAPER"));
-	for (const auto& l : ll)
-	{
-		ui->languageCombo->addItem(FontStrings::scriptTagName(l), l);
-	}
-	// Re-enable as well as disable: a font with no scripts used to leave the
-	// combo disabled for every font selected afterwards.
-	ui->languageCombo->setEnabled(!ll.isEmpty());
+    // Called from SampleWidget::fillOTTree() on every font selection, so the
+    // combo has to be emptied first: without this each font appends another
+    // "Select language" entry plus a duplicate of every script, and the
+    // selection is left pointing into the previous font's entries. A stale
+    // non-default selection matters, because SampleWidget::doRender() gives
+    // the script shaper precedence over the OpenType feature checkboxes —
+    // they then silently stop having any effect.
+    ui->languageCombo->clear();
+    ui->languageCombo->addItem(i18n("Select language"), QString("NOSHAPER"));
+    for (const auto &l : ll) {
+        ui->languageCombo->addItem(FontStrings::scriptTagName(l), l);
+    }
+    // Re-enable as well as disable: a font with no scripts used to leave the
+    // combo disabled for every font selected afterwards.
+    ui->languageCombo->setEnabled(!ll.isEmpty());
 }
 
 QString SampleToolBar::getScript()
 {
-	QString ret(ui->languageCombo->itemData(ui->languageCombo->currentIndex()).toString());
-	if(ret != QString("NOSHAPER"))
-		return ret;
-	return QString();
+    QString ret(ui->languageCombo->itemData(ui->languageCombo->currentIndex()).toString());
+    if (ret != QString("NOSHAPER"))
+        return ret;
+    return QString();
 }
 
 #include "moc_sampletoolbar.cpp"

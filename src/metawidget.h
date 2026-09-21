@@ -7,10 +7,10 @@
 #ifndef METAWIDGET_H
 #define METAWIDGET_H
 
-#include <QWidget>
 #include <QMap>
 #include <QString>
 #include <QStringList>
+#include <QWidget>
 
 #include "fmfontstrings.h"
 
@@ -20,8 +20,9 @@ class QLineEdit;
 class QComboBox;
 class QHBoxLayout;
 
-namespace Ui {
-    class MetaWidget;
+namespace Ui
+{
+class MetaWidget;
 }
 
 class MetaWidget : public QWidget
@@ -46,7 +47,7 @@ private:
     QComboBox *filterCombo = nullptr;
     QLineEdit *filterLine = nullptr;
     QPushButton *filterButton = nullptr;
-    QMap<QLineEdit*, FMFontDb::InfoItem> metFields;
+    QMap<QLineEdit *, FMFontDb::InfoItem> metFields;
 
 Q_SIGNALS:
     void filterAdded();

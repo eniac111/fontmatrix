@@ -10,14 +10,15 @@
 #include <QString>
 
 #include <QPainterPath>
-#include <QTransform>
 #include <QRectF>
+#include <QTransform>
 
 class GlyphToSVGHelper
 {
     QPainterPath m_path;
     QTransform m_transform;
     QString m_svg;
+
 public:
     explicit GlyphToSVGHelper(QPainterPath path, QTransform tf = QTransform());
 

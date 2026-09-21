@@ -7,49 +7,54 @@
 #ifndef PLAYWIDGET_H
 #define PLAYWIDGET_H
 
-#include <QWidget>
 #include <QRectF>
+#include <QWidget>
 
 class QGraphicsScene;
 
-namespace Ui {
-	class PlayWidget;
+namespace Ui
+{
+class PlayWidget;
 }
 
 class PlayWidget : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	static PlayWidget* instance;
-	explicit PlayWidget();
+    static PlayWidget *instance;
+    explicit PlayWidget();
+
 public:
-	~PlayWidget() override;
-	static PlayWidget* getInstance();
-	double playFontSize();
-	QRectF getMaxRect();
-	void clearSelection();
-	QGraphicsScene* getPlayScene(){return playScene;}
+    ~PlayWidget() override;
+    static PlayWidget *getInstance();
+    double playFontSize();
+    QRectF getMaxRect();
+    void clearSelection();
+    QGraphicsScene *getPlayScene()
+    {
+        return playScene;
+    }
 
 Q_SIGNALS:
-	// Emitted whenever this window is shown or hidden, including when the
-	// user closes it from its own title bar. typotek's checkable Playground
-	// action is toggled on by the action itself, so without this it stays
-	// checked after the window goes away.
-	void visibilityChanged();
+    // Emitted whenever this window is shown or hidden, including when the
+    // user closes it from its own title bar. typotek's checkable Playground
+    // action is toggled on by the action itself, so without this it stays
+    // checked after the window goes away.
+    void visibilityChanged();
 
 protected:
-	void changeEvent(QEvent *e) override;
-	void closeEvent(QCloseEvent *) override;
-	void hideEvent(QHideEvent *) override;
-	void showEvent(QShowEvent *) override;
+    void changeEvent(QEvent *e) override;
+    void closeEvent(QCloseEvent *) override;
+    void hideEvent(QHideEvent *) override;
+    void showEvent(QShowEvent *) override;
 
 private:
-	Ui::PlayWidget *const ui;
-	QGraphicsScene *playScene = nullptr;
+    Ui::PlayWidget *const ui;
+    QGraphicsScene *playScene = nullptr;
 
 private Q_SLOTS:
-	void slotZoom ( int z );
-	void print();
+    void slotZoom(int z);
+    void print();
 };
 
 #endif // PLAYWIDGET_H

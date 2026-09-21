@@ -15,36 +15,36 @@ class QAction;
 
 class Shortcuts : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	~Shortcuts() override;
+    ~Shortcuts() override;
 
-	static Shortcuts* getInstance();
+    static Shortcuts *getInstance();
 
-	void add(QAction *a);
+    void add(QAction *a);
 
-	QList<QAction*> getActions();
+    QList<QAction *> getActions();
 
-	/* returns QString::null if it's not reserved or the action name
+    /* returns QString::null if it's not reserved or the action name
       the shortcut belongs if it's already taken. */
-	QString isReserved(const QString &shortcut, const QString &actionText);
+    QString isReserved(const QString &shortcut, const QString &actionText);
 
-	void setShortcut(const QString &shortcut, const QString &actionText);
+    void setShortcut(const QString &shortcut, const QString &actionText);
 
-	void clearShortcut(const QString &actionText);
+    void clearShortcut(const QString &actionText);
 
-	QString cleanName(QAction *action); // without & chars
-	QString cleanName(const QString &s);  // same with a string
+    QString cleanName(QAction *action); // without & chars
+    QString cleanName(const QString &s); // same with a string
 
 private:
-	QMap<QString, QAction*> actions;
+    QMap<QString, QAction *> actions;
 
-	static Shortcuts* instance;
+    static Shortcuts *instance;
 
-	QString settingsKey(QAction *action);
+    QString settingsKey(QAction *action);
 
 protected:
-	Shortcuts();
+    Shortcuts();
 };
 
 #endif

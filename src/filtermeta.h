@@ -16,9 +16,9 @@ class FilterMeta : public FilterData
 public:
     FilterMeta();
 
-    enum TagIndex{
-	    Field = FilterData::UserIndex,
-	    Value
+    enum TagIndex {
+        Field = FilterData::UserIndex,
+        Value
     };
 
     [[nodiscard]] QString type() const override;

@@ -10,38 +10,37 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include <QObject>
 #include <QMap>
 #include <QMutex>
+#include <QObject>
 
 class FMFreetypeLib : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	static FMFreetypeLib * instance;
-	static FMFreetypeLib * that();
-	explicit FMFreetypeLib(QObject *parent = nullptr);
+    static FMFreetypeLib *instance;
+    static FMFreetypeLib *that();
+    explicit FMFreetypeLib(QObject *parent = nullptr);
 
-	QMap<QThread *, FT_Library> libraries;
-	QMutex *mutex = nullptr;
+    QMap<QThread *, FT_Library> libraries;
+    QMutex *mutex = nullptr;
 
-	class FTLibFactory : public QObject
-	{
-	public:
-		FT_Library createLib()
-		{
-			FT_Library theLibrary;
-			FT_Init_FreeType ( &theLibrary );
-			return theLibrary;
-		}
-	};
+    class FTLibFactory : public QObject
+    {
+    public:
+        FT_Library createLib()
+        {
+            FT_Library theLibrary;
+            FT_Init_FreeType(&theLibrary);
+            return theLibrary;
+        }
+    };
 
 public:
-	static FT_Library lib(QThread * t);
+    static FT_Library lib(QThread *t);
 
 private Q_SLOTS:
-	void releaseLibrary();
-
+    void releaseLibrary();
 };
 
 #endif // FMFREETYPELIB_H

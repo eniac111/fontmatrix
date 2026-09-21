@@ -12,17 +12,15 @@
 
 class FontmatrixShaper : public FMBaseShaper
 {
-	public:
-	FontmatrixShaper(FMOtf* o, QString s);
-	~FontmatrixShaper() override;
-	
-	GlyphList doShape( const QString& s ) override;
-	private:
-		Q_DISABLE_COPY ( FontmatrixShaper )
-		FMOwnShaper *fmos = nullptr;
+public:
+    FontmatrixShaper(FMOtf *o, QString s);
+    ~FontmatrixShaper() override;
+
+    GlyphList doShape(const QString &s) override;
+
+private:
+    Q_DISABLE_COPY(FontmatrixShaper)
+    FMOwnShaper *fmos = nullptr;
 };
 
 #endif
-
-
-

@@ -7,11 +7,12 @@
 #ifndef SAMPLETOOLBAR_H
 #define SAMPLETOOLBAR_H
 
-#include <QWidget>
 #include <QStringList>
+#include <QWidget>
 
-namespace Ui {
-    class SampleToolBar;
+namespace Ui
+{
+class SampleToolBar;
 }
 
 class SampleToolBar : public QWidget
@@ -22,9 +23,9 @@ public:
     explicit SampleToolBar(QWidget *parent = nullptr);
     ~SampleToolBar() override;
 
-    enum Button{
-	    SampleButton,
-	    OpenTypeButton
+    enum Button {
+        SampleButton,
+        OpenTypeButton
     };
 
     [[nodiscard]] double getFontSize() const;
@@ -35,7 +36,7 @@ public:
 
     void enableButton(Button b, bool c);
 
-    void setScripts(const QStringList& ll);
+    void setScripts(const QStringList &ll);
     QString getScript();
 
 protected:

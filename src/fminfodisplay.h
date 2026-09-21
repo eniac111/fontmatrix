@@ -12,30 +12,29 @@
 /**
 A processing class generating XHTML to be displayed in Info tab.
 
-	@author Pierre Marchand <pierremarc@oep-h.com>
+    @author Pierre Marchand <pierremarc@oep-h.com>
 */
 
 class FontItem;
 class FMInfoDisplay
 {
-		FMInfoDisplay()= default;
-		QString html;
-		
-		QString writeFsType(FontItem * font);
-		QString writeSVGPreview(FontItem * font);
-		QString writeOrderedInfo(FontItem * font);
-		QString writePanose(FontItem * font);
-		QString writeLangOS2(FontItem * font);
-		
-		QString url2href(QString value);
-		QString xhtmlifies(const QString& value);
-		
-	public:
-		explicit FMInfoDisplay(FontItem * font);
-		~FMInfoDisplay();
-		
-		QString getHtml();
+    FMInfoDisplay() = default;
+    QString html;
 
+    QString writeFsType(FontItem *font);
+    QString writeSVGPreview(FontItem *font);
+    QString writeOrderedInfo(FontItem *font);
+    QString writePanose(FontItem *font);
+    QString writeLangOS2(FontItem *font);
+
+    QString url2href(QString value);
+    QString xhtmlifies(const QString &value);
+
+public:
+    explicit FMInfoDisplay(FontItem *font);
+    ~FMInfoDisplay();
+
+    QString getHtml();
 };
 
 #endif

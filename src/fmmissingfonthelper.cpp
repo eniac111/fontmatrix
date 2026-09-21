@@ -10,22 +10,20 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 
-FMMissingFontHelper::FMMissingFontHelper(const QString& ff)
+FMMissingFontHelper::FMMissingFontHelper(const QString &ff)
 {
-    typotek * t = typotek::getInstance();
-    KMessageBox::error( t,
-                        i18n("Fontmatrix has been unable to load the font in file \n%1.\n Please check missing files.", ff),
-                        i18n("Missing Font File"));
+    typotek *t = typotek::getInstance();
+    KMessageBox::error(t, i18n("Fontmatrix has been unable to load the font in file \n%1.\n Please check missing files.", ff), i18n("Missing Font File"));
     FmRepair repair(t);
     repair.exec();
 }
 
-FMMissingFontHelper::FMMissingFontHelper(const QStringList& ff)
+FMMissingFontHelper::FMMissingFontHelper(const QStringList &ff)
 {
-    typotek * t = typotek::getInstance();
-    KMessageBox::error( t,
-                        i18n("Fontmatrix has been unable to load fonts in files \n%1.\n Please check missing files.", ff.join("\n")),
-                        i18n("Missing Font File"));
+    typotek *t = typotek::getInstance();
+    KMessageBox::error(t,
+                       i18n("Fontmatrix has been unable to load fonts in files \n%1.\n Please check missing files.", ff.join("\n")),
+                       i18n("Missing Font File"));
     FmRepair repair(t);
     repair.exec();
 }

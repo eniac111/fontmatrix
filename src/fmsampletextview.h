@@ -10,47 +10,45 @@
 #include <QGraphicsView>
 #include <QPointF>
 
-
 /**
-	@author Pierre Marchand <pierre@oep-h.com>
+    @author Pierre Marchand <pierre@oep-h.com>
 */
 class FMSampleTextView : public QGraphicsView
 {
-		Q_OBJECT
+    Q_OBJECT
 
-	public:
-		explicit FMSampleTextView ( QWidget* parent );
+public:
+    explicit FMSampleTextView(QWidget *parent);
 
-		~FMSampleTextView() override;
-		
-		void fakePage();
-		void sheduleUpdate();
-		void unSheduleUpdate();
-		bool locker = false;
+    ~FMSampleTextView() override;
 
-	protected:
-		void resizeEvent ( QResizeEvent * event ) override;
-		void mousePressEvent ( QMouseEvent * e ) override ;
-		void mouseReleaseEvent ( QMouseEvent * e ) override  ;
-		void mouseMoveEvent ( QMouseEvent * e ) override ;
-		void wheelEvent ( QWheelEvent * e ) override;
-		void showEvent ( QShowEvent * event ) override ;
+    void fakePage();
+    void sheduleUpdate();
+    void unSheduleUpdate();
+    bool locker = false;
 
-	Q_SIGNALS:
-		void refit();
-		void pleaseUpdateMe();
-		void pleaseZoom(int);
-		
-	private:
-		QPointF mouseStartPoint;
-		QGraphicsRectItem *theRect = nullptr;
-		QGraphicsRectItem *fPage = nullptr;
-		bool isSelecting;
-		bool isPanning;
-		bool hasPendingUpdate;
-		
-		void ensureTheRect();
+protected:
+    void resizeEvent(QResizeEvent *event) override;
+    void mousePressEvent(QMouseEvent *e) override;
+    void mouseReleaseEvent(QMouseEvent *e) override;
+    void mouseMoveEvent(QMouseEvent *e) override;
+    void wheelEvent(QWheelEvent *e) override;
+    void showEvent(QShowEvent *event) override;
 
+Q_SIGNALS:
+    void refit();
+    void pleaseUpdateMe();
+    void pleaseZoom(int);
+
+private:
+    QPointF mouseStartPoint;
+    QGraphicsRectItem *theRect = nullptr;
+    QGraphicsRectItem *fPage = nullptr;
+    bool isSelecting;
+    bool isPanning;
+    bool hasPendingUpdate;
+
+    void ensureTheRect();
 };
 
 #endif

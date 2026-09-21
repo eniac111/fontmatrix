@@ -9,11 +9,9 @@
 
 #include <ui_mainview.h>
 
-#include <QStringList>
-#include <QIcon>
 #include <QElapsedTimer>
-
-
+#include <QIcon>
+#include <QStringList>
 
 class QGraphicsScene;
 class typotek;
@@ -31,97 +29,100 @@ class QTimer;
 /**
 MainViewWidget inherits from an ui designed.
 
-	@author Pierre Marchand <pierre@oep-h.com>
+    @author Pierre Marchand <pierre@oep-h.com>
 */
-class MainViewWidget :  public QWidget, private Ui::MainView
+class MainViewWidget : public QWidget, private Ui::MainView
 {
-		Q_OBJECT
+    Q_OBJECT
 
-	public:
-		explicit MainViewWidget ( QWidget *parent );
+public:
+    explicit MainViewWidget(QWidget *parent);
 
-		~MainViewWidget() override;
-	private:
-		QStringList ord;
-		QStringList fields;
-		typotek *typo = nullptr;
-		QString faceIndex;
-		QString lastIndex;
-//		QList<FontItem*> currentFonts; *moved to FMFontDB*
-		QList<FontItem*> orderedCurrentFonts;
-//		QString sampleText;
-		QGridLayout *tagLayout = nullptr;
-		QString currentOrdering;
-		FontItem *theVeryFont = nullptr; 
-		bool fontsetHasChanged;
-		bool activateByFamilyOnly;
-		bool m_forceReloadSelection;
-		QString quickSearchString;
-		QElapsedTimer quickSearchTime;
-		QTimer *quickSearchTimer = nullptr;
-		int quickSearchWait;
+    ~MainViewWidget() override;
 
-		void doConnect();
-		void disConnect();
-		void allActivation(bool act);
-		void activation(QList<FontItem*> fit, bool act);
+private:
+    QStringList ord;
+    QStringList fields;
+    typotek *typo = nullptr;
+    QString faceIndex;
+    QString lastIndex;
+    //		QList<FontItem*> currentFonts; *moved to FMFontDB*
+    QList<FontItem *> orderedCurrentFonts;
+    //		QString sampleText;
+    QGridLayout *tagLayout = nullptr;
+    QString currentOrdering;
+    FontItem *theVeryFont = nullptr;
+    bool fontsetHasChanged;
+    bool activateByFamilyOnly;
+    bool m_forceReloadSelection;
+    QString quickSearchString;
+    QElapsedTimer quickSearchTime;
+    QTimer *quickSearchTimer = nullptr;
+    int quickSearchWait;
 
-		QString curItemName;
-		
-		bool renderingLock = false;
-		
-		QIcon iconPS1;
-		QIcon iconTTF;
-		QIcon iconOTF;
+    void doConnect();
+    void disConnect();
+    void allActivation(bool act);
+    void activation(QList<FontItem *> fit, bool act);
 
-		FMPreviewModel * previewModel = nullptr;
+    QString curItemName;
 
-	public Q_SLOTS:
-		void slotFontDbChanged();
-		void slotOrderingChanged ( QString s );
-		bool slotFontSelectedByName(const QString& fname);
-		void slotPreviewUpdateSize(int w);
-		void slotShowFamily(const QModelIndex& familyIdx);
-		void slotQuitFamily();
-		
-		void slotDesactivateAll();
-		void slotActivateAll();
-		void slotRemoveCurrentItem();
-		
-	private Q_SLOTS:
-		void slotQuickSearch(const QString& text);
-		void slotEndQuickSearch();
-		void slotSelectFromQuickSearch();
+    bool renderingLock = false;
 
-		
-	Q_SIGNALS:
-		void faceChanged();
-		void listChanged();
+    QIcon iconPS1;
+    QIcon iconTTF;
+    QIcon iconOTF;
 
-	public:
-		QString defaultOrd() {return ord.at ( 0 );}
-		QList<FontItem*> curFonts();
-		void setCurFonts(QList<FontItem*> flist);
-		FontItem* selectedFont(){return theVeryFont;}
-		// The selected font or, in the list, the one of the highlighted tile
-		FontItem* selectedOrCurrentFont();
+    FMPreviewModel *previewModel = nullptr;
 
-		
-		QString sampleName();
-//		void displayWelcomeMessage();
+public Q_SLOTS:
+    void slotFontDbChanged();
+    void slotOrderingChanged(QString s);
+    bool slotFontSelectedByName(const QString &fname);
+    void slotPreviewUpdateSize(int w);
+    void slotShowFamily(const QModelIndex &familyIdx);
+    void slotQuitFamily();
 
-		void addFilterToCrumb(QString filter);
-		void setCrumb(QString text = QString());
-		
-		void saveSplitterState();
-		void restoreSplitterState();
+    void slotDesactivateAll();
+    void slotActivateAll();
+    void slotRemoveCurrentItem();
 
-		void forceReloadSelection();
+private Q_SLOTS:
+    void slotQuickSearch(const QString &text);
+    void slotEndQuickSearch();
+    void slotSelectFromQuickSearch();
 
+Q_SIGNALS:
+    void faceChanged();
+    void listChanged();
 
+public:
+    QString defaultOrd()
+    {
+        return ord.at(0);
+    }
+    QList<FontItem *> curFonts();
+    void setCurFonts(QList<FontItem *> flist);
+    FontItem *selectedFont()
+    {
+        return theVeryFont;
+    }
+    // The selected font or, in the list, the one of the highlighted tile
+    FontItem *selectedOrCurrentFont();
 
-	protected:
-		void keyPressEvent ( QKeyEvent * event ) override ;
+    QString sampleName();
+    //		void displayWelcomeMessage();
+
+    void addFilterToCrumb(QString filter);
+    void setCrumb(QString text = QString());
+
+    void saveSplitterState();
+    void restoreSplitterState();
+
+    void forceReloadSelection();
+
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
 };
 
 #endif

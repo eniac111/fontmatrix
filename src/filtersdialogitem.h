@@ -7,11 +7,12 @@
 #ifndef FILTERSDIALOGITEM_H
 #define FILTERSDIALOGITEM_H
 
-#include <QWidget>
 #include <QString>
+#include <QWidget>
 
-namespace Ui {
-    class FiltersDialogItem;
+namespace Ui
+{
+class FiltersDialogItem;
 }
 
 class FiltersDialogItem : public QWidget
@@ -19,7 +20,7 @@ class FiltersDialogItem : public QWidget
     Q_OBJECT
 
 public:
-    explicit FiltersDialogItem(const QString& name, const QString& f, QWidget *parent = nullptr);
+    explicit FiltersDialogItem(const QString &name, const QString &f, QWidget *parent = nullptr);
     ~FiltersDialogItem() override;
 
 protected:

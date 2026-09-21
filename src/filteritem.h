@@ -11,44 +11,48 @@
 
 class FilterData;
 
-namespace Ui {
-	class FilterItem;
+namespace Ui
+{
+class FilterItem;
 }
 
 class FilterItem : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	FilterData* d = nullptr;
-	QString text;
+    FilterData *d = nullptr;
+    QString text;
+
 public:
-	enum Operation{
-		AND,
-		OR,
-		NOT
-	};
+    enum Operation {
+        AND,
+        OR,
+        NOT
+    };
 
-	explicit FilterItem(FilterData *filter, QWidget *parent = nullptr);
-	~FilterItem() override;
+    explicit FilterItem(FilterData *filter, QWidget *parent = nullptr);
+    ~FilterItem() override;
 
-	FilterData* filter(){return d;}
-	void hideOperation(Operation op);
-	// to call after the text of the filter has changed
-	void updateText();
+    FilterData *filter()
+    {
+        return d;
+    }
+    void hideOperation(Operation op);
+    // to call after the text of the filter has changed
+    void updateText();
 
 protected:
-	void changeEvent(QEvent *e) override;
+    void changeEvent(QEvent *e) override;
 
 private:
-	Ui::FilterItem *const ui;
+    Ui::FilterItem *const ui;
 
 Q_SIGNALS:
-	void remove();
+    void remove();
 
 private Q_SLOTS:
-	void setAndMode(bool c);
-	void setNoMode(bool c);
-
+    void setAndMode(bool c);
+    void setNoMode(bool c);
 };
 
 #endif // FILTERITEM_H

@@ -12,15 +12,15 @@
 
 class HarfbuzzShaper : public FMBaseShaper
 {
-	public:
-		HarfbuzzShaper(FMOtf* o, QString s);
-		~HarfbuzzShaper() override;	
-		
-		GlyphList doShape( const QString& s ) override;
-	private:
-		Q_DISABLE_COPY ( HarfbuzzShaper )
-		FMShaper *hbqtsh = nullptr;
+public:
+    HarfbuzzShaper(FMOtf *o, QString s);
+    ~HarfbuzzShaper() override;
+
+    GlyphList doShape(const QString &s) override;
+
+private:
+    Q_DISABLE_COPY(HarfbuzzShaper)
+    FMShaper *hbqtsh = nullptr;
 };
 
 #endif
-

@@ -12,8 +12,9 @@
 class QMenu;
 class QAction;
 
-namespace Ui {
-    class FloatingWidgetToolBar;
+namespace Ui
+{
+class FloatingWidgetToolBar;
 }
 
 class FloatingWidgetToolBar : public QWidget

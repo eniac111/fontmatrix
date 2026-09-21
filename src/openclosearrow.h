@@ -9,32 +9,33 @@
 
 #include <QLabel>
 
-
 class OpenCloseArrow : public QLabel
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	QString baseText;
+    QString baseText;
 
 public:
-	explicit OpenCloseArrow(QWidget *parent = nullptr, bool open = true);
-	~OpenCloseArrow() override;
+    explicit OpenCloseArrow(QWidget *parent = nullptr, bool open = true);
+    ~OpenCloseArrow() override;
 
-	[[nodiscard]] bool isOpen() const {return openingState;}
+    [[nodiscard]] bool isOpen() const
+    {
+        return openingState;
+    }
 
 private:
-	bool openingState;
-	void setOpText();
+    bool openingState;
+    void setOpText();
 
 protected:
-	void mouseReleaseEvent( QMouseEvent * ev ) override;
+    void mouseReleaseEvent(QMouseEvent *ev) override;
 
 Q_SIGNALS:
-	void openChanged(bool);
+    void openChanged(bool);
 
 public Q_SLOTS:
-	void changeOpen(bool t);
-
+    void changeOpen(bool t);
 };
 
 #endif // OPENCLOSEARROW_H

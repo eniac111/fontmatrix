@@ -11,26 +11,31 @@
 #include <QString>
 
 /**
-	@author Pierre Marchand <pierre@oep-h.com>
+    @author Pierre Marchand <pierre@oep-h.com>
 */
 class DataLoader
 {
-	
-	QMap<QString, QMap<QString,QString> > sm;
-	QMap<QString,QString> pm;
+    QMap<QString, QMap<QString, QString>> sm;
+    QMap<QString, QString> pm;
 
-	void load();
+    void load();
+
 public:
-	DataLoader();
-	~DataLoader() = default;
+    DataLoader();
+    ~DataLoader() = default;
 
-	bool update(const QString& name, const QString& sample);
-	bool remove(const QString& name);
-	void reload();
+    bool update(const QString &name, const QString &sample);
+    bool remove(const QString &name);
+    void reload();
 
-	[[nodiscard]] const QMap<QString, QMap<QString,QString>>& systemSamples() const { return sm; }
-	[[nodiscard]] const QMap<QString,QString>& userSamples() const { return pm; }
-
+    [[nodiscard]] const QMap<QString, QMap<QString, QString>> &systemSamples() const
+    {
+        return sm;
+    }
+    [[nodiscard]] const QMap<QString, QString> &userSamples() const
+    {
+        return pm;
+    }
 };
 
 #endif

@@ -8,11 +8,12 @@
 #define FILTERSDIALOG_H
 
 #include <QDialog>
-#include <QString>
 #include <QList>
+#include <QString>
 
-namespace Ui {
-    class FiltersDialog;
+namespace Ui
+{
+class FiltersDialog;
 }
 
 class FiltersDialogItem;
@@ -24,7 +25,7 @@ class FiltersDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit FiltersDialog(const QList<FilterItem*>& currentFilter, QWidget *parent = nullptr);
+    explicit FiltersDialog(const QList<FilterItem *> &currentFilter, QWidget *parent = nullptr);
     ~FiltersDialog() override;
 
 private:
@@ -32,7 +33,7 @@ private:
 
     void loadFilters();
     QString filterString(FilterData *d, bool first = false);
-    QList<FiltersDialogItem*> items;
+    QList<FiltersDialogItem *> items;
 
     // Lazy-initialised translated strings; static-init i18n() would run before
     // KLocalizedString::setApplicationDomain() and fall back to source text.

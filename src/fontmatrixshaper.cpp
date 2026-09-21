@@ -6,23 +6,21 @@
 
 #include "fontmatrixshaper.h"
 
-FontmatrixShaper::FontmatrixShaper(FMOtf * o, QString s)
-	:FMBaseShaper(o,s)
+FontmatrixShaper::FontmatrixShaper(FMOtf *o, QString s)
+    : FMBaseShaper(o, s)
 {
-	fmos = new FMOwnShaper(script);
+    fmos = new FMOwnShaper(script);
 }
 
-FontmatrixShaper::~ FontmatrixShaper()
+FontmatrixShaper::~FontmatrixShaper()
 {
-	if (fmos)
-		delete fmos;
+    if (fmos)
+        delete fmos;
 }
 
-GlyphList FontmatrixShaper::doShape(const QString& s)
+GlyphList FontmatrixShaper::doShape(const QString &s)
 {
-	fmos->fillIn(s);
-	QList<Character> shaped ( fmos->GetShaped() );
-	return otf->procstring( shaped, script );
+    fmos->fillIn(s);
+    QList<Character> shaped(fmos->GetShaped());
+    return otf->procstring(shaped, script);
 }
-
-

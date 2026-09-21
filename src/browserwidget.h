@@ -7,12 +7,12 @@
 #ifndef BROWSERWIDGET_H
 #define BROWSERWIDGET_H
 
-#include <QWidget>
-#include <QStringList>
-#include <QModelIndex>
 #include <QFileInfo>
-#include <QPoint>
 #include <QMenu>
+#include <QModelIndex>
+#include <QPoint>
+#include <QStringList>
+#include <QWidget>
 
 constexpr int BROWSER_VIEW_INFO = 0;
 constexpr int BROWSER_VIEW_SAMPLE = 1;
@@ -23,87 +23,86 @@ class QFileSystemWatcher;
 class FloatingWidget;
 class FolderViewMenu;
 
-namespace Ui {
-	class BrowserWidget;
+namespace Ui
+{
+class BrowserWidget;
 }
 
 class BrowserWidget : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	explicit BrowserWidget(QWidget *parent = nullptr);
-	~BrowserWidget() override;
+    explicit BrowserWidget(QWidget *parent = nullptr);
+    ~BrowserWidget() override;
 
 private:
-	Ui::BrowserWidget *const ui;
+    Ui::BrowserWidget *const ui;
 
-	QString curVariant;
+    QString curVariant;
 
-	FloatingWidget *sample = nullptr;
-	FloatingWidget *chart = nullptr;
-	FloatingWidget *activation = nullptr;
+    FloatingWidget *sample = nullptr;
+    FloatingWidget *chart = nullptr;
+    FloatingWidget *activation = nullptr;
 
-	unsigned int currentIndex = 0U;
-	unsigned int currentPage;
-	QString uniBlock;
+    unsigned int currentIndex = 0U;
+    unsigned int currentPage;
+    QString uniBlock;
 
-	QFileSystemModel *theDirModel = nullptr;
-	QStringList ffilter;
-	QFileSystemWatcher *dirWatcher = nullptr;
-	QModelIndex currentFIndex;
+    QFileSystemModel *theDirModel = nullptr;
+    QStringList ffilter;
+    QFileSystemWatcher *dirWatcher = nullptr;
+    QModelIndex currentFIndex;
 
-	FolderViewMenu *folderViewContextMenu = nullptr;
+    FolderViewMenu *folderViewContextMenu = nullptr;
 
-	void initWatcher(QModelIndex parent);
-	void settingsDir(const QString& path);
+    void initWatcher(QModelIndex parent);
+    void settingsDir(const QString &path);
 
-	void updateButtons();
+    void updateButtons();
 
 private Q_SLOTS:
-	void slotFolderItemclicked(QModelIndex mIdx);
-	void slotFolderPressed(QModelIndex mIdx);
-	void slotFolderAddToWatcher(QModelIndex mIdx);
-	void slotFolderRemoveFromWatcher(QModelIndex mIdx);
-	void slotFolderRefresh(const QString& dirPath);
+    void slotFolderItemclicked(QModelIndex mIdx);
+    void slotFolderPressed(QModelIndex mIdx);
+    void slotFolderAddToWatcher(QModelIndex mIdx);
+    void slotFolderRemoveFromWatcher(QModelIndex mIdx);
+    void slotFolderRefresh(const QString &dirPath);
 
-	void slotShowInfo();
-	void slotShowSample();
-	void slotShowChart();
+    void slotShowInfo();
+    void slotShowSample();
+    void slotShowChart();
 
-	void slotImport();
+    void slotImport();
 
-	void slotDetachChart();
-	void slotDetachSample();
+    void slotDetachChart();
+    void slotDetachSample();
 
-	void slotFolderViewContextMenu(const QPoint&);
+    void slotFolderViewContextMenu(const QPoint &);
 
 Q_SIGNALS:
-	void folderSelectFont(QString);
+    void folderSelectFont(QString);
 };
 
 class FolderViewMenu : public QMenu
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	FolderViewMenu();
-	~FolderViewMenu() override;
+    FolderViewMenu();
+    ~FolderViewMenu() override;
 
-	void exec(const QFileInfo &fi, const QPoint &p);
+    void exec(const QFileInfo &fi, const QPoint &p);
 
 private:
-	QAction *dirAction = nullptr;
-	QAction *dirRecursiveAction = nullptr;
-	QAction *fileAction = nullptr;
+    QAction *dirAction = nullptr;
+    QAction *dirRecursiveAction = nullptr;
+    QAction *fileAction = nullptr;
 
-	QFileInfo selectedFileOrDir;
+    QFileInfo selectedFileOrDir;
 
 private Q_SLOTS:
-	void slotImportDir();
-	void slotImportDirRecursively();
-	void slotImportFile();
-
+    void slotImportDir();
+    void slotImportDirRecursively();
+    void slotImportFile();
 };
-
 
 #endif // BROWSERWIDGET_H

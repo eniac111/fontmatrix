@@ -13,8 +13,7 @@
 class FMActivationReport : public QDialog, private Ui::ActivationReportDialog
 {
 public:
-	FMActivationReport(QWidget * parent, const QMap<QString,QString>& errorMap);
-
+    FMActivationReport(QWidget *parent, const QMap<QString, QString> &errorMap);
 };
 
 #endif // FMACTIVATIONREPORT_H

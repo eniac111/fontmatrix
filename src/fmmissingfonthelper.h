@@ -17,11 +17,11 @@
 */
 class FMMissingFontHelper : public QObject
 {
-    FMMissingFontHelper()= default;
-public:
-    explicit FMMissingFontHelper(const QString& ff);
-    explicit FMMissingFontHelper(const QStringList& ff);
+    FMMissingFontHelper() = default;
 
+public:
+    explicit FMMissingFontHelper(const QString &ff);
+    explicit FMMissingFontHelper(const QStringList &ff);
 };
 
 #endif // FMMISSINGFONTHELPER_H

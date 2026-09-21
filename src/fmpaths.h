@@ -10,33 +10,31 @@
 #ifndef FMPATHS_H
 #define FMPATHS_H
 
-#include <QString>
-#include <QMap>
-#include <QLocale>
 #include <QDir>
-
+#include <QLocale>
+#include <QMap>
+#include <QString>
 
 class FMPaths
 {
-		QMap<QString,QString> FMPathsDB;
-		FMPaths() = default;
-		// Meyers singleton — thread-safe by C++11 static-local guarantee
-		static FMPaths *getThis();
+    QMap<QString, QString> FMPathsDB;
+    FMPaths() = default;
+    // Meyers singleton — thread-safe by C++11 static-local guarantee
+    static FMPaths *getThis();
 
-	public:
+public:
+    static QString TranslationsDir();
 
-		static QString TranslationsDir();
+    static QString ResourcesDir();
 
-		static QString ResourcesDir();
+    static QString HelpDir();
 
-		static QString HelpDir();
+    static QString SamplesDir();
 
-		static QString SamplesDir();
+    static QString FiltersDir();
 
-		static QString FiltersDir();
+    static QString LocalizedDirPath(const QString &base, const QString &fallback = QStringLiteral("en"));
 
-		static QString LocalizedDirPath(const QString& base, const QString& fallback = QStringLiteral("en"));
-
-		static QString LocalizedFilePath(const QString& base, const QString& ext, const QString& fallback = QStringLiteral("en"));
+    static QString LocalizedFilePath(const QString &base, const QString &ext, const QString &fallback = QStringLiteral("en"));
 };
 #endif

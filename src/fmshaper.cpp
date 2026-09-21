@@ -8,24 +8,24 @@
 #include "fontmatrix_debug.h"
 
 FMShaper::FMShaper(FMOtf *anchor)
-	:anchorOTF(anchor)
+    : anchorOTF(anchor)
 {
-	qCDebug(FONTMATRIX_LOG) << "FMShaper "<< this <<" created";
+    qCDebug(FONTMATRIX_LOG) << "FMShaper " << this << " created";
 }
 
-FMShaper::~ FMShaper()
+FMShaper::~FMShaper()
 {
-	qCDebug(FONTMATRIX_LOG) << "FMShaper "<< this <<" destroyed";
+    qCDebug(FONTMATRIX_LOG) << "FMShaper " << this << " destroyed";
 }
 
-bool FMShaper::setScript ( QString script )
+bool FMShaper::setScript(QString script)
 {
-	m_script = script;
-	return !m_script.isEmpty();
+    m_script = script;
+    return !m_script.isEmpty();
 }
 
-QList< RenderedGlyph > FMShaper::doShape(QString string, bool ltr)
+QList<RenderedGlyph> FMShaper::doShape(QString string, bool ltr)
 {
-	qCDebug(FONTMATRIX_LOG) << "FMShaper::doShape("<<string<<","<<ltr<<")";
-	return anchorOTF->shape ( string, m_script, ltr );
+    qCDebug(FONTMATRIX_LOG) << "FMShaper::doShape(" << string << "," << ltr << ")";
+    return anchorOTF->shape(string, m_script, ltr);
 }

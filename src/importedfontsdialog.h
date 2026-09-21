@@ -7,21 +7,20 @@
 #ifndef IMPORTEDFONTSDIALOG_H
 #define IMPORTEDFONTSDIALOG_H
 
-#include <QWidget>
 #include <QDialog>
 #include <QStringList>
+#include <QWidget>
 #include <ui_importedfonts.h>
 
 /**
-	@author Pierre Marchand <pierre@oep-h.com>
+    @author Pierre Marchand <pierre@oep-h.com>
 */
 class ImportedFontsDialog : public QDialog, private Ui::ImportedFonts
 {
 public:
-    ImportedFontsDialog(QWidget *parent, QStringList fontlist );
+    ImportedFontsDialog(QWidget *parent, QStringList fontlist);
 
     ~ImportedFontsDialog() override;
-
 };
 
 #endif

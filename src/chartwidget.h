@@ -13,8 +13,9 @@ class QGraphicsScene;
 class FontItem;
 class QGraphicsRectItem;
 
-namespace Ui {
-    class ChartWidget;
+namespace Ui
+{
+class ChartWidget;
 }
 
 class ChartWidget : public FloatingWidget
@@ -22,12 +23,12 @@ class ChartWidget : public FloatingWidget
     Q_OBJECT
 
 public:
-	static const QString Name;
-    explicit ChartWidget(const QString& fid, const QString& block, QWidget *parent = nullptr);
+    static const QString Name;
+    explicit ChartWidget(const QString &fid, const QString &block, QWidget *parent = nullptr);
     ~ChartWidget() override;
 
     QString currentBlock();
-    void selectBlock(const QString& uname);
+    void selectBlock(const QString &uname);
 
 protected:
     void changeEvent(QEvent *e) override;
@@ -44,10 +45,9 @@ private:
     bool uRangeIsNotEmpty;
     QGraphicsRectItem *curGlyph = nullptr;
 
-
     void createConnections();
     void removeConnections();
-    void fillUniPlanesCombo(FontItem* item);
+    void fillUniPlanesCombo(FontItem *item);
 
 private Q_SLOTS:
     void slotShowOneGlyph();
@@ -61,7 +61,6 @@ private Q_SLOTS:
 
     void slotPrint();
     void slotDoPrinting();
-
 };
 
 #endif // CHARTWIDGET_H

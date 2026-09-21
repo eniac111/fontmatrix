@@ -7,22 +7,21 @@
 #ifndef FMVERTICALBUTTON_H
 #define FMVERTICALBUTTON_H
 
-#include <QToolButton>
 #include <QFont>
+#include <QToolButton>
 
 class FMVerticalButton : public QToolButton
 {
-	public:
-		explicit FMVerticalButton ( QWidget * parent );
-		~FMVerticalButton() override;
-	protected:
-		bool event ( QEvent * event ) override  ;
+public:
+    explicit FMVerticalButton(QWidget *parent);
+    ~FMVerticalButton() override;
 
-	private:
-		QString m_text;
-		QFont m_font;
-		
+protected:
+    bool event(QEvent *event) override;
+
+private:
+    QString m_text;
+    QFont m_font;
 };
 
 #endif
-

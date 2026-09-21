@@ -6,18 +6,14 @@
 
 #include "pangoshaper.h"
 
-PangoShaper::PangoShaper(FMOtf * o, QString s)
-	:FMBaseShaper(o,s)
+PangoShaper::PangoShaper(FMOtf *o, QString s)
+    : FMBaseShaper(o, s)
 {
 }
 
-PangoShaper::~ PangoShaper()
-= default;
+PangoShaper::~PangoShaper() = default;
 
-GlyphList PangoShaper::doShape(const QString & )
+GlyphList PangoShaper::doShape(const QString &)
 {
-	return GlyphList();
+    return GlyphList();
 }
-
-
-

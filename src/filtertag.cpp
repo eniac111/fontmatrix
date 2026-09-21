@@ -9,26 +9,24 @@
 #include "fmfontdb.h"
 
 FilterTag::FilterTag()
-		
+
 {
 }
 
 QString FilterTag::type() const
 {
-	return QStringLiteral("Tag");
+    return QStringLiteral("Tag");
 }
 
 void FilterTag::operate()
 {
-	QString key(vData.value(Key).toString());
-	QString tag(vData.value(Tag).toString());
+    QString key(vData.value(Key).toString());
+    QString tag(vData.value(Tag).toString());
 
-	if(key == QLatin1String("TAG")) // regular tag
-	{
-		operateFilter( FMFontDb::DB()->Fonts(tag, FMFontDb::Tags ) );
-	}
-	else if(key == QLatin1String("ALL_ACTIVATED"))
-	{
-		operateFilter( FMFontDb::DB()->Fonts(1, FMFontDb::Activation ) );
-	}
+    if (key == QLatin1String("TAG")) // regular tag
+    {
+        operateFilter(FMFontDb::DB()->Fonts(tag, FMFontDb::Tags));
+    } else if (key == QLatin1String("ALL_ACTIVATED")) {
+        operateFilter(FMFontDb::DB()->Fonts(1, FMFontDb::Activation));
+    }
 }

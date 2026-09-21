@@ -9,8 +9,9 @@
 
 #include <QDialog>
 
-namespace Ui {
-    class ProgressBarDuo;
+namespace Ui
+{
+class ProgressBarDuo;
 }
 
 class ProgressBarDuo : public QDialog
@@ -21,7 +22,7 @@ public:
     explicit ProgressBarDuo(QWidget *parent = nullptr);
     ~ProgressBarDuo() override;
 
-    void setLabel(const QString& s, int n);
+    void setLabel(const QString &s, int n);
     void setValue(int value, int n);
     void setMax(int max, int n);
 

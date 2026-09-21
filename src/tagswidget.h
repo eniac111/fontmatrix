@@ -12,24 +12,21 @@
 class FontItem;
 class TagsWidget_ListModel;
 
-class TagsWidget : public QWidget , private Ui::tagsWidget
+class TagsWidget : public QWidget, private Ui::tagsWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
-
-	TagsWidget_ListModel * model = nullptr;
+    TagsWidget_ListModel *model = nullptr;
 
 public:
-	explicit TagsWidget(QWidget * parent);
-	~TagsWidget() override;
+    explicit TagsWidget(QWidget *parent);
+    ~TagsWidget() override;
 
-	void prepare(QList<FontItem*> fonts);
+    void prepare(QList<FontItem *> fonts);
 
 private Q_SLOTS:
-	void slotNewTag();
-	void slotActRemovetag();
-
+    void slotNewTag();
+    void slotActRemovetag();
 };
 
-#endif //TAGSWIDGET_H
-
+#endif // TAGSWIDGET_H

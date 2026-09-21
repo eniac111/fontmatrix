@@ -7,9 +7,9 @@
 #include "progressbarduo.h"
 #include "ui_progressbarduo.h"
 
-ProgressBarDuo::ProgressBarDuo(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::ProgressBarDuo)
+ProgressBarDuo::ProgressBarDuo(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::ProgressBarDuo)
 {
     ui->setupUi(this);
     connect(ui->cancelButton, &QPushButton::clicked, this, &ProgressBarDuo::Canceled);
@@ -32,52 +32,56 @@ void ProgressBarDuo::changeEvent(QEvent *e)
     }
 }
 
-
 void ProgressBarDuo::setLabel(const QString &s, int n)
 {
-	QLabel *l = nullptr;
+    QLabel *l = nullptr;
 
-	switch(n)
-	{
-	case 0: l = ui->Label0;
-	break;
-	case 1: l = ui->Label1;
-	break;
-	default: break;
-	}
-	if(l)
-		l->setText(s);
+    switch (n) {
+    case 0:
+        l = ui->Label0;
+        break;
+    case 1:
+        l = ui->Label1;
+        break;
+    default:
+        break;
+    }
+    if (l)
+        l->setText(s);
 }
-
 
 void ProgressBarDuo::setValue(int value, int n)
 {
-	QProgressBar *p = nullptr;
-	switch(n)
-	{
-	case 0: p = ui->Bar0;
-	break;
-	case 1: p = ui->Bar1;
-	break;
-	default: break;
-	}
-	if(p)
-		p->setValue(value);
+    QProgressBar *p = nullptr;
+    switch (n) {
+    case 0:
+        p = ui->Bar0;
+        break;
+    case 1:
+        p = ui->Bar1;
+        break;
+    default:
+        break;
+    }
+    if (p)
+        p->setValue(value);
 }
 
 void ProgressBarDuo::setMax(int max, int n)
 {
-	QProgressBar *p = nullptr;
-	switch(n)
-	{
-	case 0: p = ui->Bar0;
-	break;
-	case 1: p = ui->Bar1;
-	break;
-	default: break;
-	}
-	if(p)
-		p->setMaximum(max);
+    QProgressBar *p = nullptr;
+    switch (n) {
+    case 0:
+        p = ui->Bar0;
+        break;
+    case 1:
+        p = ui->Bar1;
+        break;
+    default:
+        break;
+    }
+    if (p)
+        p->setMaximum(max);
 }
 
 #include "moc_progressbarduo.cpp"

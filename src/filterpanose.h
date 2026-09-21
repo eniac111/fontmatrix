@@ -14,9 +14,9 @@ class FilterPanose : public FilterData
 public:
     FilterPanose();
 
-    enum TagIndex{
-	    Param = FilterData::UserIndex,
-	    Value
+    enum TagIndex {
+        Param = FilterData::UserIndex,
+        Value
     };
 
     [[nodiscard]] QString type() const override;

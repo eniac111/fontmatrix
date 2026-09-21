@@ -9,37 +9,38 @@
 
 #include "floatingwidget.h"
 
-namespace Ui {
-	class ActivationWidget;
+namespace Ui
+{
+class ActivationWidget;
 }
 
 class ActivationWidgetItem;
 
 class ActivationWidget : public FloatingWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	static const QString Name;
-	explicit ActivationWidget(const QString& familyName, QWidget *parent = nullptr);
-	~ActivationWidget() override;
+    static const QString Name;
+    explicit ActivationWidget(const QString &familyName, QWidget *parent = nullptr);
+    ~ActivationWidget() override;
 
 protected:
-	void changeEvent(QEvent *e) override;
+    void changeEvent(QEvent *e) override;
 
 private:
-	const QString family;
-	Ui::ActivationWidget *const ui;
+    const QString family;
+    Ui::ActivationWidget *const ui;
 
-	QList<ActivationWidgetItem*> items;
-	void activateAll(bool c);
+    QList<ActivationWidgetItem *> items;
+    void activateAll(bool c);
 
 private Q_SLOTS:
-	void slotActivate();
-	void slotDeactivate();
+    void slotActivate();
+    void slotDeactivate();
 
 Q_SIGNALS:
-	void familyStateChanged();
+    void familyStateChanged();
 };
 
 #endif // ACTIVATIONWIDGET_H

@@ -10,38 +10,36 @@
 #include <QAbstractListModel>
 #include <QIcon>
 #include <QList>
-#include <QString>
 #include <QMap>
+#include <QString>
 
 class PanoseAttributeModel : public QAbstractListModel
 {
 public:
-	explicit PanoseAttributeModel(QObject * parent);
+    explicit PanoseAttributeModel(QObject *parent);
 
-	[[nodiscard]] QVariant data(const QModelIndex& index, int role) const override;
-	[[nodiscard]] int rowCount(const QModelIndex& parent) const override;
+    [[nodiscard]] QVariant data(const QModelIndex &index, int role) const override;
+    [[nodiscard]] int rowCount(const QModelIndex &parent) const override;
 
 private:
-	QStringList m_names;
-	QList<QIcon> m_icons;
+    QStringList m_names;
+    QList<QIcon> m_icons;
 };
-
-
 
 class PanoseValueModel : public QAbstractListModel
 {
 public:
-	explicit PanoseValueModel(QObject * parent);
+    explicit PanoseValueModel(QObject *parent);
 
-	[[nodiscard]] QVariant data(const QModelIndex& index, int role) const override;
-	[[nodiscard]] int rowCount(const QModelIndex& parent) const override;
+    [[nodiscard]] QVariant data(const QModelIndex &index, int role) const override;
+    [[nodiscard]] int rowCount(const QModelIndex &parent) const override;
 
-	void setCat(const int& cat);
+    void setCat(const int &cat);
 
 private:
-	int m_cat;
-	QMap<int, QList<QIcon> > m_icons;
-	QMap<int, QStringList> m_names;
+    int m_cat;
+    QMap<int, QList<QIcon>> m_icons;
+    QMap<int, QStringList> m_names;
 };
 
 #endif // PANOSEMODEL_H

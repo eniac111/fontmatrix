@@ -14,18 +14,17 @@ class FontItem;
 
 class FMVariants
 {
-	static FMVariants *instance;
-	FMVariants();
+    static FMVariants *instance;
+    FMVariants();
 
-	QList<QStringList> variants;
-	QStringList priorList;
-	void appendVariants(const QString& w, const QString& s, const QString& wi, const QString& o);
-	inline bool compareVariants(const QStringList& a, const QStringList& b);
+    QList<QStringList> variants;
+    QStringList priorList;
+    void appendVariants(const QString &w, const QString &s, const QString &wi, const QString &o);
+    inline bool compareVariants(const QStringList &a, const QStringList &b);
 
 public:
-	static QList<FontItem*> Order(QList<FontItem*> ul);
-	static FontItem* Preferred(QList<FontItem*> ul);
-
+    static QList<FontItem *> Order(QList<FontItem *> ul);
+    static FontItem *Preferred(QList<FontItem *> ul);
 };
 
 #endif // FMVARIANTS_H

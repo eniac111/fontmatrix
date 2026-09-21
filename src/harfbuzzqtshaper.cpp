@@ -6,24 +6,20 @@
 
 #include "harfbuzzqtshaper.h"
 
-
-HarfbuzzShaper::HarfbuzzShaper(FMOtf * o, QString s)
-	:FMBaseShaper(o,s)
+HarfbuzzShaper::HarfbuzzShaper(FMOtf *o, QString s)
+    : FMBaseShaper(o, s)
 {
-	hbqtsh = new FMShaper(otf);
-	hbqtsh->setScript ( script );
+    hbqtsh = new FMShaper(otf);
+    hbqtsh->setScript(script);
 }
 
-HarfbuzzShaper::~ HarfbuzzShaper()
+HarfbuzzShaper::~HarfbuzzShaper()
 {
-	if(hbqtsh)
-		delete hbqtsh;
+    if (hbqtsh)
+        delete hbqtsh;
 }
 
-GlyphList HarfbuzzShaper::doShape(const QString& s)
+GlyphList HarfbuzzShaper::doShape(const QString &s)
 {
-	return hbqtsh->doShape ( s , true );
+    return hbqtsh->doShape(s, true);
 }
-
-
-

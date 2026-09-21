@@ -9,143 +9,130 @@
 
 #include <QDebug>
 
-M17NShaper * M17NShaper::instance = nullptr;
-		
-QString OTF_tag_name ( unsigned int tag );
+M17NShaper *M17NShaper::instance = nullptr;
 
-M17NShaper::M17NShaper ( FMOtf * o, QString s )
-		:FMBaseShaper ( o,s )
+QString OTF_tag_name(unsigned int tag);
+
+M17NShaper::M17NShaper(FMOtf *o, QString s)
+    : FMBaseShaper(o, s)
 {
-	instance = this;
-	M17N_INIT();
-			
-	mFont.family = Mnil /*otf->face()->family_name*/;
-	mFont.x_ppem = otf->face()->units_per_EM;
-	mFont.y_ppem = otf->face()->units_per_EM;
-	mFont.get_glyph_id = impl_get_glyph_id;
-	mFont.get_metrics = impl_get_metrics ;
-	mFont.check_otf = impl_check_otf;
-	mFont.drive_otf = impl_drive_otf;
-	
-	
+    instance = this;
+    M17N_INIT();
+
+    mFont.family = Mnil /*otf->face()->family_name*/;
+    mFont.x_ppem = otf->face()->units_per_EM;
+    mFont.y_ppem = otf->face()->units_per_EM;
+    mFont.get_glyph_id = impl_get_glyph_id;
+    mFont.get_metrics = impl_get_metrics;
+    mFont.check_otf = impl_check_otf;
+    mFont.drive_otf = impl_drive_otf;
 }
 
-M17NShaper::~ M17NShaper()
+M17NShaper::~M17NShaper()
 {
-	M17N_FINI() ;
+    M17N_FINI();
 }
 
-GlyphList M17NShaper::doShape ( const QString & s )
+GlyphList M17NShaper::doShape(const QString &s)
 {
-	GlyphList ret;
-	if(s.isEmpty())
-		return ret;
-	
-	int sCount(s.count());
-	
-	grrr = mflt_find (s.at(0).unicode(), &mFont);
-	MFLTGlyphString * gs = new MFLTGlyphString;
-	MFLTGlyph * gl = new MFLTGlyph[sCount];
-	gs->glyph_size = sizeof (MFLTGlyph) * ( sCount );
-	gs->glyphs = gl;
-	gs->allocated = sCount ;
-	for(int i(0); i < sCount ; ++i)
-	{
-		gl[i].c = s[i].unicode();
-	}
-	
-	mflt_run(gs, 0, sCount , &mFont, grrr);
-}
+    GlyphList ret;
+    if (s.isEmpty())
+        return ret;
 
+    int sCount(s.count());
+
+    grrr = mflt_find(s.at(0).unicode(), &mFont);
+    MFLTGlyphString *gs = new MFLTGlyphString;
+    MFLTGlyph *gl = new MFLTGlyph[sCount];
+    gs->glyph_size = sizeof(MFLTGlyph) * (sCount);
+    gs->glyphs = gl;
+    gs->allocated = sCount;
+    for (int i(0); i < sCount; ++i) {
+        gl[i].c = s[i].unicode();
+    }
+
+    mflt_run(gs, 0, sCount, &mFont, grrr);
+}
 
 /// One again that you can’t just attach a font file or face to :(
-int M17NShaper::impl_get_glyph_id( struct _MFLTFont *font, MFLTGlyphString *gstring, int from, int to )
+int M17NShaper::impl_get_glyph_id(struct _MFLTFont *font, MFLTGlyphString *gstring, int from, int to)
 {
-	qCDebug(FONTMATRIX_LOG)<<"M17NShaper::impl_get_glyph_id()";
-	FT_Face face = instance->otf->face();
-	if(!face)
-		return 8; // corresponds to "#define OTF_ERROR_FT_FACE 8" in libotf 
-	for(int idx(from); idx < to; ++idx)
-	{
-		gstring->glyphs[idx].code = FT_Get_Char_Index(face, gstring->glyphs[idx].c);
-		gstring->glyphs[idx].encoded = 1;
-	}
-	return 0;	
+    qCDebug(FONTMATRIX_LOG) << "M17NShaper::impl_get_glyph_id()";
+    FT_Face face = instance->otf->face();
+    if (!face)
+        return 8; // corresponds to "#define OTF_ERROR_FT_FACE 8" in libotf
+    for (int idx(from); idx < to; ++idx) {
+        gstring->glyphs[idx].code = FT_Get_Char_Index(face, gstring->glyphs[idx].c);
+        gstring->glyphs[idx].encoded = 1;
+    }
+    return 0;
 }
-int M17NShaper::impl_get_metrics( struct _MFLTFont *font, MFLTGlyphString *gstring, int from, int to )
+int M17NShaper::impl_get_metrics(struct _MFLTFont *font, MFLTGlyphString *gstring, int from, int to)
 {
-	qCDebug(FONTMATRIX_LOG)<<"M17NShaper::impl_get_metrics";
-	// I wonder if it will be called, normally no...
-	FT_Face face = instance->otf->face();
-	if(!face)
-		return 8; // corresponds to "#define OTF_ERROR_FT_FACE 8" in libotf 
-	for(int idx(from); idx < to; ++idx)
-	{
-		if(FT_Load_Glyph(face, gstring->glyphs[idx].code,  FT_LOAD_NO_SCALE ))
-			continue;
-		//TODO convert values to 26.6
-		gstring->glyphs[idx].xadv = face->glyph->metrics.horiAdvance ;
-		gstring->glyphs[idx].yadv = face->glyph->metrics.vertAdvance ;
-		gstring->glyphs[idx].ascent = face->ascender ;
-		gstring->glyphs[idx].descent= face->descender ;
-		gstring->glyphs[idx].lbearing= face->glyph->metrics.horiBearingX ;
-		gstring->glyphs[idx].rbearing= face->glyph->metrics.horiBearingX + face->glyph->metrics.width ;
-		gstring->glyphs[idx].measured = 1;
-	}
-	return 0;
+    qCDebug(FONTMATRIX_LOG) << "M17NShaper::impl_get_metrics";
+    // I wonder if it will be called, normally no...
+    FT_Face face = instance->otf->face();
+    if (!face)
+        return 8; // corresponds to "#define OTF_ERROR_FT_FACE 8" in libotf
+    for (int idx(from); idx < to; ++idx) {
+        if (FT_Load_Glyph(face, gstring->glyphs[idx].code, FT_LOAD_NO_SCALE))
+            continue;
+        // TODO convert values to 26.6
+        gstring->glyphs[idx].xadv = face->glyph->metrics.horiAdvance;
+        gstring->glyphs[idx].yadv = face->glyph->metrics.vertAdvance;
+        gstring->glyphs[idx].ascent = face->ascender;
+        gstring->glyphs[idx].descent = face->descender;
+        gstring->glyphs[idx].lbearing = face->glyph->metrics.horiBearingX;
+        gstring->glyphs[idx].rbearing = face->glyph->metrics.horiBearingX + face->glyph->metrics.width;
+        gstring->glyphs[idx].measured = 1;
+    }
+    return 0;
 }
-int M17NShaper::impl_check_otf( struct _MFLTFont *font, MFLTOtfSpec *spec )
+int M17NShaper::impl_check_otf(struct _MFLTFont *font, MFLTOtfSpec *spec)
 {
-	qCDebug(FONTMATRIX_LOG)<<"M17NShaper::impl_check_otf";
-	QString script ( OTF_tag_name ( spec->script ) );
-	QString lang ( OTF_tag_name ( spec->langsys ) );
-	QStringList subf;
-	QStringList posf;
-	unsigned int* cursor ( nullptr );
-	for ( cursor = spec->features[0]; *cursor ; ++cursor )
-	{
-		subf <<  OTF_tag_name ( *cursor );
-	}
-	for ( cursor = spec->features[1]; *cursor ; ++cursor )
-	{
-		posf <<  OTF_tag_name ( *cursor );
-	}
-	qCDebug(FONTMATRIX_LOG)<<script<<lang<<subf.join(",")<<posf.join(",");
-	return 1; // programming is easy ;-)
+    qCDebug(FONTMATRIX_LOG) << "M17NShaper::impl_check_otf";
+    QString script(OTF_tag_name(spec->script));
+    QString lang(OTF_tag_name(spec->langsys));
+    QStringList subf;
+    QStringList posf;
+    unsigned int *cursor(nullptr);
+    for (cursor = spec->features[0]; *cursor; ++cursor) {
+        subf << OTF_tag_name(*cursor);
+    }
+    for (cursor = spec->features[1]; *cursor; ++cursor) {
+        posf << OTF_tag_name(*cursor);
+    }
+    qCDebug(FONTMATRIX_LOG) << script << lang << subf.join(",") << posf.join(",");
+    return 1; // programming is easy ;-)
 }
-int M17NShaper::impl_drive_otf ( struct _MFLTFont *font, MFLTOtfSpec *spec, MFLTGlyphString *in, int from, int to, MFLTGlyphString *out, MFLTGlyphAdjustment *adjustment )
+int M17NShaper::impl_drive_otf(struct _MFLTFont *font,
+                               MFLTOtfSpec *spec,
+                               MFLTGlyphString *in,
+                               int from,
+                               int to,
+                               MFLTGlyphString *out,
+                               MFLTGlyphAdjustment *adjustment)
 {
-	qCDebug(FONTMATRIX_LOG)<<"M17NShaper::impl_drive_otf";
-	instance->cachedString.clear();
-	QString script ( OTF_tag_name ( spec->script ) );
-	QString lang ( "dflt" );
-	QStringList subf;
-	QStringList posf;
-	QList<unsigned int> gl;
-	unsigned int* cursor ( nullptr );
-	for ( cursor = spec->features[0]; *cursor ; ++cursor )
-	{
-		subf <<  OTF_tag_name ( *cursor );
-	}
-	for ( cursor = spec->features[1]; *cursor ; ++cursor )
-	{
-		posf <<  OTF_tag_name ( *cursor );
-	}
-	for(int i(from); i < to; ++i)
-	{
-		gl << in->glyphs[i].code;
-	}
-	instance->otf->curString.clear() ;
-	for(int i(from);i < to; ++i)
-		instance->otf->curString += QChar(in->glyphs[i].c);
-	
-	instance->cachedString = instance->otf->procstring(gl,script,lang,subf,posf);
+    qCDebug(FONTMATRIX_LOG) << "M17NShaper::impl_drive_otf";
+    instance->cachedString.clear();
+    QString script(OTF_tag_name(spec->script));
+    QString lang("dflt");
+    QStringList subf;
+    QStringList posf;
+    QList<unsigned int> gl;
+    unsigned int *cursor(nullptr);
+    for (cursor = spec->features[0]; *cursor; ++cursor) {
+        subf << OTF_tag_name(*cursor);
+    }
+    for (cursor = spec->features[1]; *cursor; ++cursor) {
+        posf << OTF_tag_name(*cursor);
+    }
+    for (int i(from); i < to; ++i) {
+        gl << in->glyphs[i].code;
+    }
+    instance->otf->curString.clear();
+    for (int i(from); i < to; ++i)
+        instance->otf->curString += QChar(in->glyphs[i].c);
+
+    instance->cachedString = instance->otf->procstring(gl, script, lang, subf, posf);
 }
-
-
-
-
-
-
-
-

@@ -6,10 +6,11 @@
 
 #include "fmconfig.h"
 
-#include <KSharedConfig>
 #include <KConfigGroup>
+#include <KSharedConfig>
 
-namespace {
+namespace
+{
 
 // Split "Group/Key" → ("Group", "Key").  No slash → ("", fullKey) for global group.
 std::pair<QString, QString> splitKey(const QString &fullKey)

@@ -7,82 +7,85 @@
 #ifndef FILTERBAR_H
 #define FILTERBAR_H
 
-#include <QWidget>
-#include <QList>
-#include <QMap>
 #include <QAbstractListModel>
-#include <QListView>
-#include <QMenu>
-#include <QStringListModel>
-#include <QMouseEvent>
 #include <QHBoxLayout>
-
+#include <QList>
+#include <QListView>
+#include <QMap>
+#include <QMenu>
+#include <QMouseEvent>
+#include <QStringListModel>
+#include <QWidget>
 
 class FiltersDialogItem;
 class FilterItem;
 class FilterData;
 
-
 class TagListModel : public QAbstractListModel
 {
-	Q_OBJECT
-	const int specialTagsCount;
+    Q_OBJECT
+    const int specialTagsCount;
 
-	QStringList currentTags;
+    QStringList currentTags;
+
 public:
-	enum TagListRole
-	{
-		TagType = Qt::UserRole,
-		TagString
-	};
+    enum TagListRole {
+        TagType = Qt::UserRole,
+        TagString
+    };
 
-	explicit TagListModel(QObject * parent);
-	[[nodiscard]] int rowCount ( const QModelIndex & parent = QModelIndex() ) const override;
-	[[nodiscard]] int columnCount ( const QModelIndex & parent = QModelIndex() ) const override;
-	[[nodiscard]] QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const override;
-	bool setData ( const QModelIndex & index, const QVariant & value, int role = Qt::EditRole ) override;
-	[[nodiscard]] Qt::ItemFlags flags ( const QModelIndex & index ) const override;
+    explicit TagListModel(QObject *parent);
+    [[nodiscard]] int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    [[nodiscard]] int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    [[nodiscard]] QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
+    [[nodiscard]] Qt::ItemFlags flags(const QModelIndex &index) const override;
 
-	void clearCurrents();
-	void addToCurrents(const QString& t);
-	void removeFromCurrents(const QString& t);
-	void renameCurrent(const QString& from, const QString& to);
+    void clearCurrents();
+    void addToCurrents(const QString &t);
+    void removeFromCurrents(const QString &t);
+    void renameCurrent(const QString &from, const QString &to);
 
 public Q_SLOTS:
-	void tagsDBChanged();
-
+    void tagsDBChanged();
 };
-
 
 class TagListView : public QListView
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	int m_andOrKey;
+    int m_andOrKey;
+
 public:
-	explicit TagListView(QWidget * parent):
-			QListView(parent),
-			m_andOrKey(0)
-	{}
+    explicit TagListView(QWidget *parent)
+        : QListView(parent)
+        , m_andOrKey(0)
+    {
+    }
 
-	int getAndKey(){int ret(m_andOrKey); m_andOrKey = 0; return ret;}
+    int getAndKey()
+    {
+        int ret(m_andOrKey);
+        m_andOrKey = 0;
+        return ret;
+    }
 
 protected:
-	void mouseReleaseEvent(QMouseEvent *event) override
-	{
-		if(event->modifiers().testFlag(Qt::ShiftModifier))
-			m_andOrKey = 1;
-		else if(event->modifiers().testFlag(Qt::ControlModifier))
-			m_andOrKey = 2;
-		else
-			m_andOrKey = 0;
-		QListView::mouseReleaseEvent(event);
-	}
+    void mouseReleaseEvent(QMouseEvent *event) override
+    {
+        if (event->modifiers().testFlag(Qt::ShiftModifier))
+            m_andOrKey = 1;
+        else if (event->modifiers().testFlag(Qt::ControlModifier))
+            m_andOrKey = 2;
+        else
+            m_andOrKey = 0;
+        QListView::mouseReleaseEvent(event);
+    }
 };
 
-
-namespace Ui {
-    class FilterBar;
+namespace Ui
+{
+class FilterBar;
 }
 
 class FilterBar : public QWidget
@@ -93,27 +96,33 @@ public:
     explicit FilterBar(QWidget *parent = nullptr);
     ~FilterBar() override;
 
-    void setFilterListLayout(QHBoxLayout *l){filterListLayout = l;}
-    void setCurFilterWidget(QWidget * w){curFilterWidget = w;}
+    void setFilterListLayout(QHBoxLayout *l)
+    {
+        filterListLayout = l;
+    }
+    void setCurFilterWidget(QWidget *w)
+    {
+        curFilterWidget = w;
+    }
 
 protected:
     void changeEvent(QEvent *e) override;
 
 private:
     Ui::FilterBar *const ui;
-    QHBoxLayout * filterListLayout = nullptr;
-    QWidget * curFilterWidget = nullptr;
+    QHBoxLayout *filterListLayout = nullptr;
+    QWidget *curFilterWidget = nullptr;
 
-    QList<FilterItem*> filters;
-    void addFilterItem(FilterData* f, bool process = true);
+    QList<FilterItem *> filters;
+    void addFilterItem(FilterData *f, bool process = true);
     void removeAllFilters();
-    TagListModel * tagListModel = nullptr;
-//    QMenu * metaFieldsMenu;
+    TagListModel *tagListModel = nullptr;
+    //    QMenu * metaFieldsMenu;
     int metaFieldKey;
 
     QString filterString(FilterData *d, bool first = false);
     void loadFilters();
-    QList<FiltersDialogItem*> items;
+    QList<FiltersDialogItem *> items;
     // Lazy-initialised translated strings; static-init i18n() would run before
     // KLocalizedString::setApplicationDomain() and fall back to source text.
     static const QString &andOp();
@@ -135,13 +144,13 @@ private Q_SLOTS:
 
     void filtersDialog();
 
-    void slotLoadFilter(const QString& fname);
-    void slotRemoveFilter(const QString& fname);
+    void slotLoadFilter(const QString &fname);
+    void slotRemoveFilter(const QString &fname);
 
     void slotRemoveFilterItem(bool process = true);
 
-    void slotTagSelect(const QModelIndex & index);
-    void slotTagEdit(const QModelIndex & index);
+    void slotTagSelect(const QModelIndex &index);
+    void slotTagEdit(const QModelIndex &index);
 
     void slotToggleTags(bool t);
     void slotToggleMeta(bool t);
@@ -152,7 +161,6 @@ public Q_SLOTS:
     void slotClearFilter();
     void slotSaveFilter();
     void slotSaveFilter(const QString &fname);
-
 };
 
 #endif // FILTERBAR_H

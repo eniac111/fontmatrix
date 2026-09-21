@@ -9,20 +9,18 @@
 
 #include "filterdata.h"
 
-
-
 class FilterTag : public FilterData
 {
 public:
-	FilterTag();
+    FilterTag();
 
-	enum TagIndex{
-		Key = FilterData::UserIndex,
-		Tag
-	};
+    enum TagIndex {
+        Key = FilterData::UserIndex,
+        Tag
+    };
 
-	[[nodiscard]] QString type() const override;
-	void operate() override;
+    [[nodiscard]] QString type() const override;
+    void operate() override;
 };
 
 #endif // FILTERTAG_H

@@ -17,20 +17,21 @@ class QTimeLine;
 
 class FMGlyphHighlight : public QObject
 {
-	Q_OBJECT
-	public:
-		FMGlyphHighlight(QGraphicsScene* scene, const QRectF& rect, int time = 300, int frames = 12);
-		~FMGlyphHighlight() override;
-	private:
-		QGraphicsRectItem *m_rect = nullptr;
-		QTimeLine *m_timeline = nullptr;
-		QPointF initialPos;
-		int maxFrame;
-		
-		void lastFrame();
-		
-	private Q_SLOTS:
-		void animate(int);
+    Q_OBJECT
+public:
+    FMGlyphHighlight(QGraphicsScene *scene, const QRectF &rect, int time = 300, int frames = 12);
+    ~FMGlyphHighlight() override;
+
+private:
+    QGraphicsRectItem *m_rect = nullptr;
+    QTimeLine *m_timeline = nullptr;
+    QPointF initialPos;
+    int maxFrame;
+
+    void lastFrame();
+
+private Q_SLOTS:
+    void animate(int);
 };
 
 #endif

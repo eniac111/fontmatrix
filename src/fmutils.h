@@ -7,7 +7,6 @@
 #ifndef FMUTILS_H
 #define FMUTILS_H
 
-void printBacktrace ( int frames );
+void printBacktrace(int frames);
 
 #endif // FMUTILS_H
-
