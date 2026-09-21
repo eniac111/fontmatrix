@@ -157,69 +157,15 @@ ${M17N_LIBRARIES}
 )
 
 
-SET(fontmatrix_MOC_HDRS
-browserwidget.h
-activationwidget.h
-activationwidgetitem.h
-chartwidget.h
-dataexport.h
-dumpdialog.h
-familywidget.h
-filterbar.h
-filterdata.h
-filtersdialog.h
-filtersdialogitem.h
-filteritem.h
-floatingwidget.h
-floatingwidgettoolbar.h
-fmactivate.h
-fmaltcontext.h
-fmaltselector.h
-fmfloatingpreview.h
-fmfontcompareview.h
-fmfontdb.h
-fmfontextract.h
-fmfontstrings.h
-fmfreetypelib.h
-fmglyphhighlight.h
-fmglyphsview.h
-fmlayoptwidget.h
-fmlayout.h
-fmmatchraster.h
-fmnamelist.h
-fmplayground.h
-fmpreviewlist.h
-fmrepair.h
-fmsampletextview.h
-fontbookdialog.h
-fontcomparewidget.h
-fontitem.h
-importtags.h
-iview.h
-QHexView.h
-mainviewwidget.h
-metawidget.h
-modeltext.h
-openclosearrow.h
-panosedialog.h
-panosewidget.h
-parallelcoor.h
-playwidget.h
-prefspaneldialog.h
-progressbarduo.h
-remotedir.h
-sampletoolbar.h
-samplewidget.h
-shortcuts.h
-systray.h
-tagswidget.h
-tagswidget_listmodel.h
-#textprogression.h
-tttableview.h
-typotek.h
-)
-qt_wrap_cpp(fontmatrix_MOC_SRCS
-${fontmatrix_MOC_HDRS})
+# AUTOMOC finds the Q_OBJECT headers itself; each source includes its moc_<name>.cpp,
+# so the meta-object code is compiled with the class and not in one large extra unit.
+# A build tree from before that still holds the moc_<name>.cpp files qt_wrap_cpp wrote
+# here, and this directory comes first on the include path: the sources would pick up
+# those instead of the current ones.
+file(GLOB fontmatrix_STALE_MOC "${CMAKE_CURRENT_BINARY_DIR}/moc_*.cpp")
+if(fontmatrix_STALE_MOC)
+    file(REMOVE ${fontmatrix_STALE_MOC})
+endif()
 
 
 SET(fontmatrix_UIS
@@ -284,19 +230,20 @@ ${CMAKE_CURRENT_BINARY_DIR}
 ${QT_INCLUDE_DIR}
 ${QT_QT_INCLUDE_DIR}
 ${FREETYPE_INCLUDE_DIRS}
-${FONTCONFIG_INCLUDE_DIR}
 ${ICU_INCLUDE_DIR}
 ${M17N_INCLUDE_DIR}
 ${HYPHENATE_INCLUDE_DIR}
-${LIBPODOFO_INCLUDE_DIR}
 )
+# only when the module found it: "LIBPODOFO_INCLUDE_DIR-NOTFOUND" is not a directory
+if(PODOFO AND LIBPODOFO_INCLUDE_DIR)
+	include_directories(${LIBPODOFO_INCLUDE_DIR})
+endif()
 
 
 IF(UNIX AND NOT APPLE)
 	add_executable(fontmatrix
 	${fontmatrix_SRCS}
 	${SHAPERS_SRCS}
-	${fontmatrix_MOC_SRCS}
 	${fontmatrix_UIS_H}
 	${fontmatrix_RCC_SRCS}
 	${PODOFO_SRCS}
@@ -305,7 +252,7 @@ IF(UNIX AND NOT APPLE)
 	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz hyphenate
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
-	${FONTCONFIG_LIBRARIES}
+	$<TARGET_NAME_IF_EXISTS:Fontconfig::Fontconfig>
 	${SHAPERS_LIBRARIES}
 	${PODOFO_LINK_LIBS}
 	KF6::CoreAddons
@@ -400,7 +347,6 @@ IF(APPLE)
 	add_executable(fontmatrix MACOSX_BUNDLE
 	${fontmatrix_SRCS}
 	${SHAPERS_SRCS}
-	${fontmatrix_MOC_SRCS}
 	${fontmatrix_UIS_H}
 	${fontmatrix_RCC_SRCS}
 	${PODOFO_SRCS}
@@ -480,7 +426,6 @@ IF(WIN32)
 	add_executable(fontmatrix WIN32
 	${fontmatrix_SRCS}
 	${SHAPERS_SRCS}
-	${fontmatrix_MOC_SRCS}
 	${fontmatrix_UIS_H}
 	${fontmatrix_RCC_SRCS}
 	${PODOFO_SRCS}
@@ -506,6 +451,61 @@ IF(WIN32)
 	RUNTIME DESTINATION ${FONTMATRIX_BIN}
 	)
 ENDIF(WIN32)
+
+# QT_NO_CAST_FROM_ASCII, one file at a time. The project removes the definition
+# globally (see the top-level CMakeLists.txt), because a literal that reaches the
+# user has to become i18n() and not QStringLiteral(), which is a decision per
+# string. The files below hold no text for the user and are done: the definition
+# keeps an implicit char* to QString conversion from coming back into them. To
+# add a file, convert it, list it here, build.
+set_source_files_properties(
+	dataloader.cpp
+	dumpdialog.cpp
+	familywidget.cpp
+	filterdata.cpp
+	filteritem.cpp
+	filtermeta.cpp
+	filterpanose.cpp
+	filtertag.cpp
+	floatingwidget.cpp
+	fmaltselector.cpp
+	fmbaseshaper.cpp
+	fmconfig.cpp
+	fmdumpinfo.cpp
+	fmencdata.cpp
+	fmfontcompareview.cpp
+	fmfontdb.cpp
+	fmglyphsview.cpp
+	fmkernfeat.cpp
+	fmlayoptwidget.cpp
+	fmnamelist.cpp
+	fmotf.cpp
+	fmpaths.cpp
+	fmpdffontextractor.cpp
+	fmplayground.cpp
+	fmshaper.cpp
+	fmshaper_own.cpp
+	fmuniblocks.cpp
+	fmutils.cpp
+	fmvariants.cpp
+	glyphtosvghelper.cpp
+	modeltext.cpp
+	openclosearrow.cpp
+	panosedialog.cpp
+	panosematch.cpp
+	panosemodel.cpp
+	panosewidget.cpp
+	parallelcoor.cpp
+	QHexView.cpp
+	shortcuts.cpp
+	PROPERTIES COMPILE_DEFINITIONS "QT_NO_CAST_FROM_ASCII")
+
+# The project's own sources build without a warning. Off by default: a
+# packager's newer compiler must not turn a new diagnostic into a failed build.
+option(FONTMATRIX_WERROR "Treat compiler warnings as errors in Fontmatrix's own sources (for CI)" OFF)
+if(FONTMATRIX_WERROR)
+	target_compile_options(fontmatrix PRIVATE $<IF:$<CXX_COMPILER_ID:MSVC>,/WX,-Werror>)
+endif()
 
 # typotek calls setXMLFile("fontmatrixui.rc") + createGUI(); without this file
 # KXmlGui builds no menu bar and no toolbar. Installed for every platform, not

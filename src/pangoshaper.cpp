@@ -1,30 +1,19 @@
-//
-// C++ Implementation: pangoshaper
-//
-// Description: 
-//
-//
-// Author: Pierre Marchand <pierremarc@oep-h.com>, (C) 2008
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*
+    SPDX-FileCopyrightText: 2008 Pierre Marchand <pierremarc@oep-h.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "pangoshaper.h"
 
-PangoShaper::PangoShaper(FMOtf * o, QString s)
-	:FMBaseShaper(o,s)
+PangoShaper::PangoShaper(FMOtf *o, QString s)
+    : FMBaseShaper(o, s)
 {
 }
 
-PangoShaper::~ PangoShaper()
+PangoShaper::~PangoShaper() = default;
+
+GlyphList PangoShaper::doShape(const QString &)
 {
+    return GlyphList();
 }
-
-GlyphList PangoShaper::doShape(const QString & )
-{
-	return GlyphList();
-}
-
-
-

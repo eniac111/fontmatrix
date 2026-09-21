@@ -1,3 +1,4 @@
+# SPDX-FileCopyrightText: 2026 Blagovest Petrov <blagovest@petrovs.info>
 # SPDX-License-Identifier: BSD-3-Clause
 
 #[=======================================================================[.rst:

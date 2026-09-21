@@ -1,15 +1,8 @@
-//
-// C++ Implementation: fmbaseshaper
-//
-// Description:
-//
-//
-// Author: Pierre Marchand <pierremarc@oep-h.com>, (C) 2008
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*
+    SPDX-FileCopyrightText: 2008 Pierre Marchand <pierremarc@oep-h.com>
 
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "fmbaseshaper.h"
 #include "fontmatrix_debug.h"
@@ -32,105 +25,99 @@
 
 #include <QDebug>
 
-
-
 QMap<QString, int> FMShaperFactory::types()
 {
-	QMap<QString, int> ret;
-	ret.clear();
-	ret["Fontmatrix"] = FONTMATRIX;
-	
-	ret["Harfbuzz"] = HARFBUZZ;
-	
+    QMap<QString, int> ret;
+    ret.clear();
+    ret[QStringLiteral("Fontmatrix")] = FONTMATRIX;
+
+    ret[QStringLiteral("Harfbuzz")] = HARFBUZZ;
+
 #ifdef HAVE_ICU
-	ret["ICU"] = ICU;
+    ret["ICU"] = ICU;
 #endif
-	
+
 #ifdef HAVE_M17N
-	ret["m17n"] = M17N;
+    ret["m17n"] = M17N;
 #endif
-	
+
 #ifdef HAVE_PANGO
-	ret["Pango"] = PANGO;
+    ret["Pango"] = PANGO;
 #endif
-// 	ret << "OMEGA";
-	
-	return ret;
-	
-	
+    // 	ret << "OMEGA";
+
+    return ret;
 }
 
-FMShaperFactory::FMShaperFactory ( FMOtf * o, QString s, SHAPER_TYPE st )
-		:shaperType ( st ), otf ( o ), script ( s ), shaperImpl ( nullptr )
+FMShaperFactory::FMShaperFactory(FMOtf *o, QString s, SHAPER_TYPE st)
+    : shaperType(st)
+    , otf(o)
+    , script(s)
+    , shaperImpl(nullptr)
 {
-	switch ( shaperType )
-	{
-		case FONTMATRIX :
-			qCDebug(FONTMATRIX_LOG) << "NEW FontmatrixShaper";
-			shaperImpl = new FontmatrixShaper ( otf, script );
-			break;
-		case HARFBUZZ:
-			qCDebug(FONTMATRIX_LOG) << "NEW HarfbuzzShaper";
-			shaperImpl = new HarfbuzzShaper ( otf, script );
-			break;
+    switch (shaperType) {
+    case FONTMATRIX:
+        qCDebug(FONTMATRIX_LOG) << "NEW FontmatrixShaper";
+        shaperImpl = new FontmatrixShaper(otf, script);
+        break;
+    case HARFBUZZ:
+        qCDebug(FONTMATRIX_LOG) << "NEW HarfbuzzShaper";
+        shaperImpl = new HarfbuzzShaper(otf, script);
+        break;
 #ifdef HAVE_PANGO
-		case PANGO:
-			qCDebug(FONTMATRIX_LOG) << "NEW PangoShaper";
-			shaperImpl = new PangoShaper ( otf, script );
-			break;
+    case PANGO:
+        qCDebug(FONTMATRIX_LOG) << "NEW PangoShaper";
+        shaperImpl = new PangoShaper(otf, script);
+        break;
 #endif
 #ifdef HAVE_ICU
-		case ICU :
-			qCDebug(FONTMATRIX_LOG) << "NEW IcuShaper";
-			shaperImpl = new IcuShaper ( otf, script );
-			break;
+    case ICU:
+        qCDebug(FONTMATRIX_LOG) << "NEW IcuShaper";
+        shaperImpl = new IcuShaper(otf, script);
+        break;
 #endif
 #ifdef HAVE_M17N
-		case M17N :
-			qCDebug(FONTMATRIX_LOG) << "NEW M17NShaper";
-			shaperImpl = new M17NShaper ( otf, script );
-			break;
+    case M17N:
+        qCDebug(FONTMATRIX_LOG) << "NEW M17NShaper";
+        shaperImpl = new M17NShaper(otf, script);
+        break;
 #endif
-// 			case OMEGA : shaperImpl = new OmegaShaper ( otf, script );
-// 				break;
-		default:break;
-	}
-
+        // 			case OMEGA : shaperImpl = new OmegaShaper ( otf, script );
+        // 				break;
+    default:
+        break;
+    }
 }
 
-FMShaperFactory::~ FMShaperFactory()
+FMShaperFactory::~FMShaperFactory()
 {
-	if ( shaperImpl )
-		delete shaperImpl;
+    if (shaperImpl)
+        delete shaperImpl;
 }
-
 
 // void FMShaperFactory::resetShaperType ( SHAPER_TYPE st )
 // {
 // 	if ( shaperType == st )
 // 		return;
-// 
+//
 // 	if ( shaperImpl )
 // 	{
 // 		delete shaperImpl;
 // 		shaperImpl = 0;
 // 	}
-// 
+//
 // 	shaperType = st;
 // }
 
-GlyphList FMShaperFactory::doShape ( const QString & aString )
+GlyphList FMShaperFactory::doShape(const QString &aString)
 {
-	return shaperImpl->doShape ( aString );
+    return shaperImpl->doShape(aString);
 }
 
-FMBaseShaper::FMBaseShaper(FMOtf * o, QString s)
-	:otf(o), script(s)
-{
-	
-}
-
-FMBaseShaper::~ FMBaseShaper()
+FMBaseShaper::FMBaseShaper(FMOtf *o, QString s)
+    : otf(o)
+    , script(s)
 {
 }
 
+FMBaseShaper::~FMBaseShaper() = default;

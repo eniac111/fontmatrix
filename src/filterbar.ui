@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_8">
    <property name="margin">
@@ -46,7 +46,7 @@
        <item>
         <widget class="OpenCloseArrow" name="filtersArrow">
          <property name="text">
-          <string>Filters</string>
+          <string comment="@action:button">Filters</string>
          </property>
         </widget>
        </item>
@@ -140,7 +140,7 @@
        <item>
         <widget class="OpenCloseArrow" name="tagsArrow">
          <property name="text">
-          <string>Tags</string>
+          <string comment="@action:button">Tags</string>
          </property>
         </widget>
        </item>
@@ -270,7 +270,7 @@
        <item>
         <widget class="OpenCloseArrow" name="metadataArrow">
          <property name="text">
-          <string>Metadata</string>
+          <string comment="@action:button">Metadata</string>
          </property>
         </widget>
        </item>
@@ -317,7 +317,7 @@
             <item>
              <widget class="QLabel" name="label_2">
               <property name="text">
-               <string>Search</string>
+               <string comment="@label">Search</string>
               </property>
              </widget>
             </item>
@@ -347,7 +347,7 @@
             <item>
              <widget class="QLabel" name="label">
               <property name="text">
-               <string>in</string>
+               <string comment="@label">in</string>
               </property>
              </widget>
             </item>
@@ -392,7 +392,7 @@
        <item>
         <widget class="OpenCloseArrow" name="panoseArrow">
          <property name="text">
-          <string>Panose</string>
+          <string comment="@action:button">Panose</string>
          </property>
         </widget>
        </item>

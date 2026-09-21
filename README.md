@@ -1,6 +1,6 @@
 # Fontmatrix
 
-![Screenshot](screenshot.png)
+![Fontmatrix showing a font family with its sample text](doc/screenshots/family.png)
 
 Fontmatrix is a font management application for Linux, macOS, and Windows. 
 

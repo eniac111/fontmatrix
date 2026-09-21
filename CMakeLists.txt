@@ -41,7 +41,14 @@ MESSAGE(STATUS "Fontmatrix will be installed under ${CMAKE_INSTALL_PREFIX}")
 # ECM and KDE Frameworks are required on every platform. The application
 # code is uniform across Linux, macOS, and Windows; only the Windows CI
 # pipeline (packaging, vcpkg-based KF6 acquisition) is deferred.
-find_package(ECM 6.0 REQUIRED NO_MODULE)
+# The oldest versions the project is built and run against: Debian 13 (Qt 6.8.2, KDE
+# Frameworks 6.13) and Ubuntu 25.04 (Qt 6.8.3, KDE Frameworks 6.12), both in a container, with
+# warnings as errors and a start of the application. CI covers the Flatpak runtime 6.10,
+# Arch and KDE Craft, all newer. Nothing older has been tried.
+set(QT_MIN_VERSION "6.8.0")
+set(KF_MIN_VERSION "6.12.0")
+
+find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
 
 # Set before KDECompilerSettings so it doesn't override us.
@@ -51,23 +58,28 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
+include(KDEClangFormat)
+include(KDEGitCommitHooks)
 include(ECMInstallIcons)
 include(ECMQtDeclareLoggingCategory)
-# These Qt strictness flags require mass codebase changes — deferred to later phases:
-#   QT_NO_CAST_FROM_ASCII / TO_ASCII / FROM_BYTEARRAY  → Phase 5 (i18n migration)
-#   QT_NO_KEYWORDS (signals/slots/foreach)             → Phase 2 (main window refactor)
+# KDECompilerSettings turns on the Qt strictness definitions. One of them still
+# asks for changes across the code base and stays off for now:
+#   QT_NO_CAST_FROM_ASCII  → per file, see src/CMakeLists.txt; the rest with the i18n work
 remove_definitions(
     -DQT_NO_CAST_FROM_ASCII
-    -DQT_NO_CAST_TO_ASCII
-    -DQT_NO_CAST_FROM_BYTEARRAY
-    -DQT_NO_KEYWORDS
-    -DQT_NO_FOREACH
-    -DQT_USE_QSTRINGBUILDER
+)
+
+# Nothing deprecated up to the minimum versions is used; keep it that way.
+# A Linux build does not see the _WIN32 and PLATFORM_APPLE blocks: read them before raising this.
+include(ECMDeprecationSettings)
+ecm_set_disabled_deprecation_versions(
+    QT ${QT_MIN_VERSION}
+    KF ${KF_MIN_VERSION}
 )
 
 include(FeatureSummary)
 
-find_package(KF6 REQUIRED COMPONENTS
+find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons
     I18n
     Config
@@ -78,7 +90,7 @@ find_package(KF6 REQUIRED COMPONENTS
     DBusAddons
 )
 # KDocTools is optional — if absent, the handbook is skipped but the app still builds.
-find_package(KF6DocTools)
+find_package(KF6DocTools ${KF_MIN_VERSION})
 set_package_properties(KF6DocTools PROPERTIES
     DESCRIPTION "Tools to generate documentation in various formats from DocBook"
     TYPE OPTIONAL
@@ -122,22 +134,32 @@ IF(WANT_M17N)
 ENDIF(WANT_M17N)
 #>> m17n
 
+# PoDoFo serves one feature: Tools > Extract fonts, which takes the fonts embedded in a PDF
+# file. It is optional, because Debian and Ubuntu still ship 0.9, whose API is another one.
+# Without it the application is complete except for that menu entry. To build without it on
+# purpose: -DCMAKE_DISABLE_FIND_PACKAGE_podofo=ON -DCMAKE_DISABLE_FIND_PACKAGE_LIBPODOFO=ON
+set(FONTMATRIX_HAVE_PODOFO FALSE)
 find_package(podofo CONFIG QUIET)
 IF(podofo_FOUND)
 	MESSAGE(STATUS "PoDoFo Library Found OK (CMake config)")
-	ADD_DEFINITIONS(-DHAVE_PODOFO)
-	SET(PODOFO 1)
-	SET(LIBPODOFO_FOUND TRUE CACHE BOOL "Was libpodofo found")
-ELSE()
-	FIND_PACKAGE(LIBPODOFO REQUIRED)
-	IF(LIBPODOFO_FOUND)
-		MESSAGE(STATUS "PoDoFo Library Found OK")
-		ADD_DEFINITIONS(-DHAVE_PODOFO)
-		SET(PODOFO 1)
-	ELSE()
-		MESSAGE(FATAL_ERROR "PoDoFo library not found. Install libpodofo-dev (or equivalent) to build Fontmatrix.")
+	set(FONTMATRIX_HAVE_PODOFO TRUE)
+ELSEIF(NOT CMAKE_DISABLE_FIND_PACKAGE_LIBPODOFO)
+	FIND_PACKAGE(LIBPODOFO)
+	IF(LIBPODOFO_INCLUDE_DIR AND LIBPODOFO_LIBRARY)
+		# 0.9 would be found and then fail as a wall of compiler errors
+		IF(LIBPODOFO_VERSION AND LIBPODOFO_VERSION VERSION_LESS "0.10.0")
+			MESSAGE(STATUS "PoDoFo ${LIBPODOFO_VERSION} found, 0.10 or newer is needed: building without the extraction of fonts from PDF files")
+		ELSE()
+			MESSAGE(STATUS "PoDoFo Library Found OK")
+			set(FONTMATRIX_HAVE_PODOFO TRUE)
+		ENDIF()
 	ENDIF()
 ENDIF()
+IF(FONTMATRIX_HAVE_PODOFO)
+	ADD_DEFINITIONS(-DHAVE_PODOFO)
+	SET(PODOFO 1)
+ENDIF()
+add_feature_info("Font extraction from PDF files" FONTMATRIX_HAVE_PODOFO "Tools > Extract fonts; needs PoDoFo 0.10 or newer")
 
 
 # I can’t remember what it does :|
@@ -153,7 +175,7 @@ ENDIF(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
 # A lot from Scribus
 #<< Qt
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets Svg SvgWidgets Sql Xml PrintSupport)
+find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core Widgets Svg SvgWidgets Sql Xml PrintSupport)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -184,13 +206,18 @@ ENDIF(FREETYPE_FOUND)
 #>> FreeType2
 
 
-IF(UNIX AND NOT APPLE)
-	FIND_PACKAGE(FONTCONFIG)
-	IF(FONTCONFIG_FOUND)
-		MESSAGE(STATUS "FontConfig Found OK")
-		ADD_DEFINITIONS( -DHAVE_FONTCONFIG )
-	ENDIF(FONTCONFIG_FOUND)
-ENDIF(UNIX AND NOT APPLE)
+# Optional: without it the fonts are managed, but not switched on and off for other programs.
+# CMake's own module (3.14) and its imported target; a missing Fontconfig used to end up as
+# "FONTCONFIG_INCLUDE_DIR-NOTFOUND" on the include path and a failure at generation time.
+if(UNIX AND NOT APPLE)
+	find_package(Fontconfig)
+	set_package_properties(Fontconfig PROPERTIES
+		TYPE RECOMMENDED
+		PURPOSE "Activates and deactivates fonts for the other applications")
+	if(Fontconfig_FOUND)
+		add_definitions(-DHAVE_FONTCONFIG)
+	endif()
+endif()
 
 
 SET(FM_TEMPLATES_FILES
@@ -264,9 +291,17 @@ ecm_install_icons(ICONS
 ki18n_install(po)
 
 IF(UNIX AND NOT APPLE)
+	# Desktop file and AppStream metadata share the application ID, which is also what
+	# KAboutData::setDesktopFileName() tells the compositor: that is how a window finds
+	# its launcher and icon on Wayland, and how a software centre finds the launcher.
 	INSTALL(FILES
-	fontmatrix.desktop
+	com.github.fontmatrix.Fontmatrix.desktop
 	DESTINATION ${KDE_INSTALL_APPDIR}
+	)
+
+	INSTALL(FILES
+	com.github.fontmatrix.Fontmatrix.metainfo.xml
+	DESTINATION ${KDE_INSTALL_METAINFODIR}
 	)
 
 	INSTALL(FILES
@@ -352,6 +387,14 @@ GNU GENERAL PUBLIC LICENSE\n\
 ${_gpl_text}")
 	SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_BINARY_DIR}/LICENSE.txt")
 ENDIF(WIN32)
+
+# The KDE coding style: "ninja clang-format" formats everything, the pre-commit hook checks
+# the lines a commit changes. src/hyphenate is somebody else's code and has its own
+# .clang-format that switches the formatting off.
+file(GLOB_RECURSE FONTMATRIX_CLANG_FORMAT_SOURCES src/*.cpp src/*.h dodict/*.cpp)
+list(FILTER FONTMATRIX_CLANG_FORMAT_SOURCES EXCLUDE REGEX "/src/hyphenate/")
+kde_clang_format(${FONTMATRIX_CLANG_FORMAT_SOURCES})
+kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 

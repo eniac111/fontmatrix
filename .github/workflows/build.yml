@@ -69,6 +69,40 @@ jobs:
           name: fontmatrix-flatpak
           path: fontmatrix-${{ steps.version.outputs.version }}.flatpak
 
+  # The project's own sources with warnings as errors, then a start under
+  # AddressSanitizer and UBSan. An Arch container, because it packages KF6,
+  # PoDoFo and HarfBuzz, which the Ubuntu runner does not.
+  linux-checks:
+    name: Warnings and sanitizers
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    container:
+      image: archlinux:latest
+    steps:
+      - name: Install dependencies
+        run: |
+          pacman -Syu --noconfirm --needed \
+            base-devel git cmake ninja extra-cmake-modules \
+            qt6-base qt6-svg \
+            kcoreaddons ki18n kconfig kxmlgui kconfigwidgets kwidgetsaddons \
+            kstatusnotifieritem kdbusaddons kiconthemes \
+            freetype2 harfbuzz podofo fontconfig dbus gettext ttf-dejavu
+
+      - uses: actions/checkout@v6
+
+      - name: Configure
+        run: >
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug
+          "-DECM_ENABLE_SANITIZERS=address;undefined"
+          -DFONTMATRIX_WERROR=ON
+
+      - name: Build
+        run: ninja -C build
+
+      - name: Start under the sanitizers
+        run: .github/scripts/sanitizer-smoke.sh build/bin/fontmatrix 120
+
   windows:
     name: Build Windows
     # Pinned rather than windows-latest: that label moved to a Visual Studio

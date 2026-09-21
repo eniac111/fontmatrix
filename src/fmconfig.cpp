@@ -1,9 +1,16 @@
+/*
+    SPDX-FileCopyrightText: 2026 Blagovest Petrov <blagovest@petrovs.info>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
+
 #include "fmconfig.h"
 
-#include <KSharedConfig>
 #include <KConfigGroup>
+#include <KSharedConfig>
 
-namespace {
+namespace
+{
 
 // Split "Group/Key" → ("Group", "Key").  No slash → ("", fullKey) for global group.
 std::pair<QString, QString> splitKey(const QString &fullKey)
