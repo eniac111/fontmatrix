@@ -13,7 +13,8 @@ path = [
     "CMakeLists.txt", "**/CMakeLists.txt", "cmake/modules/FindICU.cmake", "cmake/modules/FindM17N.cmake",
     "cmake/modules/OwnIngestOSXBundleLibraries.cmake",
     "doc/**", "dodict/**", "OSX-package/**", "craft-blueprints/**", ".github/**",
-    "com.github.fontmatrix.Fontmatrix.json", "com.github.fontmatrix.Fontmatrix.desktop", "fontmatrix.1", "screenshot.png",
+    "com.github.fontmatrix.Fontmatrix.json", "com.github.fontmatrix.Fontmatrix.desktop", "fontmatrix.1",
+    "doc/screenshots/**",
     "README.md", "INSTALL.md", "AUTHORS", "ChangeLog", "TODO", "debian-ubuntu-install.txt",
     ".gitignore", "src/ReadMe", "samples/CREDITS",
 ]
