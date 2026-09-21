@@ -10,6 +10,7 @@
         "--socket=fallback-x11",
         "--socket=wayland",
         "--device=dri",
+        "--own-name=fontmatrix.io.fontmatrix",
         "--filesystem=/usr/share/fonts:ro",
         "--filesystem=/usr/local/share/fonts:ro",
         "--filesystem=xdg-data/fonts",

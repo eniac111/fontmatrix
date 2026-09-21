@@ -111,7 +111,9 @@ int main(int argc, char *argv[])
     aboutData.setBugAddress(QByteArrayLiteral("https://github.com/eniac111/fontmatrix/issues"));
     aboutData.setOrganizationDomain(QByteArrayLiteral("io.fontmatrix"));
     // The name of the installed .desktop file; without it KAboutData makes one up from the
-    // domain ("io.fontmatrix.fontmatrix") and a Wayland compositor finds no launcher for the window.
+    // reversed domain ("fontmatrix.io.fontmatrix") and a Wayland compositor finds no launcher
+    // for the window. KDBusService builds its bus name the same way, fontmatrix.io.fontmatrix:
+    // a Flatpak may only own its application ID, so the manifest grants that name explicitly.
     aboutData.setDesktopFileName(QStringLiteral("com.github.fontmatrix.Fontmatrix"));
     // Authors and contributors — preserved from the legacy "The People" tab
     // of the old About dialog (src/messages/about_people.html).
