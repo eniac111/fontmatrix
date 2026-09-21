@@ -56,7 +56,7 @@ FMDumpInfo::FMDumpInfo(FontItem * font, const QString & model)
 	*/
 	QList<int> llist;
 	llist << 0x0000 << 0x0009 << 0x0409 << 0x0809;
-	for (const auto& langid : llist)
+	for (const auto& langid : std::as_const(llist))
 	{
 		if( fim.contains(langid) ) // DEFAULT - generally means english in fact, which is good for our purpose.
 		{

@@ -337,7 +337,7 @@ void FilterBar::processFilters()
 	{
 		FMFontDb::DB()->clearFilteredFonts();
 		bool first(true);
-		for (auto* d : filters)
+		for (auto* d : std::as_const(filters))
 		{
 			if(first)
 			{
@@ -371,7 +371,7 @@ void FilterBar::slotRemoveFilterItem(bool process)
 void FilterBar::removeAllFilters()
 {
 	FMFontDb::DB()->filterAllFonts();
-	for (auto* d : filters)
+	for (auto* d : std::as_const(filters))
 	{
 		d->deleteLater();
 	}
@@ -427,19 +427,19 @@ QString FilterBar::filterString(FilterData *d, bool first)
 
 void FilterBar::loadFilters()
 {
-	for (auto* i : items)
+	for (auto* i : std::as_const(items))
 		delete i;
 	items.clear();
 
 	QDir fbasedir(FMPaths::FiltersDir());
 	QStringList fbaselist(fbasedir.entryList(QDir::NoDotAndDotDot|QDir::Dirs,QDir::Name));
-	for (const auto& fname : fbaselist)
+	for (const auto& fname : std::as_const(fbaselist))
 	{
 		QDir fdir(FMPaths::FiltersDir() + fname);
 		QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files, QDir::Name));
 		QString fString;
 		bool first(true);
-		for (const auto& fn : flist)
+		for (const auto& fn : std::as_const(flist))
 		{
 			QStringList l(fn.split(QString("-")));
 			if(l.count() == 2)
@@ -491,7 +491,7 @@ void FilterBar::slotTagSelect(const QModelIndex & index)
 //	int selCount(ui->tagsView->selectionModel()->selectedIndexes().count());
 //	if(selCount == 1)
 	{
-		for (auto* f : filters)
+		for (auto* f : std::as_const(filters))
 		{
 			if(f->filter()->data(FilterTag::Tag).toString() == tag)
 				return;
@@ -610,7 +610,7 @@ void FilterBar::slotLoadFilter(const QString &fname)
 	removeAllFilters();
 	QDir fdir(FMPaths::FiltersDir() + fname);
 	QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files, QDir::Name));
-	for (const auto& fn : flist)
+	for (const auto& fn : std::as_const(flist))
 	{
 		QStringList l(fn.split(QString("-")));
 		if(l.count() == 2)
@@ -653,7 +653,7 @@ void FilterBar::slotRemoveFilter(const QString &fname)
 	{
 		fdir.cd(fname);
 		QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files));
-		for (const auto& fn : flist)
+		for (const auto& fn : std::as_const(flist))
 		{
 			fdir.remove(fn);
 		}

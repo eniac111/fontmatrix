@@ -214,7 +214,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 		{
 			if(mat.MatchAll)
 			{
-				for (const auto& prop : mat.CustomProperties)
+				for (const auto& prop : std::as_const(mat.CustomProperties))
 				{
 					if(!prop.isEmpty())
 					{
@@ -222,7 +222,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 						return 0;
 					}
 				}
-				for (const auto& prop : car.CustomProperties)
+				for (const auto& prop : std::as_const(car.CustomProperties))
 				{
 					if(!prop.isEmpty())
 					{
@@ -233,7 +233,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 			}
 			else
 			{
-				for (const auto& prop : mat.CustomProperties)
+				for (const auto& prop : std::as_const(mat.CustomProperties))
 				{
 					if(!prop.isEmpty())
 					{
@@ -253,12 +253,12 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 			{
 				if(mat.MatchAll)
 				{
-					for (const auto& prop : mat.CustomProperties)
+					for (const auto& prop : std::as_const(mat.CustomProperties))
 					{
 						if(!car.CustomProperties.contains(prop))
 							return 0;
 					}
-					for (const auto& prop : car.CustomProperties)
+					for (const auto& prop : std::as_const(car.CustomProperties))
 					{
 						if(!mat.CustomProperties.contains(prop))
 							return 0;
@@ -266,7 +266,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 				}
 				else
 				{
-					for (const auto& prop : mat.CustomProperties)
+					for (const auto& prop : std::as_const(mat.CustomProperties))
 					{
 						if(!car.CustomProperties.contains(prop))
 							return 0;
@@ -277,7 +277,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 		}
 	}
 	// It match
-	for (const auto& idx : matchedGroup)
+	for (const auto& idx : std::as_const(matchedGroup))
 	{
 		In[idx].isMatchedGroup = true;
 // 		qDebug()<<"MATCHED" <<In[idx].unicode() << In[idx].DumpCustom();
@@ -301,7 +301,7 @@ void FMOwnShaper::Replace(int repIndex, QList< Character > chunk)
 		}
 	}
 	// Let replace :)
-	for (const auto& rep : Replacements[repIndex].Properties)
+	for (const auto& rep : std::as_const(Replacements[repIndex].Properties))
 	{
 		if(rep.isNull())
 		{
@@ -314,7 +314,7 @@ void FMOwnShaper::Replace(int repIndex, QList< Character > chunk)
 		}
 	}
 	// Push in Out
-	for (const auto& b : buffer)
+	for (const auto& b : std::as_const(buffer))
 	{
 		Out << b;
 	}
@@ -355,7 +355,7 @@ QString Character::DumpCustom()
 {
 	QString ret;
 	bool first = true;
-	for (const auto& value : CustomProperties)
+	for (const auto& value : std::as_const(CustomProperties))
 	{
 		if(first)
 		{
@@ -411,7 +411,7 @@ void MatchSequence::SetMatch(const QString &b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				for (const auto& prop : pl)
+				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
 				}
@@ -427,7 +427,7 @@ void MatchSequence::SetMatch(const QString &b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				for (const auto& prop : pl)
+				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
 				}
@@ -457,7 +457,7 @@ void MatchSequence::SetMatch(const QString &b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				for (const auto& prop : pl)
+				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
 				}
@@ -473,7 +473,7 @@ void MatchSequence::SetMatch(const QString &b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				for (const auto& prop : pl)
+				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
 				}
@@ -524,7 +524,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				for (const auto& prop : pl)
+				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
 				}
@@ -559,7 +559,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				for (const auto& prop : pl)
+				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
 				}

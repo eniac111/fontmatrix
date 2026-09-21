@@ -289,7 +289,7 @@ QVariant FMPreviewModel::data(const QModelIndex & index, int role) const
 			sRet+= "<div style=\"" + styleTooltipName + "\">" + fit->family() + " ("+QString::number(fam.size())+")</div>";
 			sRet+= "<div style=\"" + styleTooltipTags + "\">" + fit->tags().join(QString(", ")) + "</div>";
 
-			for (auto* ffi : fam)
+			for (auto* ffi : std::as_const(fam))
 			{
 				sRet += "<div style=\"" + styleTooltipPath + "\">" + ffi->variant() + "</div>";
 			}

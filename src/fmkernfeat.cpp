@@ -75,7 +75,7 @@ void FMKernFeature::makeCoverage()
 
 	// Extract indices of lookups for feture kern
 	QList<quint16> LookupListIndex;
-	for (const auto& kern : FeatureKern_Offset)
+	for (const auto& kern : std::as_const(FeatureKern_Offset))
 	{
 		quint16 LookupCount ( toUint16 ( kern + 2 ) );
 		if ( out )

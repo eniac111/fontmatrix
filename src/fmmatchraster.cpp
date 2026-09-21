@@ -134,7 +134,7 @@ void FMMatchRaster::search()
 
 	PuzzleViewImp ref ( refImage , curCol );
 
-	for (auto* fit : compFonts)
+	for (auto* fit : std::as_const(compFonts))
 	{
 		progressBar->setValue ( ++m_progressValue );
 		remainFonts.removeAll ( fit );

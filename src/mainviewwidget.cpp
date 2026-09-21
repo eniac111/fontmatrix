@@ -916,7 +916,7 @@ void MainViewWidget::slotShowFamily(const QModelIndex& familyIdx)
 		return;
 	}
 	QList<FontItem*> fl(FMFontDb::DB()->FamilySet(fItem->family()));
-	for (auto* f : fl)
+	for (auto* f : std::as_const(fl))
 	{
 		qCDebug(FONTMATRIX_LOG) <<"F"<< f->fancyName();
 	}

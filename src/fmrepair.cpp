@@ -336,7 +336,7 @@ void FmRepair::slotRemoveUnref()
 		{
 			FontItem* curItem = nullptr;
 			QString fId(unrefList->item(i)->text());
-			for (auto* it : flist)
+			for (auto* it : std::as_const(flist))
 			{
 				if(it->path() == fId)
 				{

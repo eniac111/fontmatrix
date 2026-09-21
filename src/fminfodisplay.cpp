@@ -119,7 +119,7 @@ QString FMInfoDisplay::writeLangOS2(FontItem * font)
 		ret += "<div id=\"langblock\">\n";
 		ret += "\t<div class=\"langblockname\">" + i18n("Unicode Ranges") + "</div>\n";
 		ret += "\t<ul>\n";
-		for (const auto& ln : llist)
+		for (const auto& ln : std::as_const(llist))
 		{
 			ret += QString("\t\t<li>%1</li>\n").arg(ln);
 		}
@@ -303,7 +303,7 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 			<< FMFontDb::UniqueFontIdentifier;
 	
 	QMap<FMFontDb::InfoItem, QString> tNames(FontStrings::Names());
-	for (const auto& key : order)
+	for (const auto& key : std::as_const(order))
 	{
 		if (orderedInfo.contains(key))
 			ret += modelItem.arg(tNames.value(key))

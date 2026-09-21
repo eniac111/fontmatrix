@@ -62,7 +62,7 @@ TTTableView::TTTableView(FontItem * font, QWidget * parent)
 
 TTTableView::~ TTTableView()
 {
-	for (auto* twi : twiList)
+	for (auto* twi : std::as_const(twiList))
 	{
 		delete twi;
 	}

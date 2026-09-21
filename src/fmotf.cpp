@@ -475,7 +475,7 @@ QList< RenderedGlyph > FMOtf::procstring( QList<Character> shaped , QString scri
 	//First we collect properties
 	for( int i = 0; i < n; i++ )
 	{
-		for (const auto& cProp : shaped[i].CustomProperties)
+		for (const auto& cProp : std::as_const(shaped[i].CustomProperties))
 		{
 			if(!props.contains(cProp))
 			{
@@ -490,7 +490,7 @@ QList< RenderedGlyph > FMOtf::procstring( QList<Character> shaped , QString scri
 	{
 		uint prop = 0;
 // 		prop |= all;
-		for (const auto& cProp : shaped[i].CustomProperties)
+		for (const auto& cProp : std::as_const(shaped[i].CustomProperties))
 		{
 			prop |= (props[cProp]);
 		}

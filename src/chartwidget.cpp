@@ -532,7 +532,7 @@ void ChartWidget::slotDoPrinting()
 	{
 		qCDebug(FONTMATRIX_LOG) << "Chart("<< ++numP <<") ->"<<beginCharcode<<maxCharcode;
 		QList<QGraphicsItem*> lgit(pScene.items());
-		for (auto* git : lgit)
+		for (auto* git : std::as_const(lgit))
 		{
 			pScene.removeItem(git);
 			delete git;

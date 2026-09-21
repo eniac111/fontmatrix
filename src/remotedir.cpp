@@ -74,7 +74,7 @@ RemoteDir::~RemoteDir()
 		delete h;
 	}
 #endif
-	for (auto* b : buffers)
+	for (auto* b : std::as_const(buffers))
 	{
 		delete b;
 	}

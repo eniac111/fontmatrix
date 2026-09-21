@@ -739,7 +739,7 @@ bool FMFontDb::TransactionEnd()
 	{
 		bool cestGraveDocteur ( false );
 		qCDebug(FONTMATRIX_LOG) <<"ERRORS ==========================================================================";
-		for (const auto& e : transactionError)
+		for (const auto& e : std::as_const(transactionError))
 		{
 			qCDebug(FONTMATRIX_LOG) <<e;
 			if ( e.isValid () )
@@ -918,7 +918,7 @@ QList<FontItem*> FMFontDb::getFilteredFonts(bool familyOnly)
 	if(currentFamiliesCache.isEmpty() && (!currentFonts.isEmpty()))
 	{
 		QMap<QString, QList< FontItem* > > pools;
-		for (auto* it : currentFonts)
+		for (auto* it : std::as_const(currentFonts))
 		{
 			if(pools.contains(it->family()))
 				pools[it->family()].append(it);

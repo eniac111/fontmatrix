@@ -780,7 +780,7 @@ void SampleWidget::refillSampleList()
 	{
 
 		bool first(true);
-		for (const auto& uk : ul)
+		for (const auto& uk : std::as_const(ul))
 		{
 			if(first)
 			{

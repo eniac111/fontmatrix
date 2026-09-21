@@ -123,7 +123,7 @@ namespace fontmatrix
 			retDirList.clear();
 		retDirList << dir.absolutePath();
 		QStringList localEntries ( dir.entryList ( QDir::AllDirs | QDir::NoDotAndDotDot ) );
-		for (const auto& dirEntry : localEntries)
+		for (const auto& dirEntry : std::as_const(localEntries))
 		{
 // 			qDebug() << "[exploreDirs] - " + dir.absolutePath() + "/" + dirEntry;
 			QDir d ( dir.absolutePath() + "/" + dirEntry );
@@ -426,11 +426,11 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 
 		QStringList filters;
 		filters << "*.otf" << "*.pfb" << "*.ttf" << "*.ttc";
-		for (const auto& dr : dirList)
+		for (const auto& dr : std::as_const(dirList))
 		{
 			QDir d ( dr );
 			QFileInfoList fil= d.entryInfoList ( filters );
-			for (const auto& fp : fil)
+			for (const auto& fp : std::as_const(fil))
 			{
 				if ( ( !yetHereFonts.contains ( fp.absoluteFilePath() ) ) )
 				{
@@ -528,10 +528,10 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 	}
 
 	QStringList tl;
-	for (const auto& tag : tali)
+	for (const auto& tag : std::as_const(tali))
 	{
 		tl.clear();
-		for (auto* f : nf)
+		for (auto* f : std::as_const(nf))
 		{
 			tl << f->path();
 		}
@@ -635,10 +635,10 @@ void typotek::openList ( QStringList files )
 		}
 	}
 	QStringList tl;
-	for (const auto& tag : tali)
+	for (const auto& tag : std::as_const(tali))
 	{
 		tl.clear();
-		for (auto* f : nf)
+		for (auto* f : std::as_const(nf))
 		{
 			tl << f->path();
 		}
@@ -1281,11 +1281,11 @@ QStringList typotek::getSystemFontDirs()
 		sysDir = ( (char*)FcStrListNext(sysDirList) );
 	}
 	// Because we will go recursivly through these directories, we just want to list the top most ones.
-	for (const auto& path : tmpList)
+	for (const auto& path : std::as_const(tmpList))
 	{
 // 		qDebug()<< "PATH"<<path;
 		bool root(true);
-		for (const auto& ref : tmpList)
+		for (const auto& ref : std::as_const(tmpList))
 		{
 			if(path != ref)
 			{
@@ -1352,11 +1352,11 @@ void typotek::initDir()
 			QStringList dirList ( fontmatrix::exploreDirs ( theDir,0 ) );
 			QStringList filters;
 			filters << "*.otf" << "*.pfb" << "*.ttf" << "*.ttc";
-			for (const auto& dr : dirList)
+			for (const auto& dr : std::as_const(dirList))
 			{
 				QDir d ( dr );
 				QFileInfoList fil= d.entryInfoList ( filters );
-				for (const auto& fp : fil)
+				for (const auto& fp : std::as_const(fil))
 				{
 					if ( !yetHereFonts.contains ( fp.absoluteFilePath() ) )
 						syspathList <<  fp.absoluteFilePath();
@@ -1398,7 +1398,7 @@ void typotek::initDir()
 
 		// So much complicated only because otherwise, tags were added twice with SQLite ???
 		QStringList tl;
-		for (auto* sfp : sysFontPtrs)
+		for (auto* sfp : std::as_const(sysFontPtrs))
 		{
 			tl << sfp->path();
 		}
@@ -1446,7 +1446,7 @@ void typotek::slotRemoteIsReady()
 // 		fontMap.append ( fi );
 // 		realFontMap[fi->path() ] = fi;
 		fi->setTags ( listInfo[rf].tags );
-		for (const auto& tag : listInfo[rf].tags)
+		for (const auto& tag : std::as_const(listInfo[rf].tags))
 		{
 			if(!tag.isEmpty() && !tagsList.contains(tag))
 			{
@@ -2307,7 +2307,7 @@ void typotek::slotReloadFiltered()
 		db->Remove(f->path());
 	}
 	QList<FontItem*> renewedFonts;
-	for (const auto& p : toReload)
+	for (const auto& p : std::as_const(toReload))
 	{
 		FontItem * it(db->Font(p, true));
 		if(it)
@@ -2316,7 +2316,7 @@ void typotek::slotReloadFiltered()
 		}
 	}
 	db->TransactionBegin();
-	for (auto* it : renewedFonts)
+	for (auto* it : std::as_const(renewedFonts))
 	{
 		it->setTags(tagsRec[it->path()]);
 	}
@@ -2497,7 +2497,7 @@ void typotek::updateFloatingStatus()
 		}
 	}
 
-	for (auto* f : fwl)
+	for (auto* f : std::as_const(fwl))
 	{
 		if(floatingWidgets.contains(f))
 		{

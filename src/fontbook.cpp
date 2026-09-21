@@ -261,7 +261,7 @@ void FontBook::doFullBookPageRight(const QString &family)
 		logDescend[fidx] = tmpScene.itemsBoundingRect().bottom() - 1000.0;
 //		qDebug()<< sampleString[fidx] << logWidth[fidx];
 		QList<QGraphicsItem*> lgit(tmpScene.items());
-		for (auto* git : lgit)
+		for (auto* git : std::as_const(lgit))
 		{
 			tmpScene.removeItem(git);
 			delete git;
@@ -348,13 +348,13 @@ void FontBook::doFullBookPageRight(const QString &family)
 	bool rasterState(rFont->rasterFreetype());
 	rFont->setFTRaster(false);
 	QList<GlyphList> lgl;
-	for (const auto& s : stringList)
+	for (const auto& s : std::as_const(stringList))
 	{
 		lgl << rFont->glyphs(s, littleSize);
 	}
 	layoutLeft->doLayout(lgl, littleSize);
 	lgl.clear();
-	for (const auto& s : stringList)
+	for (const auto& s : std::as_const(stringList))
 	{
 		lgl << rFont->glyphs(s, bigSize);
 	}
@@ -464,7 +464,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 
 		// Unicode Coverage
 		QStringList llist;
-		for (auto* fi : familyFonts)
+		for (auto* fi : std::as_const(familyFonts))
 		{
 			for (const auto& sl : fi->supportedLangDeclaration())
 			{

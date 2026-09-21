@@ -3365,7 +3365,7 @@ QList< int > FontItem::getAlternates ( int ccode )
 	QString spec;
 	spec = QChar ( ccode );
 
-	for (const auto& set : setList)
+	for (const auto& set : std::as_const(setList))
 	{
 		QList<RenderedGlyph> rendered ( otf->procstring ( spec, set ) );
 		if(rendered.isEmpty())
@@ -3859,7 +3859,7 @@ void FontItem::dumpIntoDB()
 QStringList FontItem::charmaps()
 {
 	QStringList ret;
-	for (const auto& e : m_charsets)
+	for (const auto& e : std::as_const(m_charsets))
 	{
 		ret << FontStrings::Encoding(e);
 	}

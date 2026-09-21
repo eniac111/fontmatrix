@@ -103,7 +103,7 @@ QList<int> PanoseMatch::parse ( const QString &panoseString ) const
 	QList<int> l;
 	if ( pl.count() == 10 )
 	{
-		for (const auto& s : pl)
+		for (const auto& s : std::as_const(pl))
 		{
 			l << s.toInt();
 		}

@@ -91,7 +91,7 @@ bool TagsWidget_ListModel::setData(const QModelIndex &index, const QVariant &val
 			if(!tags.contains(tag))
 			{
 				FMFontDb::DB()->TransactionBegin();
-				for (auto* f : fonts)
+				for (auto* f : std::as_const(fonts))
 					f->addTag(tag);
 				FMFontDb::DB()->TransactionEnd();
 				tags.append(tag);
@@ -106,7 +106,7 @@ bool TagsWidget_ListModel::setData(const QModelIndex &index, const QVariant &val
 			if(tags.contains(tag))
 			{
 				FMFontDb::DB()->TransactionBegin();
-				for (auto* f : fonts)
+				for (auto* f : std::as_const(fonts))
 					FMFontDb::DB()->removeTag(f->path(), tag);
 				FMFontDb::DB()->TransactionEnd();
 				tags.removeAll(tag);

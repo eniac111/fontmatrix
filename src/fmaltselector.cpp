@@ -231,7 +231,7 @@ void FMAltSelectorModel::FMAltItemDelegate::paint(QPainter * painter, const QSty
 	qCDebug(FONTMATRIX_LOG)<<"Paint"<<index.row()<<index.column()<< item->alts;
 	double fsize(22.0);
 	painter->save();
-	for (const auto& idx : item->alts)
+	for (const auto& idx : std::as_const(item->alts))
 	{
 		QImage img(fi->glyphImage(idx, fsize));
 		int ssize(img.width());
@@ -254,7 +254,7 @@ QSize FMAltSelectorModel::FMAltItemDelegate::sizeHint( [[maybe_unused]] const QS
 	FMAltSelectorModel::AltItem * item = static_cast<FMAltSelectorModel::AltItem*>(index.internalPointer());
 	if(!item)
 		return ret;
-	for (const auto& idx : item->alts)
+	for (const auto& idx : std::as_const(item->alts))
 	{
 		QImage img(fi->glyphImage(idx, fsize));
 		ret.rwidth() += img.width() + 3;

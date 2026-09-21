@@ -82,13 +82,13 @@ FMVariants::FMVariants()
 			<<	QString("SmallText")
 			<<	QString("Caption");
 
-	for (const auto& w : weight)
+	for (const auto& w : std::as_const(weight))
 	{
-		for (const auto& s : slope)
+		for (const auto& s : std::as_const(slope))
 		{
-			for (const auto& wi : width)
+			for (const auto& wi : std::as_const(width))
 			{
-				for (const auto& o : optical)
+				for (const auto& o : std::as_const(optical))
 				{
 					appendVariants(w, s, wi, o);
 				}
@@ -113,7 +113,7 @@ void FMVariants::appendVariants(const QString &w, const QString &s, const QStrin
 	QStringList p;
 	p << w << s << wi << o;
 	QStringList l;
-	for (const auto& s : p)
+	for (const auto& s : std::as_const(p))
 	{
 		if(!s.isEmpty())
 			l << s;
@@ -151,7 +151,7 @@ QList<FontItem*> FMVariants::Order(QList<FontItem*> ul)
 	{
 		fl.insert(f, f->variant().split(QString(" ")));
 	}
-	for (const auto& v : vs->variants)
+	for (const auto& v : std::as_const(vs->variants))
 	{
 		for (auto* f : fl.keys())
 		{

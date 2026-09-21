@@ -302,12 +302,12 @@ void BrowserWidget::updateButtons()
 		buttons << ui->sampleButton
 				<< ui->infoButton
 				<< ui->chartButton;
-		for (auto* b : buttons)
+		for (auto* b : std::as_const(buttons))
 		{
 			b->setCheckable(true);
 		}
 	}
-	for (auto* b : buttons)
+	for (auto* b : std::as_const(buttons))
 	{
 		b->setChecked(false);
 	}

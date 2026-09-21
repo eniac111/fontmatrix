@@ -616,7 +616,7 @@ void PrefsPanelDialog::reloadShortcuts()
 	shortcutModel->clear();
 	QList<QAction*> alist = Shortcuts::getInstance()->getActions();
 	Shortcuts *scuts = Shortcuts::getInstance();
-	for (auto* act : alist)
+	for (auto* act : std::as_const(alist))
 	{
 		QStandardItem *iText = new QStandardItem ( scuts->cleanName(act->text()) );
 		QStandardItem *iShortcut = new QStandardItem ( act->shortcut().toString() );

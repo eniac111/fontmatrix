@@ -117,7 +117,7 @@ void FontBookDialog::slotFileDialog()
 void FontBookDialog::fillFontsList()
 {
 	QList<FontItem*> localFontMap = FMFontDb::DB()->getFilteredFonts();
-	for (auto* fit : localFontMap)
+	for (auto* fit : std::as_const(localFontMap))
 	{
 		selectedFontsList->addItem(fit->fancyName());
 	}

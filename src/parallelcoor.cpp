@@ -219,13 +219,13 @@ void ParallelCoorView::cleanLists(ItemList il)
 {
 	if((il == AllList) || (il == ValueList))
 	{
-		for (auto* ti : valueLabels)
+		for (auto* ti : std::as_const(valueLabels))
 		{
 			delete ti;
 		}
 		valueLabels.clear();
 		
-		for (auto* mi : marks)
+		for (auto* mi : std::as_const(marks))
 		{
 			delete mi;
 		}
@@ -233,7 +233,7 @@ void ParallelCoorView::cleanLists(ItemList il)
 	}
 	if((il == AllList) || (il == FieldList))
 	{
-		for (auto* ti : fieldLabels)
+		for (auto* ti : std::as_const(fieldLabels))
 		{
 			delete ti;
 		}
@@ -241,7 +241,7 @@ void ParallelCoorView::cleanLists(ItemList il)
 	}
 	if((il == AllList) || (il == VerticeList))
 	{
-		for (auto* pi : vertices)
+		for (auto* pi : std::as_const(vertices))
 		{
 			delete pi;
 		}
@@ -249,7 +249,7 @@ void ParallelCoorView::cleanLists(ItemList il)
 	}
 	if((il == AllList) || (il == BarList))
 	{
-		for (auto* li : bars)
+		for (auto* li : std::as_const(bars))
 		{
 			delete li;
 		}

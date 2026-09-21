@@ -606,7 +606,7 @@ void FMLayout::doLines()
 
 		QString dStr;
 		QString dBk;
-		for (const auto& rg : inList)
+		for (const auto& rg : std::as_const(inList))
 		{
 			dStr += QChar ( rg.lChar );
 			dBk += rg.isBreak ? "#" : "_";
