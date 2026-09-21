@@ -981,14 +981,11 @@ GlyphList FMOtf::get_position ( HB_Buffer abuffer )
 // 		qDebug() << "bIndex = "<< bIndex;
 		RenderedGlyph gl;
 
+		// Glyph 0 is kept: a character the font lacks shows as .notdef, as it
+		// does without OpenType features. Skipping it also left renderedString
+		// shorter than the buffer, and the "back" positions below index it with
+		// the index of the buffer.
 		gl.glyph = _buffer->in_string[bIndex].gindex;
-		if ( gl.glyph == 0 )
-		{
-// 			qDebug() << "glyph skipped";
-			// Here we just continue but in the case of an actual lyout engine
-			// we should keep track of empty glyphs positions too.
-			continue;
-		}
 		gl.log = _buffer->in_string[bIndex].cluster;
 		HB_Position p = nullptr;
 		if ( wantPos && GPOS )
