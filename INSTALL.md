@@ -27,8 +27,8 @@ Download and run the MSI — Qt and FreeType runtime DLLs are bundled.
 |---|---|---|
 | CMake | ≥ 3.16 | |
 | C++ compiler | C++20 | GCC / Clang / MSVC 2022 |
-| Qt 6 | ≥ 6.10 | Core, Widgets, Svg, SvgWidgets, Sql, Xml, PrintSupport |
-| KDE Frameworks 6 and extra-cmake-modules | ≥ 6.28 | CoreAddons, I18n, Config, XmlGui, ConfigWidgets, WidgetsAddons, StatusNotifierItem, DBusAddons; DocTools is optional (handbook) |
+| Qt 6 | ≥ 6.8 | Core, Widgets, Svg, SvgWidgets, Sql, Xml, PrintSupport |
+| KDE Frameworks 6 and extra-cmake-modules | ≥ 6.12 | CoreAddons, I18n, Config, XmlGui, ConfigWidgets, WidgetsAddons, StatusNotifierItem, DBusAddons; DocTools is optional (handbook) |
 | PoDoFo | ≥ 0.10 | optional: *Tools → Extract fonts* (the fonts embedded in a PDF file). Without it, or with 0.9, whose API is another one, the application is built without that entry |
 | HarfBuzz | ≥ 2.6.8 | built with FreeType support; Qt 6 depends on it already |
 | FreeType2 | ≥ 2.3.5 | |
@@ -36,8 +36,9 @@ Download and run the MSI — Qt and FreeType runtime DLLs are bundled.
 | Fontconfig | | optional, Linux; without it fonts are managed but not switched on and off for other programs |
 
 The Qt and KDE Frameworks versions are the oldest ones the project is built and run
-against (the `org.kde.Platform` 6.10 Flatpak runtime, Arch Linux and KDE Craft in CI).
-Older ones may work; nobody has tried, and CMake refuses them.
+against: Debian 13 (Qt 6.8.2, KF 6.13) and Ubuntu 25.04 (Qt 6.8.3, KF 6.12). CI covers the
+`org.kde.Platform` 6.10 Flatpak runtime, Arch Linux and KDE Craft, all newer. Older versions
+may work; nobody has tried, and CMake refuses them.
 
 ---
 
@@ -51,8 +52,18 @@ sudo pacman -S --needed base-devel cmake ninja extra-cmake-modules gettext \
   kstatusnotifieritem kdbusaddons kiconthemes freetype2 harfbuzz podofo fontconfig
 ```
 
-**Debian 13 and Ubuntu 25.04 cannot build Fontmatrix from their own packages**: both
-ship PoDoFo 0.9.8. Use the Flatpak there.
+On Debian 13 and Ubuntu 25.04:
+
+```bash
+sudo apt install g++ cmake ninja-build pkg-config gettext extra-cmake-modules \
+  qt6-base-dev qt6-svg-dev libkf6coreaddons-dev libkf6i18n-dev libkf6config-dev \
+  libkf6xmlgui-dev libkf6configwidgets-dev libkf6widgetsaddons-dev \
+  libkf6statusnotifieritem-dev libkf6dbusaddons-dev libkf6iconthemes-dev \
+  libfreetype-dev libharfbuzz-dev libfontconfig-dev
+```
+
+Both ship PoDoFo 0.9.8, which is too old: Fontmatrix is built there without *Tools → Extract
+fonts* and says so when CMake runs. The Flatpak has it.
 
 Build:
 

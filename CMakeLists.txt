@@ -41,11 +41,12 @@ MESSAGE(STATUS "Fontmatrix will be installed under ${CMAKE_INSTALL_PREFIX}")
 # ECM and KDE Frameworks are required on every platform. The application
 # code is uniform across Linux, macOS, and Windows; only the Windows CI
 # pipeline (packaging, vcpkg-based KF6 acquisition) is deferred.
-# The oldest versions the project is built and run against: the org.kde.Platform 6.10
-# Flatpak runtime (Qt 6.10) and the developers' machines (KDE Frameworks 6.28). CI also
-# covers Arch and KDE Craft, both newer. Nothing older has been tried.
-set(QT_MIN_VERSION "6.10.0")
-set(KF_MIN_VERSION "6.28.0")
+# The oldest versions the project is built and run against: Debian 13 (Qt 6.8.2, KDE
+# Frameworks 6.13) and Ubuntu 25.04 (Qt 6.8.3, KDE Frameworks 6.12), both in a container, with
+# warnings as errors and a start of the application. CI covers the Flatpak runtime 6.10,
+# Arch and KDE Craft, all newer. Nothing older has been tried.
+set(QT_MIN_VERSION "6.8.0")
+set(KF_MIN_VERSION "6.12.0")
 
 find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
