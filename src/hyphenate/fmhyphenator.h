@@ -16,6 +16,7 @@
 #include <QPair>
 #include <QList>
 #include <QStringEncoder>
+#include <QStringDecoder>
 
 typedef QMap<int , QPair<QString, QString>  > HyphList;
 
@@ -32,6 +33,7 @@ class FMHyphenator : public QObject
 		QString currentDictPath;
 		HyphenDict *dict;
 		QStringEncoder *textEncoder;
+		QStringDecoder *textDecoder;
 };
 
 #endif
