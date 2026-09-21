@@ -44,7 +44,7 @@ public:
 	void clearSelection();
 	QGraphicsScene* getPlayScene(){return playScene;}
 
-signals:
+Q_SIGNALS:
 	// Emitted whenever this window is shown or hidden, including when the
 	// user closes it from its own title bar. typotek's checkable Playground
 	// action is toggled on by the action itself, so without this it stays
@@ -61,7 +61,7 @@ private:
 	Ui::PlayWidget *ui = nullptr;
 	QGraphicsScene *playScene = nullptr;
 
-private slots:
+private Q_SLOTS:
 	void slotZoom ( int z );
 	void print();
 };

@@ -159,7 +159,7 @@ class FMAltContextLib : private QObject
 		static FMAltContext * GetCurrentContext();
 		static void GetConnected(const QObject * receiver, const char * method);
 
-	signals:
+	Q_SIGNALS:
 		void contextChanged();
 		
 };

@@ -49,7 +49,7 @@ private:
 	int buildHtml();
 	int buildTemplate(const QString& templateDirPath);
 
-private slots:
+private Q_SLOTS:
 	void doExport();
 };
 

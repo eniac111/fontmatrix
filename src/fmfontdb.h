@@ -111,7 +111,7 @@ class FMFontDb : public QObject, public QSqlDatabase
 		FontInfoMap getInfoMap ( const QString& id );
 		QList<FontDBResult> getInfo ( const QList<FontItem*>& fonts, InfoItem info, int codeLang = 0 );
 		
-	public slots:
+	public Q_SLOTS:
 		FontItem* Font ( const QString& id , bool noTemporary = false );
 
 		QList<FontItem*> AllFonts();
@@ -184,7 +184,7 @@ class FMFontDb : public QObject, public QSqlDatabase
 
 		int transactionDeep;
 
-	signals:
+	Q_SIGNALS:
 		void tagsChanged();
 
 };

@@ -31,7 +31,7 @@ public:
 
 	void prepare(QList<FontItem*> fonts);
 
-private slots:
+private Q_SLOTS:
 	void slotNewTag();
 	void slotActRemovetag();
 

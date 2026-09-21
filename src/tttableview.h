@@ -39,7 +39,7 @@ class TTTableView : public QWidget, private Ui::TTTableWidget
 	private:
 		QByteArray curTable;
 		
-	private slots:
+	private Q_SLOTS:
 		void updateHexView();
 		void exportHex();
 		

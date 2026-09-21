@@ -110,7 +110,7 @@ public:
 	FMAltSelector(QWidget * parent);
 	~FMAltSelector() override{}
 
-public slots:
+public Q_SLOTS:
 	void fillFromContext();
 };
 

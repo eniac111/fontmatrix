@@ -57,14 +57,14 @@ FiltersDialogItem::~FiltersDialogItem()
 
 void FiltersDialogItem::slotFilter()
 {
-	emit Filter(filterName);
+	Q_EMIT Filter(filterName);
 }
 
 
 void FiltersDialogItem::slotRemove()
 {
 	if(QMessageBox::question(nullptr, i18n("Remove Filter"), i18n("Confirm deletion of filter:") + filterName, QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Ok) == QMessageBox::Ok)
-		emit Remove(filterName);
+		Q_EMIT Remove(filterName);
 }
 
 void FiltersDialogItem::setButtonsVisible(bool v)

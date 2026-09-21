@@ -53,13 +53,11 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
 include(ECMQtDeclareLoggingCategory)
-# KDECompilerSettings turns on the Qt strictness definitions. Two of them still
-# ask for changes across the code base and stay off for now:
+# KDECompilerSettings turns on the Qt strictness definitions. One of them still
+# asks for changes across the code base and stays off for now:
 #   QT_NO_CAST_FROM_ASCII  → per file, see src/CMakeLists.txt; the rest with the i18n work
-#   QT_NO_KEYWORDS         → signals/slots/emit have to become Q_SIGNALS/Q_SLOTS/Q_EMIT
 remove_definitions(
     -DQT_NO_CAST_FROM_ASCII
-    -DQT_NO_KEYWORDS
 )
 
 # Nothing deprecated up to these versions is used; keep it that way.

@@ -84,7 +84,7 @@ void FloatingWidgetToolBar::setDetached()
 {
 	isDetached = true;
 	setupMenu();
-	emit Detach();
+	Q_EMIT Detach();
 }
 
 void FloatingWidgetToolBar::setNoClose(bool c)

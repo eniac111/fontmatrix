@@ -62,11 +62,11 @@ private:
     QPushButton *filterButton = nullptr;
     QMap<QLineEdit*, FMFontDb::InfoItem> metFields;
 
-signals:
+Q_SIGNALS:
     void filterAdded();
     void Close();
 
-private slots:
+private Q_SLOTS:
     void addFilter();
 };
 

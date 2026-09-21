@@ -47,7 +47,7 @@ class FMActivate : public QObject
 		void activate(QList<FontItem*> fitList , bool act );
 		QMap<QString,QString> errors();
 		
-	signals:
+	Q_SIGNALS:
 		void activationEvent(const QStringList&);
 		
 	private:

@@ -75,7 +75,7 @@ class PrefsPanelDialog : public KPageDialog, private Ui::PrefsPanel
 		void reloadShortcuts();
 		void setSelected(const QString &actionText);
 
-	private slots:
+	private Q_SLOTS:
 		void applySampleText();
 
 		void addSampleName();

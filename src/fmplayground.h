@@ -62,10 +62,10 @@ class FMPlayGround : public QGraphicsView
 		QPointF BlinkPos;
 		QTimer *CursorTimer = nullptr;
 		
-	signals:
+	Q_SIGNALS:
 		void pleaseZoom(int);
 
-	private slots:
+	private Q_SLOTS:
 		void blinkCursor();
 };
 

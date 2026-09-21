@@ -77,11 +77,11 @@ class RemoteDir : public QObject
 		bool stopperEndReq;
 		bool stopperEndPreviews;
 		bool stopper;
-	private slots:
+	private Q_SLOTS:
 		void slotProgress(int done, int total);
 		void slotEndReq(int id, bool error);
 		void slotEndPreviews(int id, bool error);
-	signals:
+	Q_SIGNALS:
 		void listIsReady();
 		
 };

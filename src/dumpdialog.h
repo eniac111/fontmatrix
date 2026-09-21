@@ -31,7 +31,7 @@ class FMDumpDialog : public QDialog, private Ui::DumpDialog
 	private:
 		FMDumpInfo * m_dumpinfo = nullptr;
 		
-	private slots:
+	private Q_SLOTS:
 		void slotDumpIt();
 		void browseFile();
 		void browseModel();

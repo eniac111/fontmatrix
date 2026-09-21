@@ -180,14 +180,14 @@ void FiltersDialog::slotAddFilter()
 {
 	QString fname(ui->newName->text());
 	if(!fname.isEmpty())
-		emit AddFilter(fname);
+		Q_EMIT AddFilter(fname);
 
 	loadFilters();
 }
 
 void FiltersDialog::slotRemoveFilter(QString fs)
 {
-	emit RemoveFilter(fs);
+	Q_EMIT RemoveFilter(fs);
 	loadFilters();
 }
 

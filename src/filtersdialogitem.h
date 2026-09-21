@@ -46,11 +46,11 @@ private:
     void setButtonsVisible(bool v);
     QString filterName;
 
-private slots:
+private Q_SLOTS:
     void slotFilter();
     void slotRemove();
 
-signals:
+Q_SIGNALS:
     void Filter(QString);
     void Remove(QString);
 };

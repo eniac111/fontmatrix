@@ -23,7 +23,7 @@ class TagsWidget_ListModel : public  QAbstractListModel
 	QStringList tags;
 	const QString newTagString;
 
-private slots:
+private Q_SLOTS:
 	void updateTags();
 
 public:

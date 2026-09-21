@@ -33,7 +33,7 @@ class IView: public QGraphicsView
 		// control if the rect can be tweak by user or not
 		void setControlRect(bool u);
 
-	signals:
+	Q_SIGNALS:
 		void rectChange(QRect);
 		void selColorChanged(QRgb);
 		
@@ -64,7 +64,7 @@ class IView: public QGraphicsView
 
 		bool m_controlRect;
 		
-	private slots:
+	private Q_SLOTS:
 		void drawSelRect(QRect);
 		
 		

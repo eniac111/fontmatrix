@@ -148,7 +148,7 @@ private:
 #endif
 	void reSize(double fSize, double lSize){sampleFontSize = fSize; sampleInterSize = lSize;}
 
-private slots:
+private Q_SLOTS:
 	void slotView();
 	void doRender();
 	void drawPixmap(int index, double fontsize, double x, double y);
@@ -187,7 +187,7 @@ private slots:
 
 	void saveState();
 
-signals:
+Q_SIGNALS:
 	void stopLayout();
 	void stateChanged();
 

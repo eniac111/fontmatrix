@@ -436,7 +436,7 @@ void FMFontDb::addTagToDB ( const QString & t )
 	QSqlQuery query ( *this );
 	execBound ( query, vs, QVariantList() << 0 << t );
 	invalidateTags();
-	emit tagsChanged();
+	Q_EMIT tagsChanged();
 }
 
 void FMFontDb::removeTagFromDB(const QString & t)
@@ -446,7 +446,7 @@ void FMFontDb::removeTagFromDB(const QString & t)
 	QSqlQuery query ( *this );
 	execBound ( query, qs, QVariantList() << t );
 	invalidateTags();
-	emit tagsChanged();
+	Q_EMIT tagsChanged();
 }
 
 void FMFontDb::editTag(const QString & tOld, const QString & tNew)
@@ -456,7 +456,7 @@ void FMFontDb::editTag(const QString & tOld, const QString & tNew)
 	QSqlQuery query ( *this );
 	execBound ( query, qs, QVariantList() << tNew << tOld );
 	invalidateTags();
-	emit tagsChanged();
+	Q_EMIT tagsChanged();
 }
 
 void FMFontDb::initFMDb()

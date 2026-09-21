@@ -139,7 +139,7 @@ void FMPlayGround::wheelEvent ( QWheelEvent * e )
 	QPoint angleDelta = e->angleDelta();
 	if ( e->modifiers().testFlag ( Qt::ControlModifier ) && angleDelta.y() != 0 )
 	{
-		emit pleaseZoom ( angleDelta.y() );
+		Q_EMIT pleaseZoom ( angleDelta.y() );
 	}
 	else
 	{

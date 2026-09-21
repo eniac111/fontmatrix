@@ -62,7 +62,7 @@ public:
 	void removeFromCurrents(const QString& t);
 	void renameCurrent(const QString& from, const QString& to);
 
-public slots:
+public Q_SLOTS:
 	void tagsDBChanged();
 
 };
@@ -137,11 +137,11 @@ private:
     QStringListModel *mModel = nullptr;
     QStringList mList;
 
-signals:
+Q_SIGNALS:
     void initSearch(int, QString);
     void filterChanged();
 
-private slots:
+private Q_SLOTS:
     void processFilters();
     void slotPanoFilter();
     void metaFilter();
@@ -163,7 +163,7 @@ private slots:
     void slotTogglePano(bool t);
     void slotToggleFilter(bool t);
 
-public slots:
+public Q_SLOTS:
     void slotSaveFilter();
     void slotSaveFilter(const QString &fname);
 

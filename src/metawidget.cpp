@@ -148,7 +148,7 @@ void MetaWidget::addFilter()
 			}
 		}
 	}
-	emit filterAdded();
+	Q_EMIT filterAdded();
 }
 
 #include "moc_metawidget.cpp"

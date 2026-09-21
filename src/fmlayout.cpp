@@ -429,7 +429,7 @@ void FMLayout::run()
 			breakList.clear();
 			hyphenList.clear();
 			// 			emit paragraphFinished ( i + 1 );
-			emit paragraphFinished();
+			Q_EMIT paragraphFinished();
 
 		}
 		doDraw();
@@ -484,7 +484,7 @@ void FMLayout::doLayout ( const QList<GlyphList> & spec , double fs, FontItem* f
 
 	run();
 	layoutIsFinished = true;
-	emit layoutFinished();
+	Q_EMIT layoutFinished();
 	// qDebug()<< "FMLayout::doLayout return" << justRedraw;
 }
 
@@ -504,7 +504,7 @@ void FMLayout::endOfRun()
 	{
 		stopIt = false;
 		//		typotek::getInstance()->endProgressJob();
-		emit updateLayout();
+		Q_EMIT updateLayout();
 	}
 	//	else
 	//		typotek::getInstance()->endProgressJob();
@@ -515,7 +515,7 @@ void FMLayout::endOfRun()
 void FMLayout::stopLayout()
 {
 	stopIt = true;
-	emit clearScene();
+	Q_EMIT clearScene();
 }
 
 void FMLayout::doGraph() // Has became doBreaks
@@ -877,7 +877,7 @@ void FMLayout::doDraw()
 //					refGlyph[i].dump();
 					MetaGlyphItem * mgi(reinterpret_cast<MetaGlyphItem*>(glyph));
 //					qDebug()<<refGlyph[i].glyph<<pen.y() << ( refGlyph[i].yoffset * pixelAdjustY ) << mgi->metaData ( GLYPH_DATA_BITMAPTOP ).toDouble();
-					emit drawPixmapForMe(refGlyph[i].glyph,
+					Q_EMIT drawPixmapForMe(refGlyph[i].glyph,
 							     fontSize,
 							     pen.x()
 							     + (refGlyph[i].xoffset * pixelAdjustX)
@@ -959,8 +959,8 @@ void FMLayout::doDraw()
 	}
 	//
 	// 	qDebug() <<"doDraw T(ms)"<<t.elapsed();
-	emit paintFinished();
-	emit drawPixmapForMe(-1,0,0,0);
+	Q_EMIT paintFinished();
+	Q_EMIT drawPixmapForMe(-1,0,0,0);
 }
 
 int FMLayout::sepCount(int start, int end, const GlyphList & gl)
@@ -1300,7 +1300,7 @@ void FMLayout::resetScene()
 		return;
 	if(!contextIsMainThread)
 	{
-		emit clearScene();
+		Q_EMIT clearScene();
 		return;
 	}
 	int pCount ( pixList.count() );
@@ -1404,32 +1404,32 @@ void FMLayout::slotOption ( int v )
 	if ( v == FMLayOptWidget::BEFORE )
 	{
 		FM_LAYOUT_NODE_SOON_F = optionsWidget->getValue ( FMLayOptWidget::BEFORE );
-		emit updateLayout();
+		Q_EMIT updateLayout();
 	}
 	else if ( v == FMLayOptWidget::EXACT )
 	{
 		FM_LAYOUT_NODE_FIT_F = optionsWidget->getValue ( FMLayOptWidget::EXACT );
-		emit updateLayout();
+		Q_EMIT updateLayout();
 	}
 	else if ( v == FMLayOptWidget::AFTER )
 	{
 		FM_LAYOUT_NODE_LATE_F = optionsWidget->getValue ( FMLayOptWidget::AFTER );
-		emit updateLayout();
+		Q_EMIT updateLayout();
 	}
 	else if ( v == FMLayOptWidget::END )
 	{
 		FM_LAYOUT_NODE_END_F = optionsWidget->getValue ( FMLayOptWidget::END );
-		emit updateLayout();
+		Q_EMIT updateLayout();
 	}
 	else if ( v == FMLayOptWidget::HYPHEN )
 	{
 		FM_LAYOUT_HYPHEN_PENALTY = ( double ) optionsWidget->getValue ( FMLayOptWidget::HYPHEN ) / 10.0;
-		emit updateLayout();
+		Q_EMIT updateLayout();
 	}
 	else if ( v == FMLayOptWidget::SPACE )
 	{
 		FM_LAYOUT_MAX_COMPRESSION = optionsWidget->getValue ( FMLayOptWidget::SPACE );
-		emit updateLayout();
+		Q_EMIT updateLayout();
 	}
 }
 

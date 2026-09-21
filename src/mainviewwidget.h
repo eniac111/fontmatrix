@@ -89,7 +89,7 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 
 		FMPreviewModel * previewModel = nullptr;
 
-	public slots:
+	public Q_SLOTS:
 		void slotFontDbChanged();
 		void slotOrderingChanged ( QString s );
 		bool slotFontSelectedByName(const QString& fname);
@@ -101,13 +101,13 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 		void slotActivateAll();
 		void slotRemoveCurrentItem();
 		
-	private slots:
+	private Q_SLOTS:
 		void slotQuickSearch(const QString& text);
 		void slotEndQuickSearch();
 		void slotSelectFromQuickSearch();
 
 		
-	signals:
+	Q_SIGNALS:
 		void faceChanged();
 		void listChanged();
 

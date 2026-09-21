@@ -715,7 +715,7 @@ void SampleWidget::slotSampleChanged()
 	typotek::getInstance()->namedSample( ui->sampleTextTree->currentItem()->data(0, Qt::UserRole).toString() );
 	ui->removeSampleButton->setEnabled(ui->sampleTextTree->currentItem()->parent() == uRoot);
 	slotView (  );
-	emit stateChanged();
+	Q_EMIT stateChanged();
 }
 
 
@@ -725,14 +725,14 @@ void SampleWidget::slotLiveFontSize(double fs)
 //	double fs( sampleToolBar->getFontSize() );
 	reSize(fs, fs * sampleRatio);
 	slotView();
-	emit stateChanged();
+	Q_EMIT stateChanged();
 }
 
 void SampleWidget::slotFeatureChanged()
 {
 	// 	OTFSet ret = deFillOTTree();
 	slotView (  );
-	emit stateChanged();
+	Q_EMIT stateChanged();
 }
 
 void SampleWidget::slotDefaultOTF()
@@ -761,7 +761,7 @@ void SampleWidget::slotChangeScript()
 	{
 		slotView (  );
 	}
-	emit stateChanged();
+	Q_EMIT stateChanged();
 }
 
 void SampleWidget::slotProgressionChanged()
@@ -772,7 +772,7 @@ void SampleWidget::slotProgressionChanged()
 void SampleWidget::slotWantShape()
 {
 	slotView (  );
-	emit stateChanged();
+	Q_EMIT stateChanged();
 }
 
 

@@ -3252,7 +3252,7 @@ void FontItem::slotDownloadEnd ( int id, [[maybe_unused]] bool error )
 	delete rProgressDialog;
 	delete rFile;
 
-	emit dowloadFinished();
+	Q_EMIT dowloadFinished();
 }
 
 void FontItem::slotDownloadDone ( bool error )

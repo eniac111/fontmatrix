@@ -70,15 +70,15 @@ FMGlyphsView::~FMGlyphsView()
 void FMGlyphsView::resizeEvent ( QResizeEvent * )
 {
 	if ( m_state == SingleView )
-		emit pleaseUpdateSingle();
+		Q_EMIT pleaseUpdateSingle();
 
-	emit pleaseUpdateMe();
+	Q_EMIT pleaseUpdateMe();
 
 }
 
 void FMGlyphsView::showEvent ( QShowEvent * )
 {
-	emit pleaseUpdateMe();
+	Q_EMIT pleaseUpdateMe();
 }
 
 void FMGlyphsView::mouseReleaseEvent ( QMouseEvent * e )
@@ -95,9 +95,9 @@ void FMGlyphsView::mouseReleaseEvent ( QMouseEvent * e )
 		}
 
 		if ( m_state == AllView )
-			emit pleaseShowSelected();
+			Q_EMIT pleaseShowSelected();
 		else if ( m_state == SingleView )
-			emit pleaseShowAll();
+			Q_EMIT pleaseShowAll();
 	}
 }
 
@@ -149,7 +149,7 @@ QRectF FMGlyphsView::visibleSceneRect()
 void FMGlyphsView::slotViewMoved ( int )
 {
 	if ( m_state == AllView )
-		emit pleaseUpdateMe();
+		Q_EMIT pleaseUpdateMe();
 }
 
 

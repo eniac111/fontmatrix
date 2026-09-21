@@ -56,10 +56,10 @@ protected:
 private:
 	Ui::FilterItem *ui = nullptr;
 
-signals:
+Q_SIGNALS:
 	void remove();
 
-private slots:
+private Q_SLOTS:
 	void setAndMode(bool c);
 	void setNoMode(bool c);
 

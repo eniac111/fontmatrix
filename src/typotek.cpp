@@ -107,7 +107,7 @@ extern int fm_num_face_opened;
 void LazyInit::run()
 {
 	/// We keep this for further needs
-	emit endOfRun();
+	Q_EMIT endOfRun();
 }
 ///******************************************************
 
@@ -556,7 +556,7 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 		tali.clear();
 		shouldAskTali = true;
 	}
-	emit newFontsArrived();
+	Q_EMIT newFontsArrived();
 }
 
 void typotek::importFiles()
@@ -656,7 +656,7 @@ void typotek::openList ( QStringList files )
 	{
 		statusBar()->showMessage ( i18n ( "Fonts imported: %1", nameList.count() ), 3000 );
 	}
-	emit newFontsArrived();
+	Q_EMIT newFontsArrived();
 
 }
 
@@ -1789,7 +1789,7 @@ void typotek::setWord ( QString s, bool )
 	for(int i(0); i < fontMap.count(); ++i)
 		fontMap[i]->clearPreview() ;
 
-	emit previewHasChanged();
+	Q_EMIT previewHasChanged();
 }
 
 void typotek::setPreviewSize(double d)
@@ -1801,7 +1801,7 @@ void typotek::setPreviewSize(double d)
 	QList<FontItem*> fontMap(FMFontDb::DB()->AllFonts());
 	for(int i(0); i < fontMap.count(); ++i)
 		fontMap[i]->clearPreview() ;
-	emit previewHasChanged();
+	Q_EMIT previewHasChanged();
 }
 
 void typotek::setPreviewRTL(bool d)
@@ -1812,7 +1812,7 @@ void typotek::setPreviewRTL(bool d)
 	QList<FontItem*> fontMap(FMFontDb::DB()->AllFonts());
 	for(int i(0); i < fontMap.count(); ++i)
 		fontMap[i]->clearPreview() ;
-	emit previewHasChanged();
+	Q_EMIT previewHasChanged();
 }
 
 void typotek::setPreviewSubtitled(bool d)
@@ -1823,7 +1823,7 @@ void typotek::setPreviewSubtitled(bool d)
 	QList<FontItem*> fontMap(FMFontDb::DB()->AllFonts());
 	for(int i(0); i < fontMap.count(); ++i)
 		fontMap[i]->clearPreview() ;
-	emit previewHasChanged();
+	Q_EMIT previewHasChanged();
 }
 
 void typotek::setFontEditorPath ( const QString &path )
@@ -1880,7 +1880,7 @@ void typotek::relayStartingStepIn(QString s)
 {
 	int i( Qt::AlignRight | Qt::AlignBottom );
 	QColor c(Qt::white);
-	emit relayStartingStepOut( s, i , c );
+	Q_EMIT relayStartingStepOut( s, i , c );
 }
 
 void typotek::removeFontItem(QString key)

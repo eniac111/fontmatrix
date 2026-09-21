@@ -58,7 +58,7 @@ protected:
 private:
     Ui::SampleToolBar *ui = nullptr;
 
-signals:
+Q_SIGNALS:
     void SizeChanged(double);
     void SampleToggled(bool);
     void OpenTypeToggled(bool);

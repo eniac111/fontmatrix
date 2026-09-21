@@ -35,7 +35,7 @@ void ModelText::insertFromMimeData(const QMimeData * source)
 {
 	if(source->hasFormat( QStringLiteral("application/x-qabstractitemmodeldatalist") ))
 	{
-		emit insertContent();
+		Q_EMIT insertContent();
 	}
 	else
 		QTextEdit::insertFromMimeData(source);

@@ -72,7 +72,7 @@ FMSampleTextView::~FMSampleTextView()
 
 void FMSampleTextView::resizeEvent ( QResizeEvent * )
 {
-	emit refit();
+	Q_EMIT refit();
 }
 
 void FMSampleTextView::mousePressEvent ( QMouseEvent * e )
@@ -114,7 +114,7 @@ void FMSampleTextView::mouseReleaseEvent ( QMouseEvent * e )
 	{
 		// scale(1,1)
 // 		qDebug() << "Re-init transformation";
-		emit pleaseZoom ( 0 );
+		Q_EMIT pleaseZoom ( 0 );
 		isSelecting = false;
 		theRect->setRect ( QRectF() );
 		return;
@@ -171,7 +171,7 @@ void FMSampleTextView::wheelEvent ( QWheelEvent * e )
 	QPoint angleDelta = e->angleDelta();
 	if ( e->modifiers().testFlag ( Qt::ControlModifier ) && angleDelta.y() != 0 )
 	{
-		emit pleaseZoom ( angleDelta.y() );
+		Q_EMIT pleaseZoom ( angleDelta.y() );
 	}
 	else
 	{
@@ -187,7 +187,7 @@ void FMSampleTextView::showEvent ( QShowEvent * event )
 	if ( hasPendingUpdate )
 	{
 		hasPendingUpdate = false;
-		emit pleaseUpdateMe();
+		Q_EMIT pleaseUpdateMe();
 	}
 	QGraphicsView::showEvent ( event );
 }

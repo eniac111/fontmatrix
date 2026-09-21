@@ -90,7 +90,7 @@ class FMFontCompareView : public QGraphicsView
 		static QMap<QString, QPen> pens;
 		static QMap<QString, QBrush> brushes;
 
-	public slots:
+	public Q_SLOTS:
 		void updateGlyphs();
 
 	protected:

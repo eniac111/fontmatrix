@@ -34,7 +34,7 @@ class FMFontExtract : public QDialog, private Ui::FontExtractorDialog
 		QString lastPath;
 		QString lastDir;
 		
-	private slots:
+	private Q_SLOTS:
 		void slotBrowseDoc();
 		void slotBrowseDir();
 		void slotExtract();

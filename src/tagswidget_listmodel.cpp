@@ -25,7 +25,7 @@ TagsWidget_ListModel::TagsWidget_ListModel(QObject *parent)
 
 void TagsWidget_ListModel::updateTags()
 {
-	emit dataChanged(index(0), index(rowCount() -  1));
+	Q_EMIT dataChanged(index(0), index(rowCount() -  1));
 }
 
 int TagsWidget_ListModel::rowCount(const QModelIndex &parent) const
@@ -95,7 +95,7 @@ bool TagsWidget_ListModel::setData(const QModelIndex &index, const QVariant &val
 					f->addTag(tag);
 				FMFontDb::DB()->TransactionEnd();
 				tags.append(tag);
-				emit dataChanged(index, index);
+				Q_EMIT dataChanged(index, index);
 				return true;
 			}
 			else
@@ -110,7 +110,7 @@ bool TagsWidget_ListModel::setData(const QModelIndex &index, const QVariant &val
 					FMFontDb::DB()->removeTag(f->path(), tag);
 				FMFontDb::DB()->TransactionEnd();
 				tags.removeAll(tag);
-				emit dataChanged(index, index);
+				Q_EMIT dataChanged(index, index);
 				return true;
 			}
 			else
@@ -123,7 +123,7 @@ bool TagsWidget_ListModel::setData(const QModelIndex &index, const QVariant &val
 		if(value.toString() == tl_tmp.at(index.row()))
 			return false;
 		FMFontDb::DB()->editTag ( tl_tmp.at(index.row()), value.toString());
-		emit dataChanged(index, index);
+		Q_EMIT dataChanged(index, index);
 		return true;
 	}
 	return false;

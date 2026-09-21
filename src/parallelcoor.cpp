@@ -139,7 +139,7 @@ ParallelCoorView::~ParallelCoorView()
 
 void ParallelCoorView::selectField(const QString & field)
 {
-	emit selectedField(field);
+	Q_EMIT selectedField(field);
 	setCurrentField(field);
 }
 
@@ -588,7 +588,7 @@ void ParallelCoorView::setFilter ( const QMap< QString, QStringList >& theValue 
 		}
 	}
 	
-	emit filterChanged();
+	Q_EMIT filterChanged();
 	updateGraphic();
 }
 

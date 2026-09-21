@@ -27,7 +27,7 @@ class ModelText : public QTextEdit
 		bool canInsertFromMimeData( const QMimeData *source ) const override;
 		void insertFromMimeData ( const QMimeData * source ) override ;
 		
-	signals:
+	Q_SIGNALS:
 		void insertContent();
 };
 

@@ -53,10 +53,10 @@ private:
 
 	void doConnect(const bool& c);
 
-private slots:
+private Q_SLOTS:
 	void slotSelect(QTreeWidgetItem * item, int column);
 
-signals:
+Q_SIGNALS:
 	void filterChanged();
 
 };

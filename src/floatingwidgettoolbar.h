@@ -51,10 +51,10 @@ private:
 
     void setupMenu();
 
-public slots:
+public Q_SLOTS:
     void setDetached();
 
-signals:
+Q_SIGNALS:
     void Close();
     void Hide();
     void Print();

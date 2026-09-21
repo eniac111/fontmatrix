@@ -23,10 +23,10 @@ private:
 protected:
 	void mouseReleaseEvent( QMouseEvent * ev ) override;
 
-signals:
+Q_SIGNALS:
 	void openChanged(bool);
 
-public slots:
+public Q_SLOTS:
 	void changeOpen(bool t);
 
 };

@@ -49,7 +49,7 @@ class FMMatchRaster : public QDialog , private Ui::MatchRasterDialog
 		void moveEvent ( QMoveEvent * event ) override;
 		void resizeEvent ( QResizeEvent * event ) override;
 		
-	private slots:
+	private Q_SLOTS:
 		void browseImage();
 		void loadImage();
 		void grabScreen();

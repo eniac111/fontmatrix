@@ -33,7 +33,7 @@ class FmRepair : public QDialog, private Ui::repairDialog
 		
 // 		QList<QListWidgetItem*> listItems;
 		
-	private slots:
+	private Q_SLOTS:
 		void slotSelAllDead();
 		void slotRemoveDead();
 		

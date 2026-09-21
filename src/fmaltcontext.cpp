@@ -54,7 +54,7 @@ FMAltContext * FMAltContextLib::SetCurrentContext ( const QString & tid, const Q
 	that()->current = cid;
 	qCDebug(FONTMATRIX_LOG)<<"CTX"<<cid;
 
-	emit that()->contextChanged();
+	Q_EMIT that()->contextChanged();
 
 	return that()->cmap.value ( cid );
 

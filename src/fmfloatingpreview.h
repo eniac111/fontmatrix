@@ -54,11 +54,11 @@ private:
 	QLineEdit * text = nullptr;
 
 
-private slots:
+private Q_SLOTS:
 	void forwardCloseClicked();
 	void activateFont();
 
-signals:
+Q_SIGNALS:
 	void closeClicked();
 };
 
@@ -89,7 +89,7 @@ private:
 
 	bool canTransparent();
 
-public slots:
+public Q_SLOTS:
 	void updatePreview(const QString& t);
 
 };

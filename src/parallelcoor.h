@@ -172,7 +172,7 @@ class ParallelCoorView : public QGraphicsView
 		void setCurrentField ( const QString& theValue );
 		QString getCurrentField() const;
 		
-	public slots:
+	public Q_SLOTS:
 		void updateGraphic();
 
 	protected:
@@ -181,7 +181,7 @@ class ParallelCoorView : public QGraphicsView
 		
 		void resizeEvent ( QResizeEvent * event ) override;
 		void showEvent ( QShowEvent * event ) override;
-	signals:
+	Q_SIGNALS:
 		void selectedField(const QString&);
 		void filterChanged();
 
@@ -235,7 +235,7 @@ class ParallelCoorView : public QGraphicsView
 		
 		QSize controlSize;
 		
-	private slots:
+	private Q_SLOTS:
 		void slotSaveColors();
 		
 	public:

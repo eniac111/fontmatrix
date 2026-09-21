@@ -48,11 +48,11 @@ protected:
 	QPrintDialog * printDialog = nullptr;
 	bool event( QEvent * e ) override;
 
-signals:
+Q_SIGNALS:
 	void visibilityChange();
 	void detached();
 
-public slots:
+public Q_SLOTS:
 	void activate(bool a);
 	void ddetach(); // seems there's naming conflict with Qt4.7
 

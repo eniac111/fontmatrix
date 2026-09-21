@@ -54,12 +54,12 @@ private:
     static const QString &notOp();
     static const QString &orOp();
 
-signals:
+Q_SIGNALS:
     void Filter(QString);
     void AddFilter(QString);
     void RemoveFilter(QString);
 
-private slots:
+private Q_SLOTS:
     void slotAddFilter();
     void slotRemoveFilter(QString fs);
 };

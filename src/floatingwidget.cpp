@@ -62,7 +62,7 @@ bool FloatingWidget::event(QEvent *e)
 	//		QWidget::setWindowTitle(wTitle);
 	//	}
 	if((e->type() == QEvent::Show) || (e->type() == QEvent::Hide))
-		emit visibilityChange();
+		Q_EMIT visibilityChange();
 
 	return QWidget::event(e);
 }
@@ -87,7 +87,7 @@ void FloatingWidget::ddetach()
 	setWindowTitle(wTitle);
 	FloatingWidgetsRegister::Register(this, fName, fType);
 	show();
-	emit detached();
+	Q_EMIT detached();
 }
 
 #include "moc_floatingwidget.cpp"

@@ -45,7 +45,7 @@ protected:
 private:
     Ui::ProgressBarDuo *ui = nullptr;
 
-signals:
+Q_SIGNALS:
     void Canceled();
 };
 

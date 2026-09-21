@@ -65,7 +65,7 @@ protected:
 private:
 	QPointer<FilterItem> f;
 
-signals:
+Q_SIGNALS:
 	void Operated();
 	void Changed();
 };

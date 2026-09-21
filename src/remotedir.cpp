@@ -216,7 +216,7 @@ void RemoteDir::eventEndDownload()
 	}
 	m_ready = true;
 	stopper = true;
-	emit listIsReady();
+	Q_EMIT listIsReady();
 }
 
 void RemoteDir::getPreviews()

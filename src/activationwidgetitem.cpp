@@ -76,7 +76,7 @@ void ActivationWidgetItem::activate(bool a)
 			FMActivationReport ar(this, actErr);
 			ar.exec();
 		}
-		emit fontStateChanged();
+		Q_EMIT fontStateChanged();
 	}
 }
 

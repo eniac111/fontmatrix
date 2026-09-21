@@ -122,7 +122,7 @@ class FMLayout : public QObject
 
 		void setContext(bool c);
 		
-	public slots:
+	public Q_SLOTS:
 		void stopLayout();		
 
 	private:// data
@@ -181,7 +181,7 @@ class FMLayout : public QObject
 		void setPersistentScene(bool p){persistentScene = p;}
 
 
-	private slots:
+	private Q_SLOTS:
 		/// Put lines on stage
 		void doDraw();
 		void endOfRun();
@@ -189,7 +189,7 @@ class FMLayout : public QObject
 		
 		void slotOption(int v);
 
-	signals:
+	Q_SIGNALS:
 		// needed if layout is executed outside the main (GUI) thread
 		// receiver is expected to know with what font and on which scene;
 		void drawPixmapForMe(int index, double fontsize, double x, double y);

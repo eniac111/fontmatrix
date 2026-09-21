@@ -105,7 +105,7 @@ void PanoseValueModel::setCat(const int& cat)
 	if(cat != m_cat)
 	{
 		m_cat = cat;
-		emit layoutChanged();
+		Q_EMIT layoutChanged();
 	}
 }
 

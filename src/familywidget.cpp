@@ -147,7 +147,7 @@ void FamilyWidget::setFamily(const QString &f)
 		{
 			ui->familyPreview->setCurrentIndex( previewModel->index(0) );
 			curVariant = fl.first()->path();
-			emit fontSelected(curVariant);
+			Q_EMIT fontSelected(curVariant);
 		}
 		delete sample;
 		sample = nullptr;
@@ -190,7 +190,7 @@ void FamilyWidget::slotPreviewSelected(const QModelIndex &index)
 			break;
 		}
 
-		emit fontSelected(curVariant);
+		Q_EMIT fontSelected(curVariant);
 	}
 }
 
@@ -288,7 +288,7 @@ void FamilyWidget::slotDetachChart()
 void FamilyWidget::slotStateChange()
 {
 	previewModel->resetBase(FMVariants::Order(FMFontDb::DB()->FamilySet(family)));
-	emit familyStateChanged();
+	Q_EMIT familyStateChanged();
 }
 
 void FamilyWidget::updateButtons()

@@ -73,12 +73,12 @@ private:
 
     void updateButtons();
 
-signals:
+Q_SIGNALS:
     void backToList();
     void fontSelected(const QString& path);
     void familyStateChanged();
 
-private slots:
+private Q_SLOTS:
     void slotPreviewUpdate();
     void slotPreviewUpdateSize(int);
     void slotPreviewSelected(const QModelIndex & index);

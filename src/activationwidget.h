@@ -48,11 +48,11 @@ private:
 	QList<ActivationWidgetItem*> items;
 	void activateAll(bool c);
 
-private slots:
+private Q_SLOTS:
 	void slotActivate();
 	void slotDeactivate();
 
-signals:
+Q_SIGNALS:
 	void familyStateChanged();
 };
 

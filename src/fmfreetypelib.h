@@ -53,7 +53,7 @@ class FMFreetypeLib : public QObject
 public:
 	static FT_Library lib(QThread * t);
 
-private slots:
+private Q_SLOTS:
 	void releaseLibrary();
 
 };

@@ -17,7 +17,7 @@ void OpenCloseArrow::mouseReleaseEvent(QMouseEvent *)
 {
 	openingState = !openingState;
 	setOpText();
-	emit openChanged(openingState);
+	Q_EMIT openChanged(openingState);
 
 }
 
@@ -26,7 +26,7 @@ void OpenCloseArrow::changeOpen(bool t)
 {
 	openingState = t;
 	setOpText();
-	emit openChanged(openingState);
+	Q_EMIT openChanged(openingState);
 }
 
 void OpenCloseArrow::setOpText()

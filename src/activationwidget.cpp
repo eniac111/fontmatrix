@@ -96,7 +96,7 @@ void ActivationWidget::activateAll(bool c)
 		i->changeState(c);
 	}
 
-	emit familyStateChanged();
+	Q_EMIT familyStateChanged();
 }
 
 #include "moc_activationwidget.cpp"

@@ -78,32 +78,32 @@ void FMLayOptWidget::sChanged ( int cv )
 
 void FMLayOptWidget::bEdited()
 {
-	emit valueChanged ( BEFORE );
+	Q_EMIT valueChanged ( BEFORE );
 }
 
 void FMLayOptWidget::exEdited()
 {
-	emit valueChanged ( EXACT );
+	Q_EMIT valueChanged ( EXACT );
 }
 
 void FMLayOptWidget::aEdited()
 {
-	emit valueChanged ( AFTER );
+	Q_EMIT valueChanged ( AFTER );
 }
 
 void FMLayOptWidget::enEdited()
 {
-	emit valueChanged ( END );
+	Q_EMIT valueChanged ( END );
 }
 
 void FMLayOptWidget::hEdited()
 {
-	emit valueChanged ( HYPHEN );
+	Q_EMIT valueChanged ( HYPHEN );
 }
 
 void FMLayOptWidget::sEdited()
 {
-	emit valueChanged ( SPACE );
+	Q_EMIT valueChanged ( SPACE );
 }
 
 void FMLayOptWidget::setRange ( V v, int min, int max )

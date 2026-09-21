@@ -109,7 +109,7 @@ void FMFloatingMenu::childrenVisible(bool v)
 
 void FMFloatingMenu::forwardCloseClicked()
 {
-	emit closeClicked();
+	Q_EMIT closeClicked();
 }
 
 void FMFloatingMenu::activateFont()

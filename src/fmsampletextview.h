@@ -49,7 +49,7 @@ class FMSampleTextView : public QGraphicsView
 		void wheelEvent ( QWheelEvent * e ) override;
 		void showEvent ( QShowEvent * event ) override ;
 
-	signals:
+	Q_SIGNALS:
 		void refit();
 		void pleaseUpdateMe();
 		void pleaseZoom(int);

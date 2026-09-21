@@ -92,11 +92,11 @@ private:
 	int usedWidth = 0;
 	int columns;
 
-public slots:
+public Q_SLOTS:
 	void updateLayout();
 	void setCurrentFont(const QString& name);
 
-signals:
+Q_SIGNALS:
 	void widthChanged(int);
 	void keyPressed(QString);
 
@@ -135,7 +135,7 @@ private:
 	QString styleTooltipPath;
 	bool familyMode;
 
-public slots:
+public Q_SLOTS:
 	void dataChanged();
 
 };

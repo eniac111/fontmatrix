@@ -25,14 +25,14 @@ class FMNameList : public QTreeWidget
 	public:
 		FMNameList(QWidget *parent);
 		~FMNameList() override;
-	public slots:
+	public Q_SLOTS:
 		void slotNextFamily();
 		void slotPreviousFamily();
 		void slotNextFont();
 		void slotPreviousFont();
 		bool slotSetCurrent(const QString& fname);
 		
-	signals:
+	Q_SIGNALS:
 		void currentChanged(QTreeWidgetItem*, int);
 	protected:
 		void keyPressEvent ( QKeyEvent * e ) override;

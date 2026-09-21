@@ -172,7 +172,7 @@ bool TagListModel::setData(const QModelIndex &index, const QVariant &value, int 
 	if(value.toString() == tl_tmp.at(index.row() - specialTagsCount))
 		return false;
 	FMFontDb::DB()->editTag ( tl_tmp.at(index.row() - specialTagsCount), value.toString());
-	emit dataChanged(index, index);
+	Q_EMIT dataChanged(index, index);
 	return true;
 }
 
@@ -188,7 +188,7 @@ void TagListModel::clearCurrents()
 	if(!currentTags.isEmpty())
 	{
 		currentTags.clear();
-		emit dataChanged(index(0,0),index(FMFontDb::DB()->getTags().count() + specialTagsCount -1 ,columnCount() -1));
+		Q_EMIT dataChanged(index(0,0),index(FMFontDb::DB()->getTags().count() + specialTagsCount -1 ,columnCount() -1));
 	}
 }
 
@@ -197,7 +197,7 @@ void TagListModel::addToCurrents(const QString &t)
 	if(!currentTags.contains(t))
 	{
 		currentTags << t;
-		emit dataChanged(index(0,0),index(FMFontDb::DB()->getTags().count() + specialTagsCount -1 ,columnCount() -1));
+		Q_EMIT dataChanged(index(0,0),index(FMFontDb::DB()->getTags().count() + specialTagsCount -1 ,columnCount() -1));
 	}
 }
 
@@ -206,7 +206,7 @@ void TagListModel::removeFromCurrents(const QString &t)
 	if(currentTags.contains(t))
 	{
 		currentTags.removeAll(t);
-		emit dataChanged(index(0,0),index(FMFontDb::DB()->getTags().count() + specialTagsCount -1 ,columnCount() -1));
+		Q_EMIT dataChanged(index(0,0),index(FMFontDb::DB()->getTags().count() + specialTagsCount -1 ,columnCount() -1));
 	}
 }
 
@@ -353,7 +353,7 @@ void FilterBar::processFilters()
 			}
 			d->filter()->operate();
 		}
-		emit filterChanged();
+		Q_EMIT filterChanged();
 	}
 }
 
@@ -367,7 +367,7 @@ void FilterBar::slotRemoveFilterItem(bool process)
 		{
 			FMFontDb::DB()->filterAllFonts();
 			curFilterWidget->setVisible(false);
-			emit filterChanged();
+			Q_EMIT filterChanged();
 		}
 		fi->deleteLater();
 		if(process && (filters.count() > 0) )
@@ -591,7 +591,7 @@ void FilterBar::slotClearFilter()
 {
 	removeAllFilters();
 	tagListModel->clearCurrents();
-	emit filterChanged();
+	Q_EMIT filterChanged();
 }
 
 void FilterBar::slotSaveFilter()

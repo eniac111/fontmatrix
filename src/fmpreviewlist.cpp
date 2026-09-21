@@ -338,9 +338,9 @@ int FMPreviewModel::rowCount(const QModelIndex & parent) const
 void FMPreviewModel::dataChanged()
 {
 	// qualified: this class has a dataChanged() of its own, which hides the signal
-	emit QAbstractItemModel::dataChanged(index(0),index(rowCount(QModelIndex()) - 1));
+	Q_EMIT QAbstractItemModel::dataChanged(index(0),index(rowCount(QModelIndex()) - 1));
 	m_view->updateLayout();
-	emit layoutChanged ();
+	Q_EMIT layoutChanged ();
 }
 
 void FMPreviewModel::resetBase(QList<FontItem *>db)
@@ -472,7 +472,7 @@ void FMPreviewView::keyPressEvent(QKeyEvent *event)
 {
 	qCDebug(FONTMATRIX_LOG)<<"FMPreviewView::keyPressEvent"<<event;
 	if((!event->text().isEmpty()) && (event->text().at(0).isLetterOrNumber()))
-		emit keyPressed(event->text());
+		Q_EMIT keyPressed(event->text());
 	else
 		QListView::keyPressEvent(event);
 }

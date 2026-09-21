@@ -54,7 +54,7 @@ class FontBookDialog : public QDialog, private Ui::BookExportDialog
 		bool isTemplate(){return m_isTemplate;}
 		QDomDocument getTemplate(){return m_template;}
 		
-	private slots:
+	private Q_SLOTS:
 		void slotAccept();
 		void slotCancel();
 		void slotFileDialog();

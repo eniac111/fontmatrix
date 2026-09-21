@@ -57,7 +57,7 @@ void FilterData::setData(int index, QVariant data, bool signalChange)
 {
 	vData.insert(index, data);
 	if(signalChange)
-		emit Changed();
+		Q_EMIT Changed();
 }
 
 QVariant FilterData::data(int index) const
@@ -138,7 +138,7 @@ void FilterData::operateFilter(QList<FontItem *>fl)
 		}
 	}
 
-	emit Operated();
+	Q_EMIT Operated();
 }
 
 

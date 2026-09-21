@@ -59,7 +59,7 @@ protected:
 	void mouseDoubleClickEvent(QMouseEvent * event) override;
 	void contextMenuEvent(QContextMenuEvent * event) override;
 
-public slots:
+public Q_SLOTS:
 	void setShowAddress(bool);
 	void setShowAsciiDump(bool);
 	void setShowHexDump(bool);
@@ -103,7 +103,7 @@ public:
 	QByteArray allBytes() const;
 	QMenu *createStandardContextMenu();
 
-public slots:
+public Q_SLOTS:
 	void clear();
 	void selectAll();
 	void deselect();

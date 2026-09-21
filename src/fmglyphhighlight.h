@@ -35,7 +35,7 @@ class FMGlyphHighlight : QObject
 		
 		void lastFrame();
 		
-	private slots:
+	private Q_SLOTS:
 		void animate(int);
 };
 

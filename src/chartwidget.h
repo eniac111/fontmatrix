@@ -63,7 +63,7 @@ private:
     void removeConnections();
     void fillUniPlanesCombo(FontItem* item);
 
-private slots:
+private Q_SLOTS:
     void slotShowOneGlyph();
     void slotShowAllGlyph();
     void slotAdjustGlyphView(int width);

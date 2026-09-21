@@ -48,10 +48,10 @@ class FMGlyphsView : public QGraphicsView
 		bool m_lock;
                 bool m_oper;
 		
-	private slots:
+	private Q_SLOTS:
                 void slotViewMoved(int);
 
-	signals:
+	Q_SIGNALS:
 		/**
 			forward new width, allowing FontItem::renderAll() to adjust the number of columns
 		*/

@@ -109,7 +109,7 @@ void PanoseWidget::slotSelect(QTreeWidgetItem *item, int column)
 	m_filter.clear();
 	m_filter.insert(pValue,QList<int>() << cValue);
 
-	emit filterChanged();
+	Q_EMIT filterChanged();
 }
 
 void PanoseWidget::setFilter(const QMap<int, QList<int> >& filter)

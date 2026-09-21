@@ -114,7 +114,7 @@ void IView::mouseMoveEvent ( QMouseEvent * e )
 			QRectF r ( mouseStartPoint, mp );
 			theRect = r.normalized().toRect() ;
 		}
-		emit rectChange(theRect);
+		Q_EMIT rectChange(theRect);
 	}
 }
 
@@ -387,8 +387,8 @@ void IView::selectGlyph(const QPointF & scenepos)
 	}
 	//qDebug()<<"R"<<r.top()<<r.right()<<r.bottom()<<r.left();
 	theRect = r;
-	emit selColorChanged(ref);
-	emit rectChange(theRect);
+	Q_EMIT selColorChanged(ref);
+	Q_EMIT rectChange(theRect);
 // 	drawSelRect(r);
 }
 
@@ -399,7 +399,7 @@ void IView::setControlRect(bool u)
 	if (u)
 	{
 		//qDebug()<<"CR"<<theRect;
-		emit rectChange(theRect);
+		Q_EMIT rectChange(theRect);
 	}
 	else
 	{

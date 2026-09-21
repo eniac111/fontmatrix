@@ -39,7 +39,7 @@ class FMPanoseDialog : public QDialog, private Ui::PanoseDialog
 		
 		void populateDialog();
 		
-	private slots:
+	private Q_SLOTS:
 		void panoseChange( int index );
 		void closeOk();
 		void closeCancel();

@@ -44,10 +44,10 @@ private:
 	const QString fileName;
 	Ui::ActivationWidgetItem *ui = nullptr;
 
-private slots:
+private Q_SLOTS:
 	void activate(bool a);
 
-signals:
+Q_SIGNALS:
 	void fontStateChanged();
 };
 

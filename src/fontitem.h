@@ -253,7 +253,7 @@ class FontItem : public QObject
 		bool renderReturnWidth;
 		
 		
-	private slots:
+	private Q_SLOTS:
 		void slotDownloadStart(int id);
 		void slotDowloadProgress(int done, int total );
 		void slotDownloadEnd(int id, bool error );
@@ -262,10 +262,10 @@ class FontItem : public QObject
 		void slotDownloadState(int state);
 		
 		
-	signals:
+	Q_SIGNALS:
 		void dowloadFinished();
 		
-	public slots:
+	public Q_SLOTS:
 		QString renderSVG(const QString& s, const double& size);
 		int countCoverage ( int begin_code, int end_code );
 		bool hasCharcode(int cc);

@@ -74,7 +74,7 @@ private:
 
 	void updateButtons();
 
-private slots:
+private Q_SLOTS:
 	void slotFolderItemclicked(QModelIndex mIdx);
 	void slotFolderPressed(QModelIndex mIdx);
 	void slotFolderAddToWatcher(QModelIndex mIdx);
@@ -92,7 +92,7 @@ private slots:
 
 	void slotFolderViewContextMenu(const QPoint&);
 
-signals:
+Q_SIGNALS:
 	void folderSelectFont(QString);
 };
 
@@ -112,7 +112,7 @@ private:
 
 	QFileInfo selectedFileOrDir;
 
-private slots:
+private Q_SLOTS:
 	void slotImportDir();
 	void slotImportDirRecursively();
 	void slotImportFile();

@@ -29,7 +29,7 @@ class FMLayOptWidget : public QWidget , private Ui::LayoutOptionWidget
 		void setValue(V v, double value);
 		double getValue(V v);
 
-	private slots:
+	private Q_SLOTS:
 		void bChanged(int cv);
 		void exChanged(int cv);
 		void aChanged(int cv);
@@ -44,7 +44,7 @@ class FMLayOptWidget : public QWidget , private Ui::LayoutOptionWidget
 		void hEdited();
 		void sEdited();
 		
-	signals:
+	Q_SIGNALS:
 		/// Indicates which slider has been changed
 		/// It’s up to the receiver to ask the new value;
 		void valueChanged(int);

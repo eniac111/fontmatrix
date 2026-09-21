@@ -42,7 +42,7 @@ public:
 	bool allConfirmation();
 	bool tagsConfirmation();
 
-public slots:
+public Q_SLOTS:
 	void show();
 	void hide();
 	void slotSetVisible(bool isVisible);
@@ -53,7 +53,7 @@ public slots:
 	void requireAllConfirmation(bool doRequire);
 	void requireTagsConfirmation(bool doRequire);
 
-private slots:
+private Q_SLOTS:
 	void slotActivateAll();
 	void slotDeactivateAll();
 	void slotMinimize();

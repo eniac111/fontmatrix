@@ -166,7 +166,7 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 	}
 	FMFontDb::DB()->TransactionEnd();
 
-	emit activationEvent ( aList );
+	Q_EMIT activationEvent ( aList );
 }
 
 #elif defined(_WIN32)
@@ -279,7 +279,7 @@ void FMActivate::activate(QList< FontItem * > fitList, bool act)
 	}
 	FMFontDb::DB()->TransactionEnd();
 
-	emit activationEvent(aList);
+	Q_EMIT activationEvent(aList);
 }
 
 #endif

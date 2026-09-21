@@ -38,7 +38,7 @@ class FontCompareWidget : public QWidget, private Ui::CompareWidget
 		
 		void initColors();
 		
-	signals:
+	Q_SIGNALS:
 		// Emitted whenever this window is shown or hidden, including when the
 		// user closes it from its own title bar. typotek's checkable Compare
 		// action is toggled on by the action itself, so without this it stays
@@ -49,7 +49,7 @@ class FontCompareWidget : public QWidget, private Ui::CompareWidget
 		void hideEvent(QHideEvent *) override;
 		void showEvent(QShowEvent *) override;
 
-	private slots:
+	private Q_SLOTS:
 		void addFont();
 		void removeFont();
 		void showChange();

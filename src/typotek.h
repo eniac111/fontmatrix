@@ -66,7 +66,7 @@ protected:
 	void closeEvent ( QCloseEvent *event ) override;
 	void keyPressEvent ( QKeyEvent * event ) override ;
 
-private slots:
+private Q_SLOTS:
 	void fontBook();
 	void slotActivateCurrents();
 	void slotDeactivateCurrents();
@@ -91,7 +91,7 @@ private slots:
 	void slotMatchRaster();
 	void slotHelpContents();
 
-public slots:
+public Q_SLOTS:
 	void open( QString path = QString(), bool recursive = true, bool announce = true, bool collect = false );
 	void importFiles();
 	void openList( QStringList files );
@@ -117,7 +117,7 @@ public slots:
 	// QWidget::show() and hide() are not virtual, both end up here
 	void setVisible(bool visible) override;
 
-signals:
+Q_SIGNALS:
 	void relayStartingStepOut(QString, int, QColor);
 	void previewHasChanged();
 	void newFontsArrived();
@@ -385,7 +385,7 @@ class LazyInit : public QThread
 	Q_OBJECT
 public:
 	void run() override;
-signals:
+Q_SIGNALS:
 	void endOfRun();
 };
 

@@ -80,13 +80,13 @@ void PlayWidget::closeEvent(QCloseEvent *)
 void PlayWidget::hideEvent(QHideEvent *e)
 {
 	QWidget::hideEvent(e);
-	emit visibilityChanged();
+	Q_EMIT visibilityChanged();
 }
 
 void PlayWidget::showEvent(QShowEvent *e)
 {
 	QWidget::showEvent(e);
-	emit visibilityChanged();
+	Q_EMIT visibilityChanged();
 }
 
 

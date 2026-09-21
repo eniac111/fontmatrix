@@ -132,7 +132,7 @@ bool FMNameList::findAbove(QTreeWidgetItem *current, const QString &role)
 	}
 	if (above) {
 		setCurrentItem(above);
-		emit currentChanged(above, 0);
+		Q_EMIT currentChanged(above, 0);
 		return true;
 	} else
 		return false;
@@ -163,7 +163,7 @@ bool FMNameList::findBelow(QTreeWidgetItem *current, const QString &role)
 	}
 	if (below) {
 		setCurrentItem(below);
-		emit currentChanged(below, 0);
+		Q_EMIT currentChanged(below, 0);
 		return true;
 	} else
 		return false;
@@ -184,7 +184,7 @@ bool FMNameList::slotSetCurrent(const QString & fname)
 				if(F->toolTip(0) == fname)
 				{
 					setCurrentItem(F);
-					emit currentChanged(F,0);
+					Q_EMIT currentChanged(F,0);
 					return true;
 				}
 			}

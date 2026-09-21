@@ -30,7 +30,7 @@ class ImportTags : public QDialog, private Ui::ImportTagsDialog
 	private:
 		QStringList m_tags;
 		
-	private slots:
+	private Q_SLOTS:
 		void slotNewTag();
 		void slotEnd();
 };
