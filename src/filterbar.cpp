@@ -326,7 +326,7 @@ void FilterBar::metaFilter()
 		mModel->setStringList(mList);
 	}
 
-	fm->setData(FilterData::Text, FontStrings::Names().value(static_cast<FMFontDb::InfoItem>(metaFieldKey)) + QString(" : ") + ui->metadataLineEdit->text());
+	fm->setData(FilterData::Text, QString(FontStrings::Names().value(static_cast<FMFontDb::InfoItem>(metaFieldKey)) + QString(" : ") + ui->metadataLineEdit->text()));
 	fm->setData(FilterMeta::Field, metaFieldKey);
 	fm->setData(FilterMeta::Value, ui->metadataLineEdit->text());
 	//				fm->setData(FilterData::Or, false);

@@ -53,16 +53,20 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
 include(ECMQtDeclareLoggingCategory)
-# These Qt strictness flags require mass codebase changes — deferred to later phases:
-#   QT_NO_CAST_FROM_ASCII / TO_ASCII / FROM_BYTEARRAY  → Phase 5 (i18n migration)
-#   QT_NO_KEYWORDS (signals/slots/foreach)             → Phase 2 (main window refactor)
+# KDECompilerSettings turns on the Qt strictness definitions. Two of them still
+# ask for changes across the code base and stay off for now:
+#   QT_NO_CAST_FROM_ASCII  → per file, see src/CMakeLists.txt; the rest with the i18n work
+#   QT_NO_KEYWORDS         → signals/slots/emit have to become Q_SIGNALS/Q_SLOTS/Q_EMIT
 remove_definitions(
     -DQT_NO_CAST_FROM_ASCII
-    -DQT_NO_CAST_TO_ASCII
-    -DQT_NO_CAST_FROM_BYTEARRAY
     -DQT_NO_KEYWORDS
-    -DQT_NO_FOREACH
-    -DQT_USE_QSTRINGBUILDER
+)
+
+# Nothing deprecated up to these versions is used; keep it that way.
+include(ECMDeprecationSettings)
+ecm_set_disabled_deprecation_versions(
+    QT 6.10.0
+    KF 6.18.0
 )
 
 include(FeatureSummary)

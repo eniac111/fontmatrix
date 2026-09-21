@@ -795,12 +795,12 @@ void SampleWidget::refillSampleList()
 			if(first)
 			{
 				first = false;
-				uRoot->setData(0, Qt::UserRole , QString("User::") + uk);
+				uRoot->setData(0, Qt::UserRole , QString(QString("User::") + uk));
 				curIt = uRoot;
 			}
 			QTreeWidgetItem * it = new QTreeWidgetItem();
 			it->setText(0, uk);
-			it->setData(0, Qt::UserRole , QString("User::") + uk);
+			it->setData(0, Qt::UserRole , QString(QString("User::") + uk));
 			uRoot->addChild(it);
 		}
 	}
@@ -814,13 +814,13 @@ void SampleWidget::refillSampleList()
 			if(first)
 			{
 				first = false;
-				kRoot->setData(0, Qt::UserRole , k + QString("::") + n);
+				kRoot->setData(0, Qt::UserRole , QString(k + QString("::") + n));
 				if(!curIt)
 					curIt = kRoot;
 			}
 			QTreeWidgetItem * it = new QTreeWidgetItem();
 			it->setText(0, n);
-			it->setData(0, Qt::UserRole, k + QString("::") + n);
+			it->setData(0, Qt::UserRole, QString(k + QString("::") + n));
 			kRoot->addChild(it);
 		}
 	}
@@ -953,7 +953,7 @@ void SampleWidget::slotAddSample()
 void SampleWidget::slotSampleNameEdited(QWidget *)
 {
 	ui->sampleTextTree->closePersistentEditor(newSampleName);
-	newSampleName->setData(0, Qt::UserRole , QString("User::") + newSampleName->text(0));
+	newSampleName->setData(0, Qt::UserRole , QString(QString("User::") + newSampleName->text(0)));
 	typotek::getInstance()->changeSample(newSampleName->text(0), ui->sampleEdit->toPlainText() );
 }
 

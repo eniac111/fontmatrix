@@ -178,7 +178,7 @@ QVariant FMAltSelectorModel::data ( const QModelIndex & index, int role ) const
 		{
 			if(item->T == AltItem::PARAGRAPH)
 			{
-				return QString::fromLocal8Bit("¶") + QString::number(item->data.toInt());
+				return QString(QChar(0x00B6) + QString::number(item->data.toInt()));
 			}
 			else if(item->T == AltItem::WORD)
 			{
@@ -190,7 +190,7 @@ QVariant FMAltSelectorModel::data ( const QModelIndex & index, int role ) const
 			}
 			else if(item->T == AltItem::GLYPH)
 			{
-				return QStringLiteral("#") + QString::number(item->data.toInt());
+				return QString(QLatin1Char('#') + QString::number(item->data.toInt()));
 			}
 		}
 		else
