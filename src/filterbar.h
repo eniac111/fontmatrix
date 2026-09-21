@@ -50,7 +50,7 @@ public:
 		TagString
 	};
 
-	TagListModel(QObject * parent);
+	explicit TagListModel(QObject * parent);
 	[[nodiscard]] int rowCount ( const QModelIndex & parent = QModelIndex() ) const override;
 	[[nodiscard]] int columnCount ( const QModelIndex & parent = QModelIndex() ) const override;
 	[[nodiscard]] QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const override;
@@ -74,7 +74,7 @@ class TagListView : public QListView
 
 	int m_andOrKey;
 public:
-	TagListView(QWidget * parent):
+	explicit TagListView(QWidget * parent):
 			QListView(parent),
 			m_andOrKey(0)
 	{}

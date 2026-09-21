@@ -23,7 +23,7 @@ class FMNameList : public QTreeWidget
 {
 	Q_OBJECT
 	public:
-		FMNameList(QWidget *parent);
+		explicit FMNameList(QWidget *parent);
 		~FMNameList() override;
 	public Q_SLOTS:
 		void slotNextFamily();

@@ -33,7 +33,7 @@ class FMGlyphsView : public QGraphicsView
 		
 		enum ViewState{AllView,SingleView};
 		
-		FMGlyphsView ( QWidget *parent );
+		explicit FMGlyphsView ( QWidget *parent );
 		~FMGlyphsView() override;
 		
 		void setState(ViewState s);

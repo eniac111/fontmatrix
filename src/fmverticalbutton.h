@@ -19,7 +19,7 @@
 class FMVerticalButton : public QToolButton
 {
 	public:
-		FMVerticalButton ( QWidget * parent );
+		explicit FMVerticalButton ( QWidget * parent );
 		~FMVerticalButton() override;
 	protected:
 		bool event ( QEvent * event ) override  ;

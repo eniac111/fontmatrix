@@ -128,7 +128,7 @@ class FontItem : public QObject
 		    BITMAP_ONLY		= 0x0200
 		};
 				
-		FontItem ( QString path , bool remote = false, bool faststart = false);
+		explicit FontItem ( QString path , bool remote = false, bool faststart = false);
 		FontItem (QString path,  QString family, QString variant, QString type , bool active);
 		FontItem * Clone();
 		/** Needed when the item has been instantiate with "faststart=true" */

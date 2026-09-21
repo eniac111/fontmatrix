@@ -66,7 +66,7 @@ struct TextElement
 	*/
 	// 	bool internal; OBSOLETE - substitution will be regexpizated ##KEYWORD##
 	TextElement():valid(false){}
-	TextElement ( QString elem) :e ( elem ), valid(true){}
+	explicit TextElement ( QString elem) :e ( elem ), valid(true){}
 };
 
 /**

@@ -20,7 +20,7 @@ class FmRepair : public QDialog, private Ui::repairDialog
 {
 	Q_OBJECT
 	public:
-		FmRepair(QWidget *parent);
+		explicit FmRepair(QWidget *parent);
 		~FmRepair() override;
 	private:
 		void fillDeadLink();

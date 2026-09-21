@@ -26,7 +26,7 @@ class PrefsPanelDialog : public KPageDialog, private Ui::PrefsPanel
 {
 	Q_OBJECT
 	public:
-		PrefsPanelDialog ( QWidget *parent );
+		explicit PrefsPanelDialog ( QWidget *parent );
 
 		~PrefsPanelDialog() override;
 

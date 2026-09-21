@@ -23,7 +23,7 @@
 class FMKernFeature
 {
 	public:
-		FMKernFeature ( FT_Face face );
+		explicit FMKernFeature ( FT_Face face );
 		~FMKernFeature();
 
 

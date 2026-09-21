@@ -24,7 +24,7 @@ class FMPlayGround : public QGraphicsView
 {
 	Q_OBJECT
 	public:
-		FMPlayGround(QWidget *parent);
+		explicit FMPlayGround(QWidget *parent);
 		~FMPlayGround() override;
 
 		QStringList fontnameList();

@@ -30,7 +30,7 @@
 class PanoseAttributeModel : public QAbstractListModel
 {
 public:
-	PanoseAttributeModel(QObject * parent);
+	explicit PanoseAttributeModel(QObject * parent);
 
 	[[nodiscard]] QVariant data(const QModelIndex& index, int role) const override;
 	[[nodiscard]] int rowCount(const QModelIndex& parent) const override;
@@ -45,7 +45,7 @@ private:
 class PanoseValueModel : public QAbstractListModel
 {
 public:
-	PanoseValueModel(QObject * parent);
+	explicit PanoseValueModel(QObject * parent);
 
 	[[nodiscard]] QVariant data(const QModelIndex& index, int role) const override;
 	[[nodiscard]] int rowCount(const QModelIndex& parent) const override;

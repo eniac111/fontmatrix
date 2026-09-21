@@ -32,7 +32,7 @@ class FMSampleTextView : public QGraphicsView
 		Q_OBJECT
 
 	public:
-		FMSampleTextView ( QWidget* parent );
+		explicit FMSampleTextView ( QWidget* parent );
 
 		~FMSampleTextView() override;
 		

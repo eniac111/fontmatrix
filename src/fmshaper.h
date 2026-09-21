@@ -30,7 +30,7 @@
 class FMShaper
 {
 	public:
-		FMShaper(FMOtf *anchor);
+		explicit FMShaper(FMOtf *anchor);
 
 		~FMShaper();
 

@@ -33,7 +33,7 @@ class GlyphToSVGHelper
     QTransform m_transform;
     QString m_svg;
 public:
-    GlyphToSVGHelper(QPainterPath path, QTransform tf = QTransform());
+    explicit GlyphToSVGHelper(QPainterPath path, QTransform tf = QTransform());
 
     QString getSVG(int pSize = 1000) const;
     QString getSVGPath() const;

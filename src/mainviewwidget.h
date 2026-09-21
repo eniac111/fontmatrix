@@ -51,7 +51,7 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 		Q_OBJECT
 
 	public:
-		MainViewWidget ( QWidget *parent );
+		explicit MainViewWidget ( QWidget *parent );
 
 		~MainViewWidget() override;
 	private:

@@ -22,7 +22,7 @@ class FontItem;
 class FMDumpInfo
 {
 	public:
-		FMDumpInfo(FontItem* font, const QString& model = QString());
+		explicit FMDumpInfo(FontItem* font, const QString& model = QString());
 		~FMDumpInfo();
 		
 		QStringList infos(){return m_info.keys();}

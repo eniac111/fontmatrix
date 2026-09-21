@@ -21,7 +21,7 @@ class PanoseMatch {
 
 public:
 	/** Init the matcher with the Panose string for the selected font */
-	PanoseMatch(const QString &selected);
+	explicit PanoseMatch(const QString &selected);
 
 	PanoseMatch()= default;
 	~PanoseMatch()= default;

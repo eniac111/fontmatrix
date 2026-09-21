@@ -73,7 +73,7 @@ class FMPreviewView : public QListView
 {
 	Q_OBJECT
 public:
-	FMPreviewView(QWidget * parent = nullptr);
+	explicit FMPreviewView(QWidget * parent = nullptr);
 	~FMPreviewView() override= default;
 	[[nodiscard]] int getUsedWidth() const{return usedWidth;}
 	// n = 1 for a single column layout (list); n = 2 for multi columns layout

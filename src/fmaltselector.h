@@ -73,7 +73,7 @@ class FMAltSelectorModel : public QAbstractItemModel
 		FMAltItemDelegate() = delete;
 		const FMAltSelectorModel * pmodel = nullptr;
 	public:
-		FMAltItemDelegate(FMAltSelectorModel* model);
+		explicit FMAltItemDelegate(FMAltSelectorModel* model);
 		~FMAltItemDelegate() override{delete pmodel;}
 
 		void paint ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const override;
@@ -107,7 +107,7 @@ class FMAltSelector : public QWidget , private Ui::AltSelectorWidget
 	FMAltSelectorModel * m_model = nullptr;
 
 public:
-	FMAltSelector(QWidget * parent);
+	explicit FMAltSelector(QWidget * parent);
 	~FMAltSelector() override= default;
 
 public Q_SLOTS:

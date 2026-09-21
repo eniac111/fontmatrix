@@ -45,7 +45,7 @@ public:
 	using address_t = uint32_t;
 	
 public:
-	QHexView(QWidget * parent = nullptr);
+	explicit QHexView(QWidget * parent = nullptr);
 	
 public:
 	void setCommentServer(CommentServerInterface *p);

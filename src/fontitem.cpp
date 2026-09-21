@@ -96,7 +96,7 @@ struct FM_Vector // :)
 	double x;
 	double y;
 	
-	FM_Vector(const FT_Vector* vect)
+	explicit FM_Vector(const FT_Vector* vect)
 	{
 		x = double(vect->x); 
 		y = double(vect->y); 

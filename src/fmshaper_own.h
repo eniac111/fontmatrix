@@ -30,7 +30,7 @@ class Character : public QChar
 	public: 
 		Character(int unicode, QList<QByteArray> tokens);
 		Character(int unicode, QStringList tokens);
-		Character(int unicode):QChar(unicode),MatchAll(false),isMatchedGroup(false),GroupIndex(0){}
+		explicit Character(int unicode):QChar(unicode),MatchAll(false),isMatchedGroup(false),GroupIndex(0){}
 		Character():MatchAll(false),isMatchedGroup(false),GroupIndex(0){}
 		// it should rather be a QFlag... if only I knew how it works ;-)
 		QList<QString> CustomProperties;
@@ -75,7 +75,7 @@ class FMOwnShaper
 {
 	public:
 		FMOwnShaper(QString s, QString lang);
-		FMOwnShaper(QString lang);
+		explicit FMOwnShaper(QString lang);
 		~FMOwnShaper();
 		
 		void fillIn(const QString& s);

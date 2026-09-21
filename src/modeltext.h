@@ -20,7 +20,7 @@ class ModelText : public QTextEdit
 {
 	Q_OBJECT
 	public:
-		ModelText(QWidget * parent);
+		explicit ModelText(QWidget * parent);
 		~ModelText() override= default;
 		
 	protected:

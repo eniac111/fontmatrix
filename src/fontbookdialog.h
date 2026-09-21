@@ -38,7 +38,7 @@ class FontBookDialog : public QDialog, private Ui::BookExportDialog
 {
 		Q_OBJECT
 	public:
-		FontBookDialog ( QWidget *parent = nullptr );
+		explicit FontBookDialog ( QWidget *parent = nullptr );
 
 		~FontBookDialog() override;
 

@@ -43,7 +43,7 @@ class RemoteDir : public QObject
 		QString dump();
 	};
 
-		RemoteDir ( const QStringList &dirs );
+		explicit RemoteDir ( const QStringList &dirs );
 		~RemoteDir() override;
 		
 		void run();

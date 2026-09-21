@@ -33,7 +33,7 @@ class TTTableView : public QWidget, private Ui::TTTableWidget
 	
 	public:
 		
-		TTTableView(FontItem * font, QWidget * parent = nullptr);
+		explicit TTTableView(FontItem * font, QWidget * parent = nullptr);
 		~TTTableView() override;
 		
 	private:

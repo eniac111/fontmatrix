@@ -36,7 +36,7 @@ class FMInfoDisplay
 		QString xhtmlifies(const QString& value);
 		
 	public:
-		FMInfoDisplay(FontItem * font);
+		explicit FMInfoDisplay(FontItem * font);
 		~FMInfoDisplay();
 		
 		QString getHtml();

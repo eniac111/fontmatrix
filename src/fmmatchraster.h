@@ -23,7 +23,7 @@ class FMMatchRaster : public QDialog , private Ui::MatchRasterDialog
 {
 	Q_OBJECT
 	public:
-		FMMatchRaster(QWidget * parent);
+		explicit FMMatchRaster(QWidget * parent);
 		~FMMatchRaster() override;
 	private:
 		QRect curRect;

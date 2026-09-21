@@ -72,7 +72,7 @@ class FMFontCompareView : public QGraphicsView
 {
 		Q_OBJECT
 	public:
-		FMFontCompareView ( QWidget * parent );
+		explicit FMFontCompareView ( QWidget * parent );
 		~FMFontCompareView() override;
 
 		void changeFont ( int level, FontItem* font );

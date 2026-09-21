@@ -54,7 +54,7 @@ class FMOtf
 {
 	public:
 		// scale is not used any more, positions are always in font units
-		FMOtf ( FT_Face, double scale = 0.0 );
+		explicit FMOtf ( FT_Face, double scale = 0.0 );
 		~FMOtf ();
 
 		QString curString;

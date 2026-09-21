@@ -35,7 +35,7 @@ class PanoseWidget : public QWidget {
 	Q_OBJECT
 
 public:
-	PanoseWidget(QWidget *parent = nullptr);
+	explicit PanoseWidget(QWidget *parent = nullptr);
 	~PanoseWidget() override;
 
 	void setFilter(const QMap<int, QList<int> >& filter);

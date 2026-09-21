@@ -28,7 +28,7 @@ private Q_SLOTS:
 
 public:
 
-	TagsWidget_ListModel(QObject * parent);
+	explicit TagsWidget_ListModel(QObject * parent);
 	[[nodiscard]] int rowCount ( const QModelIndex & parent = QModelIndex() ) const override;
 	[[nodiscard]] int columnCount ( const QModelIndex & parent = QModelIndex() ) const override;
 	[[nodiscard]] QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const override;

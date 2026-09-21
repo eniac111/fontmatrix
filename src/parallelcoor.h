@@ -156,8 +156,8 @@ class ParallelCoorView : public QGraphicsView
 {
 	Q_OBJECT
 	public:
-		ParallelCoorView ( QWidget * parent = nullptr );
-		ParallelCoorView ( ParallelCoorDataSet * dataset, QWidget * parent = nullptr );
+		explicit ParallelCoorView ( QWidget * parent = nullptr );
+		explicit ParallelCoorView ( ParallelCoorDataSet * dataset, QWidget * parent = nullptr );
 		~ParallelCoorView() override;
 		
 		void selectField(const QString& field);
