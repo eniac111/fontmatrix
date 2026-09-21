@@ -507,6 +507,13 @@ IF(WIN32)
 	)
 ENDIF(WIN32)
 
+# The project's own sources build without a warning. Off by default: a
+# packager's newer compiler must not turn a new diagnostic into a failed build.
+option(FONTMATRIX_WERROR "Treat compiler warnings as errors in Fontmatrix's own sources (for CI)" OFF)
+if(FONTMATRIX_WERROR)
+	target_compile_options(fontmatrix PRIVATE $<IF:$<CXX_COMPILER_ID:MSVC>,/WX,-Werror>)
+endif()
+
 # typotek calls setXMLFile("fontmatrixui.rc") + createGUI(); without this file
 # KXmlGui builds no menu bar and no toolbar. Installed for every platform, not
 # per-branch.
