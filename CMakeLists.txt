@@ -284,8 +284,11 @@ ecm_install_icons(ICONS
 ki18n_install(po)
 
 IF(UNIX AND NOT APPLE)
+	# The desktop file is named after the application ID, which is also what
+	# KAboutData::setDesktopFileName() tells the compositor: that is how a window finds
+	# its launcher and icon on Wayland.
 	INSTALL(FILES
-	fontmatrix.desktop
+	com.github.fontmatrix.Fontmatrix.desktop
 	DESTINATION ${KDE_INSTALL_APPDIR}
 	)
 
