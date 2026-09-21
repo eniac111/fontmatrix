@@ -27,7 +27,7 @@ class FMMatchRaster : public QDialog , private Ui::MatchRasterDialog
 		~FMMatchRaster() override;
 	private:
 		QRect curRect;
-		QRgb curCol;
+		QRgb curCol = 0U;
 // 		QMap<unsigned int, QImage> mItems;
 		unsigned int refCodepoint;
 		QImage refImage;
@@ -41,7 +41,7 @@ class FMMatchRaster : public QDialog , private Ui::MatchRasterDialog
 		QList<FontItem*> compFonts;
 		QList<FontItem*> remainFonts;
 		QList<FontItem*> filteredFonts;
-		FontItem* waitingFont;
+		FontItem* waitingFont = nullptr;
 		
 		QImage autoCrop(const QImage& img);
 

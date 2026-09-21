@@ -69,7 +69,7 @@ public:
 //		runWord = 0;
 //	}
 
-	void saveRun(){run r;r.chunk = runChunk;r.par = runPar; r.word = runWord; runStore << r;}
+	void saveRun(){run r{};r.chunk = runChunk;r.par = runPar; r.word = runWord; runStore << r;}
 	void restoreRun(){run r = runStore.takeLast(); runPar = r.par;runWord = r.word; runChunk = r.chunk;}
 
 	int maxPar(){return m_alt.count();}

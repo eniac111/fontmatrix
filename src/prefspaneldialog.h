@@ -52,20 +52,20 @@ class PrefsPanelDialog : public KPageDialog, private Ui::PrefsPanel
 
 	private:
 		void doConnect();
-		QStandardItemModel *shortcutModel;
-		QDialog *m_uiHolder;
-		KMessageWidget *m_systrayUnavailable;
-		KMessageWidget *m_sampleNameWarning;
-		KPageWidgetItem *m_pageGeneral;
-		KPageWidgetItem *m_pageSystray;
-		KPageWidgetItem *m_pageDisplay;
-		KPageWidgetItem *m_pageTools;
-		KPageWidgetItem *m_pageSampleText;
-		KPageWidgetItem *m_pageFiles;
-		KPageWidgetItem *m_pageShortcuts;
+		QStandardItemModel *shortcutModel = nullptr;
+		QDialog *m_uiHolder = nullptr;
+		KMessageWidget *m_systrayUnavailable = nullptr;
+		KMessageWidget *m_sampleNameWarning = nullptr;
+		KPageWidgetItem *m_pageGeneral = nullptr;
+		KPageWidgetItem *m_pageSystray = nullptr;
+		KPageWidgetItem *m_pageDisplay = nullptr;
+		KPageWidgetItem *m_pageTools = nullptr;
+		KPageWidgetItem *m_pageSampleText = nullptr;
+		KPageWidgetItem *m_pageFiles = nullptr;
+		KPageWidgetItem *m_pageShortcuts = nullptr;
 
 		/* For the keyboard shortcut */
-		int keyCode;
+		int keyCode = 0;
 		QString Part0;
 		QString Part1;
 		QString Part2;

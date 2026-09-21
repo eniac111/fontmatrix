@@ -37,7 +37,7 @@ class FMAltSelectorModel : public QAbstractItemModel
 		~AltItem(){qDeleteAll(children);}
 		const Type T;
 		const QVariant data;
-		AltItem * parent;
+		AltItem * parent = nullptr;
 		QList<int> alts;
 
 		void addChild(AltItem* ai)
@@ -65,13 +65,13 @@ class FMAltSelectorModel : public QAbstractItemModel
 		QList<AltItem*> children;
 	};
 
-	AltItem * rootItem;
+	AltItem * rootItem = nullptr;
 
 	// we need a delegate to display alt glyphs / selection widget
 	class FMAltItemDelegate : public QAbstractItemDelegate
 	{
 		FMAltItemDelegate();
-		const FMAltSelectorModel * pmodel;
+		const FMAltSelectorModel * pmodel = nullptr;
 	public:
 		FMAltItemDelegate(FMAltSelectorModel* model);
 		~FMAltItemDelegate() override{delete pmodel;}
@@ -79,7 +79,7 @@ class FMAltSelectorModel : public QAbstractItemModel
 		void paint ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const override;
 		QSize sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const override;
 	};
-	FMAltItemDelegate * altDelegate;
+	FMAltItemDelegate * altDelegate = nullptr;
 
 public:
 	FMAltSelectorModel();
@@ -104,7 +104,7 @@ class FMAltSelector : public QWidget , private Ui::AltSelectorWidget
 {
 	Q_OBJECT
 
-	FMAltSelectorModel * m_model;
+	FMAltSelectorModel * m_model = nullptr;
 
 public:
 	FMAltSelector(QWidget * parent);

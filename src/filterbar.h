@@ -114,14 +114,14 @@ protected:
     void changeEvent(QEvent *e) override;
 
 private:
-    Ui::FilterBar *ui;
-    QHBoxLayout * filterListLayout;
-    QWidget * curFilterWidget;
+    Ui::FilterBar *ui = nullptr;
+    QHBoxLayout * filterListLayout = nullptr;
+    QWidget * curFilterWidget = nullptr;
 
     QList<FilterItem*> filters;
     void addFilterItem(FilterData* f, bool process = true);
     void removeAllFilters();
-    TagListModel * tagListModel;
+    TagListModel * tagListModel = nullptr;
 //    QMenu * metaFieldsMenu;
     int metaFieldKey;
 
@@ -134,7 +134,7 @@ private:
     static const QString &notOp();
     static const QString &orOp();
 
-    QStringListModel *mModel;
+    QStringListModel *mModel = nullptr;
     QStringList mList;
 
 signals:

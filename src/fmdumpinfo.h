@@ -32,7 +32,7 @@ class FMDumpInfo
 		
 		
 	private:
-		FontItem * m_font;
+		FontItem * m_font = nullptr;
 		QString m_model;
 		
 		QMap<QString, QString> m_info;

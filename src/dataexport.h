@@ -39,7 +39,7 @@ public:
 
 private:
 	//data
-	Ui::DataExport *ui;
+	Ui::DataExport *ui = nullptr;
 	QDir exDir;
 	QString filter;
 	QList<FontItem*> fonts;

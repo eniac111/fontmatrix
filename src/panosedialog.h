@@ -30,7 +30,7 @@ class FMPanoseDialog : public QDialog, private Ui::PanoseDialog
 		QString getTargetPanose() const{return m_targetpanose;}
 		bool getOk() const{return m_ok;}
 	private:
-		FontItem *m_font;
+		FontItem *m_font = nullptr;
 		QString m_sourcepanose;
 		QString m_targetpanose;
 		QMap<QString, QComboBox*> m_box;

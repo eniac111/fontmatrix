@@ -28,8 +28,8 @@ class FMGlyphHighlight : QObject
 		FMGlyphHighlight(QGraphicsScene* scene, const QRectF& rect, int time = 300, int frames = 12);
 		~FMGlyphHighlight() override;
 	private:
-		QGraphicsRectItem *m_rect;
-		QTimeLine *m_timeline;
+		QGraphicsRectItem *m_rect = nullptr;
+		QTimeLine *m_timeline = nullptr;
 		QPointF initialPos;
 		int maxFrame;
 		

@@ -43,7 +43,7 @@ class FMShaper
 	private:
 		// the anchor owns the HarfBuzz font, nothing to copy here
 		Q_DISABLE_COPY ( FMShaper )
-		FMOtf *anchorOTF;
+		FMOtf *anchorOTF = nullptr;
 		QString m_script;
 
 };

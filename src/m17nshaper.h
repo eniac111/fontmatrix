@@ -38,7 +38,7 @@ class M17NShaper : public FMBaseShaper
 	public:
 		GlyphList cachedString;
 		MFLTFont mFont;
-		MFLT *grrr;
+		MFLT *grrr = nullptr;
 		
 };
 

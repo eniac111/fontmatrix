@@ -165,7 +165,7 @@ class FMFontDb : public QObject, public QSqlDatabase
 		QMap<int, QString> reverseCacheId;
 
 		int getId ( const QString& fontid );
-		int internalCounter;
+		int internalCounter = 0;
 
 		// We maintain a map of instanciated fonts
 		QMap<int,FontItem*> fontMap;

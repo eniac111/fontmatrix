@@ -24,7 +24,7 @@ class HarfbuzzShaper : public FMBaseShaper
 		GlyphList doShape( const QString& s ) override;
 	private:
 		Q_DISABLE_COPY ( HarfbuzzShaper )
-		FMShaper *hbqtsh;
+		FMShaper *hbqtsh = nullptr;
 };
 
 #endif

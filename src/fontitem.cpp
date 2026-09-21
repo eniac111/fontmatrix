@@ -646,7 +646,7 @@ QGraphicsPathItem * FontItem::itemFromGindex ( int index, double size )
 
 	FT_Outline *outline = &m_glyph->outline;
 	QPainterPath glyphPath ( QPointF ( 0.0,0.0 ) );
-	SizedPath sp;
+	SizedPath sp{};
 	sp.p = &glyphPath;
 	sp.s = scalefactor;
 	FT_Outline_Decompose ( outline, &outline_funcs, &sp );

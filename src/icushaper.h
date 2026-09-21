@@ -45,7 +45,7 @@ class IcuFontImpl : public LEFontInstance
 		
 
 	private:
-		FMOtf *otf;
+		FMOtf *otf = nullptr;
 		static IcuFontImpl *instance;
 		QMap<LETag,unsigned char*> tables;
 };
@@ -60,8 +60,8 @@ class IcuShaper : public FMBaseShaper
 		GlyphList doShape ( const QString& s ) override;
 
 	private:
-		LayoutEngine *icuLE;
-		IcuFontImpl *icuFont;
+		LayoutEngine *icuLE = nullptr;
+		IcuFontImpl *icuFont = nullptr;
 		
 		mutable QMap<QString, unsigned int> tagToCode;
 		void fillTagToCode();

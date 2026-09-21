@@ -57,21 +57,21 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 	private:
 		QStringList ord;
 		QStringList fields;
-		typotek *typo;
+		typotek *typo = nullptr;
 		QString faceIndex;
 		QString lastIndex;
 //		QList<FontItem*> currentFonts; *moved to FMFontDB*
 		QList<FontItem*> orderedCurrentFonts;
 //		QString sampleText;
-		QGridLayout *tagLayout;
+		QGridLayout *tagLayout = nullptr;
 		QString currentOrdering;
-		FontItem *theVeryFont; 
+		FontItem *theVeryFont = nullptr; 
 		bool fontsetHasChanged;
 		bool activateByFamilyOnly;
 		bool m_forceReloadSelection;
 		QString quickSearchString;
 		QElapsedTimer quickSearchTime;
-		QTimer *quickSearchTimer;
+		QTimer *quickSearchTimer = nullptr;
 		int quickSearchWait;
 
 		void doConnect();
@@ -81,13 +81,13 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 
 		QString curItemName;
 		
-		bool renderingLock;
+		bool renderingLock = false;
 		
 		QIcon iconPS1;
 		QIcon iconTTF;
 		QIcon iconOTF;
 
-		FMPreviewModel * previewModel;
+		FMPreviewModel * previewModel = nullptr;
 
 	public slots:
 		void slotFontDbChanged();

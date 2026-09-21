@@ -45,13 +45,13 @@ public:
 //	void leaveEvent(QEvent *e);
 
 private:
-	FontItem * fontItem;
-	QPushButton * closeButton;
-	QPushButton * actButton;
-	QFrame * line;
-	QGridLayout * menuLayout;
-	QLabel * fontName;
-	QLineEdit * text;
+	FontItem * fontItem = nullptr;
+	QPushButton * closeButton = nullptr;
+	QPushButton * actButton = nullptr;
+	QFrame * line = nullptr;
+	QGridLayout * menuLayout = nullptr;
+	QLabel * fontName = nullptr;
+	QLineEdit * text = nullptr;
 
 
 private slots:
@@ -80,12 +80,12 @@ protected:
 	void leaveEvent(QEvent *e) override;
 
 private:
-	FontItem *fontItem;
+	FontItem *fontItem = nullptr;
 	bool hasMouseGrab;
 	QPoint refPoint;
-	FMFloatingMenu * menuWidget;
-	QVBoxLayout * mainLayout;
-	QLabel * previewLabel;
+	FMFloatingMenu * menuWidget = nullptr;
+	QVBoxLayout * mainLayout = nullptr;
+	QLabel * previewLabel = nullptr;
 
 	bool canTransparent();
 

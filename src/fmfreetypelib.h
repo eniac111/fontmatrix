@@ -37,7 +37,7 @@ class FMFreetypeLib : public QObject
 	explicit FMFreetypeLib(QObject *parent = nullptr);
 
 	QMap<QThread *, FT_Library> libraries;
-	QMutex *mutex;
+	QMutex *mutex = nullptr;
 
 	class FTLibFactory : public QObject
 	{

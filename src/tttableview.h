@@ -27,7 +27,7 @@ class TTTableView : public QWidget, private Ui::TTTableWidget
 		SIZE = 2	
 	};
 	
-	FontItem * m_font;
+	FontItem * m_font = nullptr;
 	QList<QTreeWidgetItem*> twiList;
 	QVector<uint8_t> m_data;
 	

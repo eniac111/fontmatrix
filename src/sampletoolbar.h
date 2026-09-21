@@ -56,7 +56,7 @@ protected:
     void changeEvent(QEvent *e) override;
 
 private:
-    Ui::SampleToolBar *ui;
+    Ui::SampleToolBar *ui = nullptr;
 
 signals:
     void SizeChanged(double);

@@ -52,14 +52,14 @@ protected:
     void changeEvent(QEvent *e) override;
 
 private:
-    Ui::MetaWidget *ui;
+    Ui::MetaWidget *ui = nullptr;
 
     static QStringListModel *mModel;
     static QStringList mList;
-    QWidget *filterWidget;
-    QComboBox *filterCombo;
-    QLineEdit *filterLine;
-    QPushButton *filterButton;
+    QWidget *filterWidget = nullptr;
+    QComboBox *filterCombo = nullptr;
+    QLineEdit *filterLine = nullptr;
+    QPushButton *filterButton = nullptr;
     QMap<QLineEdit*, FMFontDb::InfoItem> metFields;
 
 signals:

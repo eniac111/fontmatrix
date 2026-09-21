@@ -60,7 +60,7 @@ class FMPlayGround : public QGraphicsView
 		QPointF CursorPos;
 		// this one at the pen position
 		QPointF BlinkPos;
-		QTimer *CursorTimer;
+		QTimer *CursorTimer = nullptr;
 		
 	signals:
 		void pleaseZoom(int);

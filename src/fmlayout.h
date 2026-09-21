@@ -55,7 +55,7 @@ struct Node
 		ListItem();
 		ListItem ( Node* N, double D );
 		~ListItem() ;
-		Node* n;
+		Node* n = nullptr;
 		double distance;
 
 		// deletes n
@@ -66,8 +66,8 @@ struct Node
 	~Node();
 
 	QList<ListItem*> nodes;
-	FMLayout *lyt;
-	int index;
+	FMLayout *lyt = nullptr;
+	int index = 0;
 
 	// deletes the items of nodes
 	Q_DISABLE_COPY ( Node )
@@ -117,8 +117,8 @@ class FMLayout : public QObject
 		GlyphList theString;
 		double lineWidth ( int l );
 //		QMutex *layoutMutex;
-		bool stopIt;
-		int drawnLines;
+		bool stopIt = false;
+		int drawnLines = 0;
 
 		void setContext(bool c);
 		
@@ -129,37 +129,37 @@ class FMLayout : public QObject
 		// Argued
 //		static FMLayout *instance;
 		bool contextIsMainThread;
-		QGraphicsScene* theScene;
-		FontItem*	theFont;
+		QGraphicsScene* theScene = nullptr;
+		FontItem*	theFont = nullptr;
 		QList<GlyphList> paragraphs;
 		QList<GlyphList> lines;
 		QRectF theRect;// Not really argued now, will come soon
-		QGraphicsRectItem *rules;
-		FMLayOptWidget *optionsWidget;
-		QGridLayout *optionLayout;
+		QGraphicsRectItem *rules = nullptr;
+		FMLayOptWidget *optionsWidget = nullptr;
+		QGridLayout *optionLayout = nullptr;
 		bool persistentScene;
 
 		// built
-		Node *node;
+		Node *node = nullptr;
 		QList<int> indices;
 		QList<QGraphicsPixmapItem *> pixList;
 		QList<QGraphicsPathItem*> glyphList;
 		QMap<int, QMap<int, double > > distCache;
 		QMap<int, QMap<int, double > > stripCache;
 		QMap<int, QMap<int, int > > sepCache;
-		bool justRedraw;
+		bool justRedraw = false;
 		bool optionHasChanged;
 		QPointF lastOrigine;
 
 		// accessed
-		bool processFeatures;
+		bool processFeatures = false;
 		QString script;
-		bool processScript;
-		double fontSize;
-		double adjustedSampleInter;
-		int textProgressionBlock;
-		int textProgressionLine;
-		bool deviceIndy;
+		bool processScript = false;
+		double fontSize = 0.0;
+		double adjustedSampleInter = 0.0;
+		int textProgressionBlock = 0;
+		int textProgressionLine = 0;
+		bool deviceIndy = false;
 		QPointF origine;
 
 		bool layoutIsFinished;
@@ -201,7 +201,7 @@ class FMLayout : public QObject
 		void paragraphFinished();
 		void paintFinished();
 	public:
-		QWidget *optionDialog;
+		QWidget *optionDialog = nullptr;
 		
 		double FM_LAYOUT_NODE_SOON_F;
 		double FM_LAYOUT_NODE_FIT_F;
@@ -209,7 +209,7 @@ class FMLayout : public QObject
 		double FM_LAYOUT_NODE_END_F;
 		double FM_LAYOUT_HYPHEN_PENALTY;
 		double FM_LAYOUT_MAX_COMPRESSION;
-		QMenu * secretMenu;
+		QMenu * secretMenu = nullptr;
 
 
 };

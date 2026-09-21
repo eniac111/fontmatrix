@@ -23,7 +23,7 @@ class TagsWidget : public QWidget , private Ui::tagsWidget
 	Q_OBJECT
 
 
-	TagsWidget_ListModel * model;
+	TagsWidget_ListModel * model = nullptr;
 
 public:
 	TagsWidget(QWidget * parent);

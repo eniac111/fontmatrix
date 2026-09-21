@@ -46,13 +46,13 @@ class FMFontCompareItem
 		void setIndex(int i){zindex = i;}
 	private:
 		const QUuid uuid;
-		QGraphicsScene *scene;
-		FontItem* font;
+		QGraphicsScene *scene = nullptr;
+		FontItem* font = nullptr;
 		int zindex;
 		uint char_code;
-		double m_offset;
+		double m_offset = 0.0;
 // 		QColor color;
-		QGraphicsPathItem* path;
+		QGraphicsPathItem* path = nullptr;
 		QList<QGraphicsLineItem*> lines_controls;
 		QList<QGraphicsLineItem*> lines_metrics;
 		QList<QGraphicsEllipseItem*> points;
@@ -107,13 +107,13 @@ class FMFontCompareView : public QGraphicsView
 		QMap<int, double> offsets;
 
 		void initPensAndBrushes();
-		uint thechar;
+		uint thechar = 0U;
 
 
 
 		QPointF mouseStartPoint;
-		QGraphicsRectItem *theRect;
-		QGraphicsRectItem *fPage;
+		QGraphicsRectItem *theRect = nullptr;
+		QGraphicsRectItem *fPage = nullptr;
 		bool isSelecting;
 		bool isPanning;
 };

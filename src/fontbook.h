@@ -33,8 +33,8 @@ struct TextElementStyle
 {
 	QString name;
 	QString font; // _FONTMATRIX_ is reserved
-	double fontsize;
-	double lineheight;
+	double fontsize = 0.0;
+	double lineheight = 0.0;
 	QColor color;
 	double margin_top,margin_left,margin_bottom,margin_right;
 	TextElementStyle () {}
@@ -117,11 +117,11 @@ private:
 	void doFullBookPageRight(const QString& family);
 	void doOneLinerBook();
 
-	QPrinter * printer;
-	QPainter * painter;
+	QPrinter * printer = nullptr;
+	QPainter * painter = nullptr;
 	QRectF printerRect;
 	QStringList stringList;
-	ProgressBarDuo * progress;
+	ProgressBarDuo * progress = nullptr;
 
 	QString outputFilePath;
 	QMap<QString, QPageSize::PageSizeId > mapPSize;

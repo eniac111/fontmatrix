@@ -94,7 +94,7 @@ class ParallelCoorFieldItem : public QGraphicsSimpleTextItem
 		void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event ) override;
 		
 	private:
-		QGraphicsView* pview;
+		QGraphicsView* pview = nullptr;
 		
 };
 
@@ -115,7 +115,7 @@ class ParallelCoorValueItem : public QGraphicsSimpleTextItem
 		void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event ) override;
 		
 	private:
-		QGraphicsView* pview;
+		QGraphicsView* pview = nullptr;
 };
 
 class ParallelCoorBarItem : public QGraphicsLineItem
@@ -130,7 +130,7 @@ class ParallelCoorBarItem : public QGraphicsLineItem
 		void mousePressEvent ( QGraphicsSceneMouseEvent * event ) override;
 		void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event ) override;
 	private:
-		QGraphicsView* pview;
+		QGraphicsView* pview = nullptr;
 		QString attachedField;
 };
 
@@ -147,8 +147,8 @@ class ParallelCoorMarkItem : public QGraphicsPathItem
 		void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event ) override;
 		
 	private:
-		QGraphicsView * pview;
-		ParallelCoorValueItem * value;
+		QGraphicsView * pview = nullptr;
+		ParallelCoorValueItem * value = nullptr;
 };
 
 
@@ -190,7 +190,7 @@ class ParallelCoorView : public QGraphicsView
 		// At some point the dataset will send signals
 		// when data is updated. Thus, beeing a descendant of
 		// QObject, it will "inherit" the Q_DISABLE_COPY macro.
-		ParallelCoorDataSet * m_dataSet;
+		ParallelCoorDataSet * m_dataSet = nullptr;
 		
 		// if empty, all items of the dataset are shown.
 		// else, only datas that match the filter
@@ -209,14 +209,14 @@ class ParallelCoorView : public QGraphicsView
 		
 		struct Units
 		{
-			double hunit;
-			double wunit;
-			double XOffset;
-			double YOffset;
-			double H;
-			double W ;
-			int C ;
-			double step ;
+			double hunit = 0.0;
+			double wunit = 0.0;
+			double XOffset = 0.0;
+			double YOffset = 0.0;
+			double H = 0.0;
+			double W = 0.0 ;
+			int C = 0 ;
+			double step = 0.0 ;
 			Units() {}
 			Units (int width, int height, int count );
 		};

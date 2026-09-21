@@ -149,9 +149,9 @@ class FontItem : public QObject
 		QString remoteHerePath;
 		bool stopperDownload;
 // 		QHttp *rHttp; // TODO To be replaced
-		QFile *rFile;
-		int remoteId;
-		QProgressDialog *rProgressDialog;
+		QFile *rFile = nullptr;
+		int remoteId = 0;
+		QProgressDialog *rProgressDialog = nullptr;
 		
 		QString m_path;
 		QUrl m_url;
@@ -164,9 +164,9 @@ class FontItem : public QObject
 		QString m_family;
 		QString m_variant;
 		QString m_fileSize;
-		double m_size;
-		int m_numGlyphs;
-		int m_numFaces;
+		double m_size = 0.0;
+		int m_numGlyphs = 0;
+		int m_numFaces = 0;
 // 		QString m_panose;
 		double unitPerEm;
 		
@@ -178,17 +178,17 @@ class FontItem : public QObject
 		QList<int> spaceIndex;
 		
 		bool m_isOpenType;
-		FMOtf *otf;
+		FMOtf *otf = nullptr;
 		// words, spaces and hyphenation around whatever shapes one word
 		GlyphList shapeWords(const QString& spec, double fsize, const std::function<GlyphList(const QString&)>& shapeWord);
 
 //		FT_Library theLibrary;
 		FT_Face	m_face;
 		FT_Face lastFace;
-		FT_Error      ft_error;
+		FT_Error      ft_error = 0;
 //		QMap<FT_Library,FT_Face> faces;
-		int facesRef;
-		FT_GlyphSlot m_glyph;
+		int facesRef = 0;
+		FT_GlyphSlot m_glyph = nullptr;
 		
 
 		QImage glyphImage(QColor color = Qt::black);
@@ -220,11 +220,11 @@ class FontItem : public QObject
 
 		
 		bool allIsRendered;
-		bool isDerendered;
+		bool isDerendered = false;
 		int m_glyphsPerRow;
 		bool m_isEncoded;
-		bool m_unicodeBuiltIn;
-		FT_Encoding m_currentEncoding;
+		bool m_unicodeBuiltIn = false;
+		FT_Encoding m_currentEncoding = FT_ENCODING_NONE;
 		int currentChar;
 		
 // 		bool m_RTL;// Right to Left

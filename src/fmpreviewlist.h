@@ -89,7 +89,7 @@ protected:
 	void keyPressEvent(QKeyEvent *event) override;
 
 private:
-	int usedWidth;
+	int usedWidth = 0;
 	int columns;
 
 public slots:
@@ -127,7 +127,7 @@ public:
 	bool getFamilyMode() const{return familyMode;}
 
 private:
-	FMPreviewView *m_view;
+	FMPreviewView *m_view = nullptr;
 	QList<FontItem*> base;
 	QString specString;
 	QString styleTooltipName;

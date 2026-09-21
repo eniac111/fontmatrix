@@ -43,7 +43,7 @@ protected:
     void changeEvent(QEvent *e) override;
 
 private:
-    Ui::ProgressBarDuo *ui;
+    Ui::ProgressBarDuo *ui = nullptr;
 
 signals:
     void Canceled();

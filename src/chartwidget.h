@@ -47,16 +47,16 @@ protected:
     void changeEvent(QEvent *e) override;
 
 private:
-    Ui::ChartWidget *ui;
+    Ui::ChartWidget *ui = nullptr;
     const QString fontIdentifier;
 
-    QGraphicsScene *abcScene;
+    QGraphicsScene *abcScene = nullptr;
     int fancyGlyphInUse;
-    int fancyGlyphData;
+    int fancyGlyphData = 0;
     QString unMapGlyphName;
     QString allMappedGlyphName;
     bool uRangeIsNotEmpty;
-    QGraphicsRectItem *curGlyph;
+    QGraphicsRectItem *curGlyph = nullptr;
 
 
     void createConnections();

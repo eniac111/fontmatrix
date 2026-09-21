@@ -58,8 +58,8 @@ protected:
 	void showEvent(QShowEvent *) override;
 
 private:
-	Ui::PlayWidget *ui;
-	QGraphicsScene *playScene;
+	Ui::PlayWidget *ui = nullptr;
+	QGraphicsScene *playScene = nullptr;
 
 private slots:
 	void slotZoom ( int z );

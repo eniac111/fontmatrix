@@ -44,8 +44,8 @@ private:
 	QString wTitle;
 
 protected:
-	QPrinter * printer;
-	QPrintDialog * printDialog;
+	QPrinter * printer = nullptr;
+	QPrintDialog * printDialog = nullptr;
 	bool event( QEvent * e ) override;
 
 signals:

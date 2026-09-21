@@ -30,7 +30,7 @@ class FMBaseShaper
 		virtual ~FMBaseShaper();
 		virtual GlyphList doShape ( const QString& aString ) = 0;
 	protected:
-		FMOtf *otf;
+		FMOtf *otf = nullptr;
 		QString script;
 	private:
 		Q_DISABLE_COPY ( FMBaseShaper )
@@ -63,10 +63,10 @@ class FMShaperFactory
 
 	private:
 		SHAPER_TYPE shaperType;
-		FMOtf *otf;
+		FMOtf *otf = nullptr;
 		QString script;
 
-		FMBaseShaper *shaperImpl;
+		FMBaseShaper *shaperImpl = nullptr;
 
 		Q_DISABLE_COPY ( FMShaperFactory )
 };

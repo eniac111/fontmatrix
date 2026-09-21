@@ -63,11 +63,11 @@ class FMOtf
 		// owns the HarfBuzz face and fonts
 		Q_DISABLE_COPY ( FMOtf )
 		FT_Face _face;
-		hb_face_t *hbFace;
+		hb_face_t *hbFace = nullptr;
 		// glyphs are looked up by FreeType, with the charmap the application selected
-		hb_font_t *hbFont;
+		hb_font_t *hbFont = nullptr;
 		// for input that is glyph indices already
-		hb_font_t *hbGlyphFont;
+		hb_font_t *hbGlyphFont = nullptr;
 
 		bool GSUB, GPOS;
 		// all the feature tags of the font, to switch off those not asked for

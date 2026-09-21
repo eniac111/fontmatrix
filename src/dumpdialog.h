@@ -29,7 +29,7 @@ class FMDumpDialog : public QDialog, private Ui::DumpDialog
 		QString getFilePath() const;
 		
 	private:
-		FMDumpInfo * m_dumpinfo;
+		FMDumpInfo * m_dumpinfo = nullptr;
 		
 	private slots:
 		void slotDumpIt();

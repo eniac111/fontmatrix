@@ -146,73 +146,73 @@ private:
 	void checkOwnDir();
 	void fillTagsList();
 
-	QTextEdit *textEdit;
+	QTextEdit *textEdit = nullptr;
 	QString curFile;
 
 	QMenu *viewMenu = nullptr;
-	QAction *openAct;
-	QAction *importFilesAction;
-	QAction *fontBookAct;
-	QAction *activCurAct;
-	QAction *deactivCurAct;
-	QAction *fonteditorAct;
-	QAction *exportFontSetAct;
-	QAction *repairAct;
-	QAction *tagAll;
-	QAction *showTTTAct;
-	QAction *editPanoseAct;
-	QAction *dumpInfoAct;
-	QAction *reloadAct;
-	QAction *reloadSingleAct;
-	QAction *exportXeTeXAct;
-	QAction *extractFontAction;
-	QAction *matchRasterAct;
+	QAction *openAct = nullptr;
+	QAction *importFilesAction = nullptr;
+	QAction *fontBookAct = nullptr;
+	QAction *activCurAct = nullptr;
+	QAction *deactivCurAct = nullptr;
+	QAction *fonteditorAct = nullptr;
+	QAction *exportFontSetAct = nullptr;
+	QAction *repairAct = nullptr;
+	QAction *tagAll = nullptr;
+	QAction *showTTTAct = nullptr;
+	QAction *editPanoseAct = nullptr;
+	QAction *dumpInfoAct = nullptr;
+	QAction *reloadAct = nullptr;
+	QAction *reloadSingleAct = nullptr;
+	QAction *exportXeTeXAct = nullptr;
+	QAction *extractFontAction = nullptr;
+	QAction *matchRasterAct = nullptr;
 
-	QAction *playAction;
-	QAction *compareAction;
-	QAction *closeAllFloat;
-	QAction *showAllFloat;
-	QAction *hideAllFloat;
-	QAction *floatSep;
+	QAction *playAction = nullptr;
+	QAction *compareAction = nullptr;
+	QAction *closeAllFloat = nullptr;
+	QAction *showAllFloat = nullptr;
+	QAction *hideAllFloat = nullptr;
+	QAction *floatSep = nullptr;
 	QAction *m_paShowMenuBar = nullptr;
 
 //	QAction *layOptAct;
 
-	QProgressBar *statusProgressBar;
+	QProgressBar *statusProgressBar = nullptr;
 
-	QStackedWidget * mainStack;
-	MainViewWidget *theMainView;
-	BrowserWidget * theBrowser;
+	QStackedWidget * mainStack = nullptr;
+	MainViewWidget *theMainView = nullptr;
+	BrowserWidget * theBrowser = nullptr;
 
 	QFile ResourceFile;
 	QDir ownDir;
 	QDir configDir;
 	QDir managedDir;
 
-	DataLoader * dataLoader;
+	DataLoader * dataLoader = nullptr;
 	//		QMap<QString,QString> m_namedSamples;
 	QString m_theWord;
 
-	QLabel *curFontPresentation;
-	QLabel *countFilteredFonts;
+	QLabel *curFontPresentation = nullptr;
+	QLabel *countFilteredFonts = nullptr;
 
-	Systray *systray;
+	Systray *systray = nullptr;
 
-	bool useInitialTags;
-	bool showFontListDialog;
+	bool useInitialTags = false;
+	bool showFontListDialog = false;
 	static QString fonteditorPath;
 	QString templatesDir;
-	double previewSize;
-	bool previewRTL;
-	bool previewSubtitled;
-	bool m_familySchemeFreetype;
+	double previewSize = 0.0;
+	bool previewRTL = false;
+	bool previewSubtitled = false;
+	bool m_familySchemeFreetype = false;
 	QString m_sysTagName;
 
 	void addFcDirItem(const QString &dirPath);
 	QStringList getSystemFontDirs();
 	QStringList sysFontList;
 
-	RemoteDir *remoteDir;
+	RemoteDir *remoteDir = nullptr;
 	QString m_remoteTmpDir;
 
 	QMap<QString, QDockWidget*>  dockWidget;
@@ -220,17 +220,17 @@ private:
 	QMap<QString, bool> dockVisible;
 	QMap<QString, QRect> dockGeometry;
 
-	FMHyphenator *hyphenator;
+	FMHyphenator *hyphenator = nullptr;
 
 	QString defaultOTFScript;
 	QString defaultOTFLang;
 	QStringList defaultOTFGPOS;
 	QStringList defaultOTFGSUB;
 
-	int chartInfoFontSize;
+	int chartInfoFontSize = 0;
 	QString chartInfoFontName;
 
-	double previewInfoFontSize;
+	double previewInfoFontSize = 0.0;
 
 	QString databaseDriver;
 	QString databaseHostname;
@@ -238,7 +238,7 @@ private:
 	QString databaseUser;
 	QString databasePassword;
 
-	int panoseMatchTreshold;
+	int panoseMatchTreshold = 0;
 
 	double m_dpiX;
 	double m_dpiY;
@@ -250,7 +250,7 @@ private:
 
 	QString currentNamedSample;
 
-	QToolButton * toggleMainViewButton;
+	QToolButton * toggleMainViewButton = nullptr;
 
 public:
 	bool isSysFont(FontItem* f);

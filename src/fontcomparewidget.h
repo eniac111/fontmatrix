@@ -29,7 +29,7 @@ class FontCompareWidget : public QWidget, private Ui::CompareWidget
 		
 	private:
 		QString curFont;
-		uint curcode;
+		uint curcode = 0U;
 		bool neverUsed;
 		
 		void doconnect();

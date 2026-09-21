@@ -53,11 +53,11 @@ namespace Ui {
 
 class FMLayoutThread : public QThread
 {
-	FMLayout * pLayout;
+	FMLayout * pLayout = nullptr;
 	QList<GlyphList> gl;
-	double fontSize;
-	FontItem * font;
-	unsigned int fHinting;
+	double fontSize = 0.0;
+	FontItem * font = nullptr;
+	unsigned int fHinting = 0U;
 
 public:
 	void setLayout(FMLayout * l, const QList<GlyphList>& spec , double fs, FontItem * f, unsigned int hinting);
@@ -107,25 +107,25 @@ protected:
 	unsigned int hinting();
 
 private:
-	Ui::SampleWidget *ui;
-	SampleToolBar * sampleToolBar;
-	QTreeWidgetItem * uRoot;
-	QTreeWidgetItem * newSampleName;
-	QStyledItemDelegate * sampleNameEditor;
+	Ui::SampleWidget *ui = nullptr;
+	SampleToolBar * sampleToolBar = nullptr;
+	QTreeWidgetItem * uRoot = nullptr;
+	QTreeWidgetItem * newSampleName = nullptr;
+	QStyledItemDelegate * sampleNameEditor = nullptr;
 
 	const QString fontIdentifier;
-	QGraphicsScene *loremScene;
-	QGraphicsScene *ftScene;
-	FMLayout *textLayoutVect;
-	FMLayout *textLayoutFT;
+	QGraphicsScene *loremScene = nullptr;
+	QGraphicsScene *ftScene = nullptr;
+	FMLayout *textLayoutVect = nullptr;
+	FMLayout *textLayoutFT = nullptr;
 	//    QButtonGroup *radioRenderGroup;
-	QButtonGroup *radioFTHintingGroup;
-	double sampleFontSize;
+	QButtonGroup *radioFTHintingGroup = nullptr;
+	double sampleFontSize = 0.0;
 	double sampleInterSize;
 	double sampleRatio;
-	int toolPanelWidth;
-	QFileSystemWatcher *sysWatcher;
-	QTimer *reloadTimer;
+	int toolPanelWidth = 0;
+	QFileSystemWatcher *sysWatcher = nullptr;
+	QTimer *reloadTimer = nullptr;
 
 	void createConnections();
 	void removeConnections();
@@ -134,14 +134,14 @@ private:
 	OTFSet deFillOTTree();
 
 	bool layoutForPrint;
-	bool firstUpdateRequest;
-	int firstUpdateRequestTimeStamp;
+	bool firstUpdateRequest = false;
+	int firstUpdateRequestTimeStamp = 0;
 	QTime layoutTime;
-	QTimer *layoutTimer;
+	QTimer *layoutTimer = nullptr;
 	int layoutWait;
-	FMLayoutThread * layoutThread;
+	FMLayoutThread * layoutThread = nullptr;
 	bool layoutSwitch;
-	int pixmapDrawn;
+	int pixmapDrawn = 0;
 #ifdef PLATFORM_APPLE
       QFileInfo fileInfo;
       qint64 fileLastModified;

@@ -50,7 +50,7 @@ class PuzzleViewImp : public QList<SVect>
 		double		CompMean ( const PuzzleViewImp& other );
 
 	private:
-		QRgb pc;
+		QRgb pc = 0U;
 		void init ( const QImage& qimg );
 
 };

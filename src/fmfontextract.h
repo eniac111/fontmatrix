@@ -28,7 +28,7 @@ class FMFontExtract : public QDialog, private Ui::FontExtractorDialog
 
 	private:
 		QMap<QString,FMFontExtractorBase*> extractors;
-		FMFontExtractorBase* currentExtractor;
+		FMFontExtractorBase* currentExtractor = nullptr;
 				
 		void loadDoc(const QString& path);
 		QString lastPath;

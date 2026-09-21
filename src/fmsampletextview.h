@@ -39,7 +39,7 @@ class FMSampleTextView : public QGraphicsView
 		void fakePage();
 		void sheduleUpdate();
 		void unSheduleUpdate();
-		bool locker;
+		bool locker = false;
 
 	protected:
 		void resizeEvent ( QResizeEvent * event ) override;
@@ -56,8 +56,8 @@ class FMSampleTextView : public QGraphicsView
 		
 	private:
 		QPointF mouseStartPoint;
-		QGraphicsRectItem *theRect;
-		QGraphicsRectItem *fPage;
+		QGraphicsRectItem *theRect = nullptr;
+		QGraphicsRectItem *fPage = nullptr;
 		bool isSelecting;
 		bool isPanning;
 		bool hasPendingUpdate;

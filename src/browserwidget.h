@@ -50,24 +50,24 @@ public:
 	~BrowserWidget() override;
 
 private:
-	Ui::BrowserWidget *ui;
+	Ui::BrowserWidget *ui = nullptr;
 
 	QString curVariant;
 
-	FloatingWidget *sample;
-	FloatingWidget *chart;
-	FloatingWidget *activation;
+	FloatingWidget *sample = nullptr;
+	FloatingWidget *chart = nullptr;
+	FloatingWidget *activation = nullptr;
 
-	unsigned int currentIndex;
+	unsigned int currentIndex = 0U;
 	unsigned int currentPage;
 	QString uniBlock;
 
-	QFileSystemModel *theDirModel;
+	QFileSystemModel *theDirModel = nullptr;
 	QStringList ffilter;
-	QFileSystemWatcher *dirWatcher;
+	QFileSystemWatcher *dirWatcher = nullptr;
 	QModelIndex currentFIndex;
 
-	FolderViewMenu *folderViewContextMenu;
+	FolderViewMenu *folderViewContextMenu = nullptr;
 
 	void initWatcher(QModelIndex parent);
 	void settingsDir(const QString& path);
@@ -106,9 +106,9 @@ public:
 	void exec(const QFileInfo &fi, const QPoint &p);
 
 private:
-	QAction *dirAction;
-	QAction *dirRecursiveAction;
-	QAction *fileAction;
+	QAction *dirAction = nullptr;
+	QAction *dirRecursiveAction = nullptr;
+	QAction *fileAction = nullptr;
 
 	QFileInfo selectedFileOrDir;
 

@@ -147,9 +147,9 @@ private:
 	address_t m_AddressOffset;		// this is the offset that our base address is relative to
 	int m_SelectionStart;			// index of first selected word (or -1)
 	int m_SelectionEnd;				// index of last selected word (or -1)
-	int m_FontWidth;				// width of a character in this font
-	int m_FontHeight;				// height of a character in this font
-	C *m_Data;						// the current data
+	int m_FontWidth = 0;				// width of a character in this font
+	int m_FontHeight = 0;				// height of a character in this font
+	C *m_Data = nullptr;						// the current data
 	
 	enum {
 		Highlighting_None,
@@ -164,10 +164,10 @@ private:
 	bool m_ShowLine1;
 	bool m_ShowLine2;
 	bool m_ShowLine3;
-	bool m_ShowAddressSeparator;	// should we show ':' character in address to seperate high/low portions
-	char m_AddressFormatString[32];
+	bool m_ShowAddressSeparator = false;	// should we show ':' character in address to seperate high/low portions
+	char m_AddressFormatString[32] = {};
 	
-	CommentServerInterface *m_CommentServer;
+	CommentServerInterface *m_CommentServer = nullptr;
 };
 
 #endif

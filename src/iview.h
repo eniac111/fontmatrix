@@ -44,14 +44,14 @@ class IView: public QGraphicsView
 		void resizeEvent ( QResizeEvent * event ) override;
 		
 	private:
-		QGraphicsPixmapItem * curImage;
+		QGraphicsPixmapItem * curImage = nullptr;
 		
-		QGraphicsPolygonItem * curSel;
-		QGraphicsRectItem * curRect;
-		QGraphicsEllipseItem * curTL;
-		QGraphicsEllipseItem * curTR;
-		QGraphicsEllipseItem * curBL;
-		QGraphicsEllipseItem * curBR;
+		QGraphicsPolygonItem * curSel = nullptr;
+		QGraphicsRectItem * curRect = nullptr;
+		QGraphicsEllipseItem * curTL = nullptr;
+		QGraphicsEllipseItem * curTR = nullptr;
+		QGraphicsEllipseItem * curBL = nullptr;
+		QGraphicsEllipseItem * curBR = nullptr;
 		
 		QPointF mouseStartPoint;
 		QRect theRect;

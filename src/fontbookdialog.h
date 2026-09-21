@@ -75,10 +75,10 @@ class FontBookDialog : public QDialog, private Ui::BookExportDialog
 // 		QRectF m_pageRect;
 // 		QGraphicsScene *preScene;
 // 		QList<FontItem*> renderedFont;
-		QGraphicsScene *templateScene;
+		QGraphicsScene *templateScene = nullptr;
 		QMap<QString,QString> templatesMap;
 		QMap<QString,QPixmap> templatesPreviewMap;
-		QGraphicsPixmapItem *curTemplatePreview;
+		QGraphicsPixmapItem *curTemplatePreview = nullptr;
 		
 };
 

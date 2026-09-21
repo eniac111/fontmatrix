@@ -63,22 +63,22 @@ private slots:
 	void slotPrepareMenu();
 
 private:
-	bool confirmAll;
-	bool confirmTags;
+	bool confirmAll = false;
+	bool confirmTags = false;
 
 	void createActions();
 	void createTrayIcon();
 	void createTagMenu();
 
-	QAction *activateAllAction;
-	QAction *deactivateAllAction;
-	QAction *minimizeAction;
-	QAction *restoreAction;
-	QAction *quitAction;
+	QAction *activateAllAction = nullptr;
+	QAction *deactivateAllAction = nullptr;
+	QAction *minimizeAction = nullptr;
+	QAction *restoreAction = nullptr;
+	QAction *quitAction = nullptr;
 
-	KStatusNotifierItem *trayIcon;
-	QMenu               *trayIconMenu;
-	QMenu               *tagMenu;
+	KStatusNotifierItem *trayIcon = nullptr;
+	QMenu               *trayIconMenu = nullptr;
+	QMenu               *tagMenu = nullptr;
 // 	QMenu           *tagSetMenu;
 	
 	QMap<QString, QAction*> tagActions;

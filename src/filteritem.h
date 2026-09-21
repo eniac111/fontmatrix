@@ -33,7 +33,7 @@ class FilterItem : public QWidget
 {
 	Q_OBJECT
 
-	FilterData* d;
+	FilterData* d = nullptr;
 	QString text;
 public:
 	enum Operation{
@@ -54,7 +54,7 @@ protected:
 	void changeEvent(QEvent *e) override;
 
 private:
-	Ui::FilterItem *ui;
+	Ui::FilterItem *ui = nullptr;
 
 signals:
 	void remove();

@@ -44,7 +44,7 @@ protected:
     void changeEvent(QEvent *e) override;
 
 private:
-    Ui::FloatingWidgetToolBar *ui;
+    Ui::FloatingWidgetToolBar *ui = nullptr;
 
     bool noClose;
     bool isDetached;
