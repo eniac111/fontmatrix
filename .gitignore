@@ -19,10 +19,6 @@ CPackSourceConfig.cmake
 Makefile
 CMakeFiles/
 
-# /harfbuzz/
-/harfbuzz/.git
-/harfbuzz/tests
-/harfbuzz/.gitignore
 
 # /src/
 /src/Makefile
