@@ -2439,7 +2439,12 @@ void typotek::setVisible(bool visible)
 			f->setVisible(false);
 		}
 
+		// Neither is a FloatingWidget, the loop above does not see them.
+		// Their actions in the View menu follow through visibilityChanged().
 		playVisible = PlayWidget::getInstance()->isVisible();
+		PlayWidget::getInstance()->hide();
+		compareVisible = FontCompareWidget::getInstance()->isVisible();
+		FontCompareWidget::getInstance()->hide();
 	}
 	else
 	{
@@ -2455,6 +2460,7 @@ void typotek::setVisible(bool visible)
 		}
 
 		PlayWidget::getInstance()->setVisible(playVisible);
+		FontCompareWidget::getInstance()->setVisible(compareVisible);
 	}
 
 	KXmlGuiWindow::setVisible(visible);

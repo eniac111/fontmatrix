@@ -242,6 +242,7 @@ private:
 	QMap<FloatingWidget*, QAction*> floatingWidgets;
 	QMap<FloatingWidget*, bool> visibleFloatingWidgets;
 	bool playVisible;
+	bool compareVisible = false;
 
 	QString currentNamedSample;
 
