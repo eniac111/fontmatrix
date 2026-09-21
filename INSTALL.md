@@ -29,6 +29,7 @@ Download and run the MSI — Qt and FreeType runtime DLLs are bundled.
 | C++ compiler | C++17 capable | GCC / Clang / MSVC 2022 |
 | Qt 6 | 6.6+ (tested with 6.8) | see modules below |
 | FreeType2 | ≥ 2.3.5 | |
+| HarfBuzz | ≥ 2.6.8 | built with FreeType support; Qt 6 depends on it already |
 
 Required Qt 6 modules: Core, Widgets, Svg, SvgWidgets, Sql, Xml,
 PrintSupport, WebEngineWidgets, LinguistTools.
@@ -47,6 +48,7 @@ sudo apt install \
   qt6-webengine-dev \
   qt6-tools-dev qt6-l10n-tools \
   libfreetype-dev \
+  libharfbuzz-dev \
   libfontconfig1-dev
 ```
 
@@ -84,12 +86,12 @@ flatpak-builder --user --install --force-clean \
 - [Qt 6.8](https://www.qt.io/download-qt-installer) — install the
   `MSVC 2022 64-bit` component and add the extra modules
   **Qt WebEngine**, **Qt Positioning**, **Qt WebChannel**
-- [vcpkg](https://github.com/microsoft/vcpkg) (for FreeType)
+- [vcpkg](https://github.com/microsoft/vcpkg) (for FreeType and HarfBuzz)
 - [.NET SDK](https://dotnet.microsoft.com/download) (for WiX installer)
 
 ```powershell
-# FreeType
-vcpkg install freetype:x64-windows
+# FreeType and HarfBuzz
+vcpkg install freetype:x64-windows "harfbuzz[freetype]:x64-windows"
 
 # Configure
 cmake -B build -DCMAKE_BUILD_TYPE=Release `
@@ -118,7 +120,6 @@ Pass these flags to the initial `cmake` command:
 
 | Flag | Dependency | Description |
 |---|---|---|
-| `-DWANT_HARFBUZZ=true` | (bundled in `harfbuzz/`) | HarfBuzz text shaper |
 | `-DWANT_ICU=true` | `libicu-dev` / ICU | ICU-based text shaping |
 | `-DWANT_M17N=true` | `libm17n-dev` / M17N | M17N multilingual shaping |
 | `-DWANT_PYTHONQT=true` | PythonQt + `libpython3-dev` | In-app Python scripting console |

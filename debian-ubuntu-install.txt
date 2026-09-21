@@ -8,7 +8,7 @@ then we install the various build dependencies already known by the package data
   sudo apt-get build-dep fontmatrix
 
 then we add a few extra dependencies added in the svn version of fontmatrix by typing:
-  sudo apt-get install libqt4-sql-sqlite python-dev libicu-dev 
+  sudo apt-get install libqt4-sql-sqlite python-dev libicu-dev libharfbuzz-dev 
 
 then we retrive the source code by typing:
   sudo apt-get install git 
@@ -18,7 +18,7 @@ then we build from source by typing:
   cd fontmatrix
   mkdir  build
   cd build
-  cmake .. -DCMAKE_BUILD_TYPE=Debug -DWANT_PYTHONQT:bool=true -DWANT_ICU:bool=true -DWANT_HARFBUZZ:bool=true 
+  cmake .. -DCMAKE_BUILD_TYPE=Debug -DWANT_PYTHONQT:bool=true -DWANT_ICU:bool=true 
   make 
 
 
