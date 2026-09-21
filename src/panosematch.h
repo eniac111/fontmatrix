@@ -8,6 +8,9 @@
 #ifndef PANOSEMATCH_H
 #define PANOSEMATCH_H
 
+#include <QList>
+#include <QString>
+
 class PanoseMatch {
 
 public:
