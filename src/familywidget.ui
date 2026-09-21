@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
    <property name="verticalSpacing">
@@ -52,7 +52,7 @@
            </size>
           </property>
           <property name="text">
-           <string>Return To List</string>
+           <string comment="@action:button">Return To List</string>
           </property>
           <property name="shortcut">
            <string>Esc</string>
@@ -75,7 +75,7 @@
            </size>
           </property>
           <property name="text">
-           <string>Sample</string>
+           <string comment="@action:button">Sample</string>
           </property>
          </widget>
         </item>
@@ -88,7 +88,7 @@
            </size>
           </property>
           <property name="text">
-           <string>Chart</string>
+           <string comment="@action:button">Chart</string>
           </property>
          </widget>
         </item>
@@ -101,7 +101,7 @@
            </size>
           </property>
           <property name="text">
-           <string>Info</string>
+           <string comment="@action:button">Info</string>
           </property>
          </widget>
         </item>
@@ -114,7 +114,7 @@
            </size>
           </property>
           <property name="text">
-           <string>Activation</string>
+           <string comment="@action:button">Activation</string>
           </property>
          </widget>
         </item>
@@ -140,7 +140,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Family Name</string>
+           <string comment="@label">Family Name</string>
           </property>
          </widget>
         </item>

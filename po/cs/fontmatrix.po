@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/eniac111/fontmatrix/issues\n"
-"POT-Creation-Date: 2026-09-22 01:06+0300\n"
+"POT-Creation-Date: 2026-09-22 01:58+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,17 +11,17 @@ msgstr ""
 
 #. i18n: file: src/activationreportdialog.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, ActivationReportDialog)
-#. i18n: file: src/progressbarduo.ui:14
-#. i18n: ectx: property (windowTitle), widget (QDialog, ProgressBarDuo)
-#: rc.cpp:3 rc.cpp:688
-#, kde-format
-msgid "Dialog"
-msgstr "Dialog"
+#: rc.cpp:3
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Activation Report"
+msgstr "Událost aktivace"
 
 #. i18n: file: src/activationreportdialog.ui:19
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: rc.cpp:6
 #, kde-format
+msgctxt "@label"
 msgid "Activation - Deactivation Error Report"
 msgstr "Hlášení chyb při zapnutí nebo vypnutí písem"
 
@@ -37,8 +37,10 @@ msgstr "Hlášení chyb při zapnutí nebo vypnutí písem"
 #. i18n: ectx: property (text), widget (QPushButton, closeButton)
 #. i18n: file: src/tagset.ui:231
 #. i18n: ectx: property (text), widget (QPushButton, closeButton)
-#: rc.cpp:9 rc.cpp:280 rc.cpp:331 rc.cpp:541 rc.cpp:703 rc.cpp:831
+#: rc.cpp:9 rc.cpp:231 rc.cpp:276 rc.cpp:477 rc.cpp:621 rc.cpp:740
+#: src/typotek.cpp:2103
 #, kde-format
+msgctxt "@action:button"
 msgid "Close"
 msgstr "Zavřít"
 
@@ -46,6 +48,7 @@ msgstr "Zavřít"
 #. i18n: ectx: property (text), widget (QTableWidget, errorTable)
 #: rc.cpp:12
 #, kde-format
+msgctxt "@title:column"
 msgid "Font path"
 msgstr "Cesta k písmu"
 
@@ -53,87 +56,55 @@ msgstr "Cesta k písmu"
 #. i18n: ectx: property (text), widget (QTableWidget, errorTable)
 #: rc.cpp:15
 #, kde-format
+msgctxt "@title:column"
 msgid "Error"
 msgstr "Chyba"
 
-#. i18n: file: src/activationwidgetitem.ui:14
-#. i18n: ectx: property (windowTitle), widget (QWidget, ActivationWidgetItem)
-#. i18n: file: src/activationwidget.ui:14
-#. i18n: ectx: property (windowTitle), widget (FloatingWidget, ActivationWidget)
-#. i18n: file: src/altselectorwidget.ui:13
-#. i18n: ectx: property (windowTitle), widget (QWidget, AltSelectorWidget)
-#. i18n: file: src/browserwidget.ui:14
-#. i18n: ectx: property (windowTitle), widget (QWidget, BrowserWidget)
-#. i18n: file: src/chartwidget.ui:14
-#. i18n: ectx: property (windowTitle), widget (FloatingWidget, ChartWidget)
-#. i18n: file: src/familywidget.ui:14
-#. i18n: ectx: property (windowTitle), widget (QWidget, FamilyWidget)
-#. i18n: file: src/filterbar.ui:14
-#. i18n: ectx: property (windowTitle), widget (QWidget, FilterBar)
-#. i18n: file: src/filteritem.ui:14
-#. i18n: ectx: property (windowTitle), widget (QWidget, FilterItem)
-#. i18n: file: src/filtersdialogitem.ui:14
-#. i18n: ectx: property (windowTitle), widget (QWidget, FiltersDialogItem)
-#. i18n: file: src/floatingwidgettoolbar.ui:14
-#. i18n: ectx: property (windowTitle), widget (QWidget, FloatingWidgetToolBar)
-#. i18n: file: src/metawidget.ui:14
-#. i18n: ectx: property (windowTitle), widget (QWidget, MetaWidget)
-#. i18n: file: src/playwidget.ui:14
-#. i18n: ectx: property (windowTitle), widget (QWidget, PlayWidget)
-#. i18n: file: src/sampletoolbar.ui:14
-#. i18n: ectx: property (windowTitle), widget (QWidget, SampleToolBar)
-#. i18n: file: src/samplewidget.ui:14
-#. i18n: ectx: property (windowTitle), widget (FloatingWidget, SampleWidget)
-#. i18n: file: src/tagswidget.ui:20
-#. i18n: ectx: property (windowTitle), widget (QWidget, tagsWidget)
-#. i18n: file: src/textprogression.ui:13
-#. i18n: ectx: property (windowTitle), widget (QWidget, TextProgressionWidget)
-#: rc.cpp:18 rc.cpp:27 rc.cpp:36 rc.cpp:48 rc.cpp:63 rc.cpp:168 rc.cpp:192
-#: rc.cpp:213 rc.cpp:244 rc.cpp:283 rc.cpp:487 rc.cpp:529 rc.cpp:748 rc.cpp:768
-#: rc.cpp:834 rc.cpp:852
-#, kde-format
-msgid "Form"
-msgstr "Formulář"
-
 #. i18n: file: src/activationwidgetitem.ui:44
 #. i18n: ectx: property (text), widget (QLabel, styleName)
-#: rc.cpp:21
+#: rc.cpp:18
 #, kde-format
+msgctxt "@label"
 msgid "StyleName"
 msgstr "Název stylu"
 
 #. i18n: file: src/activationwidgetitem.ui:51
 #. i18n: ectx: property (text), widget (QCheckBox, activatedStatus)
-#: rc.cpp:24
+#: rc.cpp:21
 #, kde-format
+msgctxt "@option:check"
 msgid "Activated"
 msgstr "Zapnuto"
 
 #. i18n: file: src/activationwidget.ui:20
 #. i18n: ectx: property (text), widget (QPushButton, activateAll)
-#: rc.cpp:30
+#: rc.cpp:24
 #, kde-format
+msgctxt "@action:button"
 msgid "Activate All"
 msgstr "Zapnout vše"
 
 #. i18n: file: src/activationwidget.ui:27
 #. i18n: ectx: property (text), widget (QPushButton, deactivateAll)
-#: rc.cpp:33
+#: rc.cpp:27
 #, kde-format
+msgctxt "@action:button"
 msgid "Deactivate All"
 msgstr "Vypnout vše"
 
 #. i18n: file: src/bookexport.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, BookExportDialog)
-#: rc.cpp:39
+#: rc.cpp:30
 #, kde-format
+msgctxt "@title:window"
 msgid "Export Font Book"
 msgstr "Exportovat knihu písem"
 
 #. i18n: file: src/bookexport.ui:45
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:42
+#: rc.cpp:33
 #, kde-format
+msgctxt "@label"
 msgid "Output"
 msgstr "Výstup"
 
@@ -147,8 +118,9 @@ msgstr "Výstup"
 #. i18n: ectx: property (text), widget (QToolButton, dictButton)
 #. i18n: file: src/prefs_panel.ui:713
 #. i18n: ectx: property (text), widget (QPushButton, templatesDirBrowse)
-#: rc.cpp:45 rc.cpp:149 rc.cpp:640 rc.cpp:652 rc.cpp:676
+#: rc.cpp:36 rc.cpp:128 rc.cpp:573 rc.cpp:585 rc.cpp:603
 #, kde-format
+msgctxt "@action:button"
 msgid "Browse..."
 msgstr "Procházet..."
 
@@ -156,15 +128,17 @@ msgstr "Procházet..."
 #. i18n: ectx: property (text), widget (QToolButton, infoButton)
 #. i18n: file: src/familywidget.ui:104
 #. i18n: ectx: property (text), widget (QToolButton, infoButton)
-#: rc.cpp:51 rc.cpp:183
+#: rc.cpp:39 rc.cpp:152
 #, kde-format
+msgctxt "@action:button"
 msgid "Info"
 msgstr "Informace"
 
 #. i18n: file: src/browserwidget.ui:76
 #. i18n: ectx: property (text), widget (QPushButton, importButton)
-#: rc.cpp:54
+#: rc.cpp:42 src/typotek.cpp:426
 #, kde-format
+msgctxt "@action:button"
 msgid "Import"
 msgstr "Zavést"
 
@@ -172,8 +146,9 @@ msgstr "Zavést"
 #. i18n: ectx: property (text), widget (QToolButton, chartButton)
 #. i18n: file: src/familywidget.ui:91
 #. i18n: ectx: property (text), widget (QToolButton, chartButton)
-#: rc.cpp:57 rc.cpp:180
+#: rc.cpp:45 rc.cpp:149
 #, kde-format
+msgctxt "@action:button"
 msgid "Chart"
 msgstr "Tabulka"
 
@@ -181,36 +156,41 @@ msgstr "Tabulka"
 #. i18n: ectx: property (text), widget (QToolButton, sampleButton)
 #. i18n: file: src/familywidget.ui:78
 #. i18n: ectx: property (text), widget (QToolButton, sampleButton)
-#: rc.cpp:60 rc.cpp:177
+#: rc.cpp:48 rc.cpp:146
 #, kde-format
+msgctxt "@action:button"
 msgid "Sample"
 msgstr "Ukázka"
 
 #. i18n: file: src/chartwidget.ui:34
 #. i18n: ectx: property (toolTip), widget (QLabel, unicodeCoverageStat)
-#: rc.cpp:66
+#: rc.cpp:51
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Coverage of Unicode Interval"
 msgstr "Pokrytí rozmezí Unicode"
 
 #. i18n: file: src/chartwidget.ui:37
 #. i18n: ectx: property (text), widget (QLabel, unicodeCoverageStat)
-#: rc.cpp:69
+#: rc.cpp:54
 #, kde-format
+msgctxt "@label"
 msgid "Block:"
 msgstr "Blok:"
 
 #. i18n: file: src/chartwidget.ui:79
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:72
+#: rc.cpp:57
 #, kde-format
+msgctxt "@label"
 msgid "Search:"
 msgstr "Hledat:"
 
 #. i18n: file: src/chartwidget.ui:91
 #. i18n: ectx: property (toolTip), widget (QLineEdit, charSearchLine)
-#: rc.cpp:75
+#: rc.cpp:60
 #, kde-format
+msgctxt "@info:tooltip"
 msgid ""
 "Search a character by its codepoint (expressed in hexadecimal \n"
 "and prefixed with \"U+\", \"u+\" or \"+\") or a glyph by its name.\n"
@@ -222,29 +202,33 @@ msgstr ""
 
 #. i18n: file: src/chartwidget.ui:115
 #. i18n: ectx: property (statusTip), widget (FMGlyphsView, abcView)
-#: rc.cpp:80
+#: rc.cpp:65
 #, kde-format
+msgctxt "@info:status"
 msgid "Clicking on a glyph will show details about it"
 msgstr "Klepnutím na glyf se ukážou jeho podrobnosti"
 
 #. i18n: file: src/chartwidget.ui:136
 #. i18n: ectx: property (toolTip), widget (QToolButton, clipboardCheck)
-#: rc.cpp:83
+#: rc.cpp:68
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Set Mode \"Copy Character to Clipboard\""
 msgstr "Nastavit režim Kopírovat znak do schránky"
 
 #. i18n: file: src/chartwidget.ui:139
 #. i18n: ectx: property (text), widget (QToolButton, clipboardCheck)
-#: rc.cpp:86
+#: rc.cpp:71
 #, kde-format
+msgctxt "@action:button"
 msgid "Copy Mode"
 msgstr "Režim kopírování"
 
 #. i18n: file: src/comparewidget.ui:14
 #. i18n: ectx: property (windowTitle), widget (QWidget, CompareWidget)
-#: rc.cpp:89
+#: rc.cpp:74
 #, kde-format
+msgctxt "@title:window"
 msgid "Compare Glyphs"
 msgstr "Porovnat glyfy"
 
@@ -252,8 +236,9 @@ msgstr "Porovnat glyfy"
 #. i18n: ectx: property (title), widget (QGroupBox, fgbox)
 #. i18n: file: src/fontextractordialog.ui:51
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: rc.cpp:92 rc.cpp:322
+#: rc.cpp:77 rc.cpp:267
 #, kde-format
+msgctxt "@title:group"
 msgid "Fonts"
 msgstr "Písma"
 
@@ -267,8 +252,9 @@ msgstr "Písma"
 #. i18n: ectx: property (text), widget (QPushButton, addSampleButton)
 #. i18n: file: src/tagset.ui:118
 #. i18n: ectx: property (text), widget (QPushButton, addToSetButton)
-#: rc.cpp:95 rc.cpp:274 rc.cpp:373 rc.cpp:798 rc.cpp:816
+#: rc.cpp:80 rc.cpp:225 rc.cpp:318 rc.cpp:707 rc.cpp:725
 #, kde-format
+msgctxt "@action:button"
 msgid "Add"
 msgstr "Přidat"
 
@@ -286,85 +272,89 @@ msgstr "Přidat"
 #. i18n: ectx: property (text), widget (QPushButton, removeSampleButton)
 #. i18n: file: src/tagset.ui:187
 #. i18n: ectx: property (text), widget (QPushButton, removeToSetButton)
-#: rc.cpp:98 rc.cpp:259 rc.cpp:682 rc.cpp:712 rc.cpp:745 rc.cpp:801 rc.cpp:828
+#: rc.cpp:83 rc.cpp:210 rc.cpp:609 rc.cpp:630 rc.cpp:663 rc.cpp:710 rc.cpp:737
 #, kde-format
+msgctxt "@action:button"
 msgid "Remove"
 msgstr "Odstranit"
 
 #. i18n: file: src/comparewidget.ui:83
 #. i18n: ectx: property (title), widget (QGroupBox, compareShow)
-#: rc.cpp:101
+#: rc.cpp:86
 #, kde-format
+msgctxt "@title:group"
 msgid "Show"
 msgstr "Ukázat"
 
 #. i18n: file: src/comparewidget.ui:92
 #. i18n: ectx: property (text), widget (QCheckBox, compareMetrics)
-#: rc.cpp:104
+#: rc.cpp:89
 #, kde-format
+msgctxt "@option:check"
 msgid "Metrics"
 msgstr "Metrika"
 
 #. i18n: file: src/comparewidget.ui:102
 #. i18n: ectx: property (title), widget (QGroupBox, comparePoints)
-#: rc.cpp:107
+#: rc.cpp:92
 #, kde-format
+msgctxt "@title:group"
 msgid "Points"
 msgstr "Body"
 
 #. i18n: file: src/comparewidget.ui:114
 #. i18n: ectx: property (text), widget (QCheckBox, compareControls)
-#: rc.cpp:110
+#: rc.cpp:95
 #, kde-format
+msgctxt "@option:check"
 msgid "Controls"
 msgstr "Řídicí body"
 
 #. i18n: file: src/comparewidget.ui:140
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:113
+#: rc.cpp:98
 #, kde-format
+msgctxt "@label"
 msgid "Offset"
 msgstr "Posunutí"
 
-#. i18n: file: src/comparewidget.ui:150
-#. i18n: ectx: property (text), widget (QLabel, compareOffsetValue)
-#: rc.cpp:116
-#, kde-format
-msgid "0"
-msgstr "0"
-
 #. i18n: file: src/comparewidget.ui:160
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:119
+#: rc.cpp:101
 #, kde-format
+msgctxt "@label"
 msgid "Fill:"
 msgstr "Výplň:"
 
 #. i18n: file: src/comparewidget.ui:187
 #. i18n: ectx: property (toolTip), widget (QSlider, compareCharSelect)
-#: rc.cpp:122
+#: rc.cpp:104
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Select a character"
 msgstr "Výběr znaku"
 
 #. i18n: file: src/comparewidget.ui:206
 #. i18n: ectx: property (text), widget (QCheckBox, compareSyncChars)
-#: rc.cpp:125
+#: rc.cpp:107
 #, kde-format
+msgctxt "@option:check"
 msgid "Keep in sync"
 msgstr "Udržet seřízené"
 
 #. i18n: file: src/dataexport.ui:14
 #. i18n: ectx: property (windowTitle), widget (QWidget, DataExport)
-#: rc.cpp:128
+#: rc.cpp:110
 #, kde-format
+msgctxt "@title:window"
 msgid "Export Data"
 msgstr "Vyvést data"
 
 #. i18n: file: src/dataexport.ui:23
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:131
+#: rc.cpp:113
 #, kde-format
+msgctxt "@label"
 msgid ""
 "The font files currently filtered and selected here will be copied in a "
 "directory of your choice."
@@ -378,177 +368,160 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
 #. i18n: file: src/progressbarduo.ui:61
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
-#: rc.cpp:134 rc.cpp:496 rc.cpp:697
+#: rc.cpp:116 rc.cpp:438 rc.cpp:615
 #, kde-format
+msgctxt "@action:button"
 msgid "Cancel"
 msgstr "Zrušit"
 
 #. i18n: file: src/dataexport.ui:43
 #. i18n: ectx: property (text), widget (QPushButton, continueButton)
-#: rc.cpp:137
+#: rc.cpp:119
 #, kde-format
+msgctxt "@action:button"
 msgid "Continue"
 msgstr "Pokračovat"
 
 #. i18n: file: src/dumpdialog.ui:16
 #. i18n: ectx: property (windowTitle), widget (QDialog, DumpDialog)
-#: rc.cpp:140
+#: rc.cpp:122
 #, kde-format
+msgctxt "@title:window"
 msgid "Fontmatrix - Export font info for packaging"
 msgstr "Fontmatrix - Export informací o písmu pro balíčky"
 
-#. i18n: file: src/dumpdialog.ui:28
-#. i18n: ectx: property (text), widget (QLabel, fontName)
-#. i18n: file: src/filteritem.ui:47
-#. i18n: ectx: property (text), widget (QLabel, filterLabel)
-#. i18n: file: src/panosedialog.ui:25
-#. i18n: ectx: property (text), widget (QLabel, fontName)
-#. i18n: file: src/prefs_panel.ui:771
-#. i18n: ectx: property (text), widget (QLabel, shortcutLabel)
-#. i18n: file: src/progressbarduo.ui:20
-#. i18n: ectx: property (text), widget (QLabel, Label0)
-#. i18n: file: src/progressbarduo.ui:34
-#. i18n: ectx: property (text), widget (QLabel, Label1)
-#: rc.cpp:143 rc.cpp:216 rc.cpp:520 rc.cpp:685 rc.cpp:691 rc.cpp:694
-#, kde-format
-msgid "TextLabel"
-msgstr "Textová jmenovka"
-
 #. i18n: file: src/dumpdialog.ui:35
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:146
+#: rc.cpp:125
 #, kde-format
+msgctxt "@label"
 msgid "Save to:"
 msgstr "Uložit jako:"
 
 #. i18n: file: src/dumpdialog.ui:58
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:152
+#: rc.cpp:131
 #, kde-format
+msgctxt "@title:group"
 msgid "Model"
 msgstr "Model"
 
-#. i18n: file: src/dumpdialog.ui:78
-#. i18n: ectx: property (html), widget (ModelText, modelText)
-#: rc.cpp:155
-#, kde-format
-msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
-"css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></"
-"p></body></html>"
-msgstr ""
-
 #. i18n: file: src/dumpdialog.ui:92
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:162
+#: rc.cpp:134
 #, kde-format
+msgctxt "@label"
 msgid "Available names"
 msgstr "Dostupná jména"
 
 #. i18n: file: src/dumpdialog.ui:138
 #. i18n: ectx: property (text), widget (QPushButton, loadButton)
-#: rc.cpp:165
+#: rc.cpp:137
 #, kde-format
+msgctxt "@action:button"
 msgid "Load..."
 msgstr "Nahrát..."
 
 #. i18n: file: src/familywidget.ui:55
 #. i18n: ectx: property (text), widget (QPushButton, returnListButton)
-#: rc.cpp:171
+#: rc.cpp:140
 #, kde-format
+msgctxt "@action:button"
 msgid "Return To List"
 msgstr "Návrat do seznamu"
 
 #. i18n: file: src/familywidget.ui:58
 #. i18n: ectx: property (shortcut), widget (QPushButton, returnListButton)
-#: rc.cpp:174
+#: rc.cpp:143
 #, kde-format
 msgid "Esc"
 msgstr ""
 
 #. i18n: file: src/familywidget.ui:117
 #. i18n: ectx: property (text), widget (QToolButton, activationButton)
-#: rc.cpp:186
+#: rc.cpp:155
 #, kde-format
+msgctxt "@action:button"
 msgid "Activation"
 msgstr "Zapnutí"
 
 #. i18n: file: src/familywidget.ui:143
 #. i18n: ectx: property (text), widget (QLabel, familyLabel)
-#: rc.cpp:189
+#: rc.cpp:158
 #, kde-format
+msgctxt "@label"
 msgid "Family Name"
 msgstr "Název rodiny písma"
 
 #. i18n: file: src/filterbar.ui:49
 #. i18n: ectx: property (text), widget (OpenCloseArrow, filtersArrow)
-#: rc.cpp:195
+#: rc.cpp:161
 #, kde-format
+msgctxt "@action:button"
 msgid "Filters"
 msgstr "Filtry"
 
 #. i18n: file: src/filterbar.ui:143
 #. i18n: ectx: property (text), widget (OpenCloseArrow, tagsArrow)
-#. i18n: file: src/tagswidget.ui:41
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:198 rc.cpp:837
+#: rc.cpp:164
 #, kde-format
+msgctxt "@action:button"
 msgid "Tags"
 msgstr "Značky"
 
 #. i18n: file: src/filterbar.ui:273
 #. i18n: ectx: property (text), widget (OpenCloseArrow, metadataArrow)
-#: rc.cpp:201
+#: rc.cpp:167
 #, kde-format
+msgctxt "@action:button"
 msgid "Metadata"
 msgstr "Popisná data"
 
 #. i18n: file: src/filterbar.ui:320
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:204
+#: rc.cpp:170
 #, kde-format
+msgctxt "@label"
 msgid "Search"
 msgstr "Hledat"
 
 #. i18n: file: src/filterbar.ui:350
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:207
+#: rc.cpp:173
 #, kde-format
+msgctxt "@label"
 msgid "in"
 msgstr "v"
 
 #. i18n: file: src/filterbar.ui:395
 #. i18n: ectx: property (text), widget (OpenCloseArrow, panoseArrow)
-#: rc.cpp:210
+#: rc.cpp:176
 #, kde-format
+msgctxt "@action:button"
 msgid "Panose"
 msgstr "Panose"
 
 #. i18n: file: src/filteritem.ui:71
 #. i18n: ectx: property (toolTip), widget (QToolButton, removeButton)
-#: rc.cpp:219
+#: rc.cpp:179
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Remove Filter"
 msgstr "Odstranit filtr"
 
 #. i18n: file: src/filteritem.ui:77
 #. i18n: ectx: property (text), widget (QToolButton, removeButton)
-#: rc.cpp:222
+#: rc.cpp:182
 #, kde-format
+msgctxt "@action:button"
 msgid "X"
 msgstr "X"
 
 #. i18n: file: src/filteritem.ui:110
 #. i18n: ectx: property (toolTip), widget (QToolButton, andButton)
-#: rc.cpp:225
+#: rc.cpp:185
 #, kde-format
+msgctxt "@info:tooltip"
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
 "REC-html40/strict.dtd\">\n"
@@ -582,67 +555,60 @@ msgstr ""
 "bude <span style=\" font-weight:600;\">překrývat</span> s předchozími filtry."
 "</p></td></tr></table></body></html>"
 
-#. i18n: file: src/filteritem.ui:113
-#. i18n: ectx: property (text), widget (QToolButton, andButton)
-#: rc.cpp:235
-#, kde-format
-msgid "&&"
-msgstr "&&"
-
 #. i18n: file: src/filteritem.ui:142
 #. i18n: ectx: property (toolTip), widget (QToolButton, noButton)
-#: rc.cpp:238
+#: rc.cpp:195
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "if set, it will filter all the fonts but these matching this filter"
 msgstr ""
 "Je-li nastaveno, budou se filtrovat všechna písma odpovídající tomuto filtru"
 
-#. i18n: file: src/filteritem.ui:145
-#. i18n: ectx: property (text), widget (QToolButton, noButton)
-#: rc.cpp:241
-#, kde-format
-msgid "!"
-msgstr "!"
-
 #. i18n: file: src/filtersdialogitem.ui:72
 #. i18n: ectx: property (text), widget (QLabel, filterName)
-#: rc.cpp:247
+#: rc.cpp:198
 #, kde-format
+msgctxt "@label"
 msgid "filter name"
 msgstr "Název filtru"
 
 #. i18n: file: src/filtersdialogitem.ui:91
 #. i18n: ectx: property (toolTip), widget (QToolButton, filterButton)
-#: rc.cpp:250
+#: rc.cpp:201
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Apply this filter to the list"
 msgstr "Použít tento filtr na seznam"
 
 #. i18n: file: src/filtersdialogitem.ui:94
 #. i18n: ectx: property (text), widget (QToolButton, filterButton)
-#: rc.cpp:253
+#: rc.cpp:204
 #, kde-format
+msgctxt "@action:button"
 msgid "Filter"
 msgstr "Filtr"
 
 #. i18n: file: src/filtersdialogitem.ui:111
 #. i18n: ectx: property (toolTip), widget (QToolButton, removeButton)
-#: rc.cpp:256
+#: rc.cpp:207
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Delete this filter"
 msgstr "Smazat tento filtr"
 
 #. i18n: file: src/filtersdialog.ui:14
 #. i18n: ectx: property (windowTitle), widget (QDialog, FiltersDialog)
-#: rc.cpp:262
+#: rc.cpp:213
 #, kde-format
+msgctxt "@title:window"
 msgid "Filters Manager"
 msgstr "Správce filtrů"
 
 #. i18n: file: src/filtersdialog.ui:67
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:265
+#: rc.cpp:216
 #, kde-format
+msgctxt "@label"
 msgid ""
 "In order to add filters, you have to first select some of tags, meta "
 "informations or classifications elements."
@@ -652,99 +618,105 @@ msgstr ""
 
 #. i18n: file: src/filtersdialog.ui:96
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:268
+#: rc.cpp:219
 #, kde-format
+msgctxt "@label"
 msgid "Add Filter"
 msgstr "Přidat filtr"
 
 #. i18n: file: src/filtersdialog.ui:127
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:271
+#: rc.cpp:222
 #, kde-format
+msgctxt "@label"
 msgid "Filter Name:"
 msgstr "Název filtru:"
 
 #. i18n: file: src/filtersdialog.ui:162
 #. i18n: ectx: property (text), widget (QLabel, curFilter)
-#: rc.cpp:277
+#: rc.cpp:228
 #, kde-format
+msgctxt "@label"
 msgid "current filter"
 msgstr "Nynější filtr"
 
 #. i18n: file: src/floatingwidgettoolbar.ui:66
 #. i18n: ectx: property (toolTip), widget (QToolButton, printButton)
-#: rc.cpp:286
+#: rc.cpp:234
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Print"
 msgstr "Tisk"
 
 #. i18n: file: src/floatingwidgettoolbar.ui:69
 #. i18n: ectx: property (text), widget (QToolButton, printButton)
-#: rc.cpp:289
+#: rc.cpp:237
 #, kde-format
+msgctxt "@action:button"
 msgid "P"
 msgstr "P"
 
 #. i18n: file: src/floatingwidgettoolbar.ui:76
 #. i18n: ectx: property (toolTip), widget (QToolButton, detachButton)
-#: rc.cpp:292
+#: rc.cpp:240
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Detach from main window"
 msgstr "Odpojit od hlavního okna"
 
 #. i18n: file: src/floatingwidgettoolbar.ui:79
 #. i18n: ectx: property (text), widget (QToolButton, detachButton)
-#: rc.cpp:295
+#: rc.cpp:243
 #, kde-format
+msgctxt "@action:button"
 msgid "D"
 msgstr "D"
 
 #. i18n: file: src/floatingwidgettoolbar.ui:95
 #. i18n: ectx: property (toolTip), widget (QToolButton, closeButton)
-#: rc.cpp:298
+#: rc.cpp:246
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Close window"
 msgstr "Zavřít okno"
 
-#. i18n: file: src/floatingwidgettoolbar.ui:98
-#. i18n: ectx: property (text), widget (QToolButton, closeButton)
-#: rc.cpp:301
-#, kde-format
-msgid "..."
-msgstr "..."
-
 #. i18n: file: src/floatingwidgettoolbar.ui:109
 #. i18n: ectx: property (toolTip), widget (QToolButton, hideButton)
-#: rc.cpp:304
+#: rc.cpp:249
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Hide window"
 msgstr "Skrýt okno"
 
 #. i18n: file: src/floatingwidgettoolbar.ui:112
 #. i18n: ectx: property (text), widget (QToolButton, hideButton)
-#: rc.cpp:307
+#: rc.cpp:252
 #, kde-format
+msgctxt "@action:button"
 msgid "H"
 msgstr "H"
 
 #. i18n: file: src/fontextractordialog.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, FontExtractorDialog)
-#: rc.cpp:310
+#: rc.cpp:255
 #, kde-format
+msgctxt "@title:window"
 msgid "Font extractor"
 msgstr "Vytahovač písem"
 
 #. i18n: file: src/fontextractordialog.ui:19
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:313
+#: rc.cpp:258
 #, kde-format
+msgctxt "@title:group"
 msgid "Select PDF"
 msgstr "Výběr PDF"
 
 #. i18n: file: src/fontextractordialog.ui:31
 #. i18n: ectx: property (text), widget (QLabel, docPath)
-#: rc.cpp:316
+#: rc.cpp:261
 #, kde-format
+msgctxt "@label"
 msgid "File name"
 msgstr "Jméno souboru"
 
@@ -752,85 +724,91 @@ msgstr "Jméno souboru"
 #. i18n: ectx: property (text), widget (QPushButton, browsePDF)
 #. i18n: file: src/matchraster.ui:108
 #. i18n: ectx: property (text), widget (QPushButton, browseButton)
-#: rc.cpp:319 rc.cpp:451
+#: rc.cpp:264 rc.cpp:396
 #, kde-format
+msgctxt "@action:button"
 msgid "&Browse"
 msgstr "&Procházet"
 
 #. i18n: file: src/fontextractordialog.ui:63
 #. i18n: ectx: property (text), widget (QPushButton, browseDir)
-#: rc.cpp:325
+#: rc.cpp:270
 #, kde-format
+msgctxt "@action:button"
 msgid "&Select Dir"
 msgstr "Vybrat &adresář"
 
 #. i18n: file: src/fontextractordialog.ui:70
 #. i18n: ectx: property (text), widget (QPushButton, extractButton)
-#: rc.cpp:328
+#: rc.cpp:273
 #, kde-format
+msgctxt "@action:button"
 msgid "&Extract"
 msgstr "&Vytáhnout"
 
 #. i18n: file: src/fontmatrixui.rc:6
 #. i18n: ectx: Menu (file)
-#: rc.cpp:334
+#: rc.cpp:279
 #, kde-format
 msgid "&File"
 msgstr "&Soubor"
 
 #. i18n: file: src/fontmatrixui.rc:17
 #. i18n: ectx: Menu (edit)
-#: rc.cpp:337
+#: rc.cpp:282
 #, kde-format
 msgid "&Edit"
 msgstr "Úp&ravy"
 
 #. i18n: file: src/fontmatrixui.rc:29
 #. i18n: ectx: Menu (view)
-#: rc.cpp:340
+#: rc.cpp:285
 #, kde-format
 msgid "&View"
 msgstr "&Pohled"
 
 #. i18n: file: src/fontmatrixui.rc:35
 #. i18n: ectx: Menu (tools)
-#: rc.cpp:343
+#: rc.cpp:288
 #, kde-format
 msgid "&Tools"
 msgstr "&Nástroje"
 
 #. i18n: file: src/fontmatrixui.rc:44
 #. i18n: ectx: ToolBar (mainToolBar)
-#: rc.cpp:346
+#: rc.cpp:291
 #, kde-format
 msgid "Main Toolbar"
 msgstr ""
 
 #. i18n: file: src/fontmatrixui.rc:57
 #. i18n: ectx: ToolBar (hamburgerBar)
-#: rc.cpp:349
+#: rc.cpp:294
 #, kde-format
 msgid "Hamburger Menu Toolbar"
 msgstr ""
 
 #. i18n: file: src/importedfonts.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, ImportedFonts)
-#: rc.cpp:352
+#: rc.cpp:297
 #, kde-format
+msgctxt "@title:window"
 msgid "Imported fonts"
 msgstr "Zavedená písma"
 
 #. i18n: file: src/importedfonts.ui:24
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:355
+#: rc.cpp:300
 #, kde-format
+msgctxt "@label"
 msgid "Imported Fonts:"
 msgstr "Zavedená písma:"
 
 #. i18n: file: src/importedfonts.ui:55
 #. i18n: ectx: property (toolTip), widget (QCheckBox, dontShowBox)
-#: rc.cpp:358
+#: rc.cpp:303
 #, kde-format
+msgctxt "@info:tooltip"
 msgid ""
 "<qt>Instead of showing this dialog imported font count\n"
 "will be shown in the status bar. If you choose not to\n"
@@ -844,43 +822,49 @@ msgstr ""
 
 #. i18n: file: src/importedfonts.ui:58
 #. i18n: ectx: property (text), widget (QCheckBox, dontShowBox)
-#: rc.cpp:364
+#: rc.cpp:309
 #, kde-format
+msgctxt "@option:check"
 msgid "&Do not show this dialog again"
 msgstr "Znovu již tento dialog &nezobrazovat"
 
 #. i18n: file: src/importedfonts.ui:84
 #. i18n: ectx: property (text), widget (QPushButton, btnOk)
-#: rc.cpp:367
+#: rc.cpp:312
 #, kde-format
+msgctxt "@action:button"
 msgid "&OK"
 msgstr "&OK"
 
 #. i18n: file: src/importtags.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, ImportTagsDialog)
-#: rc.cpp:370
+#: rc.cpp:315
 #, kde-format
+msgctxt "@title:window"
 msgid "Fontmatrix - Tags"
 msgstr "Fontmatrix - Značky"
 
 #. i18n: file: src/importtags.ui:72
 #. i18n: ectx: property (text), widget (QPushButton, okButton)
-#: rc.cpp:376
+#: rc.cpp:321
 #, kde-format
+msgctxt "@action:button"
 msgid "Ok"
 msgstr "OK"
 
 #. i18n: file: src/layoutoptions.ui:19
 #. i18n: ectx: property (windowTitle), widget (QWidget, LayoutOptionWidget)
-#: rc.cpp:379
+#: rc.cpp:324
 #, kde-format
+msgctxt "@title:window"
 msgid "Text layout engine options"
 msgstr "Volby pro stroj na rozvržení textu"
 
 #. i18n: file: src/layoutoptions.ui:25
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:382
+#: rc.cpp:327
 #, kde-format
+msgctxt "@title:group"
 msgid "Weights"
 msgstr "Váhy"
 
@@ -892,86 +876,98 @@ msgstr "Váhy"
 #. i18n: ectx: property (text), widget (QLabel, aScore)
 #. i18n: file: src/layoutoptions.ui:294
 #. i18n: ectx: property (text), widget (QLabel, endScore)
-#: rc.cpp:385 rc.cpp:391 rc.cpp:397 rc.cpp:403
+#: rc.cpp:330 rc.cpp:336 rc.cpp:342 rc.cpp:348
 #, kde-format
+msgctxt "@label"
 msgid "score"
 msgstr "body"
 
 #. i18n: file: src/layoutoptions.ui:91
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:388
+#: rc.cpp:333
 #, kde-format
+msgctxt "@label"
 msgid "Before"
 msgstr "Před"
 
 #. i18n: file: src/layoutoptions.ui:137
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:394
+#: rc.cpp:339
 #, kde-format
+msgctxt "@label"
 msgid "Exact"
 msgstr "Přesně"
 
 #. i18n: file: src/layoutoptions.ui:235
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:400
+#: rc.cpp:345
 #, kde-format
+msgctxt "@label"
 msgid "After"
 msgstr "Po"
 
 #. i18n: file: src/layoutoptions.ui:307
 #. i18n: ectx: property (text), widget (QLabel, label_5)
-#: rc.cpp:406
+#: rc.cpp:351
 #, kde-format
+msgctxt "@label"
 msgid "End"
 msgstr "Konec"
 
 #. i18n: file: src/layoutoptions.ui:360
 #. i18n: ectx: property (text), widget (QLabel, hPenalty)
-#: rc.cpp:409
+#: rc.cpp:354
 #, kde-format
+msgctxt "@label"
 msgid "penalty"
 msgstr "Postih"
 
 #. i18n: file: src/layoutoptions.ui:373
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:412
+#: rc.cpp:357
 #, kde-format
+msgctxt "@label"
 msgid "H-penalty"
 msgstr "H-postih"
 
 #. i18n: file: src/layoutoptions.ui:429
 #. i18n: ectx: property (text), widget (QLabel, minSpace)
-#: rc.cpp:415
+#: rc.cpp:360
 #, kde-format
+msgctxt "@label"
 msgid "space"
 msgstr "Mezera"
 
 #. i18n: file: src/layoutoptions.ui:442
 #. i18n: ectx: property (text), widget (QLabel, label_6)
-#: rc.cpp:418
+#: rc.cpp:363
 #, kde-format
+msgctxt "@label"
 msgid "Max. compression"
 msgstr "Max. stlačení"
 
 #. i18n: file: src/mainview.ui:24
 #. i18n: ectx: property (windowTitle), widget (QWidget, MainView)
-#: rc.cpp:421
+#: rc.cpp:366
 #, kde-format
+msgctxt "@title:window"
 msgid "main view widget"
 msgstr "Prvek uživatelského rozhraní pro hlavní pohled"
 
 #. i18n: file: src/mainview.ui:103
 #. i18n: ectx: property (text), widget (QLabel, quickSearchLabel)
-#: rc.cpp:424
+#: rc.cpp:369
 #, kde-format
+msgctxt "@label"
 msgid "Quick Search:"
 msgstr "Rychlé hledání:"
 
 #. i18n: file: src/mainview.ui:185
 #. i18n: ectx: property (toolTip), widget (QPushButton, saveButton)
-#: rc.cpp:427
+#: rc.cpp:372
 #, fuzzy, kde-format
 #| msgid "Apply this filter to the list"
+msgctxt "@info:tooltip"
 msgid "Save this filter for later use"
 msgstr "Použít tento filtr na seznam"
 
@@ -979,136 +975,155 @@ msgstr "Použít tento filtr na seznam"
 #. i18n: ectx: property (text), widget (QPushButton, saveButton)
 #. i18n: file: src/prefs_panel.ui:653
 #. i18n: ectx: property (text), widget (QPushButton, commitSample)
-#: rc.cpp:430 rc.cpp:670
+#: rc.cpp:375 rc.cpp:597
 #, kde-format
+msgctxt "@action:button"
 msgid "Save"
 msgstr "Uložit"
 
 #. i18n: file: src/mainview.ui:195
 #. i18n: ectx: property (toolTip), widget (QPushButton, clearButton)
-#: rc.cpp:433
+#: rc.cpp:378
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Reset the filter to show all fonts"
 msgstr ""
 
 #. i18n: file: src/mainview.ui:198
 #. i18n: ectx: property (text), widget (QPushButton, clearButton)
-#: rc.cpp:436
+#: rc.cpp:381
 #, fuzzy, kde-format
 #| msgid "clear"
+msgctxt "@action:button"
 msgid "Clear"
 msgstr "Vyprázdnit"
 
 #. i18n: file: src/matchraster.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, MatchRasterDialog)
-#: rc.cpp:439
+#: rc.cpp:384
 #, kde-format
+msgctxt "@title:window"
 msgid "Find a font using raster sample"
 msgstr "Najít písmo pomocí rastrovaného vzorku"
 
 #. i18n: file: src/matchraster.ui:32
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:442
+#: rc.cpp:387
 #, kde-format
+msgctxt "@title:group"
 msgid "Input Image"
 msgstr "Vstupní obrázek"
 
 #. i18n: file: src/matchraster.ui:40
 #. i18n: ectx: property (text), widget (QCheckBox, grabModeBox)
-#: rc.cpp:445
+#: rc.cpp:390
 #, kde-format
+msgctxt "@option:check"
 msgid "Grab mode"
 msgstr "Režim záchytu"
 
 #. i18n: file: src/matchraster.ui:69
 #. i18n: ectx: property (toolTip), widget (QSlider, grabZoom)
-#: rc.cpp:448
+#: rc.cpp:393
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Zoom level"
 msgstr "Zvětšení"
 
 #. i18n: file: src/matchraster.ui:126
 #. i18n: ectx: property (title), widget (QGroupBox, sampleBox)
-#: rc.cpp:454
+#: rc.cpp:399
 #, kde-format
+msgctxt "@title:group"
 msgid "Raster sample preview"
 msgstr "Náhled obrázku"
 
 #. i18n: file: src/matchraster.ui:153
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:457
+#: rc.cpp:402
 #, kde-format
+msgctxt "@label"
 msgid "C&haracter:"
 msgstr "&Znak:"
 
 #. i18n: file: src/matchraster.ui:169
 #. i18n: ectx: property (toolTip), widget (QLineEdit, letter)
-#: rc.cpp:460
+#: rc.cpp:405
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "A unique character or a four digits hexadecimal Unicode value"
 msgstr ""
 "Jediný znak nebo čtyři číslice jeho Unicode hodnoty v šestnáctkovém vyjádření"
 
 #. i18n: file: src/matchraster.ui:181
 #. i18n: ectx: property (text), widget (QPushButton, searchButton)
-#: rc.cpp:463
+#: rc.cpp:408
 #, kde-format
+msgctxt "@action:button"
 msgid "&Search"
 msgstr "&Hledat"
 
 #. i18n: file: src/matchraster.ui:201
 #. i18n: ectx: property (toolTip), widget (QCheckBox, checkInteractive)
-#: rc.cpp:466
+#: rc.cpp:411
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "If set, you will be prompted for each matching font"
 msgstr "Je-li zvoleno, budete vyzvání u každého odpovídajícího písma"
 
 #. i18n: file: src/matchraster.ui:204
 #. i18n: ectx: property (text), widget (QCheckBox, checkInteractive)
-#: rc.cpp:469
+#: rc.cpp:414
 #, kde-format
+msgctxt "@option:check"
 msgid "Interactive"
 msgstr "Interaktivní"
 
 #. i18n: file: src/matchraster.ui:220
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:472
+#: rc.cpp:417
 #, kde-format
+msgctxt "@label"
 msgid "Click on the letter to let Fontmatrix compute the bounding box"
 msgstr "Klikněte na písmeno a Fontmatrix určí jeho ohraničující obdélník"
 
 #. i18n: file: src/matchraster.ui:236
 #. i18n: ectx: property (text), widget (QCheckBox, tweakRectBox)
-#: rc.cpp:475
+#: rc.cpp:420
 #, kde-format
+msgctxt "@option:check"
 msgid "Tweak rect"
 msgstr "Upravit obdélník"
 
 #. i18n: file: src/matchraster.ui:279
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:478
+#: rc.cpp:423
 #, kde-format
+msgctxt "@label"
 msgid "Compare with:"
 msgstr "Srovnat s:"
 
 #. i18n: file: src/matchraster.ui:322
 #. i18n: ectx: property (text), widget (QPushButton, stopButton)
-#: rc.cpp:481
+#: rc.cpp:426
 #, kde-format
+msgctxt "@action:button"
 msgid "Stop"
 msgstr "Zastavit"
 
 #. i18n: file: src/matchraster.ui:336
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
-#: rc.cpp:484
+#: rc.cpp:429
 #, kde-format
+msgctxt "@action:button"
 msgid "&Cancel"
 msgstr "&Zrušit"
 
 #. i18n: file: src/metawidget.ui:26
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:490
+#: rc.cpp:432
 #, kde-format
+msgctxt "@label"
 msgid ""
 "Fill-in text fields and press enter key  or click \"Add Filters\" button to "
 "process filters."
@@ -1118,71 +1133,81 @@ msgstr ""
 
 #. i18n: file: src/metawidget.ui:66
 #. i18n: ectx: property (text), widget (QPushButton, filterButton)
-#: rc.cpp:493
+#: rc.cpp:435
 #, kde-format
+msgctxt "@action:button"
 msgid "Add Filters"
 msgstr "Přidat filtry"
 
 #. i18n: file: src/multiprintdialog.ui:19
 #. i18n: ectx: property (windowTitle), widget (QDialog, multiPrintDialog)
-#: rc.cpp:499
+#: rc.cpp:441
 #, kde-format
+msgctxt "@title:window"
 msgid "Printing multiple items"
 msgstr "Tisk více položek"
 
 #. i18n: file: src/multiprintdialog.ui:41
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:502
+#: rc.cpp:444
 #, kde-format
+msgctxt "@title:group"
 msgid "Views"
 msgstr "Pohledy"
 
 #. i18n: file: src/multiprintdialog.ui:47
 #. i18n: ectx: property (text), widget (QCheckBox, checkInfo)
-#: rc.cpp:505
+#: rc.cpp:447
 #, kde-format
+msgctxt "@option:check"
 msgid "Informations"
 msgstr "Informace"
 
 #. i18n: file: src/multiprintdialog.ui:54
 #. i18n: ectx: property (text), widget (QCheckBox, checkPreview)
-#: rc.cpp:508
+#: rc.cpp:450
 #, kde-format
+msgctxt "@option:check"
 msgid "Preview"
 msgstr "Náhled"
 
 #. i18n: file: src/multiprintdialog.ui:61
 #. i18n: ectx: property (text), widget (QCheckBox, checkChart)
-#: rc.cpp:511
+#: rc.cpp:453
 #, kde-format
+msgctxt "@option:check"
 msgid "Glyphs chart"
 msgstr "Tabulka glyfů"
 
 #. i18n: file: src/multiprintdialog.ui:68
 #. i18n: ectx: property (text), widget (QCheckBox, checkPlayground)
-#: rc.cpp:514
+#: rc.cpp:456
 #, kde-format
+msgctxt "@option:check"
 msgid "Playground"
 msgstr "Hřiště"
 
 #. i18n: file: src/panosedialog.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, PanoseDialog)
-#: rc.cpp:517
+#: rc.cpp:459
 #, kde-format
+msgctxt "@title:window"
 msgid "Fontmatrix - Panose Editor"
 msgstr "Fontmatrix - Panose Editor"
 
 #. i18n: file: src/panosewidget.ui:14
 #. i18n: ectx: property (windowTitle), widget (QWidget, PanoseWidget)
-#: rc.cpp:523
+#: rc.cpp:462
 #, kde-format
+msgctxt "@title:window"
 msgid "Panose Metadata"
 msgstr "Popisná data Panose"
 
 #. i18n: file: src/panosewidget.ui:57
 #. i18n: ectx: property (text), widget (QTreeWidget, pTree)
-#: rc.cpp:526
+#: rc.cpp:465
 #, kde-format
+msgctxt "@title:column"
 msgid "Panose Attributes"
 msgstr "Vlastnosti Panose"
 
@@ -1192,8 +1217,9 @@ msgstr "Vlastnosti Panose"
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #. i18n: file: src/sampletoolbar.ui:20
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:532 rc.cpp:619 rc.cpp:751
+#: rc.cpp:468 rc.cpp:555 rc.cpp:666
 #, kde-format
+msgctxt "@label"
 msgid "Font Size:"
 msgstr "Velikost písma:"
 
@@ -1205,290 +1231,322 @@ msgstr "Velikost písma:"
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, fontSizeSpin)
 #. i18n: file: src/prefs_panel.ui:408
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, interLineSpin)
-#: rc.cpp:535 rc.cpp:604 rc.cpp:622 rc.cpp:628
+#: rc.cpp:471 rc.cpp:540 rc.cpp:558 rc.cpp:564
 #, kde-format
+msgctxt "@item:valuesuffix"
 msgid " pt"
 msgstr " pt"
 
 #. i18n: file: src/prefs_panel.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, PrefsPanel)
-#: rc.cpp:538
+#: rc.cpp:474
 #, kde-format
+msgctxt "@title:window"
 msgid "Preferences Panel"
 msgstr "Panel voleb"
 
 #. i18n: file: src/prefs_panel.ui:74
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#. i18n: file: src/prefs_panel.ui:123
-#. i18n: ectx: property (title), widget (QGroupBox, groupBox_10)
-#: rc.cpp:544 rc.cpp:565
+#: rc.cpp:480
 #, kde-format
+msgctxt "@item:inlistbox"
 msgid "General"
 msgstr "Obecné"
 
 #. i18n: file: src/prefs_panel.ui:79
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:547
+#: rc.cpp:483
 #, kde-format
+msgctxt "@item:inlistbox"
 msgid "System tray"
 msgstr "Systémová část panelu"
 
 #. i18n: file: src/prefs_panel.ui:84
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:550
+#: rc.cpp:486
 #, kde-format
+msgctxt "@item:inlistbox"
 msgid "Display"
 msgstr "Zobrazení"
 
 #. i18n: file: src/prefs_panel.ui:89
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:553
+#: rc.cpp:489
 #, kde-format
+msgctxt "@item:inlistbox"
 msgid "Tools"
 msgstr "Nástroje"
 
 #. i18n: file: src/prefs_panel.ui:94
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:556
+#: rc.cpp:492
 #, kde-format
+msgctxt "@item:inlistbox"
 msgid "Samples collection"
 msgstr "Sbírka ukázek"
 
 #. i18n: file: src/prefs_panel.ui:99
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:559
+#: rc.cpp:495
 #, kde-format
+msgctxt "@item:inlistbox"
 msgid "Files & Folders"
 msgstr "Soubory a složky"
 
 #. i18n: file: src/prefs_panel.ui:104
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:562
+#: rc.cpp:498
 #, kde-format
+msgctxt "@item:inlistbox"
 msgid "Shortcuts"
 msgstr "Klávesové zkratky"
 
+#. i18n: file: src/prefs_panel.ui:123
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_10)
+#: rc.cpp:501
+#, kde-format
+msgctxt "@title:group"
+msgid "General"
+msgstr "Obecné"
+
 #. i18n: file: src/prefs_panel.ui:129
 #. i18n: ectx: property (text), widget (QCheckBox, initTagBox)
-#: rc.cpp:568
+#: rc.cpp:504
 #, kde-format
+msgctxt "@option:check"
 msgid "Ask for tag names when importing fonts"
 msgstr "Při zavádění písem se ptát na názvy značek"
 
 #. i18n: file: src/prefs_panel.ui:136
 #. i18n: ectx: property (text), widget (QCheckBox, showNamesBox)
-#: rc.cpp:571
+#: rc.cpp:507
 #, kde-format
+msgctxt "@option:check"
 msgid "Show names of imported fonts after import process"
 msgstr "Po dokončení zaváděcího procesu ukázat názvy zavedených písem"
 
 #. i18n: file: src/prefs_panel.ui:143
 #. i18n: ectx: property (text), widget (QCheckBox, splashCheck)
-#: rc.cpp:574
+#: rc.cpp:510
 #, kde-format
+msgctxt "@option:check"
 msgid "Show splash at startup"
 msgstr "Při spuštění ukázat úvodní obrazovku"
 
 #. i18n: file: src/prefs_panel.ui:170
 #. i18n: ectx: property (title), widget (QGroupBox, systrayFrame)
-#: rc.cpp:577
+#: rc.cpp:513
 #, kde-format
+msgctxt "@title:group"
 msgid "Show Fontmatrix in System Tray"
 msgstr "Ukázat Fontmatrix v oznamovací části panelu"
 
 #. i18n: file: src/prefs_panel.ui:185
 #. i18n: ectx: property (text), widget (QCheckBox, closeToSystray)
-#: rc.cpp:580
+#: rc.cpp:516
 #, kde-format
+msgctxt "@option:check"
 msgid "Close to system tray"
 msgstr "Zavřít do oznamovací části panelu"
 
 #. i18n: file: src/prefs_panel.ui:195
 #. i18n: ectx: property (text), widget (QCheckBox, startToSystemTray)
-#: rc.cpp:583
+#: rc.cpp:519
 #, kde-format
+msgctxt "@option:check"
 msgid "Start minimized to system tray"
 msgstr "Spouštět zmenšené v systémové části panelu"
 
 #. i18n: file: src/prefs_panel.ui:202
 #. i18n: ectx: property (title), widget (QGroupBox, activateAllFrame)
-#: rc.cpp:586
+#: rc.cpp:522
 #, kde-format
+msgctxt "@title:group"
 msgid "Show \"All\" actions"
 msgstr "Ukázat všechny kroky"
 
 #. i18n: file: src/prefs_panel.ui:217
 #. i18n: ectx: property (text), widget (QCheckBox, activateAllConfirmation)
-#: rc.cpp:589
+#: rc.cpp:525
 #, kde-format
+msgctxt "@option:check"
 msgid "Ask for confirmation when activating or deactivating all fonts"
 msgstr "Žádat potvrzení při zapnutí nebo vypnutí všech písem"
 
 #. i18n: file: src/prefs_panel.ui:230
 #. i18n: ectx: property (text), widget (QCheckBox, tagsConfirmation)
-#: rc.cpp:592
+#: rc.cpp:528
 #, kde-format
+msgctxt "@option:check"
 msgid "Ask for confirmation when activating or deactivating fonts by tags"
 msgstr "Žádat potvrzení při zapnutí nebo vypnutí písem podle značek"
 
 #. i18n: file: src/prefs_panel.ui:257
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:595
+#: rc.cpp:531
 #, kde-format
+msgctxt "@title:group"
 msgid "Preview Word"
 msgstr "Náhled slova"
 
 #. i18n: file: src/prefs_panel.ui:263
 #. i18n: ectx: property (text), widget (QLabel, label_10)
-#: rc.cpp:598
+#: rc.cpp:534
 #, kde-format
+msgctxt "@label"
 msgid "Word:"
 msgstr "Slovo:"
 
 #. i18n: file: src/prefs_panel.ui:302
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:601
+#: rc.cpp:537
 #, kde-format
+msgctxt "@label"
 msgid "Default font size:"
 msgstr "Výchozí velikost písma:"
 
 #. i18n: file: src/prefs_panel.ui:343
 #. i18n: ectx: property (text), widget (QCheckBox, previewSubtitled)
-#: rc.cpp:607
+#: rc.cpp:543
 #, kde-format
+msgctxt "@option:check"
 msgid "subtitled"
 msgstr "podtitulek"
 
 #. i18n: file: src/prefs_panel.ui:350
 #. i18n: ectx: property (text), widget (QCheckBox, previewIsRTL)
-#: rc.cpp:610
+#: rc.cpp:546
 #, kde-format
+msgctxt "@option:check"
 msgid "is RTL"
 msgstr "je RTL"
 
 #. i18n: file: src/prefs_panel.ui:360
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_7)
-#: rc.cpp:613
+#: rc.cpp:549
 #, kde-format
+msgctxt "@title:group"
 msgid "Chart Subtitle Font"
 msgstr "Písmo podtitulku v tabulce"
 
 #. i18n: file: src/prefs_panel.ui:372
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
-#: rc.cpp:616
+#: rc.cpp:552
 #, kde-format
+msgctxt "@title:group"
 msgid "Initial Layout"
 msgstr "Rozvržení na začátku"
 
 #. i18n: file: src/prefs_panel.ui:398
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:625
+#: rc.cpp:561
 #, kde-format
+msgctxt "@label"
 msgid "linespacing:"
 msgstr "Vzdálenost řádků:"
 
 #. i18n: file: src/prefs_panel.ui:429
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
-#: rc.cpp:631
+#: rc.cpp:567
 #, kde-format
+msgctxt "@title:group"
 msgid "Fonts Editor"
 msgstr "Editor písem"
 
 #. i18n: file: src/prefs_panel.ui:441
 #. i18n: ectx: property (toolTip), widget (QLineEdit, fontEditorPath)
-#: rc.cpp:634
+#: rc.cpp:570
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Add the full path to your preferred font editor"
 msgstr "Přidat celou cestu k vašemu oblíbenému editoru"
 
-#. i18n: file: src/prefs_panel.ui:444
-#. i18n: ectx: property (text), widget (QLineEdit, fontEditorPath)
-#: rc.cpp:637
-#, kde-format
-msgid "/usr/bin/fontforge"
-msgstr "/usr/bin/fontforge"
-
 #. i18n: file: src/prefs_panel.ui:474
 #. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_8)
-#: rc.cpp:643
+#: rc.cpp:576
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Select an  hyphenation dict file as it comes with OpenOffice or Scribus"
 msgstr "Vyberte slovník s dělením slov (buď z OpenOffice nebo ze Scribusu)"
 
 #. i18n: file: src/prefs_panel.ui:477
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_8)
-#: rc.cpp:646
+#: rc.cpp:579
 #, kde-format
+msgctxt "@title:group"
 msgid "Hyphenation dictionary"
 msgstr "Slovník dělení slov"
 
 #. i18n: file: src/prefs_panel.ui:486
 #. i18n: ectx: property (toolTip), widget (QToolButton, dictButton)
-#: rc.cpp:649
+#: rc.cpp:582
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Browse"
 msgstr "Procházet"
 
 #. i18n: file: src/prefs_panel.ui:509
 #. i18n: ectx: property (text), widget (QLabel, label_5)
-#: rc.cpp:655
+#: rc.cpp:588
 #, kde-format
+msgctxt "@label"
 msgid "Left:"
 msgstr "Levý:"
 
 #. i18n: file: src/prefs_panel.ui:522
 #. i18n: ectx: property (text), widget (QLabel, label_6)
-#: rc.cpp:658
+#: rc.cpp:591
 #, kde-format
+msgctxt "@label"
 msgid "Right:"
 msgstr "Pravý:"
 
 #. i18n: file: src/prefs_panel.ui:564
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: rc.cpp:661
+#: rc.cpp:594
 #, kde-format
+msgctxt "@title:group"
 msgid "Sample Texts"
 msgstr "Ukázkové texty"
 
-#. i18n: file: src/prefs_panel.ui:604
-#. i18n: ectx: property (text), widget (QPushButton, addSampleTextNameButton)
-#: rc.cpp:664
-#, kde-format
-msgid "+"
-msgstr "+"
-
-#. i18n: file: src/prefs_panel.ui:623
-#. i18n: ectx: property (text), widget (QPushButton, deleteSampleTextNameButton)
-#: rc.cpp:667
-#, kde-format
-msgid "−"
-msgstr "-"
-
 #. i18n: file: src/prefs_panel.ui:697
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
-#: rc.cpp:673
+#: rc.cpp:600
 #, kde-format
+msgctxt "@title:group"
 msgid "Templates Folder"
 msgstr "Složka s předlohami"
 
 #. i18n: file: src/prefs_panel.ui:748
 #. i18n: ectx: property (text), widget (QToolButton, changeButton)
-#: rc.cpp:679
+#: rc.cpp:606
 #, kde-format
+msgctxt "@action:button"
 msgid "Change"
 msgstr "Změnit"
 
+#. i18n: file: src/progressbarduo.ui:14
+#. i18n: ectx: property (windowTitle), widget (QDialog, ProgressBarDuo)
+#: rc.cpp:612
+#, fuzzy, kde-format
+#| msgid "Export Font Book"
+msgctxt "@title:window"
+msgid "Exporting Font Book"
+msgstr "Exportovat knihu písem"
+
 #. i18n: file: src/repair.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, repairDialog)
-#: rc.cpp:700
+#: rc.cpp:618
 #, kde-format
+msgctxt "@title:window"
 msgid "Database repair"
 msgstr "Kontrola databáze"
 
 #. i18n: file: src/repair.ui:47
 #. i18n: ectx: attribute (title), widget (QWidget, tab)
-#: rc.cpp:706
+#: rc.cpp:624
 #, kde-format
+msgctxt "@title:tab"
 msgid "Dead links"
 msgstr "Mrtvé odkazy"
 
@@ -1500,78 +1558,89 @@ msgstr "Mrtvé odkazy"
 #. i18n: ectx: property (text), widget (QPushButton, selectAllDeactLink)
 #. i18n: file: src/repair.ui:202
 #. i18n: ectx: property (text), widget (QPushButton, selectAllUnreferenced)
-#: rc.cpp:709 rc.cpp:718 rc.cpp:730 rc.cpp:742
+#: rc.cpp:627 rc.cpp:636 rc.cpp:648 rc.cpp:660
 #, kde-format
+msgctxt "@action:button"
 msgid "Select all"
 msgstr "Vybrat vše"
 
 #. i18n: file: src/repair.ui:91
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
-#: rc.cpp:715
+#: rc.cpp:633
 #, kde-format
+msgctxt "@title:tab"
 msgid "Activated Not Linked"
 msgstr "Zapnut neodkázaný"
 
 #. i18n: file: src/repair.ui:127
 #. i18n: ectx: property (text), widget (QPushButton, relinkActNot)
-#: rc.cpp:721
+#: rc.cpp:639
 #, kde-format
+msgctxt "@action:button"
 msgid "Re-link"
 msgstr "Odkázat znovu"
 
 #. i18n: file: src/repair.ui:134
 #. i18n: ectx: property (text), widget (QPushButton, deactActNot)
-#: rc.cpp:724
+#: rc.cpp:642 src/typotek.cpp:1385
 #, kde-format
+msgctxt "@action:button"
 msgid "Deactivate"
 msgstr "Vypnout"
 
 #. i18n: file: src/repair.ui:142
 #. i18n: ectx: attribute (title), widget (QWidget, tab_3)
-#: rc.cpp:727
+#: rc.cpp:645
 #, kde-format
+msgctxt "@title:tab"
 msgid "Deactivated Linked"
 msgstr "Vypnut odkázaný"
 
 #. i18n: file: src/repair.ui:178
 #. i18n: ectx: property (text), widget (QPushButton, delinkDeactLink)
-#: rc.cpp:733
+#: rc.cpp:651
 #, kde-format
+msgctxt "@action:button"
 msgid "De-link"
 msgstr "Zrušit odkaz"
 
 #. i18n: file: src/repair.ui:185
 #. i18n: ectx: property (text), widget (QPushButton, activateDeactLink)
-#: rc.cpp:736
+#: rc.cpp:654 src/fmfloatingpreview.cpp:55 src/typotek.cpp:1372
 #, kde-format
+msgctxt "@action:button"
 msgid "Activate"
 msgstr "Zapnout"
 
 #. i18n: file: src/repair.ui:193
 #. i18n: ectx: attribute (title), widget (QWidget, tab_4)
-#: rc.cpp:739
+#: rc.cpp:657
 #, kde-format
+msgctxt "@title:tab"
 msgid "Unreferenced Files"
 msgstr "Nepřiřazené soubory"
 
 #. i18n: file: src/sampletoolbar.ui:37
 #. i18n: ectx: property (text), widget (QToolButton, sampleButton)
-#: rc.cpp:754
+#: rc.cpp:669
 #, kde-format
+msgctxt "@action:button"
 msgid "Samples"
 msgstr "Ukázky"
 
 #. i18n: file: src/sampletoolbar.ui:56
 #. i18n: ectx: property (text), widget (QToolButton, opentypeButton)
-#: rc.cpp:757
+#: rc.cpp:672
 #, kde-format
+msgctxt "@action:button"
 msgid "OpenType"
 msgstr "OpenType"
 
 #. i18n: file: src/sampletoolbar.ui:77
 #. i18n: ectx: property (toolTip), widget (QComboBox, languageCombo)
-#: rc.cpp:760
+#: rc.cpp:675
 #, kde-format
+msgctxt "@info:tooltip"
 msgid ""
 "Depending of the font, some scripts \n"
 "are especially supported if processed \n"
@@ -1583,21 +1652,23 @@ msgstr ""
 
 #. i18n: file: src/sampletoolbar.ui:84
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:765
+#: rc.cpp:680
 #, kde-format
+msgctxt "@label"
 msgid "Shaping:"
 msgstr "Tvarování:"
 
 #. i18n: file: src/samplewidget.ui:80
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
-#: rc.cpp:771
+#: rc.cpp:683
 #, kde-format
+msgctxt "@title:group"
 msgid "World is wide"
 msgstr "Svět je rozlehlý"
 
 #. i18n: file: src/samplewidget.ui:118
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:774
+#: rc.cpp:686
 #, kde-format
 msgctxt "Writing system"
 msgid "Script"
@@ -1605,127 +1676,145 @@ msgstr "Skript"
 
 #. i18n: file: src/samplewidget.ui:134
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:777
+#: rc.cpp:689
 #, kde-format
+msgctxt "@label"
 msgid "Shaper type"
 msgstr "Druh tvarovače"
 
 #. i18n: file: src/samplewidget.ui:150
 #. i18n: ectx: property (text), widget (QCheckBox, useShaperCheck)
-#: rc.cpp:780
+#: rc.cpp:692
 #, kde-format
+msgctxt "@option:check"
 msgid "Use shaper"
 msgstr "Použít tvarovač"
 
 #. i18n: file: src/samplewidget.ui:193
 #. i18n: ectx: property (text), widget (QTreeWidget, OpenTypeTree)
-#: rc.cpp:783
+#: rc.cpp:695
 #, kde-format
+msgctxt "@title:column"
 msgid "OpenType Features"
 msgstr "Vlastnosti OpenType"
 
 #. i18n: file: src/samplewidget.ui:198
 #. i18n: ectx: property (text), widget (QTreeWidget, OpenTypeTree)
-#: rc.cpp:786
+#: rc.cpp:698
 #, kde-format
+msgctxt "@title:column"
 msgid "Friendly Name"
 msgstr "Přátelský název"
 
 #. i18n: file: src/samplewidget.ui:207
 #. i18n: ectx: property (text), widget (QPushButton, saveDefOTFBut)
-#: rc.cpp:789
+#: rc.cpp:701
 #, kde-format
+msgctxt "@action:button"
 msgid "Save as default"
 msgstr "Uložit jako výchozí"
 
 #. i18n: file: src/samplewidget.ui:214
 #. i18n: ectx: property (text), widget (QPushButton, resetDefOTFBut)
-#: rc.cpp:792
+#: rc.cpp:704
 #, kde-format
+msgctxt "@action:button"
 msgid "Reset Default"
 msgstr "Přenastavit na výchozí"
 
-#. i18n: file: src/samplewidget.ui:266
-#. i18n: ectx: property (text), widget (QTreeWidget, sampleTextTree)
-#: rc.cpp:795
-#, kde-format
-msgid "1"
-msgstr "1"
-
 #. i18n: file: src/tagset.ui:19
 #. i18n: ectx: property (windowTitle), widget (QDialog, TagSetDialog)
-#: rc.cpp:804
+#: rc.cpp:713
 #, kde-format
+msgctxt "@title:window"
 msgid "TagSet editor"
 msgstr "Editor nastavení značek"
 
 #. i18n: file: src/tagset.ui:64
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:807
+#: rc.cpp:716
 #, kde-format
+msgctxt "@label"
 msgid "Collections of Tags"
 msgstr "Sbírky značek"
 
 #. i18n: file: src/tagset.ui:80
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:810
+#: rc.cpp:719
 #, kde-format
+msgctxt "@label"
 msgid "Available Tags"
 msgstr "Dostupné značky"
 
 #. i18n: file: src/tagset.ui:115
 #. i18n: ectx: property (toolTip), widget (QPushButton, addToSetButton)
-#: rc.cpp:813
+#: rc.cpp:722
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Add selected tag to current set."
 msgstr "Přidat vybranou značku k nynější sadě."
 
 #. i18n: file: src/tagset.ui:138
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:819
+#: rc.cpp:728
 #, kde-format
+msgctxt "@label"
 msgid "Collections"
 msgstr "Sbírky"
 
 #. i18n: file: src/tagset.ui:153
 #. i18n: ectx: property (text), widget (QPushButton, newSetButton)
-#: rc.cpp:822
+#: rc.cpp:731
 #, kde-format
+msgctxt "@action:button"
 msgid "New"
 msgstr "Nový"
 
 #. i18n: file: src/tagset.ui:160
 #. i18n: ectx: property (text), widget (QPushButton, deleteTagsetButton)
-#: rc.cpp:825
+#: rc.cpp:734
 #, kde-format
+msgctxt "@action:button"
 msgid "delete"
 msgstr "Smazat"
 
+#. i18n: file: src/tagswidget.ui:41
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:743
+#, kde-format
+msgctxt "@label"
+msgid "Tags"
+msgstr "Značky"
+
 #. i18n: file: src/tagswidget.ui:54
 #. i18n: ectx: property (toolTip), widget (QPushButton, newTagButton)
-#: rc.cpp:840
+#: rc.cpp:746
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Add a tag"
 msgstr "Přidat značku"
 
 #. i18n: file: src/tagswidget.ui:57
 #. i18n: ectx: property (text), widget (QPushButton, newTagButton)
-#: rc.cpp:843
+#: rc.cpp:749
 #, kde-format
+msgctxt "@action:button"
 msgid "Add Tag"
 msgstr "Přidat značku"
 
 #. i18n: file: src/tagswidget.ui:67
 #. i18n: ectx: property (text), widget (QPushButton, removeTagButton)
-#: rc.cpp:846
+#: rc.cpp:752
 #, kde-format
+msgctxt "@action:button"
 msgid "Remove Tag"
 msgstr "Odstranit značku"
 
 #. i18n: file: src/tagswidget.ui:77
 #. i18n: ectx: property (statusTip), widget (QListView, tagsListView)
-#: rc.cpp:849
+#: rc.cpp:755
 #, kde-format
+msgctxt "@info:status"
 msgid "Right mouse click on a tag to add it or remove it from TagSet"
 msgstr ""
 "Klepnutí pravým tlačítkem myši na značku pro její přidání nebo odstranění ze "
@@ -1733,8 +1822,9 @@ msgstr ""
 
 #. i18n: file: src/textprogression.ui:25
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:855
+#: rc.cpp:758
 #, kde-format
+msgctxt "@title:group"
 msgid "Inline progression"
 msgstr "Řadový sled znaků"
 
@@ -1742,8 +1832,9 @@ msgstr "Řadový sled znaků"
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineLTR)
 #. i18n: file: src/textprogression.ui:101
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockTTB)
-#: rc.cpp:858 rc.cpp:885
+#: rc.cpp:761 rc.cpp:788
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "e.g. Latin text"
 msgstr "např. latinský text"
 
@@ -1751,15 +1842,17 @@ msgstr "např. latinský text"
 #. i18n: ectx: property (text), widget (QRadioButton, inlineLTR)
 #. i18n: file: src/textprogression.ui:127
 #. i18n: ectx: property (text), widget (QRadioButton, blockLTR)
-#: rc.cpp:861 rc.cpp:900
+#: rc.cpp:764 rc.cpp:803
 #, kde-format
+msgctxt "@option:radio"
 msgid "Left to right"
 msgstr "Zleva doprava"
 
 #. i18n: file: src/textprogression.ui:53
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineRTL)
-#: rc.cpp:864
+#: rc.cpp:767
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "e.g. Arabic text"
 msgstr "např. arabský text"
 
@@ -1767,15 +1860,17 @@ msgstr "např. arabský text"
 #. i18n: ectx: property (text), widget (QRadioButton, inlineRTL)
 #. i18n: file: src/textprogression.ui:117
 #. i18n: ectx: property (text), widget (QRadioButton, blockRTL)
-#: rc.cpp:867 rc.cpp:894
+#: rc.cpp:770 rc.cpp:797
 #, kde-format
+msgctxt "@option:radio"
 msgid "Right to left"
 msgstr "Zprava doleva"
 
 #. i18n: file: src/textprogression.ui:63
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineTTB)
-#: rc.cpp:870
+#: rc.cpp:773
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "e.g. Traditional Chinese & Japanese text"
 msgstr "např. tradiční čínský & japonský text"
 
@@ -1783,85 +1878,97 @@ msgstr "např. tradiční čínský & japonský text"
 #. i18n: ectx: property (text), widget (QRadioButton, inlineTTB)
 #. i18n: file: src/textprogression.ui:104
 #. i18n: ectx: property (text), widget (QRadioButton, blockTTB)
-#: rc.cpp:873 rc.cpp:888
+#: rc.cpp:776 rc.cpp:791
 #, kde-format
+msgctxt "@option:radio"
 msgid "Top to bottom"
 msgstr "Shora dolů"
 
 #. i18n: file: src/textprogression.ui:73
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineBTT)
-#: rc.cpp:876
+#: rc.cpp:779
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "e.g. Runic text"
 msgstr "např. runový text"
 
 #. i18n: file: src/textprogression.ui:76
 #. i18n: ectx: property (text), widget (QRadioButton, inlineBTT)
-#: rc.cpp:879
+#: rc.cpp:782
 #, kde-format
+msgctxt "@option:radio"
 msgid "Bottom to top"
 msgstr "Zdola nahoru"
 
 #. i18n: file: src/textprogression.ui:86
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: rc.cpp:882
+#: rc.cpp:785
 #, kde-format
+msgctxt "@title:group"
 msgid "Block progression"
 msgstr "Blokový sled znaků"
 
 #. i18n: file: src/textprogression.ui:114
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockRTL)
-#: rc.cpp:891
+#: rc.cpp:794
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "e.g. Tarditionnal Chinese & Japanes text"
 msgstr "např. tradiční čínský & japonský text"
 
 #. i18n: file: src/textprogression.ui:124
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockLTR)
-#: rc.cpp:897
+#: rc.cpp:800
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "e.g. Traditional Mongolian text"
 msgstr "např. tradiční mongolský text"
 
 #. i18n: file: src/tttablewidget.ui:13
 #. i18n: ectx: property (windowTitle), widget (QWidget, TTTableWidget)
-#: rc.cpp:903
+#: rc.cpp:806
 #, kde-format
+msgctxt "@title:window"
 msgid "TrueType tables display"
 msgstr "Zobrazení tabulek TrueType"
 
 #. i18n: file: src/tttablewidget.ui:19
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:906
+#: rc.cpp:809
 #, kde-format
+msgctxt "@label"
 msgid "TrueType Tables "
 msgstr "Tabulky TrueType"
 
 #. i18n: file: src/tttablewidget.ui:34
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:909
+#: rc.cpp:812
 #, kde-format
+msgctxt "@title:column"
 msgid "Tag"
 msgstr "Značka"
 
 #. i18n: file: src/tttablewidget.ui:39
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:912
+#: rc.cpp:815
 #, kde-format
+msgctxt "@title:column"
 msgid "Description"
 msgstr "Popis"
 
 #. i18n: file: src/tttablewidget.ui:44
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:915
+#: rc.cpp:818
 #, kde-format
+msgctxt "@title:column"
 msgid "Size"
 msgstr "Velikost"
 
 #. i18n: file: src/tttablewidget.ui:85
 #. i18n: ectx: property (text), widget (QPushButton, exportButton)
-#: rc.cpp:918
+#: rc.cpp:821
 #, kde-format
+msgctxt "@action:button"
 msgid "&Export"
 msgstr "&Exportovat"
 
@@ -2020,13 +2127,6 @@ msgstr "Nelze udělat odkaz nebo kopírovat soubor s metrikou"
 msgctxt "activation"
 msgid "Error"
 msgstr "Chyba"
-
-#: src/fmfloatingpreview.cpp:55 src/typotek.cpp:1364
-#, fuzzy, kde-format
-#| msgid "Activate"
-msgctxt "@action:button"
-msgid "Activate"
-msgstr "Zapnout"
 
 #: src/fmfloatingpreview.cpp:62
 #, kde-format
@@ -4992,8 +5092,7 @@ msgstr ""
 "následující značka odstraněna z databáze:"
 
 #: src/tagswidget.cpp:59
-#, fuzzy, kde-format
-#| msgid "Remove Tag"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Tag"
 msgstr "Odstranit značku"
@@ -5043,13 +5142,6 @@ msgstr[2] "Potvrzujete, že chcete zavést těchto %1 písem?"
 msgctxt "@title:window"
 msgid "Confirmation"
 msgstr "Potvrzení"
-
-#: src/typotek.cpp:426
-#, fuzzy, kde-format
-#| msgid "Import"
-msgctxt "@action:button"
-msgid "Import"
-msgstr "Zavést"
 
 #: src/typotek.cpp:444 src/typotek.cpp:553
 #, kde-format
@@ -5337,109 +5429,109 @@ msgctxt "@info:tooltip"
 msgid "Hide all floating windows"
 msgstr "Skrýt všechna plovoucí okna"
 
-#: src/typotek.cpp:756
+#: src/typotek.cpp:759
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Extract fonts..."
 msgstr "Vytáhnout písma..."
 
-#: src/typotek.cpp:757
+#: src/typotek.cpp:760
 #, kde-format
 msgctxt "@info:status"
 msgid "Extract fonts from documents like PDF to PFM file format"
 msgstr "Vytáhnout písma z dokumentů jako PDF do souborového formátu PFM"
 
-#: src/typotek.cpp:761
+#: src/typotek.cpp:765
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Find a font using raster sample..."
 msgstr "Najít písmo pomocí ukázky rastru jeho obrazu..."
 
-#: src/typotek.cpp:762
+#: src/typotek.cpp:766
 #, kde-format
 msgctxt "@info:status"
 msgid "Find a font using a raster sample of a letter"
 msgstr "Najít písmo pomocí ukázky rastru obrazu jeho písmene"
 
-#: src/typotek.cpp:766
+#: src/typotek.cpp:770
 #, fuzzy, kde-format
 #| msgid "Export font book..."
 msgctxt "@action:inmenu"
 msgid "Export font list as XeTeX..."
 msgstr "Vyvést knihu písem..."
 
-#: src/typotek.cpp:767
+#: src/typotek.cpp:771
 #, kde-format
 msgctxt "@info:status"
 msgid "Export the current filtered font list as a XeTeX source file"
 msgstr ""
 
-#: src/typotek.cpp:860
+#: src/typotek.cpp:868
 #, kde-format
 msgctxt "@action:button"
 msgid "Browse Directories"
 msgstr "Procházet adresáře"
 
-#: src/typotek.cpp:862
+#: src/typotek.cpp:870
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Toggle Files/Collection view"
 msgstr "Přepnout pohled soubory/sbírka"
 
-#: src/typotek.cpp:868
+#: src/typotek.cpp:876
 #, kde-format
 msgctxt "@info:progress"
 msgid "Load settings"
 msgstr "Nahrát nastavení"
 
-#: src/typotek.cpp:1000
+#: src/typotek.cpp:1008
 #, kde-format
 msgctxt "@info:progress"
 msgid "Check for Fontmatrix own dir"
 msgstr "Prověřit vlastní adresář Fontmatrixu"
 
-#: src/typotek.cpp:1226
+#: src/typotek.cpp:1234
 #, kde-format
 msgctxt "@info:progress"
 msgid "Loading System Fonts"
 msgstr "Nahrává se systémové písmo"
 
-#: src/typotek.cpp:1227
+#: src/typotek.cpp:1235
 #, kde-format
 msgctxt "@item:inlistbox name of the tag given to system fonts"
 msgid "System Fonts"
 msgstr "Systémová písma"
 
-#: src/typotek.cpp:1257
+#: src/typotek.cpp:1265
 #, kde-format
 msgctxt "@info:progress"
 msgid "Adding"
 msgstr "Přidávají se"
 
-#: src/typotek.cpp:1258 src/typotek.cpp:1259
+#: src/typotek.cpp:1266 src/typotek.cpp:1267
 #, kde-format
 msgctxt "followed by a directory name"
 msgid "fonts from"
 msgstr "Písma z"
 
-#: src/typotek.cpp:1259
+#: src/typotek.cpp:1267
 #, kde-format
 msgid "Adding"
 msgstr "Přidávají se"
 
-#: src/typotek.cpp:1282
+#: src/typotek.cpp:1290
 #, kde-format
 msgctxt "@info:progress"
 msgid "system fonts added."
 msgstr "Systémová písma přidána."
 
-#: src/typotek.cpp:1337
+#: src/typotek.cpp:1345
 #, kde-format
 msgctxt "@info:status"
 msgid "font descriptions imported from network"
 msgstr "Popisy písem zavedené ze sítě"
 
-#: src/typotek.cpp:1362
+#: src/typotek.cpp:1370
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5450,14 +5542,14 @@ msgstr ""
 "Teď je čas na zrušení této akce, pokud jste tedy její provedení neměl v "
 "úmyslu"
 
-#: src/typotek.cpp:1363
+#: src/typotek.cpp:1371
 #, fuzzy, kde-format
 #| msgid "Activation"
 msgctxt "@title:window"
 msgid "Activate Fonts"
 msgstr "Zapnutí"
 
-#: src/typotek.cpp:1375
+#: src/typotek.cpp:1383
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5468,71 +5560,64 @@ msgstr ""
 "Teď je čas na zrušení této akce, pokud jste tedy její provedení neměl v "
 "úmyslu"
 
-#: src/typotek.cpp:1376
+#: src/typotek.cpp:1384
 #, fuzzy, kde-format
 #| msgid "Deactivate"
 msgctxt "@title:window"
 msgid "Deactivate Fonts"
 msgstr "Vypnout"
 
-#: src/typotek.cpp:1377
-#, fuzzy, kde-format
-#| msgid "Deactivate"
-msgctxt "@action:button"
-msgid "Deactivate"
-msgstr "Vypnout"
-
-#: src/typotek.cpp:1395
+#: src/typotek.cpp:1403
 #, kde-format
 msgctxt "@info"
 msgid ""
 "This will hide the menu bar completely. You can show it again by typing %1."
 msgstr ""
 
-#: src/typotek.cpp:1396
+#: src/typotek.cpp:1404
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 
-#: src/typotek.cpp:1406 src/typotek.cpp:2084
+#: src/typotek.cpp:1414 src/typotek.cpp:2092
 #, kde-format
 msgctxt "@info:status"
 msgid "There is no font selected"
 msgstr "Žádné písmo nebylo vybráno"
 
-#: src/typotek.cpp:1451
+#: src/typotek.cpp:1459
 #, kde-format
 msgctxt "@info:status"
 msgid "Support of DragNDrop over http is sheduled but not yet effective"
 msgstr ""
 "Podpora pro \"táhni a pusť\" přes http je naplánována, ale dosud není účinná"
 
-#: src/typotek.cpp:1470
+#: src/typotek.cpp:1478
 #, fuzzy, kde-format
 #| msgid "You bring something over me I canât handle"
 msgctxt "@info:status"
 msgid "You bring something over me I can’t handle"
 msgstr "Dal jste mi něco, s čím si nedovedu poradit"
 
-#: src/typotek.cpp:1531
+#: src/typotek.cpp:1539
 #, kde-format
 msgctxt "@info default content of a new sample text"
 msgid "Edit me!"
 msgstr "Uprav mě!"
 
-#: src/typotek.cpp:1610
+#: src/typotek.cpp:1618
 #, kde-format
 msgid "default"
 msgstr "Výchozí"
 
-#: src/typotek.cpp:1694
+#: src/typotek.cpp:1702
 #, kde-format
 msgctxt "@info:status"
 msgid "Try to run font editor with the selected font as argument"
 msgstr "Zkusit spustit editor písem s vybraným písmem jako argumentem"
 
-#: src/typotek.cpp:1697
+#: src/typotek.cpp:1705
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5542,26 +5627,20 @@ msgstr ""
 "Nezdá se, že byste měl nainstalován editor písem. Cestu k editoru písem lze "
 "nastavit v nastavení."
 
-#: src/typotek.cpp:1983
+#: src/typotek.cpp:1991
 #, fuzzy, kde-format
 #| msgid "Export a fontset"
 msgctxt "@title:window"
 msgid "Export font list as XeTeX"
 msgstr "Vyvést sadu písem"
 
-#: src/typotek.cpp:1985
+#: src/typotek.cpp:1993
 #, kde-format
 msgctxt "@item:inlistbox file type filter"
 msgid "TeX files (*.tex)"
 msgstr ""
 
-#: src/typotek.cpp:2095
-#, kde-format
-msgctxt "@action:button"
-msgid "Close"
-msgstr "Zavřít"
-
-#: src/typotek.cpp:2167
+#: src/typotek.cpp:2175
 #, kde-format
 msgctxt "@info:status"
 msgid "Failed to reload %1 font"
@@ -5570,7 +5649,7 @@ msgstr[0] "Nepodařilo se nahrát znovu jedno písmo"
 msgstr[1] "Nepodařilo se nahrát znovu %1 písma"
 msgstr[2] "Nepodařilo se nahrát znovu %1 písem"
 
-#: src/typotek.cpp:2209
+#: src/typotek.cpp:2217
 #, kde-format
 msgctxt "number of filtererd fonts showed in status bar"
 msgid "Filtered Font: %1"
@@ -5579,13 +5658,13 @@ msgstr[0] "Vyfiltrované písmo: %1"
 msgstr[1] "Vyfiltrovaná písma: %1"
 msgstr[2] "Vyfiltrovaných písem: %1"
 
-#: src/typotek.cpp:2214
+#: src/typotek.cpp:2222
 #, kde-format
 msgctxt "followed by currently selected font name (in status bar)"
 msgid "Current Font"
 msgstr "Nynější písmo"
 
-#: src/typotek.cpp:2238
+#: src/typotek.cpp:2246
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5594,11 +5673,968 @@ msgid ""
 "at <link>%1</link>."
 msgstr ""
 
-#: src/typotek.cpp:2241
+#: src/typotek.cpp:2249
 #, kde-format
 msgctxt "@title:window"
 msgid "Handbook Not Available"
 msgstr ""
+
+#, kde-format
+#~ msgid "Dialog"
+#~ msgstr "Dialog"
+
+#, kde-format
+#~ msgid "Activation - Deactivation Error Report"
+#~ msgstr "Hlášení chyb při zapnutí nebo vypnutí písem"
+
+#, kde-format
+#~ msgid "Close"
+#~ msgstr "Zavřít"
+
+#, kde-format
+#~ msgid "Font path"
+#~ msgstr "Cesta k písmu"
+
+#, kde-format
+#~ msgid "Error"
+#~ msgstr "Chyba"
+
+#, kde-format
+#~ msgid "Form"
+#~ msgstr "Formulář"
+
+#, kde-format
+#~ msgid "StyleName"
+#~ msgstr "Název stylu"
+
+#, kde-format
+#~ msgid "Activated"
+#~ msgstr "Zapnuto"
+
+#, kde-format
+#~ msgid "Activate All"
+#~ msgstr "Zapnout vše"
+
+#, kde-format
+#~ msgid "Deactivate All"
+#~ msgstr "Vypnout vše"
+
+#, kde-format
+#~ msgid "Output"
+#~ msgstr "Výstup"
+
+#, kde-format
+#~ msgid "Browse..."
+#~ msgstr "Procházet..."
+
+#, kde-format
+#~ msgid "Info"
+#~ msgstr "Informace"
+
+#, kde-format
+#~ msgid "Import"
+#~ msgstr "Zavést"
+
+#, kde-format
+#~ msgid "Chart"
+#~ msgstr "Tabulka"
+
+#, kde-format
+#~ msgid "Sample"
+#~ msgstr "Ukázka"
+
+#, kde-format
+#~ msgid "Coverage of Unicode Interval"
+#~ msgstr "Pokrytí rozmezí Unicode"
+
+#, kde-format
+#~ msgid "Block:"
+#~ msgstr "Blok:"
+
+#, kde-format
+#~ msgid "Search:"
+#~ msgstr "Hledat:"
+
+#, kde-format
+#~ msgid ""
+#~ "Search a character by its codepoint (expressed in hexadecimal \n"
+#~ "and prefixed with \"U+\", \"u+\" or \"+\") or a glyph by its name.\n"
+#~ "Press enter after editing to run the search."
+#~ msgstr ""
+#~ "Hledat znak pomocí jeho pozice (vyjádřené šestnáctkově a\n"
+#~ "uvozené \"U+\", \"u+\" nebo \"+\") nebo glyf pomocí jména.\n"
+#~ "Hledání začně až po stisku Enter."
+
+#, kde-format
+#~ msgid "Clicking on a glyph will show details about it"
+#~ msgstr "Klepnutím na glyf se ukážou jeho podrobnosti"
+
+#, kde-format
+#~ msgid "Set Mode \"Copy Character to Clipboard\""
+#~ msgstr "Nastavit režim Kopírovat znak do schránky"
+
+#, kde-format
+#~ msgid "Copy Mode"
+#~ msgstr "Režim kopírování"
+
+#, kde-format
+#~ msgid "Compare Glyphs"
+#~ msgstr "Porovnat glyfy"
+
+#, kde-format
+#~ msgid "Fonts"
+#~ msgstr "Písma"
+
+#, kde-format
+#~ msgid "Add"
+#~ msgstr "Přidat"
+
+#, kde-format
+#~ msgid "Remove"
+#~ msgstr "Odstranit"
+
+#, kde-format
+#~ msgid "Show"
+#~ msgstr "Ukázat"
+
+#, kde-format
+#~ msgid "Metrics"
+#~ msgstr "Metrika"
+
+#, kde-format
+#~ msgid "Points"
+#~ msgstr "Body"
+
+#, kde-format
+#~ msgid "Controls"
+#~ msgstr "Řídicí body"
+
+#, kde-format
+#~ msgid "Offset"
+#~ msgstr "Posunutí"
+
+#, kde-format
+#~ msgid "0"
+#~ msgstr "0"
+
+#, kde-format
+#~ msgid "Fill:"
+#~ msgstr "Výplň:"
+
+#, kde-format
+#~ msgid "Select a character"
+#~ msgstr "Výběr znaku"
+
+#, kde-format
+#~ msgid "Keep in sync"
+#~ msgstr "Udržet seřízené"
+
+#, kde-format
+#~ msgid "Export Data"
+#~ msgstr "Vyvést data"
+
+#, kde-format
+#~ msgid ""
+#~ "The font files currently filtered and selected here will be copied in a "
+#~ "directory of your choice."
+#~ msgstr ""
+#~ "Nyní vyfiltrované a zde vybrané soubory písem budou zkopírovány do "
+#~ "adresáře dle vaší volby."
+
+#, kde-format
+#~ msgid "Cancel"
+#~ msgstr "Zrušit"
+
+#, kde-format
+#~ msgid "Continue"
+#~ msgstr "Pokračovat"
+
+#, kde-format
+#~ msgid "Fontmatrix - Export font info for packaging"
+#~ msgstr "Fontmatrix - Export informací o písmu pro balíčky"
+
+#, kde-format
+#~ msgid "TextLabel"
+#~ msgstr "Textová jmenovka"
+
+#, kde-format
+#~ msgid "Save to:"
+#~ msgstr "Uložit jako:"
+
+#, kde-format
+#~ msgid "Model"
+#~ msgstr "Model"
+
+#, kde-format
+#~ msgid "Available names"
+#~ msgstr "Dostupná jména"
+
+#, kde-format
+#~ msgid "Load..."
+#~ msgstr "Nahrát..."
+
+#, kde-format
+#~ msgid "Return To List"
+#~ msgstr "Návrat do seznamu"
+
+#, kde-format
+#~ msgid "Activation"
+#~ msgstr "Zapnutí"
+
+#, kde-format
+#~ msgid "Family Name"
+#~ msgstr "Název rodiny písma"
+
+#, kde-format
+#~ msgid "Filters"
+#~ msgstr "Filtry"
+
+#, kde-format
+#~ msgid "Tags"
+#~ msgstr "Značky"
+
+#, kde-format
+#~ msgid "Metadata"
+#~ msgstr "Popisná data"
+
+#, kde-format
+#~ msgid "Search"
+#~ msgstr "Hledat"
+
+#, kde-format
+#~ msgid "in"
+#~ msgstr "v"
+
+#, kde-format
+#~ msgid "Panose"
+#~ msgstr "Panose"
+
+#, kde-format
+#~ msgid "Remove Filter"
+#~ msgstr "Odstranit filtr"
+
+#, kde-format
+#~ msgid "X"
+#~ msgstr "X"
+
+#, kde-format
+#~ msgid ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<table style=\"-qt-table-type: root; margin-top:4px; margin-bottom:4px; "
+#~ "margin-left:4px; margin-right:4px;\">\n"
+#~ "<tr>\n"
+#~ "<td style=\"border: none;\">\n"
+#~ "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+#~ "right:0px; -qt-block-indent:0; text-indent:0px;\">If set, the filter will "
+#~ "<span style=\" font-weight:600;\">intersect</span> with the previous "
+#~ "filters.</p></td></tr></table></body></html>"
+#~ msgstr ""
+#~ "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+#~ "REC-html40/strict.dtd\">\n"
+#~ "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
+#~ "css\">\n"
+#~ "p, li { white-space: pre-wrap; }\n"
+#~ "</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; "
+#~ "font-weight:400; font-style:normal;\">\n"
+#~ "<table style=\"-qt-table-type: root; margin-top:4px; margin-bottom:4px; "
+#~ "margin-left:4px; margin-right:4px;\">\n"
+#~ "<tr>\n"
+#~ "<td style=\"border: none;\">\n"
+#~ "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+#~ "right:0px; -qt-block-indent:0; text-indent:0px;\">Je-li nastaveno, filtr "
+#~ "se bude <span style=\" font-weight:600;\">překrývat</span> s předchozími "
+#~ "filtry.</p></td></tr></table></body></html>"
+
+#, kde-format
+#~ msgid "&&"
+#~ msgstr "&&"
+
+#, kde-format
+#~ msgid "if set, it will filter all the fonts but these matching this filter"
+#~ msgstr ""
+#~ "Je-li nastaveno, budou se filtrovat všechna písma odpovídající tomuto "
+#~ "filtru"
+
+#, kde-format
+#~ msgid "!"
+#~ msgstr "!"
+
+#, kde-format
+#~ msgid "filter name"
+#~ msgstr "Název filtru"
+
+#, kde-format
+#~ msgid "Apply this filter to the list"
+#~ msgstr "Použít tento filtr na seznam"
+
+#, kde-format
+#~ msgid "Filter"
+#~ msgstr "Filtr"
+
+#, kde-format
+#~ msgid "Delete this filter"
+#~ msgstr "Smazat tento filtr"
+
+#, kde-format
+#~ msgid "Filters Manager"
+#~ msgstr "Správce filtrů"
+
+#, kde-format
+#~ msgid ""
+#~ "In order to add filters, you have to first select some of tags, meta "
+#~ "informations or classifications elements."
+#~ msgstr ""
+#~ "Abyste přidali filtry, musíte nejprve vybrat nějaké značky, popisné údaje "
+#~ "nebo třídící prvky."
+
+#, kde-format
+#~ msgid "Add Filter"
+#~ msgstr "Přidat filtr"
+
+#, kde-format
+#~ msgid "Filter Name:"
+#~ msgstr "Název filtru:"
+
+#, kde-format
+#~ msgid "current filter"
+#~ msgstr "Nynější filtr"
+
+#, kde-format
+#~ msgid "Print"
+#~ msgstr "Tisk"
+
+#, kde-format
+#~ msgid "P"
+#~ msgstr "P"
+
+#, kde-format
+#~ msgid "Detach from main window"
+#~ msgstr "Odpojit od hlavního okna"
+
+#, kde-format
+#~ msgid "D"
+#~ msgstr "D"
+
+#, kde-format
+#~ msgid "Close window"
+#~ msgstr "Zavřít okno"
+
+#, kde-format
+#~ msgid "..."
+#~ msgstr "..."
+
+#, kde-format
+#~ msgid "Hide window"
+#~ msgstr "Skrýt okno"
+
+#, kde-format
+#~ msgid "H"
+#~ msgstr "H"
+
+#, kde-format
+#~ msgid "Font extractor"
+#~ msgstr "Vytahovač písem"
+
+#, kde-format
+#~ msgid "Select PDF"
+#~ msgstr "Výběr PDF"
+
+#, kde-format
+#~ msgid "File name"
+#~ msgstr "Jméno souboru"
+
+#, kde-format
+#~ msgid "&Browse"
+#~ msgstr "&Procházet"
+
+#, kde-format
+#~ msgid "&Select Dir"
+#~ msgstr "Vybrat &adresář"
+
+#, kde-format
+#~ msgid "&Extract"
+#~ msgstr "&Vytáhnout"
+
+#, kde-format
+#~ msgid "Imported fonts"
+#~ msgstr "Zavedená písma"
+
+#, kde-format
+#~ msgid "Imported Fonts:"
+#~ msgstr "Zavedená písma:"
+
+#, kde-format
+#~ msgid ""
+#~ "<qt>Instead of showing this dialog imported font count\n"
+#~ "will be shown in the status bar. If you choose not to\n"
+#~ "show this dialog anymore you can reset the state\n"
+#~ "in preferences.</qt>"
+#~ msgstr ""
+#~ "<qt>Namísto zobrazení tohoto dialogu, bude počet zavedených písem\n"
+#~ "ukázán ve stavovém řádku. Jestliže si vyberete, aby se tento dialog\n"
+#~ "více neukazoval, můžete tuto volbu zrušit\n"
+#~ "v nastavení.</qt>"
+
+#, kde-format
+#~ msgid "&Do not show this dialog again"
+#~ msgstr "Znovu již tento dialog &nezobrazovat"
+
+#, kde-format
+#~ msgid "&OK"
+#~ msgstr "&OK"
+
+#, kde-format
+#~ msgid "Fontmatrix - Tags"
+#~ msgstr "Fontmatrix - Značky"
+
+#, kde-format
+#~ msgid "Ok"
+#~ msgstr "OK"
+
+#, kde-format
+#~ msgid "Text layout engine options"
+#~ msgstr "Volby pro stroj na rozvržení textu"
+
+#, kde-format
+#~ msgid "Weights"
+#~ msgstr "Váhy"
+
+#, kde-format
+#~ msgid "score"
+#~ msgstr "body"
+
+#, kde-format
+#~ msgid "Before"
+#~ msgstr "Před"
+
+#, kde-format
+#~ msgid "Exact"
+#~ msgstr "Přesně"
+
+#, kde-format
+#~ msgid "After"
+#~ msgstr "Po"
+
+#, kde-format
+#~ msgid "End"
+#~ msgstr "Konec"
+
+#, kde-format
+#~ msgid "penalty"
+#~ msgstr "Postih"
+
+#, kde-format
+#~ msgid "H-penalty"
+#~ msgstr "H-postih"
+
+#, kde-format
+#~ msgid "space"
+#~ msgstr "Mezera"
+
+#, kde-format
+#~ msgid "Max. compression"
+#~ msgstr "Max. stlačení"
+
+#, kde-format
+#~ msgid "main view widget"
+#~ msgstr "Prvek uživatelského rozhraní pro hlavní pohled"
+
+#, kde-format
+#~ msgid "Quick Search:"
+#~ msgstr "Rychlé hledání:"
+
+#, kde-format
+#~ msgid "Save"
+#~ msgstr "Uložit"
+
+#, kde-format
+#~ msgid "Find a font using raster sample"
+#~ msgstr "Najít písmo pomocí rastrovaného vzorku"
+
+#, kde-format
+#~ msgid "Input Image"
+#~ msgstr "Vstupní obrázek"
+
+#, kde-format
+#~ msgid "Grab mode"
+#~ msgstr "Režim záchytu"
+
+#, kde-format
+#~ msgid "Zoom level"
+#~ msgstr "Zvětšení"
+
+#, kde-format
+#~ msgid "Raster sample preview"
+#~ msgstr "Náhled obrázku"
+
+#, kde-format
+#~ msgid "C&haracter:"
+#~ msgstr "&Znak:"
+
+#, kde-format
+#~ msgid "A unique character or a four digits hexadecimal Unicode value"
+#~ msgstr ""
+#~ "Jediný znak nebo čtyři číslice jeho Unicode hodnoty v šestnáctkovém "
+#~ "vyjádření"
+
+#, kde-format
+#~ msgid "&Search"
+#~ msgstr "&Hledat"
+
+#, kde-format
+#~ msgid "If set, you will be prompted for each matching font"
+#~ msgstr "Je-li zvoleno, budete vyzvání u každého odpovídajícího písma"
+
+#, kde-format
+#~ msgid "Interactive"
+#~ msgstr "Interaktivní"
+
+#, kde-format
+#~ msgid "Click on the letter to let Fontmatrix compute the bounding box"
+#~ msgstr "Klikněte na písmeno a Fontmatrix určí jeho ohraničující obdélník"
+
+#, kde-format
+#~ msgid "Tweak rect"
+#~ msgstr "Upravit obdélník"
+
+#, kde-format
+#~ msgid "Compare with:"
+#~ msgstr "Srovnat s:"
+
+#, kde-format
+#~ msgid "Stop"
+#~ msgstr "Zastavit"
+
+#, kde-format
+#~ msgid "&Cancel"
+#~ msgstr "&Zrušit"
+
+#, kde-format
+#~ msgid ""
+#~ "Fill-in text fields and press enter key  or click \"Add Filters\" button "
+#~ "to process filters."
+#~ msgstr ""
+#~ "Naplňte textová pole a stiskněte klávesu Enter nebo klepněte na tlačítko "
+#~ "Přidat filtry pro zpracování filtrů."
+
+#, kde-format
+#~ msgid "Add Filters"
+#~ msgstr "Přidat filtry"
+
+#, kde-format
+#~ msgid "Printing multiple items"
+#~ msgstr "Tisk více položek"
+
+#, kde-format
+#~ msgid "Views"
+#~ msgstr "Pohledy"
+
+#, kde-format
+#~ msgid "Informations"
+#~ msgstr "Informace"
+
+#, kde-format
+#~ msgid "Preview"
+#~ msgstr "Náhled"
+
+#, kde-format
+#~ msgid "Glyphs chart"
+#~ msgstr "Tabulka glyfů"
+
+#, kde-format
+#~ msgid "Playground"
+#~ msgstr "Hřiště"
+
+#, kde-format
+#~ msgid "Fontmatrix - Panose Editor"
+#~ msgstr "Fontmatrix - Panose Editor"
+
+#, kde-format
+#~ msgid "Panose Metadata"
+#~ msgstr "Popisná data Panose"
+
+#, kde-format
+#~ msgid "Panose Attributes"
+#~ msgstr "Vlastnosti Panose"
+
+#, kde-format
+#~ msgid "Font Size:"
+#~ msgstr "Velikost písma:"
+
+#, kde-format
+#~ msgid " pt"
+#~ msgstr " pt"
+
+#, kde-format
+#~ msgid "Preferences Panel"
+#~ msgstr "Panel voleb"
+
+#, kde-format
+#~ msgid "General"
+#~ msgstr "Obecné"
+
+#, kde-format
+#~ msgid "System tray"
+#~ msgstr "Systémová část panelu"
+
+#, kde-format
+#~ msgid "Display"
+#~ msgstr "Zobrazení"
+
+#, kde-format
+#~ msgid "Tools"
+#~ msgstr "Nástroje"
+
+#, kde-format
+#~ msgid "Samples collection"
+#~ msgstr "Sbírka ukázek"
+
+#, kde-format
+#~ msgid "Files & Folders"
+#~ msgstr "Soubory a složky"
+
+#, kde-format
+#~ msgid "Shortcuts"
+#~ msgstr "Klávesové zkratky"
+
+#, kde-format
+#~ msgid "Ask for tag names when importing fonts"
+#~ msgstr "Při zavádění písem se ptát na názvy značek"
+
+#, kde-format
+#~ msgid "Show names of imported fonts after import process"
+#~ msgstr "Po dokončení zaváděcího procesu ukázat názvy zavedených písem"
+
+#, kde-format
+#~ msgid "Show splash at startup"
+#~ msgstr "Při spuštění ukázat úvodní obrazovku"
+
+#, kde-format
+#~ msgid "Show Fontmatrix in System Tray"
+#~ msgstr "Ukázat Fontmatrix v oznamovací části panelu"
+
+#, kde-format
+#~ msgid "Close to system tray"
+#~ msgstr "Zavřít do oznamovací části panelu"
+
+#, kde-format
+#~ msgid "Start minimized to system tray"
+#~ msgstr "Spouštět zmenšené v systémové části panelu"
+
+#, kde-format
+#~ msgid "Show \"All\" actions"
+#~ msgstr "Ukázat všechny kroky"
+
+#, kde-format
+#~ msgid "Ask for confirmation when activating or deactivating all fonts"
+#~ msgstr "Žádat potvrzení při zapnutí nebo vypnutí všech písem"
+
+#, kde-format
+#~ msgid "Ask for confirmation when activating or deactivating fonts by tags"
+#~ msgstr "Žádat potvrzení při zapnutí nebo vypnutí písem podle značek"
+
+#, kde-format
+#~ msgid "Preview Word"
+#~ msgstr "Náhled slova"
+
+#, kde-format
+#~ msgid "Word:"
+#~ msgstr "Slovo:"
+
+#, kde-format
+#~ msgid "Default font size:"
+#~ msgstr "Výchozí velikost písma:"
+
+#, kde-format
+#~ msgid "subtitled"
+#~ msgstr "podtitulek"
+
+#, kde-format
+#~ msgid "is RTL"
+#~ msgstr "je RTL"
+
+#, kde-format
+#~ msgid "Chart Subtitle Font"
+#~ msgstr "Písmo podtitulku v tabulce"
+
+#, kde-format
+#~ msgid "Initial Layout"
+#~ msgstr "Rozvržení na začátku"
+
+#, kde-format
+#~ msgid "linespacing:"
+#~ msgstr "Vzdálenost řádků:"
+
+#, kde-format
+#~ msgid "Fonts Editor"
+#~ msgstr "Editor písem"
+
+#, kde-format
+#~ msgid "Add the full path to your preferred font editor"
+#~ msgstr "Přidat celou cestu k vašemu oblíbenému editoru"
+
+#, kde-format
+#~ msgid "/usr/bin/fontforge"
+#~ msgstr "/usr/bin/fontforge"
+
+#, kde-format
+#~ msgid ""
+#~ "Select an  hyphenation dict file as it comes with OpenOffice or Scribus"
+#~ msgstr "Vyberte slovník s dělením slov (buď z OpenOffice nebo ze Scribusu)"
+
+#, kde-format
+#~ msgid "Hyphenation dictionary"
+#~ msgstr "Slovník dělení slov"
+
+#, kde-format
+#~ msgid "Browse"
+#~ msgstr "Procházet"
+
+#, kde-format
+#~ msgid "Left:"
+#~ msgstr "Levý:"
+
+#, kde-format
+#~ msgid "Right:"
+#~ msgstr "Pravý:"
+
+#, kde-format
+#~ msgid "Sample Texts"
+#~ msgstr "Ukázkové texty"
+
+#, kde-format
+#~ msgid "+"
+#~ msgstr "+"
+
+#, kde-format
+#~ msgid "−"
+#~ msgstr "-"
+
+#, kde-format
+#~ msgid "Templates Folder"
+#~ msgstr "Složka s předlohami"
+
+#, kde-format
+#~ msgid "Change"
+#~ msgstr "Změnit"
+
+#, kde-format
+#~ msgid "Database repair"
+#~ msgstr "Kontrola databáze"
+
+#, kde-format
+#~ msgid "Dead links"
+#~ msgstr "Mrtvé odkazy"
+
+#, kde-format
+#~ msgid "Select all"
+#~ msgstr "Vybrat vše"
+
+#, kde-format
+#~ msgid "Activated Not Linked"
+#~ msgstr "Zapnut neodkázaný"
+
+#, kde-format
+#~ msgid "Re-link"
+#~ msgstr "Odkázat znovu"
+
+#, kde-format
+#~ msgid "Deactivate"
+#~ msgstr "Vypnout"
+
+#, kde-format
+#~ msgid "Deactivated Linked"
+#~ msgstr "Vypnut odkázaný"
+
+#, kde-format
+#~ msgid "De-link"
+#~ msgstr "Zrušit odkaz"
+
+#, kde-format
+#~ msgid "Activate"
+#~ msgstr "Zapnout"
+
+#, kde-format
+#~ msgid "Unreferenced Files"
+#~ msgstr "Nepřiřazené soubory"
+
+#, kde-format
+#~ msgid "Samples"
+#~ msgstr "Ukázky"
+
+#, kde-format
+#~ msgid "OpenType"
+#~ msgstr "OpenType"
+
+#, kde-format
+#~ msgid ""
+#~ "Depending of the font, some scripts \n"
+#~ "are especially supported if processed \n"
+#~ "through some logic (ICU here)."
+#~ msgstr ""
+#~ "V závislosti na písmě jsou některé skripty\n"
+#~ "obzvláště podporovány, pokud jsou\n"
+#~ "zpracovávány některou logikou (zde ICU)."
+
+#, kde-format
+#~ msgid "Shaping:"
+#~ msgstr "Tvarování:"
+
+#, kde-format
+#~ msgid "World is wide"
+#~ msgstr "Svět je rozlehlý"
+
+#, kde-format
+#~ msgid "Shaper type"
+#~ msgstr "Druh tvarovače"
+
+#, kde-format
+#~ msgid "Use shaper"
+#~ msgstr "Použít tvarovač"
+
+#, kde-format
+#~ msgid "OpenType Features"
+#~ msgstr "Vlastnosti OpenType"
+
+#, kde-format
+#~ msgid "Friendly Name"
+#~ msgstr "Přátelský název"
+
+#, kde-format
+#~ msgid "Save as default"
+#~ msgstr "Uložit jako výchozí"
+
+#, kde-format
+#~ msgid "Reset Default"
+#~ msgstr "Přenastavit na výchozí"
+
+#, kde-format
+#~ msgid "1"
+#~ msgstr "1"
+
+#, kde-format
+#~ msgid "TagSet editor"
+#~ msgstr "Editor nastavení značek"
+
+#, kde-format
+#~ msgid "Collections of Tags"
+#~ msgstr "Sbírky značek"
+
+#, kde-format
+#~ msgid "Available Tags"
+#~ msgstr "Dostupné značky"
+
+#, kde-format
+#~ msgid "Add selected tag to current set."
+#~ msgstr "Přidat vybranou značku k nynější sadě."
+
+#, kde-format
+#~ msgid "Collections"
+#~ msgstr "Sbírky"
+
+#, kde-format
+#~ msgid "New"
+#~ msgstr "Nový"
+
+#, kde-format
+#~ msgid "delete"
+#~ msgstr "Smazat"
+
+#, kde-format
+#~ msgid "Add a tag"
+#~ msgstr "Přidat značku"
+
+#, kde-format
+#~ msgid "Add Tag"
+#~ msgstr "Přidat značku"
+
+#, kde-format
+#~ msgid "Remove Tag"
+#~ msgstr "Odstranit značku"
+
+#, kde-format
+#~ msgid "Right mouse click on a tag to add it or remove it from TagSet"
+#~ msgstr ""
+#~ "Klepnutí pravým tlačítkem myši na značku pro její přidání nebo odstranění "
+#~ "ze sady značek"
+
+#, kde-format
+#~ msgid "Inline progression"
+#~ msgstr "Řadový sled znaků"
+
+#, kde-format
+#~ msgid "e.g. Latin text"
+#~ msgstr "např. latinský text"
+
+#, kde-format
+#~ msgid "Left to right"
+#~ msgstr "Zleva doprava"
+
+#, kde-format
+#~ msgid "e.g. Arabic text"
+#~ msgstr "např. arabský text"
+
+#, kde-format
+#~ msgid "Right to left"
+#~ msgstr "Zprava doleva"
+
+#, kde-format
+#~ msgid "e.g. Traditional Chinese & Japanese text"
+#~ msgstr "např. tradiční čínský & japonský text"
+
+#, kde-format
+#~ msgid "Top to bottom"
+#~ msgstr "Shora dolů"
+
+#, kde-format
+#~ msgid "e.g. Runic text"
+#~ msgstr "např. runový text"
+
+#, kde-format
+#~ msgid "Bottom to top"
+#~ msgstr "Zdola nahoru"
+
+#, kde-format
+#~ msgid "Block progression"
+#~ msgstr "Blokový sled znaků"
+
+#, kde-format
+#~ msgid "e.g. Tarditionnal Chinese & Japanes text"
+#~ msgstr "např. tradiční čínský & japonský text"
+
+#, kde-format
+#~ msgid "e.g. Traditional Mongolian text"
+#~ msgstr "např. tradiční mongolský text"
+
+#, kde-format
+#~ msgid "TrueType tables display"
+#~ msgstr "Zobrazení tabulek TrueType"
+
+#, kde-format
+#~ msgid "TrueType Tables "
+#~ msgstr "Tabulky TrueType"
+
+#, kde-format
+#~ msgid "Tag"
+#~ msgstr "Značka"
+
+#, kde-format
+#~ msgid "Description"
+#~ msgstr "Popis"
+
+#, kde-format
+#~ msgid "Size"
+#~ msgstr "Velikost"
+
+#, kde-format
+#~ msgid "&Export"
+#~ msgstr "&Exportovat"
 
 #, kde-format
 #~ msgid "Import Directory"
@@ -9852,11 +10888,6 @@ msgstr ""
 #~ msgctxt "MainViewWidget|"
 #~ msgid "133Un-Mapped Glyphs"
 #~ msgstr "133 Nezobrazované piktogramy"
-
-#, fuzzy
-#~ msgctxt "MainViewWidget|"
-#~ msgid "Activation event"
-#~ msgstr "Událost aktivace"
 
 #, fuzzy
 #~ msgctxt "MainViewWidget|"
