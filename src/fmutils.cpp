@@ -32,13 +32,13 @@ void printBacktrace ( int frames )
 	{
 		for ( i=1; i < trace_size; ++i )
 		{
-			QString msg ( messages[i] );
-			int sep1 ( msg.indexOf ( "(" ) );
-			int sep2 ( msg.indexOf ( "+" ) );
+			QString msg ( QString::fromLocal8Bit ( messages[i] ) );
+			int sep1 ( msg.indexOf ( QLatin1String("(") ) );
+			int sep2 ( msg.indexOf ( QLatin1String("+") ) );
 			QString mName (	msg.mid ( sep1 + 1,sep2-sep1 -1 ) );
 
 			QString name;
-			if ( mName.startsWith ( "_Z" ) )
+			if ( mName.startsWith ( QLatin1String("_Z") ) )
 			{
 				char* outbuf = nullptr;
 				size_t length = 0;
@@ -60,7 +60,7 @@ void printBacktrace ( int frames )
 				name = mName;
 			if ( name.isEmpty() )
 				name = mName;
-			QString bts ( "[BT] %1. %2" );
+			QString bts ( QStringLiteral("[BT] %1. %2") );
 			qCDebug(FONTMATRIX_LOG, "%s", bts.arg ( i ).arg ( name ).toUtf8().data() );
 		}
 		free ( static_cast<void*> ( messages ) );

@@ -33,11 +33,11 @@ PanoseAttributeModel::PanoseAttributeModel(QObject * parent)
 		:QAbstractListModel(parent)
 {
 	const QMap< FontStrings::PanoseKey, QMap<int, QString> >& p(FontStrings::Panose());
-	QString defaultDir(FMPaths::ResourcesDir() + "Panose/Icons");
+	QString defaultDir(FMPaths::ResourcesDir() + QLatin1String("Panose/Icons"));
 	QString pDir(FMConfig::value(QStringLiteral("Panose/IconDir"), defaultDir).toString() + QDir::separator());
 	for (const auto pKeys = p.keys(); const auto& k : pKeys)
 	{
-		QString fn(pDir + QString::number(k) + QDir::separator() + "attribute.png");
+		QString fn(pDir + QString::number(k) + QDir::separator() + QLatin1String("attribute.png"));
 		if(QFile::exists(fn))
 			m_icons << QIcon(fn);
 		else
@@ -79,7 +79,7 @@ PanoseValueModel::PanoseValueModel( QObject * parent)
 		:QAbstractListModel(parent)
 {
 	const QMap< FontStrings::PanoseKey, QMap<int, QString> >& p(FontStrings::Panose());
-	QString defaultDir(FMPaths::ResourcesDir() + "Panose/Icons");
+	QString defaultDir(FMPaths::ResourcesDir() + QLatin1String("Panose/Icons"));
 	QString pDir(FMConfig::value(QStringLiteral("Panose/IconDir"), defaultDir).toString() + QDir::separator());
 
 	for (const auto pKeysList = p.keys(); const auto& k : pKeysList)
@@ -88,7 +88,7 @@ PanoseValueModel::PanoseValueModel( QObject * parent)
 		{
 			if(v > 1) // We do not want "Any" and "No Fit"
 			{
-				QString fn(pDir + QString::number(k) + QDir::separator() + QString::number(v) +".png");
+				QString fn(pDir + QString::number(k) + QDir::separator() + QString::number(v) +QLatin1String(".png"));
 				if(QFile::exists(fn))
 					m_icons[k] << QIcon(fn);
 				else

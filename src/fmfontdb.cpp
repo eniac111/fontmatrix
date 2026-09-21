@@ -30,34 +30,34 @@ FMFontDb * FMFontDb::instance = nullptr;
 FMFontDb::FMFontDb()
 	:QSqlDatabase ( typotek::getInstance()->getDatabaseDriver() )
 {
-	fieldName[FontId]	= "fontident";
-	fieldName[Id]		= "digitident";
-	fieldName[Tags] 	= "tag";
-	fieldName[Lang] 	= "lang";
-	fieldName[InfoKey] 	= "infokey";
-	fieldName[InfoValue] 	= "infovalue";
-	fieldName[Type] 	= "type";
-	fieldName[FsType] 	= "fstype";
-	fieldName[Family] 	= "family";
-	fieldName[Variant] 	= "variant";
-	fieldName[Name] 	= "name";
-	fieldName[Panose] 	= "panose";
-	fieldName[Activation] 	= "activation";
+	fieldName[FontId]	= QLatin1String("fontident");
+	fieldName[Id]		= QLatin1String("digitident");
+	fieldName[Tags] 	= QLatin1String("tag");
+	fieldName[Lang] 	= QLatin1String("lang");
+	fieldName[InfoKey] 	= QLatin1String("infokey");
+	fieldName[InfoValue] 	= QLatin1String("infovalue");
+	fieldName[Type] 	= QLatin1String("type");
+	fieldName[FsType] 	= QLatin1String("fstype");
+	fieldName[Family] 	= QLatin1String("family");
+	fieldName[Variant] 	= QLatin1String("variant");
+	fieldName[Name] 	= QLatin1String("name");
+	fieldName[Panose] 	= QLatin1String("panose");
+	fieldName[Activation] 	= QLatin1String("activation");
 
-	tableName[InternalId]	= "fontmatrix_id";
-	tableName[Data] 	= "fontmatrix_data";
-	tableName[Tag] 		= "fontmatrix_tags";
-	tableName[Info] 	= "fontmatrix_info";
+	tableName[InternalId]	= QLatin1String("fontmatrix_id");
+	tableName[Data] 	= QLatin1String("fontmatrix_data");
+	tableName[Tag] 		= QLatin1String("fontmatrix_tags");
+	tableName[Info] 	= QLatin1String("fontmatrix_info");
 
 	transactionDeep = 0;
 	tagsCacheValid = false;
 
-	priorList <<	QString("Book")
-			<<	QString("Normal")
-			<<	QString("Regular")
-			<<	QString("Roman")
-			<<	QString("Plain")
-			<<	QString("Medium");
+	priorList <<	QStringLiteral("Book")
+			<<	QStringLiteral("Normal")
+			<<	QStringLiteral("Regular")
+			<<	QStringLiteral("Roman")
+			<<	QStringLiteral("Plain")
+			<<	QStringLiteral("Medium");
 }
 
 FMFontDb * FMFontDb::DB()
@@ -109,14 +109,14 @@ void FMFontDb::initRecord ( const QString & id )
 	// 	qDebug()<<"initRecord"<<id;
 	int nId ( ++internalCounter );
 
-	QString qs1 ( QString ( "INSERT INTO %1(%2,%3) VALUES(?,?)" )
+	QString qs1 ( QStringLiteral ( "INSERT INTO %1(%2,%3) VALUES(?,?)" )
 	              .arg ( tableName.value ( InternalId ), fieldName.value ( FontId ), fieldName.value ( Id ) ) );
 
 	QSqlQuery query ( *this );
 	// if not in internal id, no need to go further
 	if ( execBound ( query, qs1, QVariantList() << id << nId ) )
 	{
-		QString qs2 ( QString ( "INSERT INTO %1(%2) VALUES(?)" )
+		QString qs2 ( QStringLiteral ( "INSERT INTO %1(%2) VALUES(?)" )
 		              .arg ( tableName.value ( Data ), fieldName.value ( Id ) ) );
 		execBound ( query, qs2, QVariantList() << nId );
 	}
@@ -136,7 +136,7 @@ void FMFontDb::setValue ( const QString & id, Field field, QVariant value )
 	}
 	else
 	{
-		QString qs ( QString ( "UPDATE %1 SET %2=? WHERE %3=?" )
+		QString qs ( QStringLiteral ( "UPDATE %1 SET %2=? WHERE %3=?" )
 		             .arg ( tableName.value ( Data ), fieldName.value ( field ), fieldName.value ( Id ) ) );
 		QSqlQuery query ( *this );
 		execBound ( query, qs, QVariantList() << value << nId );
@@ -151,7 +151,7 @@ void FMFontDb::setValues ( const QString & id, QList< Field > fields, QVariantLi
 	QSqlQuery query ( *this );
 	for ( int i ( 0 );i<fields.count();++i )
 	{
-		QString qs ( QString ( "UPDATE %1 SET %2=? WHERE %3=?" )
+		QString qs ( QStringLiteral ( "UPDATE %1 SET %2=? WHERE %3=?" )
 		             .arg ( tableName.value ( Data ), fieldName.value ( fields[i] ), fieldName.value ( Id ) ) );
 		if ( !execBound ( query, qs, QVariantList() << values[i] << nId ) )
 			break;
@@ -170,7 +170,7 @@ void FMFontDb::setInfoMap ( const QString & id, const QMap< int, QMap < int , QS
 	QVariantList langlist;
 	QVariantList keylist;
 	QVariantList valuelist;
-	QString qs ( QString ( "INSERT INTO %1 VALUES(?,?,?,?)" )
+	QString qs ( QStringLiteral ( "INSERT INTO %1 VALUES(?,?,?,?)" )
 	             .arg ( tableName.value ( Info ) )
 	             /*.arg(fieldName.value ( Id ))
 	             .arg(fieldName.value ( Lang ))
@@ -224,7 +224,7 @@ QVariant FMFontDb::getValue ( const QString & id, Field field, bool useCache )
 	if ( field == Tags )
 	{
 		QStringList tl;
-		QString qs ( QString ( "SELECT %1 FROM %2 WHERE %3=?" )
+		QString qs ( QStringLiteral ( "SELECT %1 FROM %2 WHERE %3=?" )
 		             .arg ( fieldName.value ( field ), tableName.value ( Tag ), fieldName.value ( Id ) ) );
 		QSqlQuery query ( *this );
 		if ( execBound ( query, qs, QVariantList() << getId ( id ) ) )
@@ -241,7 +241,7 @@ QVariant FMFontDb::getValue ( const QString & id, Field field, bool useCache )
 	}
 	else
 	{
-		QString qs ( QString ( "SELECT %1 FROM %2 WHERE %3=?" )
+		QString qs ( QStringLiteral ( "SELECT %1 FROM %2 WHERE %3=?" )
 		             .arg ( fieldName.value ( field ), tableName.value ( Data ), fieldName.value ( Id ) ) );
 		QSqlQuery query ( *this );
 		if ( execBound ( query, qs, QVariantList() << getId ( id ) ) )
@@ -263,7 +263,7 @@ QList< FontDBResult > FMFontDb::getValues ( Field field, const QList< FontItem *
 		lF = AllFonts();
 	// TODO really filter out results according to the font list given in argument
 	QList<FontDBResult> ret;
-	QString qs ( QString ( "SELECT %1,%2 FROM %3" )
+	QString qs ( QStringLiteral ( "SELECT %1,%2 FROM %3" )
 		     .arg ( fieldName.value ( Id ), fieldName.value ( field ), tableName.value ( Data ) ) );
 	QSqlQuery query ( *this );
 
@@ -299,7 +299,7 @@ FontInfoMap FMFontDb::getInfoMap ( const QString & id )
 		qCDebug(FONTMATRIX_LOG) <<"It is a temp Id";
 		return temporaryFont[id]->moreInfo();
 	}
-	QString qs ( QString ( "SELECT * FROM %1 WHERE %2=?" )
+	QString qs ( QStringLiteral ( "SELECT * FROM %1 WHERE %2=?" )
 	             .arg ( tableName.value ( Info ), fieldName.value ( Id ) ) );
 	QSqlQuery query ( *this );
 	if ( execBound ( query, qs, QVariantList() << getId ( id ) ) )
@@ -323,7 +323,7 @@ FontInfoMap FMFontDb::getInfoMap ( const QString & id )
 QList<FontDBResult> FMFontDb::getInfo ( [[maybe_unused]] const QList< FontItem * > & fonts, InfoItem info, int codeLang )
 {
 	QList<FontDBResult> ret;
-	QString qs ( QString ( "SELECT %1,%2 FROM %3 WHERE (%4=?) AND (%5=?)" )
+	QString qs ( QStringLiteral ( "SELECT %1,%2 FROM %3 WHERE (%4=?) AND (%5=?)" )
 	             .arg ( fieldName.value ( Id ), fieldName.value ( InfoValue ), tableName.value ( Info ),
 	                    fieldName.value ( InfoKey ), fieldName.value ( Lang ) ) );
 	QSqlQuery query ( *this );
@@ -348,7 +348,7 @@ QList<FontDBResult> FMFontDb::getInfo ( [[maybe_unused]] const QList< FontItem *
 void FMFontDb::addTag ( const QString & id, const QString & t )
 {
 	int nId ( getId ( id ) );
-	QString ts ( QString ( "INSERT INTO %1(%2,%3) VALUES(?,?)" )
+	QString ts ( QStringLiteral ( "INSERT INTO %1(%2,%3) VALUES(?,?)" )
 	             .arg ( tableName.value ( Tag ), fieldName.value ( Id ), fieldName.value ( Tags ) ) );
 	QSqlQuery query ( *this );
 	execBound ( query, ts, QVariantList() << nId << t );
@@ -359,7 +359,7 @@ void FMFontDb::addTag(const QStringList & idlist, const QString & t)
 {
 	QVariantList nidlist;
 	QVariantList taglist;
-	QString qs ( QString ( "INSERT INTO %1(%2,%3) VALUES(?,?)" )
+	QString qs ( QStringLiteral ( "INSERT INTO %1(%2,%3) VALUES(?,?)" )
 		     .arg ( tableName.value ( Tag ), fieldName.value ( Id ), fieldName.value ( Tags ) ) );
 	QSqlQuery query ( *this );
 	query.prepare ( qs );
@@ -384,7 +384,7 @@ void FMFontDb::addTag(const QStringList & idlist, const QString & t)
 void FMFontDb::removeTag ( const QString & id, const QString & t )
 {
 	int nId ( getId ( id ) );
-	QString qs ( QString ( "DELETE FROM %1 WHERE (%2=?) AND (%3=?)" )
+	QString qs ( QStringLiteral ( "DELETE FROM %1 WHERE (%2=?) AND (%3=?)" )
 	             .arg ( tableName.value ( Tag ), fieldName.value ( Id ), fieldName.value ( Tags ) ) );
 	QSqlQuery query ( *this );
 	execBound ( query, qs, QVariantList() << nId << t );
@@ -394,7 +394,7 @@ void FMFontDb::removeTag ( const QString & id, const QString & t )
 void FMFontDb::setTags ( const QString & id, const QStringList & tl )
 {
 	int nId ( getId ( id ) );
-	QString qs ( QString ( "DELETE FROM %1 WHERE %2=?" )
+	QString qs ( QStringLiteral ( "DELETE FROM %1 WHERE %2=?" )
 	             .arg ( tableName.value ( Tag ), fieldName.value ( Id ) ) );
 	QSqlQuery query ( *this );
 	execBound ( query, qs, QVariantList() << nId );
@@ -414,7 +414,7 @@ QStringList FMFontDb::getTags()
 		return tagsCache;
 
 	tagsCache.clear();
-	QString qs ( QString ( "SELECT %1 FROM %2" )
+	QString qs ( QStringLiteral ( "SELECT %1 FROM %2" )
 	             .arg ( fieldName.value ( Tags ), tableName.value ( Tag ) ) );
 	QSqlQuery query ( *this );
 	if ( execBound ( query, qs ) )
@@ -431,7 +431,7 @@ QStringList FMFontDb::getTags()
 void FMFontDb::addTagToDB ( const QString & t )
 {
 	// 	qDebug() << "addtag"<< t;
-	QString vs ( QString ( "INSERT INTO %1(%2,%3) VALUES(?,?)" )
+	QString vs ( QStringLiteral ( "INSERT INTO %1(%2,%3) VALUES(?,?)" )
 	             .arg ( tableName.value ( Tag ), fieldName.value ( Id ), fieldName.value ( Tags ) ) );
 	QSqlQuery query ( *this );
 	execBound ( query, vs, QVariantList() << 0 << t );
@@ -441,7 +441,7 @@ void FMFontDb::addTagToDB ( const QString & t )
 
 void FMFontDb::removeTagFromDB(const QString & t)
 {
-	QString qs ( QString ( "DELETE FROM %1 WHERE %2=?" )
+	QString qs ( QStringLiteral ( "DELETE FROM %1 WHERE %2=?" )
 		     .arg ( tableName.value ( Tag ), fieldName.value ( Tags ) ) );
 	QSqlQuery query ( *this );
 	execBound ( query, qs, QVariantList() << t );
@@ -451,7 +451,7 @@ void FMFontDb::removeTagFromDB(const QString & t)
 
 void FMFontDb::editTag(const QString & tOld, const QString & tNew)
 {
-	QString qs ( QString ( "UPDATE %1 SET %2=? WHERE %2=?" )
+	QString qs ( QStringLiteral ( "UPDATE %1 SET %2=? WHERE %2=?" )
 		     .arg ( tableName.value ( Tag ), fieldName.value ( Tags ) ) );
 	QSqlQuery query ( *this );
 	execBound ( query, qs, QVariantList() << tNew << tOld );
@@ -492,40 +492,40 @@ void FMFontDb::initFMDb()
 	if ( !allIsAlreadyHere )
 	{
 		// We want to create the tables then!
-		QString fId	( QString ( "%1 CHAR(255) " ).arg ( fieldName.value ( FontId ) ) );
-		QString fNumId	( QString ( "%1 INTEGER" ).arg ( fieldName.value ( Id ) ) );
+		QString fId	( QStringLiteral ( "%1 CHAR(255) " ).arg ( fieldName.value ( FontId ) ) );
+		QString fNumId	( QStringLiteral ( "%1 INTEGER" ).arg ( fieldName.value ( Id ) ) );
 
-		QString fFamily	( QString ( "%1 CHAR(255) " ).arg ( fieldName.value ( Family ) ) );
-		QString fVariant ( QString ( "%1 CHAR(255) " ).arg ( fieldName.value ( Variant ) ) );
-		QString fName	( QString ( "%1 CHAR(255) " ).arg ( fieldName.value ( Name ) ) );
-		QString fType	( QString ( "%1 CHAR(32) " ).arg ( fieldName.value ( Type ) ) );
-		QString fPanose	( QString ( "%1 CHAR(32) " ).arg ( fieldName.value ( Panose ) ) );
-		QString fFsType	( QString ( "%1 INTEGER " ).arg ( fieldName.value ( FsType ) ) );
-		QString fActivation ( QString ( "%1 INTEGER " ).arg ( fieldName.value ( Activation ) ) );
+		QString fFamily	( QStringLiteral ( "%1 CHAR(255) " ).arg ( fieldName.value ( Family ) ) );
+		QString fVariant ( QStringLiteral ( "%1 CHAR(255) " ).arg ( fieldName.value ( Variant ) ) );
+		QString fName	( QStringLiteral ( "%1 CHAR(255) " ).arg ( fieldName.value ( Name ) ) );
+		QString fType	( QStringLiteral ( "%1 CHAR(32) " ).arg ( fieldName.value ( Type ) ) );
+		QString fPanose	( QStringLiteral ( "%1 CHAR(32) " ).arg ( fieldName.value ( Panose ) ) );
+		QString fFsType	( QStringLiteral ( "%1 INTEGER " ).arg ( fieldName.value ( FsType ) ) );
+		QString fActivation ( QStringLiteral ( "%1 INTEGER " ).arg ( fieldName.value ( Activation ) ) );
 
-		QString fLang	( QString ( "%1 INTEGER " ).arg ( fieldName.value ( Lang ) ) );
-		QString fInfoKey ( QString ( "%1 INTEGER " ).arg ( fieldName.value ( InfoKey ) ) );
-		QString fInfoValue ( QString ( "%1 TEXT" ).arg ( fieldName.value ( InfoValue ) ) );
+		QString fLang	( QStringLiteral ( "%1 INTEGER " ).arg ( fieldName.value ( Lang ) ) );
+		QString fInfoKey ( QStringLiteral ( "%1 INTEGER " ).arg ( fieldName.value ( InfoKey ) ) );
+		QString fInfoValue ( QStringLiteral ( "%1 TEXT" ).arg ( fieldName.value ( InfoValue ) ) );
 
-		QString fTags	( QString ( "%1 CHAR(255) " ).arg ( fieldName.value ( Tags ) ) );
+		QString fTags	( QStringLiteral ( "%1 CHAR(255) " ).arg ( fieldName.value ( Tags ) ) );
 
 
-		QString cData ( QString ( "CREATE TABLE %1 (%2,%3,%4,%5,%6,%7,%8,%9)" )
+		QString cData ( QStringLiteral ( "CREATE TABLE %1 (%2,%3,%4,%5,%6,%7,%8,%9)" )
 		                .arg ( tableName.value ( Data ), fNumId, fFamily, fVariant, fName,
 		                       fType, fPanose, fFsType, fActivation ) );
-		QString iData(QString("CREATE INDEX iData ON %1(%2)").arg ( tableName.value ( Data ), fieldName.value ( Id ) ));
+		QString iData(QStringLiteral("CREATE INDEX iData ON %1(%2)").arg ( tableName.value ( Data ), fieldName.value ( Id ) ));
 
-		QString cInfo ( QString ( "CREATE TABLE %1 (%2,%3,%4,%5)" )
+		QString cInfo ( QStringLiteral ( "CREATE TABLE %1 (%2,%3,%4,%5)" )
 		                .arg ( tableName.value ( Info ), fNumId, fLang, fInfoKey, fInfoValue ) );
-		QString iInfo(QString("CREATE INDEX iInfo ON %1(%2)").arg ( tableName.value ( Info ), fieldName.value ( Id ) ));
+		QString iInfo(QStringLiteral("CREATE INDEX iInfo ON %1(%2)").arg ( tableName.value ( Info ), fieldName.value ( Id ) ));
 
-		QString cTag ( QString ( "CREATE TABLE %1 (%2,%3)" )
+		QString cTag ( QStringLiteral ( "CREATE TABLE %1 (%2,%3)" )
 		               .arg ( tableName.value ( Tag ), fNumId, fTags ) );
-		QString iTag(QString("CREATE INDEX iTag ON %1(%2)").arg ( tableName.value ( Tag ), fieldName.value ( Id ) ));
+		QString iTag(QStringLiteral("CREATE INDEX iTag ON %1(%2)").arg ( tableName.value ( Tag ), fieldName.value ( Id ) ));
 
-		QString cId ( QString ( "CREATE TABLE %1 (%2,%3)" )
+		QString cId ( QStringLiteral ( "CREATE TABLE %1 (%2,%3)" )
 		              .arg ( tableName.value ( InternalId ), fId, fNumId ) );
-		QString iId(QString("CREATE INDEX iId ON %1(%2)").arg ( tableName.value ( InternalId ), fieldName.value ( FontId ) ));
+		QString iId(QStringLiteral("CREATE INDEX iId ON %1(%2)").arg ( tableName.value ( InternalId ), fieldName.value ( FontId ) ));
 
 		QSqlQuery query ( *this );
 		if ( !query.exec ( cData ) )
@@ -551,7 +551,7 @@ void FMFontDb::initFMDb()
 	{
 		internalCounter = 0;
 		QSqlQuery query ( *this );
-		if ( query.exec ( QString ( "SELECT MAX(%1) FROM %2" )
+		if ( query.exec ( QStringLiteral ( "SELECT MAX(%1) FROM %2" )
 		                  .arg ( fieldName.value ( Id ), tableName.value ( InternalId ) ) ) )
 		{
 			if ( query.first() )
@@ -561,7 +561,7 @@ void FMFontDb::initFMDb()
 		}
 		bool rq ( false );
 		/// build ID caches
-		QString qs1 ( "SELECT * FROM %1 " );
+		QString qs1 ( QStringLiteral("SELECT * FROM %1 ") );
 		rq = query.exec ( qs1.arg ( tableName.value ( InternalId ) ) );
 		if ( !rq )
 		{
@@ -583,7 +583,7 @@ void FMFontDb::initFMDb()
 		/// build memory font database
 		//  which is ment to be a lightweight version of the 
 		// file DB and act as a proxy for most of requests.
-		QString qs2 ( "SELECT %1,%2,%3,%4,%5 FROM %6" );
+		QString qs2 ( QStringLiteral("SELECT %1,%2,%3,%4,%5 FROM %6") );
 		rq = query.exec ( qs2.arg ( fieldName.value ( Id ), fieldName.value ( Family ), fieldName.value ( Variant ),
 		                            fieldName.value ( Type ), fieldName.value ( Activation ), tableName.value ( Data ) ) );
 		if ( !rq )
@@ -749,7 +749,7 @@ bool FMFontDb::TransactionEnd()
 
 int FMFontDb::FontCount()
 {
-	QString qs ( "SELECT COUNT(%1) FROM %2 " );
+	QString qs ( QStringLiteral("SELECT COUNT(%1) FROM %2 ") );
 	QSqlQuery query ( *this );
 	if ( query.exec ( qs.arg ( fieldName.value ( Id ), tableName.value ( InternalId ) ) ) )
 	{
@@ -770,12 +770,12 @@ QList< FontItem * > FMFontDb::Fonts ( const QVariant & pattern, Field field )
 	        || ( field == Variant )
 	        || ( field == Name )
 	        /*|| ( field == Panose ) */)
-		return Fonts ( QString ( "%1=?" ).arg ( fieldName.value ( field ) ), QVariantList() << pattern.toString(), Data );
+		return Fonts ( QStringLiteral ( "%1=?" ).arg ( fieldName.value ( field ) ), QVariantList() << pattern.toString(), Data );
 	else if ( field == Tags )
-		return Fonts ( QString ( "%1=?" ).arg ( fieldName.value ( field ) ), QVariantList() << pattern.toString(), Tag );
+		return Fonts ( QStringLiteral ( "%1=?" ).arg ( fieldName.value ( field ) ), QVariantList() << pattern.toString(), Tag );
 	else if ( field == Activation
 	          || ( field == FsType ) )
-		return Fonts ( QString ( "%1=?" ).arg ( fieldName.value ( field ) ), QVariantList() << pattern.toInt(), Data );
+		return Fonts ( QStringLiteral ( "%1=?" ).arg ( fieldName.value ( field ) ), QVariantList() << pattern.toInt(), Data );
 	else
 		return QList< FontItem * >();
 }
@@ -785,13 +785,13 @@ QList< FontItem * > FMFontDb::Fonts ( const QVariant & pattern, InfoItem info, i
 	// A name comes once per platform and language: 0 is Macintosh English,
 	// 1033 Windows US English, and a third of the fonts only have the second.
 	// A negative codeLang looks in all of them.
-	QString qs ( QString ( "(%1=?) AND (%2 LIKE ?)" )
+	QString qs ( QStringLiteral ( "(%1=?) AND (%2 LIKE ?)" )
 	             .arg ( fieldName.value ( InfoKey ), fieldName.value ( InfoValue ) ) );
 	QVariantList values;
 	values << int ( info ) << QString ( QLatin1Char ( '%' ) + pattern.toString() + QLatin1Char ( '%' ) );
 	if ( codeLang >= 0 )
 	{
-		qs += QString ( " AND (%1=?)" ).arg ( fieldName.value ( Lang ) );
+		qs += QStringLiteral ( " AND (%1=?)" ).arg ( fieldName.value ( Lang ) );
 		values << codeLang;
 	}
 	return Fonts ( qs, values, Info );
@@ -800,7 +800,7 @@ QList< FontItem * > FMFontDb::Fonts ( const QVariant & pattern, InfoItem info, i
 QList< FontItem * > FMFontDb::Fonts ( const QString & whereString, const QVariantList & values, Table table)
 {
 	//	QList< FontItem * > ret;
-	QString qs ( QString ( "SELECT %1 FROM %2 WHERE " ).arg ( fieldName.value ( Id ), tableName.value ( table ) ) + whereString );
+	QString qs ( QStringLiteral ( "SELECT %1 FROM %2 WHERE " ).arg ( fieldName.value ( Id ), tableName.value ( table ) ) + whereString );
 	QSqlQuery query ( *this );
 	if ( !execBound ( query, qs, values ) )
 		return QList< FontItem * >();
@@ -846,7 +846,7 @@ bool FMFontDb::Remove ( const QString & id )
 	QSqlQuery query ( *this );
 	for ( const Table t : { Tag, Info, Data, InternalId } )
 	{
-		QString qs ( QString ( "DELETE FROM %1 WHERE %2=?" )
+		QString qs ( QStringLiteral ( "DELETE FROM %1 WHERE %2=?" )
 		             .arg ( tableName.value ( t ), fieldName.value ( Id ) ) );
 		if ( !execBound ( query, qs, QVariantList() << nId ) )
 			res = false;

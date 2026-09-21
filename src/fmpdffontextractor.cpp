@@ -60,7 +60,7 @@ bool FMPDFFontExtractor::loadFile(const QString & filePath)
 QStringList FMPDFFontExtractor::extensions()
 {
 	QStringList ret;
-	ret << "pdf" << "PDF";
+	ret << QStringLiteral("pdf") << QStringLiteral("PDF");
 	return ret;
 }
 
@@ -119,7 +119,7 @@ QStringList FMPDFFontExtractor::list()
 
 		QString n = QString::fromStdString(std::string(fnObj->GetName().GetString()));
 		mfont[n] = fontFile;
-		mType[n] = (subtype == "Type1") ? "pfb" : "ttf";
+		mType[n] = (subtype == "Type1") ? QStringLiteral("pfb") : QStringLiteral("ttf");
 	}
 
 	return mfont.keys();

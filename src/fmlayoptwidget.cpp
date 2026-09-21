@@ -146,7 +146,7 @@ void FMLayOptWidget::setValue ( V v, int value )
 			hPenalty->setText ( QString::number ( ( ( double ) value ) / 10.0 ) );
 			break;
 		case SPACE: spaceSlid->setValue ( value );
-			minSpace->setText ( QString::number ( value ) + " %");
+			minSpace->setText ( QString::number ( value ) + QLatin1String(" %"));
 			break;
 		default:break;
 	}

@@ -38,9 +38,9 @@ QMap<QString, int> FMShaperFactory::types()
 {
 	QMap<QString, int> ret;
 	ret.clear();
-	ret["Fontmatrix"] = FONTMATRIX;
+	ret[QStringLiteral("Fontmatrix")] = FONTMATRIX;
 	
-	ret["Harfbuzz"] = HARFBUZZ;
+	ret[QStringLiteral("Harfbuzz")] = HARFBUZZ;
 	
 #ifdef HAVE_ICU
 	ret["ICU"] = ICU;

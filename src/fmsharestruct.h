@@ -27,7 +27,7 @@ struct OTFSet
 	QStringList gpos_features;
 	QStringList gsub_features;
 	OTFSet() {};
-					  QString dump() {return script + "|" +lang+ "|"+ gpos_features.join ( "|" ) + gsub_features.join ( "|" );}
+					  QString dump() {return script + QLatin1Char ( '|' ) + lang + QLatin1Char ( '|' ) + gpos_features.join ( QLatin1Char ( '|' ) ) + gsub_features.join ( QLatin1Char ( '|' ) );}
 					  bool isEmpty() { return script.isEmpty() && lang.isEmpty() && gpos_features.isEmpty() &&  gsub_features.isEmpty() ;};
 };
 
@@ -78,7 +78,7 @@ struct RenderedGlyph
 	
 	void dump() const
 	{
-		QString ds("glyph %1; log %2; xadv %3; yadv %4; xof %5; yof %6; char %7; hyph %8");
+		QString ds(QStringLiteral("glyph %1; log %2; xadv %3; yadv %4; xof %5; yof %6; char %7; hyph %8"));
 		// plain qDebug(): the hyphenate library shares this header and does
 		// not see the logging category of the application
 		qDebug() << ds.arg(glyph)

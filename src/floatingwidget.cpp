@@ -38,8 +38,8 @@ FloatingWidget::FloatingWidget(const QString &f, const QString& typ, QWidget *pa
 		fn = fi->fancyName();
 	else
 		fn = f;
-	actionName =  QString("[%1]").arg(fType) + QString(" ") + fn;
-	wTitle =  fn + QString(" - Fontmatrix");
+	actionName =  QStringLiteral("[%1]").arg(fType) + QStringLiteral(" ") + fn;
+	wTitle =  fn + QStringLiteral(" - Fontmatrix");
 	if(nullptr == parent)
 	{
 		ddetach();

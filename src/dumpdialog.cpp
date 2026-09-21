@@ -63,7 +63,7 @@ void FMDumpDialog::slotDumpIt()
 
 void FMDumpDialog::browseFile()
 {
-	QString s( QFileDialog::getSaveFileName(this, "Fontmatrix", QDir::homePath()) );
+	QString s( QFileDialog::getSaveFileName(this, QStringLiteral("Fontmatrix"), QDir::homePath()) );
 	if(!s.isEmpty())
 	{
 		filePath->setText(s);
@@ -72,7 +72,7 @@ void FMDumpDialog::browseFile()
 
 void FMDumpDialog::browseModel()
 {
-	QString s( QFileDialog::getOpenFileName(this, "Fontmatrix", QDir::homePath()) );
+	QString s( QFileDialog::getOpenFileName(this, QStringLiteral("Fontmatrix"), QDir::homePath()) );
 	if(!s.isEmpty())
 	{
 		QFile file(s);
@@ -85,7 +85,7 @@ void FMDumpDialog::browseModel()
 		file.close();
 	}
 	else
-		modelText->setPlainText( "" );
+		modelText->setPlainText( QLatin1String("") );
 }
 
 void FMDumpDialog::insertSelectedField()

@@ -325,7 +325,7 @@ QString FMKernFeature::glyphname ( int index )
 	{
 		key = "noname";
 	}
-	return QString ( key );
+	return QString::fromLatin1 ( key );
 }
 
 FMKernFeature::ClassDefTable FMKernFeature::getClass ( quint16 classDefOffset, quint16 coverageId )

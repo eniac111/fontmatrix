@@ -56,7 +56,7 @@ QList<QAction*> Shortcuts::getActions()
 
 QString Shortcuts::settingsKey(QAction *action)
 {
-	return QString("ActionShortcut/%1").arg(cleanName(action));
+	return QStringLiteral("ActionShortcut/%1").arg(cleanName(action));
 }
 
 QString Shortcuts::cleanName(QAction *action)
@@ -68,7 +68,7 @@ QString Shortcuts::cleanName(const QString &s)
 {
 
 	QString h = s;
-	return h.remove("&");
+	return h.remove(QStringLiteral("&"));
 }
 
 QString Shortcuts::isReserved(const QString &shortcut, const QString &actionText)
@@ -97,8 +97,8 @@ void Shortcuts::setShortcut(const QString &shortcut, const QString &actionText)
 void Shortcuts::clearShortcut(const QString &actionText)
 {
 	if (actions.contains(cleanName(actionText))) {
-		actions[cleanName(actionText)]->setShortcut(QString(""));
-		FMConfig::setValue(settingsKey(actions[cleanName(actionText)]), QString(""));
+		actions[cleanName(actionText)]->setShortcut(QKeySequence());
+		FMConfig::setValue(settingsKey(actions[cleanName(actionText)]), QString());
 	}
 }
 

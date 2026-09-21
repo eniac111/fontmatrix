@@ -30,9 +30,9 @@ FilterItem::FilterItem(FilterData *filter, QWidget *parent) :
 	ui->setupUi(this);
 
 	QString ssheet;
-	ssheet += QString("QToolButton{border:none;}");
-	ssheet += QString("QToolButton:checked{border-bottom:2px solid black;}");
-	ssheet += QString("QToolButton:hover{background:white;}");
+	ssheet += QStringLiteral("QToolButton{border:none;}");
+	ssheet += QStringLiteral("QToolButton:checked{border-bottom:2px solid black;}");
+	ssheet += QStringLiteral("QToolButton:hover{background:white;}");
 //	ssheet += QString();
 //	ssheet += QString();
 //	ssheet += QString();

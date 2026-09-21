@@ -58,7 +58,7 @@ FamilyWidget::FamilyWidget(QWidget *parent) :
 	ui->familyPreview->setMovement(QListView::Static);
 
 	previewModel = new FMPreviewModel( this, ui->familyPreview );
-	previewModel->setSpecString("<variant>");
+	previewModel->setSpecString(QStringLiteral("<variant>"));
 	ui->familyPreview->setModel(previewModel);
 
 

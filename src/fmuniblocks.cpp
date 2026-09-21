@@ -78,14 +78,14 @@ void FMUniBlocks::loadBlocks()
 
 void FMUniBlocks::recordLine(const QString& line)
 {
-	if(line.startsWith("#"))
+	if(line.startsWith(QLatin1String("#")))
 		return;
 	if(line.trimmed().isEmpty())
 		return;
 	
 	QString rs(line);
-	rs.replace("..",";");
-	QStringList rl(rs.split(";",Qt::SkipEmptyParts));
+	rs.replace(QLatin1String(".."),QLatin1String(";"));
+	QStringList rl(rs.split(QStringLiteral(";"),Qt::SkipEmptyParts));
 	if(rl.count() != 3)
 	{
 		qCWarning(FONTMATRIX_LOG)<<"ERROR: spliting a block record in"<<rl.count()<<"lines";

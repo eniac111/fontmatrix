@@ -40,7 +40,7 @@ void DataLoader::load()
 	pm.clear();
 
 	// System samples — skip silently if the directory is absent (e.g. not yet installed)
-	QDir samplesDir(FMPaths::ResourcesDir() + "Samples");
+	QDir samplesDir(FMPaths::ResourcesDir() + QLatin1String("Samples"));
 	if (samplesDir.exists())
 	{
 		for (const auto entries = samplesDir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs); const auto& ld : entries)
@@ -80,7 +80,7 @@ void DataLoader::load()
 	// Fallback — keeps the UI functional when no samples are installed
 	if(sm.isEmpty() && pm.isEmpty())
 	{
-		sm["Emergency"]["Text"] = QString("Emergency Text");
+		sm[QStringLiteral("Emergency")][QStringLiteral("Text")] = QStringLiteral("Emergency Text");
 	}
 }
 

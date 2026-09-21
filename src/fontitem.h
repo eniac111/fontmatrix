@@ -302,7 +302,7 @@ class FontItem : public QObject
 		void setTags ( QStringList l );
 		void addTag(const QString &t);
 		QString name();
-		QString fancyName() {return m_family + " " + m_variant;}
+		QString fancyName() {return m_family + QLatin1Char ( ' ' ) + m_variant;}
 		QString infoGlyph ( int index, int code = 0 );
 		QString glyphName(int codepoint, bool codeIsChar = true);
 		FontInfoMap rawInfo();

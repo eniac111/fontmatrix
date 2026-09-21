@@ -29,58 +29,58 @@ FMVariants::FMVariants()
 	// init sorted variant names
 	variants.clear();
 	QStringList weight;
-	weight << QString("Hairline")
-			<<	QString("Thin")
-			<<	QString("UltraLight")
-			<<	QString("ExtraLight")
-			<<	QString("Light")
-			<<	QString("Book")
-			<<	QString("Normal")
-			<<	QString("Regular")
-			<<	QString("Roman")
-			<<	QString("Plain")
-			<<	QString("Medium")
+	weight << QStringLiteral("Hairline")
+			<<	QStringLiteral("Thin")
+			<<	QStringLiteral("UltraLight")
+			<<	QStringLiteral("ExtraLight")
+			<<	QStringLiteral("Light")
+			<<	QStringLiteral("Book")
+			<<	QStringLiteral("Normal")
+			<<	QStringLiteral("Regular")
+			<<	QStringLiteral("Roman")
+			<<	QStringLiteral("Plain")
+			<<	QStringLiteral("Medium")
 			<<	QString()
-			<<	QString("Demi")
-			<<	QString("DemiBold")
-			<<	QString("SemiBold")
-			<<	QString("Bold")
-			<<	QString("ExtraBold")
-			<<	QString("Extra")
-			<<	QString("Heavy")
-			<<	QString("Black")
-			<<	QString("ExtraBlack")
-			<<	QString("UltraBlack")
-			<<	QString("Ultra");
+			<<	QStringLiteral("Demi")
+			<<	QStringLiteral("DemiBold")
+			<<	QStringLiteral("SemiBold")
+			<<	QStringLiteral("Bold")
+			<<	QStringLiteral("ExtraBold")
+			<<	QStringLiteral("Extra")
+			<<	QStringLiteral("Heavy")
+			<<	QStringLiteral("Black")
+			<<	QStringLiteral("ExtraBlack")
+			<<	QStringLiteral("UltraBlack")
+			<<	QStringLiteral("Ultra");
 
 	QStringList slope;
 	slope << QString()
-			<< QString("Italic")
-			<< QString("Oblique")
-			<< QString("Slanted");
+			<< QStringLiteral("Italic")
+			<< QStringLiteral("Oblique")
+			<< QStringLiteral("Slanted");
 
 	QStringList width;
 	width << QString()
-			<< QString("UltraCompressed")
-			<<	QString("Compressed")
-			<<	QString("UltraCondensed")
-			<<	QString("Condensed")
-			<<	QString("SemiCondensed")
-			<<	QString("Narrow")
-			<<	QString("SemiExtended")
-			<<	QString("SemiExpanded")
-			<<	QString("Extended")
-			<<	QString("Expanded")
-			<<	QString("ExtraExtended")
-			<<	QString("ExtraExpanded");
+			<< QStringLiteral("UltraCompressed")
+			<<	QStringLiteral("Compressed")
+			<<	QStringLiteral("UltraCondensed")
+			<<	QStringLiteral("Condensed")
+			<<	QStringLiteral("SemiCondensed")
+			<<	QStringLiteral("Narrow")
+			<<	QStringLiteral("SemiExtended")
+			<<	QStringLiteral("SemiExpanded")
+			<<	QStringLiteral("Extended")
+			<<	QStringLiteral("Expanded")
+			<<	QStringLiteral("ExtraExtended")
+			<<	QStringLiteral("ExtraExpanded");
 
 	QStringList  optical;
 	optical << QString()
-			<< QString("Poster")
-			<<	QString("Display")
-			<<	QString("SubHead")
-			<<	QString("SmallText")
-			<<	QString("Caption");
+			<< QStringLiteral("Poster")
+			<<	QStringLiteral("Display")
+			<<	QStringLiteral("SubHead")
+			<<	QStringLiteral("SmallText")
+			<<	QStringLiteral("Caption");
 
 	for (const auto& w : std::as_const(weight))
 	{
@@ -98,12 +98,12 @@ FMVariants::FMVariants()
 //	for (const auto& v : variants)
 //		qDebug()<<v.join(" ");
 
-	priorList <<	QString("Book")
-			<<	QString("Normal")
-			<<	QString("Regular")
-			<<	QString("Roman")
-			<<	QString("Plain")
-			<<	QString("Medium");
+	priorList <<	QStringLiteral("Book")
+			<<	QStringLiteral("Normal")
+			<<	QStringLiteral("Regular")
+			<<	QStringLiteral("Roman")
+			<<	QStringLiteral("Plain")
+			<<	QStringLiteral("Medium");
 }
 
 
@@ -149,7 +149,7 @@ QList<FontItem*> FMVariants::Order(QList<FontItem*> ul)
 	QMap<FontItem*, QStringList> fl;
 	for (auto* f : ul)
 	{
-		fl.insert(f, f->variant().split(QString(" ")));
+		fl.insert(f, f->variant().split(QStringLiteral(" ")));
 	}
 	for (const auto& v : std::as_const(vs->variants))
 	{

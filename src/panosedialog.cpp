@@ -47,7 +47,7 @@ FMPanoseDialog::~ FMPanoseDialog()
 void FMPanoseDialog::populateDialog()
 {
 	
-	QStringList pl ( m_sourcepanose.split ( ":" ) );
+	QStringList pl ( m_sourcepanose.split ( QStringLiteral(":") ) );
 	QList<int> l;
 	if ( pl.count() == 10 )
 	{
@@ -102,7 +102,7 @@ void FMPanoseDialog::panoseChange(int )
 		
 		pk = FontStrings::nextPanoseKey(pk);
 	}
-	m_targetpanose = l.join(":");
+	m_targetpanose = l.join(QStringLiteral(":"));
 }
 
 void FMPanoseDialog::closeOk()

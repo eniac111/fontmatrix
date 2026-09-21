@@ -32,7 +32,7 @@
 /**
 	DataSet
 */
-const QString ParallelCoorDataSet::FieldSep = ":";
+const QString ParallelCoorDataSet::FieldSep = QStringLiteral(":");
 
 ParallelCoorDataSet::ParallelCoorDataSet()
 {
@@ -186,23 +186,23 @@ ParallelCoorView::Units::Units(int width, int height, int count)
 void ParallelCoorView::initPensAndBrushes()
 {
 	// bars
-	pens["bar"] = QPen(QColor(200,200,200), 6.0, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin);
-	pens["bar-hover"] = QPen(QColor(160,160,160), 6.0, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin);
+	pens[QStringLiteral("bar")] = QPen(QColor(200,200,200), 6.0, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin);
+	pens[QStringLiteral("bar-hover")] = QPen(QColor(160,160,160), 6.0, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin);
 	
 	// vertices
-	pens["vertice-filter"] = QPen(Qt::black, 1.0);
-	pens["vertice-unfilter"] = QPen(QColor(200,200,200), 1.0);
+	pens[QStringLiteral("vertice-filter")] = QPen(Qt::black, 1.0);
+	pens[QStringLiteral("vertice-unfilter")] = QPen(QColor(200,200,200), 1.0);
 	
 	// marks
 	double size(0.5);
 	markPath.addRect(-10.0*size,-10.0*size,20.0*size,20.0*size);
-	brushes["mark"] = QBrush(Qt::black);
-	brushes["mark-active"] = QBrush(Qt::red);
+	brushes[QStringLiteral("mark")] = QBrush(Qt::black);
+	brushes[QStringLiteral("mark-active")] = QBrush(Qt::red);
 	
 	// debug
-	pens["debug-1"] = QPen(Qt::blue, 5.0);
+	pens[QStringLiteral("debug-1")] = QPen(Qt::blue, 5.0);
 	
-	QString cat("Panose/color-%1");
+	QString cat(QStringLiteral("Panose/color-%1"));
 	for (const auto pensKeys = pens.keys(); const auto& attr : pensKeys)
 	{
 		pens[attr].setColor( QColor(FMConfig::value(cat.arg(attr), pens[attr].color().name()).toString()) );
@@ -308,7 +308,7 @@ void ParallelCoorView::drawBars()
 			  units.XOffset + ( di * units.step ),  units.YOffset + units.H);
 		ParallelCoorBarItem * bi ( new ParallelCoorBarItem(m_dataSet->at(i).first, this) );
 		bars << bi;
-		bi->setPen(pens["bar"]);
+		bi->setPen(pens[QStringLiteral("bar")]);
 		bi->setLine(bl);
 		scene()->addItem(bi);
 	}
@@ -376,7 +376,7 @@ void ParallelCoorView::drawVertices()
 						}
 						QLineF lf(pol[vi-1],pol[vi]);
 						li = new QGraphicsLineItem( lf );
-						li->setPen(  pens["vertice-filter"] );
+						li->setPen(  pens[QStringLiteral("vertice-filter")] );
 						li->setZValue(100.0);
 						vertices << li;
 						cflines[pol[vi-1].x()][pol[vi-1].y()] << pol[vi];
@@ -395,7 +395,7 @@ void ParallelCoorView::drawVertices()
 						}
 						QLineF lf(pol[vi-1],pol[vi]);
 						li = new QGraphicsLineItem( lf );
-						li->setPen(  pens["vertice-unfilter"] );
+						li->setPen(  pens[QStringLiteral("vertice-unfilter")] );
 						vertices << li;
 						culines[pol[vi-1].x()][pol[vi-1].y()] << pol[vi];
 					}
@@ -419,7 +419,7 @@ void ParallelCoorView::drawVertices()
 void ParallelCoorView::drawFields()
 {
 // 	qDebug()<<"ParallelCoorView::drawFields";
-	QFont fontF( "Helvetica" , 100.0 , QFont::DemiBold, false );
+	QFont fontF( QStringLiteral("Helvetica") , 100.0 , QFont::DemiBold, false );
 	double maxAscent(0.0);
 	for(int k(0);k < m_dataSet->count(); ++k)
 	{
@@ -488,8 +488,8 @@ void ParallelCoorView::drawValues()
 	else
 		m_currentField = m_dataSet->at(0).first;
 	
-	QFont fontV( "Helvetica" , 9, QFont::Normal , true );
-	QFont fontS( "Helvetica" , 10, QFont::DemiBold , true );
+	QFont fontV( QStringLiteral("Helvetica") , 9, QFont::Normal , true );
+	QFont fontS( QStringLiteral("Helvetica") , 10, QFont::DemiBold , true );
 	double dn(static_cast<double>(m_dataSet->at(di).second.count()-1));
 	double vsep(units.H / dn);
 	QList<QString> list (m_dataSet->at(di).second);
@@ -560,9 +560,9 @@ QString ParallelCoorView::filterAsString()
 		if(!l.isEmpty())
 		{
 			if(ret.isEmpty())
-				ret += key + " {" + l.join(";") + "}";
+				ret += key + QLatin1String(" {") + l.join(QStringLiteral(";")) + QLatin1String("}");
 			else
-				ret += "\n" + key + " {" + l.join(";") + "}";
+				ret += QLatin1String("\n") + key + QLatin1String(" {") + l.join(QStringLiteral(";")) + QLatin1String("}");
 		}
 			
 	}
@@ -651,7 +651,7 @@ void ParallelCoorFieldItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
 
 void ParallelCoorFieldItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
-	if(QString(pview->metaObject()->className()) == QString("ParallelCoorView") )
+	if(QLatin1String(pview->metaObject()->className()) == QLatin1String("ParallelCoorView") )
 	{
 		ParallelCoorView *pcv = reinterpret_cast<ParallelCoorView*>(pview);
 		pcv->selectField(text());
@@ -697,7 +697,7 @@ void ParallelCoorValueItem::hoverLeave()
 
 void ParallelCoorValueItem::click(int mod)
 {
-	if(QString(pview->metaObject()->className()) == QString("ParallelCoorView") )
+	if(QLatin1String(pview->metaObject()->className()) == QLatin1String("ParallelCoorView") )
 	{
 		ParallelCoorView *pcv = reinterpret_cast<ParallelCoorView*>(pview);
 		
@@ -760,8 +760,8 @@ ParallelCoorBarItem::ParallelCoorBarItem(const QString& field, QGraphicsView * p
 void ParallelCoorBarItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
 {
 // 	qApp->setOverrideCursor(Qt::PointingHandCursor);
-	setPen(ParallelCoorView::pens["bar-hover"]);
-	if(QString(pview->metaObject()->className()) == QString("ParallelCoorView") )
+	setPen(ParallelCoorView::pens[QStringLiteral("bar-hover")]);
+	if(QLatin1String(pview->metaObject()->className()) == QLatin1String("ParallelCoorView") )
 	{
 		ParallelCoorView *pcv = reinterpret_cast<ParallelCoorView*>(pview);
 		pcv->selectField(attachedField);
@@ -770,7 +770,7 @@ void ParallelCoorBarItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
 
 void ParallelCoorBarItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *)
 {
-	setPen(ParallelCoorView::pens["bar"]);
+	setPen(ParallelCoorView::pens[QStringLiteral("bar")]);
 // 	qApp->restoreOverrideCursor();
 }
 
@@ -799,7 +799,7 @@ ParallelCoorMarkItem::ParallelCoorMarkItem(ParallelCoorValueItem * relative, QGr
 	setEnabled(true);
 	setAcceptHoverEvents ( true );
 	
-	setBrush(ParallelCoorView::brushes["mark"]);
+	setBrush(ParallelCoorView::brushes[QStringLiteral("mark")]);
 	setPen(QPen(Qt::transparent,0.0));
 	setPath(ParallelCoorView::markPath);
 	
@@ -807,14 +807,14 @@ ParallelCoorMarkItem::ParallelCoorMarkItem(ParallelCoorValueItem * relative, QGr
 
 void ParallelCoorMarkItem::hoverEnterEvent(QGraphicsSceneHoverEvent * event)
 {
-	setBrush(ParallelCoorView::brushes["mark-active"]);
+	setBrush(ParallelCoorView::brushes[QStringLiteral("mark-active")]);
 	value->hoverEnter();
 	QGraphicsPathItem::hoverEnterEvent(event);
 }
 
 void ParallelCoorMarkItem::hoverLeaveEvent(QGraphicsSceneHoverEvent * event)
 {
-	setBrush(ParallelCoorView::brushes["mark"]);
+	setBrush(ParallelCoorView::brushes[QStringLiteral("mark")]);
 	value->hoverLeave();
 	QGraphicsPathItem::hoverLeaveEvent(event);
 }

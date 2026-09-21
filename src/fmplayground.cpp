@@ -189,11 +189,11 @@ void FMPlayGround::keyReleaseEvent(QKeyEvent * e)
 		}
 		else if(Qt::Key_V == e->key())
 		{
-			QString subtype("plain");
+			QString subtype(QStringLiteral("plain"));
 			QString clipText( QApplication::clipboard()->text(subtype, QClipboard::Clipboard) );
 			if(!clipText.isEmpty())
 			{
-				QStringList cs(clipText.split(QString("\n")));
+				QStringList cs(clipText.split(QStringLiteral("\n")));
 				bool first(true);
 				for (const auto& s : std::as_const(cs))
 				{
@@ -293,7 +293,7 @@ void FMPlayGround::closeLine()
 		git->setCursor(QCursor(	Qt::OpenHandCursor ) );
 		FontItem * fi(typotek::getInstance()->getTheMainView()->selectedFont());
 		if(fi)
-			git->setToolTip(QString("<strong>%1</strong><br/><em>%2<em/>").arg(fi->fancyName(), fi->path()));
+			git->setToolTip(QStringLiteral("<strong>%1</strong><br/><em>%2<em/>").arg(fi->fancyName(), fi->path()));
 		glyphLines << git;
 	}
 	BlinkPos = CursorPos;
@@ -314,7 +314,7 @@ QStringList FMPlayGround::fontnameList()
 	QList< QGraphicsItem* > itemList ( scene()->items() );
 	for ( int i ( 0 ); i < itemList.size(); ++i )
 	{
-		if ( itemList[i]->data ( GLYPH_DATA_GLYPH ).toString() == "glyph" )
+		if ( itemList[i]->data ( GLYPH_DATA_GLYPH ).toString() == QLatin1String("glyph") )
 		{
 			QString s ( itemList[i]->data ( GLYPH_DATA_FONTNAME ).toString() );
 			if ( !ret.contains ( s ) )

@@ -23,7 +23,7 @@ ModelText::ModelText(QWidget * parent)
 
 bool ModelText::canInsertFromMimeData(const QMimeData * source) const
 {
-	if(source->hasFormat( "application/x-qabstractitemmodeldatalist" ))
+	if(source->hasFormat( QStringLiteral("application/x-qabstractitemmodeldatalist") ))
 	{
 		return true;
 	}
@@ -33,7 +33,7 @@ bool ModelText::canInsertFromMimeData(const QMimeData * source) const
 
 void ModelText::insertFromMimeData(const QMimeData * source)
 {
-	if(source->hasFormat( "application/x-qabstractitemmodeldatalist" ))
+	if(source->hasFormat( QStringLiteral("application/x-qabstractitemmodeldatalist") ))
 	{
 		emit insertContent();
 	}

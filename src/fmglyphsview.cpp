@@ -90,7 +90,7 @@ void FMGlyphsView::mouseReleaseEvent ( QMouseEvent * e )
 		QList<QGraphicsItem*> gg = scene()->items ( mapToScene ( e->pos() ) );
 		for (auto* ii : std::as_const(gg))
 		{
-			if ( ii->data ( 1 ).toString() == "select" && m_state == AllView )
+			if ( ii->data ( 1 ).toString() == QLatin1String("select") && m_state == AllView )
 				ii->setSelected ( true );
 		}
 

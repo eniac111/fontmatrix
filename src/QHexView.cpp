@@ -54,7 +54,7 @@ QHexView::QHexView(QWidget * parent) : QAbstractScrollArea(parent),
 	setShowAddressSeparator(true);
 	
 	// default to a simple monospace font
-	setHexFont(QFont("Monospace", 8));
+	setHexFont(QFont(QStringLiteral("Monospace"), 8));
 }
 
 //------------------------------------------------------------------------------
@@ -145,20 +145,20 @@ QMenu *QHexView::createStandardContextMenu() {
 
 	QMenu *const menu = new QMenu(this);
 	
-	menu->addAction("Set &Font", this, SLOT(mnuSetFont()));	
+	menu->addAction(QStringLiteral("Set &Font"), this, SLOT(mnuSetFont()));	
 	menu->addSeparator();
-	addToggleActionToMenu(menu, "Show A&ddress", m_ShowAddress, this, SLOT(setShowAddress(bool)));
-	addToggleActionToMenu(menu, "Show &Hex", m_ShowHex, this, SLOT(setShowHexDump(bool)));
-	addToggleActionToMenu(menu, "Show &Ascii", m_ShowAscii, this, SLOT(setShowAsciiDump(bool)));
-	addToggleActionToMenu(menu, "Show &Comments", m_ShowComments, this, SLOT(setShowComments(bool)));
+	addToggleActionToMenu(menu, QStringLiteral("Show A&ddress"), m_ShowAddress, this, SLOT(setShowAddress(bool)));
+	addToggleActionToMenu(menu, QStringLiteral("Show &Hex"), m_ShowHex, this, SLOT(setShowHexDump(bool)));
+	addToggleActionToMenu(menu, QStringLiteral("Show &Ascii"), m_ShowAscii, this, SLOT(setShowAsciiDump(bool)));
+	addToggleActionToMenu(menu, QStringLiteral("Show &Comments"), m_ShowComments, this, SLOT(setShowComments(bool)));
 
 	QSignalMapper *wordWidthMapper = new QSignalMapper(this);
 
-	QMenu *const wordMenu = new QMenu("Set Word Width", this);
-	QAction *const a1 = addToggleActionToMenu(wordMenu, "1 Byte", m_WordWidth == 1, wordWidthMapper, SLOT(map()));
-	QAction *const a2 = addToggleActionToMenu(wordMenu, "2 Bytes", m_WordWidth == 2, wordWidthMapper, SLOT(map()));
-	QAction *const a3 = addToggleActionToMenu(wordMenu, "4 Bytes", m_WordWidth == 4, wordWidthMapper, SLOT(map()));
-	QAction *const a4 = addToggleActionToMenu(wordMenu, "8 Bytes", m_WordWidth == 8, wordWidthMapper, SLOT(map()));
+	QMenu *const wordMenu = new QMenu(QStringLiteral("Set Word Width"), this);
+	QAction *const a1 = addToggleActionToMenu(wordMenu, QStringLiteral("1 Byte"), m_WordWidth == 1, wordWidthMapper, SLOT(map()));
+	QAction *const a2 = addToggleActionToMenu(wordMenu, QStringLiteral("2 Bytes"), m_WordWidth == 2, wordWidthMapper, SLOT(map()));
+	QAction *const a3 = addToggleActionToMenu(wordMenu, QStringLiteral("4 Bytes"), m_WordWidth == 4, wordWidthMapper, SLOT(map()));
+	QAction *const a4 = addToggleActionToMenu(wordMenu, QStringLiteral("8 Bytes"), m_WordWidth == 8, wordWidthMapper, SLOT(map()));
 	
 	wordWidthMapper->setMapping(a1, 1);
 	wordWidthMapper->setMapping(a2, 2);
@@ -169,12 +169,12 @@ QMenu *QHexView::createStandardContextMenu() {
 	
 	QSignalMapper *rowWidthMapper = new QSignalMapper(this);
 
-	QMenu *const rowMenu = new QMenu("Set Row Width", this);
-	QAction *const a5 = addToggleActionToMenu(rowMenu, "1 Word", m_RowWidth == 1, rowWidthMapper, SLOT(map()));
-	QAction *const a6 = addToggleActionToMenu(rowMenu, "2 Words", m_RowWidth == 2, rowWidthMapper, SLOT(map()));
-	QAction *const a7 = addToggleActionToMenu(rowMenu, "4 Words", m_RowWidth == 4, rowWidthMapper, SLOT(map()));
-	QAction *const a8 = addToggleActionToMenu(rowMenu, "8 Words", m_RowWidth == 8, rowWidthMapper, SLOT(map()));
-	QAction *const a9 = addToggleActionToMenu(rowMenu, "16 Words", m_RowWidth == 16, rowWidthMapper, SLOT(map()));
+	QMenu *const rowMenu = new QMenu(QStringLiteral("Set Row Width"), this);
+	QAction *const a5 = addToggleActionToMenu(rowMenu, QStringLiteral("1 Word"), m_RowWidth == 1, rowWidthMapper, SLOT(map()));
+	QAction *const a6 = addToggleActionToMenu(rowMenu, QStringLiteral("2 Words"), m_RowWidth == 2, rowWidthMapper, SLOT(map()));
+	QAction *const a7 = addToggleActionToMenu(rowMenu, QStringLiteral("4 Words"), m_RowWidth == 4, rowWidthMapper, SLOT(map()));
+	QAction *const a8 = addToggleActionToMenu(rowMenu, QStringLiteral("8 Words"), m_RowWidth == 8, rowWidthMapper, SLOT(map()));
+	QAction *const a9 = addToggleActionToMenu(rowMenu, QStringLiteral("16 Words"), m_RowWidth == 16, rowWidthMapper, SLOT(map()));
 
 	rowWidthMapper->setMapping(a5, 1);
 	rowWidthMapper->setMapping(a6, 2);
@@ -189,7 +189,7 @@ QMenu *QHexView::createStandardContextMenu() {
 	menu->addMenu(rowMenu);
 	
 	menu->addSeparator();
-	menu->addAction("&Copy Selection To Clipboard", this, SLOT(mnuCopy()));	
+	menu->addAction(QStringLiteral("&Copy Selection To Clipboard"), this, SLOT(mnuCopy()));	
 	
 	return menu;
 }
@@ -210,7 +210,7 @@ void QHexView::contextMenuEvent(QContextMenuEvent *event) {
 //------------------------------------------------------------------------------
 void QHexView::mnuCopy() {
 	if(hasSelectedText()) {
-		QApplication::clipboard()->setText(selectedBytes());
+		QApplication::clipboard()->setText(QString::fromUtf8(selectedBytes()));
 	}
 }
 
@@ -899,7 +899,7 @@ void QHexView::drawAsciiDump(QPainter &painter, unsigned int offset, unsigned in
 				painter.setPen(QPen(printable ? palette().text().color() : m_NonPrintableText));
 			}
 			
-			const QString byteBuffer(printable ? ch : m_UnprintableChar);
+			const QString byteBuffer(QLatin1Char(printable ? ch : m_UnprintableChar));
 
 			painter.drawText(
 				drawLeft,

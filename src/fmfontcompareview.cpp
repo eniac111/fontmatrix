@@ -24,7 +24,7 @@
 #include <QApplication>
 #include <QDebug>
 
-const QString FMFontCompareItem::toolTipModel = QString("<strong>x</strong>: %1 <strong>y</strong>: %2");
+const QString FMFontCompareItem::toolTipModel = QStringLiteral("<strong>x</strong>: %1 <strong>y</strong>: %2");
 
 /// Item
 FMFontCompareItem::FMFontCompareItem()
@@ -135,12 +135,12 @@ void FMFontCompareItem::drawPoint(QPointF point , bool control)
 	QGraphicsEllipseItem *ri = new QGraphicsEllipseItem(r);
 	ri->setBrush(Qt::NoBrush);
 	if(control)
-		ri->setPen(FMFontCompareView::pens["control-point"]);
+		ri->setPen(FMFontCompareView::pens[QStringLiteral("control-point")]);
 	else
-		ri->setPen(FMFontCompareView::pens["point"]);
+		ri->setPen(FMFontCompareView::pens[QStringLiteral("point")]);
 	
 	QString label(toolTipModel.arg(point.x() - m_offset ).arg(-point.y()));
-	ri->setToolTip(label.replace("-","−"));
+	ri->setToolTip(label.replace(QLatin1String("-"),QStringLiteral("−")));
 	points << ri;
 }
 
@@ -212,9 +212,9 @@ void FMFontCompareItem::show(FMFontCompareItem::GElements elems, QColor color, d
 					QLineF l1(curPos, cur);
 					QLineF l2(c2, c1);
 					lines_controls << new QGraphicsLineItem(l1);
-					lines_controls.constLast()->setPen(FMFontCompareView::pens["control-line"]);
+					lines_controls.constLast()->setPen(FMFontCompareView::pens[QStringLiteral("control-line")]);
 					lines_controls << new QGraphicsLineItem(l2);
-					lines_controls.constLast()->setPen(FMFontCompareView::pens["control-line"]);
+					lines_controls.constLast()->setPen(FMFontCompareView::pens[QStringLiteral("control-line")]);
 				}
 				
 				i += 2;
@@ -248,7 +248,7 @@ void FMFontCompareItem::show(FMFontCompareItem::GElements elems, QColor color, d
 		lines_controls << new QGraphicsLineItem(bottomL);
 		lines_controls.constLast()->setPen(mPen);
 		
-		QString advanceString("%1/%2");
+		QString advanceString(QStringLiteral("%1/%2"));
 		text_metrics << new QGraphicsSimpleTextItem(advanceString.arg(path->data(GLYPH_DATA_HADVANCE).toDouble()).arg(font->getUnitPerEm()));
 		double th(text_metrics.constLast()->boundingRect().height());
 		text_metrics.constLast()->setPos(xadvance, th * zindex );
@@ -374,13 +374,13 @@ double FMFontCompareView::getOffset(int level)
 void FMFontCompareView::initPensAndBrushes()
 {
 	// Controls
-	pens["control-line"] = QPen(QColor(20,20,20), 1.0, Qt::DotLine , Qt::FlatCap, Qt::MiterJoin);
-	pens["control-point"] = QPen(Qt::black);
-	pens["point"] = QPen(Qt::red);
+	pens[QStringLiteral("control-line")] = QPen(QColor(20,20,20), 1.0, Qt::DotLine , Qt::FlatCap, Qt::MiterJoin);
+	pens[QStringLiteral("control-point")] = QPen(Qt::black);
+	pens[QStringLiteral("point")] = QPen(Qt::red);
 	
 	// Fill
-	brushes["fill"] = QBrush(QColor(0,0,0,32));
-	pens["contour"] = QPen(QColor(20,0,200), 1.0, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin);
+	brushes[QStringLiteral("fill")] = QBrush(QColor(0,0,0,32));
+	pens[QStringLiteral("contour")] = QPen(QColor(20,0,200), 1.0, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin);
 	
 // 	QString cat("Compare/%1");
 // 	QSettings settings;

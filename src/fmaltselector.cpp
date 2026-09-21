@@ -190,7 +190,7 @@ QVariant FMAltSelectorModel::data ( const QModelIndex & index, int role ) const
 			}
 			else if(item->T == AltItem::GLYPH)
 			{
-				return QString("#") + QString::number(item->data.toInt());
+				return QStringLiteral("#") + QString::number(item->data.toInt());
 			}
 		}
 		else

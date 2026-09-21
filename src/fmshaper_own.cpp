@@ -60,20 +60,20 @@ int FMOwnShaper::loadRules(QString lang)
 	QString ShaperDir(FMConfig::value(QStringLiteral("Places/ShaperDataDir")).toString());
 	if(ShaperDir.isEmpty())
 	{
-		actualSDir = ":/shapers/";
+		actualSDir = QLatin1String(":/shapers/");
 	}
 	else
 	{
 		actualSDir = ShaperDir + QDir::separator() ;
 	}
-	qCDebug(FONTMATRIX_LOG)<<"SHAPER_FILES : "<<actualSDir +lang+ ".dict"<<"; "<<actualSDir +lang+".match";
-	QFile dictFile(actualSDir +lang+ ".dict");
+	qCDebug(FONTMATRIX_LOG)<<"SHAPER_FILES : "<<actualSDir +lang+ QLatin1String(".dict")<<"; "<<actualSDir +lang+QLatin1String(".match");
+	QFile dictFile(actualSDir +lang+ QLatin1String(".dict"));
 	if(!dictFile.open(QIODevice::ReadOnly))
 	{
 		qCWarning(FONTMATRIX_LOG)<<"Failed to open " << dictFile.fileName();
 		return 1;
 	}
-	QFile matchFile(actualSDir +lang+".match");
+	QFile matchFile(actualSDir +lang+QLatin1String(".match"));
 	if(!matchFile.open(QIODevice::ReadOnly))
 	{
 		qCWarning(FONTMATRIX_LOG)<<"Failed to open " << matchFile.fileName();
@@ -99,12 +99,12 @@ int FMOwnShaper::loadRules(QString lang)
 		
 	}
 	while (!matchFile.atEnd()) {
-		QString line ( CleanRule(matchFile.readLine()) );
+		QString line ( CleanRule(QString::fromUtf8(matchFile.readLine())) );
 		
-		if(line.startsWith('%'))
+		if(line.startsWith(QLatin1Char('%')))
 			continue;
 		
-		QList<QString> elems = line.split ( '|' );
+		QList<QString> elems = line.split ( QLatin1Char('|') );
 		if(elems.size() == 2)
 		{
 			Matches.append(MatchSequence());
@@ -132,9 +132,9 @@ void FMOwnShaper::fillIn(const QString& s)
 		{
 			In << Character(s[i].unicode());
 		}
-		debug << "["+QString::number(s[i].unicode(),16)+"]";
+		debug << QLatin1String("[")+QString::number(s[i].unicode(),16)+QLatin1String("]");
 	}
-	qCDebug(FONTMATRIX_LOG)<< debug.join(" ");
+	qCDebug(FONTMATRIX_LOG)<< debug.join(QStringLiteral(" "));
 	
 }
 
@@ -166,7 +166,7 @@ void FMOwnShaper::Op()
 				for(int nc(0); nc < rc; ++nc)
 				{
 					cl << In[idx + nc];
-					debugString += "[" + QString::number( In[idx + nc].unicode() , 16) + "]";
+					debugString += QLatin1String("[") + QString::number( In[idx + nc].unicode() , 16) + QLatin1String("]");
 				}
 				chunks.append( QPair< int, QList< Character > >(nm , cl) );
 				
@@ -340,7 +340,7 @@ Character::Character(int unicode, QList< QByteArray > tokens)
 	:QChar(unicode),MatchAll(false),isMatchedGroup(false),GroupIndex(0)
 {
 	for(int i(0); i < tokens.size(); ++i)
-		AddProperty( QString(tokens[i].trimmed()));
+		AddProperty( QString::fromUtf8(tokens[i].trimmed()));
 }
 
 
@@ -348,7 +348,7 @@ Character::Character(int unicode, QStringList tokens)
 	:QChar(unicode),MatchAll(false),isMatchedGroup(false),GroupIndex(0)
 {
 	for(int i(0); i < tokens.size(); ++i)
-		AddProperty( QString(tokens[i].trimmed()));
+		AddProperty( tokens[i].trimmed());
 }
 
 QString Character::DumpCustom()
@@ -364,7 +364,7 @@ QString Character::DumpCustom()
 			continue;
 		}
 		
-		ret+= " ; ";
+		ret+= QLatin1String(" ; ");
 		ret += value;
 	}
 	return ret;
@@ -394,7 +394,7 @@ void MatchSequence::SetMatch(const QString &b)
 	for(int idx(0); idx < ref.size(); ++idx)
 	{
 		QChar current(ref[idx]);
-		if(current == 'U') // a code point
+		if(current == QLatin1Char('U')) // a code point
 		{
 			bool ok;
 			++idx;
@@ -402,15 +402,15 @@ void MatchSequence::SetMatch(const QString &b)
 			if(!ok)
 				qCDebug(FONTMATRIX_LOG)<<"Oops";
 			idx += 4;
-			if(idx < ref.size() && ref[idx] == '(')// property list
+			if(idx < ref.size() && ref[idx] == QLatin1Char('('))// property list
 			{
 				QStringList pList;
 				int countChars(0);
-				while(idx + countChars < ref.size() && ref[idx + countChars] != ')')
+				while(idx + countChars < ref.size() && ref[idx + countChars] != QLatin1Char(')'))
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(QStringLiteral(";"), Qt::SkipEmptyParts));
 				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
@@ -418,15 +418,15 @@ void MatchSequence::SetMatch(const QString &b)
 				idx += countChars;
 				Properties << Character(unicode, pList);
 			}
-			else if(idx < ref.size() && ref[idx] == '[')// property list with exact match
+			else if(idx < ref.size() && ref[idx] == QLatin1Char('['))// property list with exact match
 			{
 				QStringList pList;
 				int countChars(0);
-				while(idx + countChars < ref.size() && ref[idx + countChars] != ']')
+				while(idx + countChars < ref.size() && ref[idx + countChars] != QLatin1Char(']'))
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(QStringLiteral(";"), Qt::SkipEmptyParts));
 				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
@@ -435,7 +435,7 @@ void MatchSequence::SetMatch(const QString &b)
 				Properties << Character(unicode, pList);
 				Properties.last().MatchAll = true;
 			}
-			else //if(ref[idx] != '(' || ref[idx] != '[')
+			else //if(ref[idx] != QLatin1Char('(') || ref[idx] != QLatin1Char('['))
 			{
 				--idx;
 				Properties << Character(unicode);
@@ -443,20 +443,20 @@ void MatchSequence::SetMatch(const QString &b)
 			
 			
 		}
-		else if(current == '.') // a null char (can have properties)
+		else if(current == QLatin1Char('.')) // a null char (can have properties)
 		{
 			int unicode = 0 ;
 			++idx;
 
-			if(idx < ref.size() && ref[idx] == '(')// property list
+			if(idx < ref.size() && ref[idx] == QLatin1Char('('))// property list
 			{
 				QStringList pList;
 				int countChars(0);
-				while(idx + countChars < ref.size() && ref[idx + countChars] != ')')
+				while(idx + countChars < ref.size() && ref[idx + countChars] != QLatin1Char(')'))
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(QStringLiteral(";"), Qt::SkipEmptyParts));
 				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
@@ -464,15 +464,15 @@ void MatchSequence::SetMatch(const QString &b)
 				idx += countChars;
 				Properties << Character(unicode, pList);
 			}
-			else if(idx < ref.size() && ref[idx] == '[')// property list with exact match
+			else if(idx < ref.size() && ref[idx] == QLatin1Char('['))// property list with exact match
 			{
 				QStringList pList;
 				int countChars(0);
-				while(idx + countChars < ref.size() && ref[idx + countChars] != ']')
+				while(idx + countChars < ref.size() && ref[idx + countChars] != QLatin1Char(']'))
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(QStringLiteral(";"), Qt::SkipEmptyParts));
 				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
@@ -481,7 +481,7 @@ void MatchSequence::SetMatch(const QString &b)
 				Properties << Character(unicode, pList);
 				Properties.last().MatchAll = true;
 			}
-			else //if(ref[idx] != '('|| ref[idx] != '[')
+			else //if(ref[idx] != QLatin1Char('(')|| ref[idx] != QLatin1Char('['))
 			{
 				--idx;
 				Properties << Character(unicode);
@@ -502,7 +502,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 	for(int idx(0); idx < ref.size(); ++idx)
 	{
 		QChar current(ref[idx]);
-		if(current == 'U') // a code point
+		if(current == QLatin1Char('U')) // a code point
 		{
 			bool ok;
 			++idx;
@@ -510,7 +510,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 			if(!ok)
 				qCDebug(FONTMATRIX_LOG)<<"Oops";
 			idx += 4;
-			if(idx >= ref.size() || ref[idx] != '(')
+			if(idx >= ref.size() || ref[idx] != QLatin1Char('('))
 			{
 				--idx;
 				Properties << Character(unicode);
@@ -519,11 +519,11 @@ void ReplaceSequence::SetReplace(const QString& b)
 			{
 				QStringList pList;
 				int countChars(0);
-				while(idx + countChars < ref.size() && ref[idx + countChars] != ')')
+				while(idx + countChars < ref.size() && ref[idx + countChars] != QLatin1Char(')'))
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(QStringLiteral(";"), Qt::SkipEmptyParts));
 				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
@@ -534,7 +534,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 			
 			
 		}
-		else if(current == '.') // a null char (can have properties)
+		else if(current == QLatin1Char('.')) // a null char (can have properties)
 		{
 			int unicode = 0 ;
 			Properties << Character(unicode);
@@ -545,7 +545,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 			Properties.last().GroupIndex = group;
 			++idx;
 			
-			if(idx >= ref.size() || ref[idx] != '(')
+			if(idx >= ref.size() || ref[idx] != QLatin1Char('('))
 			{
 				--idx;
 
@@ -554,11 +554,11 @@ void ReplaceSequence::SetReplace(const QString& b)
 			{
 				QStringList pList;
 				int countChars(0);
-				while(idx + countChars < ref.size() && ref[idx + countChars] != ')')
+				while(idx + countChars < ref.size() && ref[idx + countChars] != QLatin1Char(')'))
 				{
 					++countChars;
 				}
-				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
+				QStringList pl(ref.mid(idx+1, countChars-1).split(QStringLiteral(";"), Qt::SkipEmptyParts));
 				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();

@@ -29,7 +29,7 @@ FilterTag::FilterTag():
 
 QString FilterTag::type() const
 {
-	return QString("Tag");
+	return QStringLiteral("Tag");
 }
 
 void FilterTag::operate()
@@ -37,11 +37,11 @@ void FilterTag::operate()
 	QString key(vData.value(Key).toString());
 	QString tag(vData.value(Tag).toString());
 
-	if(key == "TAG") // regular tag
+	if(key == QLatin1String("TAG")) // regular tag
 	{
 		operateFilter( FMFontDb::DB()->Fonts(tag, FMFontDb::Tags ) );
 	}
-	else if(key == "ALL_ACTIVATED")
+	else if(key == QLatin1String("ALL_ACTIVATED"))
 	{
 		operateFilter( FMFontDb::DB()->Fonts(1, FMFontDb::Activation ) );
 	}

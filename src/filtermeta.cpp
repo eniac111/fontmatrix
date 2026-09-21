@@ -31,7 +31,7 @@ FilterMeta::FilterMeta():
 
 QString FilterMeta::type() const
 {
-	return QString("Meta");
+	return QStringLiteral("Meta");
 }
 
 void FilterMeta::operate()

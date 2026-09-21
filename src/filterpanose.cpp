@@ -28,7 +28,7 @@ FilterPanose::FilterPanose():
 
 QString FilterPanose::type() const
 {
-	return QString("Panose");
+	return QStringLiteral("Panose");
 }
 
 
@@ -41,7 +41,7 @@ void FilterPanose::operate()
 	int fv(0);
 	for(int i(0); i < dbresult.count() ; ++i)
 	{
-		QStringList pl(dbresult[i].second.split(":"));
+		QStringList pl(dbresult[i].second.split(QStringLiteral(":")));
 		fv = pl[paramIdx].toInt();
 		if(fv == val)
 			fil << dbresult[i].first;

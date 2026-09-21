@@ -99,7 +99,7 @@ int PanoseMatch::diff ( const QString &other ) const
 
 QList<int> PanoseMatch::parse ( const QString &panoseString ) const
 {
-	QStringList pl ( panoseString.split ( ":" ) );
+	QStringList pl ( panoseString.split ( QStringLiteral(":") ) );
 	QList<int> l;
 	if ( pl.count() == 10 )
 	{

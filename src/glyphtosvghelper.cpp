@@ -36,18 +36,18 @@ GlyphToSVGHelper::GlyphToSVGHelper(QPainterPath path, QTransform tf)
         if(cur.isMoveTo())
         {
             curPos = curPoint;
-            data << QString("M %1 %2").arg(curPos.x()).arg(curPos.y());
+            data << QStringLiteral("M %1 %2").arg(curPos.x()).arg(curPos.y());
         }
         else if(cur.isLineTo())
         {
             curPos = curPoint;
-            data << QString("L %1 %2").arg(curPos.x()).arg(curPos.y());
+            data << QStringLiteral("L %1 %2").arg(curPos.x()).arg(curPos.y());
         }
         else if(cur.isCurveTo())
         {
             QPointF c1 = tf.map(path.elementAt(i + 1));
             QPointF c2 = tf.map(path.elementAt(i + 2));
-            data << QString("C %1 %2 %3 %4 %5 %6")
+            data << QStringLiteral("C %1 %2 %3 %4 %5 %6")
                     .arg(curPoint.x()).arg(curPoint.y())
                     .arg(c1.x()).arg(c1.y())
                     .arg(c2.x()).arg(c2.y());
@@ -61,21 +61,21 @@ GlyphToSVGHelper::GlyphToSVGHelper(QPainterPath path, QTransform tf)
             qCDebug(FONTMATRIX_LOG, "Unknown point type");
     }
 
-    m_svg += QString("<path d=\"%1\" fill=\"%2\" />").arg(data.join(" "), QStringLiteral("black"));
+    m_svg += QStringLiteral("<path d=\"%1\" fill=\"%2\" />").arg(data.join(QStringLiteral(" ")), QStringLiteral("black"));
 
 }
 
 QString GlyphToSVGHelper::getSVG(int pSize) const
 {
     QRectF r(m_transform.mapRect( m_path.boundingRect() ));
-    QString bbS("%1 %2 %3 %4");
+    QString bbS(QStringLiteral("%1 %2 %3 %4"));
     QString bb(bbS
             .arg(r.top())
             .arg(r.left())
             .arg(r.width())
             .arg(r.height()));
-    QString openElem(QString("<svg width=\"%1\" height=\"%1\" viewBox=\"%2\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">").arg(pSize).arg (bb));
-    QString closeElem("</svg>");
+    QString openElem(QStringLiteral("<svg width=\"%1\" height=\"%1\" viewBox=\"%2\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">").arg(pSize).arg (bb));
+    QString closeElem(QStringLiteral("</svg>"));
     return openElem + m_svg + closeElem;
 }
 

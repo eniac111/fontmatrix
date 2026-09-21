@@ -38,12 +38,12 @@ void OpenCloseArrow::setOpText()
 	{
 		f.setBold(true);
 		setFont(f);
-		setText(QString("%1").arg(baseText));
+		setText(QStringLiteral("%1").arg(baseText));
 	}
 	else
 	{
 		f.setBold(false);
 		setFont(f);
-		setText(QString("%1").arg(baseText));
+		setText(QStringLiteral("%1").arg(baseText));
 	}
 }

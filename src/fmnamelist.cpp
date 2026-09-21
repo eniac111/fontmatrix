@@ -41,7 +41,7 @@ void FMNameList::keyPressEvent(QKeyEvent * e)
 		for(int i(0); i < topLevelItemCount() ; ++i)
 		{
 			item = topLevelItem(i);
-			if(item->data(0,100).toString() == "alpha" && item->text(0) == m_keyString)
+			if(item->data(0,100).toString() == QLatin1String("alpha") && item->text(0) == m_keyString)
 			{
 				scrollToItem(item, QAbstractItemView::PositionAtTop);
 				m_keyTime.start();
@@ -79,30 +79,30 @@ void FMNameList::keyPressEvent(QKeyEvent * e)
 
 void FMNameList::slotNextFamily()
 {
-	if (!findBelow(currentItem(), "family")) {
+	if (!findBelow(currentItem(), QStringLiteral("family"))) {
 		/* Goto first family on the list */
-		findBelow(topLevelItem(0), "family");
+		findBelow(topLevelItem(0), QStringLiteral("family"));
 	}
 }
 
 void FMNameList::slotPreviousFamily()
 {
-	if (!findAbove(currentItem(), "family")) {
+	if (!findAbove(currentItem(), QStringLiteral("family"))) {
 		/*TODO Goto last family on the list */
 	}
 }
 
 void FMNameList::slotNextFont()
 {
-	if (!findBelow(currentItem(), "fontfile")) {
+	if (!findBelow(currentItem(), QStringLiteral("fontfile"))) {
 		/*Goto first font on the list */
-		findBelow(topLevelItem(0), "fontfile");
+		findBelow(topLevelItem(0), QStringLiteral("fontfile"));
 	}
 }
 
 void FMNameList::slotPreviousFont()
 {
-	if (!findAbove(currentItem(), "fontfile")) {
+	if (!findAbove(currentItem(), QStringLiteral("fontfile"))) {
 		/*TODO Goto last font on the list! */
 	}
 }

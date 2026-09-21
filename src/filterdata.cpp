@@ -68,7 +68,7 @@ QVariant FilterData::data(int index) const
 
 QString FilterData::getText() const
 {
-	return vData.value(Text, QString("*")).toString();
+	return vData.value(Text, QStringLiteral("*")).toString();
 }
 
 FilterItem* FilterData::item()

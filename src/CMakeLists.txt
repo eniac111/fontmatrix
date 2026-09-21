@@ -507,6 +507,54 @@ IF(WIN32)
 	)
 ENDIF(WIN32)
 
+# QT_NO_CAST_FROM_ASCII, one file at a time. The project removes the definition
+# globally (see the top-level CMakeLists.txt), because a literal that reaches the
+# user has to become i18n() and not QStringLiteral(), which is a decision per
+# string. The files below hold no text for the user and are done: the definition
+# keeps an implicit char* to QString conversion from coming back into them. To
+# add a file, convert it, list it here, build.
+set_source_files_properties(
+	dataloader.cpp
+	dumpdialog.cpp
+	familywidget.cpp
+	filterdata.cpp
+	filteritem.cpp
+	filtermeta.cpp
+	filterpanose.cpp
+	filtertag.cpp
+	floatingwidget.cpp
+	fmaltselector.cpp
+	fmbaseshaper.cpp
+	fmconfig.cpp
+	fmdumpinfo.cpp
+	fmencdata.cpp
+	fmfontcompareview.cpp
+	fmfontdb.cpp
+	fmglyphsview.cpp
+	fmkernfeat.cpp
+	fmlayoptwidget.cpp
+	fmnamelist.cpp
+	fmotf.cpp
+	fmpaths.cpp
+	fmpdffontextractor.cpp
+	fmplayground.cpp
+	fmshaper.cpp
+	fmshaper_own.cpp
+	fmuniblocks.cpp
+	fmutils.cpp
+	fmvariants.cpp
+	glyphtosvghelper.cpp
+	modeltext.cpp
+	openclosearrow.cpp
+	panosedialog.cpp
+	panosematch.cpp
+	panosemodel.cpp
+	panosewidget.cpp
+	parallelcoor.cpp
+	QHexView.cpp
+	shortcuts.cpp
+	PROPERTIES COMPILE_DEFINITIONS "QT_NO_CAST_FROM_ASCII")
+
 # The project's own sources build without a warning. Off by default: a
 # packager's newer compiler must not turn a new diagnostic into a failed build.
 option(FONTMATRIX_WERROR "Treat compiler warnings as errors in Fontmatrix's own sources (for CI)" OFF)
