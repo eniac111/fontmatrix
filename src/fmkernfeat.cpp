@@ -287,7 +287,8 @@ void FMKernFeature::makePairs ( quint16 subtableOffset )
 
 quint16 FMKernFeature::toUint16 ( quint16 index )
 {
-	if ( ( index + 2 ) >= GPOSTableRaw.size() )
+	// two bytes from index on: the last pair of the table is a valid read
+	if ( ( index + 2 ) > GPOSTableRaw.size() )
 	{
 		return 0;
 	}

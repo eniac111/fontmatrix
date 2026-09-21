@@ -62,8 +62,8 @@ class FMFontDb : public QObject, public QSqlDatabase
 			Variant,
 			Name,
 			Panose,
-			FileSize,
-			FsType,
+			// 15 was FileSize, which never had a column
+			FsType = 16,
 			Tags,
 			Lang,
 			InfoKey,
@@ -121,7 +121,8 @@ class FMFontDb : public QObject, public QSqlDatabase
 // 		FontItem* NextFont();
 
 		QList<FontItem*> Fonts ( const QVariant& pattern, Field field );
-		QList<FontItem*> Fonts ( const QVariant& pattern, InfoItem info, int codeLang = 0 );
+		// codeLang is the language id of the name records, any of them by default
+		QList<FontItem*> Fonts ( const QVariant& pattern, InfoItem info, int codeLang = -1 );
 		int FontCount();
 
 		// Sorted and without duplicates
