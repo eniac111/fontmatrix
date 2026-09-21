@@ -27,7 +27,7 @@ FMPaths * FMPaths::getThis()
 
 QString FMPaths::TranslationsDir()
 {
-	const QString cached = getThis()->FMPathsDB.value(QStringLiteral("TranslationsDir"));
+	QString cached = getThis()->FMPathsDB.value(QStringLiteral("TranslationsDir"));
 	if (!cached.isEmpty())
 		return cached;
 
@@ -52,7 +52,7 @@ QString FMPaths::TranslationsDir()
 
 QString FMPaths::HelpDir()
 {
-	const QString cached = getThis()->FMPathsDB.value(QStringLiteral("HelpDir"));
+	QString cached = getThis()->FMPathsDB.value(QStringLiteral("HelpDir"));
 	if (!cached.isEmpty())
 		return cached;
 
@@ -73,7 +73,7 @@ QString FMPaths::HelpDir()
 
 QString FMPaths::ResourcesDir()
 {
-	const QString cached = getThis()->FMPathsDB.value(QStringLiteral("ResourcesDir"));
+	QString cached = getThis()->FMPathsDB.value(QStringLiteral("ResourcesDir"));
 	if (!cached.isEmpty())
 		return cached;
 

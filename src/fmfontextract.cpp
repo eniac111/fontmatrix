@@ -52,7 +52,7 @@ FMFontExtract::~ FMFontExtract()
 		if(!extP.contains(b))
 			extP << b;
 	}
-	for (auto* b : extP)
+	for (auto* b : std::as_const(extP))
 	{
 		if(b)
 			delete b;
@@ -127,7 +127,7 @@ void FMFontExtract::slotExtract()
 	QString odir(outputDir->text() + QDir::separator());
 
 	QStringList failedExt;
-	for (const auto& name : names)
+	for (const auto& name : std::as_const(names))
 	{
 	
 		QString fnam(odir + name + "." + currentExtractor->fontType(name));

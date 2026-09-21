@@ -11,6 +11,7 @@
 //
 
 #include "fmuniblocks.h"
+#include "fontmatrix_debug.h"
 #include "fmpaths.h"
 
 #include <QDir>
@@ -87,7 +88,7 @@ void FMUniBlocks::recordLine(const QString& line)
 	QStringList rl(rs.split(";",Qt::SkipEmptyParts));
 	if(rl.count() != 3)
 	{
-		qDebug()<<"ERROR: spliting a block record in"<<rl.count()<<"lines";
+		qCWarning(FONTMATRIX_LOG)<<"ERROR: spliting a block record in"<<rl.count()<<"lines";
 		return;
 	}
 	bool ok;
@@ -184,7 +185,7 @@ FMUniBlocks::bKey FMUniBlocks::interval(const QString & blockName)
 		if(that()->p.value(k) == blockName)
 			return k;
 	}
-	qDebug()<<"WARNING: cannot find block name"<<blockName;
+	qCWarning(FONTMATRIX_LOG)<<"WARNING: cannot find block name"<<blockName;
 	return bKey(0,0);
 }
 

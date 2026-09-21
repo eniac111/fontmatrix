@@ -49,7 +49,6 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmconfig.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmpaths.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmplayground.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmpreviewlist.cpp
-# fmprintdialog.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmrepair.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmsampletextview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmshaper_own.cpp
@@ -83,17 +82,31 @@ ${CMAKE_CURRENT_SOURCE_DIR}/playwidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/prefspaneldialog.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/progressbarduo.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/remotedir.cpp
-#${CMAKE_CURRENT_SOURCE_DIR}/savedata.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/sampletoolbar.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/samplewidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/shortcuts.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/systray.cpp
-# ${CMAKE_CURRENT_SOURCE_DIR}/tagseteditor.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/tagswidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/tagswidget_listmodel.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/textprogression.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/tttableview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/typotek.cpp
+)
+
+# Debug output goes through one category, which is off unless asked for:
+#   QT_LOGGING_RULES="fontmatrix.debug=true" fontmatrix
+ecm_qt_declare_logging_category(fontmatrix_SRCS
+	HEADER fontmatrix_debug.h
+	IDENTIFIER FONTMATRIX_LOG
+	CATEGORY_NAME fontmatrix
+	DEFAULT_SEVERITY Info
+	DESCRIPTION "Fontmatrix"
+	EXPORT FONTMATRIX
+)
+ecm_qt_install_logging_categories(
+	EXPORT FONTMATRIX
+	FILE fontmatrix.categories
+	DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
 )
 
 IF(HARFBUZZSHAPER)
@@ -200,7 +213,6 @@ sampletoolbar.h
 samplewidget.h
 shortcuts.h
 systray.h
-# tagseteditor.h
 tagswidget.h
 tagswidget_listmodel.h
 #textprogression.h

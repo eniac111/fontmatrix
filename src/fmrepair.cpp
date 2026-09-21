@@ -11,6 +11,7 @@
 //
 
 #include "fmrepair.h"
+#include "fontmatrix_debug.h"
 #include "typotek.h"
 #include "fontitem.h"
 #include "fmfontdb.h"
@@ -118,12 +119,12 @@ void FmRepair::fillActNotLinked()
 			}
 			else
 			{
-				qDebug()<<list[i].filePath()<<" is a broken symlink";
+				qCDebug(FONTMATRIX_LOG)<<list[i].filePath()<<" is a broken symlink";
 			}
 		}
 		else
 		{
-			qDebug()<<list[i].filePath() << " is not a symlink";
+			qCDebug(FONTMATRIX_LOG)<<list[i].filePath() << " is not a symlink";
 		}
 	}
 	
@@ -221,8 +222,8 @@ void FmRepair::slotRelinkActNotLinked()
 	{
 		if(actNotLinkList->item(i)->checkState() == Qt::Checked)
 		{
-			FontItem *font = nullptr;
-			if((font = FMFontDb::DB()->Font(actNotLinkList->item(i)->text())))
+			FontItem *font = FMFontDb::DB()->Font(actNotLinkList->item(i)->text());
+			if(font)
 			{
 				QFile f(font->path());
 				f.link( t->getManagedDir() + QDir::separator() + font->activationName() );
@@ -244,8 +245,8 @@ void FmRepair::slotDeactivateActNotLinked()
 	{
 		if(actNotLinkList->item(i)->checkState() == Qt::Checked)
 		{
-			FontItem *font = nullptr;
-			if((font = FMFontDb::DB()->Font(actNotLinkList->item(i)->text())))
+			FontItem *font = FMFontDb::DB()->Font(actNotLinkList->item(i)->text());
+			if(font)
 			{
 				font->setActivated(false);
 			}
@@ -270,8 +271,8 @@ void FmRepair::slotDelinkDeactLinked()
 	{
 		if(deactLinkList->item(i)->checkState() == Qt::Checked)
 		{
-			FontItem *font = nullptr;
-			if((font = FMFontDb::DB()->Font(deactLinkList->item(i)->text())))
+			FontItem *font = FMFontDb::DB()->Font(deactLinkList->item(i)->text());
+			if(font)
 			{
 				QFile f(t->getManagedDir() + QDir::separator() + font->activationName());
 				f.remove();
@@ -287,8 +288,8 @@ void FmRepair::slotActivateDeactLinked()
 	{
 		if(deactLinkList->item(i)->checkState() == Qt::Checked)
 		{
-			FontItem *font = nullptr;
-			if((font = FMFontDb::DB()->Font(deactLinkList->item(i)->text())))
+			FontItem *font = FMFontDb::DB()->Font(deactLinkList->item(i)->text());
+			if(font)
 			{
 				font->setActivated(true);
 			}
@@ -335,7 +336,7 @@ void FmRepair::slotRemoveUnref()
 		{
 			FontItem* curItem = nullptr;
 			QString fId(unrefList->item(i)->text());
-			for (auto* it : flist)
+			for (auto* it : std::as_const(flist))
 			{
 				if(it->path() == fId)
 				{

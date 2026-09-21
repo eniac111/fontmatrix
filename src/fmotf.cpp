@@ -20,6 +20,7 @@
 
 
 #include "fmotf.h"
+#include "fontmatrix_debug.h"
 #include "fmaltcontext.h"
 
 #include <QDebug>
@@ -162,7 +163,8 @@ HB_Error hb_getPointInOutline ( HB_Font font, HB_Glyph glyph, int flags, hb_uint
 
 	int load_flags = ( flags & HB_ShaperFlag_UseDesignMetrics ) ? FT_LOAD_NO_HINTING : FT_LOAD_DEFAULT;
 
-	if ( ( error = ( HB_Error ) FT_Load_Glyph ( face, glyph, load_flags ) ) )
+	error = ( HB_Error ) FT_Load_Glyph ( face, glyph, load_flags );
+	if ( error )
 		return error;
 
 	if ( face->glyph->format != ft_glyph_format_outline )
@@ -183,14 +185,14 @@ HB_Error hb_getPointInOutline ( HB_Font font, HB_Glyph glyph, int flags, hb_uint
 
 void hb_getGlyphMetrics ( HB_Font , HB_Glyph , HB_GlyphMetrics *metrics )
 {
-	qDebug() << "void hb_getGlyphMetrics";
+	qCDebug(FONTMATRIX_LOG) << "void hb_getGlyphMetrics";
 	// ###
 	metrics->x = metrics->y = metrics->width = metrics->height = metrics->xOffset = metrics->yOffset = 0;
 }
 
 HB_Fixed hb_getFontMetric ( HB_Font , HB_FontMetric )
 {
-	qDebug() << "HB_Fixed hb_getFontMetric";
+	qCDebug(FONTMATRIX_LOG) << "HB_Fixed hb_getFontMetric";
 	return 0; // ####
 }
 
@@ -363,7 +365,7 @@ FMOtf::FMOtf ( FT_Face f , double scale )
 			        !HB_Load_GSUB_Table ( gsubstream, &_gsub, nullptr, nullptr ) )
 			{
 				GSUB = 1;
-				qDebug()<<"REGISTER alternate substitutions callback";
+				qCDebug(FONTMATRIX_LOG)<<"REGISTER alternate substitutions callback";
 				HB_GSUB_Register_Alternate_Function( _gsub, manageAlternates ,nullptr);
 			}
 			else
@@ -428,7 +430,7 @@ QList<RenderedGlyph> FMOtf::procstring ( QString s, OTFSet set )
 	altGlyphs.clear();
 	if ( hb_buffer_new ( &_buffer ) != HB_Err_Ok)
 	{
-		qDebug ( ) << "Unable to get _buffer("<< _buffer <<")";
+		qCWarning(FONTMATRIX_LOG) << "Unable to get _buffer("<< _buffer <<")";
 		return QList<RenderedGlyph>();
 	}
 	procstring ( s, set.script, set.lang, set.gsub_features, set.gpos_features );
@@ -460,7 +462,7 @@ QList< RenderedGlyph > FMOtf::procstring( QList<Character> shaped , QString scri
 // 	regAltGlyphs.clear();
 	if ( hb_buffer_new ( &_buffer ) != HB_Err_Ok)
 	{
-		qDebug ( ) << "Unable to get _buffer("<< _buffer <<")";
+		qCWarning(FONTMATRIX_LOG) << "Unable to get _buffer("<< _buffer <<")";
 		return QList<RenderedGlyph>();
 	}
 	hb_buffer_clear ( _buffer );
@@ -473,7 +475,7 @@ QList< RenderedGlyph > FMOtf::procstring( QList<Character> shaped , QString scri
 	//First we collect properties
 	for( int i = 0; i < n; i++ )
 	{
-		for (const auto& cProp : shaped[i].CustomProperties)
+		for (const auto& cProp : std::as_const(shaped[i].CustomProperties))
 		{
 			if(!props.contains(cProp))
 			{
@@ -488,7 +490,7 @@ QList< RenderedGlyph > FMOtf::procstring( QList<Character> shaped , QString scri
 	{
 		uint prop = 0;
 // 		prop |= all;
-		for (const auto& cProp : shaped[i].CustomProperties)
+		for (const auto& cProp : std::as_const(shaped[i].CustomProperties))
 		{
 			prop |= (props[cProp]);
 		}
@@ -523,7 +525,7 @@ QList< RenderedGlyph > FMOtf::procstring( QList<Character> shaped , QString scri
 			if ( !error )
 			{
 				HB_GSUB_Add_Feature ( _gsub, fidx, props[feature] );
-				qDebug() << "GSUB_ADD "<< feature <<" => "<<QString::number( props[feature], 2 );
+				qCDebug(FONTMATRIX_LOG) << "GSUB_ADD "<< feature <<" => "<<QString::number( props[feature], 2 );
 			}
 			else
 				qWarning() << QString ( "adding gsub feature [%1] failed : %2" ).arg ( feature ).arg ( error );
@@ -800,7 +802,7 @@ FMOtf::get_scripts ()
 	{
 		HB_UInt *taglist;
 		if ( HB_GSUB_Query_Scripts ( _gsub, &taglist ) )
-			qDebug ( "error HB_GSUB_Query_Scripts" );
+			qCDebug(FONTMATRIX_LOG, "error HB_GSUB_Query_Scripts" );
 		while ( *taglist )
 		{
 // 			qDebug ( QString ( "script [%1]" ).arg ( OTF_tag_name ( *taglist ) ) );
@@ -814,7 +816,7 @@ FMOtf::get_scripts ()
 
 		HB_UInt *taglist;
 		if ( HB_GPOS_Query_Scripts ( _gpos, &taglist ) )
-			qDebug ( "error HB_GPOS_Query_Scripts" );
+			qCDebug(FONTMATRIX_LOG, "error HB_GPOS_Query_Scripts" );
 		while ( *taglist )
 		{
 			ret.append ( OTF_tag_name ( *taglist ) );
@@ -834,13 +836,13 @@ FMOtf::set_script ( QString s )
 	{
 		if ( HB_GSUB_Select_Script
 		        ( _gsub, OTF_name_tag ( curScriptName ), &curScript ) )
-			qDebug ( "Unable to set script index " );
+			qCDebug(FONTMATRIX_LOG, "Unable to set script index " );
 	}
 	if ( curTable == "GPOS" && GPOS )
 	{
 		if ( HB_GPOS_Select_Script
 		        ( _gpos, OTF_name_tag ( curScriptName ), &curScript ) )
-			qDebug ( "Unable to set script index" );
+			qCDebug(FONTMATRIX_LOG, "Unable to set script index" );
 	}
 }
 
@@ -856,7 +858,7 @@ FMOtf::get_langs ()
 
 		HB_UInt *taglist;
 		if ( HB_GSUB_Query_Languages ( _gsub, curScript, &taglist ) )
-			qDebug ( "error HB_GSUB_Query_Langs" );
+			qCDebug(FONTMATRIX_LOG, "error HB_GSUB_Query_Langs" );
 		while ( *taglist )
 		{
 // 			qDebug ( QString ( "lang [%1]" ).arg ( OTF_tag_name ( *taglist ) ) );
@@ -870,7 +872,7 @@ FMOtf::get_langs ()
 
 		HB_UInt *taglist;
 		if ( HB_GPOS_Query_Languages ( _gpos, curScript, &taglist ) )
-			qDebug ( "error HB_GPOS_Query_Langs" );
+			qCDebug(FONTMATRIX_LOG, "error HB_GPOS_Query_Langs" );
 		while ( *taglist )
 		{
 			ret.append ( OTF_tag_name ( *taglist ) );
@@ -979,14 +981,11 @@ GlyphList FMOtf::get_position ( HB_Buffer abuffer )
 // 		qDebug() << "bIndex = "<< bIndex;
 		RenderedGlyph gl;
 
+		// Glyph 0 is kept: a character the font lacks shows as .notdef, as it
+		// does without OpenType features. Skipping it also left renderedString
+		// shorter than the buffer, and the "back" positions below index it with
+		// the index of the buffer.
 		gl.glyph = _buffer->in_string[bIndex].gindex;
-		if ( gl.glyph == 0 )
-		{
-// 			qDebug() << "glyph skipped";
-			// Here we just continue but in the case of an actual lyout engine
-			// we should keep track of empty glyphs positions too.
-			continue;
-		}
 		gl.log = _buffer->in_string[bIndex].cluster;
 		HB_Position p = nullptr;
 		if ( wantPos && GPOS )

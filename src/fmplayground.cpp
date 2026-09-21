@@ -11,6 +11,7 @@
 //
 
 #include "fmplayground.h"
+#include "fontmatrix_debug.h"
 #include "fontitem.h"
 #include "fmglyphhighlight.h"
 #include "typotek.h"
@@ -39,11 +40,11 @@ FMPlayGround::FMPlayGround ( QWidget *parent )
 	if ( glwgt->format().sampleBuffers() )
 	{
 		setViewport ( glwgt );
-		qDebug() <<"opengl enabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
+		qCDebug(FONTMATRIX_LOG) <<"opengl enabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
 	}
 	else
 	{
-		qDebug() <<"opengl disabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
+		qCDebug(FONTMATRIX_LOG) <<"opengl disabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
 		delete glwgt;
 	}
 #endif
@@ -86,7 +87,7 @@ void FMPlayGround::mousePressEvent ( QMouseEvent * e )
 	}
 	else
 	{
-		for (auto* i : sel)
+		for (auto* i : std::as_const(sel))
 		{
 			curSelRect = curSelRect.united( i->boundingRect() );
 		}
@@ -181,7 +182,7 @@ void FMPlayGround::keyReleaseEvent(QKeyEvent * e)
 		if(Qt::Key_A == e->key())
 		{
 			closeLine();
-			for (auto* gi : glyphLines)
+			for (auto* gi : std::as_const(glyphLines))
 			{
 				gi->setSelected(true);
 			}
@@ -194,7 +195,7 @@ void FMPlayGround::keyReleaseEvent(QKeyEvent * e)
 			{
 				QStringList cs(clipText.split(QString("\n")));
 				bool first(true);
-				for (const auto& s : cs)
+				for (const auto& s : std::as_const(cs))
 				{
 					if(first)
 					{
@@ -270,7 +271,7 @@ void FMPlayGround::updateLine()
 	FontItem * fi(typotek::getInstance()->getTheMainView()->selectedFont());
 	if(fi)
 	{
-		for (auto* item : curLine)
+		for (auto* item : std::as_const(curLine))
 			delete item;
 		curLine.clear();
 		displayGlyphs(curString, fi, PlayWidget::getInstance()->playFontSize());
@@ -301,7 +302,7 @@ void FMPlayGround::closeLine()
 
 void FMPlayGround::deselectAll()
 {
-	for (auto* gi : glyphLines)
+	for (auto* gi : std::as_const(glyphLines))
 	{
 		gi->setSelected(false);
 	}
@@ -346,7 +347,7 @@ QRectF FMPlayGround::getMaxRect()
 		
 
 	}
-	qDebug()<<"FMPlayGround::getMaxRect = "<< allrect;
+	qCDebug(FONTMATRIX_LOG)<<"FMPlayGround::getMaxRect = "<< allrect;
 	return allrect;
 }
 

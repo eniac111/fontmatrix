@@ -11,6 +11,7 @@
 //
 
 #include "fmpdffontextractor.h"
+#include "fontmatrix_debug.h"
 
 #include <QDebug>
 #include <QFile>
@@ -48,8 +49,8 @@ bool FMPDFFontExtractor::loadFile(const QString & filePath)
 	}
 	catch (PoDoFo::PdfError& e)
 	{
-		qDebug() << "PoDoFo::Error:" << e.what();
-		qDebug() << "Unable to process the PDF file" << filePath;
+		qCWarning(FONTMATRIX_LOG) << "PoDoFo::Error:" << e.what();
+		qCWarning(FONTMATRIX_LOG) << "Unable to process the PDF file" << filePath;
 		document.reset();
 		return false;
 	}
@@ -142,7 +143,7 @@ bool FMPDFFontExtractor::write(const QString & name, QIODevice* openedDevice)
 	}
 	catch (PoDoFo::PdfError& e)
 	{
-		qDebug() << "Unable to get font stream copy:" << e.what();
+		qCWarning(FONTMATRIX_LOG) << "Unable to get font stream copy:" << e.what();
 		return false;
 	}
 }

@@ -52,6 +52,7 @@ include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
+include(ECMQtDeclareLoggingCategory)
 # These Qt strictness flags require mass codebase changes — deferred to later phases:
 #   QT_NO_CAST_FROM_ASCII / TO_ASCII / FROM_BYTEARRAY  → Phase 5 (i18n migration)
 #   QT_NO_KEYWORDS (signals/slots/foreach)             → Phase 2 (main window refactor)

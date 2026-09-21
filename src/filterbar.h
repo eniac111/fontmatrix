@@ -60,6 +60,7 @@ public:
 	void clearCurrents();
 	void addToCurrents(const QString& t);
 	void removeFromCurrents(const QString& t);
+	void renameCurrent(const QString& from, const QString& to);
 
 public slots:
 	void tagsDBChanged();

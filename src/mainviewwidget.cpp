@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "mainviewwidget.h"
+#include "fontmatrix_debug.h"
 #include "fmactivate.h"
 #include "fmactivationreport.h"
 #include "fmaltcontext.h"
@@ -906,18 +907,31 @@ bool MainViewWidget::slotFontSelectedByName (const QString& fname )
 //	QApplication::restoreOverrideCursor();
 //}
 
+FontItem* MainViewWidget::selectedOrCurrentFont()
+{
+	if(theVeryFont)
+		return theVeryFont;
+	// A font is only selected once its family is open. A single click in the
+	// list highlights a tile, which stands for the same row as in slotShowFamily().
+	const QModelIndex idx(listView->currentIndex());
+	const QList<FontItem*> families(FMFontDb::DB()->getFilteredFonts(true));
+	if(idx.isValid() && idx.row() < families.count())
+		return families.at(idx.row());
+	return nullptr;
+}
+
 void MainViewWidget::slotShowFamily(const QModelIndex& familyIdx)
 {
 	FontItem * fItem(FMFontDb::DB()->getFilteredFonts(true).at(familyIdx.row()));
 	if(!fItem)
 	{
-		qDebug()<<"\t-FontItme invalid";
+		qCDebug(FONTMATRIX_LOG)<<"\t-FontItme invalid";
 		return;
 	}
 	QList<FontItem*> fl(FMFontDb::DB()->FamilySet(fItem->family()));
-	for (auto* f : fl)
+	for (auto* f : std::as_const(fl))
 	{
-		qDebug() <<"F"<< f->fancyName();
+		qCDebug(FONTMATRIX_LOG) <<"F"<< f->fancyName();
 	}
 	familyWidget->setFamily(fItem->family());
 	previewStack->setCurrentIndex(1);
@@ -1151,7 +1165,7 @@ void MainViewWidget::slotActivateAll()
 
 void MainViewWidget::keyPressEvent ( QKeyEvent * e )
 {
-	qDebug() << " MainViewWidget::keyPressEvent(QKeyEvent * "<<e<<")";
+	qCDebug(FONTMATRIX_LOG) << " MainViewWidget::keyPressEvent(QKeyEvent * "<<e<<")";
 	if(e->text().isEmpty() || (!e->text().at(0).isLetterOrNumber()))
 		return;
 	slotQuickSearch(e->text());
@@ -1220,7 +1234,7 @@ void MainViewWidget::slotQuickSearch(const QString& text)
 {
 	int t(quickSearchTime.elapsed());
 	bool hasText(false);
-	qDebug()<<text<<t<<quickSearchString;
+	qCDebug(FONTMATRIX_LOG)<<text<<t<<quickSearchString;
 	if(quickSearchString.isEmpty() || (t > quickSearchWait) )
 	{
 		quickSearchWidget->show();

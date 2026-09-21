@@ -54,7 +54,7 @@ QHexView::QHexView(QWidget * parent) : QAbstractScrollArea(parent),
 	setShowAddressSeparator(true);
 	
 	// default to a simple monospace font
-	setFont(QFont("Monospace", 8));
+	setHexFont(QFont("Monospace", 8));
 }
 
 //------------------------------------------------------------------------------
@@ -94,7 +94,7 @@ QString QHexView::formatAddress(address_t address) {
 // Name: 
 // Desc: 
 //------------------------------------------------------------------------------
-void QHexView::repaint() {
+void QHexView::repaintView() {
 	viewport()->repaint();
 }
 
@@ -107,10 +107,11 @@ int QHexView::dataSize() const {
 }
 
 //------------------------------------------------------------------------------
-// Name: setFont(const QFont &f)
-// Desc: overloaded version of setFont, calculates font metrics for later
+// Name: setHexFont(const QFont &f)
+// Desc: sets the font and calculates font metrics for later. Not named
+//       setFont(), which would hide the non-virtual QWidget::setFont()
 //------------------------------------------------------------------------------
-void QHexView::setFont(const QFont &f) {
+void QHexView::setHexFont(const QFont &f) {
 
 	// recalculate all of our metrics/offsets
 	const QFontMetrics fm(f);
@@ -218,7 +219,7 @@ void QHexView::mnuCopy() {
 // Desc: slot used to set the font of the widget based on dialog selector
 //------------------------------------------------------------------------------
 void QHexView::mnuSetFont() {
-    setFont(QFontDialog::getFont(nullptr, font(), this));
+    setHexFont(QFontDialog::getFont(nullptr, font(), this));
 }
 
 //------------------------------------------------------------------------------
@@ -230,7 +231,7 @@ void QHexView::clear() {
 		m_Data->clear();
 	}
 
-	repaint();
+	repaintView();
 }
 
 //------------------------------------------------------------------------------
@@ -264,7 +265,7 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
 		switch(event->key()) {
 		case Qt::Key_A:
 			selectAll();
-			repaint();
+			repaintView();
 			break;
 		case Qt::Key_Home:
 			scrollTo(0);
@@ -444,7 +445,7 @@ void QHexView::scrollTo(unsigned int offset) {
 	}
 
 	verticalScrollBar()->setValue(address);
-	repaint();
+	repaintView();
 }
 
 //------------------------------------------------------------------------------
@@ -453,7 +454,7 @@ void QHexView::scrollTo(unsigned int offset) {
 //------------------------------------------------------------------------------
 void QHexView::setShowAddress(bool show) {
 	m_ShowAddress = show;
-	repaint();
+	repaintView();
 }
 
 //------------------------------------------------------------------------------
@@ -462,7 +463,7 @@ void QHexView::setShowAddress(bool show) {
 //------------------------------------------------------------------------------
 void QHexView::setShowHexDump(bool show) {
 	m_ShowHex = show;
-	repaint();
+	repaintView();
 }
 
 //------------------------------------------------------------------------------
@@ -471,7 +472,7 @@ void QHexView::setShowHexDump(bool show) {
 //------------------------------------------------------------------------------
 void QHexView::setShowComments(bool show) {
 	m_ShowComments = show;
-	repaint();
+	repaintView();
 }
 
 //------------------------------------------------------------------------------
@@ -480,7 +481,7 @@ void QHexView::setShowComments(bool show) {
 //------------------------------------------------------------------------------
 void QHexView::setShowAsciiDump(bool show) {
 	m_ShowAscii = show;
-	repaint();
+	repaintView();
 }
 
 //------------------------------------------------------------------------------
@@ -491,7 +492,7 @@ void QHexView::setRowWidth(int rowWidth) {
 	m_RowWidth = rowWidth;
 	
 	updateScrollbars();
-	repaint();
+	repaintView();
 }
 
 //------------------------------------------------------------------------------
@@ -502,7 +503,7 @@ void QHexView::setWordWidth(int wordWidth) {
 	m_WordWidth = wordWidth;
 	
 	updateScrollbars();
-	repaint();
+	repaintView();
 }
 
 //------------------------------------------------------------------------------
@@ -598,7 +599,7 @@ void QHexView::mouseDoubleClickEvent(QMouseEvent * event) {
 			
 			m_SelectionStart = byteOffset;
 			m_SelectionEnd = m_SelectionStart + m_WordWidth;
-			repaint();
+			repaintView();
 		}
 	}
 }
@@ -630,7 +631,7 @@ void QHexView::mousePressEvent(QMouseEvent *event) {
 		} else {
 			m_SelectionStart = m_SelectionEnd = -1;
 		}
-		repaint();
+		repaintView();
 	}
 }
 
@@ -672,7 +673,7 @@ void QHexView::mouseMoveEvent(QMouseEvent *event) {
 			}
 			
 		}
-		repaint();
+		repaintView();
 	}
 }
 
@@ -694,7 +695,7 @@ void QHexView::setData(C *d) {
 	
 	deselect();
 	updateScrollbars();
-	repaint();
+	repaintView();
 }
 
 //------------------------------------------------------------------------------

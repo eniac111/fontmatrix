@@ -41,6 +41,8 @@ class FMShaper
 		HB_Buffer out_buffer();
 
 	private:
+		// owns the arrays of the shaper item
+		Q_DISABLE_COPY ( FMShaper )
 		FMOtf *anchorOTF;
 		FT_Face anchorFace;
 		HB_ShaperItem m;

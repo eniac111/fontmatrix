@@ -20,6 +20,8 @@ class PangoShaper : public FMBaseShaper
 		PangoShaper(FMOtf* o, QString s);
 		~PangoShaper();
 		GlyphList doShape( const QString& s ) override;
+	private:
+		Q_DISABLE_COPY ( PangoShaper )
 };
 
 #endif

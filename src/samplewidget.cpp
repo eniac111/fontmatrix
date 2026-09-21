@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "samplewidget.h"
+#include "fontmatrix_debug.h"
 #include "sampletoolbar.h"
 #include "ui_samplewidget.h"
 #include "typotek.h"
@@ -97,6 +98,9 @@ SampleWidget::State SampleWidget::State::fromByteArray(QByteArray b)
 	renderHinting = rh;
 	shaper = sh;
 	script = sc;
+	// A copy used to come out as "set" whatever the original said, and
+	// restoring the saved state relied on it. Say it here instead.
+	set = true;
 //	return State(sn,fs,rh,sh,sc);
 	return *this;
 }
@@ -337,16 +341,19 @@ void SampleWidget::setState(const SampleWidget::State &s)
 //		}
 //	}
 
+	// A new profile names no sample. Without this the first of the tree wins,
+	// whatever its script is.
+	const QString wanted(s.sampleName.isEmpty() ? typotek::getInstance()->defaultSampleName() : s.sampleName);
 	QTreeWidgetItem * targetItem = nullptr;
 	for(int i(0); i < ui->sampleTextTree->topLevelItemCount(); ++i)
 	{
 		QTreeWidgetItem * tli(ui->sampleTextTree->topLevelItem(i));
 		for(int ii(0); ii < tli->childCount(); ++ii)
 		{
-			if(tli->child(ii)->data(0, Qt::UserRole).toString() == s.sampleName)
+			if(tli->child(ii)->data(0, Qt::UserRole).toString() == wanted)
 			{
 				targetItem = tli->child(ii);
-				typotek::getInstance()->namedSample(s.sampleName);
+				typotek::getInstance()->namedSample(wanted);
 				break;
 			}
 		}
@@ -453,7 +460,7 @@ void SampleWidget::drawBaseline(double y)
 
 void SampleWidget::clearFTScene()
 {
-	qDebug()<<"SampleWidget::clearFTScene"<< layoutSwitch;
+	qCDebug(FONTMATRIX_LOG)<<"SampleWidget::clearFTScene"<< layoutSwitch;
 //	if(layoutSwitch)
 //		return;
 	for (auto* gi : ftScene->items())
@@ -776,7 +783,7 @@ void SampleWidget::refillSampleList()
 	{
 
 		bool first(true);
-		for (const auto& uk : ul)
+		for (const auto& uk : std::as_const(ul))
 		{
 			if(first)
 			{

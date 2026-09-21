@@ -300,12 +300,12 @@ void FamilyWidget::updateButtons()
 				<< ui->infoButton
 				<< ui->chartButton
 				<< ui->activationButton;
-		for (auto* b : buttons)
+		for (auto* b : std::as_const(buttons))
 		{
 			b->setCheckable(true);
 		}
 	}
-	for (auto* b : buttons)
+	for (auto* b : std::as_const(buttons))
 	{
 		b->setChecked(false);
 	}

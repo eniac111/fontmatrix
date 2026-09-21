@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "glyphtosvghelper.h"
+#include "fontmatrix_debug.h"
 
 #include <QStringList>
 #include <QPointF>
@@ -57,7 +58,7 @@ GlyphToSVGHelper::GlyphToSVGHelper(QPainterPath path, QTransform tf)
             curPos = c2;
         }
         else
-            qDebug("Unknown point type");
+            qCDebug(FONTMATRIX_LOG, "Unknown point type");
     }
 
     m_svg += QString("<path d=\"%1\" fill=\"%2\" />").arg(data.join(" ")).arg("black");

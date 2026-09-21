@@ -10,6 +10,7 @@
 //
 //
 #include "fontbook.h"
+#include "fontmatrix_debug.h"
 #include "fontbookdialog.h"
 #include "typotek.h"
 #include "fontitem.h"
@@ -186,7 +187,7 @@ void FontBook::doFullBookCover()
 
 void FontBook::doFullBookPageRight(const QString &family)
 {
-	qDebug()<<"=>"<<family;
+	qCDebug(FONTMATRIX_LOG)<<"=>"<<family;
 	QList<FontItem*> familyFonts = FMFontDb::DB()->FamilySet(family);
 
 	QRectF halfPage(printerRect);
@@ -220,7 +221,7 @@ void FontBook::doFullBookPageRight(const QString &family)
 					&& !stl.contains(t)
 					&& !sizes.contains(t.size()))
 					{
-					qDebug()<<"\t"<<t;
+					qCDebug(FONTMATRIX_LOG)<<"\t"<<t;
 					sizes << t.size();
 					stl << t;
 				}
@@ -260,7 +261,7 @@ void FontBook::doFullBookPageRight(const QString &family)
 		logDescend[fidx] = tmpScene.itemsBoundingRect().bottom() - 1000.0;
 //		qDebug()<< sampleString[fidx] << logWidth[fidx];
 		QList<QGraphicsItem*> lgit(tmpScene.items());
-		for (auto* git : lgit)
+		for (auto* git : std::as_const(lgit))
 		{
 			tmpScene.removeItem(git);
 			delete git;
@@ -347,13 +348,13 @@ void FontBook::doFullBookPageRight(const QString &family)
 	bool rasterState(rFont->rasterFreetype());
 	rFont->setFTRaster(false);
 	QList<GlyphList> lgl;
-	for (const auto& s : stringList)
+	for (const auto& s : std::as_const(stringList))
 	{
 		lgl << rFont->glyphs(s, littleSize);
 	}
 	layoutLeft->doLayout(lgl, littleSize);
 	lgl.clear();
-	for (const auto& s : stringList)
+	for (const auto& s : std::as_const(stringList))
 	{
 		lgl << rFont->glyphs(s, bigSize);
 	}
@@ -463,7 +464,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 
 		// Unicode Coverage
 		QStringList llist;
-		for (auto* fi : familyFonts)
+		for (auto* fi : std::as_const(familyFonts))
 		{
 			for (const auto& sl : fi->supportedLangDeclaration())
 			{

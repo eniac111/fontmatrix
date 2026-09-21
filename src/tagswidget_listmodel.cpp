@@ -44,12 +44,10 @@ int TagsWidget_ListModel::columnCount(const QModelIndex &parent) const
 
 QVariant TagsWidget_ListModel::data(const QModelIndex &index, int role) const
 {
-	if(!index.isValid() && index.column() != 0)
+	if(!index.isValid() || index.column() != 0)
 		return QVariant();
-	QStringList tl_tmp = FMFontDb::DB()->getTags();
-	tl_tmp.sort();
-
-	QString tag(tl_tmp.at(index.row()));
+	// getTags() is cached and sorted
+	const QString tag(FMFontDb::DB()->getTags().value(index.row()));
 	if(role == Qt::DisplayRole)
 	{
 		return tag;
@@ -86,15 +84,14 @@ bool TagsWidget_ListModel::setData(const QModelIndex &index, const QVariant &val
 
 	if(role == Qt::CheckStateRole)
 	{
-		QStringList tl_tmp = FMFontDb::DB()->getTags();
-		tl_tmp.sort();
+		const QStringList tl_tmp = FMFontDb::DB()->getTags();
 		QString tag(tl_tmp.at(index.row()));
 		if(Qt::CheckState(value.toInt()) == Qt::Checked)
 		{
 			if(!tags.contains(tag))
 			{
 				FMFontDb::DB()->TransactionBegin();
-				for (auto* f : fonts)
+				for (auto* f : std::as_const(fonts))
 					f->addTag(tag);
 				FMFontDb::DB()->TransactionEnd();
 				tags.append(tag);
@@ -109,7 +106,7 @@ bool TagsWidget_ListModel::setData(const QModelIndex &index, const QVariant &val
 			if(tags.contains(tag))
 			{
 				FMFontDb::DB()->TransactionBegin();
-				for (auto* f : fonts)
+				for (auto* f : std::as_const(fonts))
 					FMFontDb::DB()->removeTag(f->path(), tag);
 				FMFontDb::DB()->TransactionEnd();
 				tags.removeAll(tag);
@@ -122,8 +119,7 @@ bool TagsWidget_ListModel::setData(const QModelIndex &index, const QVariant &val
 	}
 	else if(role == Qt::EditRole || role == Qt::DisplayRole)
 	{
-		QStringList tl_tmp = FMFontDb::DB()->getTags();
-		tl_tmp.sort();
+		const QStringList tl_tmp = FMFontDb::DB()->getTags();
 		if(value.toString() == tl_tmp.at(index.row()))
 			return false;
 		FMFontDb::DB()->editTag ( tl_tmp.at(index.row()), value.toString());
@@ -156,8 +152,7 @@ QModelIndex TagsWidget_ListModel::addTag()
 	FMFontDb::DB()->addTagToDB(newTagString);
 	updateTags();
 
-	QStringList tl_tmp = FMFontDb::DB()->getTags();
-	tl_tmp.sort();
+	const QStringList tl_tmp = FMFontDb::DB()->getTags();
 
 	for(int i(0); i < tl_tmp.count(); ++i)
 	{

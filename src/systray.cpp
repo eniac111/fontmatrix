@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "systray.h"
+#include "fontmatrix_debug.h"
 #include "fmconfig.h"
 #include "mainviewwidget.h"
 #include "typotek.h"
@@ -192,7 +193,7 @@ void Systray::slotPrepareMenu()
 
 void Systray::newTag(QString name)
 {
-	qDebug()<<"Systray::newTag"<<name;
+	qCDebug(FONTMATRIX_LOG)<<"Systray::newTag"<<name;
 	if (tagActions.contains(name))
 		return; // already added
 
@@ -298,7 +299,7 @@ void Systray::createTagMenu()
 
 	QStringList tmp(FMFontDb::DB()->getTags());
 	tmp.sort();
-	for (const auto& tagName : tmp) {
+	for (const auto& tagName : std::as_const(tmp)) {
 // 		if (tagName != "Activated_On" && tagName != "Activated_Off")
 			newTag(tagName);
 	}
@@ -342,11 +343,11 @@ void Systray::updateTagMenu(const QStringList& nameOfFontWhichCausedThisUpdate)
 {
 	QStringList tags(tagActions.keys());
 	bool lazy = true;
-	for (const auto& tag : tags)
+	for (const auto& tag : std::as_const(tags))
 	{
 		QList<FontItem*> taggedFonts = FMFontDb::DB()->Fonts( tag , FMFontDb::Tags );
 //		ttek->resetFilter();
-		for (auto* fit : taggedFonts)
+		for (auto* fit : std::as_const(taggedFonts))
 		{
 			if( nameOfFontWhichCausedThisUpdate.contains(fit->path()))
 			{	// we’re concerned
@@ -357,7 +358,7 @@ void Systray::updateTagMenu(const QStringList& nameOfFontWhichCausedThisUpdate)
 	}
 	if(lazy)
 		return;
-	for (const auto& tag : tags)
+	for (const auto& tag : std::as_const(tags))
 	{
 		deleteTag(tag);
 	}
@@ -367,7 +368,7 @@ void Systray::updateTagMenu(const QStringList& nameOfFontWhichCausedThisUpdate)
 
 	QStringList tmp(FMFontDb::DB()->getTags());
 	tmp.sort();
-	for (const auto& tagName : tmp) {
+	for (const auto& tagName : std::as_const(tmp)) {
 // 		if (tagName != "Activated_On" && tagName != "Activated_Off")
 			newTag(tagName);
 	}

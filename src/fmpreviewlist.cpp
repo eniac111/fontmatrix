@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "fmpreviewlist.h"
+#include "fontmatrix_debug.h"
 
 #include "typotek.h"
 #include "fontitem.h"
@@ -85,8 +86,8 @@ FMPreviewIconEngine::FMPreviewIconEngine()
 
 QIconEngine *FMPreviewIconEngine::clone() const
 {
-	// TODO Implement this function
-	return nullptr;
+	// QIcon calls this when a shared icon is modified; a null engine crashes it
+	return new FMPreviewIconEngine(*this);
 }
 
 QVector<QRgb> FMPreviewIconEngine::actualSelPalette(const QVector<QRgb>& orig)
@@ -288,7 +289,7 @@ QVariant FMPreviewModel::data(const QModelIndex & index, int role) const
 			sRet+= "<div style=\"" + styleTooltipName + "\">" + fit->family() + " ("+QString::number(fam.size())+")</div>";
 			sRet+= "<div style=\"" + styleTooltipTags + "\">" + fit->tags().join(QString(", ")) + "</div>";
 
-			for (auto* ffi : fam)
+			for (auto* ffi : std::as_const(fam))
 			{
 				sRet += "<div style=\"" + styleTooltipPath + "\">" + ffi->variant() + "</div>";
 			}
@@ -406,7 +407,7 @@ void FMPreviewView::resizeEvent(QResizeEvent * event)
         int actualWidth(width() - 20); // if we use the viewport size, it becomes funny when a resize shows/hides the scrollbar
         setSpacing(0);
         int gHeight(2.0 * typotek::getInstance()->getPreviewSize() * typotek::getInstance()->getDpiY() / 72.0);
-        qDebug()<< "VW" << actualWidth<<verticalScrollBar()->width()<< "S" <<spacing();
+        qCDebug(FONTMATRIX_LOG)<< "VW" << actualWidth<<verticalScrollBar()->width()<< "S" <<spacing();
         double cNr(1);
 
 	if(columns == 1)
@@ -416,7 +417,7 @@ void FMPreviewView::resizeEvent(QResizeEvent * event)
             int minCellWidth(FM_MINIMUM_PREVIEW_WIDTH + 6);
             cNr = qRound(double(actualWidth) / minCellWidth);
             minCellWidth =  qRound((double(actualWidth)  / cNr) - 6);
-            qDebug()<< "C" << cNr << "U" << minCellWidth ;
+            qCDebug(FONTMATRIX_LOG)<< "C" << cNr << "U" << minCellWidth ;
             setGridSize(QSize(minCellWidth, gHeight + 12));
             usedWidth = minCellWidth - 6;
         }
@@ -468,7 +469,7 @@ void FMPreviewView::mouseMoveEvent(QMouseEvent * event)
 
 void FMPreviewView::keyPressEvent(QKeyEvent *event)
 {
-	qDebug()<<"FMPreviewView::keyPressEvent"<<event;
+	qCDebug(FONTMATRIX_LOG)<<"FMPreviewView::keyPressEvent"<<event;
 	if((!event->text().isEmpty()) && (event->text().at(0).isLetterOrNumber()))
 		emit keyPressed(event->text());
 	else

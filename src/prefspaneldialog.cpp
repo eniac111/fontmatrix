@@ -10,6 +10,7 @@
 //
 //
 #include "prefspaneldialog.h"
+#include "fontmatrix_debug.h"
 #include "typotek.h"
 #include "shortcuts.h"
 #include "hyphenate/fmhyphenator.h"
@@ -291,10 +292,10 @@ void PrefsPanelDialog::deleteSampleName()
 		if(it)
 			delete it;
 		typotek::getInstance()->removeNamedSample( sampleKey );
-		qDebug()<<"Removed"<<sampleKey;
+		qCDebug(FONTMATRIX_LOG)<<"Removed"<<sampleKey;
 	}
 	else
-		qDebug()<<"Did not removed"<<sampleKey;
+		qCDebug(FONTMATRIX_LOG)<<"Did not removed"<<sampleKey;
 }
 
 void PrefsPanelDialog::displayNamedText()
@@ -615,7 +616,7 @@ void PrefsPanelDialog::reloadShortcuts()
 	shortcutModel->clear();
 	QList<QAction*> alist = Shortcuts::getInstance()->getActions();
 	Shortcuts *scuts = Shortcuts::getInstance();
-	for (auto* act : alist)
+	for (auto* act : std::as_const(alist))
 	{
 		QStandardItem *iText = new QStandardItem ( scuts->cleanName(act->text()) );
 		QStandardItem *iShortcut = new QStandardItem ( act->shortcut().toString() );

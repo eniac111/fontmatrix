@@ -72,7 +72,7 @@ public:
 	struct State
 	{
 		bool set;
-		State() : set(false) {}
+		State() : set(false), fontSize(0), renderHinting(0) {}
 		State(const QString& sn, double fs, unsigned int rh, const QString& sh, const QString& sc):
 				set(true),
 				sampleName(sn),
@@ -81,15 +81,6 @@ public:
 				shaper(sh),
 				script(sc)
 		{}
-		State(const State& other)
-			: set(true)
-		{
-			sampleName = other.sampleName;
-			fontSize = other.fontSize;
-			renderHinting = other.renderHinting;
-			shaper = other.shaper;
-			script = other.script;
-		}
 		QString sampleName;
 		double fontSize;
 		unsigned int renderHinting; // 0 = No; 1 = Normal; 2 = Light

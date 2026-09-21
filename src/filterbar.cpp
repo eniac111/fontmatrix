@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "filterbar.h"
+#include "fontmatrix_debug.h"
 #include "ui_filterbar.h"
 #include "fmfontdb.h"
 #include "panosewidget.h"
@@ -100,15 +101,12 @@ int TagListModel::columnCount(const QModelIndex &parent) const
 
 QVariant TagListModel::data(const QModelIndex &index, int role) const
 {
-	if(!index.isValid() && index.column() != 0)
+	if(!index.isValid() || index.column() != 0)
 		return QVariant();
-	QStringList tl_tmp = FMFontDb::DB()->getTags();
-	tl_tmp.sort();
-	// specials
-	QString tagActivated(i18n("Activated"));
-	tl_tmp.prepend(tagActivated);
-
-	QString tag(tl_tmp.at(index.row()));
+	// getTags() is cached and sorted, the specials come first
+	const bool special(index.row() < specialTagsCount);
+	const QString tag(special ? i18n("Activated")
+				  : FMFontDb::DB()->getTags().value(index.row() - specialTagsCount));
 	if(role == Qt::DisplayRole)
 	{
 //		return tag;
@@ -121,14 +119,15 @@ QVariant TagListModel::data(const QModelIndex &index, int role) const
 	{
 //		return QVariant();
 		QString ts("%1 (%2)");
-		int tc(tag == tagActivated ?
+		int tc(special ?
 		       FMFontDb::DB()->Fonts(1, FMFontDb::Activation ).count()
 			       :FMFontDb::DB()->Fonts(tag, FMFontDb::Tags ).count());
 		QRect pr(0,0,1024,18);
 		QPixmap pm(pr.size());
 		QPainter p;
 		p.begin(&pm);
-		p.drawText(pr,Qt::AlignLeft | Qt::TextDontClip | Qt::TextSingleLine, ts.arg(tag).arg(tc) , &pr);
+		const QString label(ts.arg(tag, QString::number(tc)));
+		p.drawText(pr,Qt::AlignLeft | Qt::TextDontClip | Qt::TextSingleLine, label , &pr);
 		p.end();
 		QPixmap tagPix(pr.width() + 18, 18);
 		tagPix.fill(Qt::transparent);
@@ -142,7 +141,7 @@ QVariant TagListModel::data(const QModelIndex &index, int role) const
 		p.drawRoundedRect(tagPix.rect(), 5,5);
 		p.restore();
 		pr.translate(9,0);
-		p.drawText(pr, ts.arg(tag).arg(tc));
+		p.drawText(pr, label);
 		p.end();
 		return tagPix;
 	}
@@ -167,8 +166,9 @@ bool TagListModel::setData(const QModelIndex &index, const QVariant &value, int 
 		return false;
 	if(value.toString().isEmpty())
 		return false;
-	QStringList tl_tmp = FMFontDb::DB()->getTags();
-	tl_tmp.sort();
+	if(index.row() < specialTagsCount)
+		return false;
+	const QStringList tl_tmp = FMFontDb::DB()->getTags();
 	if(value.toString() == tl_tmp.at(index.row() - specialTagsCount))
 		return false;
 	FMFontDb::DB()->editTag ( tl_tmp.at(index.row() - specialTagsCount), value.toString());
@@ -211,9 +211,18 @@ void TagListModel::removeFromCurrents(const QString &t)
 }
 
 
+void TagListModel::renameCurrent(const QString &from, const QString &to)
+{
+	const int idx(currentTags.indexOf(from));
+	if(idx >= 0)
+		currentTags[idx] = to;
+}
+
 void TagListModel::tagsDBChanged()
 {
-	emit dataChanged(index(0,0),index(FMFontDb::DB()->getTags().count() + specialTagsCount -1 ,columnCount() -1));
+	// The number of rows may have changed, dataChanged() is not enough
+	beginResetModel();
+	endResetModel();
 }
 
 FilterBar::FilterBar(QWidget *parent) :
@@ -335,7 +344,7 @@ void FilterBar::processFilters()
 	{
 		FMFontDb::DB()->clearFilteredFonts();
 		bool first(true);
-		for (auto* d : filters)
+		for (auto* d : std::as_const(filters))
 		{
 			if(first)
 			{
@@ -369,7 +378,7 @@ void FilterBar::slotRemoveFilterItem(bool process)
 void FilterBar::removeAllFilters()
 {
 	FMFontDb::DB()->filterAllFonts();
-	for (auto* d : filters)
+	for (auto* d : std::as_const(filters))
 	{
 		d->deleteLater();
 	}
@@ -425,19 +434,19 @@ QString FilterBar::filterString(FilterData *d, bool first)
 
 void FilterBar::loadFilters()
 {
-	for (auto* i : items)
+	for (auto* i : std::as_const(items))
 		delete i;
 	items.clear();
 
 	QDir fbasedir(FMPaths::FiltersDir());
 	QStringList fbaselist(fbasedir.entryList(QDir::NoDotAndDotDot|QDir::Dirs,QDir::Name));
-	for (const auto& fname : fbaselist)
+	for (const auto& fname : std::as_const(fbaselist))
 	{
 		QDir fdir(FMPaths::FiltersDir() + fname);
 		QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files, QDir::Name));
 		QString fString;
 		bool first(true);
-		for (const auto& fn : flist)
+		for (const auto& fn : std::as_const(flist))
 		{
 			QStringList l(fn.split(QString("-")));
 			if(l.count() == 2)
@@ -489,7 +498,7 @@ void FilterBar::slotTagSelect(const QModelIndex & index)
 //	int selCount(ui->tagsView->selectionModel()->selectedIndexes().count());
 //	if(selCount == 1)
 	{
-		for (auto* f : filters)
+		for (auto* f : std::as_const(filters))
 		{
 			if(f->filter()->data(FilterTag::Tag).toString() == tag)
 				return;
@@ -523,13 +532,32 @@ void FilterBar::slotTagSelect(const QModelIndex & index)
 
 void FilterBar::slotTagEdit(const QModelIndex &index)
 {
+	// "Activated" is not a tag of the database, there is nothing to rename
+	if(tagListModel->data(index, TagListModel::TagType).toString() != QString("TAG"))
+		return;
 	QString tag(tagListModel->data(index, TagListModel::TagString).toString());
 	bool ok;
 	QString newTag(QInputDialog::getText(this, i18n("Fontmatrix - edit tag"), i18n("Edit tag: ") + tag, QLineEdit::Normal, QString(), &ok));
-	if(!ok || newTag.isEmpty())
+	if(!ok || newTag.isEmpty() || newTag == tag)
 		return;
+
+	// A filter on this tag would go on asking for the old name and find
+	// nothing. The fonts are the same, so nothing has to be filtered again.
+	for (auto* f : std::as_const(filters))
+	{
+		FilterData *fd(f->filter());
+		if(fd->type() == QString("Tag")
+		   && fd->data(FilterTag::Key).toString() == QString("TAG")
+		   && fd->data(FilterTag::Tag).toString() == tag)
+		{
+			fd->setData(FilterTag::Tag, newTag);
+			fd->setData(FilterData::Text, newTag);
+			f->updateText();
+		}
+	}
+	// before editTag(): it resets the model, which reads the current tags
+	tagListModel->renameCurrent(tag, newTag);
 	FMFontDb::DB()->editTag(tag, newTag);
-	ui->tagsView->update(index);
 
 }
 
@@ -608,7 +636,7 @@ void FilterBar::slotLoadFilter(const QString &fname)
 	removeAllFilters();
 	QDir fdir(FMPaths::FiltersDir() + fname);
 	QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files, QDir::Name));
-	for (const auto& fn : flist)
+	for (const auto& fn : std::as_const(flist))
 	{
 		QStringList l(fn.split(QString("-")));
 		if(l.count() == 2)
@@ -651,7 +679,7 @@ void FilterBar::slotRemoveFilter(const QString &fname)
 	{
 		fdir.cd(fname);
 		QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files));
-		for (const auto& fn : flist)
+		for (const auto& fn : std::as_const(flist))
 		{
 			fdir.remove(fn);
 		}
@@ -660,7 +688,7 @@ void FilterBar::slotRemoveFilter(const QString &fname)
 	}
 	else
 	{
-		qDebug()<< "Directory does not exist:"<<fdir.absolutePath()<<fname;
+		qCDebug(FONTMATRIX_LOG)<< "Directory does not exist:"<<fdir.absolutePath()<<fname;
 	}
 	loadFilters();
 }

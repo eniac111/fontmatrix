@@ -32,6 +32,8 @@ class FMBaseShaper
 	protected:
 		FMOtf *otf;
 		QString script;
+	private:
+		Q_DISABLE_COPY ( FMBaseShaper )
 };
 
 
@@ -66,6 +68,7 @@ class FMShaperFactory
 
 		FMBaseShaper *shaperImpl;
 
+		Q_DISABLE_COPY ( FMShaperFactory )
 };
 
 

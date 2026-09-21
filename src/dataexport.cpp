@@ -11,6 +11,7 @@
 //
 
 #include "dataexport.h"
+#include "fontmatrix_debug.h"
 #include "ui_dataexport.h"
 
 #include "typotek.h"
@@ -40,7 +41,7 @@ DataExport::DataExport(QWidget* parent):
 	setAttribute(Qt::WA_DeleteOnClose, true);
 	ui->setupUi(this);
 	fonts = FMFontDb::DB()->getFilteredFonts();
-	for (auto* f : fonts)
+	for (auto* f : std::as_const(fonts))
 	{
 		QListWidgetItem *it(new QListWidgetItem(f->path()));
 		it->setCheckState(Qt::Checked);
@@ -93,11 +94,11 @@ int DataExport::copyFiles()
 			{
 				if ( !QFile::copy( fonts[fidx]->afm(), exDir.absolutePath() + exDir.separator() +  fonts[fidx]->activationAFMName() ) )
 				{
-					qDebug() << "unable to copy " << fonts[fidx]->afm();
+					qCWarning(FONTMATRIX_LOG) << "unable to copy " << fonts[fidx]->afm();
 				}
 				else
 				{
-					qDebug() << fonts[fidx]->afm() << "copied";
+					qCDebug(FONTMATRIX_LOG) << fonts[fidx]->afm() << "copied";
 				}
 			}
 		}
@@ -116,7 +117,7 @@ int DataExport::buildIndex()
 	QXmlStreamWriter xmlStream(&file);
 	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
 	{
-		qDebug() << "Export Warning : Can't open " << file.fileName();
+		qCWarning(FONTMATRIX_LOG) << "Export Warning : Can't open " << file.fileName();
 		return 0;
 	}
 	else
@@ -146,7 +147,7 @@ int DataExport::buildIndex()
 			QStringList tl = fitem->tags();
 			// 			tl.removeAll("Activated_On");
 			// 			tl.removeAll("Activated_Off");
-			for (const auto& tag : tl)
+			for (const auto& tag : std::as_const(tl))
 			{
 				xmlStream.writeStartElement("tag");
 				xmlStream.writeCharacters( tag );
@@ -169,7 +170,7 @@ int DataExport::buildHtml()
 	QXmlStreamWriter xmlStream(&file);
 	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
 	{
-		qDebug() << "Export Warning : Can't open " << file.fileName();
+		qCWarning(FONTMATRIX_LOG) << "Export Warning : Can't open " << file.fileName();
 		return 0;
 	}
 	else
@@ -218,7 +219,7 @@ int DataExport::buildHtml()
 			QStringList tl = fitem->tags();
 			// 			tl.removeAll("Activated_On");
 			// 			tl.removeAll("Activated_Off");
-			for (const auto& tag : tl)
+			for (const auto& tag : std::as_const(tl))
 			{
 				xmlStream.writeStartElement("div");
 				xmlStream.writeAttribute("class", "tagbox");
@@ -251,7 +252,7 @@ int DataExport::buildTemplate(const QString& templateDirPath)
 	QFile file(exDir.absolutePath() + exDir.separator() +"export.html");
 	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
 	{
-		qDebug() << "Export Warning : Can't open " << file.fileName();
+		qCWarning(FONTMATRIX_LOG) << "Export Warning : Can't open " << file.fileName();
 		return 0;
 	}
 	

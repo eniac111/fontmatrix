@@ -76,7 +76,7 @@ QString Shortcuts::isReserved(const QString &shortcut, const QString &actionText
 	QString isTaken;
 	if (actions.contains(cleanName(actionText))) {
 		QList<QAction*> alist = actions.values();
-		for (auto* act : alist) {
+		for (auto* act : std::as_const(alist)) {
 			if (act->shortcut() == shortcut) {
 				isTaken = act->text();
 				break;

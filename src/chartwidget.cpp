@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "chartwidget.h"
+#include "fontmatrix_debug.h"
 #include "ui_chartwidget.h"
 
 #include "fmglyphhighlight.h"
@@ -199,7 +200,7 @@ void ChartWidget::slotShowOneGlyph()
 		ui->abcView->unlock();
 	}
 	else
-		qDebug("cannot lock ABCview");
+		qCDebug(FONTMATRIX_LOG, "cannot lock ABCview");
 }
 
 
@@ -373,7 +374,7 @@ void ChartWidget::slotSearchCharName()
 							new FMGlyphHighlight(abcScene, rf, 2000, 160);
 						}
 						else
-							qDebug()<<"ERROR: An select item not being a QRect?";
+							qCWarning(FONTMATRIX_LOG)<<"ERROR: An select item not being a QRect?";
 						return;
 
 					}
@@ -411,7 +412,7 @@ void ChartWidget::slotSearchCharName()
 						new FMGlyphHighlight(abcScene, rf, 2000, 160);
 					}
 					else
-						qDebug()<<"ERROR: An select item not being a QRect?";
+						qCWarning(FONTMATRIX_LOG)<<"ERROR: An select item not being a QRect?";
 					return;
 
 				}
@@ -513,9 +514,9 @@ void ChartWidget::slotDoPrinting()
 	double pHeight(printer->pageRect(QPrinter::DevicePixel).height());
 	double pFactor(printer->resolution() );
 
-	qDebug()<<"Paper :"<<pWidth<<pHeight;
-	qDebug()<<"Resolution :"<<pFactor;
-	qDebug()<<"P/R*72:"<<pWidth / pFactor * 72.0<< pHeight / pFactor * 72.0;
+	qCDebug(FONTMATRIX_LOG)<<"Paper :"<<pWidth<<pHeight;
+	qCDebug(FONTMATRIX_LOG)<<"Resolution :"<<pFactor;
+	qCDebug(FONTMATRIX_LOG)<<"P/R*72:"<<pWidth / pFactor * 72.0<< pHeight / pFactor * 72.0;
 
 	QRectF targetR( pWidth * 0.1, pHeight * 0.1, pWidth * 0.8, pHeight * 0.8 );
 
@@ -529,16 +530,16 @@ void ChartWidget::slotDoPrinting()
 	bool first(true);
 	while(beginCharcode < maxCharcode)
 	{
-		qDebug() << "Chart("<< ++numP <<") ->"<<beginCharcode<<maxCharcode;
+		qCDebug(FONTMATRIX_LOG) << "Chart("<< ++numP <<") ->"<<beginCharcode<<maxCharcode;
 		QList<QGraphicsItem*> lgit(pScene.items());
-		for (auto* git : lgit)
+		for (auto* git : std::as_const(lgit))
 		{
 			pScene.removeItem(git);
 			delete git;
 		}
 
 		int stopAtCode( font->renderChart(&pScene, beginCharcode, maxCharcode, sourceR.width(),sourceR.height() ) );
-		qDebug()<< "Control"<<beginCharcode<<stopAtCode;
+		qCDebug(FONTMATRIX_LOG)<< "Control"<<beginCharcode<<stopAtCode;
 
 		if(stopAtCode == beginCharcode)
 			break;

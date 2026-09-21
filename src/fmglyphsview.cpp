@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "fmglyphsview.h"
+#include "fontmatrix_debug.h"
 
 #include <QDebug>
 #include <QMouseEvent>
@@ -41,11 +42,11 @@ FMGlyphsView::FMGlyphsView ( QWidget *parent )
 	if ( glwgt->format().sampleBuffers() )
 	{
 		setViewport ( glwgt );
-		qDebug() <<"opengl enabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
+		qCDebug(FONTMATRIX_LOG) <<"opengl enabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
 	}
 	else
 	{
-		qDebug() <<"opengl disabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
+		qCDebug(FONTMATRIX_LOG) <<"opengl disabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
 		delete glwgt;
 	}
 #endif
@@ -87,7 +88,7 @@ void FMGlyphsView::mouseReleaseEvent ( QMouseEvent * e )
 	if ( e->button() == Qt::LeftButton )
 	{
 		QList<QGraphicsItem*> gg = scene()->items ( mapToScene ( e->pos() ) );
-		for (auto* ii : gg)
+		for (auto* ii : std::as_const(gg))
 		{
 			if ( ii->data ( 1 ).toString() == "select" && m_state == AllView )
 				ii->setSelected ( true );
@@ -154,8 +155,10 @@ void FMGlyphsView::slotViewMoved ( int )
 
 void FMGlyphsView::keyPressEvent ( QKeyEvent * e )
 {
+	// QGraphicsView's handler is skipped on purpose: no item of this scene
+	// takes key focus. Keys scroll the grid and do nothing on a single glyph.
 	if ( m_state == AllView )
-		QAbstractScrollArea::keyPressEvent ( e );
+		QAbstractScrollArea::keyPressEvent ( e ); // NOLINT(bugprone-parent-virtual-call)
 }
 
 bool FMGlyphsView::lock()

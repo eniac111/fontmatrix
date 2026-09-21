@@ -11,6 +11,7 @@
 //
 
 #include "fmshaper_own.h"
+#include "fontmatrix_debug.h"
 
 #include <QDebug>
 #include <QFile>
@@ -65,17 +66,17 @@ int FMOwnShaper::loadRules(QString lang)
 	{
 		actualSDir = ShaperDir + QDir::separator() ;
 	}
-	qDebug()<<"SHAPER_FILES : "<<actualSDir +lang+ ".dict"<<"; "<<actualSDir +lang+".match";
+	qCDebug(FONTMATRIX_LOG)<<"SHAPER_FILES : "<<actualSDir +lang+ ".dict"<<"; "<<actualSDir +lang+".match";
 	QFile dictFile(actualSDir +lang+ ".dict");
 	if(!dictFile.open(QIODevice::ReadOnly))
 	{
-		qDebug()<<"Failed to open " << dictFile.fileName();
+		qCWarning(FONTMATRIX_LOG)<<"Failed to open " << dictFile.fileName();
 		return 1;
 	}
 	QFile matchFile(actualSDir +lang+".match");
 	if(!matchFile.open(QIODevice::ReadOnly))
 	{
-		qDebug()<<"Failed to open " << matchFile.fileName();
+		qCWarning(FONTMATRIX_LOG)<<"Failed to open " << matchFile.fileName();
 		return 1;
 	}
 	
@@ -92,7 +93,7 @@ int FMOwnShaper::loadRules(QString lang)
 			bool ok;
 			int unicode = elems.takeFirst().mid(0,4).toInt(&ok,16) ;
 			if(!ok)
-				qDebug()<<"Oops";
+				qCDebug(FONTMATRIX_LOG)<<"Oops";
 			Dictionnary[unicode] = Character(unicode, elems);
 		}
 		
@@ -133,7 +134,7 @@ void FMOwnShaper::fillIn(const QString& s)
 		}
 		debug << "["+QString::number(s[i].unicode(),16)+"]";
 	}
-	qDebug()<< debug.join(" ");
+	qCDebug(FONTMATRIX_LOG)<< debug.join(" ");
 	
 }
 
@@ -169,7 +170,7 @@ void FMOwnShaper::Op()
 				}
 				chunks.append( QPair< int, QList< Character > >(nm , cl) );
 				
-				qDebug() << "MATCH : "<< debugString;
+				qCDebug(FONTMATRIX_LOG) << "MATCH : "<< debugString;
 				idx += rc;
 				matched = true;
 				break;
@@ -213,7 +214,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 		{
 			if(mat.MatchAll)
 			{
-				for (const auto& prop : mat.CustomProperties)
+				for (const auto& prop : std::as_const(mat.CustomProperties))
 				{
 					if(!prop.isEmpty())
 					{
@@ -221,7 +222,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 						return 0;
 					}
 				}
-				for (const auto& prop : car.CustomProperties)
+				for (const auto& prop : std::as_const(car.CustomProperties))
 				{
 					if(!prop.isEmpty())
 					{
@@ -232,7 +233,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 			}
 			else
 			{
-				for (const auto& prop : mat.CustomProperties)
+				for (const auto& prop : std::as_const(mat.CustomProperties))
 				{
 					if(!prop.isEmpty())
 					{
@@ -252,12 +253,12 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 			{
 				if(mat.MatchAll)
 				{
-					for (const auto& prop : mat.CustomProperties)
+					for (const auto& prop : std::as_const(mat.CustomProperties))
 					{
 						if(!car.CustomProperties.contains(prop))
 							return 0;
 					}
-					for (const auto& prop : car.CustomProperties)
+					for (const auto& prop : std::as_const(car.CustomProperties))
 					{
 						if(!mat.CustomProperties.contains(prop))
 							return 0;
@@ -265,7 +266,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 				}
 				else
 				{
-					for (const auto& prop : mat.CustomProperties)
+					for (const auto& prop : std::as_const(mat.CustomProperties))
 					{
 						if(!car.CustomProperties.contains(prop))
 							return 0;
@@ -276,7 +277,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 		}
 	}
 	// It match
-	for (const auto& idx : matchedGroup)
+	for (const auto& idx : std::as_const(matchedGroup))
 	{
 		In[idx].isMatchedGroup = true;
 // 		qDebug()<<"MATCHED" <<In[idx].unicode() << In[idx].DumpCustom();
@@ -300,7 +301,7 @@ void FMOwnShaper::Replace(int repIndex, QList< Character > chunk)
 		}
 	}
 	// Let replace :)
-	for (const auto& rep : Replacements[repIndex].Properties)
+	for (const auto& rep : std::as_const(Replacements[repIndex].Properties))
 	{
 		if(rep.isNull())
 		{
@@ -313,7 +314,7 @@ void FMOwnShaper::Replace(int repIndex, QList< Character > chunk)
 		}
 	}
 	// Push in Out
-	for (const auto& b : buffer)
+	for (const auto& b : std::as_const(buffer))
 	{
 		Out << b;
 	}
@@ -326,7 +327,7 @@ void FMOwnShaper::DumpOut()
 // 	qDebug()<<"FMOwnShaper::DumpOut()";
 	for(int i(0); i < Out.size(); ++i)
 	{
-		qDebug()<<"Unicode("<< QString::number(Out[i].unicode(), 16 ) <<").["<< Out[i].DumpCustom() <<"]";
+		qCDebug(FONTMATRIX_LOG)<<"Unicode("<< QString::number(Out[i].unicode(), 16 ) <<").["<< Out[i].DumpCustom() <<"]";
 	}
 }
 
@@ -336,7 +337,7 @@ void FMOwnShaper::DumpOut()
 
 /// Character
 Character::Character(int unicode, QList< QByteArray > tokens)
-	:QChar(unicode),MatchAll(false),isMatchedGroup(false)
+	:QChar(unicode),MatchAll(false),isMatchedGroup(false),GroupIndex(0)
 {
 	for(int i(0); i < tokens.size(); ++i)
 		AddProperty( QString(tokens[i].trimmed()));
@@ -344,7 +345,7 @@ Character::Character(int unicode, QList< QByteArray > tokens)
 
 
 Character::Character(int unicode, QStringList tokens)
-	:QChar(unicode),MatchAll(false),isMatchedGroup(false)
+	:QChar(unicode),MatchAll(false),isMatchedGroup(false),GroupIndex(0)
 {
 	for(int i(0); i < tokens.size(); ++i)
 		AddProperty( QString(tokens[i].trimmed()));
@@ -354,7 +355,7 @@ QString Character::DumpCustom()
 {
 	QString ret;
 	bool first = true;
-	for (const auto& value : CustomProperties)
+	for (const auto& value : std::as_const(CustomProperties))
 	{
 		if(first)
 		{
@@ -399,7 +400,7 @@ void MatchSequence::SetMatch(const QString &b)
 			++idx;
 			int unicode = ref.mid(idx,4).toInt(&ok,16) ;
 			if(!ok)
-				qDebug()<<"Oops";
+				qCDebug(FONTMATRIX_LOG)<<"Oops";
 			idx += 4;
 			if(idx < ref.size() && ref[idx] == '(')// property list
 			{
@@ -410,7 +411,7 @@ void MatchSequence::SetMatch(const QString &b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				for (const auto& prop : pl)
+				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
 				}
@@ -426,7 +427,7 @@ void MatchSequence::SetMatch(const QString &b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				for (const auto& prop : pl)
+				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
 				}
@@ -456,7 +457,7 @@ void MatchSequence::SetMatch(const QString &b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				for (const auto& prop : pl)
+				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
 				}
@@ -472,7 +473,7 @@ void MatchSequence::SetMatch(const QString &b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				for (const auto& prop : pl)
+				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
 				}
@@ -489,7 +490,7 @@ void MatchSequence::SetMatch(const QString &b)
 		else
 		{
 			// Error
-			qDebug()<<"ERROR match: current = "<< current;
+			qCWarning(FONTMATRIX_LOG)<<"ERROR match: current = "<< current;
 		}
 	}
 }
@@ -507,7 +508,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 			++idx;
 			int unicode = ref.mid(idx,4).toInt(&ok,16) ;
 			if(!ok)
-				qDebug()<<"Oops";
+				qCDebug(FONTMATRIX_LOG)<<"Oops";
 			idx += 4;
 			if(idx >= ref.size() || ref[idx] != '(')
 			{
@@ -523,7 +524,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				for (const auto& prop : pl)
+				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
 				}
@@ -558,7 +559,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 					++countChars;
 				}
 				QStringList pl(ref.mid(idx+1, countChars-1).split(";", Qt::SkipEmptyParts));
-				for (const auto& prop : pl)
+				for (const auto& prop : std::as_const(pl))
 				{
 					pList << prop.trimmed();
 				}
@@ -569,7 +570,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 		else
 		{
 			// Error
-			qDebug()<<"ERROR replace: current = "<< current;
+			qCWarning(FONTMATRIX_LOG)<<"ERROR replace: current = "<< current;
 		}
 	}
 }

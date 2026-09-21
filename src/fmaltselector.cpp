@@ -11,6 +11,7 @@
 //
 
 #include "fmaltselector.h"
+#include "fontmatrix_debug.h"
 #include "typotek.h"
 #include "fontitem.h"
 #include "fmfontdb.h"
@@ -91,7 +92,7 @@ QModelIndex FMAltSelectorModel::index ( int row, int column, const QModelIndex &
 	if (childItem)
 	{
 		if(column>0)
-			qDebug()<<"C"<<column<< childItem->T;
+			qCDebug(FONTMATRIX_LOG)<<"C"<<column<< childItem->T;
 //		qDebug()<<"Create Index"<<row<< column<< childItem->T;
 		return createIndex(row, column, childItem);
 	}
@@ -193,7 +194,7 @@ QVariant FMAltSelectorModel::data ( const QModelIndex & index, int role ) const
 			}
 		}
 		else
-			qDebug()<<"Oops internal pointer is null";
+			qCDebug(FONTMATRIX_LOG)<<"Oops internal pointer is null";
 	}
 
 	return QVariant();
@@ -212,25 +213,25 @@ void FMAltSelectorModel::FMAltItemDelegate::paint(QPainter * painter, const QSty
 	FMAltSelectorModel::AltItem * item = static_cast<FMAltSelectorModel::AltItem*>(index.internalPointer());
 	if((!item) )
 	{
-		qDebug()<<"Item is not"<< index.row()<<index.column();
+		qCDebug(FONTMATRIX_LOG)<<"Item is not"<< index.row()<<index.column();
 		return;
 	}
 	if( (item->T != FMAltSelectorModel::AltItem::GLYPH))
 	{
-		qDebug()<<"Item is not a GLYPH item"<<item->T<<index.row()<<index.column();
+		qCDebug(FONTMATRIX_LOG)<<"Item is not a GLYPH item"<<item->T<<index.row()<<index.column();
 
 		return;
 	}
 	FontItem * fi(typotek::getInstance()->getSelectedFont());
 	if(!fi)
 	{
-		qDebug()<<"Unable to get the selected font";
+		qCDebug(FONTMATRIX_LOG)<<"Unable to get the selected font";
 		return;
 	}
-	qDebug()<<"Paint"<<index.row()<<index.column()<< item->alts;
+	qCDebug(FONTMATRIX_LOG)<<"Paint"<<index.row()<<index.column()<< item->alts;
 	double fsize(22.0);
 	painter->save();
-	for (const auto& idx : item->alts)
+	for (const auto& idx : std::as_const(item->alts))
 	{
 		QImage img(fi->glyphImage(idx, fsize));
 		int ssize(img.width());
@@ -253,7 +254,7 @@ QSize FMAltSelectorModel::FMAltItemDelegate::sizeHint( [[maybe_unused]] const QS
 	FMAltSelectorModel::AltItem * item = static_cast<FMAltSelectorModel::AltItem*>(index.internalPointer());
 	if(!item)
 		return ret;
-	for (const auto& idx : item->alts)
+	for (const auto& idx : std::as_const(item->alts))
 	{
 		QImage img(fi->glyphImage(idx, fsize));
 		ret.rwidth() += img.width() + 3;
@@ -280,7 +281,7 @@ FMAltSelector::FMAltSelector(QWidget * parent)
 
 void FMAltSelector::fillFromContext()
 {
-	qDebug("FMAltSelector::fillFromContext");
+	qCDebug(FONTMATRIX_LOG, "FMAltSelector::fillFromContext");
 	m_model->reModel( FMAltContextLib::GetCurrentContext() );
 
 }

@@ -53,6 +53,8 @@ class FMOtf
 		QString curString;
 
 	private:
+		// owns the HarfBuzz tables and buffer
+		Q_DISABLE_COPY ( FMOtf )
 		FT_Face _face;
 //   ScShaper * shaper;
 		bool useShaper;

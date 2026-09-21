@@ -11,6 +11,7 @@
 //
 
 #include "fmfontcompareview.h"
+#include "fontmatrix_debug.h"
 
 #include "fontitem.h"
 
@@ -50,22 +51,22 @@ void FMFontCompareItem::clear()
 {
 // 	qDebug()<< "Clearing" <<uuid.toString();
 	
-	for (auto* li : lines_controls)
+	for (auto* li : std::as_const(lines_controls))
 	{
 		delete li;
 	}
 	lines_controls.clear();
-	for (auto* li : lines_metrics)
+	for (auto* li : std::as_const(lines_metrics))
 	{
 		delete li;
 	}
 	lines_metrics.clear();
-	for (auto* ri : points)
+	for (auto* ri : std::as_const(points))
 	{
 		delete ri;
 	}
 	points.clear();
-	for (auto* ti : text_metrics)
+	for (auto* ti : std::as_const(text_metrics))
 	{
 		delete ti;
 	}
@@ -82,26 +83,26 @@ void FMFontCompareItem::toScreen()
 	if(!scene)
 		return;
 	QRectF itemsBB(scene->sceneRect());
-	for (auto* li : lines_controls)
+	for (auto* li : std::as_const(lines_controls))
 	{
 		scene->addItem(li);
 		itemsBB = itemsBB.united(li->boundingRect());
 		li->setZValue(zindex);
 		
 	}
-	for (auto* li : lines_metrics)
+	for (auto* li : std::as_const(lines_metrics))
 	{
 		scene->addItem(li);
 		itemsBB = itemsBB.united(li->boundingRect());
 		li->setZValue(zindex);
 	}
-	for (auto* ri : points)
+	for (auto* ri : std::as_const(points))
 	{
 		scene->addItem(ri);
 		itemsBB = itemsBB.united(ri->boundingRect());
 		ri->setZValue(zindex);
 	}
-	for (auto* ti : text_metrics)
+	for (auto* ti : std::as_const(text_metrics))
 	{
 		scene->addItem(ti);
 		ti->setZValue(zindex);
@@ -160,7 +161,7 @@ void FMFontCompareItem::show(FMFontCompareItem::GElements elems, QColor color, d
 	path = font->itemFromChar( char_code, fsize );
 	if(!path)
 	{
-		qDebug()<<"Unable to load char"<<char_code<<"from font"<<font->fancyName();
+		qCDebug(FONTMATRIX_LOG)<<"Unable to load char"<<char_code<<"from font"<<font->fancyName();
 		return;
 	}
 	path->moveBy(offset, 0.0);
@@ -220,7 +221,7 @@ void FMFontCompareItem::show(FMFontCompareItem::GElements elems, QColor color, d
 				curPos = c2;
 			}
 			else
-				qDebug()<<"Unknown point type"<<cur.type;
+				qCDebug(FONTMATRIX_LOG)<<"Unknown point type"<<cur.type;
 		}
  	
 	}

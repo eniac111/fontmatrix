@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "fontitem.h"
+#include "fontmatrix_debug.h"
 #include "fmaltcontext.h"
 #include "fmotf.h"
 #include "fmencdata.h"
@@ -515,7 +516,7 @@ bool FontItem::ensureFace()
 	ft_error = FT_New_Face ( ftlib, trueFile.toUtf8().constData() , 0, &m_face );
 	if ( ft_error )
 	{
-		qDebug() << "Error loading face [" << trueFile <<"]";
+		qCWarning(FONTMATRIX_LOG) << "Error loading face [" << trueFile <<"]";
 		return false;
 	}
 	encodeFace();
@@ -1414,7 +1415,7 @@ double FontItem::renderLine ( OTFSet set, QGraphicsScene * scene, QString spec, 
 /// Shaped line
 double FontItem::renderLine ( QString script, QGraphicsScene * scene, QString spec, QPointF origine,double lineWidth, double fsize)
 {
-	qDebug()<<"Shaped("<< spec <<")";
+	qCDebug(FONTMATRIX_LOG)<<"Shaped("<< spec <<")";
 	double retValue(0.0);
 	if ( spec.isEmpty() )
 		return 0;
@@ -2689,7 +2690,7 @@ FontInfoMap FontItem::moreInfo_sfnt()
 			         + "," + QString::number ( tname.encoding_id )
 			         + ")\nPlease contact Fontmatrix team.\nRun Fontmatrix in console to see more info.\nPlease, if possible, provide a font file to test.";
 
-			qDebug() << m_name
+			qCDebug(FONTMATRIX_LOG) << m_name
 			<< "platform_id("
 			<< tname.platform_id
 			<<") - encoding_id("
@@ -2795,7 +2796,7 @@ FontInfoMap FontItem::moreInfo_type1()
 	int err = FT_Get_PS_Font_Info ( m_face,&sinfo );
 	if ( err )
 	{
-		qDebug() <<"FT_Get_PS_Font_Info("<< m_name <<")"<<" failed :" << err;
+		qCDebug(FONTMATRIX_LOG) <<"FT_Get_PS_Font_Info("<< m_name <<")"<<" failed :" << err;
 		return FontInfoMap();
 	}
 
@@ -2991,8 +2992,8 @@ int FontItem::showFancyGlyph ( QGraphicsView *view, int charcode , bool charcode
 	painter.drawLine ( pPos.x() + (asc * aF), subRect.top(),
 			   pPos.x() - (desc * aF), subRect.bottom() );
 	//right
-	painter.drawLine (  qRound(pPos.x() + m_face->glyph->metrics.horiAdvance / 64 * scaledBy ) + (asc * aF), subRect.top(),
-			    qRound( pPos.x() + m_face->glyph->metrics.horiAdvance / 64 * scaledBy) - (desc * aF), subRect.bottom() );
+	painter.drawLine (  qRound(pPos.x() + m_face->glyph->metrics.horiAdvance / 64.0 * scaledBy ) + (asc * aF), subRect.top(),
+			    qRound( pPos.x() + m_face->glyph->metrics.horiAdvance / 64.0 * scaledBy) - (desc * aF), subRect.bottom() );
 	//baseline
 	painter.drawLine ( subRect.left() , pPos.y() ,
 			   subRect.right(),  pPos.y() );
@@ -3055,7 +3056,7 @@ int FontItem::showFancyGlyph ( QGraphicsView *view, int charcode , bool charcode
 	if ( !charcodeIsAGlyphIndex && m_isOpenType )
 	{
 		QList<int> alts ( getAlternates ( charcode ) );
-		qDebug() << "PALTS"<<alts;
+		qCDebug(FONTMATRIX_LOG) << "PALTS"<<alts;
 		double altSize ( squareSide / 6 );
 		double altXOffset ( subRect.top() + 10 );
 		for ( int a ( 0 ); a < alts.size() ; ++a )
@@ -3087,7 +3088,7 @@ int FontItem::showFancyGlyph ( QGraphicsView *view, int charcode , bool charcode
 			gpi->setPos ( view->mapToScene ( subRect.right()  ,altXOffset ) );
 			altXOffset += altP.height();
 			gpi->setZValue ( 9999999 );
-			qDebug() <<gpi->pos() <<gpi->scenePos();
+			qCDebug(FONTMATRIX_LOG) <<gpi->pos() <<gpi->scenePos();
 		}
 
 	}
@@ -3177,7 +3178,7 @@ void FontItem::fileLocal ( FontLocalInfo fli )
 /// Finally, we have to download the font file
 int FontItem::getFromNetwork()
 {
-	qDebug() <<"FontItem::getFromNetwork()";
+	qCDebug(FONTMATRIX_LOG) <<"FontItem::getFromNetwork()";
 	if ( remoteCached )
 		return 1;
 	if ( stopperDownload )
@@ -3191,20 +3192,20 @@ int FontItem::getFromNetwork()
 	rFile = new QFile ( remoteHerePath );
 	if ( !rFile->open ( QIODevice::WriteOnly ) )
 	{
-		qDebug() << "Can’t open " << remoteHerePath;
+		qCDebug(FONTMATRIX_LOG) << "Can’t open " << remoteHerePath;
 		delete rFile;
 // 		return false;
 	}
 #if 0 // TODO Must be re-implemented
 	rHttp = new QHttp ( url.host() );
-	qDebug() << "Init progress Dialog";
+	qCDebug(FONTMATRIX_LOG) << "Init progress Dialog";
 	rProgressDialog = new QProgressDialog ( typotek::getInstance() );
 	rProgressDialog->setWindowTitle ( i18n( "Fontmatrix - Download" ) );
 	rProgressDialog->setLabelText ( i18n ( "Downloading %1.", m_path ) );
 	rProgressDialog->show();
 	rProgressDialog->raise();
 	rProgressDialog->activateWindow();
-	qDebug() <<"Progress dialog done";
+	qCDebug(FONTMATRIX_LOG) <<"Progress dialog done";
 
 	connect ( rHttp,SIGNAL ( dataReadProgress ( int, int ) ),this,SLOT ( slotDowloadProgress ( int,int ) ) );
 	connect ( rHttp,SIGNAL ( requestFinished ( int, bool ) ),this,SLOT ( slotDownloadEnd ( int, bool ) ) );
@@ -3221,7 +3222,7 @@ void FontItem::slotDownloadStart ( int id )
 // 	rProgressDialog->show();
 	if ( id != remoteId )
 	{
-		qDebug() << "catched a weird request : " << id;
+		qCDebug(FONTMATRIX_LOG) << "catched a weird request : " << id;
 	}
 }
 
@@ -3229,20 +3230,20 @@ void FontItem::slotDowloadProgress ( int done, int total )
 {
 	rProgressDialog->setMaximum ( total );
 	rProgressDialog->setValue ( done );
-	qDebug() << " [" <<done << "/"<< total<<"]" ;
+	qCDebug(FONTMATRIX_LOG) << " [" <<done << "/"<< total<<"]" ;
 }
 
 void FontItem::slotDownloadEnd ( int id, [[maybe_unused]] bool error )
 {
-	qDebug() << m_path << "::slotDownloadEnd ["<< id <<"] when remoteCached = "<< remoteCached;
+	qCDebug(FONTMATRIX_LOG) << m_path << "::slotDownloadEnd ["<< id <<"] when remoteCached = "<< remoteCached;
 	if ( id != remoteId )
 	{
-		qDebug() << "WTF this id("<< id <<") comes from nowhere, our is "<< remoteId;
+		qCDebug(FONTMATRIX_LOG) << "WTF this id("<< id <<") comes from nowhere, our is "<< remoteId;
 		return;
 	}
 	if ( remoteCached )
 	{
-		qDebug() << "Youre a bit late dude.";
+		qCDebug(FONTMATRIX_LOG) << "Youre a bit late dude.";
 		return;
 	}
 	else
@@ -3263,7 +3264,7 @@ void FontItem::slotDownloadEnd ( int id, [[maybe_unused]] bool error )
 
 void FontItem::slotDownloadDone ( bool error )
 {
-	qDebug() << "slotDownloadDone(" <<error<<")";
+	qCDebug(FONTMATRIX_LOG) << "slotDownloadDone(" <<error<<")";
 }
 
 void FontItem::slotDownloadState ( [[maybe_unused]] int state )
@@ -3272,7 +3273,7 @@ void FontItem::slotDownloadState ( [[maybe_unused]] int state )
 // 	qDebug() << "slotDownloadState("<<state<<")";
 	if ( state == QHttp::Unconnected  && rHttp )
 	{
-		qDebug() << "slotDownloadState( QHttp::Unconnected )";
+		qCDebug(FONTMATRIX_LOG) << "slotDownloadState( QHttp::Unconnected )";
 		delete rHttp;
 		rHttp = 0;
 	}
@@ -3356,7 +3357,7 @@ QList< int > FontItem::getAlternates ( int ccode )
 				set.gpos_features.clear();
 				set.gsub_features = QStringList ( "aalt" );
 				setList << set;
-				qDebug() << "AALT"<<script<< lang;
+				qCDebug(FONTMATRIX_LOG) << "AALT"<<script<< lang;
 			}
 		}
 	}
@@ -3364,7 +3365,7 @@ QList< int > FontItem::getAlternates ( int ccode )
 	QString spec;
 	spec = QChar ( ccode );
 
-	for (const auto& set : setList)
+	for (const auto& set : std::as_const(setList))
 	{
 		QList<RenderedGlyph> rendered ( otf->procstring ( spec, set ) );
 		if(rendered.isEmpty())
@@ -3858,7 +3859,7 @@ void FontItem::dumpIntoDB()
 QStringList FontItem::charmaps()
 {
 	QStringList ret;
-	for (const auto& e : m_charsets)
+	for (const auto& e : std::as_const(m_charsets))
 	{
 		ret << FontStrings::Encoding(e);
 	}
@@ -3878,6 +3879,8 @@ QString FontItem::renderSVG(const QString & s, const double& size)
 	double vertOffset ( pifs );
 	double horOffset ( 0 );
 	tf.translate ( horOffset , vertOffset );
+	// read now, itemFromChar() takes and releases the face on its own
+	const double svgHeight ( m_face->height * scaleFactor );
 
 	for (const auto& c : s)
 	{
@@ -3895,7 +3898,7 @@ QString FontItem::renderSVG(const QString & s, const double& size)
 	}
 	QString openElem ( QString ( "<svg width=\"%1\" height=\"%2\"  xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">" )
 			.arg ( horOffset )
-			.arg ( m_face->height * scaleFactor ) );
+			.arg ( svgHeight ) );
 	ret += openElem;
 	ret += svg;
 	ret += "</svg>";

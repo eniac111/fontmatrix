@@ -32,6 +32,7 @@
 */
 
 class FontItem;
+class QSqlQuery;
 
 typedef QPair<FontItem*, QString> FontDBResult;
 
@@ -121,9 +122,9 @@ class FMFontDb : public QObject, public QSqlDatabase
 
 		QList<FontItem*> Fonts ( const QVariant& pattern, Field field );
 		QList<FontItem*> Fonts ( const QVariant& pattern, InfoItem info, int codeLang = 0 );
-		QList<FontItem*> Fonts ( const QString& whereString, Table table );
 		int FontCount();
 
+		// Sorted and without duplicates
 		QStringList getTags();
 		void addTagToDB ( const QString& t );
 		void removeTagFromDB ( const QString& t );
@@ -150,13 +151,18 @@ class FMFontDb : public QObject, public QSqlDatabase
 		// ensure tables are created
 		void initFMDb();
 
+		// whereString carries one '?' per entry of values
+		QList<FontItem*> Fonts ( const QString& whereString, const QVariantList& values, Table table );
+		bool execBound ( QSqlQuery& query, const QString& statement, const QVariantList& values = QVariantList() );
+		// An empty id means that several fonts are concerned
+		void invalidateTags ( const QString& id = QString() );
+
 		QStringList priorList;
 		QMap<Field, QString> fieldName;
 		QMap<Table, QString> tableName;
 		QMap<QString,int> cacheId;
 		QMap<int, QString> reverseCacheId;
 
-		QString getIdStringFast;
 		int getId ( const QString& fontid );
 		int internalCounter;
 
@@ -172,6 +178,8 @@ class FMFontDb : public QObject, public QSqlDatabase
 
 		QList<QSqlError> transactionError;
 		QMap<QString, QMap<Field, QVariant> > rValueCache;
+		QStringList tagsCache;
+		bool tagsCacheValid;
 
 		int transactionDeep;
 

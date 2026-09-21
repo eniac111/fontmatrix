@@ -119,19 +119,19 @@ QString FiltersDialog::filterString(FilterData *d, bool first)
 
 void FiltersDialog::loadFilters()
 {
-	for (auto* i : items)
+	for (auto* i : std::as_const(items))
 		delete i;
 	items.clear();
 
 	QDir fbasedir(FMPaths::FiltersDir());
 	QStringList fbaselist(fbasedir.entryList(QDir::NoDotAndDotDot|QDir::Dirs,QDir::Name));
-	for (const auto& fname : fbaselist)
+	for (const auto& fname : std::as_const(fbaselist))
 	{
 		QDir fdir(FMPaths::FiltersDir() + fname);
 		QStringList flist(fdir.entryList(QDir::NoDotAndDotDot|QDir::Files, QDir::Name));
 		QString fString;
 		bool first(true);
-		for (const auto& fn : flist)
+		for (const auto& fn : std::as_const(flist))
 		{
 			QStringList l(fn.split(QString("-")));
 			if(l.count() == 2)

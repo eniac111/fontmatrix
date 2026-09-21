@@ -11,6 +11,7 @@
 //
 
 #include "fmutils.h"
+#include "fontmatrix_debug.h"
 
 #if !defined(_WIN32) && !defined(Q_OS_MAC)
 #include <execinfo.h>
@@ -60,9 +61,9 @@ void printBacktrace ( int frames )
 			if ( name.isEmpty() )
 				name = mName;
 			QString bts ( "[BT] %1. %2" );
-			qDebug ( "%s", bts.arg ( i ).arg ( name ).toUtf8().data() );
+			qCDebug(FONTMATRIX_LOG, "%s", bts.arg ( i ).arg ( name ).toUtf8().data() );
 		}
-		free ( messages );
+		free ( static_cast<void*> ( messages ) );
 	}
 	delete[] trace;
 }

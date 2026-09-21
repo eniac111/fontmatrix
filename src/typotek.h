@@ -114,8 +114,8 @@ public slots:
 	// Used by File → Quit and the systray's "Exit" action.
 	void slotQuit();
 
-	void hide();
-	void show();
+	// QWidget::show() and hide() are not virtual, both end up here
+	void setVisible(bool visible) override;
 
 signals:
 	void relayStartingStepOut(QString, int, QColor);
@@ -135,6 +135,13 @@ private:
 
 	// Set by slotQuit() so closeEvent skips the close-to-tray hide branch.
 	bool m_forceQuit = false;
+	// Set by closeEvent() once the panels are being torn down; setVisible()
+	// must not touch them any more when Qt hides the closed window.
+	bool m_closing = false;
+
+	// The font a menu action applies to; says so in the status bar when
+	// there is none.
+	FontItem* fontForAction();
 
 	void checkOwnDir();
 	void fillTagsList();
@@ -239,6 +246,7 @@ private:
 	QMap<FloatingWidget*, QAction*> floatingWidgets;
 	QMap<FloatingWidget*, bool> visibleFloatingWidgets;
 	bool playVisible;
+	bool compareVisible = false;
 
 	QString currentNamedSample;
 

@@ -11,6 +11,7 @@
 //
 
 #include "fmactivate.h"
+#include "fontmatrix_debug.h"
 
 #include "fmfontdb.h" 
 #include "fontitem.h"
@@ -63,11 +64,11 @@ FMActivate * FMActivate::getInstance()
 void FMActivate::activate(QList<FontItem*> fitList, bool act)
 {
 	// TODO insert error messages.
-	QMap<FontItem*, bool> stack;
+	QHash<FontItem*, bool> stack;
 	typotek *T(typotek::getInstance());
 	for (auto* fit : fitList)
 	{
-		qDebug() << "Activation of " << fit->path() << act;
+		qCDebug(FONTMATRIX_LOG) << "Activation of " << fit->path() << act;
 		if ( act ) // Activation
 		{
 
@@ -81,41 +82,41 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 
 					if ( !QFile::copy ( fit->path() , T->getManagedDir() + "/" + fit->activationName() ) )
 					{
-						qDebug() << "unable to copy " << fit->path() ;
+						qCWarning(FONTMATRIX_LOG) << "unable to copy " << fit->path() ;
 					}
 					else
 					{
 						// Success
 						stack[fit] = true;
-						qDebug() << fit->path() << " copied" ;
+						qCDebug(FONTMATRIX_LOG) << fit->path() << " copied" ;
 						if ( !fit->afm().isEmpty() )
 						{
 
 							// 						QFileInfo afm ( fit->afm() );
 							if ( !QFile::copy( fit->afm(), T->getManagedDir() + "/" + fit->activationAFMName() ) )
 							{
-								qDebug() << "unable to copy " << fit->afm();
+								qCWarning(FONTMATRIX_LOG) << "unable to copy " << fit->afm();
 							}
 							else
 							{
-								qDebug() << fit->afm() << "copied";
+								qCDebug(FONTMATRIX_LOG) << fit->afm() << "copied";
 							}
 						}
 						else
 						{
-							qDebug()<<"There is no AFM file attached to "<<fit->path();
+							qCDebug(FONTMATRIX_LOG)<<"There is no AFM file attached to "<<fit->path();
 						}
 					}
 				}
 				else
 				{
-					qDebug() << "\tYet activated";
+					qCDebug(FONTMATRIX_LOG) << "\tYet activated";
 				}
 
 			}
 			else
 			{
-				qDebug() << "\tIs Locked";
+				qCDebug(FONTMATRIX_LOG) << "\tIs Locked";
 			}
 
 		}
@@ -130,7 +131,7 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 					// 				QFileInfo fofi ( fit->path() );
 					if ( !QFile::remove ( T->getManagedDir() + "/" + fit->activationName() ) )
 					{
-						qDebug() << "unable to unlink " << fit->name() ;
+						qCWarning(FONTMATRIX_LOG) << "unable to unlink " << fit->name() ;
 					}
 					else
 					{
@@ -141,7 +142,7 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 							// 						QFileInfo afm ( fit->afm() );
 							if ( !QFile::remove ( T->getManagedDir() + "/" + fit->activationAFMName() ) )
 							{
-								qDebug() << "unable to unlink " << fit->afm() ;
+								qCWarning(FONTMATRIX_LOG) << "unable to unlink " << fit->afm() ;
 							}
 						}
 						// 					typo->adaptator()->private_signal ( 0, fofi.fileName() );
@@ -151,17 +152,17 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 			}
 			else
 			{
-				qDebug() << "\tIs Locked";
+				qCDebug(FONTMATRIX_LOG) << "\tIs Locked";
 			}
 		}
 	}
 
 	QStringList aList;
 	FMFontDb::DB()->TransactionBegin();
-	for (auto* f : stack.keys())
+	for (auto it(stack.constBegin()); it != stack.constEnd(); ++it)
 	{
-		f->setActivated(stack[f]);
-		aList << f->path();
+		it.key()->setActivated(it.value());
+		aList << it.key()->path();
 	}
 	FMFontDb::DB()->TransactionEnd();
 
@@ -179,7 +180,7 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 
 void FMActivate::activate(QList< FontItem * > fitList, bool act)
 {
-	QMap<FontItem*, bool> stack;
+	QHash<FontItem*, bool> stack;
 	typotek *T(typotek::getInstance());
 	for (auto* fit : fitList)
 	{
@@ -191,35 +192,35 @@ void FMActivate::activate(QList< FontItem * > fitList, bool act)
 				{	
 					if ( !QFile::link ( fit->path() , T->getManagedDir() + "/" + fit->activationName() ) )
 					{
-						qDebug() << "unable to link " << fit->path() ;
+						qCWarning(FONTMATRIX_LOG) << "unable to link " << fit->path() ;
 						m_errors[fit->path()] =  errorStrings[NO_LINK];
 					}
 					else
 					{
 						// Success
 						stack[fit] = true;
-						qDebug() << fit->path() << " linked" ;
+						qCDebug(FONTMATRIX_LOG) << fit->path() << " linked" ;
 						if ( !fit->afm().isEmpty() )
 						{
 							if ( !QFile::link ( fit->afm(), T->getManagedDir() + "/" + fit->activationAFMName() ) )
 							{
-								qDebug() << "unable to link " << fit->afm();
+								qCWarning(FONTMATRIX_LOG) << "unable to link " << fit->afm();
 								m_errors[fit->path()] =  errorStrings[MISSING_AFM];
 							}
 							else
 							{
-								qDebug() << fit->afm() << " linked"; 
+								qCDebug(FONTMATRIX_LOG) << fit->afm() << " linked"; 
 							}
 						}
 						else
 						{
-							qDebug()<<"There is no AFM file attached to "<<fit->path();
+							qCDebug(FONTMATRIX_LOG)<<"There is no AFM file attached to "<<fit->path();
 						}
 					}
 				}
 				else
 				{
-					qDebug() << "\tYet activated";
+					qCDebug(FONTMATRIX_LOG) << "\tYet activated";
 					m_errors[fit->path()] = errorStrings[ALREADY_ACTIVE];
 				}
 	
@@ -238,7 +239,7 @@ void FMActivate::activate(QList< FontItem * > fitList, bool act)
 				{
 					if ( !QFile::remove ( T->getManagedDir() + "/" + fit->activationName() ) )
 					{
-						qDebug() << "unable to unlink " << fit->name() ;
+						qCWarning(FONTMATRIX_LOG) << "unable to unlink " << fit->name() ;
 						m_errors[fit->path()] =  errorStrings[NO_UNLINK];
 					}
 					else
@@ -248,7 +249,7 @@ void FMActivate::activate(QList< FontItem * > fitList, bool act)
 						{
 							if ( !QFile::remove ( T->getManagedDir() + "/" + fit->activationAFMName() ) )
 							{
-								qDebug() << "unable to unlink " << fit->afm() ;
+								qCWarning(FONTMATRIX_LOG) << "unable to unlink " << fit->afm() ;
 								// if having warnings would not be over done, it would be a warning!
 								m_errors[fit->afm()] =  errorStrings[NO_UNLINK];
 							}
@@ -271,10 +272,10 @@ void FMActivate::activate(QList< FontItem * > fitList, bool act)
 	
 	QStringList aList;
 	FMFontDb::DB()->TransactionBegin();
-	for (auto* f : stack.keys())
+	for (auto it(stack.constBegin()); it != stack.constEnd(); ++it)
 	{
-		f->setActivated(stack[f]);
-		aList << f->path();
+		it.key()->setActivated(it.value());
+		aList << it.key()->path();
 	}
 	FMFontDb::DB()->TransactionEnd();
 
@@ -315,7 +316,7 @@ bool FMActivate::addFcReject(const QString & path)
 								QString t( globlist.at(g).toElement().text() );
 								if(t == path)
 								{
-									qDebug()<<"Already here";
+									qCDebug(FONTMATRIX_LOG)<<"Already here";
 									return true;
 								}
 							}

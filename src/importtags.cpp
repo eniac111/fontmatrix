@@ -10,6 +10,7 @@
 //
 //
 #include "importtags.h"
+#include "fontmatrix_debug.h"
 #include "fmfontdb.h"
 
 #include <QDebug>
@@ -17,7 +18,7 @@
 ImportTags::ImportTags(QWidget * parent, QStringList tags)
  : QDialog(parent)
 {
-	qDebug()<< "ImportTags(" << tags << ")";
+	qCDebug(FONTMATRIX_LOG)<< "ImportTags(" << tags << ")";
 	setupUi(this);
 	m_tags = tags;
 // 	m_tags.removeAll("Activated_On");
