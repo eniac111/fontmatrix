@@ -753,10 +753,14 @@ void typotek::createActions()
     connect(PlayWidget::getInstance(), &PlayWidget::visibilityChanged, this, &typotek::updateFloatingStatus);
     connect(FontCompareWidget::getInstance(), &FontCompareWidget::visibilityChanged, this, &typotek::updateFloatingStatus);
 
+#ifdef HAVE_PODOFO
+    // PDF is the only kind of document there is an extractor for; without PoDoFo the dialog
+    // could not open anything, so the action is not offered.
     extractFontAction = new QAction(i18nc("@action:inmenu", "Extract fonts..."), this);
     extractFontAction->setStatusTip(i18nc("@info:status", "Extract fonts from documents like PDF to PFM file format"));
     scuts->add(extractFontAction);
     connect(extractFontAction, &QAction::triggered, this, &typotek::slotExtractFont);
+#endif
 
     matchRasterAct = new QAction(i18nc("@action:inmenu", "Find a font using raster sample..."), this); // FIXME find a name for it
     matchRasterAct->setStatusTip(i18nc("@info:status", "Find a font using a raster sample of a letter"));
@@ -794,7 +798,9 @@ void typotek::createActions()
     ac->addAction(QStringLiteral("view_show_all"), showAllFloat);
     ac->addAction(QStringLiteral("view_hide_all"), hideAllFloat);
 
+#ifdef HAVE_PODOFO
     ac->addAction(QStringLiteral("tools_extract_font"), extractFontAction);
+#endif
     ac->addAction(QStringLiteral("tools_match_raster"), matchRasterAct);
     ac->addAction(QStringLiteral("tools_export_xetex"), exportXeTeXAct);
     ac->addAction(QStringLiteral("tools_repair"), repairAct);
@@ -812,7 +818,9 @@ void typotek::createActions()
     compareAction->setIcon(QIcon::fromTheme(QStringLiteral("view-split-left-right")));
     playAction->setIcon(QIcon::fromTheme(QStringLiteral("applications-games")));
     // Other menu actions
+#ifdef HAVE_PODOFO
     extractFontAction->setIcon(QIcon::fromTheme(QStringLiteral("package-x-generic")));
+#endif
     exportXeTeXAct->setIcon(QIcon::fromTheme(QStringLiteral("document-export")));
     repairAct->setIcon(QIcon::fromTheme(QStringLiteral("tools-check-spelling")));
     showTTTAct->setIcon(QIcon::fromTheme(QStringLiteral("document-properties")));

@@ -133,26 +133,32 @@ IF(WANT_M17N)
 ENDIF(WANT_M17N)
 #>> m17n
 
+# PoDoFo serves one feature: Tools > Extract fonts, which takes the fonts embedded in a PDF
+# file. It is optional, because Debian and Ubuntu still ship 0.9, whose API is another one.
+# Without it the application is complete except for that menu entry. To build without it on
+# purpose: -DCMAKE_DISABLE_FIND_PACKAGE_podofo=ON -DCMAKE_DISABLE_FIND_PACKAGE_LIBPODOFO=ON
+set(FONTMATRIX_HAVE_PODOFO FALSE)
 find_package(podofo CONFIG QUIET)
 IF(podofo_FOUND)
 	MESSAGE(STATUS "PoDoFo Library Found OK (CMake config)")
-	ADD_DEFINITIONS(-DHAVE_PODOFO)
-	SET(PODOFO 1)
-	SET(LIBPODOFO_FOUND TRUE CACHE BOOL "Was libpodofo found")
-ELSE()
-	FIND_PACKAGE(LIBPODOFO REQUIRED)
-	# 0.9 has another API: say it here and not as a wall of compiler errors
-	IF(LIBPODOFO_FOUND AND LIBPODOFO_VERSION AND LIBPODOFO_VERSION VERSION_LESS "0.10.0")
-		MESSAGE(FATAL_ERROR "PoDoFo ${LIBPODOFO_VERSION} found, Fontmatrix needs 0.10 or newer.")
-	ENDIF()
-	IF(LIBPODOFO_FOUND)
-		MESSAGE(STATUS "PoDoFo Library Found OK")
-		ADD_DEFINITIONS(-DHAVE_PODOFO)
-		SET(PODOFO 1)
-	ELSE()
-		MESSAGE(FATAL_ERROR "PoDoFo library not found. Install libpodofo-dev (or equivalent) to build Fontmatrix.")
+	set(FONTMATRIX_HAVE_PODOFO TRUE)
+ELSEIF(NOT CMAKE_DISABLE_FIND_PACKAGE_LIBPODOFO)
+	FIND_PACKAGE(LIBPODOFO)
+	IF(LIBPODOFO_INCLUDE_DIR AND LIBPODOFO_LIBRARY)
+		# 0.9 would be found and then fail as a wall of compiler errors
+		IF(LIBPODOFO_VERSION AND LIBPODOFO_VERSION VERSION_LESS "0.10.0")
+			MESSAGE(STATUS "PoDoFo ${LIBPODOFO_VERSION} found, 0.10 or newer is needed: building without the extraction of fonts from PDF files")
+		ELSE()
+			MESSAGE(STATUS "PoDoFo Library Found OK")
+			set(FONTMATRIX_HAVE_PODOFO TRUE)
+		ENDIF()
 	ENDIF()
 ENDIF()
+IF(FONTMATRIX_HAVE_PODOFO)
+	ADD_DEFINITIONS(-DHAVE_PODOFO)
+	SET(PODOFO 1)
+ENDIF()
+add_feature_info("Font extraction from PDF files" FONTMATRIX_HAVE_PODOFO "Tools > Extract fonts; needs PoDoFo 0.10 or newer")
 
 
 # I can’t remember what it does :|

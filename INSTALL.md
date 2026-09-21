@@ -29,7 +29,7 @@ Download and run the MSI — Qt and FreeType runtime DLLs are bundled.
 | C++ compiler | C++20 | GCC / Clang / MSVC 2022 |
 | Qt 6 | ≥ 6.10 | Core, Widgets, Svg, SvgWidgets, Sql, Xml, PrintSupport |
 | KDE Frameworks 6 and extra-cmake-modules | ≥ 6.28 | CoreAddons, I18n, Config, XmlGui, ConfigWidgets, WidgetsAddons, StatusNotifierItem, DBusAddons; DocTools is optional (handbook) |
-| PoDoFo | ≥ 0.10 | extracts fonts from PDF files; 0.9 has a different API and is refused |
+| PoDoFo | ≥ 0.10 | optional: *Tools → Extract fonts* (the fonts embedded in a PDF file). Without it, or with 0.9, whose API is another one, the application is built without that entry |
 | HarfBuzz | ≥ 2.6.8 | built with FreeType support; Qt 6 depends on it already |
 | FreeType2 | ≥ 2.3.5 | |
 | Gettext | | `msgfmt`, to compile the translations |
