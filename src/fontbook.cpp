@@ -757,7 +757,8 @@ void FontBook::doBookFromTemplate(const QDomDocument &)
     //						QGraphicsTextItem * ti = theScene.addText ( pagelines[pl], qfontCache[conPage[pIndex].textStyle.name] );
     //						renderedText << ti;
     //						ti->setPos ( conPage[pIndex].textStyle.margin_left + prectx, conPage[pIndex].textStyle.margin_top + ( pl *
-    //conPage[pIndex].textStyle.lineheight ) ); 						ti->setZValue ( 10 ); 						ti->setDefaultTextColor ( conPage[pIndex].textStyle.color );
+    // conPage[pIndex].textStyle.lineheight ) ); 						ti->setZValue ( 10 ); 						ti->setDefaultTextColor (
+    // conPage[pIndex].textStyle.color );
     //					}
     //					if ( conPage[pIndex].graphic.valid )
     //					{
@@ -776,7 +777,8 @@ void FontBook::doBookFromTemplate(const QDomDocument &)
     //				QGraphicsTextItem * ti = theScene.addText ( familylines[fl], qfontCache[conFamily[elemIndex].textStyle.name] );
     //				renderedText << ti;
     //				ti->setPos ( conFamily[elemIndex].textStyle.margin_left + prectx, thePos.y() + ( conFamily[elemIndex].textStyle.margin_top + ( fl *
-    //conFamily[elemIndex].textStyle.lineheight ) ) ); 				ti->setZValue ( 1000 ); 				ti->setDefaultTextColor ( conFamily[elemIndex].textStyle.color );
+    // conFamily[elemIndex].textStyle.lineheight ) ) ); 				ti->setZValue ( 1000 ); 				ti->setDefaultTextColor (
+    // conFamily[elemIndex].textStyle.color );
     //			}
     //			if ( conFamily[elemIndex].graphic.valid )
     //			{
@@ -914,7 +916,8 @@ void FontBook::doBookFromTemplate(const QDomDocument &)
     //							QGraphicsTextItem * ti = theScene.addText ( pagelines[pl], qfontCache[conPage[pIndex].textStyle.name] );
     //							renderedText << ti;
     //							ti->setPos ( conPage[pIndex].textStyle.margin_left + prectx, conPage[pIndex].textStyle.margin_top + ( pl *
-    //conPage[pIndex].textStyle.lineheight ) ); 							ti->setZValue ( 10 ); 							ti->setDefaultTextColor ( conPage[pIndex].textStyle.color );
+    // conPage[pIndex].textStyle.lineheight ) ); 							ti->setZValue ( 10 ); 							ti->setDefaultTextColor (
+    // conPage[pIndex].textStyle.color );
     //						}
     //						if ( conPage[pIndex].graphic.valid )
     //						{
@@ -983,7 +986,8 @@ void FontBook::doBookFromTemplate(const QDomDocument &)
     //							renderedText << ti;
     //							ti->setTextWidth( mwidth );
     //							ti->setPos ( conSubfamily[elemIndex].textStyle.margin_left + prectx, thePos.y() + ( conSubfamily[elemIndex].textStyle.margin_top
-    //+ ( sl * conSubfamily[elemIndex].textStyle.lineheight ) ) ); 							ti->setZValue ( 10000 ); 							ti->setDefaultTextColor ( conSubfamily[elemIndex].textStyle.color );
+    //+ ( sl * conSubfamily[elemIndex].textStyle.lineheight ) ) ); 							ti->setZValue ( 10000 );
+    // ti->setDefaultTextColor ( conSubfamily[elemIndex].textStyle.color );
 
     //							thePos.ry() += ti->document()->size().height();
     //						}
