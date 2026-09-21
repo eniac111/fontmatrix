@@ -16,9 +16,7 @@
 
 #include "fontmatrixshaper.h"
 
-#ifdef HAVE_HARFBUZZ
 #include "harfbuzzqtshaper.h"
-#endif
 
 #ifdef HAVE_ICU
 #include "icushaper.h"
@@ -42,9 +40,7 @@ QMap<QString, int> FMShaperFactory::types()
 	ret.clear();
 	ret["Fontmatrix"] = FONTMATRIX;
 	
-#ifdef HAVE_HARFBUZZ
 	ret["Harfbuzz"] = HARFBUZZ;
-#endif
 	
 #ifdef HAVE_ICU
 	ret["ICU"] = ICU;
@@ -73,12 +69,10 @@ FMShaperFactory::FMShaperFactory ( FMOtf * o, QString s, SHAPER_TYPE st )
 			qCDebug(FONTMATRIX_LOG) << "NEW FontmatrixShaper";
 			shaperImpl = new FontmatrixShaper ( otf, script );
 			break;
-#ifdef HAVE_HARFBUZZ
 		case HARFBUZZ:
 			qCDebug(FONTMATRIX_LOG) << "NEW HarfbuzzShaper";
 			shaperImpl = new HarfbuzzShaper ( otf, script );
 			break;
-#endif
 #ifdef HAVE_PANGO
 		case PANGO:
 			qCDebug(FONTMATRIX_LOG) << "NEW PangoShaper";

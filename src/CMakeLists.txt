@@ -109,11 +109,10 @@ ecm_qt_install_logging_categories(
 	DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
 )
 
-IF(HARFBUZZSHAPER)
-	SET(HARFBUZZ_SRCS
-	harfbuzzqtshaper.cpp
-	fmshaper.cpp)
-ENDIF(HARFBUZZSHAPER)
+# HarfBuzz is required, its shaper needs no option any more
+SET(HARFBUZZ_SRCS
+harfbuzzqtshaper.cpp
+fmshaper.cpp)
 
 IF(ICUSHAPER)
 	SET(ICU_SRCS icushaper.cpp)
@@ -285,7 +284,6 @@ ${CMAKE_CURRENT_BINARY_DIR}
 ${QT_INCLUDE_DIR}
 ${QT_QT_INCLUDE_DIR}
 ${FREETYPE_INCLUDE_DIRS}
-${HARFBUZZ_INCLUDE_DIR}
 ${FONTCONFIG_INCLUDE_DIR}
 ${ICU_INCLUDE_DIR}
 ${M17N_INCLUDE_DIR}
@@ -304,7 +302,7 @@ IF(UNIX AND NOT APPLE)
 	${PODOFO_SRCS}
 	)
 
-	target_link_libraries(fontmatrix harfbuzz hyphenate
+	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz hyphenate
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	${FONTCONFIG_LIBRARIES}
@@ -408,7 +406,7 @@ IF(APPLE)
 	${PODOFO_SRCS}
 	)
 
-	target_link_libraries(fontmatrix harfbuzz hyphenate
+	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz hyphenate
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	${SHAPERS_LIBRARIES}
@@ -489,7 +487,7 @@ IF(WIN32)
 	fontmatrix.rc
 	)
 
-	target_link_libraries(fontmatrix harfbuzz hyphenate
+	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz hyphenate
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	${SHAPERS_LIBRARIES}
