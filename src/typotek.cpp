@@ -1210,7 +1210,7 @@ void typotek::checkOwnDir()
 #endif
 }
 
-void typotek::addFcDirItem(const QString & dirPath)
+void typotek::addFcDirItem([[maybe_unused]] const QString & dirPath)
 {
 #ifdef HAVE_FONTCONFIG
 	QFile fcfile ( QDir::homePath() + "/.config/fontconfig/fonts.conf" );

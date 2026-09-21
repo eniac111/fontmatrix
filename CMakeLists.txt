@@ -132,6 +132,10 @@ IF(podofo_FOUND)
 	SET(LIBPODOFO_FOUND TRUE CACHE BOOL "Was libpodofo found")
 ELSE()
 	FIND_PACKAGE(LIBPODOFO REQUIRED)
+	# 0.9 has another API: say it here and not as a wall of compiler errors
+	IF(LIBPODOFO_FOUND AND LIBPODOFO_VERSION AND LIBPODOFO_VERSION VERSION_LESS "0.10.0")
+		MESSAGE(FATAL_ERROR "PoDoFo ${LIBPODOFO_VERSION} found, Fontmatrix needs 0.10 or newer.")
+	ENDIF()
 	IF(LIBPODOFO_FOUND)
 		MESSAGE(STATUS "PoDoFo Library Found OK")
 		ADD_DEFINITIONS(-DHAVE_PODOFO)
@@ -186,13 +190,18 @@ ENDIF(FREETYPE_FOUND)
 #>> FreeType2
 
 
-IF(UNIX AND NOT APPLE)
-	FIND_PACKAGE(FONTCONFIG)
-	IF(FONTCONFIG_FOUND)
-		MESSAGE(STATUS "FontConfig Found OK")
-		ADD_DEFINITIONS( -DHAVE_FONTCONFIG )
-	ENDIF(FONTCONFIG_FOUND)
-ENDIF(UNIX AND NOT APPLE)
+# Optional: without it the fonts are managed, but not switched on and off for other programs.
+# CMake's own module (3.14) and its imported target; a missing Fontconfig used to end up as
+# "FONTCONFIG_INCLUDE_DIR-NOTFOUND" on the include path and a failure at generation time.
+if(UNIX AND NOT APPLE)
+	find_package(Fontconfig)
+	set_package_properties(Fontconfig PROPERTIES
+		TYPE RECOMMENDED
+		PURPOSE "Activates and deactivates fonts for the other applications")
+	if(Fontconfig_FOUND)
+		add_definitions(-DHAVE_FONTCONFIG)
+	endif()
+endif()
 
 
 SET(FM_TEMPLATES_FILES
