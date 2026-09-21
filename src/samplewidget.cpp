@@ -341,16 +341,19 @@ void SampleWidget::setState(const SampleWidget::State &s)
 //		}
 //	}
 
+	// A new profile names no sample. Without this the first of the tree wins,
+	// whatever its script is.
+	const QString wanted(s.sampleName.isEmpty() ? typotek::getInstance()->defaultSampleName() : s.sampleName);
 	QTreeWidgetItem * targetItem = nullptr;
 	for(int i(0); i < ui->sampleTextTree->topLevelItemCount(); ++i)
 	{
 		QTreeWidgetItem * tli(ui->sampleTextTree->topLevelItem(i));
 		for(int ii(0); ii < tli->childCount(); ++ii)
 		{
-			if(tli->child(ii)->data(0, Qt::UserRole).toString() == s.sampleName)
+			if(tli->child(ii)->data(0, Qt::UserRole).toString() == wanted)
 			{
 				targetItem = tli->child(ii);
-				typotek::getInstance()->namedSample(s.sampleName);
+				typotek::getInstance()->namedSample(wanted);
 				break;
 			}
 		}

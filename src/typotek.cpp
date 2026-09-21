@@ -1756,16 +1756,20 @@ QString typotek::defaultSampleName()
 	else
 	{
 		const QMap<QString, QMap<QString,QString> >& ss(dataLoader->systemSamples());
-		// QLocale::system().name() returns e.g. "en_US", "de_DE" — take the 2-letter ISO code
-		// which matches the sample group directory names (de, fr, ru, etc.)
-		QString l(QLocale::system().name().left(2));
-		if((ss.contains(l)) && (ss[l].count() > 0))
+		// DataLoader names the groups with QLocale::languageToString(), "German"
+		// and not "de". A directory that is not a locale ends up in "C", which
+		// is therefore not a match for a C locale.
+		const auto groupOf = [](const QLocale& loc) { return QLocale::languageToString(loc.language()); };
+		const QLocale sysLocale(QLocale::system());
+		QString l(groupOf(sysLocale));
+		if((sysLocale.language() != QLocale::C) && (ss.contains(l)) && (ss[l].count() > 0))
 			return l + QString("::") + ss[l].keys().first();
 		else
 		{
 			// Prefer Latin-script samples as fallback so the widget shows something on first use
-			for(const QString& preferred : QStringList{"de", "fr", "ru"})
+			for(const QString& code : QStringList{"de", "fr", "ru"})
 			{
+				const QString preferred(groupOf(QLocale(code)));
 				if(ss.contains(preferred) && ss[preferred].count() > 0)
 					return preferred + QString("::") + ss[preferred].keys().first();
 			}
