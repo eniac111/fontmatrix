@@ -98,7 +98,7 @@ public Q_SLOTS:
 	void slotCloseToSystray(bool isEnabled);
 	void slotSystrayStart(bool isEnabled);
 	void slotUseInitialTags(bool isEnabled);
-	void showImportedFonts(int show);
+	void setImportedFontsHidden(bool hidden);
 	bool showImportedFonts();
 	void slotPrefsPanelDefault();
 	void slotPrefsPanel(PrefsPanelDialog::PAGE page);

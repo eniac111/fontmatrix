@@ -90,8 +90,8 @@ class PrefsPanelDialog : public KPageDialog, private Ui::PrefsPanel
 
 		void updateWord(QString);
 		void updateWordSize(double);
-		void updateWordRTL(int);
-		void updateWordSubtitled(int);
+		void updateWordRTL(bool rtl);
+		void updateWordSubtitled(bool subtitled);
 
 		void updateChartFont(const QFont & font);
 
@@ -101,7 +101,7 @@ class PrefsPanelDialog : public KPageDialog, private Ui::PrefsPanel
 		void setupTemplates(const QString&);
 		void slotTemplatesBrowse();
 
-		void slotShowImportedFonts(int i);
+		void slotShowImportedFonts(bool show);
 // 		void slotFamilyNotPreferred(bool state);
 		void slotSplashScreen(bool state);
 

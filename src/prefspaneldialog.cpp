@@ -201,8 +201,8 @@ void PrefsPanelDialog::doConnect()
 
 	connect ( previewWord, &QLineEdit::textChanged, this, &PrefsPanelDialog::updateWord );
 	connect ( previewSizeSpin, &QDoubleSpinBox::valueChanged, this, &PrefsPanelDialog::updateWordSize );
-	connect ( previewIsRTL, SIGNAL ( stateChanged ( int ) ), this, SLOT ( updateWordRTL ( int ) ) );
-	connect ( previewSubtitled, SIGNAL ( stateChanged ( int ) ), this, SLOT ( updateWordSubtitled ( int ) ) );
+	connect ( previewIsRTL, &QCheckBox::toggled, this, &PrefsPanelDialog::updateWordRTL );
+	connect ( previewSubtitled, &QCheckBox::toggled, this, &PrefsPanelDialog::updateWordSubtitled );
 
 	connect ( chartFontRequester, &KFontRequester::fontSelected, this, &PrefsPanelDialog::updateChartFont );
 
@@ -217,7 +217,7 @@ void PrefsPanelDialog::doConnect()
 	connect ( templatesFolder, &QLineEdit::textChanged, this, &PrefsPanelDialog::setupTemplates );
 
 
-	connect ( showNamesBox, SIGNAL ( stateChanged ( int ) ), this, SLOT ( slotShowImportedFonts ( int ) ) );
+	connect ( showNamesBox, &QCheckBox::toggled, this, &PrefsPanelDialog::slotShowImportedFonts );
 
 	connect ( clearButton, &QToolButton::clicked, this, &PrefsPanelDialog::slotClearShortcut );
 	connect ( changeButton, &QToolButton::clicked, this, &PrefsPanelDialog::slotChangeShortcut );
@@ -351,18 +351,16 @@ void PrefsPanelDialog::updateWordSize ( double d )
 }
 
 
-void PrefsPanelDialog::updateWordRTL ( int rtl )
+void PrefsPanelDialog::updateWordRTL ( bool rtl )
 {
-	bool booleanState = ( rtl == Qt::Checked ) ? true : false;
-	FMConfig::setValue ( QStringLiteral("Preview/RTL"), booleanState );
-	typotek::getInstance()->setPreviewRTL ( booleanState );
+	FMConfig::setValue ( QStringLiteral("Preview/RTL"), rtl );
+	typotek::getInstance()->setPreviewRTL ( rtl );
 }
 
-void PrefsPanelDialog::updateWordSubtitled(int sub )
+void PrefsPanelDialog::updateWordSubtitled ( bool subtitled )
 {
-	bool booleanState = ( sub == Qt::Checked ) ? true : false;
-	FMConfig::setValue ( QStringLiteral("Preview/Subtitled"), booleanState );
-	typotek::getInstance()->setPreviewSubtitled ( booleanState );
+	FMConfig::setValue ( QStringLiteral("Preview/Subtitled"), subtitled );
+	typotek::getInstance()->setPreviewSubtitled ( subtitled );
 }
 
 void PrefsPanelDialog::setupFontEditor ( QString s )
@@ -411,12 +409,9 @@ void PrefsPanelDialog::setupTemplates ( const QString &tdir )
 		typotek::getInstance()->setTemplatesDir ( tdir );
 }
 
-void PrefsPanelDialog::slotShowImportedFonts ( int show )
+void PrefsPanelDialog::slotShowImportedFonts ( bool show )
 {
-	int opposite = Qt::Unchecked;
-	if ( show == Qt::Unchecked )
-		opposite = Qt::Checked;
-	typotek::getInstance()->showImportedFonts ( opposite );
+	typotek::getInstance()->setImportedFontsHidden ( !show );
 }
 
 void PrefsPanelDialog::slotChangeShortcut()

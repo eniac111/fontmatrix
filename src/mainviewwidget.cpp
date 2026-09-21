@@ -137,7 +137,7 @@ void MainViewWidget::doConnect()
 	connect(filterBar, &FilterBar::filterChanged, previewModel, &FMPreviewModel::dataChanged);
 	connect(filterBar, &FilterBar::filterChanged, typo, &typotek::showToltalFilteredFonts);
 	connect(saveButton, &QPushButton::clicked, filterBar, qOverload<>(&FilterBar::slotSaveFilter));
-	connect(clearButton, SIGNAL(clicked()), filterBar, SLOT(slotClearFilter()));
+	connect(clearButton, &QPushButton::clicked, filterBar, &FilterBar::slotClearFilter);
 
 
 	connect(listView, &FMPreviewView::widthChanged, this, &MainViewWidget::slotPreviewUpdateSize);
@@ -157,7 +157,7 @@ void MainViewWidget::disConnect()
 	disconnect(filterBar, &FilterBar::filterChanged, previewModel, &FMPreviewModel::dataChanged);
 	disconnect(filterBar, &FilterBar::filterChanged, typo, &typotek::showToltalFilteredFonts);
 	disconnect(saveButton, &QPushButton::clicked, filterBar, qOverload<>(&FilterBar::slotSaveFilter));
-	disconnect(clearButton, SIGNAL(clicked()), filterBar, SLOT(slotClearFilter()));
+	disconnect(clearButton, &QPushButton::clicked, filterBar, &FilterBar::slotClearFilter);
 
 	disconnect(listView, &FMPreviewView::widthChanged, this, &MainViewWidget::slotPreviewUpdateSize);
 	disconnect(listView, &FMPreviewView::activated, this, &MainViewWidget::slotShowFamily);

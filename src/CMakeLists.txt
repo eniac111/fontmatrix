@@ -159,6 +159,13 @@ ${M17N_LIBRARIES}
 
 # AUTOMOC finds the Q_OBJECT headers itself; each source includes its moc_<name>.cpp,
 # so the meta-object code is compiled with the class and not in one large extra unit.
+# A build tree from before that still holds the moc_<name>.cpp files qt_wrap_cpp wrote
+# here, and this directory comes first on the include path: the sources would pick up
+# those instead of the current ones.
+file(GLOB fontmatrix_STALE_MOC "${CMAKE_CURRENT_BINARY_DIR}/moc_*.cpp")
+if(fontmatrix_STALE_MOC)
+    file(REMOVE ${fontmatrix_STALE_MOC})
+endif()
 
 
 SET(fontmatrix_UIS

@@ -28,7 +28,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <QMenu>
 #include <QFontDialog>
 #include <QClipboard>
-#include <QSignalMapper>
 #include <QPalette>
 #include <cctype>
 #include <climits>
@@ -125,19 +124,6 @@ void QHexView::setHexFont(const QFont &f) {
 }
 
 //------------------------------------------------------------------------------
-// Name: addToggleActionToMenu(QMenu *menu, const QString &caption, bool checked, QObject *reciever, const char *slot)
-// Desc: convinience function used to add a checkable menu item to the context menu
-//------------------------------------------------------------------------------
-QAction *QHexView::addToggleActionToMenu(QMenu *menu, const QString &caption, bool checked, QObject *reciever, const char *slot) {
-	QAction *const action = new QAction(caption, menu);
-    action->setCheckable(true);
-    action->setChecked(checked);
-	menu->addAction(action);
-	connect(action, SIGNAL(toggled(bool)), reciever, slot);
-	return action;
-}
-
-//------------------------------------------------------------------------------
 // Name: createStandardContextMenu()
 // Desc: creates the "standard" context menu for the widget
 //------------------------------------------------------------------------------
@@ -145,51 +131,31 @@ QMenu *QHexView::createStandardContextMenu() {
 
 	QMenu *const menu = new QMenu(this);
 	
-	menu->addAction(QStringLiteral("Set &Font"), this, SLOT(mnuSetFont()));	
+	menu->addAction(QStringLiteral("Set &Font"), this, &QHexView::mnuSetFont);
 	menu->addSeparator();
-	addToggleActionToMenu(menu, QStringLiteral("Show A&ddress"), m_ShowAddress, this, SLOT(setShowAddress(bool)));
-	addToggleActionToMenu(menu, QStringLiteral("Show &Hex"), m_ShowHex, this, SLOT(setShowHexDump(bool)));
-	addToggleActionToMenu(menu, QStringLiteral("Show &Ascii"), m_ShowAscii, this, SLOT(setShowAsciiDump(bool)));
-	addToggleActionToMenu(menu, QStringLiteral("Show &Comments"), m_ShowComments, this, SLOT(setShowComments(bool)));
-
-	QSignalMapper *wordWidthMapper = new QSignalMapper(this);
+	addToggleActionToMenu(menu, QStringLiteral("Show A&ddress"), m_ShowAddress, this, &QHexView::setShowAddress);
+	addToggleActionToMenu(menu, QStringLiteral("Show &Hex"), m_ShowHex, this, &QHexView::setShowHexDump);
+	addToggleActionToMenu(menu, QStringLiteral("Show &Ascii"), m_ShowAscii, this, &QHexView::setShowAsciiDump);
+	addToggleActionToMenu(menu, QStringLiteral("Show &Comments"), m_ShowComments, this, &QHexView::setShowComments);
 
 	QMenu *const wordMenu = new QMenu(QStringLiteral("Set Word Width"), this);
-	QAction *const a1 = addToggleActionToMenu(wordMenu, QStringLiteral("1 Byte"), m_WordWidth == 1, wordWidthMapper, SLOT(map()));
-	QAction *const a2 = addToggleActionToMenu(wordMenu, QStringLiteral("2 Bytes"), m_WordWidth == 2, wordWidthMapper, SLOT(map()));
-	QAction *const a3 = addToggleActionToMenu(wordMenu, QStringLiteral("4 Bytes"), m_WordWidth == 4, wordWidthMapper, SLOT(map()));
-	QAction *const a4 = addToggleActionToMenu(wordMenu, QStringLiteral("8 Bytes"), m_WordWidth == 8, wordWidthMapper, SLOT(map()));
-	
-	wordWidthMapper->setMapping(a1, 1);
-	wordWidthMapper->setMapping(a2, 2);
-	wordWidthMapper->setMapping(a3, 4);
-	wordWidthMapper->setMapping(a4, 8);
-	
-	connect(wordWidthMapper, &QSignalMapper::mappedInt, this, &QHexView::setWordWidth);
-	
-	QSignalMapper *rowWidthMapper = new QSignalMapper(this);
+	for (const int bytes : {1, 2, 4, 8}) {
+		const QString caption = (bytes == 1) ? QStringLiteral("1 Byte") : QStringLiteral("%1 Bytes").arg(bytes);
+		addToggleActionToMenu(wordMenu, caption, m_WordWidth == bytes, this, [this, bytes]() { setWordWidth(bytes); });
+	}
 
 	QMenu *const rowMenu = new QMenu(QStringLiteral("Set Row Width"), this);
-	QAction *const a5 = addToggleActionToMenu(rowMenu, QStringLiteral("1 Word"), m_RowWidth == 1, rowWidthMapper, SLOT(map()));
-	QAction *const a6 = addToggleActionToMenu(rowMenu, QStringLiteral("2 Words"), m_RowWidth == 2, rowWidthMapper, SLOT(map()));
-	QAction *const a7 = addToggleActionToMenu(rowMenu, QStringLiteral("4 Words"), m_RowWidth == 4, rowWidthMapper, SLOT(map()));
-	QAction *const a8 = addToggleActionToMenu(rowMenu, QStringLiteral("8 Words"), m_RowWidth == 8, rowWidthMapper, SLOT(map()));
-	QAction *const a9 = addToggleActionToMenu(rowMenu, QStringLiteral("16 Words"), m_RowWidth == 16, rowWidthMapper, SLOT(map()));
-
-	rowWidthMapper->setMapping(a5, 1);
-	rowWidthMapper->setMapping(a6, 2);
-	rowWidthMapper->setMapping(a7, 4);
-	rowWidthMapper->setMapping(a8, 8);
-	rowWidthMapper->setMapping(a9, 16);
-	
-	connect(rowWidthMapper, &QSignalMapper::mappedInt, this, &QHexView::setRowWidth);
+	for (const int words : {1, 2, 4, 8, 16}) {
+		const QString caption = (words == 1) ? QStringLiteral("1 Word") : QStringLiteral("%1 Words").arg(words);
+		addToggleActionToMenu(rowMenu, caption, m_RowWidth == words, this, [this, words]() { setRowWidth(words); });
+	}
 
 	menu->addSeparator();
 	menu->addMenu(wordMenu);
 	menu->addMenu(rowMenu);
 	
 	menu->addSeparator();
-	menu->addAction(QStringLiteral("&Copy Selection To Clipboard"), this, SLOT(mnuCopy()));	
+	menu->addAction(QStringLiteral("&Copy Selection To Clipboard"), this, &QHexView::mnuCopy);
 	
 	return menu;
 }

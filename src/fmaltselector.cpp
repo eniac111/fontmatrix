@@ -272,7 +272,7 @@ FMAltSelector::FMAltSelector(QWidget * parent)
 	altSelectView->setModel(m_model);
 	altSelectView->setItemDelegateForColumn(1, m_model->AltDelegate());
 
-	FMAltContextLib::GetConnected(this, SLOT(fillFromContext()));
+	FMAltContextLib::GetConnected(this, &FMAltSelector::fillFromContext);
 
 	// disable it
 	setVisible(false);

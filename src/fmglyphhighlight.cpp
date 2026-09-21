@@ -28,7 +28,7 @@ FMGlyphHighlight::FMGlyphHighlight(QGraphicsScene*, const QRectF& rect, int time
 	maxFrame = frames;
 	m_timeline->setFrameRange(0,maxFrame);
 	
-	connect( m_timeline,SIGNAL(frameChanged(int)), this, SLOT(animate (int)) );
+	connect( m_timeline, &QTimeLine::frameChanged, this, &FMGlyphHighlight::animate );
 	m_timeline->start();
 }
 

@@ -45,12 +45,12 @@ ImportedFontsDialog::ImportedFontsDialog(QWidget * parent, QStringList fontlist)
 	label->setText(i18n("Number of Imported Fonts ") + QString::number(fontList->count() - buggyFonts));
 	dontShowBox->setChecked(false);
 
-	connect(dontShowBox, SIGNAL(stateChanged(int)),typotek::getInstance(), SLOT(showImportedFonts(int)));
+	connect(dontShowBox, &QCheckBox::toggled, typotek::getInstance(), &typotek::setImportedFontsHidden);
 }
 
 ImportedFontsDialog::~ImportedFontsDialog()
 {
-	disconnect(dontShowBox, SIGNAL(stateChanged(int)),typotek::getInstance(), SLOT(showImportedFonts(int)));
+	disconnect(dontShowBox, &QCheckBox::toggled, typotek::getInstance(), &typotek::setImportedFontsHidden);
 }
 
 

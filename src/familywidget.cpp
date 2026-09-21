@@ -258,7 +258,7 @@ void FamilyWidget::slotShowActivation()
 			ActivationWidget *aw(new ActivationWidget(family, ui->pageActivation));
 			ui->displayStack->insertWidget(FAMILY_VIEW_ACTIVATION, aw);
 			activation = aw;
-			connect(activation, SIGNAL(familyStateChanged()), this, SLOT(slotStateChange()));
+			connect(aw, &ActivationWidget::familyStateChanged, this, &FamilyWidget::slotStateChange);
 		}
 		ui->displayStack->setCurrentWidget(activation);
 	}

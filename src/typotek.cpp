@@ -1844,13 +1844,10 @@ void typotek::slotUseInitialTags ( bool isEnabled )
 	FMConfig::setValue(QStringLiteral("UseInitialTags"), isEnabled);
 }
 
-void typotek::showImportedFonts(int show) // 0 == show dialog, 2 == do not show
+void typotek::setImportedFontsHidden(bool hidden) // the "do not show this again" box of the dialog
 {
-	bool doShow = true;
-	if (show == Qt::Checked)
-		doShow = false;
-	showFontListDialog = doShow;
-	FMConfig::setValue(QStringLiteral("ShowImportedFonts"), doShow);
+	showFontListDialog = !hidden;
+	FMConfig::setValue(QStringLiteral("ShowImportedFonts"), showFontListDialog);
 }
 
 bool typotek::showImportedFonts()

@@ -68,8 +68,6 @@ FontBookDialog::FontBookDialog ( QWidget *parent )
 // 	connect ( paperSizeCombo,SIGNAL ( activated ( int ) ),this,SLOT ( slotPageSize ( int ) ) );
 // 	connect(this,SIGNAL(updateView()),this,SLOT(slotPreview()));
 	
-	//all Update
-	connect(fileNameEdit,SIGNAL(textChanged( const QString& )),this,SIGNAL(updateView()));
 // 	QList<QSpinBox*> spinList;
 // 	spinList << familySpinBox;
 // 	spinList << styleSpinBox;

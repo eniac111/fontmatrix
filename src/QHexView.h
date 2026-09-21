@@ -22,6 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define QHEXVIEW_20060506_H_
 
 #include <QAbstractScrollArea>
+#include <QAction>
+#include <QMenu>
 #include <QByteArray>
 #include <QMap>
 #include <QString>
@@ -140,7 +142,16 @@ private:
 	
 private:
 	static bool isPrintable(unsigned int ch);
-	static QAction *addToggleActionToMenu(QMenu *menu, const QString &caption, bool checked, QObject *reciever, const char *slot);
+	// convenience: a checkable menu entry whose toggled(bool) goes to slot
+	template <typename Receiver, typename Slot>
+	static QAction *addToggleActionToMenu(QMenu *menu, const QString &caption, bool checked, Receiver *receiver, Slot slot) {
+		auto *const action = new QAction(caption, menu);
+		action->setCheckable(true);
+		action->setChecked(checked);
+		menu->addAction(action);
+		connect(action, &QAction::toggled, receiver, slot);
+		return action;
+	}
 	
 private:
 	address_t m_Origin;

@@ -494,12 +494,15 @@ void ChartWidget::slotPrint()
 	if(printer == nullptr)
 		printer = new QPrinter(QPrinter::HighResolution);
 	if(printDialog == nullptr)
+	{
 		printDialog = new QPrintDialog(printer, this);
+		connect(printDialog, qOverload<QPrinter *>(&QPrintDialog::accepted), this, &ChartWidget::slotDoPrinting);
+	}
 
 	printDialog->setWindowTitle("Fontmatrix - " + i18n("Print Chart") +" - " + font->fancyName() );
 
 
-	printDialog->open(this, SLOT(slotDoPrinting()));
+	printDialog->open();
 
 }
 

@@ -21,7 +21,7 @@ class QGraphicsScene;
 class QGraphicsRectItem;
 class QTimeLine;
 
-class FMGlyphHighlight : QObject
+class FMGlyphHighlight : public QObject
 {
 	Q_OBJECT
 	public:

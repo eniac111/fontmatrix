@@ -156,7 +156,6 @@ private Q_SLOTS:
 
     void slotTagSelect(const QModelIndex & index);
     void slotTagEdit(const QModelIndex & index);
-    void slotClearFilter();
 
     void slotToggleTags(bool t);
     void slotToggleMeta(bool t);
@@ -164,6 +163,7 @@ private Q_SLOTS:
     void slotToggleFilter(bool t);
 
 public Q_SLOTS:
+    void slotClearFilter();
     void slotSaveFilter();
     void slotSaveFilter(const QString &fname);
 

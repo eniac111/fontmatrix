@@ -97,7 +97,7 @@ void FontCompareWidget::doconnect()
 	connect( compareCharSelect, &QSlider::valueChanged, this, &FontCompareWidget::characterChange );
 	connect( compareCharBox, &QComboBox::currentIndexChanged, this, &FontCompareWidget::characterBoxChange );
 	connect( compareList, &QListWidget::currentItemChanged, this, &FontCompareWidget::fontChange );
-	connect( compareSyncChars, SIGNAL(stateChanged( int )), this, SLOT(syncChange(int)));
+	connect( compareSyncChars, &QCheckBox::toggled, this, &FontCompareWidget::syncChange );
 }
 
 void FontCompareWidget::dodisconnect()
@@ -113,7 +113,7 @@ void FontCompareWidget::dodisconnect()
 	disconnect( compareCharSelect, &QSlider::valueChanged, this, &FontCompareWidget::characterChange );
 	disconnect( compareCharBox, &QComboBox::currentIndexChanged, this, &FontCompareWidget::characterBoxChange );
 	disconnect( compareList, &QListWidget::currentItemChanged, this, &FontCompareWidget::fontChange );
-	disconnect( compareSyncChars, SIGNAL(stateChanged( int )), this, SLOT(syncChange(int)));
+	disconnect( compareSyncChars, &QCheckBox::toggled, this, &FontCompareWidget::syncChange );
 }
 
 void FontCompareWidget::resetElements()
@@ -421,9 +421,9 @@ void FontCompareWidget::fontChange(QListWidgetItem * witem, QListWidgetItem * )
 	doconnect();
 }
 
-void FontCompareWidget::syncChange(int state)
+void FontCompareWidget::syncChange(bool checked)
 {
-	if((state == Qt::Checked) && (!neverUsed))
+	if(checked && (!neverUsed))
 	{
 		characterChange(-1);
 	}

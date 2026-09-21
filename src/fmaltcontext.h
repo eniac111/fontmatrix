@@ -142,7 +142,7 @@ public:
 	
 };
 
-class FMAltContextLib : private QObject
+class FMAltContextLib : public QObject
 {
 	Q_OBJECT
 
@@ -157,7 +157,11 @@ class FMAltContextLib : private QObject
 	public:
 		static FMAltContext * SetCurrentContext(const QString& tid, const QString& font);
 		static FMAltContext * GetCurrentContext();
-		static void GetConnected(const QObject * receiver, const char * method);
+		template <typename Receiver, typename Slot>
+		static void GetConnected(const Receiver * receiver, Slot method)
+		{
+			connect(that(), &FMAltContextLib::contextChanged, receiver, method);
+		}
 
 	Q_SIGNALS:
 		void contextChanged();

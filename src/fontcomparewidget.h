@@ -61,7 +61,7 @@ class FontCompareWidget : public QWidget, private Ui::CompareWidget
 		void characterChange(int v);
 		void characterBoxChange(int i);
 		void fontChange(QListWidgetItem * witem, QListWidgetItem * olditem = nullptr);
-		void syncChange(int state);
+		void syncChange(bool checked);
 		
 };
 

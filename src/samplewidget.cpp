@@ -848,10 +848,13 @@ void SampleWidget::slotPrint()
 	if(printer == nullptr)
 		printer = new QPrinter(QPrinter::HighResolution);
 	if(printDialog == nullptr)
+	{
 		printDialog = new QPrintDialog(printer, this);
+		connect(printDialog, qOverload<QPrinter *>(&QPrintDialog::accepted), this, &SampleWidget::slotDoPrinting);
+	}
 
 	printDialog->setWindowTitle("Fontmatrix - " + i18n("Print Sample") +" - " + font->fancyName() );
-	printDialog->open(this, SLOT(slotDoPrinting()));
+	printDialog->open();
 }
 
 
