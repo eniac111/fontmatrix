@@ -1,11 +1,22 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/eniac111/fontmatrix/issues\n"
 "POT-Creation-Date: 2026-09-22 00:47+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Qt-Contexts: true\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #. i18n: file: src/activationreportdialog.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, ActivationReportDialog)
@@ -14,7 +25,7 @@ msgstr ""
 #: rc.cpp:3 rc.cpp:688
 #, kde-format
 msgid "Dialog"
-msgstr "Valintaikkuna"
+msgstr ""
 
 #. i18n: file: src/activationreportdialog.ui:19
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -39,15 +50,14 @@ msgstr ""
 #: src/typotek.cpp:2085
 #, kde-format
 msgid "Close"
-msgstr "Sulje"
+msgstr ""
 
 #. i18n: file: src/activationreportdialog.ui:47
 #. i18n: ectx: property (text), widget (QTableWidget, errorTable)
 #: rc.cpp:12
-#, fuzzy, kde-format
-#| msgid "Font program"
+#, kde-format
 msgid "Font path"
-msgstr "Fonttiohjelma"
+msgstr ""
 
 #. i18n: file: src/activationreportdialog.ui:52
 #. i18n: ectx: property (text), widget (QTableWidget, errorTable)
@@ -93,7 +103,7 @@ msgstr ""
 #: rc.cpp:834 rc.cpp:852
 #, kde-format
 msgid "Form"
-msgstr "Lomake"
+msgstr ""
 
 #. i18n: file: src/activationwidgetitem.ui:44
 #. i18n: ectx: property (text), widget (QLabel, styleName)
@@ -105,40 +115,37 @@ msgstr ""
 #. i18n: file: src/activationwidgetitem.ui:51
 #. i18n: ectx: property (text), widget (QCheckBox, activatedStatus)
 #: rc.cpp:24 src/filterbar.cpp:94
-#, fuzzy, kde-format
-#| msgid "Activate"
+#, kde-format
 msgid "Activated"
-msgstr "Ota käyttöön"
+msgstr ""
 
 #. i18n: file: src/activationwidget.ui:20
 #. i18n: ectx: property (text), widget (QPushButton, activateAll)
 #: rc.cpp:30
-#, fuzzy, kde-format
-#| msgid "&Activate all"
+#, kde-format
 msgid "Activate All"
-msgstr "Ot&a kaikki käyttöön"
+msgstr ""
 
 #. i18n: file: src/activationwidget.ui:27
 #. i18n: ectx: property (text), widget (QPushButton, deactivateAll)
 #: rc.cpp:33
-#, fuzzy, kde-format
-#| msgid "&Deactivate all"
+#, kde-format
 msgid "Deactivate All"
-msgstr "Poista &kaikki käytöstä"
+msgstr ""
 
 #. i18n: file: src/bookexport.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, BookExportDialog)
 #: rc.cpp:39
 #, kde-format
 msgid "Export Font Book"
-msgstr "Tee fonttikirja"
+msgstr ""
 
 #. i18n: file: src/bookexport.ui:45
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: rc.cpp:42
 #, kde-format
 msgid "Output"
-msgstr "Tiedostoon"
+msgstr ""
 
 #. i18n: file: src/bookexport.ui:55
 #. i18n: ectx: property (text), widget (QPushButton, fileNameButton)
@@ -153,7 +160,7 @@ msgstr "Tiedostoon"
 #: rc.cpp:45 rc.cpp:149 rc.cpp:640 rc.cpp:652 rc.cpp:676
 #, kde-format
 msgid "Browse..."
-msgstr "Selaa..."
+msgstr ""
 
 #. i18n: file: src/browserwidget.ui:66
 #. i18n: ectx: property (text), widget (QToolButton, infoButton)
@@ -169,35 +176,32 @@ msgstr ""
 #: rc.cpp:54 src/typotek.cpp:452 src/typotek.cpp:554
 #, kde-format
 msgid "Import"
-msgstr "Tuo"
+msgstr ""
 
 #. i18n: file: src/browserwidget.ui:86
 #. i18n: ectx: property (text), widget (QToolButton, chartButton)
 #. i18n: file: src/familywidget.ui:91
 #. i18n: ectx: property (text), widget (QToolButton, chartButton)
 #: rc.cpp:57 rc.cpp:180
-#, fuzzy, kde-format
-#| msgid "Print Chart"
+#, kde-format
 msgid "Chart"
-msgstr "Tulosta taulukko"
+msgstr ""
 
 #. i18n: file: src/browserwidget.ui:96
 #. i18n: ectx: property (text), widget (QToolButton, sampleButton)
 #. i18n: file: src/familywidget.ui:78
 #. i18n: ectx: property (text), widget (QToolButton, sampleButton)
 #: rc.cpp:60 rc.cpp:177
-#, fuzzy, kde-format
-#| msgid "SampleText"
+#, kde-format
 msgid "Sample"
-msgstr "Esimerkkiteksti"
+msgstr ""
 
 #. i18n: file: src/chartwidget.ui:34
 #. i18n: ectx: property (toolTip), widget (QLabel, unicodeCoverageStat)
 #: rc.cpp:66
-#, fuzzy, kde-format
-#| msgid "Coverage of Unicode Interval :"
+#, kde-format
 msgid "Coverage of Unicode Interval"
-msgstr "Unicode-alueen peitto:"
+msgstr ""
 
 #. i18n: file: src/chartwidget.ui:37
 #. i18n: ectx: property (text), widget (QLabel, unicodeCoverageStat)
@@ -228,30 +232,28 @@ msgstr ""
 #: rc.cpp:80
 #, kde-format
 msgid "Clicking on a glyph will show details about it"
-msgstr "Näet merkin lisätietojen kanssa napsauttamalla sitä"
+msgstr ""
 
 #. i18n: file: src/chartwidget.ui:136
 #. i18n: ectx: property (toolTip), widget (QToolButton, clipboardCheck)
 #: rc.cpp:83
 #, kde-format
 msgid "Set Mode \"Copy Character to Clipboard\""
-msgstr "Aseta tilaksi \"Kopioi merkki leikepöydälle\""
+msgstr ""
 
 #. i18n: file: src/chartwidget.ui:139
 #. i18n: ectx: property (text), widget (QToolButton, clipboardCheck)
 #: rc.cpp:86
-#, fuzzy, kde-format
-#| msgid "Copy"
+#, kde-format
 msgid "Copy Mode"
-msgstr "Kopioi"
+msgstr ""
 
 #. i18n: file: src/comparewidget.ui:14
 #. i18n: ectx: property (windowTitle), widget (QWidget, CompareWidget)
 #: rc.cpp:89
-#, fuzzy, kde-format
-#| msgid "Glyphs"
+#, kde-format
 msgid "Compare Glyphs"
-msgstr "Merkit"
+msgstr ""
 
 #. i18n: file: src/comparewidget.ui:44
 #. i18n: ectx: property (title), widget (QGroupBox, fgbox)
@@ -275,7 +277,7 @@ msgstr ""
 #: rc.cpp:95 rc.cpp:274 rc.cpp:373 rc.cpp:798 rc.cpp:816
 #, kde-format
 msgid "Add"
-msgstr "Lisää"
+msgstr ""
 
 #. i18n: file: src/comparewidget.ui:60
 #. i18n: ectx: property (text), widget (QPushButton, compareRemove)
@@ -294,7 +296,7 @@ msgstr "Lisää"
 #: rc.cpp:98 rc.cpp:259 rc.cpp:682 rc.cpp:712 rc.cpp:745 rc.cpp:801 rc.cpp:828
 #, kde-format
 msgid "Remove"
-msgstr "Poista"
+msgstr ""
 
 #. i18n: file: src/comparewidget.ui:83
 #. i18n: ectx: property (title), widget (QGroupBox, compareShow)
@@ -320,9 +322,9 @@ msgstr ""
 #. i18n: file: src/comparewidget.ui:114
 #. i18n: ectx: property (text), widget (QCheckBox, compareControls)
 #: rc.cpp:110
-#, fuzzy, kde-format
+#, kde-format
 msgid "Controls"
-msgstr "Kontrasti"
+msgstr ""
 
 #. i18n: file: src/comparewidget.ui:140
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -348,10 +350,9 @@ msgstr ""
 #. i18n: file: src/comparewidget.ui:187
 #. i18n: ectx: property (toolTip), widget (QSlider, compareCharSelect)
 #: rc.cpp:122
-#, fuzzy, kde-format
-#| msgid "Unicode character"
+#, kde-format
 msgid "Select a character"
-msgstr "Unicode-merkki"
+msgstr ""
 
 #. i18n: file: src/comparewidget.ui:206
 #. i18n: ectx: property (text), widget (QCheckBox, compareSyncChars)
@@ -363,10 +364,9 @@ msgstr ""
 #. i18n: file: src/dataexport.ui:14
 #. i18n: ectx: property (windowTitle), widget (QWidget, DataExport)
 #: rc.cpp:128
-#, fuzzy, kde-format
-#| msgid "Export &Fonts"
+#, kde-format
 msgid "Export Data"
-msgstr "Kerää &fontteja"
+msgstr ""
 
 #. i18n: file: src/dataexport.ui:23
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -386,7 +386,7 @@ msgstr ""
 #: rc.cpp:134 rc.cpp:496 rc.cpp:697
 #, kde-format
 msgid "Cancel"
-msgstr "Peruuta"
+msgstr ""
 
 #. i18n: file: src/dataexport.ui:43
 #. i18n: ectx: property (text), widget (QPushButton, continueButton)
@@ -417,22 +417,21 @@ msgstr ""
 #: rc.cpp:143 rc.cpp:216 rc.cpp:520 rc.cpp:685 rc.cpp:691 rc.cpp:694
 #, kde-format
 msgid "TextLabel"
-msgstr "Tekstimerkintä"
+msgstr ""
 
 #. i18n: file: src/dumpdialog.ui:35
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: rc.cpp:146
-#, fuzzy, kde-format
-#| msgid "Save fontBook"
+#, kde-format
 msgid "Save to:"
-msgstr "Tallenna fonttikirja"
+msgstr ""
 
 #. i18n: file: src/dumpdialog.ui:58
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: rc.cpp:152
-#, fuzzy, kde-format
+#, kde-format
 msgid "Model"
-msgstr "Moderni"
+msgstr ""
 
 #. i18n: file: src/dumpdialog.ui:78
 #. i18n: ectx: property (html), widget (ModelText, modelText)
@@ -454,18 +453,16 @@ msgstr ""
 #. i18n: file: src/dumpdialog.ui:92
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: rc.cpp:162
-#, fuzzy, kde-format
-#| msgid "Available Tags"
+#, kde-format
 msgid "Available names"
-msgstr "Käytettävissä olevat luokat"
+msgstr ""
 
 #. i18n: file: src/dumpdialog.ui:138
 #. i18n: ectx: property (text), widget (QPushButton, loadButton)
 #: rc.cpp:165
-#, fuzzy, kde-format
-#| msgid "Load"
+#, kde-format
 msgid "Load..."
-msgstr "Lataa"
+msgstr ""
 
 #. i18n: file: src/familywidget.ui:55
 #. i18n: ectx: property (text), widget (QPushButton, returnListButton)
@@ -484,18 +481,16 @@ msgstr ""
 #. i18n: file: src/familywidget.ui:117
 #. i18n: ectx: property (text), widget (QToolButton, activationButton)
 #: rc.cpp:186
-#, fuzzy, kde-format
-#| msgid "Activation of :"
+#, kde-format
 msgid "Activation"
-msgstr "Käyttöönotto:"
+msgstr ""
 
 #. i18n: file: src/familywidget.ui:143
 #. i18n: ectx: property (text), widget (QLabel, familyLabel)
 #: rc.cpp:189
-#, fuzzy, kde-format
-#| msgid "Friendly Name"
+#, kde-format
 msgid "Family Name"
-msgstr "Nimi"
+msgstr ""
 
 #. i18n: file: src/filterbar.ui:49
 #. i18n: ectx: property (text), widget (OpenCloseArrow, filtersArrow)
@@ -511,15 +506,14 @@ msgstr ""
 #: rc.cpp:198 rc.cpp:837
 #, kde-format
 msgid "Tags"
-msgstr "Luokat"
+msgstr ""
 
 #. i18n: file: src/filterbar.ui:273
 #. i18n: ectx: property (text), widget (OpenCloseArrow, metadataArrow)
 #: rc.cpp:201
-#, fuzzy, kde-format
-#| msgid "Meta"
+#, kde-format
 msgid "Metadata"
-msgstr "Meta"
+msgstr ""
 
 #. i18n: file: src/filterbar.ui:320
 #. i18n: ectx: property (text), widget (QLabel, label_2)
@@ -531,24 +525,23 @@ msgstr ""
 #. i18n: file: src/filterbar.ui:350
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: rc.cpp:207
-#, fuzzy, kde-format
+#, kde-format
 msgid "in"
-msgstr "Ohut"
+msgstr ""
 
 #. i18n: file: src/filterbar.ui:395
 #. i18n: ectx: property (text), widget (OpenCloseArrow, panoseArrow)
 #: rc.cpp:210
 #, kde-format
 msgid "Panose"
-msgstr "Panose"
+msgstr ""
 
 #. i18n: file: src/filteritem.ui:71
 #. i18n: ectx: property (toolTip), widget (QToolButton, removeButton)
 #: rc.cpp:219 src/filtersdialogitem.cpp:49
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgid "Remove Filter"
-msgstr "Poista"
+msgstr ""
 
 #. i18n: file: src/filteritem.ui:77
 #. i18n: ectx: property (text), widget (QToolButton, removeButton)
@@ -647,33 +640,30 @@ msgstr ""
 #. i18n: file: src/filtersdialog.ui:96
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: rc.cpp:268
-#, fuzzy, kde-format
-#| msgid "Add Directory"
+#, kde-format
 msgid "Add Filter"
-msgstr "Lisää hakemisto"
+msgstr ""
 
 #. i18n: file: src/filtersdialog.ui:127
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: rc.cpp:271
-#, fuzzy, kde-format
-#| msgid "Friendly Name"
+#, kde-format
 msgid "Filter Name:"
-msgstr "Nimi"
+msgstr ""
 
 #. i18n: file: src/filtersdialog.ui:162
 #. i18n: ectx: property (text), widget (QLabel, curFilter)
 #: rc.cpp:277
-#, fuzzy, kde-format
-#| msgid "Edit current font"
+#, kde-format
 msgid "current filter"
-msgstr "Muokkaa valittua fonttia"
+msgstr ""
 
 #. i18n: file: src/floatingwidgettoolbar.ui:66
 #. i18n: ectx: property (toolTip), widget (QToolButton, printButton)
 #: rc.cpp:286
 #, kde-format
 msgid "Print"
-msgstr "Tulosta"
+msgstr ""
 
 #. i18n: file: src/floatingwidgettoolbar.ui:69
 #. i18n: ectx: property (text), widget (QToolButton, printButton)
@@ -708,7 +698,7 @@ msgstr ""
 #: rc.cpp:301
 #, kde-format
 msgid "..."
-msgstr "..."
+msgstr ""
 
 #. i18n: file: src/floatingwidgettoolbar.ui:109
 #. i18n: ectx: property (toolTip), widget (QToolButton, hideButton)
@@ -727,25 +717,23 @@ msgstr ""
 #. i18n: file: src/fontextractordialog.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, FontExtractorDialog)
 #: rc.cpp:310
-#, fuzzy, kde-format
-#| msgid "Font Editor"
+#, kde-format
 msgid "Font extractor"
-msgstr "Fonttimuokkain"
+msgstr ""
 
 #. i18n: file: src/fontextractordialog.ui:19
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: rc.cpp:313
-#, fuzzy, kde-format
-#| msgid "Select all"
+#, kde-format
 msgid "Select PDF"
-msgstr "Valitse kaikki"
+msgstr ""
 
 #. i18n: file: src/fontextractordialog.ui:31
 #. i18n: ectx: property (text), widget (QLabel, docPath)
 #: rc.cpp:316
-#, fuzzy, kde-format
+#, kde-format
 msgid "File name"
-msgstr "Fontin täydellinen nimi"
+msgstr ""
 
 #. i18n: file: src/fontextractordialog.ui:41
 #. i18n: ectx: property (text), widget (QPushButton, browsePDF)
@@ -754,15 +742,14 @@ msgstr "Fontin täydellinen nimi"
 #: rc.cpp:319 rc.cpp:451
 #, kde-format
 msgid "&Browse"
-msgstr "&Selaa"
+msgstr ""
 
 #. i18n: file: src/fontextractordialog.ui:63
 #. i18n: ectx: property (text), widget (QPushButton, browseDir)
 #: rc.cpp:325
-#, fuzzy, kde-format
-#| msgid "Select all"
+#, kde-format
 msgid "&Select Dir"
-msgstr "Valitse kaikki"
+msgstr ""
 
 #. i18n: file: src/fontextractordialog.ui:70
 #. i18n: ectx: property (text), widget (QPushButton, extractButton)
@@ -776,22 +763,21 @@ msgstr ""
 #: rc.cpp:334
 #, kde-format
 msgid "&File"
-msgstr "&Tiedosto"
+msgstr ""
 
 #. i18n: file: src/fontmatrixui.rc:17
 #. i18n: ectx: Menu (edit)
 #: rc.cpp:337
 #, kde-format
 msgid "&Edit"
-msgstr "&Muokkaa"
+msgstr ""
 
 #. i18n: file: src/fontmatrixui.rc:29
 #. i18n: ectx: Menu (view)
 #: rc.cpp:340
-#, fuzzy, kde-format
-#| msgid "Views"
+#, kde-format
 msgid "&View"
-msgstr "Näkymät"
+msgstr ""
 
 #. i18n: file: src/fontmatrixui.rc:35
 #. i18n: ectx: Menu (tools)
@@ -817,18 +803,16 @@ msgstr ""
 #. i18n: file: src/importedfonts.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, ImportedFonts)
 #: rc.cpp:352
-#, fuzzy, kde-format
-#| msgid "Imported Fonts"
+#, kde-format
 msgid "Imported fonts"
-msgstr "Tuodut fontit"
+msgstr ""
 
 #. i18n: file: src/importedfonts.ui:24
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: rc.cpp:355
-#, fuzzy, kde-format
-#| msgid "Imported Fonts"
+#, kde-format
 msgid "Imported Fonts:"
-msgstr "Tuodut fontit"
+msgstr ""
 
 #. i18n: file: src/importedfonts.ui:55
 #. i18n: ectx: property (toolTip), widget (QCheckBox, dontShowBox)
@@ -840,16 +824,13 @@ msgid ""
 "show this dialog anymore you can reset the state\n"
 "in preferences.</qt>"
 msgstr ""
-"<qt>Tämän ikkunan sijaan tuotujen fonttien lukumäärä näytetään tilarivillä. "
-"Jos poistat tämän ikkunan käytöstä, voit palauttaa sen asetuksista.</qt>"
 
 #. i18n: file: src/importedfonts.ui:58
 #. i18n: ectx: property (text), widget (QCheckBox, dontShowBox)
 #: rc.cpp:364
-#, fuzzy, kde-format
-#| msgid "Do not show this dialog again"
+#, kde-format
 msgid "&Do not show this dialog again"
-msgstr "Älä näytä tätä ikkunaa uudestaan"
+msgstr ""
 
 #. i18n: file: src/importedfonts.ui:84
 #. i18n: ectx: property (text), widget (QPushButton, btnOk)
@@ -863,29 +844,28 @@ msgstr ""
 #: rc.cpp:370
 #, kde-format
 msgid "Fontmatrix - Tags"
-msgstr "Fontmatrix - Luokat"
+msgstr ""
 
 #. i18n: file: src/importtags.ui:72
 #. i18n: ectx: property (text), widget (QPushButton, okButton)
 #: rc.cpp:376
 #, kde-format
 msgid "Ok"
-msgstr "Ok"
+msgstr ""
 
 #. i18n: file: src/layoutoptions.ui:19
 #. i18n: ectx: property (windowTitle), widget (QWidget, LayoutOptionWidget)
 #: rc.cpp:379
-#, fuzzy, kde-format
-#| msgid "Text engine options"
+#, kde-format
 msgid "Text layout engine options"
-msgstr "Tekstijärjestelmän ominaisuudet"
+msgstr ""
 
 #. i18n: file: src/layoutoptions.ui:25
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: rc.cpp:382
 #, kde-format
 msgid "Weights"
-msgstr "Vahvuudet"
+msgstr ""
 
 #. i18n: file: src/layoutoptions.ui:78
 #. i18n: ectx: property (text), widget (QLabel, bScore)
@@ -898,75 +878,70 @@ msgstr "Vahvuudet"
 #: rc.cpp:385 rc.cpp:391 rc.cpp:397 rc.cpp:403
 #, kde-format
 msgid "score"
-msgstr "pisteet"
+msgstr ""
 
 #. i18n: file: src/layoutoptions.ui:91
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: rc.cpp:388
-#, fuzzy, kde-format
-#| msgid "before"
+#, kde-format
 msgid "Before"
-msgstr "ennen"
+msgstr ""
 
 #. i18n: file: src/layoutoptions.ui:137
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: rc.cpp:394
-#, fuzzy, kde-format
-#| msgid "exact"
+#, kde-format
 msgid "Exact"
-msgstr "tarkka"
+msgstr ""
 
 #. i18n: file: src/layoutoptions.ui:235
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: rc.cpp:400
-#, fuzzy, kde-format
-#| msgid "after"
+#, kde-format
 msgid "After"
-msgstr "jälkeen"
+msgstr ""
 
 #. i18n: file: src/layoutoptions.ui:307
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: rc.cpp:406
-#, fuzzy, kde-format
-#| msgid "end"
+#, kde-format
 msgid "End"
-msgstr "loppu"
+msgstr ""
 
 #. i18n: file: src/layoutoptions.ui:360
 #. i18n: ectx: property (text), widget (QLabel, hPenalty)
 #: rc.cpp:409
 #, kde-format
 msgid "penalty"
-msgstr "rangaistus"
+msgstr ""
 
 #. i18n: file: src/layoutoptions.ui:373
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: rc.cpp:412
 #, kde-format
 msgid "H-penalty"
-msgstr "h-rangaistus"
+msgstr ""
 
 #. i18n: file: src/layoutoptions.ui:429
 #. i18n: ectx: property (text), widget (QLabel, minSpace)
 #: rc.cpp:415
 #, kde-format
 msgid "space"
-msgstr "tila"
+msgstr ""
 
 #. i18n: file: src/layoutoptions.ui:442
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: rc.cpp:418
-#, fuzzy, kde-format
-#| msgid "max compression"
+#, kde-format
 msgid "Max. compression"
-msgstr "maksimipakkaus"
+msgstr ""
 
 #. i18n: file: src/mainview.ui:24
 #. i18n: ectx: property (windowTitle), widget (QWidget, MainView)
 #: rc.cpp:421
 #, kde-format
 msgid "main view widget"
-msgstr "pääikkuna"
+msgstr ""
 
 #. i18n: file: src/mainview.ui:103
 #. i18n: ectx: property (text), widget (QLabel, quickSearchLabel)
@@ -1071,10 +1046,9 @@ msgstr ""
 #. i18n: file: src/matchraster.ui:204
 #. i18n: ectx: property (text), widget (QCheckBox, checkInteractive)
 #: rc.cpp:469
-#, fuzzy, kde-format
-#| msgid "Deactivate"
+#, kde-format
 msgid "Interactive"
-msgstr "Poista käytöstä"
+msgstr ""
 
 #. i18n: file: src/matchraster.ui:220
 #. i18n: ectx: property (text), widget (QLabel, label_3)
@@ -1107,10 +1081,9 @@ msgstr ""
 #. i18n: file: src/matchraster.ui:336
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
 #: rc.cpp:484
-#, fuzzy, kde-format
-#| msgid "Cancel"
+#, kde-format
 msgid "&Cancel"
-msgstr "Peruuta"
+msgstr ""
 
 #. i18n: file: src/metawidget.ui:26
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -1140,43 +1113,42 @@ msgstr ""
 #: rc.cpp:502
 #, kde-format
 msgid "Views"
-msgstr "Näkymät"
+msgstr ""
 
 #. i18n: file: src/multiprintdialog.ui:47
 #. i18n: ectx: property (text), widget (QCheckBox, checkInfo)
 #: rc.cpp:505
 #, kde-format
 msgid "Informations"
-msgstr "Tiedot"
+msgstr ""
 
 #. i18n: file: src/multiprintdialog.ui:54
 #. i18n: ectx: property (text), widget (QCheckBox, checkPreview)
 #: rc.cpp:508
 #, kde-format
 msgid "Preview"
-msgstr "Esikatselu"
+msgstr ""
 
 #. i18n: file: src/multiprintdialog.ui:61
 #. i18n: ectx: property (text), widget (QCheckBox, checkChart)
 #: rc.cpp:511
 #, kde-format
 msgid "Glyphs chart"
-msgstr "Merkkikartta"
+msgstr ""
 
 #. i18n: file: src/multiprintdialog.ui:68
 #. i18n: ectx: property (text), widget (QCheckBox, checkPlayground)
 #: rc.cpp:514 src/playwidget.cpp:22 src/typotek.cpp:707
 #, kde-format
 msgid "Playground"
-msgstr "Leikkikenttä"
+msgstr ""
 
 #. i18n: file: src/panosedialog.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, PanoseDialog)
 #: rc.cpp:517
-#, fuzzy, kde-format
-#| msgid "Fontmatrix - Tags"
+#, kde-format
 msgid "Fontmatrix - Panose Editor"
-msgstr "Fontmatrix - Luokat"
+msgstr ""
 
 #. i18n: file: src/panosewidget.ui:14
 #. i18n: ectx: property (windowTitle), widget (QWidget, PanoseWidget)
@@ -1201,7 +1173,7 @@ msgstr ""
 #: rc.cpp:532 rc.cpp:619 rc.cpp:751
 #, kde-format
 msgid "Font Size:"
-msgstr "Fonttikoko"
+msgstr ""
 
 #. i18n: file: src/playwidget.ui:59
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, playFontSize)
@@ -1214,14 +1186,14 @@ msgstr "Fonttikoko"
 #: rc.cpp:535 rc.cpp:604 rc.cpp:622 rc.cpp:628
 #, kde-format
 msgid " pt"
-msgstr " pt"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, PrefsPanel)
 #: rc.cpp:538
 #, kde-format
 msgid "Preferences Panel"
-msgstr "Ominaisuuspaletti"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:74
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
@@ -1230,23 +1202,21 @@ msgstr "Ominaisuuspaletti"
 #: rc.cpp:544 rc.cpp:565 src/prefspaneldialog.cpp:44
 #, kde-format
 msgid "General"
-msgstr "Yleiset"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:79
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
 #: rc.cpp:547 src/prefspaneldialog.cpp:46
-#, fuzzy, kde-format
-#| msgid "Close to system tray"
+#, kde-format
 msgid "System tray"
-msgstr "Sulje ilmoitusalueelle"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:84
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
 #: rc.cpp:550 src/prefspaneldialog.cpp:48
-#, fuzzy, kde-format
-#| msgid "Display Settings"
+#, kde-format
 msgid "Display"
-msgstr "Näytön asetukset"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:89
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
@@ -1258,100 +1228,93 @@ msgstr ""
 #. i18n: file: src/prefs_panel.ui:94
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
 #: rc.cpp:556 src/prefspaneldialog.cpp:52
-#, fuzzy, kde-format
-#| msgid "Collections"
+#, kde-format
 msgid "Samples collection"
-msgstr "Kokoelmat"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:99
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
 #: rc.cpp:559
 #, kde-format
 msgid "Files & Folders"
-msgstr "Tiedostot ja hakemistot"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:104
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
 #: rc.cpp:562 src/prefspaneldialog.cpp:56
-#, fuzzy, kde-format
-#| msgid "Shortcut"
+#, kde-format
 msgid "Shortcuts"
-msgstr "Oikopolku"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:129
 #. i18n: ectx: property (text), widget (QCheckBox, initTagBox)
 #: rc.cpp:568
 #, kde-format
 msgid "Ask for tag names when importing fonts"
-msgstr "Kysy luokkaa, kun fontteja tuodaan"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:136
 #. i18n: ectx: property (text), widget (QCheckBox, showNamesBox)
 #: rc.cpp:571
 #, kde-format
 msgid "Show names of imported fonts after import process"
-msgstr "Näytä tuotujen fonttien nimet tuonnin jälkeen"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:143
 #. i18n: ectx: property (text), widget (QCheckBox, splashCheck)
 #: rc.cpp:574
 #, kde-format
 msgid "Show splash at startup"
-msgstr "Näytä latausikkuna käynnistettäessä"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:170
 #. i18n: ectx: property (title), widget (QGroupBox, systrayFrame)
 #: rc.cpp:577
 #, kde-format
 msgid "Show Fontmatrix in System Tray"
-msgstr "Näytä Fontmatrix ilmoitusalueella"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:185
 #. i18n: ectx: property (text), widget (QCheckBox, closeToSystray)
 #: rc.cpp:580
 #, kde-format
 msgid "Close to system tray"
-msgstr "Sulje ilmoitusalueelle"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:195
 #. i18n: ectx: property (text), widget (QCheckBox, startToSystemTray)
 #: rc.cpp:583
 #, kde-format
 msgid "Start minimized to system tray"
-msgstr "Käynnistä pienennettynä ilmoitusalueelle"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:202
 #. i18n: ectx: property (title), widget (QGroupBox, activateAllFrame)
 #: rc.cpp:586
 #, kde-format
 msgid "Show \"All\" actions"
-msgstr "Näytä toiminnot kaikille"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:217
 #. i18n: ectx: property (text), widget (QCheckBox, activateAllConfirmation)
 #: rc.cpp:589
-#, fuzzy, kde-format
-#| msgid "Ask confirmation when activating or deactivating all fonts"
+#, kde-format
 msgid "Ask for confirmation when activating or deactivating all fonts"
 msgstr ""
-"Kysy vahvistus, kun kaikki fontit otetaan käyttöön tai poistetaan käytöstä"
 
 #. i18n: file: src/prefs_panel.ui:230
 #. i18n: ectx: property (text), widget (QCheckBox, tagsConfirmation)
 #: rc.cpp:592
-#, fuzzy, kde-format
-#| msgid "Ask confirmation when activating or deactivating fonts by tags"
+#, kde-format
 msgid "Ask for confirmation when activating or deactivating fonts by tags"
 msgstr ""
-"Kysy vahvistus, kun fontit otetaan käyttöön tai poistetaan käytöstä luokan "
-"perusteella"
 
 #. i18n: file: src/prefs_panel.ui:257
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: rc.cpp:595
 #, kde-format
 msgid "Preview Word"
-msgstr "Esikatselusana"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:263
 #. i18n: ectx: property (text), widget (QLabel, label_10)
@@ -1363,10 +1326,9 @@ msgstr ""
 #. i18n: file: src/prefs_panel.ui:302
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: rc.cpp:601
-#, fuzzy, kde-format
-#| msgid "Default Processing"
+#, kde-format
 msgid "Default font size:"
-msgstr "Oletuskäsittely"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:343
 #. i18n: ectx: property (text), widget (QCheckBox, previewSubtitled)
@@ -1380,7 +1342,7 @@ msgstr ""
 #: rc.cpp:610
 #, kde-format
 msgid "is RTL"
-msgstr "on tyyppiä oikealta vasemmalle"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:360
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_7)
@@ -1394,36 +1356,35 @@ msgstr ""
 #: rc.cpp:616
 #, kde-format
 msgid "Initial Layout"
-msgstr "Alkuasettelu"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:398
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: rc.cpp:625
 #, kde-format
 msgid "linespacing:"
-msgstr "riviväli:"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:429
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
 #: rc.cpp:631
-#, fuzzy, kde-format
-#| msgid "Font Editor"
+#, kde-format
 msgid "Fonts Editor"
-msgstr "Fonttimuokkain"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:441
 #. i18n: ectx: property (toolTip), widget (QLineEdit, fontEditorPath)
 #: rc.cpp:634
 #, kde-format
 msgid "Add the full path to your preferred font editor"
-msgstr "Lisää täydellinen polku haluamaasi fonttimuokkaimeen."
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:444
 #. i18n: ectx: property (text), widget (QLineEdit, fontEditorPath)
 #: rc.cpp:637
 #, kde-format
 msgid "/usr/bin/fontforge"
-msgstr "/usr/bin/fontforge"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:474
 #. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_8)
@@ -1431,72 +1392,69 @@ msgstr "/usr/bin/fontforge"
 #, kde-format
 msgid "Select an  hyphenation dict file as it comes with OpenOffice or Scribus"
 msgstr ""
-"Valitse sanakirja tavutusta varten. Sanakirjan tyyppi on sama kuin "
-"OpenOfficessa tai Scribuksessa."
 
 #. i18n: file: src/prefs_panel.ui:477
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_8)
 #: rc.cpp:646
-#, fuzzy, kde-format
-#| msgid "Select hyphenation dictionary"
+#, kde-format
 msgid "Hyphenation dictionary"
-msgstr "Valitse tavutussanasto"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:486
 #. i18n: ectx: property (toolTip), widget (QToolButton, dictButton)
 #: rc.cpp:649
 #, kde-format
 msgid "Browse"
-msgstr "Selaa"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:509
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: rc.cpp:655
 #, kde-format
 msgid "Left:"
-msgstr "Vasen"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:522
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: rc.cpp:658
 #, kde-format
 msgid "Right:"
-msgstr "Oikea"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:564
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: rc.cpp:661
 #, kde-format
 msgid "Sample Texts"
-msgstr "Esimerkkitekstit"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:604
 #. i18n: ectx: property (text), widget (QPushButton, addSampleTextNameButton)
 #: rc.cpp:664
 #, kde-format
 msgid "+"
-msgstr "+"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:623
 #. i18n: ectx: property (text), widget (QPushButton, deleteSampleTextNameButton)
 #: rc.cpp:667
 #, kde-format
 msgid "−"
-msgstr "−"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:697
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
 #: rc.cpp:673
 #, kde-format
 msgid "Templates Folder"
-msgstr "Mallihakemisto"
+msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:748
 #. i18n: ectx: property (text), widget (QToolButton, changeButton)
 #: rc.cpp:679
 #, kde-format
 msgid "Change"
-msgstr "Muuta"
+msgstr ""
 
 #. i18n: file: src/repair.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, repairDialog)
@@ -1510,7 +1468,7 @@ msgstr ""
 #: rc.cpp:706
 #, kde-format
 msgid "Dead links"
-msgstr "Toimimattomat linkit"
+msgstr ""
 
 #. i18n: file: src/repair.ui:63
 #. i18n: ectx: property (text), widget (QPushButton, selectAllDead)
@@ -1523,72 +1481,70 @@ msgstr "Toimimattomat linkit"
 #: rc.cpp:709 rc.cpp:718 rc.cpp:730 rc.cpp:742
 #, kde-format
 msgid "Select all"
-msgstr "Valitse kaikki"
+msgstr ""
 
 #. i18n: file: src/repair.ui:91
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
 #: rc.cpp:715
 #, kde-format
 msgid "Activated Not Linked"
-msgstr "Käytössä, ei linkitetty"
+msgstr ""
 
 #. i18n: file: src/repair.ui:127
 #. i18n: ectx: property (text), widget (QPushButton, relinkActNot)
 #: rc.cpp:721
 #, kde-format
 msgid "Re-link"
-msgstr "Linkitä uudestaan"
+msgstr ""
 
 #. i18n: file: src/repair.ui:134
 #. i18n: ectx: property (text), widget (QPushButton, deactActNot)
 #: rc.cpp:724
 #, kde-format
 msgid "Deactivate"
-msgstr "Poista käytöstä"
+msgstr ""
 
 #. i18n: file: src/repair.ui:142
 #. i18n: ectx: attribute (title), widget (QWidget, tab_3)
 #: rc.cpp:727
 #, kde-format
 msgid "Deactivated Linked"
-msgstr "Käytöstä poistettu, linkitetty"
+msgstr ""
 
 #. i18n: file: src/repair.ui:178
 #. i18n: ectx: property (text), widget (QPushButton, delinkDeactLink)
 #: rc.cpp:733
 #, kde-format
 msgid "De-link"
-msgstr "Poista linkitys"
+msgstr ""
 
 #. i18n: file: src/repair.ui:185
 #. i18n: ectx: property (text), widget (QPushButton, activateDeactLink)
 #: rc.cpp:736 src/fmfloatingpreview.cpp:55
 #, kde-format
 msgid "Activate"
-msgstr "Ota käyttöön"
+msgstr ""
 
 #. i18n: file: src/repair.ui:193
 #. i18n: ectx: attribute (title), widget (QWidget, tab_4)
 #: rc.cpp:739
-#, fuzzy, kde-format
-#| msgid "Preferences"
+#, kde-format
 msgid "Unreferenced Files"
-msgstr "Asetukset"
+msgstr ""
 
 #. i18n: file: src/sampletoolbar.ui:37
 #. i18n: ectx: property (text), widget (QToolButton, sampleButton)
 #: rc.cpp:754
-#, fuzzy, kde-format
-#| msgid "Sample Texts"
+#, kde-format
 msgid "Samples"
-msgstr "Esimerkkitekstit"
+msgstr ""
 
 #. i18n: file: src/sampletoolbar.ui:56
 #. i18n: ectx: property (text), widget (QToolButton, opentypeButton)
 #: rc.cpp:757
 #, kde-format
 msgid "OpenType"
-msgstr "Opentype"
+msgstr ""
 
 #. i18n: file: src/sampletoolbar.ui:77
 #. i18n: ectx: property (toolTip), widget (QComboBox, languageCombo)
@@ -1612,58 +1568,57 @@ msgstr ""
 #: rc.cpp:771
 #, kde-format
 msgid "World is wide"
-msgstr "Maailma on suuri"
+msgstr ""
 
 #. i18n: file: src/samplewidget.ui:118
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: rc.cpp:774
-#, fuzzy, kde-format
-#| msgid "Script"
+#, kde-format
 msgctxt "Writing system"
 msgid "Script"
-msgstr "Komentosarja"
+msgstr ""
 
 #. i18n: file: src/samplewidget.ui:134
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: rc.cpp:777
 #, kde-format
 msgid "Shaper type"
-msgstr "Muotoilijan tyyppi"
+msgstr ""
 
 #. i18n: file: src/samplewidget.ui:150
 #. i18n: ectx: property (text), widget (QCheckBox, useShaperCheck)
 #: rc.cpp:780
 #, kde-format
 msgid "Use shaper"
-msgstr "Käytä muotoilijaa"
+msgstr ""
 
 #. i18n: file: src/samplewidget.ui:193
 #. i18n: ectx: property (text), widget (QTreeWidget, OpenTypeTree)
 #: rc.cpp:783
 #, kde-format
 msgid "OpenType Features"
-msgstr "OpenType-ominaisuudet"
+msgstr ""
 
 #. i18n: file: src/samplewidget.ui:198
 #. i18n: ectx: property (text), widget (QTreeWidget, OpenTypeTree)
 #: rc.cpp:786
 #, kde-format
 msgid "Friendly Name"
-msgstr "Nimi"
+msgstr ""
 
 #. i18n: file: src/samplewidget.ui:207
 #. i18n: ectx: property (text), widget (QPushButton, saveDefOTFBut)
 #: rc.cpp:789
 #, kde-format
 msgid "Save as default"
-msgstr "Tallenna oletukseksi"
+msgstr ""
 
 #. i18n: file: src/samplewidget.ui:214
 #. i18n: ectx: property (text), widget (QPushButton, resetDefOTFBut)
 #: rc.cpp:792
 #, kde-format
 msgid "Reset Default"
-msgstr "Palauta oletus"
+msgstr ""
 
 #. i18n: file: src/samplewidget.ui:266
 #. i18n: ectx: property (text), widget (QTreeWidget, sampleTextTree)
@@ -1677,85 +1632,84 @@ msgstr ""
 #: rc.cpp:804
 #, kde-format
 msgid "TagSet editor"
-msgstr "Muokkaa kokoelmia"
+msgstr ""
 
 #. i18n: file: src/tagset.ui:64
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: rc.cpp:807
 #, kde-format
 msgid "Collections of Tags"
-msgstr "Luokkakokoelmat"
+msgstr ""
 
 #. i18n: file: src/tagset.ui:80
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: rc.cpp:810
 #, kde-format
 msgid "Available Tags"
-msgstr "Käytettävissä olevat luokat"
+msgstr ""
 
 #. i18n: file: src/tagset.ui:115
 #. i18n: ectx: property (toolTip), widget (QPushButton, addToSetButton)
 #: rc.cpp:813
 #, kde-format
 msgid "Add selected tag to current set."
-msgstr "Lisää valittu luokka kokoelmaan"
+msgstr ""
 
 #. i18n: file: src/tagset.ui:138
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: rc.cpp:819
 #, kde-format
 msgid "Collections"
-msgstr "Kokoelmat"
+msgstr ""
 
 #. i18n: file: src/tagset.ui:153
 #. i18n: ectx: property (text), widget (QPushButton, newSetButton)
 #: rc.cpp:822
 #, kde-format
 msgid "New"
-msgstr "Uusi"
+msgstr ""
 
 #. i18n: file: src/tagset.ui:160
 #. i18n: ectx: property (text), widget (QPushButton, deleteTagsetButton)
 #: rc.cpp:825
 #, kde-format
 msgid "delete"
-msgstr "poista"
+msgstr ""
 
 #. i18n: file: src/tagswidget.ui:54
 #. i18n: ectx: property (toolTip), widget (QPushButton, newTagButton)
 #: rc.cpp:840
-#, fuzzy, kde-format
+#, kde-format
 msgid "Add a tag"
-msgstr "Lisää luokka"
+msgstr ""
 
 #. i18n: file: src/tagswidget.ui:57
 #. i18n: ectx: property (text), widget (QPushButton, newTagButton)
 #: rc.cpp:843
 #, kde-format
 msgid "Add Tag"
-msgstr "Lisää luokka"
+msgstr ""
 
 #. i18n: file: src/tagswidget.ui:67
 #. i18n: ectx: property (text), widget (QPushButton, removeTagButton)
 #: rc.cpp:846
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgid "Remove Tag"
-msgstr "Poista"
+msgstr ""
 
 #. i18n: file: src/tagswidget.ui:77
 #. i18n: ectx: property (statusTip), widget (QListView, tagsListView)
 #: rc.cpp:849
-#, fuzzy, kde-format
+#, kde-format
 msgid "Right mouse click on a tag to add it or remove it from TagSet"
-msgstr "Poista tai lisää luokka oikealla hiiren painikkeella"
+msgstr ""
 
 #. i18n: file: src/textprogression.ui:25
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: rc.cpp:855
 #, kde-format
 msgid "Inline progression"
-msgstr "Rivin kulku"
+msgstr ""
 
 #. i18n: file: src/textprogression.ui:40
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineLTR)
@@ -1764,7 +1718,7 @@ msgstr "Rivin kulku"
 #: rc.cpp:858 rc.cpp:885
 #, kde-format
 msgid "e.g. Latin text"
-msgstr "esim. latinalainen teksti"
+msgstr ""
 
 #. i18n: file: src/textprogression.ui:43
 #. i18n: ectx: property (text), widget (QRadioButton, inlineLTR)
@@ -1773,14 +1727,14 @@ msgstr "esim. latinalainen teksti"
 #: rc.cpp:861 rc.cpp:900
 #, kde-format
 msgid "Left to right"
-msgstr "Vasemmalta oikealle"
+msgstr ""
 
 #. i18n: file: src/textprogression.ui:53
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineRTL)
 #: rc.cpp:864
 #, kde-format
 msgid "e.g. Arabic text"
-msgstr "esim. arabialainen teksti"
+msgstr ""
 
 #. i18n: file: src/textprogression.ui:56
 #. i18n: ectx: property (text), widget (QRadioButton, inlineRTL)
@@ -1789,14 +1743,14 @@ msgstr "esim. arabialainen teksti"
 #: rc.cpp:867 rc.cpp:894
 #, kde-format
 msgid "Right to left"
-msgstr "Oikealta vasemmalle"
+msgstr ""
 
 #. i18n: file: src/textprogression.ui:63
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineTTB)
 #: rc.cpp:870
 #, kde-format
 msgid "e.g. Traditional Chinese & Japanese text"
-msgstr "esim. perinteinen kiina ja japanilainen teksti"
+msgstr ""
 
 #. i18n: file: src/textprogression.ui:66
 #. i18n: ectx: property (text), widget (QRadioButton, inlineTTB)
@@ -1805,113 +1759,109 @@ msgstr "esim. perinteinen kiina ja japanilainen teksti"
 #: rc.cpp:873 rc.cpp:888
 #, kde-format
 msgid "Top to bottom"
-msgstr "Ylhäältä alas"
+msgstr ""
 
 #. i18n: file: src/textprogression.ui:73
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineBTT)
 #: rc.cpp:876
 #, kde-format
 msgid "e.g. Runic text"
-msgstr "esim. riimukirjoitus"
+msgstr ""
 
 #. i18n: file: src/textprogression.ui:76
 #. i18n: ectx: property (text), widget (QRadioButton, inlineBTT)
 #: rc.cpp:879
 #, kde-format
 msgid "Bottom to top"
-msgstr "Alhaalta ylös"
+msgstr ""
 
 #. i18n: file: src/textprogression.ui:86
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: rc.cpp:882
 #, kde-format
 msgid "Block progression"
-msgstr "Lohkon kulku"
+msgstr ""
 
 #. i18n: file: src/textprogression.ui:114
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockRTL)
 #: rc.cpp:891
 #, kde-format
 msgid "e.g. Tarditionnal Chinese & Japanes text"
-msgstr "esim. perinteinen kiina ja japanilainen teksti"
+msgstr ""
 
 #. i18n: file: src/textprogression.ui:124
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockLTR)
 #: rc.cpp:897
 #, kde-format
 msgid "e.g. Traditional Mongolian text"
-msgstr "esim. perinteinen mongolialainen teksti"
+msgstr ""
 
 #. i18n: file: src/tttablewidget.ui:13
 #. i18n: ectx: property (windowTitle), widget (QWidget, TTTableWidget)
 #: rc.cpp:903
-#, fuzzy, kde-format
-#| msgid "TrueType Tables "
+#, kde-format
 msgid "TrueType tables display"
-msgstr "Truetype-taulukot"
+msgstr ""
 
 #. i18n: file: src/tttablewidget.ui:19
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: rc.cpp:906
 #, kde-format
 msgid "TrueType Tables "
-msgstr "Truetype-taulukot"
+msgstr ""
 
 #. i18n: file: src/tttablewidget.ui:34
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
 #: rc.cpp:909
 #, kde-format
 msgid "Tag"
-msgstr "Luokka"
+msgstr ""
 
 #. i18n: file: src/tttablewidget.ui:39
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
 #: rc.cpp:912 src/fmfontstrings.cpp:44
-#, fuzzy, kde-format
+#, kde-format
 msgid "Description"
-msgstr "Kuvaus"
+msgstr ""
 
 #. i18n: file: src/tttablewidget.ui:44
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
 #: rc.cpp:915
 #, kde-format
 msgid "Size"
-msgstr "Koko"
+msgstr ""
 
 #. i18n: file: src/tttablewidget.ui:85
 #. i18n: ectx: property (text), widget (QPushButton, exportButton)
 #: rc.cpp:918
-#, fuzzy, kde-format
-#| msgid "Import"
+#, kde-format
 msgid "&Export"
-msgstr "Tuo"
+msgstr ""
 
 #: src/browserwidget.cpp:300
 #, kde-format
 msgid "Import Directory"
-msgstr "Tuo hakemisto"
+msgstr ""
 
 #: src/browserwidget.cpp:301
 #, kde-format
 msgid "Import recursively"
-msgstr "Tuo rekursiivisesti"
+msgstr ""
 
 #: src/browserwidget.cpp:302
 #, kde-format
 msgid "Import File"
-msgstr "Tuo tiedosto"
+msgstr ""
 
 #: src/chartwidget.cpp:47
-#, fuzzy, kde-format
-#| msgid "133Un-Mapped Glyphs"
+#, kde-format
 msgid "Un-Mapped Glyphs"
-msgstr "133Sijoittamattomat merkit"
+msgstr ""
 
 #: src/chartwidget.cpp:48
-#, fuzzy, kde-format
-#| msgid "134View all mapped glyphs"
+#, kde-format
 msgid "View all mapped glyphs"
-msgstr "134Näytä kaikki sijoitetut merkit"
+msgstr ""
 
 #: src/chartwidget.cpp:140 src/chartwidget.cpp:217
 #, kde-format
@@ -1921,32 +1871,32 @@ msgstr ""
 #: src/chartwidget.cpp:428
 #, kde-format
 msgid "Print Chart"
-msgstr "Tulosta taulukko"
+msgstr ""
 
 #: src/dataexport.cpp:57
 #, kde-format
 msgid "Choose Directory"
-msgstr "Valitse hakemisto"
+msgstr ""
 
 #: src/dataexport.cpp:69
 #, kde-format
 msgid "Copying files"
-msgstr "Kopioidaan tiedostoja"
+msgstr ""
 
 #: src/dataexport.cpp:69 src/typotek.cpp:442 src/typotek.cpp:549
 #, kde-format
 msgid "cancel"
-msgstr "peruuta"
+msgstr ""
 
 #: src/filterbar.cpp:40 src/filtersdialog.cpp:23
-#, fuzzy, kde-format
+#, kde-format
 msgid "And"
-msgstr "Mikä tahansa"
+msgstr ""
 
 #: src/filterbar.cpp:45 src/filtersdialog.cpp:28
-#, fuzzy, kde-format
+#, kde-format
 msgid "Not"
-msgstr "Ei sopivaa luokkaa"
+msgstr ""
 
 #: src/filterbar.cpp:50 src/filtersdialog.cpp:33
 #, kde-format
@@ -1954,10 +1904,9 @@ msgid "Or"
 msgstr ""
 
 #: src/filterbar.cpp:473
-#, fuzzy, kde-format
-#| msgid "Fontmatrix - Tags"
+#, kde-format
 msgid "Fontmatrix - edit tag"
-msgstr "Fontmatrix - Luokat"
+msgstr ""
 
 #: src/filterbar.cpp:473
 #, kde-format
@@ -1965,15 +1914,14 @@ msgid "Edit tag: "
 msgstr ""
 
 #: src/filterbar.cpp:529
-#, fuzzy, kde-format
-#| msgid "Fontmatrix - Tags"
+#, kde-format
 msgid "Fontmatrix - Filter name"
-msgstr "Fontmatrix - Luokat"
+msgstr ""
 
 #: src/filterbar.cpp:529
-#, fuzzy, kde-format
+#, kde-format
 msgid "Filter name:"
-msgstr "Fontin täydellinen nimi"
+msgstr ""
 
 #: src/filtersdialogitem.cpp:49
 #, kde-format
@@ -1981,22 +1929,19 @@ msgid "Confirm deletion of filter:"
 msgstr ""
 
 #: src/fmactivate.cpp:31
-#, fuzzy, kde-format
-#| msgid "Unable to copy"
+#, kde-format
 msgid "Unable to link"
-msgstr "Ei voi kopioida"
+msgstr ""
 
 #: src/fmactivate.cpp:33
-#, fuzzy, kde-format
-#| msgid "All activated"
+#, kde-format
 msgid "Font already activated"
-msgstr "Kaikki käytössä olevat"
+msgstr ""
 
 #: src/fmactivate.cpp:35
-#, fuzzy, kde-format
-#| msgid "Unable to copy"
+#, kde-format
 msgid "Unable to un-link"
-msgstr "Ei voi kopioida"
+msgstr ""
 
 #: src/fmactivate.cpp:37
 #, kde-format
@@ -2015,10 +1960,9 @@ msgid "Error"
 msgstr ""
 
 #: src/fmfloatingpreview.cpp:62
-#, fuzzy, kde-format
-#| msgid "Close"
+#, kde-format
 msgid "close"
-msgstr "Sulje"
+msgstr ""
 
 #: src/fmfontextract.cpp:56
 #, kde-format
@@ -2038,745 +1982,743 @@ msgid ""
 msgstr ""
 
 #: src/fmfontstrings.cpp:34
-#, fuzzy, kde-format
+#, kde-format
 msgid "Copyright"
-msgstr "Tekijänoikeudet"
+msgstr ""
 
 #: src/fmfontstrings.cpp:35
-#, fuzzy, kde-format
+#, kde-format
 msgid "Font Family"
-msgstr "Fonttiperhe"
+msgstr ""
 
 #: src/fmfontstrings.cpp:36
-#, fuzzy, kde-format
+#, kde-format
 msgid "Font Subfamily"
-msgstr "Fonttiperheen alijoukko"
+msgstr ""
 
 #: src/fmfontstrings.cpp:37
-#, fuzzy, kde-format
+#, kde-format
 msgid "Unique font identifier"
-msgstr "Yksilöllinen tunniste"
+msgstr ""
 
 #: src/fmfontstrings.cpp:38
-#, fuzzy, kde-format
+#, kde-format
 msgid "Full font name"
-msgstr "Fontin täydellinen nimi"
+msgstr ""
 
 #: src/fmfontstrings.cpp:39
-#, fuzzy, kde-format
+#, kde-format
 msgid "Version string"
-msgstr "Versiomerkintä"
+msgstr ""
 
 #: src/fmfontstrings.cpp:40
-#, fuzzy, kde-format
+#, kde-format
 msgid "Postscript name"
-msgstr "Postscript-nimi"
+msgstr ""
 
 #: src/fmfontstrings.cpp:41
-#, fuzzy, kde-format
+#, kde-format
 msgid "Trademark"
-msgstr "Tavaramerkki"
+msgstr ""
 
 #: src/fmfontstrings.cpp:42
-#, fuzzy, kde-format
+#, kde-format
 msgid "Manufacturer"
-msgstr "Valmistaja"
+msgstr ""
 
 #: src/fmfontstrings.cpp:43
-#, fuzzy, kde-format
+#, kde-format
 msgid "Designer"
-msgstr "Suunnittelija"
+msgstr ""
 
 #: src/fmfontstrings.cpp:45
-#, fuzzy, kde-format
+#, kde-format
 msgid "URL Vendor"
-msgstr "Valmistajan URL"
+msgstr ""
 
 #: src/fmfontstrings.cpp:46
-#, fuzzy, kde-format
+#, kde-format
 msgid "URL Designer"
-msgstr "Suunnittelijan URL"
+msgstr ""
 
 #: src/fmfontstrings.cpp:47
-#, fuzzy, kde-format
+#, kde-format
 msgid "License Description"
-msgstr "Lisenssin kuvaus"
+msgstr ""
 
 #: src/fmfontstrings.cpp:48
-#, fuzzy, kde-format
+#, kde-format
 msgid "License Info URL"
-msgstr "Lisenssin URL "
+msgstr ""
 
 #: src/fmfontstrings.cpp:49
-#, fuzzy, kde-format
+#, kde-format
 msgid "Preferred Family"
-msgstr "Suositeltu perhe"
+msgstr ""
 
 #: src/fmfontstrings.cpp:50
-#, fuzzy, kde-format
+#, kde-format
 msgid "Preferred Subfamily"
-msgstr "Suositeltu perheen alijoukko"
+msgstr ""
 
 #: src/fmfontstrings.cpp:51
-#, fuzzy, kde-format
+#, kde-format
 msgid "Compatible Full (Macintosh only)"
-msgstr "Täysi yhteensopivuus (ainoastaan Macintosh)"
+msgstr ""
 
 #: src/fmfontstrings.cpp:52
 #, kde-format
 msgid "Sample text"
-msgstr "Esimerkkiteksti"
+msgstr ""
 
 #: src/fmfontstrings.cpp:53
-#, fuzzy, kde-format
+#, kde-format
 msgid "PostScript CID findfont name"
-msgstr "PostScript CID findfont -nimi"
+msgstr ""
 
 #. i18n("Panose");
 #: src/fmfontstrings.cpp:55
-#, fuzzy, kde-format
+#, kde-format
 msgid "All fields"
-msgstr "Kaikki kentät"
+msgstr ""
 
 #: src/fmfontstrings.cpp:71 src/fmfontstrings.cpp:83 src/fmfontstrings.cpp:105
 #: src/fmfontstrings.cpp:123 src/fmfontstrings.cpp:141
 #: src/fmfontstrings.cpp:159 src/fmfontstrings.cpp:176
 #: src/fmfontstrings.cpp:196 src/fmfontstrings.cpp:218
 #: src/fmfontstrings.cpp:240
-#, fuzzy, kde-format
+#, kde-format
 msgid "Any"
-msgstr "Mikä tahansa"
+msgstr ""
 
 #: src/fmfontstrings.cpp:72 src/fmfontstrings.cpp:84 src/fmfontstrings.cpp:106
 #: src/fmfontstrings.cpp:124 src/fmfontstrings.cpp:142
 #: src/fmfontstrings.cpp:160 src/fmfontstrings.cpp:177
 #: src/fmfontstrings.cpp:197 src/fmfontstrings.cpp:219
 #: src/fmfontstrings.cpp:241
-#, fuzzy, kde-format
+#, kde-format
 msgid "No Fit"
-msgstr "Ei sopivaa luokkaa"
+msgstr ""
 
 #: src/fmfontstrings.cpp:73
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Family Type"
 msgid "Text and Display"
-msgstr "Leipäteksti"
+msgstr ""
 
 #: src/fmfontstrings.cpp:74
 #, kde-format
 msgctxt "Family Type"
 msgid "Script"
-msgstr "Komentojono"
+msgstr ""
 
 #: src/fmfontstrings.cpp:75
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Family Type"
 msgid "Decorative"
-msgstr "Koristeellinen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:76
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Family Type"
 msgid "Pictorial"
-msgstr "Kuvitettu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:79
-#, fuzzy, kde-format
+#, kde-format
 msgid "Family Type"
-msgstr "Fonttiperheen tyyli"
+msgstr ""
 
 #: src/fmfontstrings.cpp:85
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Cove"
-msgstr "Kovera"
+msgstr ""
 
 #: src/fmfontstrings.cpp:86
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Obtuse Cove"
-msgstr "Loivasti kovera"
+msgstr ""
 
 #: src/fmfontstrings.cpp:87
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Square Cove"
-msgstr "Kulmikkaasti kovera"
+msgstr ""
 
 #: src/fmfontstrings.cpp:88
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Obtuse Square Cove"
-msgstr "Loivasti ja kulmikkaasti kovera"
+msgstr ""
 
 #: src/fmfontstrings.cpp:89
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Square"
-msgstr "Kulmikas"
+msgstr ""
 
 #: src/fmfontstrings.cpp:90
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Thin"
-msgstr "Ohut"
+msgstr ""
 
 #: src/fmfontstrings.cpp:91
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Bone"
-msgstr "Ovaali"
+msgstr ""
 
 #: src/fmfontstrings.cpp:92
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Exaggerated"
-msgstr "Liioiteltu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:93
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Triangle"
-msgstr "Kolmio"
+msgstr ""
 
 #: src/fmfontstrings.cpp:94
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Normal Sans"
-msgstr "Suora pääteviivaton"
+msgstr ""
 
 #: src/fmfontstrings.cpp:95
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Obtuse Sans"
-msgstr "Vaakasuunnassa vino pääteviivaton"
+msgstr ""
 
 #: src/fmfontstrings.cpp:96
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Perp Sans"
-msgstr "Pystysuunnassa vino pääteviivaton"
+msgstr ""
 
 #: src/fmfontstrings.cpp:97
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Flared"
-msgstr "Levenevä"
+msgstr ""
 
 #: src/fmfontstrings.cpp:98
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Serif style"
 msgid "Rounded"
-msgstr "Pyöristetty"
+msgstr ""
 
 #: src/fmfontstrings.cpp:101
-#, fuzzy, kde-format
+#, kde-format
 msgid "Serif style"
-msgstr "Pääteviivan tyyli"
+msgstr ""
 
 #: src/fmfontstrings.cpp:107
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Weight"
 msgid "Very Light"
-msgstr "Erittäin kevyt"
+msgstr ""
 
 #: src/fmfontstrings.cpp:108
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Weight"
 msgid "Light"
-msgstr "Kevyt"
+msgstr ""
 
 #: src/fmfontstrings.cpp:109
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Weight"
 msgid "Thin"
-msgstr "Ohut"
+msgstr ""
 
 #: src/fmfontstrings.cpp:110
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Weight"
 msgid "Book"
-msgstr "Kirja"
+msgstr ""
 
 #: src/fmfontstrings.cpp:111
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Weight"
 msgid "Medium"
-msgstr "Keskipaksu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:112
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Weight"
 msgid "Demi"
-msgstr "Paksu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:113
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Weight"
 msgid "Bold"
-msgstr "Lihava"
+msgstr ""
 
 #: src/fmfontstrings.cpp:114
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Weight"
 msgid "Heavy"
-msgstr "Raskas"
+msgstr ""
 
 #: src/fmfontstrings.cpp:115
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Weight"
 msgid "Black"
-msgstr "Musta"
+msgstr ""
 
 #: src/fmfontstrings.cpp:116
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Weight"
 msgid "Nord"
-msgstr "Hyvin musta"
+msgstr ""
 
 #: src/fmfontstrings.cpp:119
-#, fuzzy, kde-format
+#, kde-format
 msgid "Weight"
-msgstr "Vahvuus"
+msgstr ""
 
 #: src/fmfontstrings.cpp:125
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Proportion"
 msgid "Old Style"
-msgstr "Vanhoillinen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:126
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Proportion"
 msgid "Modern"
-msgstr "Moderni"
+msgstr ""
 
 #: src/fmfontstrings.cpp:127
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Proportion"
 msgid "Even Width"
-msgstr "Tasalevyinen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:128
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Proportion"
 msgid "Expanded"
-msgstr "Levennetty"
+msgstr ""
 
 #: src/fmfontstrings.cpp:129
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Proportion"
 msgid "Condensed"
-msgstr "Kavennettu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:130
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Proportion"
 msgid "Very Expanded"
-msgstr "Huomattavasti levennetty"
+msgstr ""
 
 #: src/fmfontstrings.cpp:131
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Proportion"
 msgid "Very Condensed"
-msgstr "Huomattavasti kavennettu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:132
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Proportion"
 msgid "Monospaced"
-msgstr "Tasavälinen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:135
-#, fuzzy, kde-format
+#, kde-format
 msgid "Proportion"
-msgstr "Leveys"
+msgstr ""
 
 #: src/fmfontstrings.cpp:143
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Contrast"
 msgid "None"
-msgstr "Ei ole"
+msgstr ""
 
 #: src/fmfontstrings.cpp:144
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Contrast"
 msgid "Very Low"
-msgstr "Hyvin pieni"
+msgstr ""
 
 #: src/fmfontstrings.cpp:145
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Contrast"
 msgid "Low"
-msgstr "Pieni"
+msgstr ""
 
 #: src/fmfontstrings.cpp:146
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Contrast"
 msgid "Medium Low"
-msgstr "Keskipieni"
+msgstr ""
 
 #: src/fmfontstrings.cpp:147
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Contrast"
 msgid "Medium"
-msgstr "Keskipaksu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:148
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Contrast"
 msgid "Medium High"
-msgstr "Keskiverto"
+msgstr ""
 
 #: src/fmfontstrings.cpp:149
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Contrast"
 msgid "High"
-msgstr "Suuri"
+msgstr ""
 
 #: src/fmfontstrings.cpp:150
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Contrast"
 msgid "Very High"
-msgstr "Hyvin suuri"
+msgstr ""
 
 #: src/fmfontstrings.cpp:153
-#, fuzzy, kde-format
+#, kde-format
 msgid "Contrast"
-msgstr "Kontrasti"
+msgstr ""
 
 #: src/fmfontstrings.cpp:161
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Stroke Variation"
 msgid "Gradual/Diagonal"
-msgstr "Asteittainen ja diagonaalinen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:162
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Stroke Variation"
 msgid "Gradual/Transitional"
-msgstr "Asteittainen ja transitionaalinen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:163
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Stroke Variation"
 msgid "Gradual/Vertical"
-msgstr "Asteittainen ja pystysuora"
+msgstr ""
 
 #: src/fmfontstrings.cpp:164
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Stroke Variation"
 msgid "Gradual/Horizontal"
-msgstr "Asteittainen ja vaakasuora"
+msgstr ""
 
 #: src/fmfontstrings.cpp:165
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Stroke Variation"
 msgid "Rapid/Vertical"
-msgstr "Nopea ja pystysuora"
+msgstr ""
 
 #: src/fmfontstrings.cpp:166
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Stroke Variation"
 msgid "Rapid/Horizontal"
-msgstr "Nopea ja vaakasuora"
+msgstr ""
 
 #: src/fmfontstrings.cpp:167
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Stroke Variation"
 msgid "Instant/Vertical"
-msgstr "Välitön ja pystysuora"
+msgstr ""
 
 #: src/fmfontstrings.cpp:170
-#, fuzzy, kde-format
+#, kde-format
 msgid "Stroke Variation"
-msgstr "Viivan paksuuden muutos"
+msgstr ""
 
 #: src/fmfontstrings.cpp:178
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Arm Style"
 msgid "Straight Arms/Horizontal"
-msgstr "Suorat ja vaakasuora"
+msgstr ""
 
 #: src/fmfontstrings.cpp:179
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Arm Style"
 msgid "Straight Arms/Wedge"
-msgstr "Suorat ja kolmio"
+msgstr ""
 
 #: src/fmfontstrings.cpp:180
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Arm Style"
 msgid "Straight Arms/Vertical"
-msgstr "Suorat ja pystysuora"
+msgstr ""
 
 #: src/fmfontstrings.cpp:181
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Arm Style"
 msgid "Straight Arms/Single Serif"
-msgstr "Suorat ja yksipuoleinen pääteviiva"
+msgstr ""
 
 #: src/fmfontstrings.cpp:182
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Arm Style"
 msgid "Straight Arms/Double Serif"
-msgstr "Suorat ja molemminpuoleinen pääteviiva"
+msgstr ""
 
 #: src/fmfontstrings.cpp:183
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Arm Style"
 msgid "Non-Straight Arms/Horizontal"
-msgstr "Epäsuorat ja vaakasuora"
+msgstr ""
 
 #: src/fmfontstrings.cpp:184
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Arm Style"
 msgid "Non-Straight Arms/Wedge"
-msgstr "Epäsuorat ja kolmio"
+msgstr ""
 
 #: src/fmfontstrings.cpp:185
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Arm Style"
 msgid "Non-Straight Arms/Vertical"
-msgstr "Epäsuorat ja pystysuora"
+msgstr ""
 
 #: src/fmfontstrings.cpp:186
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Arm Style"
 msgid "Non-Straight Arms/Single Serif"
-msgstr "Epäsuorat ja yksipuoleinen pääteviiva"
+msgstr ""
 
 #: src/fmfontstrings.cpp:187
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Arm Style"
 msgid "Non-Straight Arms/Double Serif"
-msgstr "Epäsuorat ja molemminpuoleinen pääteviiva"
+msgstr ""
 
 #: src/fmfontstrings.cpp:190
-#, fuzzy, kde-format
+#, kde-format
 msgid "Arm Style"
-msgstr "Käsivarsien tyyli"
+msgstr ""
 
 #: src/fmfontstrings.cpp:198
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Normal/Contact"
-msgstr "Suora ja litistetty"
+msgstr ""
 
 #: src/fmfontstrings.cpp:199
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Normal/Weighted"
-msgstr "Suora ja huomattava"
+msgstr ""
 
 #: src/fmfontstrings.cpp:200
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Normal/Boxed"
-msgstr "Suora ja ahdettu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:201
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Normal/Flattened"
-msgstr "Suora ja kaareva"
+msgstr ""
 
 #: src/fmfontstrings.cpp:202
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Normal/Rounded"
-msgstr "Suora ja pyöreäkulmainen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:203
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Normal/Off Center"
-msgstr "Suora ja epäkesko"
+msgstr ""
 
 #: src/fmfontstrings.cpp:204
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Normal/Square"
-msgstr "Suora ja kulmikas"
+msgstr ""
 
 #: src/fmfontstrings.cpp:205
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Oblique/Contact"
-msgstr "Kallistettu ja litistetty"
+msgstr ""
 
 #: src/fmfontstrings.cpp:206
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Oblique/Weighted"
-msgstr "Kallistettu ja huomattava"
+msgstr ""
 
 #: src/fmfontstrings.cpp:207
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Oblique/Boxed"
-msgstr "Kallistettu ja ahdettu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:208
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Oblique/Flattened"
-msgstr "Kallistettu ja kaareva"
+msgstr ""
 
 #: src/fmfontstrings.cpp:209
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Oblique/Rounded"
-msgstr "Kallistettu ja pyöreäkulmainen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:210
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Oblique/Off Center"
-msgstr "Kallistettu ja epäkesko"
+msgstr ""
 
 #: src/fmfontstrings.cpp:211
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Letterform"
 msgid "Oblique/Square"
-msgstr "Kallistettu ja kulmikas"
+msgstr ""
 
 #: src/fmfontstrings.cpp:214
-#, fuzzy, kde-format
+#, kde-format
 msgid "Letterform"
-msgstr "Muoto"
+msgstr ""
 
 #: src/fmfontstrings.cpp:220
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Midline"
 msgid "Standard/Trimmed"
-msgstr "Normaali ja typistetty"
+msgstr ""
 
 #: src/fmfontstrings.cpp:221
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Midline"
 msgid "Standard/Pointed"
-msgstr "Normaali ja terävä"
+msgstr ""
 
 #: src/fmfontstrings.cpp:222
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Midline"
 msgid "Standard/Serifed"
-msgstr "Normaali ja päätteellinen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:223
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Midline"
 msgid "High/Trimmed"
-msgstr "Korkea ja typistetty"
+msgstr ""
 
 #: src/fmfontstrings.cpp:224
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Midline"
 msgid "High/Pointed"
-msgstr "Korkea ja terävä"
+msgstr ""
 
 #: src/fmfontstrings.cpp:225
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Midline"
 msgid "High/Serifed"
-msgstr "Korkea ja päätteellinen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:226
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Midline"
 msgid "Constant/Trimmed"
-msgstr "Vakio ja typistetty"
+msgstr ""
 
 #: src/fmfontstrings.cpp:227
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Midline"
 msgid "Constant/Pointed"
-msgstr "Vakio ja terävä"
+msgstr ""
 
 #: src/fmfontstrings.cpp:228
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Midline"
 msgid "Constant/Serifed"
-msgstr "Vakio ja päätteellinen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:229
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Midline"
 msgid "Low/Trimmed"
-msgstr "Matala ja typistetty"
+msgstr ""
 
 #: src/fmfontstrings.cpp:230
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Midline"
 msgid "Low/Pointed"
-msgstr "Matala ja terävä"
+msgstr ""
 
 #: src/fmfontstrings.cpp:231
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Midline"
 msgid "Low/Serifed"
-msgstr "Matala ja päätteellinen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:234
-#, fuzzy, kde-format
+#, kde-format
 msgid "Midline"
-msgstr "Keskilinja"
+msgstr ""
 
 #: src/fmfontstrings.cpp:242
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "X-Height"
 msgid "Constant/Small"
-msgstr "Normaali ja pieni"
+msgstr ""
 
 #: src/fmfontstrings.cpp:243
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "X-Height"
 msgid "Constant/Standard"
-msgstr "Normaali ja keskikokoinen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:244
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "X-Height"
 msgid "Constant/Large"
-msgstr "Normaali ja suuri"
+msgstr ""
 
 #: src/fmfontstrings.cpp:245
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "X-Height"
 msgid "Ducking/Small"
-msgstr "Supistettu ja pieni"
+msgstr ""
 
 #: src/fmfontstrings.cpp:246
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "X-Height"
 msgid "Ducking/Standard"
-msgstr "Supistettu ja keskikokoinen"
+msgstr ""
 
 #: src/fmfontstrings.cpp:247
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "X-Height"
 msgid "Ducking/Large"
-msgstr "Supistettu ja suuri"
+msgstr ""
 
 #: src/fmfontstrings.cpp:250
-#, fuzzy, kde-format
+#, kde-format
 msgid "X-Height"
-msgstr "X-korkeus"
+msgstr ""
 
 #: src/fmfontstrings.cpp:275
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "This value is deprecated and was never used nor reported by FreeType. Don't "
 "use or test for it."
 msgstr ""
-"Tämä arvo on poistettu käytöstä eikä sitä koskaan käytetty eikä FreeType "
-"koskaan huomauttanut siitä. Älä käytä tai testaa sitä."
 
 #: src/fmfontstrings.cpp:288
 #, kde-format
 msgid "Character to glyph mapping"
-msgstr "Merkki-merkin esitys -yhteys"
+msgstr ""
 
 #: src/fmfontstrings.cpp:289
 #, kde-format
@@ -2801,17 +2743,17 @@ msgstr ""
 #: src/fmfontstrings.cpp:293
 #, kde-format
 msgid "Naming table"
-msgstr "Nimitaulu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:294
 #, kde-format
 msgid "OS/2 and Windows specific metrics"
-msgstr "OS/2- ja Windows -mitat"
+msgstr ""
 
 #: src/fmfontstrings.cpp:295
 #, kde-format
 msgid "PostScript information"
-msgstr "Postscript-tiedot"
+msgstr ""
 
 #: src/fmfontstrings.cpp:298
 #, kde-format
@@ -2821,17 +2763,17 @@ msgstr ""
 #: src/fmfontstrings.cpp:299
 #, kde-format
 msgid "Font program"
-msgstr "Fonttiohjelma"
+msgstr ""
 
 #: src/fmfontstrings.cpp:300
 #, kde-format
 msgid "Glyph data"
-msgstr "Merkin esityksen tiedot"
+msgstr ""
 
 #: src/fmfontstrings.cpp:301
 #, kde-format
 msgid "Index to location"
-msgstr "Osoitin sijaintiin"
+msgstr ""
 
 #: src/fmfontstrings.cpp:302
 #, kde-format
@@ -2841,7 +2783,7 @@ msgstr ""
 #: src/fmfontstrings.cpp:305
 #, kde-format
 msgid "PostScript font program"
-msgstr "Postscript-fonttiohjelma"
+msgstr ""
 
 #: src/fmfontstrings.cpp:306
 #, kde-format
@@ -2851,7 +2793,7 @@ msgstr ""
 #: src/fmfontstrings.cpp:309
 #, kde-format
 msgid "Embedded bitmap data"
-msgstr "Upotettu bittikarttadata"
+msgstr ""
 
 #: src/fmfontstrings.cpp:310
 #, kde-format
@@ -2866,32 +2808,32 @@ msgstr ""
 #: src/fmfontstrings.cpp:314
 #, kde-format
 msgid "Baseline data"
-msgstr "Peruslinjan tiedot"
+msgstr ""
 
 #: src/fmfontstrings.cpp:315
 #, kde-format
 msgid "Glyph definition data"
-msgstr "Merkin ulkoasun määritykset"
+msgstr ""
 
 #: src/fmfontstrings.cpp:316
 #, kde-format
 msgid "Glyph positioning data"
-msgstr "Merkin ulkoasun sijoittelu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:317
 #, kde-format
 msgid "Glyph substitution data"
-msgstr "Merkin korvaus"
+msgstr ""
 
 #: src/fmfontstrings.cpp:318
 #, kde-format
 msgid "Justification data"
-msgstr "Tasaus"
+msgstr ""
 
 #: src/fmfontstrings.cpp:321
 #, kde-format
 msgid "Digital signature"
-msgstr "Sähköinen allekirjoitus"
+msgstr ""
 
 #: src/fmfontstrings.cpp:322
 #, kde-format
@@ -2906,7 +2848,7 @@ msgstr ""
 #: src/fmfontstrings.cpp:324 src/opentypetags.h:64
 #, kde-format
 msgid "Kerning"
-msgstr "Merkkiparien välistys"
+msgstr ""
 
 #: src/fmfontstrings.cpp:325
 #, kde-format
@@ -2986,182 +2928,177 @@ msgstr ""
 #: src/fmfontstrings.cpp:357
 #, kde-format
 msgid "Mark, NonSpacing"
-msgstr "Merkki, ei väli"
+msgstr ""
 
 #: src/fmfontstrings.cpp:358
 #, kde-format
 msgid "Mark, SpacingCombining"
-msgstr "Merkki, yhdistävä väli"
+msgstr ""
 
 #: src/fmfontstrings.cpp:359
 #, kde-format
 msgid "Mark, Enclosing"
-msgstr "Merkki, ympäröivä"
+msgstr ""
 
 #: src/fmfontstrings.cpp:360
 #, kde-format
 msgid "Number, DecimalDigit"
-msgstr "Numero, desimaalinumero"
+msgstr ""
 
 #: src/fmfontstrings.cpp:361
 #, kde-format
 msgid "Number, Letter"
-msgstr "Numero, kirjain"
+msgstr ""
 
 #: src/fmfontstrings.cpp:362
 #, kde-format
 msgid "Number, Other"
-msgstr "Numero, muut"
+msgstr ""
 
 #: src/fmfontstrings.cpp:363
 #, kde-format
 msgid "Separator, Space"
-msgstr "Erotin, väli"
+msgstr ""
 
 #: src/fmfontstrings.cpp:364
 #, kde-format
 msgid "Separator, Line"
-msgstr "Erotin, rivi"
+msgstr ""
 
 #: src/fmfontstrings.cpp:365
 #, kde-format
 msgid "Separator, Paragraph"
-msgstr "Erotin, kappale"
+msgstr ""
 
 #: src/fmfontstrings.cpp:366
 #, kde-format
 msgid "Other, Control"
-msgstr "Muu, hallinta"
+msgstr ""
 
 #: src/fmfontstrings.cpp:367
 #, kde-format
 msgid "Other, Format"
-msgstr "Muu, muoto"
+msgstr ""
 
 #: src/fmfontstrings.cpp:368
 #, kde-format
 msgid "Other, Surrogate"
-msgstr "Muu, korvaava"
+msgstr ""
 
 #: src/fmfontstrings.cpp:369
 #, kde-format
 msgid "Other, PrivateUse"
-msgstr "Muu, erilliskäyttö"
+msgstr ""
 
 #: src/fmfontstrings.cpp:370
 #, kde-format
 msgid "Other, NotAssigned"
-msgstr "Muu, sijoittamaton"
+msgstr ""
 
 #: src/fmfontstrings.cpp:371
 #, kde-format
 msgid "Letter, Uppercase"
-msgstr "Kirjain, versaali"
+msgstr ""
 
 #: src/fmfontstrings.cpp:372
 #, kde-format
 msgid "Letter, Lowercase"
-msgstr "Kirjain, gemena"
+msgstr ""
 
 #: src/fmfontstrings.cpp:373
 #, kde-format
 msgid "Letter, Titlecase"
-msgstr "Kirjain, otsikkokoko"
+msgstr ""
 
 #: src/fmfontstrings.cpp:374
 #, kde-format
 msgid "Letter, Modifier"
-msgstr "Kirjain, määrite"
+msgstr ""
 
 #: src/fmfontstrings.cpp:375
 #, kde-format
 msgid "Letter, Other"
-msgstr "Kirjain, muu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:376
 #, kde-format
 msgid "Punctuation, Connector"
-msgstr "Välimerkki, yhdistin"
+msgstr ""
 
 #: src/fmfontstrings.cpp:377
 #, kde-format
 msgid "Punctuation, Dash"
-msgstr "Välimerkki, viiva"
+msgstr ""
 
 #: src/fmfontstrings.cpp:378
 #, kde-format
 msgid "Punctuation, Open"
-msgstr "Välimerkki, aloitus"
+msgstr ""
 
 #: src/fmfontstrings.cpp:379
 #, kde-format
 msgid "Punctuation, Close"
-msgstr "Välimerkki, lopetus"
+msgstr ""
 
 #: src/fmfontstrings.cpp:380
 #, kde-format
 msgid "Punctuation, InitialQuote"
-msgstr "Välimerkki, aloittava lainausmerkki"
+msgstr ""
 
 #: src/fmfontstrings.cpp:381
 #, kde-format
 msgid "Punctuation, FinalQuote"
-msgstr "Välimerkki, lopettava lainausmerkki"
+msgstr ""
 
 #: src/fmfontstrings.cpp:382
 #, kde-format
 msgid "Punctuation, Other"
-msgstr "Välimerkki, muu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:383
 #, kde-format
 msgid "Symbol, Math"
-msgstr "Symboli, matematiikka"
+msgstr ""
 
 #: src/fmfontstrings.cpp:384
 #, kde-format
 msgid "Symbol, Currency"
-msgstr "Symboli, valuutta"
+msgstr ""
 
 #: src/fmfontstrings.cpp:385
 #, kde-format
 msgid "Symbol, Modifier"
-msgstr "Symboli, määrite"
+msgstr ""
 
 #: src/fmfontstrings.cpp:386
 #, kde-format
 msgid "Symbol, Other"
-msgstr "Symboli, muu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:391
-#, fuzzy, kde-format
-#| msgid "012Arabic"
+#, kde-format
 msgid "Arabic"
-msgstr "012Arabialaiset"
+msgstr ""
 
 #: src/fmfontstrings.cpp:392
-#, fuzzy, kde-format
-#| msgid "010Armenian"
+#, kde-format
 msgid "Armenian"
-msgstr "010Armenialaiset"
+msgstr ""
 
 #: src/fmfontstrings.cpp:393
-#, fuzzy, kde-format
-#| msgid "050Balinese"
+#, kde-format
 msgid "Balinese"
-msgstr "050Balinese"
+msgstr ""
 
 #: src/fmfontstrings.cpp:394
-#, fuzzy, kde-format
-#| msgid "018Bengali"
+#, kde-format
 msgid "Bengali"
-msgstr "018Bengali"
+msgstr ""
 
 #: src/fmfontstrings.cpp:395
-#, fuzzy, kde-format
-#| msgid "094Bopomofo"
+#, kde-format
 msgid "Bopomofo"
-msgstr "094Bopomofo"
+msgstr ""
 
 #: src/fmfontstrings.cpp:396
 #, kde-format
@@ -3169,16 +3106,14 @@ msgid "Braille"
 msgstr ""
 
 #: src/fmfontstrings.cpp:397
-#, fuzzy, kde-format
-#| msgid "049Buginese"
+#, kde-format
 msgid "Buginese"
-msgstr "049Buginese"
+msgstr ""
 
 #: src/fmfontstrings.cpp:398
-#, fuzzy, kde-format
-#| msgid "041Buhid"
+#, kde-format
 msgid "Buhid"
-msgstr "041Buhid"
+msgstr ""
 
 #: src/fmfontstrings.cpp:399
 #, kde-format
@@ -3186,28 +3121,24 @@ msgid "Byzantine Music"
 msgstr ""
 
 #: src/fmfontstrings.cpp:400
-#, fuzzy, kde-format
-#| msgid "036Unified Canadian Aboriginal Syllabics"
+#, kde-format
 msgid "Canadian Syllabics"
-msgstr "036Kanadalaisia tavumerkkejä"
+msgstr ""
 
 #: src/fmfontstrings.cpp:401
-#, fuzzy, kde-format
-#| msgid "035Cherokee"
+#, kde-format
 msgid "Cherokee"
-msgstr "035Cherokee"
+msgstr ""
 
 #: src/fmfontstrings.cpp:402
-#, fuzzy, kde-format
-#| msgid "104CJK Unified Ideographs"
+#, kde-format
 msgid "CJK Ideographic"
-msgstr "104CJK-sanamerkkejä"
+msgstr ""
 
 #: src/fmfontstrings.cpp:403
-#, fuzzy, kde-format
-#| msgid "083Coptic"
+#, kde-format
 msgid "Coptic"
-msgstr "083Koptilaiset"
+msgstr ""
 
 #: src/fmfontstrings.cpp:404
 #, kde-format
@@ -3215,16 +3146,14 @@ msgid "Cypriot Syllabary"
 msgstr ""
 
 #: src/fmfontstrings.cpp:405
-#, fuzzy, kde-format
-#| msgid "008Cyrillic"
+#, kde-format
 msgid "Cyrillic"
-msgstr "008Kyrilliset"
+msgstr ""
 
 #: src/fmfontstrings.cpp:406
-#, fuzzy, kde-format
-#| msgid "default"
+#, kde-format
 msgid "Default"
-msgstr "oletus"
+msgstr ""
 
 #: src/fmfontstrings.cpp:407
 #, kde-format
@@ -3232,28 +3161,24 @@ msgid "Deseret"
 msgstr ""
 
 #: src/fmfontstrings.cpp:408
-#, fuzzy, kde-format
-#| msgid "017Devanagari"
+#, kde-format
 msgid "Devanagari"
-msgstr "017Devanagari"
+msgstr ""
 
 #: src/fmfontstrings.cpp:409
-#, fuzzy, kde-format
-#| msgid "033Ethiopic"
+#, kde-format
 msgid "Ethiopic"
-msgstr "033Etiopialaiset"
+msgstr ""
 
 #: src/fmfontstrings.cpp:410
-#, fuzzy, kde-format
-#| msgid "031Georgian"
+#, kde-format
 msgid "Georgian"
-msgstr "031Kartvelilaiset"
+msgstr ""
 
 #: src/fmfontstrings.cpp:411
-#, fuzzy, kde-format
-#| msgid "081Glagolitic"
+#, kde-format
 msgid "Glagolitic"
-msgstr "081Glagolitic"
+msgstr ""
 
 #: src/fmfontstrings.cpp:412
 #, kde-format
@@ -3266,22 +3191,19 @@ msgid "Greek"
 msgstr ""
 
 #: src/fmfontstrings.cpp:414
-#, fuzzy, kde-format
-#| msgid "020Gujarati"
+#, kde-format
 msgid "Gujarati"
-msgstr "020Gujarati"
+msgstr ""
 
 #: src/fmfontstrings.cpp:415
-#, fuzzy, kde-format
-#| msgid "019Gurmukhi"
+#, kde-format
 msgid "Gurmukhi"
-msgstr "019Gurmukhi"
+msgstr ""
 
 #: src/fmfontstrings.cpp:416
-#, fuzzy, kde-format
-#| msgid "032Hangul Jamo"
+#, kde-format
 msgid "Hangul Jamo"
-msgstr "032Hangulin jamo-merkkejä"
+msgstr ""
 
 #: src/fmfontstrings.cpp:417 src/opentypetags.h:53
 #, kde-format
@@ -3289,16 +3211,14 @@ msgid "Hangul"
 msgstr ""
 
 #: src/fmfontstrings.cpp:418
-#, fuzzy, kde-format
-#| msgid "040HanunÃ³o"
+#, kde-format
 msgid "Hanunoo"
-msgstr "040HanunÃ³o"
+msgstr ""
 
 #: src/fmfontstrings.cpp:419
-#, fuzzy, kde-format
-#| msgid "011Hebrew"
+#, kde-format
 msgid "Hebrew"
-msgstr "011Heprealaiset"
+msgstr ""
 
 #: src/fmfontstrings.cpp:420
 #, kde-format
@@ -3311,10 +3231,9 @@ msgid "Javanese"
 msgstr ""
 
 #: src/fmfontstrings.cpp:422
-#, fuzzy, kde-format
-#| msgid "024Kannada"
+#, kde-format
 msgid "Kannada"
-msgstr "024Kannada"
+msgstr ""
 
 #: src/fmfontstrings.cpp:423
 #, kde-format
@@ -3322,16 +3241,14 @@ msgid "Kharosthi"
 msgstr ""
 
 #: src/fmfontstrings.cpp:424
-#, fuzzy, kde-format
-#| msgid "043Khmer"
+#, kde-format
 msgid "Khmer"
-msgstr "043Khmer"
+msgstr ""
 
 #: src/fmfontstrings.cpp:425
-#, fuzzy, kde-format
-#| msgid "028Lao"
+#, kde-format
 msgid "Lao"
-msgstr "028Lao"
+msgstr ""
 
 #: src/fmfontstrings.cpp:426
 #, kde-format
@@ -3339,10 +3256,9 @@ msgid "Latin"
 msgstr ""
 
 #: src/fmfontstrings.cpp:427
-#, fuzzy, kde-format
-#| msgid "045Limbu"
+#, kde-format
 msgid "Limbu"
-msgstr "045Limbu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:428
 #, kde-format
@@ -3350,28 +3266,24 @@ msgid "Linear B"
 msgstr ""
 
 #: src/fmfontstrings.cpp:429
-#, fuzzy, kde-format
-#| msgid "025Malayalam"
+#, kde-format
 msgid "Malayalam"
-msgstr "025Malayalam"
+msgstr ""
 
 #: src/fmfontstrings.cpp:430
-#, fuzzy, kde-format
-#| msgid "064Mathematical Operators"
+#, kde-format
 msgid "Mathematical Alphanumeric Symbols"
-msgstr "064Matemaattisia operaattoreita"
+msgstr ""
 
 #: src/fmfontstrings.cpp:431
-#, fuzzy, kde-format
-#| msgid "044Mongolian"
+#, kde-format
 msgid "Mongolian"
-msgstr "044Mongolialaiset"
+msgstr ""
 
 #: src/fmfontstrings.cpp:432
-#, fuzzy, kde-format
-#| msgid "072Miscellaneous Symbols"
+#, kde-format
 msgid "Musical Symbols"
-msgstr "072Sekalaisia symboleita"
+msgstr ""
 
 #: src/fmfontstrings.cpp:433
 #, kde-format
@@ -3384,16 +3296,14 @@ msgid "N'ko"
 msgstr ""
 
 #: src/fmfontstrings.cpp:435
-#, fuzzy, kde-format
-#| msgid "037Ogham"
+#, kde-format
 msgid "Ogham"
-msgstr "037Ogham"
+msgstr ""
 
 #: src/fmfontstrings.cpp:436
-#, fuzzy, kde-format
-#| msgid "Italics"
+#, kde-format
 msgid "Old Italic"
-msgstr "Kursiivit"
+msgstr ""
 
 #: src/fmfontstrings.cpp:437
 #, kde-format
@@ -3401,10 +3311,9 @@ msgid "Old Persian Cuneiform"
 msgstr ""
 
 #: src/fmfontstrings.cpp:438
-#, fuzzy, kde-format
-#| msgid "021Oriya"
+#, kde-format
 msgid "Oriya"
-msgstr "021Oriya"
+msgstr ""
 
 #: src/fmfontstrings.cpp:439
 #, kde-format
@@ -3412,10 +3321,9 @@ msgid "Osmanya"
 msgstr ""
 
 #: src/fmfontstrings.cpp:440
-#, fuzzy, kde-format
-#| msgid "110Phags-pa"
+#, kde-format
 msgid "Phags-pa"
-msgstr "110Phags-pa"
+msgstr ""
 
 #: src/fmfontstrings.cpp:441
 #, kde-format
@@ -3423,10 +3331,9 @@ msgid "Phoenician"
 msgstr ""
 
 #: src/fmfontstrings.cpp:442
-#, fuzzy, kde-format
-#| msgid "038Runic"
+#, kde-format
 msgid "Runic"
-msgstr "038Riimukirjaimia"
+msgstr ""
 
 #: src/fmfontstrings.cpp:443
 #, kde-format
@@ -3434,10 +3341,9 @@ msgid "Shavian"
 msgstr ""
 
 #: src/fmfontstrings.cpp:444
-#, fuzzy, kde-format
-#| msgid "026Sinhala"
+#, kde-format
 msgid "Sinhala"
-msgstr "026Sinhala"
+msgstr ""
 
 #: src/fmfontstrings.cpp:445
 #, kde-format
@@ -3445,76 +3351,64 @@ msgid "Sumero-Akkadian Cuneiform"
 msgstr ""
 
 #: src/fmfontstrings.cpp:446
-#, fuzzy, kde-format
-#| msgid "109Syloti Nagri"
+#, kde-format
 msgid "Syloti Nagri"
-msgstr "109Syloti Nagri"
+msgstr ""
 
 #: src/fmfontstrings.cpp:447
-#, fuzzy, kde-format
-#| msgid "013Syriac"
+#, kde-format
 msgid "Syriac"
-msgstr "013Syyrialaiset"
+msgstr ""
 
 #: src/fmfontstrings.cpp:448
-#, fuzzy, kde-format
-#| msgid "039Tagalog"
+#, kde-format
 msgid "Tagalog"
-msgstr "039Tagalog"
+msgstr ""
 
 #: src/fmfontstrings.cpp:449
-#, fuzzy, kde-format
-#| msgid "042Tagbanwa"
+#, kde-format
 msgid "Tagbanwa"
-msgstr "042Tagbanwa"
+msgstr ""
 
 #: src/fmfontstrings.cpp:450
-#, fuzzy, kde-format
-#| msgid "046Tai Le"
+#, kde-format
 msgid "Tai Le"
-msgstr "046Tai Le"
+msgstr ""
 
 #: src/fmfontstrings.cpp:451
-#, fuzzy, kde-format
-#| msgid "046Tai Le"
+#, kde-format
 msgid "Tai Lu"
-msgstr "046Tai Le"
+msgstr ""
 
 #: src/fmfontstrings.cpp:452
-#, fuzzy, kde-format
-#| msgid "022Tamil"
+#, kde-format
 msgid "Tamil"
-msgstr "022Tamil"
+msgstr ""
 
 #: src/fmfontstrings.cpp:453
-#, fuzzy, kde-format
-#| msgid "023Telugu"
+#, kde-format
 msgid "Telugu"
-msgstr "023Telugu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:454
-#, fuzzy, kde-format
-#| msgid "015Thaana"
+#, kde-format
 msgid "Thaana"
-msgstr "015Thaana"
+msgstr ""
 
 #: src/fmfontstrings.cpp:455
-#, fuzzy, kde-format
-#| msgid "027Thai"
+#, kde-format
 msgid "Thai"
-msgstr "027Thai"
+msgstr ""
 
 #: src/fmfontstrings.cpp:456
-#, fuzzy, kde-format
-#| msgid "029Tibetan"
+#, kde-format
 msgid "Tibetan"
-msgstr "029Tiibettiläiset"
+msgstr ""
 
 #: src/fmfontstrings.cpp:457
-#, fuzzy, kde-format
-#| msgid "085Tifinagh"
+#, kde-format
 msgid "Tifinagh"
-msgstr "085Tifinagh"
+msgstr ""
 
 #: src/fmfontstrings.cpp:458
 #, kde-format
@@ -3527,21 +3421,19 @@ msgid "Yi"
 msgstr ""
 
 #: src/fmfontstrings.cpp:505
-#, fuzzy, kde-format
+#, kde-format
 msgid "Not Restricted"
-msgstr "Ei valintaa"
+msgstr ""
 
 #: src/fmfontstrings.cpp:507
-#, fuzzy, kde-format
-#| msgid "&Restore"
+#, kde-format
 msgid "Restricted"
-msgstr "P&alauta"
+msgstr ""
 
 #: src/fmfontstrings.cpp:509
-#, fuzzy, kde-format
-#| msgid "Preview"
+#, kde-format
 msgid "Preview/Print"
-msgstr "Esikatselu"
+msgstr ""
 
 #: src/fmfontstrings.cpp:511
 #, kde-format
@@ -3559,31 +3451,29 @@ msgid "Bitmap Only"
 msgstr ""
 
 #: src/fminfodisplay.cpp:107
-#, fuzzy, kde-format
-#| msgid "Unicode character"
+#, kde-format
 msgid "Unicode Ranges"
-msgstr "Unicode-merkki"
+msgstr ""
 
 #: src/fminfodisplay.cpp:178
-#, fuzzy, kde-format
-#| msgid "&File"
+#, kde-format
 msgid "File"
-msgstr "&Tiedosto"
+msgstr ""
 
 #: src/fminfodisplay.cpp:179
 #, kde-format
 msgid "Glyphs count"
-msgstr "Merkkien määrä"
+msgstr ""
 
 #: src/fminfodisplay.cpp:180
 #, kde-format
 msgid "Font Type"
-msgstr "Fonttityyppi"
+msgstr ""
 
 #: src/fminfodisplay.cpp:192
 #, kde-format
 msgid "Charmaps List"
-msgstr "Luettelo merkkikartoista"
+msgstr ""
 
 #: src/fmmatchraster.cpp:134
 #, kde-format
@@ -3619,21 +3509,19 @@ msgid ""
 msgstr ""
 
 #: src/fontbook.cpp:88
-#, fuzzy, kde-format
-#| msgid "Export Font Book"
+#, kde-format
 msgid "Print Fontbook"
-msgstr "Tee fonttikirja"
+msgstr ""
 
 #: src/fontbook.cpp:438
-#, fuzzy, kde-format
-#| msgid "Unicode character"
+#, kde-format
 msgid "Unicode coverage"
-msgstr "Unicode-merkki"
+msgstr ""
 
 #: src/fontbookdialog.cpp:93
 #, kde-format
 msgid "Save fontBook"
-msgstr "Tallenna fonttikirja"
+msgstr ""
 
 #: src/fontbookdialog.cpp:126 src/fontbookdialog.cpp:151
 #, kde-format
@@ -3646,15 +3534,15 @@ msgid "%1 is not a valid XML file."
 msgstr ""
 
 #: src/fontcomparewidget.cpp:64
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "No fill color in comprae glyph"
 msgid "None"
-msgstr "Ei ole"
+msgstr ""
 
 #: src/fontitem.cpp:1964
 #, kde-format
 msgid "codepoint is U+"
-msgstr "merkkikoodi on U+"
+msgstr ""
 
 #: src/fontitem.cpp:2045
 #, kde-format
@@ -3667,22 +3555,22 @@ msgstr ""
 #: src/fontitem.cpp:2762
 #, kde-format
 msgid "Fontmatrix - Download"
-msgstr "Fontmatrix - Lataa"
+msgstr ""
 
 #: src/fontitem.cpp:2763
 #, kde-format
 msgid "Downloading %1."
-msgstr "Ladataan %1."
+msgstr ""
 
 #: src/importedfontsdialog.cpp:23
 #, kde-format
 msgid " (not loaded)"
-msgstr "(ei ladattu)"
+msgstr ""
 
 #: src/importedfontsdialog.cpp:30
 #, kde-format
 msgid "Number of Imported Fonts "
-msgstr "Tuotujen fonttien lukumäärä"
+msgstr ""
 
 #: src/mainviewwidget.cpp:1140
 #, kde-format
@@ -3690,99 +3578,98 @@ msgid ""
 " is activated.\n"
 "If you want to remove it from Fontmatrix database, please deactivate it "
 "first."
-msgstr " on aktivoitu. Jos haluat poistaa sen, poista ensin aktivointi."
+msgstr ""
 
 #: src/mainviewwidget.cpp:1144
 #, kde-format
 msgid "You are about to remove a font from Fontmatrix database"
-msgstr "Olet poistamassa fonttia Fonmatrixin tietokannasta"
+msgstr ""
 
 #: src/mainviewwidget.cpp:1145
 #, kde-format
 msgid "Do you want to continue?"
-msgstr "Haluatko jatkaa?"
+msgstr ""
 
 #: src/mainviewwidget.cpp:1146
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Font"
-msgstr "Poista"
+msgstr ""
 
 #: src/opentypetags.h:17
 #, kde-format
 msgid "Access All Alternates"
-msgstr "Salli kaikki vaihtoehdot"
+msgstr ""
 
 #: src/opentypetags.h:18
 #, kde-format
 msgid "Above-Base Forms"
-msgstr "Yläosan muodot"
+msgstr ""
 
 #: src/opentypetags.h:19
 #, kde-format
 msgid "Above-Base Mark Positioning"
-msgstr "Yläosan merkkien sijoittelu"
+msgstr ""
 
 #: src/opentypetags.h:20
 #, kde-format
 msgid "Above-Base Substitutions"
-msgstr "Yläosan korvaukset"
+msgstr ""
 
 #: src/opentypetags.h:21
 #, kde-format
 msgid "Alternative Fractions"
-msgstr "Murtolukuvaihtoehdot"
+msgstr ""
 
 #: src/opentypetags.h:22
 #, kde-format
 msgid "Akhands"
-msgstr "Akahand-ligatuurit"
+msgstr ""
 
 #: src/opentypetags.h:23
 #, kde-format
 msgid "Below-Base Forms"
-msgstr "Alaosan muodot"
+msgstr ""
 
 #: src/opentypetags.h:24
 #, kde-format
 msgid "Below-Base Mark Positioning"
-msgstr "Alaosan merkkien sijoittelu"
+msgstr ""
 
 #: src/opentypetags.h:25
 #, kde-format
 msgid "Below-Base Substitutions"
-msgstr "Alaosan korvaukset"
+msgstr ""
 
 #: src/opentypetags.h:26
 #, kde-format
 msgid "Petite Capitals From Capitals"
-msgstr "Pienet kapiteelit kapiteeleista"
+msgstr ""
 
 #: src/opentypetags.h:27
 #, kde-format
 msgid "Small Capitals From Capitals"
-msgstr "Kapiteelit versaalikirjaimista"
+msgstr ""
 
 #: src/opentypetags.h:28
 #, kde-format
 msgid "Contextual Alternates"
-msgstr "Kontekstiriippuvaiset vaihtoehdot"
+msgstr ""
 
 #: src/opentypetags.h:29
 #, kde-format
 msgid "Case-Sensitive Forms"
-msgstr "Aakkoslajiriippuvaiset muodot"
+msgstr ""
 
 #: src/opentypetags.h:30
 #, kde-format
 msgid "Glyph Composition/Decomposition"
-msgstr "Merkkiyhdiste tai -hajote"
+msgstr ""
 
 #: src/opentypetags.h:31
 #, kde-format
 msgid "Contextual Ligatures"
-msgstr "Kontekstiriippuvaiset ligatuurit"
+msgstr ""
 
 #: src/opentypetags.h:32
 #, kde-format
@@ -3792,72 +3679,72 @@ msgstr ""
 #: src/opentypetags.h:33
 #, kde-format
 msgid "Capital Spacing"
-msgstr "Versaalivälistys"
+msgstr ""
 
 #: src/opentypetags.h:34
 #, kde-format
 msgid "Contextual Swash"
-msgstr "Kontekstiriippuvainen erikoismerkki"
+msgstr ""
 
 #: src/opentypetags.h:35
 #, kde-format
 msgid "Cursive Positioning"
-msgstr "Kursiivisijoittelu"
+msgstr ""
 
 #: src/opentypetags.h:36
 #, kde-format
 msgid "Default Processing"
-msgstr "Oletuskäsittely"
+msgstr ""
 
 #: src/opentypetags.h:37
 #, kde-format
 msgid "Distances"
-msgstr "Etäisyydet"
+msgstr ""
 
 #: src/opentypetags.h:38
 #, kde-format
 msgid "Discretionary Ligatures"
-msgstr "Harkinnanvaraiset ligatuurit"
+msgstr ""
 
 #: src/opentypetags.h:39
 #, kde-format
 msgid "Denominators"
-msgstr "Nimittäjät"
+msgstr ""
 
 #: src/opentypetags.h:40
 #, kde-format
 msgid "Expert Forms"
-msgstr "Ammattilaismuodot"
+msgstr ""
 
 #: src/opentypetags.h:41
 #, kde-format
 msgid "Final glyph Alternates"
-msgstr "Päättävän merkin vaihtoehdot"
+msgstr ""
 
 #: src/opentypetags.h:42
 #, kde-format
 msgid "Terminal Forms #2"
-msgstr "Terminaalimuodot #2"
+msgstr ""
 
 #: src/opentypetags.h:43
 #, kde-format
 msgid "Terminal Forms #3"
-msgstr "Terminaalimuodot #3"
+msgstr ""
 
 #: src/opentypetags.h:44
 #, kde-format
 msgid "Terminal Forms"
-msgstr "Terminaalimuodot"
+msgstr ""
 
 #: src/opentypetags.h:45
 #, kde-format
 msgid "Fractions"
-msgstr "Murtoluvut"
+msgstr ""
 
 #: src/opentypetags.h:46
 #, kde-format
 msgid "Full Width"
-msgstr "Täysi leveys"
+msgstr ""
 
 #: src/opentypetags.h:47
 #, kde-format
@@ -3872,22 +3759,22 @@ msgstr ""
 #: src/opentypetags.h:49
 #, kde-format
 msgid "Alternate Half Width"
-msgstr "Vaihtoehtoiset puolikkaat"
+msgstr ""
 
 #: src/opentypetags.h:50
 #, kde-format
 msgid "Historical Forms"
-msgstr "Historialliset muodot"
+msgstr ""
 
 #: src/opentypetags.h:51
 #, kde-format
 msgid "Horizontal Kana Alternates"
-msgstr "Vaakasuorat Kana-vaihtoehdot"
+msgstr ""
 
 #: src/opentypetags.h:52
 #, kde-format
 msgid "Historical Ligatures"
-msgstr "Historialliset ligatuurit"
+msgstr ""
 
 #: src/opentypetags.h:54
 #, kde-format
@@ -3897,7 +3784,7 @@ msgstr ""
 #: src/opentypetags.h:55
 #, kde-format
 msgid "Half Width"
-msgstr "Puolikas"
+msgstr ""
 
 #: src/opentypetags.h:56
 #, kde-format
@@ -3912,32 +3799,32 @@ msgstr ""
 #: src/opentypetags.h:58
 #, kde-format
 msgid "Italics"
-msgstr "Kursiivit"
+msgstr ""
 
 #: src/opentypetags.h:59
 #, kde-format
 msgid "Justification Alternatives"
-msgstr "Tasausvaihtoehdot"
+msgstr ""
 
 #: src/opentypetags.h:60
-#, fuzzy, kde-format
+#, kde-format
 msgid "JIS78 Forms"
-msgstr "JIS2004-muodot {78 ?}"
+msgstr ""
 
 #: src/opentypetags.h:61
 #, kde-format
 msgid "JIS83 Forms"
-msgstr "JIS83-muodot"
+msgstr ""
 
 #: src/opentypetags.h:62
 #, kde-format
 msgid "JIS90 Forms"
-msgstr "JIS90-muodot"
+msgstr ""
 
 #: src/opentypetags.h:63
 #, kde-format
 msgid "JIS2004 Forms"
-msgstr "JIS2004-muodot"
+msgstr ""
 
 #: src/opentypetags.h:65
 #, kde-format
@@ -3947,7 +3834,7 @@ msgstr ""
 #: src/opentypetags.h:66
 #, kde-format
 msgid "Standard Ligatures"
-msgstr "Perusligatuurit"
+msgstr ""
 
 #: src/opentypetags.h:67
 #, kde-format
@@ -4012,37 +3899,37 @@ msgstr ""
 #: src/opentypetags.h:79
 #, kde-format
 msgid "Numerators"
-msgstr "Osoittajat"
+msgstr ""
 
 #: src/opentypetags.h:80
 #, kde-format
 msgid "Old Style Figures"
-msgstr "Lukujen vanha tyyli"
+msgstr ""
 
 #: src/opentypetags.h:81
 #, kde-format
 msgid "Optical Bounds"
-msgstr "Havainnollinen tasaus"
+msgstr ""
 
 #: src/opentypetags.h:82
 #, kde-format
 msgid "Ordinals"
-msgstr "Järjestysluvut"
+msgstr ""
 
 #: src/opentypetags.h:83
 #, kde-format
 msgid "Ornaments"
-msgstr "Ornamentit"
+msgstr ""
 
 #: src/opentypetags.h:84
 #, kde-format
 msgid "Proportional Alternate Width"
-msgstr "Vaihtoehtoinen suhteellinen leveys"
+msgstr ""
 
 #: src/opentypetags.h:85
 #, kde-format
 msgid "Petite Capitals"
-msgstr "Pienet kapiteelit"
+msgstr ""
 
 #: src/opentypetags.h:86
 #, kde-format
@@ -4072,17 +3959,17 @@ msgstr ""
 #: src/opentypetags.h:91
 #, kde-format
 msgid "Proportional Widths"
-msgstr "Suhteelliset leveydet"
+msgstr ""
 
 #: src/opentypetags.h:92
 #, kde-format
 msgid "Quarter Widths"
-msgstr "Neljäsosat"
+msgstr ""
 
 #: src/opentypetags.h:93
 #, kde-format
 msgid "Randomize"
-msgstr "Satunnainen"
+msgstr ""
 
 #: src/opentypetags.h:94
 #, kde-format
@@ -4092,7 +3979,7 @@ msgstr ""
 #: src/opentypetags.h:95
 #, kde-format
 msgid "Required Ligatures"
-msgstr "Vaaditut ligatuurit"
+msgstr ""
 
 #: src/opentypetags.h:96
 #, kde-format
@@ -4117,7 +4004,7 @@ msgstr ""
 #: src/opentypetags.h:100
 #, kde-format
 msgid "Stylistic Alternates"
-msgstr "Tyylivaihtoehdot"
+msgstr ""
 
 #: src/opentypetags.h:101
 #, kde-format
@@ -4127,137 +4014,137 @@ msgstr ""
 #: src/opentypetags.h:102
 #, kde-format
 msgid "Optical Size"
-msgstr "Havainnollinen koko"
+msgstr ""
 
 #: src/opentypetags.h:103
 #, kde-format
 msgid "Small Capitals"
-msgstr "Kapiteelit"
+msgstr ""
 
 #: src/opentypetags.h:104
 #, kde-format
 msgid "Simplified Forms"
-msgstr "Yksinkertaistetut muodot"
+msgstr ""
 
 #: src/opentypetags.h:105
 #, kde-format
 msgid "Stylistic Set 1"
-msgstr "Tyylijoukko 1"
+msgstr ""
 
 #: src/opentypetags.h:106
 #, kde-format
 msgid "Stylistic Set 2"
-msgstr "Tyylijoukko 2"
+msgstr ""
 
 #: src/opentypetags.h:107
 #, kde-format
 msgid "Stylistic Set 3"
-msgstr "Tyylijoukko 3"
+msgstr ""
 
 #: src/opentypetags.h:108
 #, kde-format
 msgid "Stylistic Set 4"
-msgstr "Tyylijoukko 4"
+msgstr ""
 
 #: src/opentypetags.h:109
 #, kde-format
 msgid "Stylistic Set 5"
-msgstr "Tyylijoukko 5"
+msgstr ""
 
 #: src/opentypetags.h:110
 #, kde-format
 msgid "Stylistic Set 6"
-msgstr "Tyylijoukko 6"
+msgstr ""
 
 #: src/opentypetags.h:111
 #, kde-format
 msgid "Stylistic Set 7"
-msgstr "Tyylijoukko 7"
+msgstr ""
 
 #: src/opentypetags.h:112
 #, kde-format
 msgid "Stylistic Set 8"
-msgstr "Tyylijoukko 8"
+msgstr ""
 
 #: src/opentypetags.h:113
 #, kde-format
 msgid "Stylistic Set 9"
-msgstr "Tyylijoukko 9"
+msgstr ""
 
 #: src/opentypetags.h:114
 #, kde-format
 msgid "Stylistic Set 10"
-msgstr "Tyylijoukko 10"
+msgstr ""
 
 #: src/opentypetags.h:115
 #, kde-format
 msgid "Stylistic Set 11"
-msgstr "Tyylijoukko 11"
+msgstr ""
 
 #: src/opentypetags.h:116
 #, kde-format
 msgid "Stylistic Set 12"
-msgstr "Tyylijoukko 12"
+msgstr ""
 
 #: src/opentypetags.h:117
 #, kde-format
 msgid "Stylistic Set 13"
-msgstr "Tyylijoukko 13"
+msgstr ""
 
 #: src/opentypetags.h:118
 #, kde-format
 msgid "Stylistic Set 14"
-msgstr "Tyylijoukko 14"
+msgstr ""
 
 #: src/opentypetags.h:119
 #, kde-format
 msgid "Stylistic Set 15"
-msgstr "Tyylijoukko 15"
+msgstr ""
 
 #: src/opentypetags.h:120
 #, kde-format
 msgid "Stylistic Set 16"
-msgstr "Tyylijoukko 16"
+msgstr ""
 
 #: src/opentypetags.h:121
 #, kde-format
 msgid "Stylistic Set 17"
-msgstr "Tyylijoukko 17"
+msgstr ""
 
 #: src/opentypetags.h:122
 #, kde-format
 msgid "Stylistic Set 18"
-msgstr "Tyylijoukko 18"
+msgstr ""
 
 #: src/opentypetags.h:123
 #, kde-format
 msgid "Stylistic Set 19"
-msgstr "Tyylijoukko 19"
+msgstr ""
 
 #: src/opentypetags.h:124
 #, kde-format
 msgid "Stylistic Set 20"
-msgstr "Tyylijoukko 20"
+msgstr ""
 
 #: src/opentypetags.h:125
 #, kde-format
 msgid "Subscript"
-msgstr "Alaindeksi"
+msgstr ""
 
 #: src/opentypetags.h:126
 #, kde-format
 msgid "Superscript"
-msgstr "Yläindeksi"
+msgstr ""
 
 #: src/opentypetags.h:127
 #, kde-format
 msgid "Swash"
-msgstr "Erikoismerkki"
+msgstr ""
 
 #: src/opentypetags.h:128
 #, kde-format
 msgid "Titling"
-msgstr "Otsikointi"
+msgstr ""
 
 #: src/opentypetags.h:129
 #, kde-format
@@ -4277,12 +4164,12 @@ msgstr ""
 #: src/opentypetags.h:132
 #, kde-format
 msgid "Traditional Forms"
-msgstr "Perinteiset kuviot"
+msgstr ""
 
 #: src/opentypetags.h:133
 #, kde-format
 msgid "Third Widths"
-msgstr "Kolmasosat"
+msgstr ""
 
 #: src/opentypetags.h:134
 #, kde-format
@@ -4297,12 +4184,12 @@ msgstr ""
 #: src/opentypetags.h:136
 #, kde-format
 msgid "Vattu Variants"
-msgstr "Vattu-muunnelmat"
+msgstr ""
 
 #: src/opentypetags.h:137
 #, kde-format
 msgid "Vertical Writing"
-msgstr "Pystysuora kirjoitus"
+msgstr ""
 
 #: src/opentypetags.h:138
 #, kde-format
@@ -4322,7 +4209,7 @@ msgstr ""
 #: src/opentypetags.h:141
 #, kde-format
 msgid "Vertical Kerning"
-msgstr "Merkkiparien pystysuuntainen välistys"
+msgstr ""
 
 #: src/opentypetags.h:142
 #, kde-format
@@ -4337,25 +4224,23 @@ msgstr ""
 #: src/opentypetags.h:144
 #, kde-format
 msgid "Slashed Zero"
-msgstr "Lävistetty nolla"
+msgstr ""
 
 #: src/playwidget.cpp:104
 #, kde-format
 msgid "Print Playground"
-msgstr "Tulosta leikkikenttä"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:33
-#, fuzzy, kde-format
-#| msgid "Preferences"
+#, kde-format
 msgctxt "@title:window"
 msgid "Preferences"
-msgstr "Asetukset"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:54
-#, fuzzy, kde-format
-#| msgid "Files & Folders"
+#, kde-format
 msgid "Files && Folders"
-msgstr "Tiedostot ja hakemistot"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:66
 #, kde-format
@@ -4381,7 +4266,7 @@ msgstr ""
 #: src/prefspaneldialog.cpp:111
 #, kde-format
 msgid "Please select an item in the list or create a new one."
-msgstr "Valitse kohde luettelosta tai luo uusi"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:241
 #, kde-format
@@ -4396,130 +4281,124 @@ msgid "A sample named \"%1\" already exists."
 msgstr ""
 
 #: src/prefspaneldialog.cpp:252
-#, fuzzy, kde-format
-#| msgid "Sample Text"
+#, kde-format
 msgctxt "A default sample text inserted when creating a new sample"
 msgid "Sample Text"
-msgstr "Esimerkkiteksti"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:265
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "PrefsPanelDialog|the name of a sample text will be append to the string"
-#| msgid "Do you confirm that you want to remove:"
+#, kde-format
 msgctxt "the name of a sample text will be append to the string"
 msgid "Do you confirm that you want to remove:"
-msgstr "Vahvista poista:"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:269
-#, fuzzy, kde-format
-#| msgid "Sample Text"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Sample Text"
-msgstr "Esimerkkiteksti"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:353
 #, kde-format
 msgid "Select font editor"
-msgstr "Valitse fonttimuokkain"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:391
 #, kde-format
 msgid "Select Templates Folder"
-msgstr "Valitse mallihakemisto"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:467 src/prefspaneldialog.cpp:508
 #, kde-format
 msgid "Alt"
-msgstr "Alt"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:467 src/prefspaneldialog.cpp:508
 #, kde-format
 msgid "Ctrl"
-msgstr "Ctrl"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:467 src/prefspaneldialog.cpp:508
 #, kde-format
 msgid "Shift"
-msgstr "Vaihto"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:467 src/prefspaneldialog.cpp:508
 #, kde-format
 msgid "Meta"
-msgstr "Meta"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:473
 #, kde-format
 msgid "Meta+"
-msgstr "Meta+"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:477
 #, kde-format
 msgid "Shift+"
-msgstr "Vaihto+"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:481
 #, kde-format
 msgid "Alt+"
-msgstr "Alt+"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:485
 #, kde-format
 msgid "Ctrl+"
-msgstr "Ctrl+"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:565
 #, kde-format
 msgctxt "action name will be appended to this"
 msgid "Shortcut is already in use for"
-msgstr "Oikopolku on jo käytössä: "
+msgstr ""
 
 #: src/prefspaneldialog.cpp:566
 #, kde-format
 msgid "Do you still want to assign it?"
-msgstr "Haluatko ottaa sen käyttöön siitä huolimatta?"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:567
 #, kde-format
 msgid "Replace"
-msgstr "Korvaa"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:568
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Reassign"
-msgstr "Suunnittelija"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:602
 #, kde-format
 msgid "Action"
-msgstr "Toiminto"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:603
 #, kde-format
 msgid "Shortcut"
-msgstr "Oikopolku"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:604
 #, kde-format
 msgid "Tip"
-msgstr "Vihje"
+msgstr ""
 
 #: src/prefspaneldialog.cpp:635
 #, kde-format
 msgid "Select hyphenation dictionary"
-msgstr "Valitse tavutussanasto"
+msgstr ""
 
 #: src/remotedir.cpp:53 src/remotedir.cpp:231
 #, kde-format
 msgid "Downloading"
-msgstr "Ladataan"
+msgstr ""
 
 #: src/sampletoolbar.cpp:87
-#, fuzzy, kde-format
-#| msgid "Select all"
+#, kde-format
 msgid "Select language"
-msgstr "Valitse kaikki"
+msgstr ""
 
 #: src/samplewidget.cpp:726
 #, kde-format
@@ -4529,43 +4408,42 @@ msgstr ""
 #: src/samplewidget.cpp:785
 #, kde-format
 msgid "Print Sample"
-msgstr "Tulosta näyte"
+msgstr ""
 
 #: src/samplewidget.cpp:864
-#, fuzzy, kde-format
-#| msgid "Print Sample"
+#, kde-format
 msgid "New Sample"
-msgstr "Tulosta näyte"
+msgstr ""
 
 #: src/systray.cpp:217
 #, kde-format
 msgid "&Activate all"
-msgstr "Ot&a kaikki käyttöön"
+msgstr ""
 
 #: src/systray.cpp:220
 #, kde-format
 msgid "&Deactivate all"
-msgstr "Poista &kaikki käytöstä"
+msgstr ""
 
 #: src/systray.cpp:223
 #, kde-format
 msgid "Mi&nimize"
-msgstr "Pie&nennä"
+msgstr ""
 
 #: src/systray.cpp:226
 #, kde-format
 msgid "&Restore"
-msgstr "P&alauta"
+msgstr ""
 
 #: src/systray.cpp:229
 #, kde-format
 msgid "E&xit"
-msgstr "&Poistu"
+msgstr ""
 
 #: src/systray.cpp:241
 #, kde-format
 msgid "&Tags"
-msgstr "Luoka&t"
+msgstr ""
 
 #: src/tagswidget.cpp:56
 #, kde-format
@@ -4575,11 +4453,10 @@ msgid ""
 msgstr ""
 
 #: src/tagswidget.cpp:59
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Tag"
-msgstr "Poista"
+msgstr ""
 
 #: src/tagswidget_listmodel.cpp:19
 #, kde-format
@@ -4597,52 +4474,44 @@ msgid ""
 "The program will keep running in the system tray. To terminate the program, "
 "choose <b>Exit</b> in the context menu of the system tray entry."
 msgstr ""
-"Ohjelmaa ei suljeta vaan se pienennetään ilmoitusalueelle. Voit sulkea "
-"ohjelman ilmoitusalueella olevan kuvakkeen valikon kohdasta <b>Poistu</b>."
 
 #: src/typotek.cpp:375
 #, kde-format
 msgid "Add Directory"
-msgstr "Lisää hakemisto"
+msgstr ""
 
 #: src/typotek.cpp:422
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "PrefsPanelDialog|the name of a sample text will be append to the string"
-#| msgid "Do you confirm that you want to remove:"
+#, kde-format
 msgid "Do you confirm you want to import %1 font?"
 msgid_plural "Do you confirm you want to import %1 fonts?"
-msgstr[0] "Vahvista poista:"
-msgstr[1] "Vahvista poista:"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/typotek.cpp:423
-#, fuzzy, kde-format
-#| msgid "Informations"
+#, kde-format
 msgid "Confirmation"
-msgstr "Tiedot"
+msgstr ""
 
 #: src/typotek.cpp:424
-#, fuzzy, kde-format
-#| msgid "Import"
+#, kde-format
 msgctxt "@action:button"
 msgid "Import"
-msgstr "Tuo"
+msgstr ""
 
 #: src/typotek.cpp:442 src/typotek.cpp:549
 #, kde-format
 msgid "Importing font files... "
-msgstr "Tuodaan fonttitiedostoja... "
+msgstr ""
 
 #: src/typotek.cpp:475
-#, fuzzy, kde-format
-#| msgid "Canât import this font because itâs broken :"
+#, kde-format
 msgid "Cannot import this font because it is broken:"
-msgstr "Tätä fonttia ei voida tuoda, koska se on viallinen:"
+msgstr ""
 
 #: src/typotek.cpp:502 src/typotek.cpp:590
 #, kde-format
 msgid "Fonts imported: %1"
-msgstr "Tuotuja fontteja: %1"
+msgstr ""
 
 #: src/typotek.cpp:514
 #, kde-format
@@ -4650,60 +4519,54 @@ msgid "Select Files to Import"
 msgstr ""
 
 #: src/typotek.cpp:514
-#, fuzzy, kde-format
+#, kde-format
 msgid "Font Files"
-msgstr "Fonttiperhe"
+msgstr ""
 
 #: src/typotek.cpp:621
-#, fuzzy, kde-format
-#| msgid "Import Directory"
+#, kde-format
 msgid "&Import Directory..."
-msgstr "Tuo hakemisto"
+msgstr ""
 
 #: src/typotek.cpp:623
 #, kde-format
 msgid "Import a directory"
-msgstr "Tuo hakemisto"
+msgstr ""
 
 #: src/typotek.cpp:629
-#, fuzzy, kde-format
-#| msgid "Import File"
+#, kde-format
 msgid "Import &Files..."
-msgstr "Tuo tiedosto"
+msgstr ""
 
 #: src/typotek.cpp:631
-#, fuzzy, kde-format
-#| msgid "Import File"
+#, kde-format
 msgid "Import Files"
-msgstr "Tuo tiedosto"
+msgstr ""
 
 #: src/typotek.cpp:635
-#, fuzzy, kde-format
-#| msgid "Export &Fonts"
+#, kde-format
 msgid "Export &fonts"
-msgstr "Kerää &fontteja"
+msgstr ""
 
 #: src/typotek.cpp:636
 #, kde-format
 msgid "Export a fontset"
-msgstr "Tallenna fonttikokoelma"
+msgstr ""
 
 #: src/typotek.cpp:640
 #, kde-format
 msgid "Export font book..."
-msgstr "Tallenna fonttikirja..."
+msgstr ""
 
 #: src/typotek.cpp:641
-#, fuzzy, kde-format
-#| msgid "Export a pdf that show selected fonts"
+#, kde-format
 msgid "Export a PDF document that shows selected fonts"
-msgstr "Tallenna esimerkkitekstit valituista fonteista pdf-tiedostoon"
+msgstr ""
 
 #: src/typotek.cpp:645
-#, fuzzy, kde-format
-#| msgid "Export font book..."
+#, kde-format
 msgid "Export font info for packaging..."
-msgstr "Tallenna fonttikirja..."
+msgstr ""
 
 #: src/typotek.cpp:646
 #, kde-format
@@ -4719,29 +4582,27 @@ msgstr ""
 #: src/typotek.cpp:654
 #, kde-format
 msgid "Activate all current"
-msgstr "Ota kaikki nykyiset käyttöön"
+msgstr ""
 
 #: src/typotek.cpp:655
-#, fuzzy, kde-format
-#| msgid "Activate all current"
+#, kde-format
 msgid "Activate all currently visible fonts"
-msgstr "Ota kaikki nykyiset käyttöön"
+msgstr ""
 
 #: src/typotek.cpp:659
 #, kde-format
 msgid "Deactivate all current"
-msgstr "Poista kaikki nykyiset käytöstä"
+msgstr ""
 
 #: src/typotek.cpp:660
-#, fuzzy, kde-format
-#| msgid "Deactivate all current"
+#, kde-format
 msgid "Deactivate all currently visible fonts"
-msgstr "Poista kaikki nykyiset käytöstä"
+msgstr ""
 
 #: src/typotek.cpp:664
 #, kde-format
 msgid "Edit current font"
-msgstr "Muokkaa valittua fonttia"
+msgstr ""
 
 #: src/typotek.cpp:668
 #, kde-format
@@ -4749,22 +4610,16 @@ msgid "Edit currently selected font in a font editor of your choice"
 msgstr ""
 
 #: src/typotek.cpp:671
-#, fuzzy, kde-format
-#| msgid ""
-#| "You don't seem to have font editor installed. Path to font editor can be "
-#| "set in preferences."
+#, kde-format
 msgid ""
 "You don't seem to have a font editor installed. Path to font editor can be "
 "set in Preferences dialog."
 msgstr ""
-"Fonttimuokkainta ei ole asennettu. Voit asettaa polun muokkaimeen "
-"asetuksissa."
 
 #: src/typotek.cpp:674
-#, fuzzy, kde-format
-#| msgid "Reload Tree"
+#, kde-format
 msgid "Reload Filtered"
-msgstr "Lataa uudelleen"
+msgstr ""
 
 #: src/typotek.cpp:675
 #, kde-format
@@ -4773,10 +4628,9 @@ msgid ""
 msgstr ""
 
 #: src/typotek.cpp:679
-#, fuzzy, kde-format
-#| msgid "Reload Tree"
+#, kde-format
 msgid "Reload Selected"
-msgstr "Lataa uudelleen"
+msgstr ""
 
 #: src/typotek.cpp:680
 #, kde-format
@@ -4786,7 +4640,7 @@ msgstr ""
 #: src/typotek.cpp:684
 #, kde-format
 msgid "Check Database"
-msgstr "Tarkista tietokanta"
+msgstr ""
 
 #: src/typotek.cpp:685
 #, kde-format
@@ -4794,10 +4648,9 @@ msgid "Check Fontmatrix database for dead links to font files"
 msgstr ""
 
 #: src/typotek.cpp:692
-#, fuzzy, kde-format
-#| msgid "Tag All..."
+#, kde-format
 msgid "Tag All Filtered..."
-msgstr "Lisää kaikki luokkaan..."
+msgstr ""
 
 #: src/typotek.cpp:693
 #, kde-format
@@ -4807,7 +4660,7 @@ msgstr ""
 #: src/typotek.cpp:697
 #, kde-format
 msgid "Show TrueType tables"
-msgstr "Näytä Truetype-taulukot"
+msgstr ""
 
 #: src/typotek.cpp:698
 #, kde-format
@@ -4826,10 +4679,9 @@ msgid "Edit PANOSE metadata without saving changes to font files"
 msgstr ""
 
 #: src/typotek.cpp:709
-#, fuzzy, kde-format
-#| msgid "Print Playground"
+#, kde-format
 msgid "Show/Hide Playground"
-msgstr "Tulosta leikkikenttä"
+msgstr ""
 
 #: src/typotek.cpp:715
 #, kde-format
@@ -4842,10 +4694,9 @@ msgid "Show/Hide Compare glyphs"
 msgstr ""
 
 #: src/typotek.cpp:723
-#, fuzzy, kde-format
-#| msgid "Close"
+#, kde-format
 msgid "Close All"
-msgstr "Sulje"
+msgstr ""
 
 #: src/typotek.cpp:724
 #, kde-format
@@ -4853,16 +4704,14 @@ msgid "Close all floating windows"
 msgstr ""
 
 #: src/typotek.cpp:728
-#, fuzzy, kde-format
-#| msgid "Show \"All\" actions"
+#, kde-format
 msgid "Show All"
-msgstr "Näytä toiminnot kaikille"
+msgstr ""
 
 #: src/typotek.cpp:729
-#, fuzzy, kde-format
-#| msgid "Show \"All\" actions"
+#, kde-format
 msgid "Show all floating windows"
-msgstr "Näytä toiminnot kaikille"
+msgstr ""
 
 #: src/typotek.cpp:733
 #, kde-format
@@ -4875,10 +4724,9 @@ msgid "Hide all floating windows"
 msgstr ""
 
 #: src/typotek.cpp:751
-#, fuzzy, kde-format
-#| msgid "Export font book..."
+#, kde-format
 msgid "Extract fonts..."
-msgstr "Tallenna fonttikirja..."
+msgstr ""
 
 #: src/typotek.cpp:752
 #, kde-format
@@ -4896,10 +4744,9 @@ msgid "Find a font using a raster sample of a letter"
 msgstr ""
 
 #: src/typotek.cpp:761
-#, fuzzy, kde-format
-#| msgid "Export font book..."
+#, kde-format
 msgid "Export font list as XeTeX..."
-msgstr "Tallenna fonttikirja..."
+msgstr ""
 
 #: src/typotek.cpp:762
 #, kde-format
@@ -4907,10 +4754,9 @@ msgid "Export the current filtered font list as a XeTeX source file"
 msgstr ""
 
 #: src/typotek.cpp:855
-#, fuzzy, kde-format
-#| msgid "Remote directories"
+#, kde-format
 msgid "Browse Directories"
-msgstr "Etähakemistot"
+msgstr ""
 
 #: src/typotek.cpp:857
 #, kde-format
@@ -4920,47 +4766,43 @@ msgstr ""
 #: src/typotek.cpp:863
 #, kde-format
 msgid "Load settings"
-msgstr "Lataa asetukset"
+msgstr ""
 
 #: src/typotek.cpp:995
 #, kde-format
 msgid "Check for Fontmatrix own dir"
-msgstr "Tarkista Fontmatrixin oma hakemisto"
+msgstr ""
 
 #: src/typotek.cpp:1221
-#, fuzzy, kde-format
-#| msgid "Collected System Font"
+#, kde-format
 msgid "Loading System Fonts"
-msgstr "Löydetyt järjestelmäfontit"
+msgstr ""
 
 #: src/typotek.cpp:1222
-#, fuzzy, kde-format
-#| msgid "Collected System Font"
+#, kde-format
 msgid "System Fonts"
-msgstr "Löydetyt järjestelmäfontit"
+msgstr ""
 
 #: src/typotek.cpp:1252 src/typotek.cpp:1254
 #, kde-format
 msgid "Adding"
-msgstr "Lisätään"
+msgstr ""
 
 #: src/typotek.cpp:1252 src/typotek.cpp:1254
-#, fuzzy, kde-format
-#| msgid "fonts loaded"
+#, kde-format
 msgctxt "followed by a directory name"
 msgid "fonts from"
-msgstr "fonttia ladattuna"
+msgstr ""
 
 #: src/typotek.cpp:1277
-#, fuzzy, kde-format
-#| msgid "fonts loaded"
+#, kde-format
 msgid "system fonts added."
-msgstr "fonttia ladattuna"
+msgstr ""
 
 #: src/typotek.cpp:1332
 #, kde-format
 msgid "font descriptions imported from network"
-msgstr "verkosta haetut fonttien kuvaukset"
+msgstr ""
 
 #: src/typotek.cpp:1357
 #, kde-format
@@ -4968,22 +4810,18 @@ msgid ""
 "You are about to activate a bunch of fonts,\n"
 "it is time to cancel if it was not your intent"
 msgstr ""
-"Olet aikeissa ottaa käyttöön runsaasti fontteja. Jos se ei ollut "
-"tarkoituksesi, voit vielä perua aikeesi."
 
 #: src/typotek.cpp:1358
-#, fuzzy, kde-format
-#| msgid "Activate"
+#, kde-format
 msgctxt "@title:window"
 msgid "Activate Fonts"
-msgstr "Ota käyttöön"
+msgstr ""
 
 #: src/typotek.cpp:1359
-#, fuzzy, kde-format
-#| msgid "Activate"
+#, kde-format
 msgctxt "@action:button"
 msgid "Activate"
-msgstr "Ota käyttöön"
+msgstr ""
 
 #: src/typotek.cpp:1370
 #, kde-format
@@ -4991,22 +4829,18 @@ msgid ""
 "You are about to deactivate a bunch of fonts,\n"
 "it is time to cancel if it was not your intent"
 msgstr ""
-"Olet aikeissa poistaa käytöstä runsaasti fontteja. Jos se ei ollut "
-"tarkoituksesi, voit vielä perua aikeesi."
 
 #: src/typotek.cpp:1371
-#, fuzzy, kde-format
-#| msgid "Deactivate"
+#, kde-format
 msgctxt "@title:window"
 msgid "Deactivate Fonts"
-msgstr "Poista käytöstä"
+msgstr ""
 
 #: src/typotek.cpp:1372
-#, fuzzy, kde-format
-#| msgid "Deactivate"
+#, kde-format
 msgctxt "@action:button"
 msgid "Deactivate"
-msgstr "Poista käytöstä"
+msgstr ""
 
 #: src/typotek.cpp:1389
 #, kde-format
@@ -5022,35 +4856,32 @@ msgstr ""
 #: src/typotek.cpp:1399 src/typotek.cpp:2074
 #, kde-format
 msgid "There is no font selected"
-msgstr "Fontteja ei ole valittuna"
+msgstr ""
 
 #: src/typotek.cpp:1444
 #, kde-format
 msgid "Support of DragNDrop over http is sheduled but not yet effective"
 msgstr ""
-"Raahaa ja pudota -tuki http:lle on kehitteillä, muttei vielä toiminnassa"
 
 #: src/typotek.cpp:1463
-#, fuzzy, kde-format
-#| msgid "You bring something over me I canât handle"
+#, kde-format
 msgid "You bring something over me I can’t handle"
-msgstr "Pudotit jotain, jota en osaa käsitellä"
+msgstr ""
 
 #: src/typotek.cpp:1524
-#, fuzzy, kde-format
-#| msgid "&Edit"
+#, kde-format
 msgid "Edit me!"
-msgstr "&Muokkaa"
+msgstr ""
 
 #: src/typotek.cpp:1603
 #, kde-format
 msgid "default"
-msgstr "oletus"
+msgstr ""
 
 #: src/typotek.cpp:1687
 #, kde-format
 msgid "Try to run font editor with the selected font as argument"
-msgstr "Yritä ajaa fonttimuokkain valitulla fontilla"
+msgstr ""
 
 #: src/typotek.cpp:1690
 #, kde-format
@@ -5058,14 +4889,11 @@ msgid ""
 "You don't seem to have font editor installed. Path to font editor can be set "
 "in preferences."
 msgstr ""
-"Fonttimuokkainta ei ole asennettu. Voit asettaa polun muokkaimeen "
-"asetuksissa."
 
 #: src/typotek.cpp:1975
-#, fuzzy, kde-format
-#| msgid "Export a fontset"
+#, kde-format
 msgid "Export font list as XeTeX"
-msgstr "Tallenna fonttikokoelma"
+msgstr ""
 
 #: src/typotek.cpp:1975
 #, kde-format
@@ -5088,11 +4916,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/typotek.cpp:2204
-#, fuzzy, kde-format
-#| msgid "Edit current font"
+#, kde-format
 msgctxt "followed by currently selected font name (in status bar)"
 msgid "Current Font"
-msgstr "Muokkaa valittua fonttia"
+msgstr ""
 
 #: src/typotek.cpp:2228
 #, kde-kuit-format
@@ -5108,557 +4935,3 @@ msgstr ""
 msgctxt "@title:window"
 msgid "Handbook Not Available"
 msgstr ""
-
-#~ msgid "About Fontmatrix"
-#~ msgstr "Tietoja Fontmatrixista"
-
-#~ msgid "The Project"
-#~ msgstr "Projekti"
-
-#~ msgid "The People"
-#~ msgstr "Ihmiset"
-
-#~ msgid "Splash"
-#~ msgstr "Latausikkuna"
-
-#~ msgid "version "
-#~ msgstr "versio"
-
-#~ msgid "Category"
-#~ msgstr "Osa"
-
-#, fuzzy
-#~ msgctxt ""
-#~ "FontStrings|\n"
-#~ "Weight"
-#~ msgid "Thin"
-#~ msgstr "Ohut"
-
-#, fuzzy
-#~ msgctxt ""
-#~ "FontStrings|\n"
-#~ "Contrast"
-#~ msgid "Medium"
-#~ msgstr "Keskipaksu"
-
-#~ msgid "Fontmatrix Help"
-#~ msgstr "Fontmatrixin ohje"
-
-#~ msgid "Filter view by chosing tag"
-#~ msgstr "Suodata valitulla luokalla"
-
-#~ msgid "Names"
-#~ msgstr "Nimet"
-
-#~ msgid "Show complete collection of available fonts"
-#~ msgstr "Näytä täydellinen fonttikokoelma"
-
-#~ msgid "Previews"
-#~ msgstr "Esikatselut"
-
-#~ msgid "Folders"
-#~ msgstr "Hakemistot"
-
-#~ msgid "F"
-#~ msgstr "S"
-
-#~ msgid "Switch to panose filtering"
-#~ msgstr "Vaihda Panose-suodatukseen"
-
-#~ msgid "reset"
-#~ msgstr "tyhjennä"
-
-#~ msgid "Font Information"
-#~ msgstr "Fontin tiedot"
-
-#~ msgid "Font Size"
-#~ msgstr "Fonttikoko"
-
-#~ msgid "push"
-#~ msgstr "lisää"
-
-#~ msgid "Settings"
-#~ msgstr "Asetukset"
-
-#~ msgid "FreeType"
-#~ msgstr "Freetype"
-
-#~ msgid "Native Qt objects"
-#~ msgstr "Natiivit Qt-kohteet"
-
-#~ msgid "edit"
-#~ msgstr "muokkaa"
-
-#~ msgid "No hinting"
-#~ msgstr "Ei vihjeistystä"
-
-#~ msgid "Light Hinting"
-#~ msgstr "Kevyt vihjeistys"
-
-#~ msgid "Normal Hinting"
-#~ msgstr "Normaali vihjeistys"
-
-#~ msgid "000Basic Latin"
-#~ msgstr "000Latinalainen perusosa"
-
-#~ msgid "001Latin-1 Supplement"
-#~ msgstr "001Latinalaisen merkistön täydennys Latin-1:ksi"
-
-#~ msgid "002Latin Extended-A"
-#~ msgstr "002Latinalaisen merkistön laajennusosa A"
-
-#~ msgid "003Latin Extended-B"
-#~ msgstr "003Latinalaisen merkistön laajennusosa B"
-
-#~ msgid "004IPA Extensions"
-#~ msgstr "004IPA-täydennyksiä"
-
-#~ msgid "005Spacing Modifier Letters"
-#~ msgstr "005Tarkkeenomaisia erillisiä merkkejä"
-
-#~ msgid "006Combining Diacritical Marks"
-#~ msgstr "006Tarkkeita"
-
-#~ msgid "007Greek and Coptic"
-#~ msgstr "007Kreikkalaiset ja koptilaiset"
-
-#~ msgid "009Cyrillic Supplement"
-#~ msgstr "009Kyrillisten täydennys"
-
-#~ msgid "014Arabic Supplement"
-#~ msgstr "014Arabialaisten täydennys"
-
-#~ msgid "016N'Ko"
-#~ msgstr "016N'Ko"
-
-#~ msgid "030Burmese"
-#~ msgstr "030Burma"
-
-#~ msgid "034Ethiopic Supplement"
-#~ msgstr "034Etiopialaisten tarkennus"
-
-#~ msgid "047New Tai Lue"
-#~ msgstr "047Uusi Tai Lue"
-
-#~ msgid "048Khmer Symbols"
-#~ msgstr "048Khmer-symbolit"
-
-#~ msgid "051Lepcha"
-#~ msgstr "051Lepcha"
-
-#~ msgid "052Phonetic Extensions"
-#~ msgstr "052Äännelaajennus"
-
-#~ msgid "053Phonetic Extensions Supplement"
-#~ msgstr "053Äännelaajennuksen tarkennus"
-
-#~ msgid "054Combining Diacritical Marks Supplement"
-#~ msgstr "054Tarkkeiden täydennys"
-
-#~ msgid "055Latin Extended Additional"
-#~ msgstr "055Latinalaisen merkistön lisälaajennuksia"
-
-#~ msgid "056Greek Extended"
-#~ msgstr "056Kreikkalaisen merkistön laajennusosa"
-
-#~ msgid "057General Punctuation"
-#~ msgstr "057Yleisiä välimerkkejä"
-
-#~ msgid "058Superscripts and Subscripts"
-#~ msgstr "058Ylä- ja alaindeksejä"
-
-#~ msgid "059Currency Symbols"
-#~ msgstr "059Valuuttamerkkejä"
-
-#~ msgid "060Combining Diacritical Marks for Symbols"
-#~ msgstr "060Symbolien tarkkeita"
-
-#~ msgid "061Letterlike Symbols"
-#~ msgstr "061Kirjainsymboleita"
-
-#~ msgid "062Number Forms"
-#~ msgstr "062Lukuilmaisuja"
-
-#~ msgid "063Arrows"
-#~ msgstr "063Nuolia"
-
-#~ msgid "065Miscellaneous Technical"
-#~ msgstr "065Sekalaisia teknisiä merkkejä"
-
-#~ msgid "066Control Pictures"
-#~ msgstr "066Ohjausmerkkien symboleita"
-
-#~ msgid "067Optical Character Recognition"
-#~ msgstr "067OCR-merkkejä"
-
-#~ msgid "068Enclosed Alphanumerics"
-#~ msgstr "068Ympäröityjä alfanumeerisia merkkejä"
-
-#~ msgid "069Box Drawing"
-#~ msgstr "069Viivapiirrosmerkkejä"
-
-#~ msgid "070Block Elements"
-#~ msgstr "070Lohko-osia"
-
-#~ msgid "071Geometric Shapes"
-#~ msgstr "071Geometrisia muotoja"
-
-#~ msgid "073Dingbats"
-#~ msgstr "073Dingbats"
-
-#~ msgid "074Miscellaneous Mathematical Symbols-A"
-#~ msgstr "074Sekalaisia matemaattisia symboleita A"
-
-#~ msgid "075Supplemental Arrows-A"
-#~ msgstr "075Nuolten tarkkenus A"
-
-#~ msgid "076Braille Patterns"
-#~ msgstr "076Braille-merkkejä"
-
-#~ msgid "077Supplemental Arrows-B"
-#~ msgstr "077Nuolten tarkennus B"
-
-#~ msgid "078Miscellaneous Mathematical Symbols-B"
-#~ msgstr "078Sekalaisia matemaattisia symboleita B"
-
-#~ msgid "079Supplemental Mathematical Operators"
-#~ msgstr "079Matemaattisten operaattoreitten tarkennus"
-
-#~ msgid "080Miscellaneous Symbols and Arrows"
-#~ msgstr "080Sekalaisia symoleita ja nuolia"
-
-#~ msgid "082Latin Extended-C"
-#~ msgstr "082Latinalaisen merkistön laajennusosa C"
-
-#~ msgid "084Georgian Supplement"
-#~ msgstr "084Kartvelilaisten tarkennus"
-
-#~ msgid "086Ethiopic Extended"
-#~ msgstr "086Etiopialaisten merkkien laajennus"
-
-#~ msgid "087Supplemental Punctuation"
-#~ msgstr "087Välimerkkien lisäosa"
-
-#~ msgid "088CJK Radicals Supplement"
-#~ msgstr "088Lisää CJK-radikaaleja"
-
-#~ msgid "089Kangxi Radicals"
-#~ msgstr "089Kangxi-radikaaleja"
-
-#~ msgid "090Ideographic Description Characters"
-#~ msgstr "090Sanamerkkien kuvailumerkkejä"
-
-#~ msgid "091CJK Symbols and Punctuation"
-#~ msgstr "091CJK-symboleita ja -välimerkkejä"
-
-#~ msgid "092Hiragana"
-#~ msgstr "092Hiragana"
-
-#~ msgid "093Katakana"
-#~ msgstr "093Katakana"
-
-#~ msgid "095Hangul Compatibility Jamo"
-#~ msgstr "095Hangulin jamo-erillismerkkejä"
-
-#~ msgid "096Kanbun"
-#~ msgstr "096Kanbun"
-
-#~ msgid "097Bopomofo Extended"
-#~ msgstr "097Bopomofo-lisämerkkejä"
-
-#~ msgid "098CJK Strokes"
-#~ msgstr "098CJK-viivoja"
-
-#~ msgid "099Katakana Phonetic Extensions"
-#~ msgstr "099Katakana-äännelaajennos"
-
-#~ msgid "100Enclosed CJK Letters and Months"
-#~ msgstr "100Ympäröityjä CJK-kirjaimia ja -kuukausimerkkejä"
-
-#~ msgid "101CJK Compatibility"
-#~ msgstr "101CJK-yhteensopivia merkkejä"
-
-#~ msgid "102CJK Unified Ideographs Extension A"
-#~ msgstr "102CJK-sanamerkkien laajennus A"
-
-#~ msgid "103Yijing Hexagram Symbols"
-#~ msgstr "103Yijing-heksagrammisymboleja"
-
-#~ msgid "105Yi Syllables"
-#~ msgstr "105Yi-tavumerkkejä"
-
-#~ msgid "106Yi Radicals"
-#~ msgstr "106Yi-juurimerkkejä"
-
-#~ msgid "107Modifier Tone Letters"
-#~ msgstr "107Tarkkeenomaisia toonimerkkejä"
-
-#~ msgid "108Latin Extended-D"
-#~ msgstr "108Latinalaisen merkistön laajennusosa D"
-
-#~ msgid "111Hangul Syllables"
-#~ msgstr "111Hangul-tavumerkkejä"
-
-#~ msgid "112High Surrogates"
-#~ msgstr "112Laajennuskoodien ykkösosia"
-
-#~ msgid "113High Private Use Surrogates"
-#~ msgstr "113Laajennuskoodien ykkösosat erilliskäyttöön"
-
-#~ msgid "114Low Surrogates"
-#~ msgstr "114Laajennuskoodien kakkososia"
-
-#~ msgid "115Private Use Area"
-#~ msgstr "115Erilliskäytön lohko"
-
-#~ msgid "116CJK Compatibility Ideographs"
-#~ msgstr "116CJK-yhteensopivuusmerkkejä"
-
-#~ msgid "117Alphabetic Presentation Forms"
-#~ msgstr "117Kirjainten tulostusmuotoja"
-
-#~ msgid "118Arabic Presentation Forms-A"
-#~ msgstr "118Arabialaisten merkkien esitysmuotoja A"
-
-#~ msgid "119Variation Selectors"
-#~ msgstr "119Vaihtelun valitsimia"
-
-#~ msgid "120Vertical Forms"
-#~ msgstr "120Pystysuoria muotoja"
-
-#~ msgid "121Combining Half Marks"
-#~ msgstr "121Tarkkeiden puolikkaita"
-
-#~ msgid "122CJK Compatibility Forms"
-#~ msgstr "122CJK-yhteensopivia merkkien muotoja"
-
-#~ msgid "123Small Form Variants"
-#~ msgstr "123Pienikokoisia muunnelmia"
-
-#~ msgid "124Arabic Presentation Forms-B"
-#~ msgstr "124Arabialaisten merkkien esitysmuotoja B"
-
-#~ msgid "125Halfwidth and Fullwidth Forms"
-#~ msgstr "125Puoli- ja täyslevyisiä esitysmuotoja"
-
-#~ msgid "126Specials"
-#~ msgstr "126Erikoismerkkejä"
-
-#~ msgid "127Supplementary Multilingual Plane (SMP)"
-#~ msgstr "127 Monikielitason tarkennus (SMP)"
-
-#~ msgid "128Supplementary Ideographic Plane (SIP)"
-#~ msgstr "128Käsitemerkkitason tarkennus"
-
-#~ msgid "129unassigned"
-#~ msgstr "129nimeämättömät"
-
-#~ msgid "130Supplementary Special-purpose Plane (SSP)"
-#~ msgstr "130Monikäyttötason tarkennus (SSP)"
-
-#~ msgid "131Private Use Area 1 (PUA)"
-#~ msgstr "131Erilliskäytön lohko 1 (PUA)"
-
-#~ msgid "132Private Use Area 2 (PUA)"
-#~ msgstr "132Erilliskäytön lohko 2 (PUA)"
-
-#~ msgid "Activation event"
-#~ msgstr "Käyttöönottotapahtuma"
-
-#~ msgid "Deactivation of :"
-#~ msgstr "Käytöstäpoisto:"
-
-#~ msgid "Fontmatrix takes care of you"
-#~ msgstr "Fontmatrix huolehtii sinusta"
-
-#, fuzzy
-#~ msgid "Fontmatrix safe"
-#~ msgstr "Fontmatrix säiliö"
-
-#~ msgid "Welcome to Fontmatrix"
-#~ msgstr "Tervetuloa Fontmatrixiin"
-
-#~ msgid "size"
-#~ msgstr "koko"
-
-#~ msgid "http://"
-#~ msgstr "http://"
-
-#~ msgid "Local storage"
-#~ msgstr "Paikallinen säilö"
-
-#~ msgid "Hyphenation"
-#~ msgstr "Tavutus"
-
-#~ msgid "Dictionary:"
-#~ msgstr "Sanakirja"
-
-#~ msgid "Shotcuts"
-#~ msgstr "Oikopolut"
-
-#~ msgid "Looks like your setup does not have a system tray available."
-#~ msgstr "Järjestelmästäsi ei löydy ilmoitusaluetta."
-
-#~ msgid "Select Where remote font files will be stored"
-#~ msgstr "Valitse etäfonttien säilöntäpaikka"
-
-#, fuzzy
-#~ msgctxt ""
-#~ "PrefsPanelDialog|\n"
-#~ "A default sample text inserted when creating a new sample"
-#~ msgid "Sample Text"
-#~ msgstr "Esimerkkiteksti"
-
-#~ msgid "Creating font book... "
-#~ msgstr "Luodaan fonttikirjaa... "
-
-#~ msgid ""
-#~ "ABCDEFGH\n"
-#~ "IJKLMNOPQ\n"
-#~ "RSTUVXYZ\n"
-#~ "\n"
-#~ "abcdefgh\n"
-#~ "ijklmnopq\n"
-#~ "rstuvxyz\n"
-#~ "0123456789\n"
-#~ ",;:!?."
-#~ msgstr ""
-#~ "ABCDEFGHI\n"
-#~ "JKLMNOPQR\n"
-#~ "STUVXYZÅÄÖ\n"
-#~ "\n"
-#~ "abcdefghi\n"
-#~ "jklmnopqr\n"
-#~ "stuvxyzåäö\n"
-#~ "0123456789\n"
-#~ ",;:!?. "
-
-#~ msgid "hamburgefonstiv"
-#~ msgstr "törkylempijä"
-
-#, fuzzy
-#~ msgid "Add new tag"
-#~ msgstr "Lisää uusi luokka"
-
-#~ msgid "Fontmatrix"
-#~ msgstr "Fontmatrix"
-
-#~ msgid "&Import..."
-#~ msgstr "T&uo..."
-
-#~ msgid "Ctrl+O"
-#~ msgstr "Ctrl+O"
-
-#~ msgid "Ctrl+S"
-#~ msgstr "Ctrl+S"
-
-#~ msgid "Ctrl+Q"
-#~ msgstr "Ctrl+Q"
-
-#~ msgid "Exit the application"
-#~ msgstr "Poistu ohjelmasta"
-
-#~ msgid "&About"
-#~ msgstr "&Tietoja"
-
-#~ msgid "Show the Typotek's About box"
-#~ msgstr "Näytä Fontmatrixin tietoja-ikkuna"
-
-#~ msgid "Help"
-#~ msgstr "Ohje"
-
-#~ msgid "&Help"
-#~ msgstr "&Ohje"
-
-#~ msgid "Ready"
-#~ msgstr "Valmis"
-
-#~ msgid "You provided an empty string, itâs not fair"
-#~ msgstr "Merkkijono on tyhjä."
-
-#~ msgid "Nothing Selected"
-#~ msgstr "Ei valintaa"
-
-#~ msgid "Choose the tag for filter exported fonts"
-#~ msgstr "Valitse tallennettavien fonttien luokka"
-
-#~ msgid "font descriptions from network"
-#~ msgstr "fonttien kuvaukset verkon kautta"
-
-#~ msgid "fonts from system directories"
-#~ msgstr "fontit järjestelmähakemistoista"
-
-#~ msgid "fonts available from system"
-#~ msgstr "fontit järjestelmässä"
-
-#~ msgid "Browse Fonts"
-#~ msgstr "Selaa fontteja"
-
-#~ msgid "\"default\" is a reserved"
-#~ msgstr "\"oletus\" on varattu"
-
-#~ msgid "Print Info..."
-#~ msgstr "Tiedot..."
-
-#~ msgid "Print informations about the current font"
-#~ msgstr "Tulosta tietoja valitusta fontista"
-
-#~ msgid "Print Sample..."
-#~ msgstr "Näyte..."
-
-#~ msgid "Print the sample as a specimen"
-#~ msgstr "Tulosta näyte"
-
-#~ msgid "Print Chart..."
-#~ msgstr "Taulukko..."
-
-#~ msgid "Print a chart of the current font"
-#~ msgstr "Tulosta valittu fontti taulukkona"
-
-#~ msgid "Print Playground..."
-#~ msgstr "Leikkikenttä"
-
-#~ msgid "Print the playground"
-#~ msgstr "Tulosta leikkikentän sisältö"
-
-#~ msgid "Print Family..."
-#~ msgstr "Perhe..."
-
-#~ msgid "Print a specimen of the whole family the current face belongs to"
-#~ msgstr "Tulosta näyte koko fonttiperheestä, johon valittu fontti kuuluu"
-
-#~ msgid "About &Qt"
-#~ msgstr "Tietoja Qt:stä"
-
-#~ msgid "Welcome maessage"
-#~ msgstr "Tervetuloviesti"
-
-#~ msgid "Print Infos"
-#~ msgstr "Tulosta tiedot"
-
-#~ msgid "Print Family"
-#~ msgstr "Tulosta perhe"
-
-#~ msgid "Next Family"
-#~ msgstr "Seuraava perhe"
-
-#~ msgid "Next Face"
-#~ msgstr "Seuraava fontti"
-
-#~ msgid "Previous Family"
-#~ msgstr "Edellinen perhe"
-
-#~ msgid "Previous Face"
-#~ msgstr "Edellinen fontti"
-
-#~ msgid "Layout Options"
-#~ msgstr "Sijoitteluasetukset"
-
-#~ msgid "&Sync"
-#~ msgstr "&Synkronoi"
-
-#~ msgid "Sync with the DB file"
-#~ msgstr "Synkronoi tietokannan kanssa"
-
-#~ msgid "Not enough text to make a sample"
-#~ msgstr "Ei tarpeeksi tekstiä näytettä varten"

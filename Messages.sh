@@ -17,6 +17,7 @@
  -kI18N_NOOP:1 -kI18NC_NOOP:1c,2 -ktr2i18n:1 \
  --msgid-bugs-address=https://github.com/eniac111/fontmatrix/issues}"
 
-$EXTRACTRC $(find src -name '*.ui' -o -name '*.rc' -o -name '*.kcfg' | sort) >> rc.cpp
+# src/fontmatrix.rc is the Windows resource script, not an XMLGUI file
+$EXTRACTRC $(find src \( -name '*.ui' -o -name '*.rc' -o -name '*.kcfg' \) ! -name 'fontmatrix.rc' | sort) >> rc.cpp
 $XGETTEXT rc.cpp $(find src -maxdepth 1 \( -name '*.cpp' -o -name '*.h' \) | sort) -o "$podir/fontmatrix.pot"
 rm -f rc.cpp
