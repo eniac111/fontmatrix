@@ -131,6 +131,5 @@ FMBaseShaper::FMBaseShaper(FMOtf * o, QString s)
 }
 
 FMBaseShaper::~ FMBaseShaper()
-{
-}
+= default;
 

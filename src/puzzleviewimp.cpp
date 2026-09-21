@@ -31,8 +31,7 @@ PuzzleViewImp::PuzzleViewImp ( const QImage & qimg , QRgb patternColor)
 }
 
 PuzzleViewImp::~ PuzzleViewImp()
-{
-}
+= default;
 
 void PuzzleViewImp::init(const QImage & qimg)
 {

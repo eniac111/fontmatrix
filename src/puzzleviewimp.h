@@ -38,7 +38,7 @@ class SVect
 
 class PuzzleViewImp : public QList<SVect>
 {
-		PuzzleViewImp() {}
+		PuzzleViewImp() = default;
 		
 	public:
 		PuzzleViewImp ( const QString& iPath, QRgb patternColor  );

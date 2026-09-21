@@ -70,7 +70,7 @@ TTTableView::~ TTTableView()
 
 void TTTableView::updateHexView()
 {
-	if(!tView->selectedItems().size())
+	if(tView->selectedItems().isEmpty())
 		return;
 	
 	QString table(tView->selectedItems()[0]->text(NAME));
@@ -102,4 +102,3 @@ void TTTableView::exportHex()
 }
 
 #include "moc_tttableview.cpp"
-

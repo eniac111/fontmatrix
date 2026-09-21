@@ -35,12 +35,10 @@
 const QString ParallelCoorDataSet::FieldSep = QStringLiteral(":");
 
 ParallelCoorDataSet::ParallelCoorDataSet()
-{
-}
+= default;
 
 ParallelCoorDataSet::~ ParallelCoorDataSet()
-{
-}
+= default;
 
 
 QMap< QString , QString> ParallelCoorDataSet::getCategoryDescriptions() const
@@ -134,8 +132,7 @@ ParallelCoorView::ParallelCoorView(ParallelCoorDataSet * dataset, QWidget * pare
 }
 
 ParallelCoorView::~ParallelCoorView()
-{	
-}
+= default;
 
 void ParallelCoorView::selectField(const QString & field)
 {
@@ -857,12 +854,3 @@ void ParallelCoorView::doConnect()
 }
 
 #include "moc_parallelcoor.cpp"
-
-
-
-
-
-
-
-
-

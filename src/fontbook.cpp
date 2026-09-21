@@ -82,8 +82,7 @@ FontBook::FontBook()
 
 
 FontBook::~FontBook()
-{
-}
+= default;
 
 
 
@@ -473,7 +472,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 			}
 		}
 
-		if(llist.size() > 0)
+		if(!llist.isEmpty())
 		{
 			nameFont.setPointSizeF(6.0);
 			QGraphicsSimpleTextItem * uniText( pScene.addSimpleText(i18n("Unicode coverage") , nameFont) );

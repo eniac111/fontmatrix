@@ -34,7 +34,7 @@
 class FontItem;
 class QSqlQuery;
 
-typedef QPair<FontItem*, QString> FontDBResult;
+using FontDBResult = QPair<FontItem*, QString>;
 
 class FMFontDb : public QObject, public QSqlDatabase
 {
@@ -42,7 +42,7 @@ class FMFontDb : public QObject, public QSqlDatabase
 		// No surprise, we want it to be a singleton
 		static FMFontDb *instance;
 		FMFontDb();
-		~FMFontDb() override {}
+		~FMFontDb() override = default;
 		enum Table
 		{
 			InternalId = 0,

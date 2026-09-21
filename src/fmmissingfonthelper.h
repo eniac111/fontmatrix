@@ -31,7 +31,7 @@
 */
 class FMMissingFontHelper : public QObject
 {
-    FMMissingFontHelper(){}
+    FMMissingFontHelper()= default;
 public:
     FMMissingFontHelper(const QString& ff);
     FMMissingFontHelper(const QStringList& ff);

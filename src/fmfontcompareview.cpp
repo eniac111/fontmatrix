@@ -281,8 +281,7 @@ FMFontCompareView::FMFontCompareView(QWidget * parent)
 }
 
 FMFontCompareView::~ FMFontCompareView()
-{
-}
+= default;
 
 void FMFontCompareView::changeFont(int level, FontItem * font)
 {
@@ -521,9 +520,3 @@ void FMFontCompareView::fitGlyphsView()
 }
 
 #include "moc_fmfontcompareview.cpp"
-
-
-
-
-
-

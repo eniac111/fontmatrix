@@ -58,9 +58,7 @@ Systray::Systray()
 }
 
 Systray::~Systray()
-{
-
-}
+= default;
 
 void Systray::slotSetVisible(bool isVisible)
 {

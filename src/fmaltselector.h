@@ -70,7 +70,7 @@ class FMAltSelectorModel : public QAbstractItemModel
 	// we need a delegate to display alt glyphs / selection widget
 	class FMAltItemDelegate : public QAbstractItemDelegate
 	{
-		FMAltItemDelegate();
+		FMAltItemDelegate() = delete;
 		const FMAltSelectorModel * pmodel = nullptr;
 	public:
 		FMAltItemDelegate(FMAltSelectorModel* model);
@@ -108,7 +108,7 @@ class FMAltSelector : public QWidget , private Ui::AltSelectorWidget
 
 public:
 	FMAltSelector(QWidget * parent);
-	~FMAltSelector() override{}
+	~FMAltSelector() override= default;
 
 public Q_SLOTS:
 	void fillFromContext();

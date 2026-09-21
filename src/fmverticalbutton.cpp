@@ -25,8 +25,7 @@ FMVerticalButton::FMVerticalButton(QWidget * parent)
 }
 
 FMVerticalButton::~FMVerticalButton()
-{
-}
+= default;
 
 bool FMVerticalButton::event(QEvent * event)
 {

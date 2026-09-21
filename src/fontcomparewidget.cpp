@@ -40,9 +40,7 @@ FontCompareWidget::FontCompareWidget(QWidget * parent)
 }
 
 FontCompareWidget::~ FontCompareWidget()
-{
-
-}
+= default;
 
 FontCompareWidget* FontCompareWidget::getInstance()
 {

@@ -80,7 +80,7 @@ struct Node
 	int deepCount();
 
 private:
-	Node() {}
+	Node() = default;
 	
 };
 

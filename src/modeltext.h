@@ -21,7 +21,7 @@ class ModelText : public QTextEdit
 	Q_OBJECT
 	public:
 		ModelText(QWidget * parent);
-		~ModelText() override{}
+		~ModelText() override= default;
 		
 	protected:
 		bool canInsertFromMimeData( const QMimeData *source ) const override;

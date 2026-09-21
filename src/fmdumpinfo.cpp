@@ -72,8 +72,7 @@ FMDumpInfo::FMDumpInfo(FontItem * font, const QString & model)
 }
 
 FMDumpInfo::~ FMDumpInfo()
-{
-}
+= default;
 
 bool FMDumpInfo::dumpInfo(const QString& filepath)
 {

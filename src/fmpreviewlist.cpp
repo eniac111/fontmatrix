@@ -38,7 +38,7 @@
 #include <QPainter>
 #include <QBrush>
 
-#define FM_MINIMUM_PREVIEW_WIDTH 280
+constexpr int FM_MINIMUM_PREVIEW_WIDTH = 280;
 
 bool FMPreviewIconEngine::initState = false;
 QPen FMPreviewIconEngine::pen = QPen();
@@ -49,7 +49,7 @@ QRgb FMPreviewIconEngine::partlyActivatedColor =  qRgb (166,220,220);
 
 
 FMPreviewIconEngine::FMPreviewIconEngine()
-	:QIconEngine(),
+	:
 	activatedFont(NotActivated)
 {
 	if(!initState)

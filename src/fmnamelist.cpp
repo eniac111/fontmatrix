@@ -23,8 +23,7 @@ FMNameList::FMNameList(QWidget * parent)
 }
 
 FMNameList::~ FMNameList()
-{
-}
+= default;
 
 void FMNameList::keyPressEvent(QKeyEvent * e)
 {

@@ -179,4 +179,3 @@ double FMLayOptWidget::getValue ( V v )
 }
 
 #include "moc_fmlayoptwidget.cpp"
-

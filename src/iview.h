@@ -24,7 +24,7 @@ class IView: public QGraphicsView
 	Q_OBJECT
 	public:
 		IView(QWidget* parent);
-		~IView() override{}
+		~IView() override= default;
 		
 		void setImage(const QString& path);
 		void setImage(const QPixmap& pixmap);

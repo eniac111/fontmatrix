@@ -54,9 +54,7 @@ DataExport::DataExport(QWidget* parent):
 }
 
 DataExport::~DataExport()
-{
-
-}
+= default;
 
 void DataExport::doExport()
 {
@@ -309,4 +307,3 @@ int DataExport::buildTemplate(const QString& templateDirPath)
 }
 
 #include "moc_dataexport.cpp"
-

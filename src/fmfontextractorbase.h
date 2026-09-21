@@ -21,8 +21,8 @@ class FMFontExtractorBase
 {
 		Q_DISABLE_COPY ( FMFontExtractorBase )
 	public:
-		FMFontExtractorBase(){}
-		virtual ~FMFontExtractorBase(){}
+		FMFontExtractorBase()= default;
+		virtual ~FMFontExtractorBase()= default;
 		
 		
 		/**

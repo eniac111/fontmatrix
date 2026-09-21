@@ -20,7 +20,7 @@
 #include <QDebug>
 
 FMAltSelectorModel::FMAltSelectorModel()
-		:QAbstractItemModel()
+		
 {
 	altDelegate = new FMAltItemDelegate(this);
 	rootItem = nullptr;
@@ -201,7 +201,7 @@ QVariant FMAltSelectorModel::data ( const QModelIndex & index, int role ) const
 }
 
 FMAltSelectorModel::FMAltItemDelegate::FMAltItemDelegate(FMAltSelectorModel* model)
-		:QAbstractItemDelegate(), pmodel(model)
+		: pmodel(model)
 {
 }
 

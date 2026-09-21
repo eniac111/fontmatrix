@@ -58,19 +58,19 @@ class QFile;
 
 
 
-#define PROGRESSION_LTR 0
-#define PROGRESSION_RTL 2
-#define PROGRESSION_TTB 4
-#define PROGRESSION_BTT 8
+constexpr int PROGRESSION_LTR = 0;
+constexpr int PROGRESSION_RTL = 2;
+constexpr int PROGRESSION_TTB = 4;
+constexpr int PROGRESSION_BTT = 8;
 
-#define GLYPH_DATA_GLYPH 1
-#define GLYPH_DATA_BITMAPLEFT 2
-#define GLYPH_DATA_BITMAPTOP 3
-#define GLYPH_DATA_HADVANCE 4
-#define GLYPH_DATA_VADVANCE 5
-#define GLYPH_DATA_HADVANCE_SCALED 6
-#define GLYPH_DATA_ERROR 7
-#define GLYPH_DATA_FONTNAME 100
+constexpr int GLYPH_DATA_GLYPH = 1;
+constexpr int GLYPH_DATA_BITMAPLEFT = 2;
+constexpr int GLYPH_DATA_BITMAPTOP = 3;
+constexpr int GLYPH_DATA_HADVANCE = 4;
+constexpr int GLYPH_DATA_VADVANCE = 5;
+constexpr int GLYPH_DATA_HADVANCE_SCALED = 6;
+constexpr int GLYPH_DATA_ERROR = 7;
+constexpr int GLYPH_DATA_FONTNAME = 100;
 
 
 /**

@@ -26,9 +26,7 @@
 Shortcuts* Shortcuts::instance = nullptr;
 
 Shortcuts::Shortcuts()
-{
-
-}
+= default;
 
 Shortcuts* Shortcuts::getInstance()
 {

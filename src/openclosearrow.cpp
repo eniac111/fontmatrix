@@ -8,9 +8,7 @@ OpenCloseArrow::OpenCloseArrow(QWidget *parent, bool open) :
 }
 
 OpenCloseArrow::~OpenCloseArrow()
-{
-
-}
+= default;
 
 
 void OpenCloseArrow::mouseReleaseEvent(QMouseEvent *)

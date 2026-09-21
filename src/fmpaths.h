@@ -13,7 +13,7 @@
 class FMPaths
 {
 		QMap<QString,QString> FMPathsDB;
-		FMPaths() {}
+		FMPaths() = default;
 		// Meyers singleton — thread-safe by C++11 static-local guarantee
 		static FMPaths *getThis();
 

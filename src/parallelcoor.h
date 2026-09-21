@@ -34,7 +34,7 @@
 /**
 	TODO describe _precisely_ how datas are stored
 */
-typedef QList< QList<int> > ParallelCoorDataType;
+using ParallelCoorDataType = QList< QList<int> >;
 class ParallelCoorDataSet : public QMap<QString, QList<QString> > 
 {
 	public:
@@ -85,7 +85,7 @@ class ParallelCoorFieldItem : public QGraphicsSimpleTextItem
 {
 	public:
 		ParallelCoorFieldItem(QString text, QGraphicsView* pcv, QGraphicsItem * parent = nullptr);
-		~ParallelCoorFieldItem() override{}
+		~ParallelCoorFieldItem() override= default;
 		
 	protected:
 		void hoverEnterEvent ( QGraphicsSceneHoverEvent * event ) override;
@@ -102,7 +102,7 @@ class ParallelCoorValueItem : public QGraphicsSimpleTextItem
 {
 	public:
 		ParallelCoorValueItem(QString text, QGraphicsView* pcv, QGraphicsItem * parent = nullptr);
-		~ParallelCoorValueItem() override{}
+		~ParallelCoorValueItem() override= default;
 		
 		void hoverEnter();
 		void hoverLeave();
@@ -122,7 +122,7 @@ class ParallelCoorBarItem : public QGraphicsLineItem
 {
 	public:
 		ParallelCoorBarItem(const QString& field, QGraphicsView* pcv, QGraphicsItem * parent = nullptr);
-		~ParallelCoorBarItem() override{}	
+		~ParallelCoorBarItem() override= default;	
 		
 	protected:
 		void hoverEnterEvent ( QGraphicsSceneHoverEvent * event ) override;
@@ -138,7 +138,7 @@ class ParallelCoorMarkItem : public QGraphicsPathItem
 {
 	public:
 		ParallelCoorMarkItem(ParallelCoorValueItem* relative, QGraphicsView* pcv, QGraphicsItem * parent = nullptr);
-		~ParallelCoorMarkItem() override{}
+		~ParallelCoorMarkItem() override= default;
 		
 	protected:
 		void hoverEnterEvent ( QGraphicsSceneHoverEvent * event ) override;
@@ -217,7 +217,7 @@ class ParallelCoorView : public QGraphicsView
 			double W = 0.0 ;
 			int C = 0 ;
 			double step = 0.0 ;
-			Units() {}
+			Units() = default;
 			Units (int width, int height, int count );
 		};
 		

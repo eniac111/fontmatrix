@@ -37,7 +37,7 @@ class FMKernFeature
 		void makeCoverage();
 		void makePairs ( quint16 subtableOffset );
 
-		typedef QMap<quint16, QList<quint16> > ClassDefTable; // <Class , list<GLyph> >
+		using ClassDefTable = QMap<quint16, QList<quint16> >; // <Class , list<GLyph> >
 		ClassDefTable getClass ( quint16 classDefOffset, quint16 coverageId );
 
 		// return a uint16 from position index in GPOSTableRaw

@@ -23,7 +23,7 @@
 
 #include "filterdata.h"
 
-#define FILTER_FIELD_SPECIAL_UNICODE 2001
+constexpr int FILTER_FIELD_SPECIAL_UNICODE = 2001;
 
 class FilterMeta : public FilterData
 {

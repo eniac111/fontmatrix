@@ -1173,7 +1173,7 @@ void MainViewWidget::keyPressEvent ( QKeyEvent * e )
 
 
 
-#define MAX_PALYSTRING_LEN 30
+constexpr int MAX_PALYSTRING_LEN = 30;
 
 
 void MainViewWidget::slotRemoveCurrentItem()

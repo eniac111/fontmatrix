@@ -27,10 +27,10 @@
 #include <QStringList>
 
 
-#define FAMILY_VIEW_INFO	0
-#define FAMILY_VIEW_SAMPLE	1
-#define FAMILY_VIEW_CHART	2
-#define FAMILY_VIEW_ACTIVATION	3
+constexpr int FAMILY_VIEW_INFO = 0;
+constexpr int FAMILY_VIEW_SAMPLE = 1;
+constexpr int FAMILY_VIEW_CHART = 2;
+constexpr int FAMILY_VIEW_ACTIVATION = 3;
 
 class FMPreviewModel;
 class FontItem;

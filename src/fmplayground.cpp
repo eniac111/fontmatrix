@@ -65,8 +65,7 @@ FMPlayGround::FMPlayGround ( QWidget *parent )
 }
 
 FMPlayGround::~ FMPlayGround()
-{
-}
+= default;
 
 
 
@@ -283,7 +282,7 @@ void FMPlayGround::updateLine()
 void FMPlayGround::closeLine()
 {
 	CursorTimer->stop();
-	if(curLine.size() > 0)
+	if(!curLine.isEmpty())
 	{
 		QGraphicsItemGroup *git(scene()->createItemGroup(curLine));
 		CursorPos.ry() += PlayWidget::getInstance()->playFontSize() * 1.5;
@@ -373,4 +372,3 @@ void FMPlayGround::blinkCursor()
 }
 
 #include "moc_fmplayground.cpp"
-

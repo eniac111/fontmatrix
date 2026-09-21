@@ -51,8 +51,7 @@ FMOwnShaper::FMOwnShaper(QString lang)
 }
 
 FMOwnShaper::~ FMOwnShaper()
-{
-}
+= default;
 
 int FMOwnShaper::loadRules(QString lang)
 {
@@ -88,7 +87,7 @@ int FMOwnShaper::loadRules(QString lang)
 			continue;
 		
 		QList<QByteArray> elems = line.split ( '|' );
-		if(elems.size() > 0)
+		if(!elems.isEmpty())
 		{
 			bool ok;
 			int unicode = elems.takeFirst().mid(0,4).toInt(&ok,16) ;

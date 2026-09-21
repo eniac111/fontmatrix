@@ -23,7 +23,7 @@ A processing class generating XHTML to be displayed in Info tab.
 class FontItem;
 class FMInfoDisplay
 {
-		FMInfoDisplay(){}
+		FMInfoDisplay()= default;
 		QString html;
 		
 		QString writeFsType(FontItem * font);

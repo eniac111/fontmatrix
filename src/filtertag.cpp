@@ -22,8 +22,8 @@
 #include "filteritem.h"
 #include "fmfontdb.h"
 
-FilterTag::FilterTag():
-		FilterData()
+FilterTag::FilterTag()
+		
 {
 }
 

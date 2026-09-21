@@ -25,8 +25,7 @@
 FloatingWidgetsRegister * FloatingWidgetsRegister::instance = nullptr;
 
 FloatingWidgetsRegister::FloatingWidgetsRegister()
-{
-}
+= default;
 
 FloatingWidgetsRegister * FloatingWidgetsRegister::that()
 {

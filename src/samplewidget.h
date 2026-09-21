@@ -45,11 +45,11 @@ namespace Ui {
 	class SampleWidget;
 }
 
-#define VIEW_PAGE_FREETYPE 0
-#define VIEW_PAGE_ABSOLUTE 1
-#define VIEW_PAGE_OPENTYPE 3
+constexpr int VIEW_PAGE_FREETYPE = 0;
+constexpr int VIEW_PAGE_ABSOLUTE = 1;
+constexpr int VIEW_PAGE_OPENTYPE = 3;
 //#define VIEW_PAGE_SETTINGS 1
-#define VIEW_PAGE_SAMPLES  4
+constexpr int VIEW_PAGE_SAMPLES = 4;
 
 class FMLayoutThread : public QThread
 {

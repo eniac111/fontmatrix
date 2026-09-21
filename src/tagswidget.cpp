@@ -40,8 +40,7 @@ TagsWidget::TagsWidget ( QWidget * parent )
 }
 
 TagsWidget::~ TagsWidget()
-{
-}
+= default;
 
 void TagsWidget::prepare(QList<FontItem *> fonts)
 {
@@ -80,4 +79,3 @@ void TagsWidget::slotActRemovetag()
 }
 
 #include "moc_tagswidget.cpp"
-

@@ -173,13 +173,12 @@ void BrowserWidget::slotFolderPressed(QModelIndex mIdx)
 	currentFIndex = mIdx;
 }
 
-void BrowserWidget::slotFolderRefresh(const QString &dirPath)
+void BrowserWidget::slotFolderRefresh([[maybe_unused]] const QString &dirPath)
 {
 	if(ui->browserView->isVisible())
 	{
-		qCDebug(FONTMATRIX_LOG)<<"Refresh"<<dirPath;
 		// QFileSystemModel refreshes automatically via file system monitoring
-		Q_UNUSED(dirPath);
+		qCDebug(FONTMATRIX_LOG)<<"Refresh"<<dirPath;
 	}
 }
 
@@ -329,7 +328,7 @@ void BrowserWidget::slotImport()
 		typotek::getInstance()->open(curVariant, false, true);
 }
 
-FolderViewMenu::FolderViewMenu() : QMenu()
+FolderViewMenu::FolderViewMenu()  
 {
 	dirAction = new QAction(i18n("Import Directory"), nullptr);
 	dirRecursiveAction = new QAction(i18n("Import recursively"), nullptr);

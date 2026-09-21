@@ -288,7 +288,7 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
 				if(offset + 1 < dataSize()) {
 					scrollTo(offset + 1);
 				}
-			} while(0);
+			} while(false);
 		
 			// return so we don't pass on the key event
 			return;
@@ -306,7 +306,7 @@ void QHexView::keyPressEvent(QKeyEvent *event) {
 				if(offset > 0) {
 					scrollTo(offset - 1);
 				}
-			} while(0);
+			} while(false);
 			
 			// return so we don't pass on the key event
 			return;

@@ -39,8 +39,7 @@ FMKernFeature::FMKernFeature ( FT_Face face )
 }
 
 FMKernFeature::~ FMKernFeature()
-{
-}
+= default;
 
 
 void FMKernFeature::makeCoverage()

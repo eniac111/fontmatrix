@@ -23,8 +23,8 @@ public:
 	/** Init the matcher with the Panose string for the selected font */
 	PanoseMatch(const QString &selected);
 
-	PanoseMatch(){}
-	~PanoseMatch(){}
+	PanoseMatch()= default;
+	~PanoseMatch()= default;
 
 	void setAttributes(const QString &attrs);
 
@@ -69,8 +69,8 @@ class FontItem;
 /// An helper class for Panose matching
 class PanoseMatchFont : private PanoseMatch
 {
-	PanoseMatchFont(){}
-	~PanoseMatchFont(){}
+	PanoseMatchFont()= default;
+	~PanoseMatchFont()= default;
 	public:
 		static QList<FontItem*> similar(FontItem* ref, int treshold);
 

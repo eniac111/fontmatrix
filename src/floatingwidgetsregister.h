@@ -33,7 +33,7 @@ class FloatingWidgetsRegister
 {
 	static FloatingWidgetsRegister * instance;
 	FloatingWidgetsRegister();
-	~FloatingWidgetsRegister(){}
+	~FloatingWidgetsRegister()= default;
 	static FloatingWidgetsRegister* that();
 public:
 	static void Register(FloatingWidget* f, const QString& fid, const QString& typ);

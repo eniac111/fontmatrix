@@ -287,5 +287,3 @@ QString RemoteDir::FontInfo::dump()
 }
 
 #include "moc_remotedir.cpp"
-
-

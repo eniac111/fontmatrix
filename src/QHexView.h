@@ -39,8 +39,8 @@ class QHexView : public QAbstractScrollArea {
 	Q_OBJECT
 	
 public:
-	typedef QVector<uint8_t> C;
-	typedef uint32_t address_t;
+	using C = QVector<uint8_t>;
+	using address_t = uint32_t;
 	
 public:
 	QHexView(QWidget * parent = nullptr);

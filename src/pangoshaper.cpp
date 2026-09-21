@@ -18,8 +18,7 @@ PangoShaper::PangoShaper(FMOtf * o, QString s)
 }
 
 PangoShaper::~ PangoShaper()
-{
-}
+= default;
 
 GlyphList PangoShaper::doShape(const QString & )
 {

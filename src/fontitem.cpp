@@ -1185,7 +1185,7 @@ double FontItem::renderLine ( OTFSet set, QGraphicsScene * scene, QString spec, 
 	delete otf;
 	otf = nullptr;
 // 	qDebug() << "Deleted OTF";
-	if ( refGlyph.size() == 0 )
+	if ( refGlyph.isEmpty() )
 	{
 		return 0;
 	}
@@ -1462,7 +1462,7 @@ double FontItem::renderLine ( QString script, QGraphicsScene * scene, QString sp
 	delete otf;
 	otf = nullptr;
 // 	qDebug() << "Deleted OTF";
-	if ( refGlyph.size() == 0 )
+	if ( refGlyph.isEmpty() )
 	{
 		return 0;
 	}
@@ -1887,7 +1887,7 @@ void FontItem::renderAll ( QGraphicsScene * scene , int begin_code, int end_code
 	ensureFace();
 
 	FMGlyphsView *allView(nullptr);
-	if(scene->views().size() > 0)
+	if(!scene->views().isEmpty())
 		allView = reinterpret_cast<FMGlyphsView*> ( scene->views().at ( 0 ) );
 	else
 	{
@@ -3108,7 +3108,7 @@ void FontItem::hideFancyGlyph ( int ref )
 		fancyTexts.remove ( ref );
 		delete it;
 	}
-	if ( fancyAlternates.value ( ref ).size() )
+	if ( !fancyAlternates.value ( ref ).isEmpty() )
 	{
 		QList<QGraphicsPixmapItem*> pil ( fancyAlternates.value ( ref ) );
 		for ( int pidx ( 0 ); pidx < pil.size(); ++pidx )

@@ -73,8 +73,7 @@ FMInfoDisplay::FMInfoDisplay(FontItem * font)
 
 
 FMInfoDisplay::~FMInfoDisplay()
-{
-}
+= default;
 
 QString FMInfoDisplay::getHtml()
 {

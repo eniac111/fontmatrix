@@ -26,7 +26,7 @@ struct OTFSet
 	QString lang;
 	QStringList gpos_features;
 	QStringList gsub_features;
-	OTFSet() {};
+	OTFSet() = default;
 					  QString dump() {return script + QLatin1Char ( '|' ) + lang + QLatin1Char ( '|' ) + gpos_features.join ( QLatin1Char ( '|' ) ) + gsub_features.join ( QLatin1Char ( '|' ) );}
 					  bool isEmpty() { return script.isEmpty() && lang.isEmpty() && gpos_features.isEmpty() &&  gsub_features.isEmpty() ;};
 };
@@ -92,10 +92,10 @@ struct RenderedGlyph
 	}
 };
 
-typedef QList<RenderedGlyph> GlyphList;
-typedef QPair<QList<RenderedGlyph>, QList<RenderedGlyph> > RenderedHyph;
+using GlyphList = QList<RenderedGlyph>;
+using RenderedHyph = QPair<QList<RenderedGlyph>, QList<RenderedGlyph> >;
 
 
-typedef QMap<int,QMap<int, QString> > FontInfoMap;
+using FontInfoMap = QMap<int,QMap<int, QString> >;
 
 #endif

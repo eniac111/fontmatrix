@@ -29,8 +29,7 @@ FMPDFFontExtractor::FMPDFFontExtractor()
 }
 
 FMPDFFontExtractor::~FMPDFFontExtractor()
-{
-}
+= default;
 
 bool FMPDFFontExtractor::loadFile(const QString & filePath)
 {

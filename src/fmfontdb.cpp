@@ -988,9 +988,3 @@ void FMFontDb::filterAllFonts()
 }
 
 #include "moc_fmfontdb.cpp"
-
-
-
-
-
-

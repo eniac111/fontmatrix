@@ -36,8 +36,8 @@ struct TextElementStyle
 	double fontsize = 0.0;
 	double lineheight = 0.0;
 	QColor color;
-	double margin_top,margin_left,margin_bottom,margin_right;
-	TextElementStyle () {}
+	double margin_top = 0.0,margin_left = 0.0,margin_bottom = 0.0,margin_right = 0.0;
+	TextElementStyle () = default;
 	TextElementStyle ( QString n, QString f, double fs, double lh, double mt, double ml, double mb, double mr, QColor co) :
 			name(n),
 			font ( f ),

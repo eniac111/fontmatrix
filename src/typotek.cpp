@@ -1045,8 +1045,7 @@ bool typotek::maybeSave()
 }
 
 typotek::~typotek()
-{
-}
+= default;
 
 void typotek::fillTagsList()
 {
@@ -1325,7 +1324,7 @@ bool typotek::isSysFont(FontItem * f)
 void typotek::initDir()
 {
 	/// let’s load system fonts
-#define SYSTEM_FONTS 1
+constexpr int SYSTEM_FONTS = 1;
 	if(SYSTEM_FONTS)
 	{
 		relayStartingStepIn ( i18n( "Loading System Fonts") );

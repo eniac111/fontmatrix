@@ -62,8 +62,7 @@ FMMatchRaster::FMMatchRaster ( QWidget * parent )
 }
 
 FMMatchRaster::~ FMMatchRaster()
-{
-}
+= default;
 
 void FMMatchRaster::browseImage()
 {
@@ -207,7 +206,7 @@ void FMMatchRaster::slotStop()
 {
 	if ( (waitingFont != nullptr) && (!filteredFonts.contains ( waitingFont )) )
 		filteredFonts << waitingFont;
-	if ( filteredFonts.size() > 0 )
+	if ( !filteredFonts.isEmpty() )
 	{
 		typotek::getInstance()->getTheMainView()->setCurFonts ( filteredFonts );
 	}

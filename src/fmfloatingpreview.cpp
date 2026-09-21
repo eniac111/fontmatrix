@@ -143,9 +143,7 @@ FMFloatingPreview::FMFloatingPreview(QWidget * parent, FontItem * item)
 }
 
 FMFloatingPreview::~FMFloatingPreview()
-{
-
-}
+= default;
 
 
 void FMFloatingPreview::create(FontItem *item, QRect rect)

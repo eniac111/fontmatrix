@@ -120,8 +120,7 @@ PrefsPanelDialog::PrefsPanelDialog ( QWidget *parent )
 
 
 PrefsPanelDialog::~PrefsPanelDialog()
-{
-}
+= default;
 
 void PrefsPanelDialog::initSystrayPrefs ( bool hasSystray, bool isVisible, bool hasActivateAll, bool allConfirmation, bool tagConfirmation )
 {
@@ -691,8 +690,3 @@ void PrefsPanelDialog::updateChartFont(const QFont & font)
 }
 
 #include "moc_prefspaneldialog.cpp"
-
-
-
-
-

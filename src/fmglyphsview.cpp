@@ -64,8 +64,7 @@ FMGlyphsView::FMGlyphsView ( QWidget *parent )
 
 
 FMGlyphsView::~FMGlyphsView()
-{
-}
+= default;
 
 void FMGlyphsView::resizeEvent ( QResizeEvent * )
 {
@@ -175,6 +174,3 @@ void FMGlyphsView::unlock()
 }
 
 #include "moc_fmglyphsview.cpp"
-
-
-

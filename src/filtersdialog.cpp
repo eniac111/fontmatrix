@@ -192,4 +192,3 @@ void FiltersDialog::slotRemoveFilter(QString fs)
 }
 
 #include "moc_filtersdialog.cpp"
-

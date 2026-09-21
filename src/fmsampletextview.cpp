@@ -67,8 +67,7 @@ FMSampleTextView::FMSampleTextView ( QWidget* parent )
 
 
 FMSampleTextView::~FMSampleTextView()
-{
-}
+= default;
 
 void FMSampleTextView::resizeEvent ( QResizeEvent * )
 {

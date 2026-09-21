@@ -25,7 +25,7 @@ class FMUniBlocks
 	FMUniBlocks();
 	void loadBlocks();
 	void recordLine(const QString& line);
-	typedef QPair<int,int> bKey;
+	using bKey = QPair<int,int>;
 	QMap<bKey, QString> p;
 	bKey c; // current
 	bKey f; // first

@@ -93,8 +93,7 @@ FontBookDialog::FontBookDialog ( QWidget *parent )
 
 
 FontBookDialog::~FontBookDialog()
-{
-}
+= default;
 
 void FontBookDialog::slotAccept()
 {

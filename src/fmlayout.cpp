@@ -37,7 +37,7 @@
 #include <QCoreApplication>
 #include <QGraphicsObject>
 
-#define OUT_OF_RECT 99999999.0
+constexpr double OUT_OF_RECT = 99999999.0;
 
 int fm_layout_total_nod_dbg;
 int fm_layout_total_skip_nod_dbg;
@@ -1461,7 +1461,3 @@ void FMLayout::setContext(bool c)
 }
 
 #include "moc_fmlayout.cpp"
-
-
-
-

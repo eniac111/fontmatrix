@@ -117,4 +117,3 @@ void FMPanoseDialog::closeCancel()
 }
 
 #include "moc_panosedialog.cpp"
-

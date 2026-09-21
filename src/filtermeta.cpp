@@ -23,8 +23,8 @@
 #include "fontitem.h"
 #include "fmfontstrings.h"
 
-FilterMeta::FilterMeta():
-		FilterData()
+FilterMeta::FilterMeta()
+		
 {
 }
 

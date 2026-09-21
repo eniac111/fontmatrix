@@ -28,9 +28,9 @@
 #include <QPoint>
 #include <QMenu>
 
-#define BROWSER_VIEW_INFO	0
-#define BROWSER_VIEW_SAMPLE	1
-#define BROWSER_VIEW_CHART	2
+constexpr int BROWSER_VIEW_INFO = 0;
+constexpr int BROWSER_VIEW_SAMPLE = 1;
+constexpr int BROWSER_VIEW_CHART = 2;
 
 class QFileSystemModel;
 class QFileSystemWatcher;

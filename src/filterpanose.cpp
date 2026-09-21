@@ -21,8 +21,8 @@
 #include "filterpanose.h"
 #include "fmfontdb.h"
 
-FilterPanose::FilterPanose():
-		FilterData()
+FilterPanose::FilterPanose()
+		
 {
 }
 
