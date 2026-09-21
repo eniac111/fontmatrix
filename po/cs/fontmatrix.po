@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/eniac111/fontmatrix/issues\n"
-"POT-Creation-Date: 2026-09-22 00:47+0300\n"
+"POT-Creation-Date: 2026-09-22 01:06+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,7 +38,6 @@ msgstr "Hlášení chyb při zapnutí nebo vypnutí písem"
 #. i18n: file: src/tagset.ui:231
 #. i18n: ectx: property (text), widget (QPushButton, closeButton)
 #: rc.cpp:9 rc.cpp:280 rc.cpp:331 rc.cpp:541 rc.cpp:703 rc.cpp:831
-#: src/typotek.cpp:2085
 #, kde-format
 msgid "Close"
 msgstr "Zavřít"
@@ -105,7 +104,7 @@ msgstr "Název stylu"
 
 #. i18n: file: src/activationwidgetitem.ui:51
 #. i18n: ectx: property (text), widget (QCheckBox, activatedStatus)
-#: rc.cpp:24 src/filterbar.cpp:94
+#: rc.cpp:24
 #, kde-format
 msgid "Activated"
 msgstr "Zapnuto"
@@ -164,7 +163,7 @@ msgstr "Informace"
 
 #. i18n: file: src/browserwidget.ui:76
 #. i18n: ectx: property (text), widget (QPushButton, importButton)
-#: rc.cpp:54 src/typotek.cpp:452 src/typotek.cpp:554
+#: rc.cpp:54
 #, kde-format
 msgid "Import"
 msgstr "Zavést"
@@ -534,7 +533,7 @@ msgstr "Panose"
 
 #. i18n: file: src/filteritem.ui:71
 #. i18n: ectx: property (toolTip), widget (QToolButton, removeButton)
-#: rc.cpp:219 src/filtersdialogitem.cpp:49
+#: rc.cpp:219
 #, kde-format
 msgid "Remove Filter"
 msgstr "Odstranit filtr"
@@ -1161,7 +1160,7 @@ msgstr "Tabulka glyfů"
 
 #. i18n: file: src/multiprintdialog.ui:68
 #. i18n: ectx: property (text), widget (QCheckBox, checkPlayground)
-#: rc.cpp:514 src/playwidget.cpp:22 src/typotek.cpp:707
+#: rc.cpp:514
 #, kde-format
 msgid "Playground"
 msgstr "Hřiště"
@@ -1222,35 +1221,35 @@ msgstr "Panel voleb"
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
 #. i18n: file: src/prefs_panel.ui:123
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_10)
-#: rc.cpp:544 rc.cpp:565 src/prefspaneldialog.cpp:44
+#: rc.cpp:544 rc.cpp:565
 #, kde-format
 msgid "General"
 msgstr "Obecné"
 
 #. i18n: file: src/prefs_panel.ui:79
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:547 src/prefspaneldialog.cpp:46
+#: rc.cpp:547
 #, kde-format
 msgid "System tray"
 msgstr "Systémová část panelu"
 
 #. i18n: file: src/prefs_panel.ui:84
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:550 src/prefspaneldialog.cpp:48
+#: rc.cpp:550
 #, kde-format
 msgid "Display"
 msgstr "Zobrazení"
 
 #. i18n: file: src/prefs_panel.ui:89
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:553 src/prefspaneldialog.cpp:50
+#: rc.cpp:553
 #, kde-format
 msgid "Tools"
 msgstr "Nástroje"
 
 #. i18n: file: src/prefs_panel.ui:94
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:556 src/prefspaneldialog.cpp:52
+#: rc.cpp:556
 #, kde-format
 msgid "Samples collection"
 msgstr "Sbírka ukázek"
@@ -1264,7 +1263,7 @@ msgstr "Soubory a složky"
 
 #. i18n: file: src/prefs_panel.ui:104
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:562 src/prefspaneldialog.cpp:56
+#: rc.cpp:562
 #, kde-format
 msgid "Shortcuts"
 msgstr "Klávesové zkratky"
@@ -1543,7 +1542,7 @@ msgstr "Zrušit odkaz"
 
 #. i18n: file: src/repair.ui:185
 #. i18n: ectx: property (text), widget (QPushButton, activateDeactLink)
-#: rc.cpp:736 src/fmfloatingpreview.cpp:55
+#: rc.cpp:736
 #, kde-format
 msgid "Activate"
 msgstr "Zapnout"
@@ -1847,7 +1846,7 @@ msgstr "Značka"
 
 #. i18n: file: src/tttablewidget.ui:39
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:912 src/fmfontstrings.cpp:44
+#: rc.cpp:912
 #, kde-format
 msgid "Description"
 msgstr "Popis"
@@ -1868,116 +1867,151 @@ msgstr "&Exportovat"
 
 #: src/browserwidget.cpp:300
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Import Directory"
 msgstr "Zavést adresář"
 
 #: src/browserwidget.cpp:301
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Import recursively"
 msgstr "Zavést včetně podsložek"
 
 #: src/browserwidget.cpp:302
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Import File"
 msgstr "Zavést soubor"
 
 #: src/chartwidget.cpp:47
 #, kde-format
+msgctxt "@item:inlistbox"
 msgid "Un-Mapped Glyphs"
 msgstr "Nepřiřazené glyfy"
 
 #: src/chartwidget.cpp:48
 #, kde-format
+msgctxt "@item:inlistbox"
 msgid "View all mapped glyphs"
 msgstr "Zobrazit všechny přiřazené glyfy"
 
 #: src/chartwidget.cpp:140 src/chartwidget.cpp:217
 #, kde-format
+msgctxt "@label"
 msgid "Block (%1):"
 msgstr "Blok (%1):"
 
 #: src/chartwidget.cpp:428
 #, kde-format
+msgctxt "@title:window"
 msgid "Print Chart"
 msgstr "Vytisknout tabulku"
 
 #: src/dataexport.cpp:57
 #, kde-format
+msgctxt "@title:window"
 msgid "Choose Directory"
 msgstr "Vybrat adresář"
 
 #: src/dataexport.cpp:69
 #, kde-format
+msgctxt "@info:progress"
 msgid "Copying files"
 msgstr "Kopírují se soubory"
 
-#: src/dataexport.cpp:69 src/typotek.cpp:442 src/typotek.cpp:549
+#: src/dataexport.cpp:69 src/typotek.cpp:444 src/typotek.cpp:553
 #, kde-format
+msgctxt "@action:button"
 msgid "cancel"
 msgstr "Zrušit"
 
 #: src/filterbar.cpp:40 src/filtersdialog.cpp:23
 #, kde-format
+msgctxt "@item:intext filter operator"
 msgid "And"
 msgstr "A"
 
 #: src/filterbar.cpp:45 src/filtersdialog.cpp:28
 #, kde-format
+msgctxt "@item:intext filter operator"
 msgid "Not"
 msgstr "Ne"
 
 #: src/filterbar.cpp:50 src/filtersdialog.cpp:33
 #, kde-format
+msgctxt "@item:intext filter operator"
 msgid "Or"
 msgstr "Nebo"
 
-#: src/filterbar.cpp:473
+#: src/filterbar.cpp:94
 #, kde-format
+msgctxt "@item:inlistbox pseudo tag that lists the activated fonts"
+msgid "Activated"
+msgstr "Zapnuto"
+
+#: src/filterbar.cpp:475
+#, kde-format
+msgctxt "@title:window"
 msgid "Fontmatrix - edit tag"
 msgstr "Fontmatrix - Upravit značku"
 
-#: src/filterbar.cpp:473
+#: src/filterbar.cpp:476
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Edit tag: "
 msgstr "Upravit značku:"
 
-#: src/filterbar.cpp:529
+#: src/filterbar.cpp:536
 #, kde-format
+msgctxt "@title:window"
 msgid "Fontmatrix - Filter name"
 msgstr "Fontmatrix - Název filtru"
 
-#: src/filterbar.cpp:529
+#: src/filterbar.cpp:537
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Filter name:"
 msgstr "Název filtru:"
 
-#: src/filtersdialogitem.cpp:49
+#: src/filtersdialogitem.cpp:50
 #, kde-format
+msgctxt "@info"
 msgid "Confirm deletion of filter:"
 msgstr "Potvrdit smazání filtru:"
 
+#: src/filtersdialogitem.cpp:51
+#, kde-format
+msgctxt "@title:window"
+msgid "Remove Filter"
+msgstr "Odstranit filtr"
+
 #: src/fmactivate.cpp:31
 #, kde-format
+msgctxt "@info activation error"
 msgid "Unable to link"
 msgstr "Nelze udělat odkaz"
 
 #: src/fmactivate.cpp:33
 #, kde-format
+msgctxt "@info activation error"
 msgid "Font already activated"
 msgstr "Písmo je již zapnuto"
 
 #: src/fmactivate.cpp:35
 #, kde-format
+msgctxt "@info activation error"
 msgid "Unable to un-link"
 msgstr "Nelze odstranit odkaz"
 
 #: src/fmactivate.cpp:37
 #, kde-format
+msgctxt "@info activation error"
 msgid "Font already de-activated"
 msgstr "Písmo je již vypnuto"
 
 #: src/fmactivate.cpp:39
 #, kde-format
+msgctxt "@info activation error"
 msgid "Cannot link or copy the metrics file"
 msgstr "Nelze udělat odkaz nebo kopírovat soubor s metrikou"
 
@@ -1987,23 +2021,34 @@ msgctxt "activation"
 msgid "Error"
 msgstr "Chyba"
 
+#: src/fmfloatingpreview.cpp:55 src/typotek.cpp:1364
+#, fuzzy, kde-format
+#| msgid "Activate"
+msgctxt "@action:button"
+msgid "Activate"
+msgstr "Zapnout"
+
 #: src/fmfloatingpreview.cpp:62
 #, kde-format
+msgctxt "@action:button"
 msgid "close"
 msgstr "Zavřít"
 
 #: src/fmfontextract.cpp:56
 #, kde-format
+msgctxt "@info:status"
 msgid "File does not exist:"
 msgstr "Soubor neexistuje:"
 
 #: src/fmfontextract.cpp:71
 #, kde-format
+msgctxt "@info:status"
 msgid "Format not handled."
 msgstr "Formát není zvládán."
 
 #: src/fmfontextract.cpp:123
 #, kde-format
+msgctxt "@info"
 msgid ""
 "Failed to extract:\n"
 "%1"
@@ -2013,102 +2058,128 @@ msgstr ""
 
 #: src/fmfontstrings.cpp:34
 #, kde-format
+msgctxt "@label font information field"
 msgid "Copyright"
 msgstr "Autorské právo"
 
 #: src/fmfontstrings.cpp:35
 #, kde-format
+msgctxt "@label font information field"
 msgid "Font Family"
 msgstr "Rodina písma"
 
 #: src/fmfontstrings.cpp:36
 #, kde-format
+msgctxt "@label font information field"
 msgid "Font Subfamily"
 msgstr "Podrodina písma"
 
 #: src/fmfontstrings.cpp:37
 #, kde-format
+msgctxt "@label font information field"
 msgid "Unique font identifier"
 msgstr "Jedinečný identifikátor písma"
 
 #: src/fmfontstrings.cpp:38
 #, kde-format
+msgctxt "@label font information field"
 msgid "Full font name"
 msgstr "Úplný název písma"
 
 #: src/fmfontstrings.cpp:39
 #, kde-format
+msgctxt "@label font information field"
 msgid "Version string"
 msgstr "Řetězec verze"
 
 #: src/fmfontstrings.cpp:40
 #, kde-format
+msgctxt "@label font information field"
 msgid "Postscript name"
 msgstr "Postscriptový název"
 
 #: src/fmfontstrings.cpp:41
 #, kde-format
+msgctxt "@label font information field"
 msgid "Trademark"
 msgstr "Obchodní značka"
 
 #: src/fmfontstrings.cpp:42
 #, kde-format
+msgctxt "@label font information field"
 msgid "Manufacturer"
 msgstr "Výrobce"
 
 #: src/fmfontstrings.cpp:43
 #, kde-format
+msgctxt "@label font information field"
 msgid "Designer"
 msgstr "Návrhář"
 
+#: src/fmfontstrings.cpp:44
+#, kde-format
+msgctxt "@label font information field"
+msgid "Description"
+msgstr "Popis"
+
 #: src/fmfontstrings.cpp:45
 #, kde-format
+msgctxt "@label font information field"
 msgid "URL Vendor"
 msgstr "Adresa prodejce"
 
 #: src/fmfontstrings.cpp:46
 #, kde-format
+msgctxt "@label font information field"
 msgid "URL Designer"
 msgstr "Adresa návrháře"
 
 #: src/fmfontstrings.cpp:47
 #, kde-format
+msgctxt "@label font information field"
 msgid "License Description"
 msgstr "Popis licenčního ujednání"
 
 #: src/fmfontstrings.cpp:48
 #, kde-format
+msgctxt "@label font information field"
 msgid "License Info URL"
 msgstr "Adresa informací o licenčním ujednání"
 
 #: src/fmfontstrings.cpp:49
 #, kde-format
+msgctxt "@label font information field"
 msgid "Preferred Family"
 msgstr "Upřednostňovaná rodina"
 
 #: src/fmfontstrings.cpp:50
 #, kde-format
+msgctxt "@label font information field"
 msgid "Preferred Subfamily"
 msgstr "Upřednostňovaná podrodina"
 
 #: src/fmfontstrings.cpp:51
 #, kde-format
+msgctxt "@label font information field"
 msgid "Compatible Full (Macintosh only)"
 msgstr "Plně slučitelné (pouze Macintosh)"
 
 #: src/fmfontstrings.cpp:52
 #, kde-format
+msgctxt "@label font information field"
 msgid "Sample text"
 msgstr "Ukázkový text"
 
 #: src/fmfontstrings.cpp:53
 #, kde-format
+msgctxt "@label font information field"
 msgid "PostScript CID findfont name"
 msgstr "Postscriptový název nalezeného písma CID"
 
 #. i18n("Panose");
 #: src/fmfontstrings.cpp:55
 #, kde-format
+msgctxt "@label font information field"
 msgid "All fields"
 msgstr "Všechna pole"
 
@@ -2118,6 +2189,7 @@ msgstr "Všechna pole"
 #: src/fmfontstrings.cpp:196 src/fmfontstrings.cpp:218
 #: src/fmfontstrings.cpp:240
 #, kde-format
+msgctxt "@item:inlistbox PANOSE value"
 msgid "Any"
 msgstr "Jakékoli"
 
@@ -2127,6 +2199,7 @@ msgstr "Jakékoli"
 #: src/fmfontstrings.cpp:197 src/fmfontstrings.cpp:219
 #: src/fmfontstrings.cpp:241
 #, kde-format
+msgctxt "@item:inlistbox PANOSE value"
 msgid "No Fit"
 msgstr "Žádné spojení"
 
@@ -2156,6 +2229,7 @@ msgstr "Obrázkové"
 
 #: src/fmfontstrings.cpp:79
 #, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Family Type"
 msgstr "Typ rodiny"
 
@@ -2245,6 +2319,7 @@ msgstr "Zakulacené"
 
 #: src/fmfontstrings.cpp:101
 #, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Serif style"
 msgstr "Patkový styl"
 
@@ -2310,6 +2385,7 @@ msgstr "Severské"
 
 #: src/fmfontstrings.cpp:119
 #, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Weight"
 msgstr "Váha"
 
@@ -2363,6 +2439,7 @@ msgstr "Neproporcionální"
 
 #: src/fmfontstrings.cpp:135
 #, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Proportion"
 msgstr "Úměrnost"
 
@@ -2416,6 +2493,7 @@ msgstr "Velmi vysoké"
 
 #: src/fmfontstrings.cpp:153
 #, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Contrast"
 msgstr "Kontrastní"
 
@@ -2463,6 +2541,7 @@ msgstr "Bezprostřední/Svislé"
 
 #: src/fmfontstrings.cpp:170
 #, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Stroke Variation"
 msgstr "Obměna tahu"
 
@@ -2528,6 +2607,7 @@ msgstr "Neurovnané ruce/Dvojité patkové"
 
 #: src/fmfontstrings.cpp:190
 #, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Arm Style"
 msgstr "Styl ruky"
 
@@ -2617,6 +2697,7 @@ msgstr "Šikmé/Čtvercové"
 
 #: src/fmfontstrings.cpp:214
 #, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Letterform"
 msgstr "Tvar písmene"
 
@@ -2694,6 +2775,7 @@ msgstr "Nízké/Patkové"
 
 #: src/fmfontstrings.cpp:234
 #, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Midline"
 msgstr "Středová čára"
 
@@ -2735,11 +2817,13 @@ msgstr "Skrčené/Velké"
 
 #: src/fmfontstrings.cpp:250
 #, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "X-Height"
 msgstr "Výška malých písmen"
 
 #: src/fmfontstrings.cpp:275
 #, kde-format
+msgctxt "@info"
 msgid ""
 "This value is deprecated and was never used nor reported by FreeType. Don't "
 "use or test for it."
@@ -2749,166 +2833,199 @@ msgstr ""
 
 #: src/fmfontstrings.cpp:288
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Character to glyph mapping"
 msgstr "Přiřazení znaku ke glyfu"
 
 #: src/fmfontstrings.cpp:289
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Font header"
 msgstr "Záhlaví písma"
 
 #: src/fmfontstrings.cpp:290
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Horizontal header"
 msgstr "Vodorovné záhlaví"
 
 #: src/fmfontstrings.cpp:291
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Horizontal metrics"
 msgstr "Vodorovná metrika"
 
 #: src/fmfontstrings.cpp:292
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Maximum profile"
 msgstr "Největší boční obrys"
 
 #: src/fmfontstrings.cpp:293
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Naming table"
 msgstr "Tabulka názvů"
 
 #: src/fmfontstrings.cpp:294
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "OS/2 and Windows specific metrics"
 msgstr "Metrika vlastní OS/2 a Windows"
 
 #: src/fmfontstrings.cpp:295
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "PostScript information"
 msgstr "Informace o PostScriptu"
 
 #: src/fmfontstrings.cpp:298
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Control Value Table"
 msgstr "Tabulka ovládacích hodnot"
 
 #: src/fmfontstrings.cpp:299
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Font program"
 msgstr "Program na písma"
 
 #: src/fmfontstrings.cpp:300
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Glyph data"
 msgstr "Data ke glyfu"
 
 #: src/fmfontstrings.cpp:301
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Index to location"
 msgstr "Rejstřík k umístění"
 
 #: src/fmfontstrings.cpp:302
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "CVT Program"
 msgstr "Program CVT"
 
 #: src/fmfontstrings.cpp:305
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "PostScript font program"
 msgstr "Program na písma PostScript"
 
 #: src/fmfontstrings.cpp:306
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Vertical Origin"
 msgstr "Svislý počátek"
 
 #: src/fmfontstrings.cpp:309
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Embedded bitmap data"
 msgstr "Data pro vloženou bitmapu"
 
 #: src/fmfontstrings.cpp:310
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Embedded bitmap location data"
 msgstr "Data pro umístění vložené bitmapy"
 
 #: src/fmfontstrings.cpp:311
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Embedded bitmap scaling data"
 msgstr "Data pro změnu velikosti vložené bitmapy"
 
 #: src/fmfontstrings.cpp:314
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Baseline data"
 msgstr "Data pro základnu"
 
 #: src/fmfontstrings.cpp:315
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Glyph definition data"
 msgstr "Data pro vymezení glyfu"
 
 #: src/fmfontstrings.cpp:316
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Glyph positioning data"
 msgstr "Data pro umísťování glyfu"
 
 #: src/fmfontstrings.cpp:317
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Glyph substitution data"
 msgstr "Data pro nahrazení glyfu"
 
 #: src/fmfontstrings.cpp:318
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Justification data"
 msgstr "Data pro zarovnání"
 
 #: src/fmfontstrings.cpp:321
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Digital signature"
 msgstr "Digitální podpis"
 
 #: src/fmfontstrings.cpp:322
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Grid-fitting/Scan-conversion"
 msgstr "Umístění do mřížky/Převod naskenovaného obrázku"
 
 #: src/fmfontstrings.cpp:323
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Horizontal device metrics"
 msgstr "Vodorovná metrika zařízení"
 
-#: src/fmfontstrings.cpp:324 src/opentypetags.h:64
+#: src/fmfontstrings.cpp:324
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Kerning"
 msgstr "Podřezávání"
 
 #: src/fmfontstrings.cpp:325
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Linear threshold data"
 msgstr "Lineární prahová data"
 
 #: src/fmfontstrings.cpp:326
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "PCL 5 data"
 msgstr "Data PCL 5"
 
 #: src/fmfontstrings.cpp:327
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Vertical device metrics"
 msgstr "Svislá metrika zařízení"
 
 #: src/fmfontstrings.cpp:328
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Vertical Metrics header"
 msgstr "Záhlaví svislé metriky"
 
 #: src/fmfontstrings.cpp:329
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Vertical Metrics"
 msgstr "Svislá metrika"
 
-#: src/fmfontstrings.cpp:337
+#: src/fmfontstrings.cpp:338
 #, kde-format
+msgctxt "@info font embedding permission"
 msgid ""
 "This font may be embedded and permanently installed on the remote system by "
 "an application. The user of the remote system acquires the identical rights, "
@@ -2922,8 +3039,9 @@ msgstr ""
 "předmětem stejného ujednání pro koncového uživatele, autorského práva, "
 "výsady pro tvar, a/nebo obchodní značky, jako byl původní kupující."
 
-#: src/fmfontstrings.cpp:341
+#: src/fmfontstrings.cpp:343
 #, kde-format
+msgctxt "@info font embedding permission"
 msgid ""
 "This font must not be modified, embedded or exchanged in any manner without "
 "first obtaining permission of the legal owner."
@@ -2931,8 +3049,9 @@ msgstr ""
 "Toto písmo se nesmí jakýmkoli způsobem upravovat, vkládat nebo vyměňovat bez "
 "toho, že by nejprve bylo získáno svolení zákonného vlastníka."
 
-#: src/fmfontstrings.cpp:343
+#: src/fmfontstrings.cpp:346
 #, kde-format
+msgctxt "@info font embedding permission"
 msgid ""
 "This font may be embedded, and temporarily loaded on the remote system. "
 "Documents containing this font must be opened \"read-only;\" no edits can be "
@@ -2942,8 +3061,9 @@ msgstr ""
 "Dokumenty obsahující toto písmo se musí otevírat \"pouze pro čtení\". Tento "
 "dokument nelze nijak upravovat."
 
-#: src/fmfontstrings.cpp:346
+#: src/fmfontstrings.cpp:350
 #, kde-format
+msgctxt "@info font embedding permission"
 msgid ""
 "This font may be embedded but must only be installed  temporarily  on other "
 "systems. In contrast to Preview &amp; Print fonts, documents containing this "
@@ -2955,8 +3075,9 @@ msgstr ""
 "dokumenty obsahující toto písmo mohou být otevírány pro čtení, úpravy jsou "
 "povoleny, a změny lze ukládat."
 
-#: src/fmfontstrings.cpp:349
+#: src/fmfontstrings.cpp:354
 #, kde-format
+msgctxt "@info font embedding permission"
 msgid ""
 "This font may not be subsetted prior to embedding. Other embedding "
 "restrictions specified in bits 0-3 and 9 also apply."
@@ -2964,8 +3085,9 @@ msgstr ""
 "Toto písmo se nesmí stát podmnožinou před vkládání. Další omezení pro "
 "vkládání předepsané v bitech 0-3 a 9 platí také."
 
-#: src/fmfontstrings.cpp:351
+#: src/fmfontstrings.cpp:357
 #, kde-format
+msgctxt "@info font embedding permission"
 msgid ""
 "Only bitmaps contained in this font may be embedded. No outline data may be "
 "embedded. If there are no bitmaps available in this font, then it is "
@@ -2977,558 +3099,669 @@ msgstr ""
 "bitmapy, potom je považováno za nevkladatelné a vložit se je nepodaří. Další "
 "omezení pro vkládání předepsané v bitech 0-3 a 8 platí také."
 
-#: src/fmfontstrings.cpp:357
+#: src/fmfontstrings.cpp:363
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Mark, NonSpacing"
 msgstr "Značka, bez prostrkávání"
 
-#: src/fmfontstrings.cpp:358
+#: src/fmfontstrings.cpp:364
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Mark, SpacingCombining"
 msgstr "Značka, kombinuje se s prostrkáváním"
 
-#: src/fmfontstrings.cpp:359
+#: src/fmfontstrings.cpp:365
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Mark, Enclosing"
 msgstr "Značka, uzavírá se"
 
-#: src/fmfontstrings.cpp:360
+#: src/fmfontstrings.cpp:366
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Number, DecimalDigit"
 msgstr "Číslo, číslo od 0 do 9 v desítkovém zápisu"
 
-#: src/fmfontstrings.cpp:361
+#: src/fmfontstrings.cpp:367
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Number, Letter"
 msgstr "Číslo, písmeno"
 
-#: src/fmfontstrings.cpp:362
+#: src/fmfontstrings.cpp:368
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Number, Other"
 msgstr "Číslo, jiné"
 
-#: src/fmfontstrings.cpp:363
+#: src/fmfontstrings.cpp:369
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Separator, Space"
 msgstr "Oddělovač, mezera"
 
-#: src/fmfontstrings.cpp:364
+#: src/fmfontstrings.cpp:370
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Separator, Line"
 msgstr "Oddělovač, řádek"
 
-#: src/fmfontstrings.cpp:365
+#: src/fmfontstrings.cpp:371
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Separator, Paragraph"
 msgstr "Oddělovač, odstavec"
 
-#: src/fmfontstrings.cpp:366
+#: src/fmfontstrings.cpp:372
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Other, Control"
 msgstr "Jiné, ovládání"
 
-#: src/fmfontstrings.cpp:367
+#: src/fmfontstrings.cpp:373
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Other, Format"
 msgstr "Jiné, formát"
 
-#: src/fmfontstrings.cpp:368
+#: src/fmfontstrings.cpp:374
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Other, Surrogate"
 msgstr "Jiné, náhrada"
 
-#: src/fmfontstrings.cpp:369
+#: src/fmfontstrings.cpp:375
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Other, PrivateUse"
 msgstr "Jiné, soukromé použití"
 
-#: src/fmfontstrings.cpp:370
+#: src/fmfontstrings.cpp:376
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Other, NotAssigned"
 msgstr "Jiné, nepřiděleno"
 
-#: src/fmfontstrings.cpp:371
+#: src/fmfontstrings.cpp:377
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Letter, Uppercase"
 msgstr "Písmeno, velká písmena"
 
-#: src/fmfontstrings.cpp:372
+#: src/fmfontstrings.cpp:378
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Letter, Lowercase"
 msgstr "Písmeno, malá písmena"
 
-#: src/fmfontstrings.cpp:373
+#: src/fmfontstrings.cpp:379
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Letter, Titlecase"
 msgstr "Písmeno, písmena v nadpisech"
 
-#: src/fmfontstrings.cpp:374
+#: src/fmfontstrings.cpp:380
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Letter, Modifier"
 msgstr "Písmeno, modifikátor"
 
-#: src/fmfontstrings.cpp:375
+#: src/fmfontstrings.cpp:381
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Letter, Other"
 msgstr "Písmeno, jiné"
 
-#: src/fmfontstrings.cpp:376
+#: src/fmfontstrings.cpp:382
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, Connector"
 msgstr "Interpunkční znaménka, spojovník"
 
-#: src/fmfontstrings.cpp:377
+#: src/fmfontstrings.cpp:383
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, Dash"
 msgstr "Interpunkční znaménka, pomlčka"
 
-#: src/fmfontstrings.cpp:378
+#: src/fmfontstrings.cpp:384
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, Open"
 msgstr "Interpunkční znaménka, otevřít"
 
-#: src/fmfontstrings.cpp:379
+#: src/fmfontstrings.cpp:385
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, Close"
 msgstr "Interpunkční znaménka, zavřít"
 
-#: src/fmfontstrings.cpp:380
+#: src/fmfontstrings.cpp:386
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, InitialQuote"
 msgstr "Interpunkční znaménka, počáteční uvozovky"
 
-#: src/fmfontstrings.cpp:381
+#: src/fmfontstrings.cpp:387
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, FinalQuote"
 msgstr "Interpunkční znaménka, závěrečné uvozovky"
 
-#: src/fmfontstrings.cpp:382
+#: src/fmfontstrings.cpp:388
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, Other"
 msgstr "Interpunkční znaménka, jiná"
 
-#: src/fmfontstrings.cpp:383
+#: src/fmfontstrings.cpp:389
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Symbol, Math"
 msgstr "Symbol, matematika"
 
-#: src/fmfontstrings.cpp:384
+#: src/fmfontstrings.cpp:390
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Symbol, Currency"
 msgstr "Symbol, měna"
 
-#: src/fmfontstrings.cpp:385
+#: src/fmfontstrings.cpp:391
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Symbol, Modifier"
 msgstr "Symbol, modifikátor"
 
-#: src/fmfontstrings.cpp:386
+#: src/fmfontstrings.cpp:392
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Symbol, Other"
 msgstr "Symbol, jiný"
 
-#: src/fmfontstrings.cpp:391
+#: src/fmfontstrings.cpp:397
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Arabic"
 msgstr "Arabské"
 
-#: src/fmfontstrings.cpp:392
+#: src/fmfontstrings.cpp:398
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Armenian"
 msgstr "Arménské"
 
-#: src/fmfontstrings.cpp:393
+#: src/fmfontstrings.cpp:399
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Balinese"
 msgstr "Balijské"
 
-#: src/fmfontstrings.cpp:394
+#: src/fmfontstrings.cpp:400
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Bengali"
 msgstr "Bengálské"
 
-#: src/fmfontstrings.cpp:395
+#: src/fmfontstrings.cpp:401
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Bopomofo"
 msgstr "Bopomofo"
 
-#: src/fmfontstrings.cpp:396
+#: src/fmfontstrings.cpp:402
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Braille"
 msgstr "Braillovo/Slepecké písmo"
 
-#: src/fmfontstrings.cpp:397
+#: src/fmfontstrings.cpp:403
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Buginese"
 msgstr "Buginezské"
 
-#: src/fmfontstrings.cpp:398
+#: src/fmfontstrings.cpp:404
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Buhid"
 msgstr "Buhidské"
 
-#: src/fmfontstrings.cpp:399
+#: src/fmfontstrings.cpp:405
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Byzantine Music"
 msgstr "Byzantská hudba"
 
-#: src/fmfontstrings.cpp:400
+#: src/fmfontstrings.cpp:406
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Canadian Syllabics"
 msgstr "Kanadské slabiky"
 
-#: src/fmfontstrings.cpp:401
+#: src/fmfontstrings.cpp:407
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Cherokee"
 msgstr "Čerokijské"
 
-#: src/fmfontstrings.cpp:402
+#: src/fmfontstrings.cpp:408
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "CJK Ideographic"
 msgstr "CJK ideogramy"
 
-#: src/fmfontstrings.cpp:403
+#: src/fmfontstrings.cpp:409
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Coptic"
 msgstr "Koptské"
 
-#: src/fmfontstrings.cpp:404
+#: src/fmfontstrings.cpp:410
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Cypriot Syllabary"
 msgstr "Slabikové kyperské písmo"
 
-#: src/fmfontstrings.cpp:405
+#: src/fmfontstrings.cpp:411
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Cyrillic"
 msgstr "Azbuka"
 
-#: src/fmfontstrings.cpp:406
+#: src/fmfontstrings.cpp:412
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Default"
 msgstr "Výchozí"
 
-#: src/fmfontstrings.cpp:407
+#: src/fmfontstrings.cpp:413
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Deseret"
 msgstr "Deseretské"
 
-#: src/fmfontstrings.cpp:408
+#: src/fmfontstrings.cpp:414
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Devanagari"
 msgstr "Devanagarijské"
 
-#: src/fmfontstrings.cpp:409
+#: src/fmfontstrings.cpp:415
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Ethiopic"
 msgstr "Etiopské"
 
-#: src/fmfontstrings.cpp:410
+#: src/fmfontstrings.cpp:416
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Georgian"
 msgstr "Gruzínské"
 
-#: src/fmfontstrings.cpp:411
+#: src/fmfontstrings.cpp:417
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Glagolitic"
 msgstr "Hlaholice"
 
-#: src/fmfontstrings.cpp:412
+#: src/fmfontstrings.cpp:418
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Gothic"
 msgstr "Gotické"
 
-#: src/fmfontstrings.cpp:413
+#: src/fmfontstrings.cpp:419
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Greek"
 msgstr "Řecké"
 
-#: src/fmfontstrings.cpp:414
+#: src/fmfontstrings.cpp:420
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Gujarati"
 msgstr "Gujaratské"
 
-#: src/fmfontstrings.cpp:415
+#: src/fmfontstrings.cpp:421
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Gurmukhi"
 msgstr "Gurmucké"
 
-#: src/fmfontstrings.cpp:416
+#: src/fmfontstrings.cpp:422
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Hangul Jamo"
 msgstr "Korejské písmo hangul jamo"
 
-#: src/fmfontstrings.cpp:417 src/opentypetags.h:53
+#: src/fmfontstrings.cpp:423
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Hangul"
 msgstr "Korejské písmo hangul"
 
-#: src/fmfontstrings.cpp:418
+#: src/fmfontstrings.cpp:424
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Hanunoo"
 msgstr "Hanunoo"
 
-#: src/fmfontstrings.cpp:419
+#: src/fmfontstrings.cpp:425
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Hebrew"
 msgstr "Hebrejské"
 
-#: src/fmfontstrings.cpp:420
+#: src/fmfontstrings.cpp:426
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Hiragana and Katakana"
 msgstr "Hiragana a Katakana"
 
-#: src/fmfontstrings.cpp:421
+#: src/fmfontstrings.cpp:427
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Javanese"
 msgstr "Jávské"
 
-#: src/fmfontstrings.cpp:422
+#: src/fmfontstrings.cpp:428
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Kannada"
 msgstr "Kannadské"
 
-#: src/fmfontstrings.cpp:423
+#: src/fmfontstrings.cpp:429
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Kharosthi"
 msgstr "Kharosthijské"
 
-#: src/fmfontstrings.cpp:424
+#: src/fmfontstrings.cpp:430
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Khmer"
 msgstr "Khmerské"
 
-#: src/fmfontstrings.cpp:425
+#: src/fmfontstrings.cpp:431
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Lao"
 msgstr "Lao"
 
-#: src/fmfontstrings.cpp:426
+#: src/fmfontstrings.cpp:432
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Latin"
 msgstr "Latinka"
 
-#: src/fmfontstrings.cpp:427
+#: src/fmfontstrings.cpp:433
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Limbu"
 msgstr "Limbu"
 
-#: src/fmfontstrings.cpp:428
+#: src/fmfontstrings.cpp:434
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Linear B"
 msgstr "Lineární B"
 
-#: src/fmfontstrings.cpp:429
+#: src/fmfontstrings.cpp:435
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Malayalam"
 msgstr "Malayalamské"
 
-#: src/fmfontstrings.cpp:430
+#: src/fmfontstrings.cpp:436
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Mathematical Alphanumeric Symbols"
 msgstr "Matematické alfanumerické symboly"
 
-#: src/fmfontstrings.cpp:431
+#: src/fmfontstrings.cpp:437
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Mongolian"
 msgstr "Mongolské"
 
-#: src/fmfontstrings.cpp:432
+#: src/fmfontstrings.cpp:438
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Musical Symbols"
 msgstr "Hudební symboly"
 
-#: src/fmfontstrings.cpp:433
+#: src/fmfontstrings.cpp:439
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Myanmar"
 msgstr "Myanmarské"
 
-#: src/fmfontstrings.cpp:434
+#: src/fmfontstrings.cpp:440
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "N'ko"
 msgstr "N'Ko"
 
-#: src/fmfontstrings.cpp:435
+#: src/fmfontstrings.cpp:441
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Ogham"
 msgstr "Ogamské"
 
-#: src/fmfontstrings.cpp:436
+#: src/fmfontstrings.cpp:442
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Old Italic"
 msgstr "Stará italika"
 
-#: src/fmfontstrings.cpp:437
+#: src/fmfontstrings.cpp:443
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Old Persian Cuneiform"
 msgstr "Staré perské klínové"
 
-#: src/fmfontstrings.cpp:438
+#: src/fmfontstrings.cpp:444
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Oriya"
 msgstr "Oriya"
 
-#: src/fmfontstrings.cpp:439
+#: src/fmfontstrings.cpp:445
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Osmanya"
 msgstr "Osmanyjské"
 
-#: src/fmfontstrings.cpp:440
+#: src/fmfontstrings.cpp:446
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Phags-pa"
 msgstr "Phags-pa"
 
-#: src/fmfontstrings.cpp:441
+#: src/fmfontstrings.cpp:447
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Phoenician"
 msgstr "Fénické"
 
-#: src/fmfontstrings.cpp:442
+#: src/fmfontstrings.cpp:448
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Runic"
 msgstr "Runové"
 
-#: src/fmfontstrings.cpp:443
+#: src/fmfontstrings.cpp:449
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Shavian"
 msgstr "Shavijské"
 
-#: src/fmfontstrings.cpp:444
+#: src/fmfontstrings.cpp:450
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Sinhala"
 msgstr "Sinhálské"
 
-#: src/fmfontstrings.cpp:445
+#: src/fmfontstrings.cpp:451
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Sumero-Akkadian Cuneiform"
 msgstr "Sumerské-akadské klínové"
 
-#: src/fmfontstrings.cpp:446
+#: src/fmfontstrings.cpp:452
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Syloti Nagri"
 msgstr "Syloti Nagri"
 
-#: src/fmfontstrings.cpp:447
+#: src/fmfontstrings.cpp:453
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Syriac"
 msgstr "Syrské"
 
-#: src/fmfontstrings.cpp:448
+#: src/fmfontstrings.cpp:454
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Tagalog"
 msgstr "Filipínské"
 
-#: src/fmfontstrings.cpp:449
+#: src/fmfontstrings.cpp:455
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Tagbanwa"
 msgstr "Tagbanwa"
 
-#: src/fmfontstrings.cpp:450
+#: src/fmfontstrings.cpp:456
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Tai Le"
 msgstr "Tai Le"
 
-#: src/fmfontstrings.cpp:451
+#: src/fmfontstrings.cpp:457
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Tai Lu"
 msgstr "Tai Lu"
 
-#: src/fmfontstrings.cpp:452
+#: src/fmfontstrings.cpp:458
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Tamil"
 msgstr "Tamilské"
 
-#: src/fmfontstrings.cpp:453
+#: src/fmfontstrings.cpp:459
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Telugu"
 msgstr "Telugské"
 
-#: src/fmfontstrings.cpp:454
+#: src/fmfontstrings.cpp:460
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Thaana"
 msgstr "Thaanské"
 
-#: src/fmfontstrings.cpp:455
+#: src/fmfontstrings.cpp:461
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Thai"
 msgstr "Thajské"
 
-#: src/fmfontstrings.cpp:456
+#: src/fmfontstrings.cpp:462
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Tibetan"
 msgstr "Tibetské"
 
-#: src/fmfontstrings.cpp:457
+#: src/fmfontstrings.cpp:463
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Tifinagh"
 msgstr "Tifinaghské"
 
-#: src/fmfontstrings.cpp:458
+#: src/fmfontstrings.cpp:464
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Ugaritic Cuneiform"
 msgstr "Ugaritické klínové"
 
-#: src/fmfontstrings.cpp:459
+#: src/fmfontstrings.cpp:465
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Yi"
 msgstr "Yi"
 
-#: src/fmfontstrings.cpp:505
+#: src/fmfontstrings.cpp:511
 #, kde-format
+msgctxt "@label font embedding permission"
 msgid "Not Restricted"
 msgstr "Neomezeno"
 
-#: src/fmfontstrings.cpp:507
+#: src/fmfontstrings.cpp:513
 #, kde-format
+msgctxt "@label font embedding permission"
 msgid "Restricted"
 msgstr "Omezeno"
 
-#: src/fmfontstrings.cpp:509
+#: src/fmfontstrings.cpp:515
 #, kde-format
+msgctxt "@label font embedding permission"
 msgid "Preview/Print"
 msgstr "Poskytnout náhled/Vytisknout"
 
-#: src/fmfontstrings.cpp:511
+#: src/fmfontstrings.cpp:517
 #, kde-format
+msgctxt "@label font embedding permission"
 msgid "Edit/Embed"
 msgstr "Upravit/Vložit"
 
-#: src/fmfontstrings.cpp:513
+#: src/fmfontstrings.cpp:519
 #, kde-format
+msgctxt "@label font embedding permission"
 msgid "No Subset"
 msgstr "Žádná podmnožina"
 
-#: src/fmfontstrings.cpp:515
+#: src/fmfontstrings.cpp:521
 #, kde-format
+msgctxt "@label font embedding permission"
 msgid "Bitmap Only"
 msgstr "Pouze bitmapa"
 
 #: src/fminfodisplay.cpp:107
 #, kde-format
+msgctxt "@title:group"
 msgid "Unicode Ranges"
 msgstr "Rozsahy Unicode"
 
 #: src/fminfodisplay.cpp:178
 #, kde-format
+msgctxt "@label"
 msgid "File"
 msgstr "Soubor"
 
 #: src/fminfodisplay.cpp:179
 #, kde-format
+msgctxt "@label"
 msgid "Glyphs count"
 msgstr "Počet obrázků"
 
 #: src/fminfodisplay.cpp:180
 #, kde-format
+msgctxt "@label"
 msgid "Font Type"
 msgstr "Typ písma"
 
 #: src/fminfodisplay.cpp:192
 #, kde-format
+msgctxt "@title:group"
 msgid "Charmaps List"
 msgstr "Seznam zobrazení znaků"
 
-#: src/fmmatchraster.cpp:134
+#: src/fmmatchraster.cpp:135
 #, kde-format
+msgctxt "@info"
 msgid ""
 "The font %1 scores %2.\n"
 "Do you want to add it to the filtered fonts?"
@@ -3536,13 +3769,15 @@ msgstr ""
 "Písmo %1 dosahuje %2.\n"
 "Chcete je přidat do filtrovaných písem?"
 
-#: src/fmmatchraster.cpp:183
+#: src/fmmatchraster.cpp:184
 #, kde-format
+msgctxt "@info"
 msgid "No font match the submitted image"
 msgstr "Žádné písmo neodpovídá předloženému obrázku"
 
-#: src/fmmissingfonthelper.cpp:16
+#: src/fmmissingfonthelper.cpp:17
 #, kde-format
+msgctxt "@info"
 msgid ""
 "Fontmatrix has been unable to load the font in file \n"
 "%1.\n"
@@ -3552,13 +3787,15 @@ msgstr ""
 "%1.\n"
 "Prověřte, prosím, chybějící soubory."
 
-#: src/fmmissingfonthelper.cpp:16 src/fmmissingfonthelper.cpp:26
+#: src/fmmissingfonthelper.cpp:18 src/fmmissingfonthelper.cpp:28
 #, kde-format
+msgctxt "@title:window"
 msgid "Missing Font File"
 msgstr "Chybí soubor s písmem"
 
-#: src/fmmissingfonthelper.cpp:25
+#: src/fmmissingfonthelper.cpp:27
 #, kde-format
+msgctxt "@info"
 msgid ""
 "Fontmatrix has been unable to load fonts in files \n"
 "%1.\n"
@@ -3570,26 +3807,31 @@ msgstr ""
 
 #: src/fontbook.cpp:88
 #, kde-format
+msgctxt "@title:window"
 msgid "Print Fontbook"
 msgstr "Vytisknout knihu písem"
 
 #: src/fontbook.cpp:438
 #, kde-format
+msgctxt "@label"
 msgid "Unicode coverage"
 msgstr "Rozsah Unicode"
 
 #: src/fontbookdialog.cpp:93
 #, kde-format
+msgctxt "@title:window"
 msgid "Save fontBook"
 msgstr "Uložit knihu písem"
 
 #: src/fontbookdialog.cpp:126 src/fontbookdialog.cpp:151
 #, kde-format
+msgctxt "@info"
 msgid "Cannot read %1."
 msgstr ""
 
 #: src/fontbookdialog.cpp:131 src/fontbookdialog.cpp:156
 #, kde-format
+msgctxt "@info"
 msgid "%1 is not a valid XML file."
 msgstr ""
 
@@ -3601,6 +3843,7 @@ msgstr "Žádná"
 
 #: src/fontitem.cpp:1964
 #, kde-format
+msgctxt "@info"
 msgid "codepoint is U+"
 msgstr "Kód je U+"
 
@@ -3618,26 +3861,32 @@ msgstr "(%1)"
 
 #: src/fontitem.cpp:2762
 #, kde-format
+msgctxt "@title:window"
 msgid "Fontmatrix - Download"
 msgstr "Fontmatrix - Stažení"
 
 #: src/fontitem.cpp:2763
 #, kde-format
+msgctxt "@info:progress"
 msgid "Downloading %1."
 msgstr "Stahuje se %1."
 
 #: src/importedfontsdialog.cpp:23
 #, kde-format
+msgctxt ""
+"@item:inlistbox appended to the name of a font that could not be loaded"
 msgid " (not loaded)"
 msgstr " (nenahráno)"
 
 #: src/importedfontsdialog.cpp:30
 #, kde-format
+msgctxt "@label"
 msgid "Number of Imported Fonts "
 msgstr "Počet zavedených písem "
 
-#: src/mainviewwidget.cpp:1140
+#: src/mainviewwidget.cpp:1142
 #, kde-format
+msgctxt "@info"
 msgid ""
 " is activated.\n"
 "If you want to remove it from Fontmatrix database, please deactivate it "
@@ -3647,17 +3896,19 @@ msgstr ""
 "Pokud je chcete odstranit z databáze programu Fontmatrix, nejprve je, "
 "prosím, vypněte."
 
-#: src/mainviewwidget.cpp:1144
+#: src/mainviewwidget.cpp:1146
 #, kde-format
+msgctxt "@info"
 msgid "You are about to remove a font from Fontmatrix database"
 msgstr "Chystáte se písmo odstranit z databáze programu Fontmatrix"
 
-#: src/mainviewwidget.cpp:1145
+#: src/mainviewwidget.cpp:1147
 #, kde-format
+msgctxt "@info"
 msgid "Do you want to continue?"
 msgstr "Chcete pokračovat?"
 
-#: src/mainviewwidget.cpp:1146
+#: src/mainviewwidget.cpp:1148
 #, fuzzy, kde-format
 #| msgid "Remove Filter"
 msgctxt "@title:window"
@@ -3666,636 +3917,781 @@ msgstr "Odstranit filtr"
 
 #: src/opentypetags.h:17
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Access All Alternates"
 msgstr "Získat všechna náhradní"
 
 #: src/opentypetags.h:18
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Above-Base Forms"
 msgstr "Tvary nad základem"
 
 #: src/opentypetags.h:19
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Above-Base Mark Positioning"
 msgstr "Umístění značky nad základem"
 
 #: src/opentypetags.h:20
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Above-Base Substitutions"
 msgstr "Nahrazení nad základem"
 
 #: src/opentypetags.h:21
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Alternative Fractions"
 msgstr "Náhradní zlomky"
 
 #: src/opentypetags.h:22
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Akhands"
 msgstr "Akhand"
 
 #: src/opentypetags.h:23
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Below-Base Forms"
 msgstr "Tvary pod základem"
 
 #: src/opentypetags.h:24
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Below-Base Mark Positioning"
 msgstr "Umístění značky pod základem"
 
 #: src/opentypetags.h:25
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Below-Base Substitutions"
 msgstr "Nahrazení pod základem"
 
 #: src/opentypetags.h:26
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Petite Capitals From Capitals"
 msgstr "Drobné kapitálky z velkých písmen"
 
 #: src/opentypetags.h:27
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Small Capitals From Capitals"
 msgstr "Malé kapitálky z velkých písmen"
 
 #: src/opentypetags.h:28
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Contextual Alternates"
 msgstr "Náhrady vyplývající ze souvislosti"
 
 #: src/opentypetags.h:29
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Case-Sensitive Forms"
 msgstr "Tvary rozlišující velká a malá písmena"
 
 #: src/opentypetags.h:30
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Glyph Composition/Decomposition"
 msgstr "Složení/Rozklad glyfu"
 
 #: src/opentypetags.h:31
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Contextual Ligatures"
 msgstr "Slitky vyplývající ze souvislosti"
 
 #: src/opentypetags.h:32
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Conjunct Forms"
 msgstr "Spojené tvary"
 
 #: src/opentypetags.h:33
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Capital Spacing"
 msgstr "Rozestupy velkých písmen"
 
 #: src/opentypetags.h:34
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Contextual Swash"
 msgstr "Ozdobné písmeno vyplývající ze souvislosti"
 
 #: src/opentypetags.h:35
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Cursive Positioning"
 msgstr "Kurzívní umístění"
 
 #: src/opentypetags.h:36
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Default Processing"
 msgstr "Výchozí zpracování"
 
 #: src/opentypetags.h:37
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Distances"
 msgstr "Vzdálenosti"
 
 #: src/opentypetags.h:38
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Discretionary Ligatures"
 msgstr "Nepředepsané slitky"
 
 #: src/opentypetags.h:39
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Denominators"
 msgstr "Jmenovatelé"
 
 #: src/opentypetags.h:40
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Expert Forms"
 msgstr "Odborné tvary"
 
 #: src/opentypetags.h:41
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Final glyph Alternates"
 msgstr "Náhrady závěrečného glyfu"
 
 #: src/opentypetags.h:42
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Terminal Forms #2"
 msgstr "Tvary zakončení #2"
 
 #: src/opentypetags.h:43
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Terminal Forms #3"
 msgstr "Tvary zakončení #3"
 
 #: src/opentypetags.h:44
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Terminal Forms"
 msgstr "Tvary zakončení"
 
 #: src/opentypetags.h:45
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Fractions"
 msgstr "Zlomky"
 
 #: src/opentypetags.h:46
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Full Width"
 msgstr "Celá šířka"
 
 #: src/opentypetags.h:47
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Half Forms"
 msgstr "Poloviční tvary"
 
 #: src/opentypetags.h:48
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Halant Forms"
 msgstr "Tvary Halant"
 
 #: src/opentypetags.h:49
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Alternate Half Width"
 msgstr "Náhradní poloviční šířka"
 
 #: src/opentypetags.h:50
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Historical Forms"
 msgstr "Historické tvary"
 
 #: src/opentypetags.h:51
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Horizontal Kana Alternates"
 msgstr "Vodorovné náhrady Kana"
 
 #: src/opentypetags.h:52
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Historical Ligatures"
 msgstr "Historické slitky"
 
+#: src/opentypetags.h:53
+#, kde-format
+msgctxt "@item:intable OpenType feature"
+msgid "Hangul"
+msgstr "Korejské písmo hangul"
+
 #: src/opentypetags.h:54
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Hojo Kanji Forms (JIS x 212-1990 Kanji Forms)"
 msgstr "Tvary Hojo Kanji (tvary Kanji JIS x 212-1990)"
 
 #: src/opentypetags.h:55
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Half Width"
 msgstr "Poloviční šířka"
 
 #: src/opentypetags.h:56
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Initial Forms"
 msgstr "Počáteční tvary"
 
 #: src/opentypetags.h:57
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Isolated Forms"
 msgstr "Osamocené tvary"
 
 #: src/opentypetags.h:58
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Italics"
 msgstr "Kurzíva"
 
 #: src/opentypetags.h:59
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Justification Alternatives"
 msgstr "Náhradní zarovnání"
 
 #: src/opentypetags.h:60
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "JIS78 Forms"
 msgstr "Tvary JIS78"
 
 #: src/opentypetags.h:61
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "JIS83 Forms"
 msgstr "Tvary JIS83"
 
 #: src/opentypetags.h:62
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "JIS90 Forms"
 msgstr "Tvary JIS90"
 
 #: src/opentypetags.h:63
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "JIS2004 Forms"
 msgstr "Tvary JIS2004"
 
+#: src/opentypetags.h:64
+#, kde-format
+msgctxt "@item:intable OpenType feature"
+msgid "Kerning"
+msgstr "Podřezávání"
+
 #: src/opentypetags.h:65
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Left Bounds"
 msgstr "Levé hranice"
 
 #: src/opentypetags.h:66
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Standard Ligatures"
 msgstr "Obvyklé slitky"
 
 #: src/opentypetags.h:67
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Leading Jamo Forms"
 msgstr "Tvary Jamo na začátku"
 
 #: src/opentypetags.h:68
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Lining Figures"
 msgstr "Seřazení číslic"
 
 #: src/opentypetags.h:69
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Localized Forms"
 msgstr "Lokalizované tvary"
 
 #: src/opentypetags.h:70
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Mark Positioning"
 msgstr "Umístění značky"
 
 #: src/opentypetags.h:71
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Medial Forms #2"
 msgstr "Průměrné tvary #2"
 
 #: src/opentypetags.h:72
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Medial Forms"
 msgstr "Průměrné tvary"
 
 #: src/opentypetags.h:73
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Mathematical Greek"
 msgstr "Matematické řecké"
 
 #: src/opentypetags.h:74
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Mark to Mark Positioning"
 msgstr "Umístění značky k značce"
 
 #: src/opentypetags.h:75
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Mark Positioning via Substitution"
 msgstr "Umístění značky pomocí nahrazení"
 
 #: src/opentypetags.h:76
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Alternate Annotation Forms"
 msgstr "Náhradní tvary vysvětlivek"
 
 #: src/opentypetags.h:77
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "NLC Kanji Forms"
 msgstr "Tvary Kanji NLC"
 
 #: src/opentypetags.h:78
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Nukta Forms"
 msgstr "Tvary Nukta"
 
 #: src/opentypetags.h:79
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Numerators"
 msgstr "Čitatelé"
 
 #: src/opentypetags.h:80
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Old Style Figures"
 msgstr "Číslice ve starém slohu"
 
 #: src/opentypetags.h:81
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Optical Bounds"
 msgstr "Viditelné hranice"
 
 #: src/opentypetags.h:82
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Ordinals"
 msgstr "Řadové číslovky"
 
 #: src/opentypetags.h:83
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Ornaments"
 msgstr "Ozdoby"
 
 #: src/opentypetags.h:84
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Proportional Alternate Width"
 msgstr "Poměrná náhradní šířka"
 
 #: src/opentypetags.h:85
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Petite Capitals"
 msgstr "Drobná velká písmena (kapitálky)"
 
 #: src/opentypetags.h:86
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Proportional Figures"
 msgstr "Poměrné číslice"
 
 #: src/opentypetags.h:87
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Pre-base Forms"
 msgstr "Tvary před základem"
 
 #: src/opentypetags.h:88
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Pre-base Substitutions"
 msgstr "Náhrady před základem"
 
 #: src/opentypetags.h:89
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Post-base Forms"
 msgstr "Tvary po základu"
 
 #: src/opentypetags.h:90
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Post-base Substitutions"
 msgstr "Náhrady po základu"
 
 #: src/opentypetags.h:91
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Proportional Widths"
 msgstr "Poměrné šířky"
 
 #: src/opentypetags.h:92
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Quarter Widths"
 msgstr "Čtvrtinové šířky"
 
 #: src/opentypetags.h:93
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Randomize"
 msgstr "Vybrat náhodně"
 
 #: src/opentypetags.h:94
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Rakar Forms"
 msgstr "Tvary Rakar"
 
 #: src/opentypetags.h:95
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Required Ligatures"
 msgstr "Požadované slitky"
 
 #: src/opentypetags.h:96
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Reph Form"
 msgstr "Tvar Reph"
 
 #: src/opentypetags.h:97
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Right Bounds"
 msgstr "Pravé hranice"
 
 #: src/opentypetags.h:98
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Right-To-Left Alternates"
 msgstr "Pravolevé náhrady"
 
 #: src/opentypetags.h:99
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Ruby Notation Forms"
 msgstr "Tvary zápisu typu písma Ruby"
 
 #: src/opentypetags.h:100
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Alternates"
 msgstr "Slohové náhrady"
 
 #: src/opentypetags.h:101
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Scientific Inferiors"
 msgstr "Vědecké psané jako dolní index"
 
 #: src/opentypetags.h:102
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Optical Size"
 msgstr "Viditelná velikost"
 
 #: src/opentypetags.h:103
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Small Capitals"
 msgstr "Malé kapitálky"
 
 #: src/opentypetags.h:104
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Simplified Forms"
 msgstr "Zjednodušené tvary"
 
 #: src/opentypetags.h:105
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 1"
 msgstr "Slohový soubor 1"
 
 #: src/opentypetags.h:106
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 2"
 msgstr "Slohový soubor 2"
 
 #: src/opentypetags.h:107
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 3"
 msgstr "Slohový soubor 3"
 
 #: src/opentypetags.h:108
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 4"
 msgstr "Slohový soubor 4"
 
 #: src/opentypetags.h:109
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 5"
 msgstr "Slohový soubor 5"
 
 #: src/opentypetags.h:110
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 6"
 msgstr "Slohový soubor 6"
 
 #: src/opentypetags.h:111
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 7"
 msgstr "Slohový soubor 7"
 
 #: src/opentypetags.h:112
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 8"
 msgstr "Slohový soubor 8"
 
 #: src/opentypetags.h:113
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 9"
 msgstr "Slohový soubor 9"
 
 #: src/opentypetags.h:114
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 10"
 msgstr "Slohový soubor 10"
 
 #: src/opentypetags.h:115
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 11"
 msgstr "Slohový soubor 11"
 
 #: src/opentypetags.h:116
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 12"
 msgstr "Slohový soubor 12"
 
 #: src/opentypetags.h:117
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 13"
 msgstr "Slohový soubor 13"
 
 #: src/opentypetags.h:118
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 14"
 msgstr "Slohový soubor 14"
 
 #: src/opentypetags.h:119
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 15"
 msgstr "Slohový soubor 15"
 
 #: src/opentypetags.h:120
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 16"
 msgstr "Slohový soubor 16"
 
 #: src/opentypetags.h:121
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 17"
 msgstr "Slohový soubor 17"
 
 #: src/opentypetags.h:122
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 18"
 msgstr "Slohový soubor 18"
 
 #: src/opentypetags.h:123
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 19"
 msgstr "Slohový soubor 19"
 
 #: src/opentypetags.h:124
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 20"
 msgstr "Slohový soubor 20"
 
 #: src/opentypetags.h:125
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Subscript"
 msgstr "Dolní index"
 
 #: src/opentypetags.h:126
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Superscript"
 msgstr "Horní index"
 
 #: src/opentypetags.h:127
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Swash"
 msgstr "Ozdobné písmeno"
 
 #: src/opentypetags.h:128
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Titling"
 msgstr "Titulování"
 
 #: src/opentypetags.h:129
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Trailing Jamo Forms"
 msgstr "Tvary Jamo na konci"
 
 #: src/opentypetags.h:130
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Traditional Name Forms"
 msgstr "Tradiční tvary názvu"
 
 #: src/opentypetags.h:131
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Tabular Figures"
 msgstr "Tabulkové číslice"
 
 #: src/opentypetags.h:132
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Traditional Forms"
 msgstr "Tradiční tvary"
 
 #: src/opentypetags.h:133
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Third Widths"
 msgstr "Třetinové šířky"
 
 #: src/opentypetags.h:134
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Unicase"
 msgstr "Jednotná písmovka"
 
 #: src/opentypetags.h:135
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Alternate Vertical Metrics"
 msgstr "Náhradní svislá metrika"
 
 #: src/opentypetags.h:136
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Vattu Variants"
 msgstr "Obměny Vattu"
 
 #: src/opentypetags.h:137
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Vertical Writing"
 msgstr "Svislé písmo"
 
 #: src/opentypetags.h:138
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Alternate Vertical Half Metrics"
 msgstr "Náhradní svislá poloviční metrika"
 
 #: src/opentypetags.h:139
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Vowel Jamo Forms"
 msgstr "Tvary samohlásek Jamo"
 
 #: src/opentypetags.h:140
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Vertical Kana Alternates"
 msgstr "Svislé náhrady Kana"
 
 #: src/opentypetags.h:141
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Vertical Kerning"
 msgstr "Svislé podřezávání"
 
 #: src/opentypetags.h:142
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Proportional Alternate Vertical Metrics"
 msgstr "Poměrná náhradní svislá metrika"
 
 #: src/opentypetags.h:143
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Vertical Rotation"
 msgstr "Svislé otočení"
 
 #: src/opentypetags.h:144
 #, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Slashed Zero"
 msgstr "Nula s lomítkem"
 
+#: src/playwidget.cpp:22
+#, kde-format
+msgctxt "@title:window"
+msgid "Playground"
+msgstr "Hřiště"
+
 #: src/playwidget.cpp:104
 #, kde-format
+msgctxt "@title:window"
 msgid "Print Playground"
 msgstr "Vytisknout hřiště"
 
@@ -4306,21 +4702,60 @@ msgctxt "@title:window"
 msgid "Preferences"
 msgstr "Nastavení"
 
+#: src/prefspaneldialog.cpp:44
+#, kde-format
+msgctxt "@title:tab"
+msgid "General"
+msgstr "Obecné"
+
+#: src/prefspaneldialog.cpp:46
+#, kde-format
+msgctxt "@title:tab"
+msgid "System tray"
+msgstr "Systémová část panelu"
+
+#: src/prefspaneldialog.cpp:48
+#, kde-format
+msgctxt "@title:tab"
+msgid "Display"
+msgstr "Zobrazení"
+
+#: src/prefspaneldialog.cpp:50
+#, kde-format
+msgctxt "@title:tab"
+msgid "Tools"
+msgstr "Nástroje"
+
+#: src/prefspaneldialog.cpp:52
+#, kde-format
+msgctxt "@title:tab"
+msgid "Samples collection"
+msgstr "Sbírka ukázek"
+
 #: src/prefspaneldialog.cpp:54
 #, fuzzy, kde-format
 #| msgid "Files & Folders"
+msgctxt "@title:tab"
 msgid "Files && Folders"
 msgstr "Soubory a složky"
 
+#: src/prefspaneldialog.cpp:56
+#, kde-format
+msgctxt "@title:tab"
+msgid "Shortcuts"
+msgstr "Klávesové zkratky"
+
 #: src/prefspaneldialog.cpp:66
 #, kde-format
+msgctxt "@info"
 msgid ""
 "This desktop does not provide a system tray. The options below have no "
 "effect."
 msgstr ""
 
-#: src/prefspaneldialog.cpp:92
+#: src/prefspaneldialog.cpp:93
 #, kde-format
+msgctxt "@info:tooltip"
 msgid ""
 "You can use the following keywords to be replaced by data from fonts: "
 "<strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; "
@@ -4330,31 +4765,32 @@ msgstr ""
 "<strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; "
 "<strong>&#60;variant&#62;</strong>"
 
-#: src/prefspaneldialog.cpp:105
+#: src/prefspaneldialog.cpp:106
 #, kde-format
 msgctxt "@info:placeholder sample text in font requester"
 msgid "Aa Bb 123"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:111
+#: src/prefspaneldialog.cpp:112
 #, kde-format
+msgctxt "@info"
 msgid "Please select an item in the list or create a new one."
 msgstr "Vyberte, prosím, ze seznamu jednu položku, nebo jednu vytvořte."
 
-#: src/prefspaneldialog.cpp:241
+#: src/prefspaneldialog.cpp:242
 #, kde-format
 msgctxt "@info:status validation"
 msgid "Please enter a name for the new sample."
 msgstr ""
 
-#: src/prefspaneldialog.cpp:246
+#: src/prefspaneldialog.cpp:247
 #, fuzzy, kde-format
 #| msgid "The file %1 already exists"
 msgctxt "@info:status validation"
 msgid "A sample named \"%1\" already exists."
 msgstr "Soubor %1 již existuje"
 
-#: src/prefspaneldialog.cpp:252
+#: src/prefspaneldialog.cpp:253
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "PrefsPanelDialog|A default sample text inserted when creating a new sample"
@@ -4363,7 +4799,7 @@ msgctxt "A default sample text inserted when creating a new sample"
 msgid "Sample Text"
 msgstr "Ukázkový text"
 
-#: src/prefspaneldialog.cpp:265
+#: src/prefspaneldialog.cpp:266
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "PrefsPanelDialog|the name of a sample text will be append to the string"
@@ -4372,162 +4808,182 @@ msgctxt "the name of a sample text will be append to the string"
 msgid "Do you confirm that you want to remove:"
 msgstr "Potvrzujete, že chcete odstranit:"
 
-#: src/prefspaneldialog.cpp:269
+#: src/prefspaneldialog.cpp:270
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Remove Sample Text"
 msgstr "Pojmenovaný ukázkový text"
 
-#: src/prefspaneldialog.cpp:353
+#: src/prefspaneldialog.cpp:354
 #, kde-format
+msgctxt "@title:window"
 msgid "Select font editor"
 msgstr "Vybrat editor písma"
 
-#: src/prefspaneldialog.cpp:391
+#: src/prefspaneldialog.cpp:392
 #, kde-format
+msgctxt "@title:window"
 msgid "Select Templates Folder"
 msgstr "Vybrat složku s předlohami"
 
-#: src/prefspaneldialog.cpp:467 src/prefspaneldialog.cpp:508
+#: src/prefspaneldialog.cpp:468 src/prefspaneldialog.cpp:509
 #, kde-format
 msgid "Alt"
 msgstr "Alt"
 
-#: src/prefspaneldialog.cpp:467 src/prefspaneldialog.cpp:508
+#: src/prefspaneldialog.cpp:468 src/prefspaneldialog.cpp:509
 #, kde-format
 msgid "Ctrl"
 msgstr "Ctrl"
 
-#: src/prefspaneldialog.cpp:467 src/prefspaneldialog.cpp:508
+#: src/prefspaneldialog.cpp:468 src/prefspaneldialog.cpp:509
 #, kde-format
 msgid "Shift"
 msgstr "Shift"
 
-#: src/prefspaneldialog.cpp:467 src/prefspaneldialog.cpp:508
+#: src/prefspaneldialog.cpp:468 src/prefspaneldialog.cpp:509
 #, kde-format
 msgid "Meta"
 msgstr "Meta"
 
-#: src/prefspaneldialog.cpp:473
+#: src/prefspaneldialog.cpp:474
 #, kde-format
 msgid "Meta+"
 msgstr "Meta+"
 
-#: src/prefspaneldialog.cpp:477
+#: src/prefspaneldialog.cpp:478
 #, kde-format
 msgid "Shift+"
 msgstr "Shift+"
 
-#: src/prefspaneldialog.cpp:481
+#: src/prefspaneldialog.cpp:482
 #, kde-format
 msgid "Alt+"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:485
+#: src/prefspaneldialog.cpp:486
 #, kde-format
 msgid "Ctrl+"
 msgstr "Ctrl+"
 
-#: src/prefspaneldialog.cpp:565
+#: src/prefspaneldialog.cpp:566
 #, kde-format
 msgctxt "action name will be appended to this"
 msgid "Shortcut is already in use for"
 msgstr "Zkratka se již používá pro"
 
-#: src/prefspaneldialog.cpp:566
+#: src/prefspaneldialog.cpp:567
 #, kde-format
+msgctxt "@info"
 msgid "Do you still want to assign it?"
 msgstr "Stále ještě ji chcete přiřadit?"
 
-#: src/prefspaneldialog.cpp:567
+#: src/prefspaneldialog.cpp:568
 #, kde-format
+msgctxt "@title:window"
 msgid "Replace"
 msgstr "Nahradit"
 
-#: src/prefspaneldialog.cpp:568
+#: src/prefspaneldialog.cpp:569
 #, fuzzy, kde-format
 #| msgid "Designer"
 msgctxt "@action:button"
 msgid "Reassign"
 msgstr "Návrhář"
 
-#: src/prefspaneldialog.cpp:602
+#: src/prefspaneldialog.cpp:603
 #, kde-format
+msgctxt "@title:column"
 msgid "Action"
 msgstr "Činnost"
 
-#: src/prefspaneldialog.cpp:603
+#: src/prefspaneldialog.cpp:604
 #, kde-format
+msgctxt "@title:column"
 msgid "Shortcut"
 msgstr "Zkratka"
 
-#: src/prefspaneldialog.cpp:604
+#: src/prefspaneldialog.cpp:605
 #, kde-format
+msgctxt "@title:column"
 msgid "Tip"
 msgstr "Rada"
 
-#: src/prefspaneldialog.cpp:635
+#: src/prefspaneldialog.cpp:636
 #, kde-format
+msgctxt "@title:window"
 msgid "Select hyphenation dictionary"
 msgstr "Vybrat slovník dělení slov"
 
 #: src/remotedir.cpp:53 src/remotedir.cpp:231
 #, kde-format
+msgctxt "@info:status"
 msgid "Downloading"
 msgstr "Stahuje se"
 
 #: src/sampletoolbar.cpp:87
 #, kde-format
+msgctxt "@item:inlistbox"
 msgid "Select language"
 msgstr "Vybrat jazyk"
 
 #: src/samplewidget.cpp:726
 #, kde-format
+msgctxt "@item:inlistbox group of the samples the user made"
 msgid "User"
 msgstr "Uživatel"
 
 #: src/samplewidget.cpp:785
 #, kde-format
+msgctxt "@title:window"
 msgid "Print Sample"
 msgstr "Vytisknout ukázku"
 
 #: src/samplewidget.cpp:864
 #, kde-format
+msgctxt "@item:inlistbox default name of a new sample text"
 msgid "New Sample"
 msgstr "Nová ukázka"
 
 #: src/systray.cpp:217
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "&Activate all"
 msgstr "&Zapnout vše"
 
 #: src/systray.cpp:220
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "&Deactivate all"
 msgstr "&Vypnout vše"
 
 #: src/systray.cpp:223
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Mi&nimize"
 msgstr "&Zmenšit"
 
 #: src/systray.cpp:226
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "&Restore"
 msgstr "&Obnovit"
 
 #: src/systray.cpp:229
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "E&xit"
 msgstr "&Ukončit"
 
 #: src/systray.cpp:241
 #, kde-format
+msgctxt "@title:menu"
 msgid "&Tags"
 msgstr "&Značky"
 
 #: src/tagswidget.cpp:56
 #, kde-format
+msgctxt "@info"
 msgid ""
 "Please confirm that you want to remove\n"
 "the following tag from database:"
@@ -4544,16 +5000,19 @@ msgstr "Odstranit značku"
 
 #: src/tagswidget_listmodel.cpp:19
 #, kde-format
+msgctxt "@item:inlistbox default name of a new tag"
 msgid "New Tag"
 msgstr "Nová značka"
 
 #: src/tttableview.cpp:80
 #, kde-format
+msgctxt "@title:window"
 msgid "Save File"
 msgstr "Uložit soubor"
 
-#: src/typotek.cpp:311
+#: src/typotek.cpp:312
 #, kde-format
+msgctxt "@info"
 msgid ""
 "The program will keep running in the system tray. To terminate the program, "
 "choose <b>Exit</b> in the context menu of the system tray entry."
@@ -4562,105 +5021,129 @@ msgstr ""
 "zvolte <b>Ukončit</b> v nabídce souvisejících činností vyvolané z oznamovací "
 "části panelu."
 
-#: src/typotek.cpp:375
+#: src/typotek.cpp:376
 #, kde-format
+msgctxt "@title:window"
 msgid "Add Directory"
 msgstr "Přidat adresář"
 
-#: src/typotek.cpp:422
+#: src/typotek.cpp:424
 #, fuzzy, kde-format
 #| msgid "Do you confirm you want to import these %1 fonts?"
+msgctxt "@info"
 msgid "Do you confirm you want to import %1 font?"
 msgid_plural "Do you confirm you want to import %1 fonts?"
 msgstr[0] "Potvrzujete, že chcete zavést těchto %1 písem?"
 msgstr[1] "Potvrzujete, že chcete zavést těchto %1 písem?"
 msgstr[2] "Potvrzujete, že chcete zavést těchto %1 písem?"
 
-#: src/typotek.cpp:423
+#: src/typotek.cpp:425
 #, fuzzy, kde-format
 #| msgid "confirmation"
+msgctxt "@title:window"
 msgid "Confirmation"
 msgstr "Potvrzení"
 
-#: src/typotek.cpp:424
+#: src/typotek.cpp:426
 #, fuzzy, kde-format
 #| msgid "Import"
 msgctxt "@action:button"
 msgid "Import"
 msgstr "Zavést"
 
-#: src/typotek.cpp:442 src/typotek.cpp:549
+#: src/typotek.cpp:444 src/typotek.cpp:553
 #, kde-format
+msgctxt "@info:progress"
 msgid "Importing font files... "
 msgstr "Zavádějí se soubory s písmy... "
 
-#: src/typotek.cpp:475
+#: src/typotek.cpp:454 src/typotek.cpp:558
 #, kde-format
+msgctxt "@info:progress"
+msgid "Import"
+msgstr "Zavést"
+
+#: src/typotek.cpp:477
+#, kde-format
+msgctxt "@info"
 msgid "Cannot import this font because it is broken:"
 msgstr "Toto písmo nelze zavést, protože je rozbité:"
 
-#: src/typotek.cpp:502 src/typotek.cpp:590
+#: src/typotek.cpp:504 src/typotek.cpp:594
 #, kde-format
+msgctxt "@info:status"
 msgid "Fonts imported: %1"
 msgstr "Zavedená písma: %1"
 
-#: src/typotek.cpp:514
+#: src/typotek.cpp:516
 #, kde-format
+msgctxt "@title:window"
 msgid "Select Files to Import"
 msgstr "Vybrat soubory k zavedení"
 
-#: src/typotek.cpp:514
+#: src/typotek.cpp:518
 #, kde-format
+msgctxt "@item:inlistbox file type filter"
 msgid "Font Files"
 msgstr "Soubory s písmy"
 
-#: src/typotek.cpp:621
+#: src/typotek.cpp:625
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "&Import Directory..."
 msgstr "&Zavést adresář..."
 
-#: src/typotek.cpp:623
+#: src/typotek.cpp:627
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Import a directory"
 msgstr "Zavést adresář"
 
-#: src/typotek.cpp:629
+#: src/typotek.cpp:633
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Import &Files..."
 msgstr "Zavést &soubory..."
 
-#: src/typotek.cpp:631
+#: src/typotek.cpp:635
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Import Files"
 msgstr "Zavést soubory"
 
-#: src/typotek.cpp:635
+#: src/typotek.cpp:639
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Export &fonts"
 msgstr "Vyvést &písma"
 
-#: src/typotek.cpp:636
+#: src/typotek.cpp:640
 #, kde-format
+msgctxt "@info:status"
 msgid "Export a fontset"
 msgstr "Vyvést sadu písem"
 
-#: src/typotek.cpp:640
+#: src/typotek.cpp:644
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Export font book..."
 msgstr "Vyvést knihu písem..."
 
-#: src/typotek.cpp:641
+#: src/typotek.cpp:645
 #, kde-format
+msgctxt "@info:status"
 msgid "Export a PDF document that shows selected fonts"
 msgstr "Vyvést dokument PDF, který ukazuje vybraná písma"
 
-#: src/typotek.cpp:645
+#: src/typotek.cpp:649
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Export font info for packaging..."
 msgstr "Vyvést informace o písmu pro balení..."
 
-#: src/typotek.cpp:646
+#: src/typotek.cpp:650
 #, kde-format
+msgctxt "@info:status"
 msgid ""
 "Fill a template file with metadata for packaging currently selected font to "
 "a Linux distribution"
@@ -4672,38 +5155,45 @@ msgstr ""
 #. tagsetAct->setIcon ( QIcon ( ":/fontmatrix_tagseteditor_icon.png" ) );
 #. scuts->add(tagsetAct);
 #. connect ( tagsetAct,SIGNAL ( triggered( ) ),this,SLOT ( popupTagsetEditor() ) );
-#: src/typotek.cpp:654
+#: src/typotek.cpp:658
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Activate all current"
 msgstr "Zapnout všechna nynější"
 
-#: src/typotek.cpp:655
+#: src/typotek.cpp:659
 #, kde-format
+msgctxt "@info:status"
 msgid "Activate all currently visible fonts"
 msgstr "Zapnout všechna nyní viditelná písma"
 
-#: src/typotek.cpp:659
+#: src/typotek.cpp:663
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Deactivate all current"
 msgstr "Vypnout všechna nynější"
 
-#: src/typotek.cpp:660
+#: src/typotek.cpp:664
 #, kde-format
+msgctxt "@info:status"
 msgid "Deactivate all currently visible fonts"
 msgstr "Vypnout všechna nyní viditelná písma"
 
-#: src/typotek.cpp:664
+#: src/typotek.cpp:668
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Edit current font"
 msgstr "Upravit nynější písmo"
 
-#: src/typotek.cpp:668
+#: src/typotek.cpp:672
 #, kde-format
+msgctxt "@info:status"
 msgid "Edit currently selected font in a font editor of your choice"
 msgstr "Upravit nyní vybrané písmo v editoru písem dle vaší volby"
 
-#: src/typotek.cpp:671
+#: src/typotek.cpp:676
 #, kde-format
+msgctxt "@info:status"
 msgid ""
 "You don't seem to have a font editor installed. Path to font editor can be "
 "set in Preferences dialog."
@@ -4711,199 +5201,247 @@ msgstr ""
 "Zdá se, že nemáte nainstalován editor písem. Cestu k editoru písem lze "
 "nastavit v dialogu Nastavení."
 
-#: src/typotek.cpp:674
+#: src/typotek.cpp:679
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Reload Filtered"
 msgstr "Nahrát znovu vyfiltrované"
 
-#: src/typotek.cpp:675
+#: src/typotek.cpp:680
 #, kde-format
+msgctxt "@info:status"
 msgid ""
 "Reload informations for filtered fonts from the font files they belong to"
 msgstr "Nahrát znovu informace pro vyfiltrovaná písma z jejich souborů písem"
 
-#: src/typotek.cpp:679
+#: src/typotek.cpp:684
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Reload Selected"
 msgstr "Nahrát znovu vybrané"
 
-#: src/typotek.cpp:680
+#: src/typotek.cpp:685
 #, kde-format
+msgctxt "@info:status"
 msgid "Reload informations for selected font from the font file"
 msgstr "Nahrát znovu informace k vybranému písmu z jeho souboru"
 
-#: src/typotek.cpp:684
+#: src/typotek.cpp:689
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Check Database"
 msgstr "Prověřit databázi"
 
-#: src/typotek.cpp:685
+#: src/typotek.cpp:690
 #, kde-format
+msgctxt "@info:status"
 msgid "Check Fontmatrix database for dead links to font files"
 msgstr "Prověřit databázi Fontmatrixu na mrtvé odkazy k souborům písem"
 
-#: src/typotek.cpp:692
+#: src/typotek.cpp:697
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Tag All Filtered..."
 msgstr "Označit vše vyfiltrované..."
 
-#: src/typotek.cpp:693
+#: src/typotek.cpp:698
 #, kde-format
+msgctxt "@info:status"
 msgid "Tag all currently visible files"
 msgstr "Označit všechny nyní viditelné soubory"
 
-#: src/typotek.cpp:697
+#: src/typotek.cpp:702
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Show TrueType tables"
 msgstr "Ukázat tabulky TrueType"
 
-#: src/typotek.cpp:698
+#: src/typotek.cpp:703
 #, kde-format
+msgctxt "@info:status"
 msgid ""
 "View hexadecimal values of TrueType tables for currently selected font file"
 msgstr ""
 "Zobrazit šestnáctkové hodnoty tabulek TrueType nyní vybraného souboru s "
 "písmem"
 
-#: src/typotek.cpp:702
+#: src/typotek.cpp:707
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Edit PANOSE metadata"
 msgstr "Upravit údaje Panose"
 
-#: src/typotek.cpp:703
+#: src/typotek.cpp:708
 #, kde-format
+msgctxt "@info:status"
 msgid "Edit PANOSE metadata without saving changes to font files"
 msgstr "Upravit údaje Panose bez uložení změn do souborů s písmy"
 
-#: src/typotek.cpp:709
+#: src/typotek.cpp:712
 #, kde-format
+msgctxt "@action:inmenu"
+msgid "Playground"
+msgstr "Hřiště"
+
+#: src/typotek.cpp:714
+#, kde-format
+msgctxt "@info:tooltip"
 msgid "Show/Hide Playground"
 msgstr "Ukázat/Skrýt hřiště"
 
-#: src/typotek.cpp:715
+#: src/typotek.cpp:720
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Compare"
 msgstr "Porovnání"
 
-#: src/typotek.cpp:717
+#: src/typotek.cpp:722
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Show/Hide Compare glyphs"
 msgstr "Ukázat/Skrýt porovnání glyfů"
 
-#: src/typotek.cpp:723
+#: src/typotek.cpp:728
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Close All"
 msgstr "Zavřít vše"
 
-#: src/typotek.cpp:724
+#: src/typotek.cpp:729
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Close all floating windows"
 msgstr "Zavřít všechna plovoucí okna"
 
-#: src/typotek.cpp:728
+#: src/typotek.cpp:733
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Show All"
 msgstr "Ukázat vše"
 
-#: src/typotek.cpp:729
+#: src/typotek.cpp:734
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Show all floating windows"
 msgstr "Ukázat všechna plovoucí okna"
 
-#: src/typotek.cpp:733
+#: src/typotek.cpp:738
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Hide All"
 msgstr "Skrýt vše"
 
-#: src/typotek.cpp:734
+#: src/typotek.cpp:739
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Hide all floating windows"
 msgstr "Skrýt všechna plovoucí okna"
 
-#: src/typotek.cpp:751
+#: src/typotek.cpp:756
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Extract fonts..."
 msgstr "Vytáhnout písma..."
 
-#: src/typotek.cpp:752
+#: src/typotek.cpp:757
 #, kde-format
+msgctxt "@info:status"
 msgid "Extract fonts from documents like PDF to PFM file format"
 msgstr "Vytáhnout písma z dokumentů jako PDF do souborového formátu PFM"
 
-#: src/typotek.cpp:756
+#: src/typotek.cpp:761
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Find a font using raster sample..."
 msgstr "Najít písmo pomocí ukázky rastru jeho obrazu..."
 
-#: src/typotek.cpp:757
+#: src/typotek.cpp:762
 #, kde-format
+msgctxt "@info:status"
 msgid "Find a font using a raster sample of a letter"
 msgstr "Najít písmo pomocí ukázky rastru obrazu jeho písmene"
 
-#: src/typotek.cpp:761
+#: src/typotek.cpp:766
 #, fuzzy, kde-format
 #| msgid "Export font book..."
+msgctxt "@action:inmenu"
 msgid "Export font list as XeTeX..."
 msgstr "Vyvést knihu písem..."
 
-#: src/typotek.cpp:762
+#: src/typotek.cpp:767
 #, kde-format
+msgctxt "@info:status"
 msgid "Export the current filtered font list as a XeTeX source file"
 msgstr ""
 
-#: src/typotek.cpp:855
+#: src/typotek.cpp:860
 #, kde-format
+msgctxt "@action:button"
 msgid "Browse Directories"
 msgstr "Procházet adresáře"
 
-#: src/typotek.cpp:857
+#: src/typotek.cpp:862
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Toggle Files/Collection view"
 msgstr "Přepnout pohled soubory/sbírka"
 
-#: src/typotek.cpp:863
+#: src/typotek.cpp:868
 #, kde-format
+msgctxt "@info:progress"
 msgid "Load settings"
 msgstr "Nahrát nastavení"
 
-#: src/typotek.cpp:995
+#: src/typotek.cpp:1000
 #, kde-format
+msgctxt "@info:progress"
 msgid "Check for Fontmatrix own dir"
 msgstr "Prověřit vlastní adresář Fontmatrixu"
 
-#: src/typotek.cpp:1221
+#: src/typotek.cpp:1226
 #, kde-format
+msgctxt "@info:progress"
 msgid "Loading System Fonts"
 msgstr "Nahrává se systémové písmo"
 
-#: src/typotek.cpp:1222
+#: src/typotek.cpp:1227
 #, kde-format
+msgctxt "@item:inlistbox name of the tag given to system fonts"
 msgid "System Fonts"
 msgstr "Systémová písma"
 
-#: src/typotek.cpp:1252 src/typotek.cpp:1254
+#: src/typotek.cpp:1257
 #, kde-format
+msgctxt "@info:progress"
 msgid "Adding"
 msgstr "Přidávají se"
 
-#: src/typotek.cpp:1252 src/typotek.cpp:1254
+#: src/typotek.cpp:1258 src/typotek.cpp:1259
 #, kde-format
 msgctxt "followed by a directory name"
 msgid "fonts from"
 msgstr "Písma z"
 
-#: src/typotek.cpp:1277
+#: src/typotek.cpp:1259
 #, kde-format
+msgid "Adding"
+msgstr "Přidávají se"
+
+#: src/typotek.cpp:1282
+#, kde-format
+msgctxt "@info:progress"
 msgid "system fonts added."
 msgstr "Systémová písma přidána."
 
-#: src/typotek.cpp:1332
+#: src/typotek.cpp:1337
 #, kde-format
+msgctxt "@info:status"
 msgid "font descriptions imported from network"
 msgstr "Popisy písem zavedené ze sítě"
 
-#: src/typotek.cpp:1357
+#: src/typotek.cpp:1362
 #, kde-format
+msgctxt "@info"
 msgid ""
 "You are about to activate a bunch of fonts,\n"
 "it is time to cancel if it was not your intent"
@@ -4912,22 +5450,16 @@ msgstr ""
 "Teď je čas na zrušení této akce, pokud jste tedy její provedení neměl v "
 "úmyslu"
 
-#: src/typotek.cpp:1358
+#: src/typotek.cpp:1363
 #, fuzzy, kde-format
 #| msgid "Activation"
 msgctxt "@title:window"
 msgid "Activate Fonts"
 msgstr "Zapnutí"
 
-#: src/typotek.cpp:1359
-#, fuzzy, kde-format
-#| msgid "Activate"
-msgctxt "@action:button"
-msgid "Activate"
-msgstr "Zapnout"
-
-#: src/typotek.cpp:1370
+#: src/typotek.cpp:1375
 #, kde-format
+msgctxt "@info"
 msgid ""
 "You are about to deactivate a bunch of fonts,\n"
 "it is time to cancel if it was not your intent"
@@ -4936,65 +5468,73 @@ msgstr ""
 "Teď je čas na zrušení této akce, pokud jste tedy její provedení neměl v "
 "úmyslu"
 
-#: src/typotek.cpp:1371
+#: src/typotek.cpp:1376
 #, fuzzy, kde-format
 #| msgid "Deactivate"
 msgctxt "@title:window"
 msgid "Deactivate Fonts"
 msgstr "Vypnout"
 
-#: src/typotek.cpp:1372
+#: src/typotek.cpp:1377
 #, fuzzy, kde-format
 #| msgid "Deactivate"
 msgctxt "@action:button"
 msgid "Deactivate"
 msgstr "Vypnout"
 
-#: src/typotek.cpp:1389
+#: src/typotek.cpp:1395
 #, kde-format
+msgctxt "@info"
 msgid ""
 "This will hide the menu bar completely. You can show it again by typing %1."
 msgstr ""
 
-#: src/typotek.cpp:1389
+#: src/typotek.cpp:1396
 #, kde-format
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 
-#: src/typotek.cpp:1399 src/typotek.cpp:2074
+#: src/typotek.cpp:1406 src/typotek.cpp:2084
 #, kde-format
+msgctxt "@info:status"
 msgid "There is no font selected"
 msgstr "Žádné písmo nebylo vybráno"
 
-#: src/typotek.cpp:1444
+#: src/typotek.cpp:1451
 #, kde-format
+msgctxt "@info:status"
 msgid "Support of DragNDrop over http is sheduled but not yet effective"
 msgstr ""
 "Podpora pro \"táhni a pusť\" přes http je naplánována, ale dosud není účinná"
 
-#: src/typotek.cpp:1463
+#: src/typotek.cpp:1470
 #, fuzzy, kde-format
 #| msgid "You bring something over me I canât handle"
+msgctxt "@info:status"
 msgid "You bring something over me I can’t handle"
 msgstr "Dal jste mi něco, s čím si nedovedu poradit"
 
-#: src/typotek.cpp:1524
+#: src/typotek.cpp:1531
 #, kde-format
+msgctxt "@info default content of a new sample text"
 msgid "Edit me!"
 msgstr "Uprav mě!"
 
-#: src/typotek.cpp:1603
+#: src/typotek.cpp:1610
 #, kde-format
 msgid "default"
 msgstr "Výchozí"
 
-#: src/typotek.cpp:1687
+#: src/typotek.cpp:1694
 #, kde-format
+msgctxt "@info:status"
 msgid "Try to run font editor with the selected font as argument"
 msgstr "Zkusit spustit editor písem s vybraným písmem jako argumentem"
 
-#: src/typotek.cpp:1690
+#: src/typotek.cpp:1697
 #, kde-format
+msgctxt "@info:status"
 msgid ""
 "You don't seem to have font editor installed. Path to font editor can be set "
 "in preferences."
@@ -5002,26 +5542,35 @@ msgstr ""
 "Nezdá se, že byste měl nainstalován editor písem. Cestu k editoru písem lze "
 "nastavit v nastavení."
 
-#: src/typotek.cpp:1975
+#: src/typotek.cpp:1983
 #, fuzzy, kde-format
 #| msgid "Export a fontset"
+msgctxt "@title:window"
 msgid "Export font list as XeTeX"
 msgstr "Vyvést sadu písem"
 
-#: src/typotek.cpp:1975
+#: src/typotek.cpp:1985
 #, kde-format
+msgctxt "@item:inlistbox file type filter"
 msgid "TeX files (*.tex)"
 msgstr ""
 
-#: src/typotek.cpp:2157
+#: src/typotek.cpp:2095
 #, kde-format
+msgctxt "@action:button"
+msgid "Close"
+msgstr "Zavřít"
+
+#: src/typotek.cpp:2167
+#, kde-format
+msgctxt "@info:status"
 msgid "Failed to reload %1 font"
 msgid_plural "Failed to reload %1 fonts"
 msgstr[0] "Nepodařilo se nahrát znovu jedno písmo"
 msgstr[1] "Nepodařilo se nahrát znovu %1 písma"
 msgstr[2] "Nepodařilo se nahrát znovu %1 písem"
 
-#: src/typotek.cpp:2199
+#: src/typotek.cpp:2209
 #, kde-format
 msgctxt "number of filtererd fonts showed in status bar"
 msgid "Filtered Font: %1"
@@ -5030,13 +5579,13 @@ msgstr[0] "Vyfiltrované písmo: %1"
 msgstr[1] "Vyfiltrovaná písma: %1"
 msgstr[2] "Vyfiltrovaných písem: %1"
 
-#: src/typotek.cpp:2204
+#: src/typotek.cpp:2214
 #, kde-format
 msgctxt "followed by currently selected font name (in status bar)"
 msgid "Current Font"
 msgstr "Nynější písmo"
 
-#: src/typotek.cpp:2228
+#: src/typotek.cpp:2238
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5045,11 +5594,1889 @@ msgid ""
 "at <link>%1</link>."
 msgstr ""
 
-#: src/typotek.cpp:2231
+#: src/typotek.cpp:2241
 #, kde-format
 msgctxt "@title:window"
 msgid "Handbook Not Available"
 msgstr ""
+
+#, kde-format
+#~ msgid "Import Directory"
+#~ msgstr "Zavést adresář"
+
+#, kde-format
+#~ msgid "Import recursively"
+#~ msgstr "Zavést včetně podsložek"
+
+#, kde-format
+#~ msgid "Import File"
+#~ msgstr "Zavést soubor"
+
+#, kde-format
+#~ msgid "Un-Mapped Glyphs"
+#~ msgstr "Nepřiřazené glyfy"
+
+#, kde-format
+#~ msgid "View all mapped glyphs"
+#~ msgstr "Zobrazit všechny přiřazené glyfy"
+
+#, kde-format
+#~ msgid "Block (%1):"
+#~ msgstr "Blok (%1):"
+
+#, kde-format
+#~ msgid "Print Chart"
+#~ msgstr "Vytisknout tabulku"
+
+#, kde-format
+#~ msgid "Choose Directory"
+#~ msgstr "Vybrat adresář"
+
+#, kde-format
+#~ msgid "Copying files"
+#~ msgstr "Kopírují se soubory"
+
+#, kde-format
+#~ msgid "cancel"
+#~ msgstr "Zrušit"
+
+#, kde-format
+#~ msgid "And"
+#~ msgstr "A"
+
+#, kde-format
+#~ msgid "Not"
+#~ msgstr "Ne"
+
+#, kde-format
+#~ msgid "Or"
+#~ msgstr "Nebo"
+
+#, kde-format
+#~ msgid "Fontmatrix - edit tag"
+#~ msgstr "Fontmatrix - Upravit značku"
+
+#, kde-format
+#~ msgid "Edit tag: "
+#~ msgstr "Upravit značku:"
+
+#, kde-format
+#~ msgid "Fontmatrix - Filter name"
+#~ msgstr "Fontmatrix - Název filtru"
+
+#, kde-format
+#~ msgid "Filter name:"
+#~ msgstr "Název filtru:"
+
+#, kde-format
+#~ msgid "Confirm deletion of filter:"
+#~ msgstr "Potvrdit smazání filtru:"
+
+#, kde-format
+#~ msgid "Unable to link"
+#~ msgstr "Nelze udělat odkaz"
+
+#, kde-format
+#~ msgid "Font already activated"
+#~ msgstr "Písmo je již zapnuto"
+
+#, kde-format
+#~ msgid "Unable to un-link"
+#~ msgstr "Nelze odstranit odkaz"
+
+#, kde-format
+#~ msgid "Font already de-activated"
+#~ msgstr "Písmo je již vypnuto"
+
+#, kde-format
+#~ msgid "Cannot link or copy the metrics file"
+#~ msgstr "Nelze udělat odkaz nebo kopírovat soubor s metrikou"
+
+#, kde-format
+#~ msgid "close"
+#~ msgstr "Zavřít"
+
+#, kde-format
+#~ msgid "File does not exist:"
+#~ msgstr "Soubor neexistuje:"
+
+#, kde-format
+#~ msgid "Format not handled."
+#~ msgstr "Formát není zvládán."
+
+#, kde-format
+#~ msgid ""
+#~ "Failed to extract:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Nepodařilo se získat:\n"
+#~ "%1"
+
+#, kde-format
+#~ msgid "Copyright"
+#~ msgstr "Autorské právo"
+
+#, kde-format
+#~ msgid "Font Family"
+#~ msgstr "Rodina písma"
+
+#, kde-format
+#~ msgid "Font Subfamily"
+#~ msgstr "Podrodina písma"
+
+#, kde-format
+#~ msgid "Unique font identifier"
+#~ msgstr "Jedinečný identifikátor písma"
+
+#, kde-format
+#~ msgid "Full font name"
+#~ msgstr "Úplný název písma"
+
+#, kde-format
+#~ msgid "Version string"
+#~ msgstr "Řetězec verze"
+
+#, kde-format
+#~ msgid "Postscript name"
+#~ msgstr "Postscriptový název"
+
+#, kde-format
+#~ msgid "Trademark"
+#~ msgstr "Obchodní značka"
+
+#, kde-format
+#~ msgid "Manufacturer"
+#~ msgstr "Výrobce"
+
+#, kde-format
+#~ msgid "Designer"
+#~ msgstr "Návrhář"
+
+#, kde-format
+#~ msgid "URL Vendor"
+#~ msgstr "Adresa prodejce"
+
+#, kde-format
+#~ msgid "URL Designer"
+#~ msgstr "Adresa návrháře"
+
+#, kde-format
+#~ msgid "License Description"
+#~ msgstr "Popis licenčního ujednání"
+
+#, kde-format
+#~ msgid "License Info URL"
+#~ msgstr "Adresa informací o licenčním ujednání"
+
+#, kde-format
+#~ msgid "Preferred Family"
+#~ msgstr "Upřednostňovaná rodina"
+
+#, kde-format
+#~ msgid "Preferred Subfamily"
+#~ msgstr "Upřednostňovaná podrodina"
+
+#, kde-format
+#~ msgid "Compatible Full (Macintosh only)"
+#~ msgstr "Plně slučitelné (pouze Macintosh)"
+
+#, kde-format
+#~ msgid "Sample text"
+#~ msgstr "Ukázkový text"
+
+#, kde-format
+#~ msgid "PostScript CID findfont name"
+#~ msgstr "Postscriptový název nalezeného písma CID"
+
+#, kde-format
+#~ msgid "All fields"
+#~ msgstr "Všechna pole"
+
+#, kde-format
+#~ msgid "Any"
+#~ msgstr "Jakékoli"
+
+#, kde-format
+#~ msgid "No Fit"
+#~ msgstr "Žádné spojení"
+
+#, kde-format
+#~ msgid "Family Type"
+#~ msgstr "Typ rodiny"
+
+#, kde-format
+#~ msgid "Serif style"
+#~ msgstr "Patkový styl"
+
+#, kde-format
+#~ msgid "Weight"
+#~ msgstr "Váha"
+
+#, kde-format
+#~ msgid "Proportion"
+#~ msgstr "Úměrnost"
+
+#, kde-format
+#~ msgid "Contrast"
+#~ msgstr "Kontrastní"
+
+#, kde-format
+#~ msgid "Stroke Variation"
+#~ msgstr "Obměna tahu"
+
+#, kde-format
+#~ msgid "Arm Style"
+#~ msgstr "Styl ruky"
+
+#, kde-format
+#~ msgid "Letterform"
+#~ msgstr "Tvar písmene"
+
+#, kde-format
+#~ msgid "Midline"
+#~ msgstr "Středová čára"
+
+#, kde-format
+#~ msgid "X-Height"
+#~ msgstr "Výška malých písmen"
+
+#, kde-format
+#~ msgid ""
+#~ "This value is deprecated and was never used nor reported by FreeType. "
+#~ "Don't use or test for it."
+#~ msgstr ""
+#~ "Tato hodnota je odmítnuta a nikdy nebyla používána ani hlášena od "
+#~ "FreeType.  Nepoužívejte ji a nezkoušejte ji."
+
+#, kde-format
+#~ msgid "Character to glyph mapping"
+#~ msgstr "Přiřazení znaku ke glyfu"
+
+#, kde-format
+#~ msgid "Font header"
+#~ msgstr "Záhlaví písma"
+
+#, kde-format
+#~ msgid "Horizontal header"
+#~ msgstr "Vodorovné záhlaví"
+
+#, kde-format
+#~ msgid "Horizontal metrics"
+#~ msgstr "Vodorovná metrika"
+
+#, kde-format
+#~ msgid "Maximum profile"
+#~ msgstr "Největší boční obrys"
+
+#, kde-format
+#~ msgid "Naming table"
+#~ msgstr "Tabulka názvů"
+
+#, kde-format
+#~ msgid "OS/2 and Windows specific metrics"
+#~ msgstr "Metrika vlastní OS/2 a Windows"
+
+#, kde-format
+#~ msgid "PostScript information"
+#~ msgstr "Informace o PostScriptu"
+
+#, kde-format
+#~ msgid "Control Value Table"
+#~ msgstr "Tabulka ovládacích hodnot"
+
+#, kde-format
+#~ msgid "Font program"
+#~ msgstr "Program na písma"
+
+#, kde-format
+#~ msgid "Glyph data"
+#~ msgstr "Data ke glyfu"
+
+#, kde-format
+#~ msgid "Index to location"
+#~ msgstr "Rejstřík k umístění"
+
+#, kde-format
+#~ msgid "CVT Program"
+#~ msgstr "Program CVT"
+
+#, kde-format
+#~ msgid "PostScript font program"
+#~ msgstr "Program na písma PostScript"
+
+#, kde-format
+#~ msgid "Vertical Origin"
+#~ msgstr "Svislý počátek"
+
+#, kde-format
+#~ msgid "Embedded bitmap data"
+#~ msgstr "Data pro vloženou bitmapu"
+
+#, kde-format
+#~ msgid "Embedded bitmap location data"
+#~ msgstr "Data pro umístění vložené bitmapy"
+
+#, kde-format
+#~ msgid "Embedded bitmap scaling data"
+#~ msgstr "Data pro změnu velikosti vložené bitmapy"
+
+#, kde-format
+#~ msgid "Baseline data"
+#~ msgstr "Data pro základnu"
+
+#, kde-format
+#~ msgid "Glyph definition data"
+#~ msgstr "Data pro vymezení glyfu"
+
+#, kde-format
+#~ msgid "Glyph positioning data"
+#~ msgstr "Data pro umísťování glyfu"
+
+#, kde-format
+#~ msgid "Glyph substitution data"
+#~ msgstr "Data pro nahrazení glyfu"
+
+#, kde-format
+#~ msgid "Justification data"
+#~ msgstr "Data pro zarovnání"
+
+#, kde-format
+#~ msgid "Digital signature"
+#~ msgstr "Digitální podpis"
+
+#, kde-format
+#~ msgid "Grid-fitting/Scan-conversion"
+#~ msgstr "Umístění do mřížky/Převod naskenovaného obrázku"
+
+#, kde-format
+#~ msgid "Horizontal device metrics"
+#~ msgstr "Vodorovná metrika zařízení"
+
+#, kde-format
+#~ msgid "Kerning"
+#~ msgstr "Podřezávání"
+
+#, kde-format
+#~ msgid "Linear threshold data"
+#~ msgstr "Lineární prahová data"
+
+#, kde-format
+#~ msgid "PCL 5 data"
+#~ msgstr "Data PCL 5"
+
+#, kde-format
+#~ msgid "Vertical device metrics"
+#~ msgstr "Svislá metrika zařízení"
+
+#, kde-format
+#~ msgid "Vertical Metrics header"
+#~ msgstr "Záhlaví svislé metriky"
+
+#, kde-format
+#~ msgid "Vertical Metrics"
+#~ msgstr "Svislá metrika"
+
+#, kde-format
+#~ msgid ""
+#~ "This font may be embedded and permanently installed on the remote system "
+#~ "by an application. The user of the remote system acquires the identical "
+#~ "rights, obligations and licenses for that font as the original purchaser "
+#~ "of the font, and is subject to the same end-user license agreement, "
+#~ "copyright, design patent, and/or trademark as was the original purchaser."
+#~ msgstr ""
+#~ "Toto písmo může být vloženo a trvale nainstalováno ve vzdáleném systému "
+#~ "pomocí nějaké aplikace. Uživatel vzdáleného systému dostane pro toto "
+#~ "písmo stejná práva, povinnosti a oprávnění jako původní kupec písma, a je "
+#~ "předmětem stejného ujednání pro koncového uživatele, autorského práva, "
+#~ "výsady pro tvar, a/nebo obchodní značky, jako byl původní kupující."
+
+#, kde-format
+#~ msgid ""
+#~ "This font must not be modified, embedded or exchanged in any manner "
+#~ "without first obtaining permission of the legal owner."
+#~ msgstr ""
+#~ "Toto písmo se nesmí jakýmkoli způsobem upravovat, vkládat nebo vyměňovat "
+#~ "bez toho, že by nejprve bylo získáno svolení zákonného vlastníka."
+
+#, kde-format
+#~ msgid ""
+#~ "This font may be embedded, and temporarily loaded on the remote system. "
+#~ "Documents containing this font must be opened \"read-only;\" no edits can "
+#~ "be applied to the document."
+#~ msgstr ""
+#~ "Toto písmo může být vkládáno, a dočasně nahráno na vzdálený systém. "
+#~ "Dokumenty obsahující toto písmo se musí otevírat \"pouze pro čtení\". "
+#~ "Tento dokument nelze nijak upravovat."
+
+#, kde-format
+#~ msgid ""
+#~ "This font may be embedded but must only be installed  temporarily  on "
+#~ "other systems. In contrast to Preview &amp; Print fonts, documents "
+#~ "containing this font may be opened for reading, editing is permitted, and "
+#~ "changes may be saved."
+#~ msgstr ""
+#~ "Toto písmo může být vkládáno, ale musí být na vzdálených systémech "
+#~ "nainstalováno pouze dočasně. V protikladu k Náhled &amp; Vytisknout "
+#~ "písma, dokumenty obsahující toto písmo mohou být otevírány pro čtení, "
+#~ "úpravy jsou povoleny, a změny lze ukládat."
+
+#, kde-format
+#~ msgid ""
+#~ "This font may not be subsetted prior to embedding. Other embedding "
+#~ "restrictions specified in bits 0-3 and 9 also apply."
+#~ msgstr ""
+#~ "Toto písmo se nesmí stát podmnožinou před vkládání. Další omezení pro "
+#~ "vkládání předepsané v bitech 0-3 a 9 platí také."
+
+#, kde-format
+#~ msgid ""
+#~ "Only bitmaps contained in this font may be embedded. No outline data may "
+#~ "be embedded. If there are no bitmaps available in this font, then it is "
+#~ "considered unembeddable and the embedding services will fail. Other "
+#~ "embedding restrictions specified in bits 0-3 and 8 also apply."
+#~ msgstr ""
+#~ "Smí být vkládány pouze bitmapy obsažené v tomto písmu. Nesmí být vkládána "
+#~ "žádná data s obrysovým náčrtem. Pokud v tomto písmu nejsou dostupné žádné "
+#~ "bitmapy, potom je považováno za nevkladatelné a vložit se je nepodaří. "
+#~ "Další omezení pro vkládání předepsané v bitech 0-3 a 8 platí také."
+
+#, kde-format
+#~ msgid "Mark, NonSpacing"
+#~ msgstr "Značka, bez prostrkávání"
+
+#, kde-format
+#~ msgid "Mark, SpacingCombining"
+#~ msgstr "Značka, kombinuje se s prostrkáváním"
+
+#, kde-format
+#~ msgid "Mark, Enclosing"
+#~ msgstr "Značka, uzavírá se"
+
+#, kde-format
+#~ msgid "Number, DecimalDigit"
+#~ msgstr "Číslo, číslo od 0 do 9 v desítkovém zápisu"
+
+#, kde-format
+#~ msgid "Number, Letter"
+#~ msgstr "Číslo, písmeno"
+
+#, kde-format
+#~ msgid "Number, Other"
+#~ msgstr "Číslo, jiné"
+
+#, kde-format
+#~ msgid "Separator, Space"
+#~ msgstr "Oddělovač, mezera"
+
+#, kde-format
+#~ msgid "Separator, Line"
+#~ msgstr "Oddělovač, řádek"
+
+#, kde-format
+#~ msgid "Separator, Paragraph"
+#~ msgstr "Oddělovač, odstavec"
+
+#, kde-format
+#~ msgid "Other, Control"
+#~ msgstr "Jiné, ovládání"
+
+#, kde-format
+#~ msgid "Other, Format"
+#~ msgstr "Jiné, formát"
+
+#, kde-format
+#~ msgid "Other, Surrogate"
+#~ msgstr "Jiné, náhrada"
+
+#, kde-format
+#~ msgid "Other, PrivateUse"
+#~ msgstr "Jiné, soukromé použití"
+
+#, kde-format
+#~ msgid "Other, NotAssigned"
+#~ msgstr "Jiné, nepřiděleno"
+
+#, kde-format
+#~ msgid "Letter, Uppercase"
+#~ msgstr "Písmeno, velká písmena"
+
+#, kde-format
+#~ msgid "Letter, Lowercase"
+#~ msgstr "Písmeno, malá písmena"
+
+#, kde-format
+#~ msgid "Letter, Titlecase"
+#~ msgstr "Písmeno, písmena v nadpisech"
+
+#, kde-format
+#~ msgid "Letter, Modifier"
+#~ msgstr "Písmeno, modifikátor"
+
+#, kde-format
+#~ msgid "Letter, Other"
+#~ msgstr "Písmeno, jiné"
+
+#, kde-format
+#~ msgid "Punctuation, Connector"
+#~ msgstr "Interpunkční znaménka, spojovník"
+
+#, kde-format
+#~ msgid "Punctuation, Dash"
+#~ msgstr "Interpunkční znaménka, pomlčka"
+
+#, kde-format
+#~ msgid "Punctuation, Open"
+#~ msgstr "Interpunkční znaménka, otevřít"
+
+#, kde-format
+#~ msgid "Punctuation, Close"
+#~ msgstr "Interpunkční znaménka, zavřít"
+
+#, kde-format
+#~ msgid "Punctuation, InitialQuote"
+#~ msgstr "Interpunkční znaménka, počáteční uvozovky"
+
+#, kde-format
+#~ msgid "Punctuation, FinalQuote"
+#~ msgstr "Interpunkční znaménka, závěrečné uvozovky"
+
+#, kde-format
+#~ msgid "Punctuation, Other"
+#~ msgstr "Interpunkční znaménka, jiná"
+
+#, kde-format
+#~ msgid "Symbol, Math"
+#~ msgstr "Symbol, matematika"
+
+#, kde-format
+#~ msgid "Symbol, Currency"
+#~ msgstr "Symbol, měna"
+
+#, kde-format
+#~ msgid "Symbol, Modifier"
+#~ msgstr "Symbol, modifikátor"
+
+#, kde-format
+#~ msgid "Symbol, Other"
+#~ msgstr "Symbol, jiný"
+
+#, kde-format
+#~ msgid "Arabic"
+#~ msgstr "Arabské"
+
+#, kde-format
+#~ msgid "Armenian"
+#~ msgstr "Arménské"
+
+#, kde-format
+#~ msgid "Balinese"
+#~ msgstr "Balijské"
+
+#, kde-format
+#~ msgid "Bengali"
+#~ msgstr "Bengálské"
+
+#, kde-format
+#~ msgid "Bopomofo"
+#~ msgstr "Bopomofo"
+
+#, kde-format
+#~ msgid "Braille"
+#~ msgstr "Braillovo/Slepecké písmo"
+
+#, kde-format
+#~ msgid "Buginese"
+#~ msgstr "Buginezské"
+
+#, kde-format
+#~ msgid "Buhid"
+#~ msgstr "Buhidské"
+
+#, kde-format
+#~ msgid "Byzantine Music"
+#~ msgstr "Byzantská hudba"
+
+#, kde-format
+#~ msgid "Canadian Syllabics"
+#~ msgstr "Kanadské slabiky"
+
+#, kde-format
+#~ msgid "Cherokee"
+#~ msgstr "Čerokijské"
+
+#, kde-format
+#~ msgid "CJK Ideographic"
+#~ msgstr "CJK ideogramy"
+
+#, kde-format
+#~ msgid "Coptic"
+#~ msgstr "Koptské"
+
+#, kde-format
+#~ msgid "Cypriot Syllabary"
+#~ msgstr "Slabikové kyperské písmo"
+
+#, kde-format
+#~ msgid "Cyrillic"
+#~ msgstr "Azbuka"
+
+#, kde-format
+#~ msgid "Default"
+#~ msgstr "Výchozí"
+
+#, kde-format
+#~ msgid "Deseret"
+#~ msgstr "Deseretské"
+
+#, kde-format
+#~ msgid "Devanagari"
+#~ msgstr "Devanagarijské"
+
+#, kde-format
+#~ msgid "Ethiopic"
+#~ msgstr "Etiopské"
+
+#, kde-format
+#~ msgid "Georgian"
+#~ msgstr "Gruzínské"
+
+#, kde-format
+#~ msgid "Glagolitic"
+#~ msgstr "Hlaholice"
+
+#, kde-format
+#~ msgid "Gothic"
+#~ msgstr "Gotické"
+
+#, kde-format
+#~ msgid "Greek"
+#~ msgstr "Řecké"
+
+#, kde-format
+#~ msgid "Gujarati"
+#~ msgstr "Gujaratské"
+
+#, kde-format
+#~ msgid "Gurmukhi"
+#~ msgstr "Gurmucké"
+
+#, kde-format
+#~ msgid "Hangul Jamo"
+#~ msgstr "Korejské písmo hangul jamo"
+
+#, kde-format
+#~ msgid "Hangul"
+#~ msgstr "Korejské písmo hangul"
+
+#, kde-format
+#~ msgid "Hanunoo"
+#~ msgstr "Hanunoo"
+
+#, kde-format
+#~ msgid "Hebrew"
+#~ msgstr "Hebrejské"
+
+#, kde-format
+#~ msgid "Hiragana and Katakana"
+#~ msgstr "Hiragana a Katakana"
+
+#, kde-format
+#~ msgid "Javanese"
+#~ msgstr "Jávské"
+
+#, kde-format
+#~ msgid "Kannada"
+#~ msgstr "Kannadské"
+
+#, kde-format
+#~ msgid "Kharosthi"
+#~ msgstr "Kharosthijské"
+
+#, kde-format
+#~ msgid "Khmer"
+#~ msgstr "Khmerské"
+
+#, kde-format
+#~ msgid "Lao"
+#~ msgstr "Lao"
+
+#, kde-format
+#~ msgid "Latin"
+#~ msgstr "Latinka"
+
+#, kde-format
+#~ msgid "Limbu"
+#~ msgstr "Limbu"
+
+#, kde-format
+#~ msgid "Linear B"
+#~ msgstr "Lineární B"
+
+#, kde-format
+#~ msgid "Malayalam"
+#~ msgstr "Malayalamské"
+
+#, kde-format
+#~ msgid "Mathematical Alphanumeric Symbols"
+#~ msgstr "Matematické alfanumerické symboly"
+
+#, kde-format
+#~ msgid "Mongolian"
+#~ msgstr "Mongolské"
+
+#, kde-format
+#~ msgid "Musical Symbols"
+#~ msgstr "Hudební symboly"
+
+#, kde-format
+#~ msgid "Myanmar"
+#~ msgstr "Myanmarské"
+
+#, kde-format
+#~ msgid "N'ko"
+#~ msgstr "N'Ko"
+
+#, kde-format
+#~ msgid "Ogham"
+#~ msgstr "Ogamské"
+
+#, kde-format
+#~ msgid "Old Italic"
+#~ msgstr "Stará italika"
+
+#, kde-format
+#~ msgid "Old Persian Cuneiform"
+#~ msgstr "Staré perské klínové"
+
+#, kde-format
+#~ msgid "Oriya"
+#~ msgstr "Oriya"
+
+#, kde-format
+#~ msgid "Osmanya"
+#~ msgstr "Osmanyjské"
+
+#, kde-format
+#~ msgid "Phags-pa"
+#~ msgstr "Phags-pa"
+
+#, kde-format
+#~ msgid "Phoenician"
+#~ msgstr "Fénické"
+
+#, kde-format
+#~ msgid "Runic"
+#~ msgstr "Runové"
+
+#, kde-format
+#~ msgid "Shavian"
+#~ msgstr "Shavijské"
+
+#, kde-format
+#~ msgid "Sinhala"
+#~ msgstr "Sinhálské"
+
+#, kde-format
+#~ msgid "Sumero-Akkadian Cuneiform"
+#~ msgstr "Sumerské-akadské klínové"
+
+#, kde-format
+#~ msgid "Syloti Nagri"
+#~ msgstr "Syloti Nagri"
+
+#, kde-format
+#~ msgid "Syriac"
+#~ msgstr "Syrské"
+
+#, kde-format
+#~ msgid "Tagalog"
+#~ msgstr "Filipínské"
+
+#, kde-format
+#~ msgid "Tagbanwa"
+#~ msgstr "Tagbanwa"
+
+#, kde-format
+#~ msgid "Tai Le"
+#~ msgstr "Tai Le"
+
+#, kde-format
+#~ msgid "Tai Lu"
+#~ msgstr "Tai Lu"
+
+#, kde-format
+#~ msgid "Tamil"
+#~ msgstr "Tamilské"
+
+#, kde-format
+#~ msgid "Telugu"
+#~ msgstr "Telugské"
+
+#, kde-format
+#~ msgid "Thaana"
+#~ msgstr "Thaanské"
+
+#, kde-format
+#~ msgid "Thai"
+#~ msgstr "Thajské"
+
+#, kde-format
+#~ msgid "Tibetan"
+#~ msgstr "Tibetské"
+
+#, kde-format
+#~ msgid "Tifinagh"
+#~ msgstr "Tifinaghské"
+
+#, kde-format
+#~ msgid "Ugaritic Cuneiform"
+#~ msgstr "Ugaritické klínové"
+
+#, kde-format
+#~ msgid "Yi"
+#~ msgstr "Yi"
+
+#, kde-format
+#~ msgid "Not Restricted"
+#~ msgstr "Neomezeno"
+
+#, kde-format
+#~ msgid "Restricted"
+#~ msgstr "Omezeno"
+
+#, kde-format
+#~ msgid "Preview/Print"
+#~ msgstr "Poskytnout náhled/Vytisknout"
+
+#, kde-format
+#~ msgid "Edit/Embed"
+#~ msgstr "Upravit/Vložit"
+
+#, kde-format
+#~ msgid "No Subset"
+#~ msgstr "Žádná podmnožina"
+
+#, kde-format
+#~ msgid "Bitmap Only"
+#~ msgstr "Pouze bitmapa"
+
+#, kde-format
+#~ msgid "Unicode Ranges"
+#~ msgstr "Rozsahy Unicode"
+
+#, kde-format
+#~ msgid "File"
+#~ msgstr "Soubor"
+
+#, kde-format
+#~ msgid "Glyphs count"
+#~ msgstr "Počet obrázků"
+
+#, kde-format
+#~ msgid "Font Type"
+#~ msgstr "Typ písma"
+
+#, kde-format
+#~ msgid "Charmaps List"
+#~ msgstr "Seznam zobrazení znaků"
+
+#, kde-format
+#~ msgid ""
+#~ "The font %1 scores %2.\n"
+#~ "Do you want to add it to the filtered fonts?"
+#~ msgstr ""
+#~ "Písmo %1 dosahuje %2.\n"
+#~ "Chcete je přidat do filtrovaných písem?"
+
+#, kde-format
+#~ msgid "No font match the submitted image"
+#~ msgstr "Žádné písmo neodpovídá předloženému obrázku"
+
+#, kde-format
+#~ msgid ""
+#~ "Fontmatrix has been unable to load the font in file \n"
+#~ "%1.\n"
+#~ " Please check missing files."
+#~ msgstr ""
+#~ "Fontmatrixu se nepodařilo nahrát písmo v souboru \n"
+#~ "%1.\n"
+#~ "Prověřte, prosím, chybějící soubory."
+
+#, kde-format
+#~ msgid "Missing Font File"
+#~ msgstr "Chybí soubor s písmem"
+
+#, kde-format
+#~ msgid ""
+#~ "Fontmatrix has been unable to load fonts in files \n"
+#~ "%1.\n"
+#~ " Please check missing files."
+#~ msgstr ""
+#~ "Fontmatrixu se nepodařilo nahrát písma v souborech \n"
+#~ "%1.\n"
+#~ "Prověřte, prosím, chybějící soubory."
+
+#, kde-format
+#~ msgid "Print Fontbook"
+#~ msgstr "Vytisknout knihu písem"
+
+#, kde-format
+#~ msgid "Unicode coverage"
+#~ msgstr "Rozsah Unicode"
+
+#, kde-format
+#~ msgid "Save fontBook"
+#~ msgstr "Uložit knihu písem"
+
+#, kde-format
+#~ msgid "codepoint is U+"
+#~ msgstr "Kód je U+"
+
+#, kde-format
+#~ msgid "Fontmatrix - Download"
+#~ msgstr "Fontmatrix - Stažení"
+
+#, kde-format
+#~ msgid "Downloading %1."
+#~ msgstr "Stahuje se %1."
+
+#, kde-format
+#~ msgid " (not loaded)"
+#~ msgstr " (nenahráno)"
+
+#, kde-format
+#~ msgid "Number of Imported Fonts "
+#~ msgstr "Počet zavedených písem "
+
+#, kde-format
+#~ msgid ""
+#~ " is activated.\n"
+#~ "If you want to remove it from Fontmatrix database, please deactivate it "
+#~ "first."
+#~ msgstr ""
+#~ " je zapnut.\n"
+#~ "Pokud je chcete odstranit z databáze programu Fontmatrix, nejprve je, "
+#~ "prosím, vypněte."
+
+#, kde-format
+#~ msgid "You are about to remove a font from Fontmatrix database"
+#~ msgstr "Chystáte se písmo odstranit z databáze programu Fontmatrix"
+
+#, kde-format
+#~ msgid "Do you want to continue?"
+#~ msgstr "Chcete pokračovat?"
+
+#, kde-format
+#~ msgid "Access All Alternates"
+#~ msgstr "Získat všechna náhradní"
+
+#, kde-format
+#~ msgid "Above-Base Forms"
+#~ msgstr "Tvary nad základem"
+
+#, kde-format
+#~ msgid "Above-Base Mark Positioning"
+#~ msgstr "Umístění značky nad základem"
+
+#, kde-format
+#~ msgid "Above-Base Substitutions"
+#~ msgstr "Nahrazení nad základem"
+
+#, kde-format
+#~ msgid "Alternative Fractions"
+#~ msgstr "Náhradní zlomky"
+
+#, kde-format
+#~ msgid "Akhands"
+#~ msgstr "Akhand"
+
+#, kde-format
+#~ msgid "Below-Base Forms"
+#~ msgstr "Tvary pod základem"
+
+#, kde-format
+#~ msgid "Below-Base Mark Positioning"
+#~ msgstr "Umístění značky pod základem"
+
+#, kde-format
+#~ msgid "Below-Base Substitutions"
+#~ msgstr "Nahrazení pod základem"
+
+#, kde-format
+#~ msgid "Petite Capitals From Capitals"
+#~ msgstr "Drobné kapitálky z velkých písmen"
+
+#, kde-format
+#~ msgid "Small Capitals From Capitals"
+#~ msgstr "Malé kapitálky z velkých písmen"
+
+#, kde-format
+#~ msgid "Contextual Alternates"
+#~ msgstr "Náhrady vyplývající ze souvislosti"
+
+#, kde-format
+#~ msgid "Case-Sensitive Forms"
+#~ msgstr "Tvary rozlišující velká a malá písmena"
+
+#, kde-format
+#~ msgid "Glyph Composition/Decomposition"
+#~ msgstr "Složení/Rozklad glyfu"
+
+#, kde-format
+#~ msgid "Contextual Ligatures"
+#~ msgstr "Slitky vyplývající ze souvislosti"
+
+#, kde-format
+#~ msgid "Conjunct Forms"
+#~ msgstr "Spojené tvary"
+
+#, kde-format
+#~ msgid "Capital Spacing"
+#~ msgstr "Rozestupy velkých písmen"
+
+#, kde-format
+#~ msgid "Contextual Swash"
+#~ msgstr "Ozdobné písmeno vyplývající ze souvislosti"
+
+#, kde-format
+#~ msgid "Cursive Positioning"
+#~ msgstr "Kurzívní umístění"
+
+#, kde-format
+#~ msgid "Default Processing"
+#~ msgstr "Výchozí zpracování"
+
+#, kde-format
+#~ msgid "Distances"
+#~ msgstr "Vzdálenosti"
+
+#, kde-format
+#~ msgid "Discretionary Ligatures"
+#~ msgstr "Nepředepsané slitky"
+
+#, kde-format
+#~ msgid "Denominators"
+#~ msgstr "Jmenovatelé"
+
+#, kde-format
+#~ msgid "Expert Forms"
+#~ msgstr "Odborné tvary"
+
+#, kde-format
+#~ msgid "Final glyph Alternates"
+#~ msgstr "Náhrady závěrečného glyfu"
+
+#, kde-format
+#~ msgid "Terminal Forms #2"
+#~ msgstr "Tvary zakončení #2"
+
+#, kde-format
+#~ msgid "Terminal Forms #3"
+#~ msgstr "Tvary zakončení #3"
+
+#, kde-format
+#~ msgid "Terminal Forms"
+#~ msgstr "Tvary zakončení"
+
+#, kde-format
+#~ msgid "Fractions"
+#~ msgstr "Zlomky"
+
+#, kde-format
+#~ msgid "Full Width"
+#~ msgstr "Celá šířka"
+
+#, kde-format
+#~ msgid "Half Forms"
+#~ msgstr "Poloviční tvary"
+
+#, kde-format
+#~ msgid "Halant Forms"
+#~ msgstr "Tvary Halant"
+
+#, kde-format
+#~ msgid "Alternate Half Width"
+#~ msgstr "Náhradní poloviční šířka"
+
+#, kde-format
+#~ msgid "Historical Forms"
+#~ msgstr "Historické tvary"
+
+#, kde-format
+#~ msgid "Horizontal Kana Alternates"
+#~ msgstr "Vodorovné náhrady Kana"
+
+#, kde-format
+#~ msgid "Historical Ligatures"
+#~ msgstr "Historické slitky"
+
+#, kde-format
+#~ msgid "Hojo Kanji Forms (JIS x 212-1990 Kanji Forms)"
+#~ msgstr "Tvary Hojo Kanji (tvary Kanji JIS x 212-1990)"
+
+#, kde-format
+#~ msgid "Half Width"
+#~ msgstr "Poloviční šířka"
+
+#, kde-format
+#~ msgid "Initial Forms"
+#~ msgstr "Počáteční tvary"
+
+#, kde-format
+#~ msgid "Isolated Forms"
+#~ msgstr "Osamocené tvary"
+
+#, kde-format
+#~ msgid "Italics"
+#~ msgstr "Kurzíva"
+
+#, kde-format
+#~ msgid "Justification Alternatives"
+#~ msgstr "Náhradní zarovnání"
+
+#, kde-format
+#~ msgid "JIS78 Forms"
+#~ msgstr "Tvary JIS78"
+
+#, kde-format
+#~ msgid "JIS83 Forms"
+#~ msgstr "Tvary JIS83"
+
+#, kde-format
+#~ msgid "JIS90 Forms"
+#~ msgstr "Tvary JIS90"
+
+#, kde-format
+#~ msgid "JIS2004 Forms"
+#~ msgstr "Tvary JIS2004"
+
+#, kde-format
+#~ msgid "Left Bounds"
+#~ msgstr "Levé hranice"
+
+#, kde-format
+#~ msgid "Standard Ligatures"
+#~ msgstr "Obvyklé slitky"
+
+#, kde-format
+#~ msgid "Leading Jamo Forms"
+#~ msgstr "Tvary Jamo na začátku"
+
+#, kde-format
+#~ msgid "Lining Figures"
+#~ msgstr "Seřazení číslic"
+
+#, kde-format
+#~ msgid "Localized Forms"
+#~ msgstr "Lokalizované tvary"
+
+#, kde-format
+#~ msgid "Mark Positioning"
+#~ msgstr "Umístění značky"
+
+#, kde-format
+#~ msgid "Medial Forms #2"
+#~ msgstr "Průměrné tvary #2"
+
+#, kde-format
+#~ msgid "Medial Forms"
+#~ msgstr "Průměrné tvary"
+
+#, kde-format
+#~ msgid "Mathematical Greek"
+#~ msgstr "Matematické řecké"
+
+#, kde-format
+#~ msgid "Mark to Mark Positioning"
+#~ msgstr "Umístění značky k značce"
+
+#, kde-format
+#~ msgid "Mark Positioning via Substitution"
+#~ msgstr "Umístění značky pomocí nahrazení"
+
+#, kde-format
+#~ msgid "Alternate Annotation Forms"
+#~ msgstr "Náhradní tvary vysvětlivek"
+
+#, kde-format
+#~ msgid "NLC Kanji Forms"
+#~ msgstr "Tvary Kanji NLC"
+
+#, kde-format
+#~ msgid "Nukta Forms"
+#~ msgstr "Tvary Nukta"
+
+#, kde-format
+#~ msgid "Numerators"
+#~ msgstr "Čitatelé"
+
+#, kde-format
+#~ msgid "Old Style Figures"
+#~ msgstr "Číslice ve starém slohu"
+
+#, kde-format
+#~ msgid "Optical Bounds"
+#~ msgstr "Viditelné hranice"
+
+#, kde-format
+#~ msgid "Ordinals"
+#~ msgstr "Řadové číslovky"
+
+#, kde-format
+#~ msgid "Ornaments"
+#~ msgstr "Ozdoby"
+
+#, kde-format
+#~ msgid "Proportional Alternate Width"
+#~ msgstr "Poměrná náhradní šířka"
+
+#, kde-format
+#~ msgid "Petite Capitals"
+#~ msgstr "Drobná velká písmena (kapitálky)"
+
+#, kde-format
+#~ msgid "Proportional Figures"
+#~ msgstr "Poměrné číslice"
+
+#, kde-format
+#~ msgid "Pre-base Forms"
+#~ msgstr "Tvary před základem"
+
+#, kde-format
+#~ msgid "Pre-base Substitutions"
+#~ msgstr "Náhrady před základem"
+
+#, kde-format
+#~ msgid "Post-base Forms"
+#~ msgstr "Tvary po základu"
+
+#, kde-format
+#~ msgid "Post-base Substitutions"
+#~ msgstr "Náhrady po základu"
+
+#, kde-format
+#~ msgid "Proportional Widths"
+#~ msgstr "Poměrné šířky"
+
+#, kde-format
+#~ msgid "Quarter Widths"
+#~ msgstr "Čtvrtinové šířky"
+
+#, kde-format
+#~ msgid "Randomize"
+#~ msgstr "Vybrat náhodně"
+
+#, kde-format
+#~ msgid "Rakar Forms"
+#~ msgstr "Tvary Rakar"
+
+#, kde-format
+#~ msgid "Required Ligatures"
+#~ msgstr "Požadované slitky"
+
+#, kde-format
+#~ msgid "Reph Form"
+#~ msgstr "Tvar Reph"
+
+#, kde-format
+#~ msgid "Right Bounds"
+#~ msgstr "Pravé hranice"
+
+#, kde-format
+#~ msgid "Right-To-Left Alternates"
+#~ msgstr "Pravolevé náhrady"
+
+#, kde-format
+#~ msgid "Ruby Notation Forms"
+#~ msgstr "Tvary zápisu typu písma Ruby"
+
+#, kde-format
+#~ msgid "Stylistic Alternates"
+#~ msgstr "Slohové náhrady"
+
+#, kde-format
+#~ msgid "Scientific Inferiors"
+#~ msgstr "Vědecké psané jako dolní index"
+
+#, kde-format
+#~ msgid "Optical Size"
+#~ msgstr "Viditelná velikost"
+
+#, kde-format
+#~ msgid "Small Capitals"
+#~ msgstr "Malé kapitálky"
+
+#, kde-format
+#~ msgid "Simplified Forms"
+#~ msgstr "Zjednodušené tvary"
+
+#, kde-format
+#~ msgid "Stylistic Set 1"
+#~ msgstr "Slohový soubor 1"
+
+#, kde-format
+#~ msgid "Stylistic Set 2"
+#~ msgstr "Slohový soubor 2"
+
+#, kde-format
+#~ msgid "Stylistic Set 3"
+#~ msgstr "Slohový soubor 3"
+
+#, kde-format
+#~ msgid "Stylistic Set 4"
+#~ msgstr "Slohový soubor 4"
+
+#, kde-format
+#~ msgid "Stylistic Set 5"
+#~ msgstr "Slohový soubor 5"
+
+#, kde-format
+#~ msgid "Stylistic Set 6"
+#~ msgstr "Slohový soubor 6"
+
+#, kde-format
+#~ msgid "Stylistic Set 7"
+#~ msgstr "Slohový soubor 7"
+
+#, kde-format
+#~ msgid "Stylistic Set 8"
+#~ msgstr "Slohový soubor 8"
+
+#, kde-format
+#~ msgid "Stylistic Set 9"
+#~ msgstr "Slohový soubor 9"
+
+#, kde-format
+#~ msgid "Stylistic Set 10"
+#~ msgstr "Slohový soubor 10"
+
+#, kde-format
+#~ msgid "Stylistic Set 11"
+#~ msgstr "Slohový soubor 11"
+
+#, kde-format
+#~ msgid "Stylistic Set 12"
+#~ msgstr "Slohový soubor 12"
+
+#, kde-format
+#~ msgid "Stylistic Set 13"
+#~ msgstr "Slohový soubor 13"
+
+#, kde-format
+#~ msgid "Stylistic Set 14"
+#~ msgstr "Slohový soubor 14"
+
+#, kde-format
+#~ msgid "Stylistic Set 15"
+#~ msgstr "Slohový soubor 15"
+
+#, kde-format
+#~ msgid "Stylistic Set 16"
+#~ msgstr "Slohový soubor 16"
+
+#, kde-format
+#~ msgid "Stylistic Set 17"
+#~ msgstr "Slohový soubor 17"
+
+#, kde-format
+#~ msgid "Stylistic Set 18"
+#~ msgstr "Slohový soubor 18"
+
+#, kde-format
+#~ msgid "Stylistic Set 19"
+#~ msgstr "Slohový soubor 19"
+
+#, kde-format
+#~ msgid "Stylistic Set 20"
+#~ msgstr "Slohový soubor 20"
+
+#, kde-format
+#~ msgid "Subscript"
+#~ msgstr "Dolní index"
+
+#, kde-format
+#~ msgid "Superscript"
+#~ msgstr "Horní index"
+
+#, kde-format
+#~ msgid "Swash"
+#~ msgstr "Ozdobné písmeno"
+
+#, kde-format
+#~ msgid "Titling"
+#~ msgstr "Titulování"
+
+#, kde-format
+#~ msgid "Trailing Jamo Forms"
+#~ msgstr "Tvary Jamo na konci"
+
+#, kde-format
+#~ msgid "Traditional Name Forms"
+#~ msgstr "Tradiční tvary názvu"
+
+#, kde-format
+#~ msgid "Tabular Figures"
+#~ msgstr "Tabulkové číslice"
+
+#, kde-format
+#~ msgid "Traditional Forms"
+#~ msgstr "Tradiční tvary"
+
+#, kde-format
+#~ msgid "Third Widths"
+#~ msgstr "Třetinové šířky"
+
+#, kde-format
+#~ msgid "Unicase"
+#~ msgstr "Jednotná písmovka"
+
+#, kde-format
+#~ msgid "Alternate Vertical Metrics"
+#~ msgstr "Náhradní svislá metrika"
+
+#, kde-format
+#~ msgid "Vattu Variants"
+#~ msgstr "Obměny Vattu"
+
+#, kde-format
+#~ msgid "Vertical Writing"
+#~ msgstr "Svislé písmo"
+
+#, kde-format
+#~ msgid "Alternate Vertical Half Metrics"
+#~ msgstr "Náhradní svislá poloviční metrika"
+
+#, kde-format
+#~ msgid "Vowel Jamo Forms"
+#~ msgstr "Tvary samohlásek Jamo"
+
+#, kde-format
+#~ msgid "Vertical Kana Alternates"
+#~ msgstr "Svislé náhrady Kana"
+
+#, kde-format
+#~ msgid "Vertical Kerning"
+#~ msgstr "Svislé podřezávání"
+
+#, kde-format
+#~ msgid "Proportional Alternate Vertical Metrics"
+#~ msgstr "Poměrná náhradní svislá metrika"
+
+#, kde-format
+#~ msgid "Vertical Rotation"
+#~ msgstr "Svislé otočení"
+
+#, kde-format
+#~ msgid "Slashed Zero"
+#~ msgstr "Nula s lomítkem"
+
+#, kde-format
+#~ msgid "Print Playground"
+#~ msgstr "Vytisknout hřiště"
+
+#, kde-format
+#~ msgid ""
+#~ "You can use the following keywords to be replaced by data from fonts: "
+#~ "<strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; "
+#~ "<strong>&#60;variant&#62;</strong>"
+#~ msgstr ""
+#~ "Můžete použít následující klíčová slova, aby byla nahrazena daty z písem: "
+#~ "<strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; "
+#~ "<strong>&#60;variant&#62;</strong>"
+
+#, kde-format
+#~ msgid "Please select an item in the list or create a new one."
+#~ msgstr "Vyberte, prosím, ze seznamu jednu položku, nebo jednu vytvořte."
+
+#, kde-format
+#~ msgid "Select font editor"
+#~ msgstr "Vybrat editor písma"
+
+#, kde-format
+#~ msgid "Select Templates Folder"
+#~ msgstr "Vybrat složku s předlohami"
+
+#, kde-format
+#~ msgid "Do you still want to assign it?"
+#~ msgstr "Stále ještě ji chcete přiřadit?"
+
+#, kde-format
+#~ msgid "Replace"
+#~ msgstr "Nahradit"
+
+#, kde-format
+#~ msgid "Action"
+#~ msgstr "Činnost"
+
+#, kde-format
+#~ msgid "Shortcut"
+#~ msgstr "Zkratka"
+
+#, kde-format
+#~ msgid "Tip"
+#~ msgstr "Rada"
+
+#, kde-format
+#~ msgid "Select hyphenation dictionary"
+#~ msgstr "Vybrat slovník dělení slov"
+
+#, kde-format
+#~ msgid "Downloading"
+#~ msgstr "Stahuje se"
+
+#, kde-format
+#~ msgid "Select language"
+#~ msgstr "Vybrat jazyk"
+
+#, kde-format
+#~ msgid "User"
+#~ msgstr "Uživatel"
+
+#, kde-format
+#~ msgid "Print Sample"
+#~ msgstr "Vytisknout ukázku"
+
+#, kde-format
+#~ msgid "New Sample"
+#~ msgstr "Nová ukázka"
+
+#, kde-format
+#~ msgid "&Activate all"
+#~ msgstr "&Zapnout vše"
+
+#, kde-format
+#~ msgid "&Deactivate all"
+#~ msgstr "&Vypnout vše"
+
+#, kde-format
+#~ msgid "Mi&nimize"
+#~ msgstr "&Zmenšit"
+
+#, kde-format
+#~ msgid "&Restore"
+#~ msgstr "&Obnovit"
+
+#, kde-format
+#~ msgid "E&xit"
+#~ msgstr "&Ukončit"
+
+#, kde-format
+#~ msgid "&Tags"
+#~ msgstr "&Značky"
+
+#, kde-format
+#~ msgid ""
+#~ "Please confirm that you want to remove\n"
+#~ "the following tag from database:"
+#~ msgstr ""
+#~ "Potvrďte, prosím, že chcete, aby byla\n"
+#~ "následující značka odstraněna z databáze:"
+
+#, kde-format
+#~ msgid "New Tag"
+#~ msgstr "Nová značka"
+
+#, kde-format
+#~ msgid "Save File"
+#~ msgstr "Uložit soubor"
+
+#, kde-format
+#~ msgid ""
+#~ "The program will keep running in the system tray. To terminate the "
+#~ "program, choose <b>Exit</b> in the context menu of the system tray entry."
+#~ msgstr ""
+#~ "Program poběží i nadále v oznamovací části panelu. Pro ukončení programu "
+#~ "zvolte <b>Ukončit</b> v nabídce souvisejících činností vyvolané z "
+#~ "oznamovací části panelu."
+
+#, kde-format
+#~ msgid "Add Directory"
+#~ msgstr "Přidat adresář"
+
+#, kde-format
+#~ msgid "Importing font files... "
+#~ msgstr "Zavádějí se soubory s písmy... "
+
+#, kde-format
+#~ msgid "Cannot import this font because it is broken:"
+#~ msgstr "Toto písmo nelze zavést, protože je rozbité:"
+
+#, kde-format
+#~ msgid "Fonts imported: %1"
+#~ msgstr "Zavedená písma: %1"
+
+#, kde-format
+#~ msgid "Select Files to Import"
+#~ msgstr "Vybrat soubory k zavedení"
+
+#, kde-format
+#~ msgid "Font Files"
+#~ msgstr "Soubory s písmy"
+
+#, kde-format
+#~ msgid "&Import Directory..."
+#~ msgstr "&Zavést adresář..."
+
+#, kde-format
+#~ msgid "Import a directory"
+#~ msgstr "Zavést adresář"
+
+#, kde-format
+#~ msgid "Import &Files..."
+#~ msgstr "Zavést &soubory..."
+
+#, kde-format
+#~ msgid "Import Files"
+#~ msgstr "Zavést soubory"
+
+#, kde-format
+#~ msgid "Export &fonts"
+#~ msgstr "Vyvést &písma"
+
+#, kde-format
+#~ msgid "Export a fontset"
+#~ msgstr "Vyvést sadu písem"
+
+#, kde-format
+#~ msgid "Export font book..."
+#~ msgstr "Vyvést knihu písem..."
+
+#, kde-format
+#~ msgid "Export a PDF document that shows selected fonts"
+#~ msgstr "Vyvést dokument PDF, který ukazuje vybraná písma"
+
+#, kde-format
+#~ msgid "Export font info for packaging..."
+#~ msgstr "Vyvést informace o písmu pro balení..."
+
+#, kde-format
+#~ msgid ""
+#~ "Fill a template file with metadata for packaging currently selected font "
+#~ "to a Linux distribution"
+#~ msgstr ""
+#~ "Naplnit soubor s předlohou popisnými údaji pro balení nyní vybraného "
+#~ "písma pro linuxovou distribuci"
+
+#, kde-format
+#~ msgid "Activate all current"
+#~ msgstr "Zapnout všechna nynější"
+
+#, kde-format
+#~ msgid "Activate all currently visible fonts"
+#~ msgstr "Zapnout všechna nyní viditelná písma"
+
+#, kde-format
+#~ msgid "Deactivate all current"
+#~ msgstr "Vypnout všechna nynější"
+
+#, kde-format
+#~ msgid "Deactivate all currently visible fonts"
+#~ msgstr "Vypnout všechna nyní viditelná písma"
+
+#, kde-format
+#~ msgid "Edit current font"
+#~ msgstr "Upravit nynější písmo"
+
+#, kde-format
+#~ msgid "Edit currently selected font in a font editor of your choice"
+#~ msgstr "Upravit nyní vybrané písmo v editoru písem dle vaší volby"
+
+#, kde-format
+#~ msgid ""
+#~ "You don't seem to have a font editor installed. Path to font editor can "
+#~ "be set in Preferences dialog."
+#~ msgstr ""
+#~ "Zdá se, že nemáte nainstalován editor písem. Cestu k editoru písem lze "
+#~ "nastavit v dialogu Nastavení."
+
+#, kde-format
+#~ msgid "Reload Filtered"
+#~ msgstr "Nahrát znovu vyfiltrované"
+
+#, kde-format
+#~ msgid ""
+#~ "Reload informations for filtered fonts from the font files they belong to"
+#~ msgstr ""
+#~ "Nahrát znovu informace pro vyfiltrovaná písma z jejich souborů písem"
+
+#, kde-format
+#~ msgid "Reload Selected"
+#~ msgstr "Nahrát znovu vybrané"
+
+#, kde-format
+#~ msgid "Reload informations for selected font from the font file"
+#~ msgstr "Nahrát znovu informace k vybranému písmu z jeho souboru"
+
+#, kde-format
+#~ msgid "Check Database"
+#~ msgstr "Prověřit databázi"
+
+#, kde-format
+#~ msgid "Check Fontmatrix database for dead links to font files"
+#~ msgstr "Prověřit databázi Fontmatrixu na mrtvé odkazy k souborům písem"
+
+#, kde-format
+#~ msgid "Tag All Filtered..."
+#~ msgstr "Označit vše vyfiltrované..."
+
+#, kde-format
+#~ msgid "Tag all currently visible files"
+#~ msgstr "Označit všechny nyní viditelné soubory"
+
+#, kde-format
+#~ msgid "Show TrueType tables"
+#~ msgstr "Ukázat tabulky TrueType"
+
+#, kde-format
+#~ msgid ""
+#~ "View hexadecimal values of TrueType tables for currently selected font "
+#~ "file"
+#~ msgstr ""
+#~ "Zobrazit šestnáctkové hodnoty tabulek TrueType nyní vybraného souboru s "
+#~ "písmem"
+
+#, kde-format
+#~ msgid "Edit PANOSE metadata"
+#~ msgstr "Upravit údaje Panose"
+
+#, kde-format
+#~ msgid "Edit PANOSE metadata without saving changes to font files"
+#~ msgstr "Upravit údaje Panose bez uložení změn do souborů s písmy"
+
+#, kde-format
+#~ msgid "Show/Hide Playground"
+#~ msgstr "Ukázat/Skrýt hřiště"
+
+#, kde-format
+#~ msgid "Compare"
+#~ msgstr "Porovnání"
+
+#, kde-format
+#~ msgid "Show/Hide Compare glyphs"
+#~ msgstr "Ukázat/Skrýt porovnání glyfů"
+
+#, kde-format
+#~ msgid "Close All"
+#~ msgstr "Zavřít vše"
+
+#, kde-format
+#~ msgid "Close all floating windows"
+#~ msgstr "Zavřít všechna plovoucí okna"
+
+#, kde-format
+#~ msgid "Show All"
+#~ msgstr "Ukázat vše"
+
+#, kde-format
+#~ msgid "Show all floating windows"
+#~ msgstr "Ukázat všechna plovoucí okna"
+
+#, kde-format
+#~ msgid "Hide All"
+#~ msgstr "Skrýt vše"
+
+#, kde-format
+#~ msgid "Hide all floating windows"
+#~ msgstr "Skrýt všechna plovoucí okna"
+
+#, kde-format
+#~ msgid "Extract fonts..."
+#~ msgstr "Vytáhnout písma..."
+
+#, kde-format
+#~ msgid "Extract fonts from documents like PDF to PFM file format"
+#~ msgstr "Vytáhnout písma z dokumentů jako PDF do souborového formátu PFM"
+
+#, kde-format
+#~ msgid "Find a font using raster sample..."
+#~ msgstr "Najít písmo pomocí ukázky rastru jeho obrazu..."
+
+#, kde-format
+#~ msgid "Find a font using a raster sample of a letter"
+#~ msgstr "Najít písmo pomocí ukázky rastru obrazu jeho písmene"
+
+#, kde-format
+#~ msgid "Browse Directories"
+#~ msgstr "Procházet adresáře"
+
+#, kde-format
+#~ msgid "Toggle Files/Collection view"
+#~ msgstr "Přepnout pohled soubory/sbírka"
+
+#, kde-format
+#~ msgid "Load settings"
+#~ msgstr "Nahrát nastavení"
+
+#, kde-format
+#~ msgid "Check for Fontmatrix own dir"
+#~ msgstr "Prověřit vlastní adresář Fontmatrixu"
+
+#, kde-format
+#~ msgid "Loading System Fonts"
+#~ msgstr "Nahrává se systémové písmo"
+
+#, kde-format
+#~ msgid "System Fonts"
+#~ msgstr "Systémová písma"
+
+#, kde-format
+#~ msgid "system fonts added."
+#~ msgstr "Systémová písma přidána."
+
+#, kde-format
+#~ msgid "font descriptions imported from network"
+#~ msgstr "Popisy písem zavedené ze sítě"
+
+#, kde-format
+#~ msgid ""
+#~ "You are about to activate a bunch of fonts,\n"
+#~ "it is time to cancel if it was not your intent"
+#~ msgstr ""
+#~ "Vypadá to, že se chystáte zapnout skupinu písem.\n"
+#~ "Teď je čas na zrušení této akce, pokud jste tedy její provedení neměl v "
+#~ "úmyslu"
+
+#, kde-format
+#~ msgid ""
+#~ "You are about to deactivate a bunch of fonts,\n"
+#~ "it is time to cancel if it was not your intent"
+#~ msgstr ""
+#~ "Vypadá to, že se chystáte vypnout skupinu písem.\n"
+#~ "Teď je čas na zrušení této akce, pokud jste tedy její provedení neměl v "
+#~ "úmyslu"
+
+#, kde-format
+#~ msgid "There is no font selected"
+#~ msgstr "Žádné písmo nebylo vybráno"
+
+#, kde-format
+#~ msgid "Support of DragNDrop over http is sheduled but not yet effective"
+#~ msgstr ""
+#~ "Podpora pro \"táhni a pusť\" přes http je naplánována, ale dosud není "
+#~ "účinná"
+
+#, kde-format
+#~ msgid "Edit me!"
+#~ msgstr "Uprav mě!"
+
+#, kde-format
+#~ msgid "Try to run font editor with the selected font as argument"
+#~ msgstr "Zkusit spustit editor písem s vybraným písmem jako argumentem"
+
+#, kde-format
+#~ msgid ""
+#~ "You don't seem to have font editor installed. Path to font editor can be "
+#~ "set in preferences."
+#~ msgstr ""
+#~ "Nezdá se, že byste měl nainstalován editor písem. Cestu k editoru písem "
+#~ "lze nastavit v nastavení."
+
+#, kde-format
+#~ msgid "Failed to reload %1 font"
+#~ msgid_plural "Failed to reload %1 fonts"
+#~ msgstr[0] "Nepodařilo se nahrát znovu jedno písmo"
+#~ msgstr[1] "Nepodařilo se nahrát znovu %1 písma"
+#~ msgstr[2] "Nepodařilo se nahrát znovu %1 písem"
 
 #~ msgid "About Fontmatrix"
 #~ msgstr "O programu Fontmatrix"

@@ -46,7 +46,10 @@ void FiltersDialogItem::slotFilter()
 
 void FiltersDialogItem::slotRemove()
 {
-    if (KMessageBox::warningContinueCancel(this, i18n("Confirm deletion of filter:") + filterName, i18n("Remove Filter"), KStandardGuiItem::remove())
+    if (KMessageBox::warningContinueCancel(this,
+                                           i18nc("@info", "Confirm deletion of filter:") + filterName,
+                                           i18nc("@title:window", "Remove Filter"),
+                                           KStandardGuiItem::remove())
         == KMessageBox::Continue)
         Q_EMIT Remove(filterName);
 }

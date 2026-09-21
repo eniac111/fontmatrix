@@ -44,8 +44,8 @@ ChartWidget::ChartWidget(const QString &fid, const QString &block, QWidget *pare
     auto cslCompleter(new QCompleter(ui->charSearchLine));
     cslCompleter->setModel(cslModel);
     ui->charSearchLine->setCompleter(cslCompleter);
-    unMapGlyphName = i18n("Un-Mapped Glyphs");
-    allMappedGlyphName = i18n("View all mapped glyphs");
+    unMapGlyphName = i18nc("@item:inlistbox", "Un-Mapped Glyphs");
+    allMappedGlyphName = i18nc("@item:inlistbox", "View all mapped glyphs");
     uRangeIsNotEmpty = false;
     fillUniPlanesCombo(theVeryFont);
     curGlyph = nullptr;
@@ -137,7 +137,7 @@ void ChartWidget::selectBlock(const QString &uname)
         int interval = uniPair.second - uniPair.first;
         coverage = coverage * 100 / (interval + 1); // against /0 exception
 
-        QString statstring(i18n("Block (%1):", QString::number(coverage) + "%"));
+        QString statstring(i18nc("@label", "Block (%1):", QString::number(coverage) + "%"));
         ui->unicodeCoverageStat->setText(statstring);
 
         theVeryFont->renderAll(abcScene, uniPair.first, uniPair.second);
@@ -214,7 +214,7 @@ void ChartWidget::slotUpdateGView()
         int interval = uniPair.second - uniPair.first;
         coverage = coverage * 100 / (interval + 1); // against /0 exception
 
-        QString statstring(i18n("Block (%1):", QString::number(coverage) + "%"));
+        QString statstring(i18nc("@label", "Block (%1):", QString::number(coverage) + "%"));
         ui->unicodeCoverageStat->setText(statstring);
 
         theVeryFont->renderAll(abcScene, uniPair.first, uniPair.second);
@@ -425,7 +425,7 @@ void ChartWidget::slotPrint()
         connect(printDialog, qOverload<QPrinter *>(&QPrintDialog::accepted), this, &ChartWidget::slotDoPrinting);
     }
 
-    printDialog->setWindowTitle("Fontmatrix - " + i18n("Print Chart") + " - " + font->fancyName());
+    printDialog->setWindowTitle("Fontmatrix - " + i18nc("@title:window", "Print Chart") + " - " + font->fancyName());
 
     printDialog->open();
 }

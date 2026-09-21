@@ -131,7 +131,8 @@ void FMMatchRaster::search()
                             compView->setEnabled(true);
                             compView->setImage(QPixmap::fromImage(adjustedImg));
                             compView->setEnabled(false);
-                            scoreLabel->setText(i18n("The font %1 scores %2.\nDo you want to add it to the filtered fonts?", fit->fancyName(), compResult));
+                            scoreLabel->setText(
+                                i18nc("@info", "The font %1 scores %2.\nDo you want to add it to the filtered fonts?", fit->fancyName(), compResult));
                             buttonBox->setEnabled(true);
                             waitingFont = fit;
                             m_waitingForButton = true;
@@ -180,7 +181,7 @@ void FMMatchRaster::slotStop()
     if (!filteredFonts.isEmpty()) {
         typotek::getInstance()->getTheMainView()->setCurFonts(filteredFonts);
     } else {
-        KMessageBox::information(this, i18n("No font match the submitted image"));
+        KMessageBox::information(this, i18nc("@info", "No font match the submitted image"));
     }
     close();
 }

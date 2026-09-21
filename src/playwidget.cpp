@@ -19,7 +19,7 @@ PlayWidget::PlayWidget()
     : ui(new Ui::PlayWidget)
 {
     ui->setupUi(this);
-    setWindowTitle(i18n("Playground"));
+    setWindowTitle(i18nc("@title:window", "Playground"));
     ui->toolbar->setDetached();
     ui->toolbar->setNoClose(true);
     playScene = new QGraphicsScene;
@@ -101,7 +101,7 @@ void PlayWidget::print()
 {
     QPrinter thePrinter(QPrinter::HighResolution);
     QPrintDialog dialog(&thePrinter, this);
-    dialog.setWindowTitle("Fontmatrix - " + i18n("Print Playground"));
+    dialog.setWindowTitle("Fontmatrix - " + i18nc("@title:window", "Print Playground"));
 
     if (dialog.exec() != QDialog::Accepted)
         return;

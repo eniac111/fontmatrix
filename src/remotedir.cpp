@@ -50,7 +50,7 @@ void RemoteDir::run()
 // 		connect(rd,SIGNAL(dataReadProgress( int, int )),this,SLOT(slotProgress(int, int)));
 		
 		int rdId(rd->get(url.path()+"/fontmatrix.data", buffer));
-		typotek::getInstance()->showStatusMessage(i18n("Downloading")+" " + url.toString() + "/fontmatrix.data");
+		typotek::getInstance()->showStatusMessage(i18nc("@info:status", "Downloading")+" " + url.toString() + "/fontmatrix.data");
 		rDirs[rdId] = argDirs[ridx];
 		httpRequests[rdId] = 1;
 		httpBuffers[rdId] = ba;
@@ -228,7 +228,7 @@ void RemoteDir::getPreviews()
 			int rdId(reverseHttp[bIt.key()]->get(httpPaths[bIt.key()]+"/"+ p + ".png", buffer));
 			pendingPixmaps[rdId] = 1; 
 // 			qDebug() << "Started download of " << httpPaths[bIt.key()]+"/"+ p + ".png";
-			typotek::getInstance()->showStatusMessage(i18n("Downloading") +" "+ httpPaths[bIt.key()]+"/"+ p + ".png");
+			typotek::getInstance()->showStatusMessage(i18nc("@info:status", "Downloading") +" "+ httpPaths[bIt.key()]+"/"+ p + ".png");
 #endif
         }
     }

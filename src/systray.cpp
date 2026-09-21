@@ -214,19 +214,19 @@ void Systray::deleteTag(const QString &name)
 
 void Systray::createActions()
 {
-    activateAllAction = new QAction(i18n("&Activate all"), this);
+    activateAllAction = new QAction(i18nc("@action:inmenu", "&Activate all"), this);
     connect(activateAllAction, &QAction::triggered, this, &Systray::slotActivateAll);
 
-    deactivateAllAction = new QAction(i18n("&Deactivate all"), this);
+    deactivateAllAction = new QAction(i18nc("@action:inmenu", "&Deactivate all"), this);
     connect(deactivateAllAction, &QAction::triggered, this, &Systray::slotDeactivateAll);
 
-    minimizeAction = new QAction(i18n("Mi&nimize"), this);
+    minimizeAction = new QAction(i18nc("@action:inmenu", "Mi&nimize"), this);
     connect(minimizeAction, &QAction::triggered, this, &Systray::slotMinimize);
 
-    restoreAction = new QAction(i18n("&Restore"), this);
+    restoreAction = new QAction(i18nc("@action:inmenu", "&Restore"), this);
     connect(restoreAction, &QAction::triggered, this, &Systray::slotRestore);
 
-    quitAction = new QAction(i18n("E&xit"), this);
+    quitAction = new QAction(i18nc("@action:inmenu", "E&xit"), this);
     connect(quitAction, &QAction::triggered, this, &Systray::slotQuit);
 }
 
@@ -238,7 +238,7 @@ void Systray::createTrayIcon()
     trayIconMenu = new QMenu(nullptr);
     trayIconMenu->addAction(activateAllAction);
     trayIconMenu->addAction(deactivateAllAction);
-    tagMenu = trayIconMenu->addMenu(i18n("&Tags"));
+    tagMenu = trayIconMenu->addMenu(i18nc("@title:menu", "&Tags"));
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(minimizeAction);
     trayIconMenu->addAction(restoreAction);

@@ -77,7 +77,7 @@ void TTTableView::exportHex()
     if (curTable.isEmpty())
         return;
 
-    QString fileName = QFileDialog::getSaveFileName(this, i18n("Save File"));
+    QString fileName = QFileDialog::getSaveFileName(this, i18nc("@title:window", "Save File"));
     if (fileName.isEmpty())
         return;
     QFile f(fileName);

@@ -297,9 +297,9 @@ void BrowserWidget::slotImport()
 
 FolderViewMenu::FolderViewMenu()
 {
-    dirAction = new QAction(i18n("Import Directory"), nullptr);
-    dirRecursiveAction = new QAction(i18n("Import recursively"), nullptr);
-    fileAction = new QAction(i18n("Import File"), nullptr);
+    dirAction = new QAction(i18nc("@action:inmenu", "Import Directory"), nullptr);
+    dirRecursiveAction = new QAction(i18nc("@action:inmenu", "Import recursively"), nullptr);
+    fileAction = new QAction(i18nc("@action:inmenu", "Import File"), nullptr);
 
     addAction(dirAction);
     addAction(dirRecursiveAction);

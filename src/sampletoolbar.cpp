@@ -84,7 +84,7 @@ void SampleToolBar::setScripts(const QStringList &ll)
     // the script shaper precedence over the OpenType feature checkboxes —
     // they then silently stop having any effect.
     ui->languageCombo->clear();
-    ui->languageCombo->addItem(i18n("Select language"), QString("NOSHAPER"));
+    ui->languageCombo->addItem(i18nc("@item:inlistbox", "Select language"), QString("NOSHAPER"));
     for (const auto &l : ll) {
         ui->languageCombo->addItem(FontStrings::scriptTagName(l), l);
     }

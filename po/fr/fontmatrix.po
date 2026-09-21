@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/eniac111/fontmatrix/issues\n"
-"POT-Creation-Date: 2026-09-22 00:47+0300\n"
+"POT-Creation-Date: 2026-09-22 01:06+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,7 +38,6 @@ msgstr "Raport d’activation"
 #. i18n: file: src/tagset.ui:231
 #. i18n: ectx: property (text), widget (QPushButton, closeButton)
 #: rc.cpp:9 rc.cpp:280 rc.cpp:331 rc.cpp:541 rc.cpp:703 rc.cpp:831
-#: src/typotek.cpp:2085
 #, kde-format
 msgid "Close"
 msgstr "Fermer"
@@ -105,7 +104,7 @@ msgstr "Style"
 
 #. i18n: file: src/activationwidgetitem.ui:51
 #. i18n: ectx: property (text), widget (QCheckBox, activatedStatus)
-#: rc.cpp:24 src/filterbar.cpp:94
+#: rc.cpp:24
 #, kde-format
 msgid "Activated"
 msgstr "Active"
@@ -166,7 +165,7 @@ msgstr "Informations"
 
 #. i18n: file: src/browserwidget.ui:76
 #. i18n: ectx: property (text), widget (QPushButton, importButton)
-#: rc.cpp:54 src/typotek.cpp:452 src/typotek.cpp:554
+#: rc.cpp:54
 #, kde-format
 msgid "Import"
 msgstr "Importe"
@@ -543,7 +542,7 @@ msgstr "Panose"
 
 #. i18n: file: src/filteritem.ui:71
 #. i18n: ectx: property (toolTip), widget (QToolButton, removeButton)
-#: rc.cpp:219 src/filtersdialogitem.cpp:49
+#: rc.cpp:219
 #, fuzzy, kde-format
 #| msgid "Save File"
 msgid "Remove Filter"
@@ -1161,7 +1160,7 @@ msgstr "Nombre de glyphes"
 
 #. i18n: file: src/multiprintdialog.ui:68
 #. i18n: ectx: property (text), widget (QCheckBox, checkPlayground)
-#: rc.cpp:514 src/playwidget.cpp:22 src/typotek.cpp:707
+#: rc.cpp:514
 #, kde-format
 msgid "Playground"
 msgstr "Aire de jeu"
@@ -1222,35 +1221,35 @@ msgstr "Préférences"
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
 #. i18n: file: src/prefs_panel.ui:123
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_10)
-#: rc.cpp:544 rc.cpp:565 src/prefspaneldialog.cpp:44
+#: rc.cpp:544 rc.cpp:565
 #, kde-format
 msgid "General"
 msgstr "Général"
 
 #. i18n: file: src/prefs_panel.ui:79
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:547 src/prefspaneldialog.cpp:46
+#: rc.cpp:547
 #, kde-format
 msgid "System tray"
 msgstr "Boîte à miniatures"
 
 #. i18n: file: src/prefs_panel.ui:84
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:550 src/prefspaneldialog.cpp:48
+#: rc.cpp:550
 #, kde-format
 msgid "Display"
 msgstr "Affichage"
 
 #. i18n: file: src/prefs_panel.ui:89
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:553 src/prefspaneldialog.cpp:50
+#: rc.cpp:553
 #, kde-format
 msgid "Tools"
 msgstr "Outils"
 
 #. i18n: file: src/prefs_panel.ui:94
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:556 src/prefspaneldialog.cpp:52
+#: rc.cpp:556
 #, kde-format
 msgid "Samples collection"
 msgstr "Collection d’exemples"
@@ -1264,7 +1263,7 @@ msgstr "Fichiers et répertoires"
 
 #. i18n: file: src/prefs_panel.ui:104
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:562 src/prefspaneldialog.cpp:56
+#: rc.cpp:562
 #, kde-format
 msgid "Shortcuts"
 msgstr "Raccourcis"
@@ -1545,7 +1544,7 @@ msgstr "Dé-lie"
 
 #. i18n: file: src/repair.ui:185
 #. i18n: ectx: property (text), widget (QPushButton, activateDeactLink)
-#: rc.cpp:736 src/fmfloatingpreview.cpp:55
+#: rc.cpp:736
 #, kde-format
 msgid "Activate"
 msgstr "Active"
@@ -1846,7 +1845,7 @@ msgstr "Étiquette"
 
 #. i18n: file: src/tttablewidget.ui:39
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:912 src/fmfontstrings.cpp:44
+#: rc.cpp:912
 #, kde-format
 msgid "Description"
 msgstr "Description"
@@ -1867,119 +1866,155 @@ msgstr "&Exporter"
 
 #: src/browserwidget.cpp:300
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Import Directory"
 msgstr "Importer un répertoire"
 
 #: src/browserwidget.cpp:301
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Import recursively"
 msgstr "Importer un répertoire récursivement"
 
 #: src/browserwidget.cpp:302
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Import File"
 msgstr "Importer un fichier"
 
 #: src/chartwidget.cpp:47
 #, kde-format
+msgctxt "@item:inlistbox"
 msgid "Un-Mapped Glyphs"
 msgstr "Glyphs non référencés"
 
 #: src/chartwidget.cpp:48
 #, kde-format
+msgctxt "@item:inlistbox"
 msgid "View all mapped glyphs"
 msgstr "tous les glyphes référencées"
 
 #: src/chartwidget.cpp:140 src/chartwidget.cpp:217
 #, kde-format
+msgctxt "@label"
 msgid "Block (%1):"
 msgstr "bloc (%1) :"
 
 #: src/chartwidget.cpp:428
 #, kde-format
+msgctxt "@title:window"
 msgid "Print Chart"
 msgstr "Imprimer le tableau"
 
 #: src/dataexport.cpp:57
 #, kde-format
+msgctxt "@title:window"
 msgid "Choose Directory"
 msgstr "Choisissez un répertoire"
 
 #: src/dataexport.cpp:69
 #, kde-format
+msgctxt "@info:progress"
 msgid "Copying files"
 msgstr "Copie des fichiers"
 
-#: src/dataexport.cpp:69 src/typotek.cpp:442 src/typotek.cpp:549
+#: src/dataexport.cpp:69 src/typotek.cpp:444 src/typotek.cpp:553
 #, kde-format
+msgctxt "@action:button"
 msgid "cancel"
 msgstr "Annuler"
 
 #: src/filterbar.cpp:40 src/filtersdialog.cpp:23
 #, kde-format
+msgctxt "@item:intext filter operator"
 msgid "And"
 msgstr "Et"
 
 #: src/filterbar.cpp:45 src/filtersdialog.cpp:28
 #, kde-format
+msgctxt "@item:intext filter operator"
 msgid "Not"
 msgstr "Non"
 
 #: src/filterbar.cpp:50 src/filtersdialog.cpp:33
 #, kde-format
+msgctxt "@item:intext filter operator"
 msgid "Or"
 msgstr ""
 
-#: src/filterbar.cpp:473
+#: src/filterbar.cpp:94
+#, kde-format
+msgctxt "@item:inlistbox pseudo tag that lists the activated fonts"
+msgid "Activated"
+msgstr "Active"
+
+#: src/filterbar.cpp:475
 #, fuzzy, kde-format
 #| msgid "Fontmatrix - Tags"
+msgctxt "@title:window"
 msgid "Fontmatrix - edit tag"
 msgstr "Fontmatrix - étiquettes"
 
-#: src/filterbar.cpp:473
+#: src/filterbar.cpp:476
 #, kde-format
+msgctxt "@label:textbox"
 msgid "Edit tag: "
 msgstr ""
 
-#: src/filterbar.cpp:529
+#: src/filterbar.cpp:536
 #, fuzzy, kde-format
 #| msgid "Fontmatrix - Tags"
+msgctxt "@title:window"
 msgid "Fontmatrix - Filter name"
 msgstr "Fontmatrix - étiquettes"
 
-#: src/filterbar.cpp:529
+#: src/filterbar.cpp:537
 #, fuzzy, kde-format
 #| msgid "File name"
+msgctxt "@label:textbox"
 msgid "Filter name:"
 msgstr "Nom de fichier"
 
-#: src/filtersdialogitem.cpp:49
+#: src/filtersdialogitem.cpp:50
 #, kde-format
+msgctxt "@info"
 msgid "Confirm deletion of filter:"
 msgstr ""
 
+#: src/filtersdialogitem.cpp:51
+#, fuzzy, kde-format
+#| msgid "Save File"
+msgctxt "@title:window"
+msgid "Remove Filter"
+msgstr "Fichier"
+
 #: src/fmactivate.cpp:31
 #, kde-format
+msgctxt "@info activation error"
 msgid "Unable to link"
 msgstr "Impossible de lier"
 
 #: src/fmactivate.cpp:33
 #, kde-format
+msgctxt "@info activation error"
 msgid "Font already activated"
 msgstr "Fontes déjà active"
 
 #: src/fmactivate.cpp:35
 #, kde-format
+msgctxt "@info activation error"
 msgid "Unable to un-link"
 msgstr "Impossible de délier"
 
 #: src/fmactivate.cpp:37
 #, kde-format
+msgctxt "@info activation error"
 msgid "Font already de-activated"
 msgstr "Fontes déjà désactivée"
 
 #: src/fmactivate.cpp:39
 #, kde-format
+msgctxt "@info activation error"
 msgid "Cannot link or copy the metrics file"
 msgstr "Impossible de lier ou copier le fichier de métriques"
 
@@ -1989,24 +2024,35 @@ msgctxt "activation"
 msgid "Error"
 msgstr "Erreur"
 
+#: src/fmfloatingpreview.cpp:55 src/typotek.cpp:1364
+#, fuzzy, kde-format
+#| msgid "Activate"
+msgctxt "@action:button"
+msgid "Activate"
+msgstr "Active"
+
 #: src/fmfloatingpreview.cpp:62
 #, fuzzy, kde-format
 #| msgid "Close"
+msgctxt "@action:button"
 msgid "close"
 msgstr "Fermer"
 
 #: src/fmfontextract.cpp:56
 #, kde-format
+msgctxt "@info:status"
 msgid "File does not exist:"
 msgstr "Ce fichier n’existe pas :"
 
 #: src/fmfontextract.cpp:71
 #, kde-format
+msgctxt "@info:status"
 msgid "Format not handled."
 msgstr "Format non pris en charge."
 
 #: src/fmfontextract.cpp:123
 #, kde-format
+msgctxt "@info"
 msgid ""
 "Failed to extract:\n"
 "%1"
@@ -2016,102 +2062,128 @@ msgstr ""
 
 #: src/fmfontstrings.cpp:34
 #, kde-format
+msgctxt "@label font information field"
 msgid "Copyright"
 msgstr "Droit de copie"
 
 #: src/fmfontstrings.cpp:35
 #, kde-format
+msgctxt "@label font information field"
 msgid "Font Family"
 msgstr "Nom de famille"
 
 #: src/fmfontstrings.cpp:36
 #, kde-format
+msgctxt "@label font information field"
 msgid "Font Subfamily"
 msgstr "Variante"
 
 #: src/fmfontstrings.cpp:37
 #, kde-format
+msgctxt "@label font information field"
 msgid "Unique font identifier"
 msgstr "Identifiant unique"
 
 #: src/fmfontstrings.cpp:38
 #, kde-format
+msgctxt "@label font information field"
 msgid "Full font name"
 msgstr "Nom complet"
 
 #: src/fmfontstrings.cpp:39
 #, kde-format
+msgctxt "@label font information field"
 msgid "Version string"
 msgstr "Version"
 
 #: src/fmfontstrings.cpp:40
 #, kde-format
+msgctxt "@label font information field"
 msgid "Postscript name"
 msgstr "Nom Postscript"
 
 #: src/fmfontstrings.cpp:41
 #, kde-format
+msgctxt "@label font information field"
 msgid "Trademark"
 msgstr "Marque déposée"
 
 #: src/fmfontstrings.cpp:42
 #, kde-format
+msgctxt "@label font information field"
 msgid "Manufacturer"
 msgstr "Fabricant"
 
 #: src/fmfontstrings.cpp:43
 #, kde-format
+msgctxt "@label font information field"
 msgid "Designer"
 msgstr "Créateur"
 
+#: src/fmfontstrings.cpp:44
+#, kde-format
+msgctxt "@label font information field"
+msgid "Description"
+msgstr "Description"
+
 #: src/fmfontstrings.cpp:45
 #, kde-format
+msgctxt "@label font information field"
 msgid "URL Vendor"
 msgstr "URL du fournisseur"
 
 #: src/fmfontstrings.cpp:46
 #, kde-format
+msgctxt "@label font information field"
 msgid "URL Designer"
 msgstr "URL du créateur"
 
 #: src/fmfontstrings.cpp:47
 #, kde-format
+msgctxt "@label font information field"
 msgid "License Description"
 msgstr "Licence"
 
 #: src/fmfontstrings.cpp:48
 #, kde-format
+msgctxt "@label font information field"
 msgid "License Info URL"
 msgstr "URL de la license"
 
 #: src/fmfontstrings.cpp:49
 #, kde-format
+msgctxt "@label font information field"
 msgid "Preferred Family"
 msgstr "Famille péférée"
 
 #: src/fmfontstrings.cpp:50
 #, kde-format
+msgctxt "@label font information field"
 msgid "Preferred Subfamily"
 msgstr "Variante préférée"
 
 #: src/fmfontstrings.cpp:51
 #, kde-format
+msgctxt "@label font information field"
 msgid "Compatible Full (Macintosh only)"
 msgstr "Compatibilité Macintosh"
 
 #: src/fmfontstrings.cpp:52
 #, kde-format
+msgctxt "@label font information field"
 msgid "Sample text"
 msgstr "Texte d’exemple"
 
 #: src/fmfontstrings.cpp:53
 #, kde-format
+msgctxt "@label font information field"
 msgid "PostScript CID findfont name"
 msgstr "Identifiant CID"
 
 #. i18n("Panose");
 #: src/fmfontstrings.cpp:55
 #, kde-format
+msgctxt "@label font information field"
 msgid "All fields"
 msgstr "Tous"
 
@@ -2121,6 +2193,7 @@ msgstr "Tous"
 #: src/fmfontstrings.cpp:196 src/fmfontstrings.cpp:218
 #: src/fmfontstrings.cpp:240
 #, kde-format
+msgctxt "@item:inlistbox PANOSE value"
 msgid "Any"
 msgstr "Aucun"
 
@@ -2130,6 +2203,7 @@ msgstr "Aucun"
 #: src/fmfontstrings.cpp:197 src/fmfontstrings.cpp:219
 #: src/fmfontstrings.cpp:241
 #, kde-format
+msgctxt "@item:inlistbox PANOSE value"
 msgid "No Fit"
 msgstr "PAs de correspondance"
 
@@ -2159,6 +2233,7 @@ msgstr "Illustratif"
 
 #: src/fmfontstrings.cpp:79
 #, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Family Type"
 msgstr "Type"
 
@@ -2247,9 +2322,10 @@ msgid "Rounded"
 msgstr ""
 
 #: src/fmfontstrings.cpp:101
-#, kde-format
+#, fuzzy, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Serif style"
-msgstr ""
+msgstr "Style"
 
 #: src/fmfontstrings.cpp:107
 #, kde-format
@@ -2312,9 +2388,11 @@ msgid "Nord"
 msgstr ""
 
 #: src/fmfontstrings.cpp:119
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Weights"
+msgctxt "@label PANOSE classification digit"
 msgid "Weight"
-msgstr ""
+msgstr "Poids"
 
 #: src/fmfontstrings.cpp:125
 #, kde-format
@@ -2365,9 +2443,10 @@ msgid "Monospaced"
 msgstr ""
 
 #: src/fmfontstrings.cpp:135
-#, kde-format
+#, fuzzy, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Proportion"
-msgstr ""
+msgstr "Chasses proportionnelles"
 
 #: src/fmfontstrings.cpp:143
 #, fuzzy, kde-format
@@ -2418,9 +2497,11 @@ msgid "Very High"
 msgstr ""
 
 #: src/fmfontstrings.cpp:153
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Controls"
+msgctxt "@label PANOSE classification digit"
 msgid "Contrast"
-msgstr ""
+msgstr "de contrôle"
 
 #: src/fmfontstrings.cpp:161
 #, kde-format
@@ -2466,6 +2547,7 @@ msgstr ""
 
 #: src/fmfontstrings.cpp:170
 #, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Stroke Variation"
 msgstr ""
 
@@ -2530,9 +2612,10 @@ msgid "Non-Straight Arms/Double Serif"
 msgstr ""
 
 #: src/fmfontstrings.cpp:190
-#, kde-format
+#, fuzzy, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Arm Style"
-msgstr ""
+msgstr "Style"
 
 #: src/fmfontstrings.cpp:198
 #, kde-format
@@ -2619,9 +2702,11 @@ msgid "Oblique/Square"
 msgstr ""
 
 #: src/fmfontstrings.cpp:214
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Letter, Modifier"
+msgctxt "@label PANOSE classification digit"
 msgid "Letterform"
-msgstr ""
+msgstr "Lettre, modificateur"
 
 #: src/fmfontstrings.cpp:220
 #, kde-format
@@ -2696,9 +2781,10 @@ msgid "Low/Serifed"
 msgstr ""
 
 #: src/fmfontstrings.cpp:234
-#, kde-format
+#, fuzzy, kde-format
+msgctxt "@label PANOSE classification digit"
 msgid "Midline"
-msgstr ""
+msgstr "PremiÃ¨re ligne"
 
 #: src/fmfontstrings.cpp:242
 #, kde-format
@@ -2737,12 +2823,15 @@ msgid "Ducking/Large"
 msgstr ""
 
 #: src/fmfontstrings.cpp:250
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Weights"
+msgctxt "@label PANOSE classification digit"
 msgid "X-Height"
-msgstr ""
+msgstr "Poids"
 
 #: src/fmfontstrings.cpp:275
 #, kde-format
+msgctxt "@info"
 msgid ""
 "This value is deprecated and was never used nor reported by FreeType. Don't "
 "use or test for it."
@@ -2750,167 +2839,200 @@ msgstr "Passe ton chemin."
 
 #: src/fmfontstrings.cpp:288
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Character to glyph mapping"
 msgstr "Association du caractère au glyphe"
 
 #: src/fmfontstrings.cpp:289
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Font header"
 msgstr "En-tête, informations générales"
 
 #: src/fmfontstrings.cpp:290
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Horizontal header"
 msgstr "Informations disposition horizontale"
 
 #: src/fmfontstrings.cpp:291
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Horizontal metrics"
 msgstr "Métriques horizontales"
 
 #: src/fmfontstrings.cpp:292
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Maximum profile"
 msgstr "Informations taille de la fonte"
 
 #: src/fmfontstrings.cpp:293
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Naming table"
 msgstr "Noms"
 
 #: src/fmfontstrings.cpp:294
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "OS/2 and Windows specific metrics"
 msgstr "OS/2 et informations spécifiques à Windows"
 
 #: src/fmfontstrings.cpp:295
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "PostScript information"
 msgstr ""
 "Informations nécessaires pour utilisation avec un interpréteur Postscript"
 
 #: src/fmfontstrings.cpp:298
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Control Value Table"
 msgstr "Tableau de variables"
 
 #: src/fmfontstrings.cpp:299
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Font program"
 msgstr "Instructions TrueType exécutées au chargement de la fonte"
 
 #: src/fmfontstrings.cpp:300
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Glyph data"
 msgstr "Contours de glyphes des fontes TrueType"
 
 #: src/fmfontstrings.cpp:301
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Index to location"
 msgstr "Indices dans la table «glyf»"
 
 #: src/fmfontstrings.cpp:302
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "CVT Program"
 msgstr "Instructions TrueType"
 
 #: src/fmfontstrings.cpp:305
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "PostScript font program"
 msgstr "Programme de fonte Postscript (Compact Font Format)"
 
 #: src/fmfontstrings.cpp:306
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Vertical Origin"
 msgstr "Origines Verticales de chaque glyphe pour une fonte OpenType"
 
 #: src/fmfontstrings.cpp:309
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Embedded bitmap data"
 msgstr "Images de glyphes incluses (données)"
 
 #: src/fmfontstrings.cpp:310
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Embedded bitmap location data"
 msgstr "Images de glyphes incluses (offsets)"
 
 #: src/fmfontstrings.cpp:311
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Embedded bitmap scaling data"
 msgstr "Images de glyphes incluses (mise à l’échelle)"
 
 #: src/fmfontstrings.cpp:314
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Baseline data"
 msgstr "Informations d’alignement"
 
 #: src/fmfontstrings.cpp:315
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Glyph definition data"
 msgstr "Nature des glyphes"
 
 #: src/fmfontstrings.cpp:316
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Glyph positioning data"
 msgstr "Positionnement des glyphes"
 
 #: src/fmfontstrings.cpp:317
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Glyph substitution data"
 msgstr "Substitutions de glyphes"
 
 #: src/fmfontstrings.cpp:318
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Justification data"
 msgstr "Justification"
 
 #: src/fmfontstrings.cpp:321
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Digital signature"
 msgstr "Signature digitale"
 
 #: src/fmfontstrings.cpp:322
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Grid-fitting/Scan-conversion"
 msgstr "Alignement à la grille"
 
 #: src/fmfontstrings.cpp:323
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Horizontal device metrics"
 msgstr "Métriques horizontales dépendantes du prériphérique"
 
-#: src/fmfontstrings.cpp:324 src/opentypetags.h:64
+#: src/fmfontstrings.cpp:324
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Kerning"
 msgstr "Crénage"
 
 #: src/fmfontstrings.cpp:325
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Linear threshold data"
 msgstr "Ajustements des approches"
 
 #: src/fmfontstrings.cpp:326
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "PCL 5 data"
 msgstr "Table PCL 5"
 
 #: src/fmfontstrings.cpp:327
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Vertical device metrics"
 msgstr "Métriques verticales dépendantes du prériphérique"
 
 #: src/fmfontstrings.cpp:328
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Vertical Metrics header"
 msgstr "Informations dispositions verticales"
 
 #: src/fmfontstrings.cpp:329
 #, kde-format
+msgctxt "@item:intable TrueType table"
 msgid "Vertical Metrics"
 msgstr "Métriques verticales"
 
-#: src/fmfontstrings.cpp:337
+#: src/fmfontstrings.cpp:338
 #, kde-format
+msgctxt "@info font embedding permission"
 msgid ""
 "This font may be embedded and permanently installed on the remote system by "
 "an application. The user of the remote system acquires the identical rights, "
@@ -2919,23 +3041,26 @@ msgid ""
 "design patent, and/or trademark as was the original purchaser."
 msgstr ""
 
-#: src/fmfontstrings.cpp:341
+#: src/fmfontstrings.cpp:343
 #, kde-format
+msgctxt "@info font embedding permission"
 msgid ""
 "This font must not be modified, embedded or exchanged in any manner without "
 "first obtaining permission of the legal owner."
 msgstr ""
 
-#: src/fmfontstrings.cpp:343
+#: src/fmfontstrings.cpp:346
 #, kde-format
+msgctxt "@info font embedding permission"
 msgid ""
 "This font may be embedded, and temporarily loaded on the remote system. "
 "Documents containing this font must be opened \"read-only;\" no edits can be "
 "applied to the document."
 msgstr ""
 
-#: src/fmfontstrings.cpp:346
+#: src/fmfontstrings.cpp:350
 #, kde-format
+msgctxt "@info font embedding permission"
 msgid ""
 "This font may be embedded but must only be installed  temporarily  on other "
 "systems. In contrast to Preview &amp; Print fonts, documents containing this "
@@ -2943,15 +3068,17 @@ msgid ""
 "saved."
 msgstr ""
 
-#: src/fmfontstrings.cpp:349
+#: src/fmfontstrings.cpp:354
 #, kde-format
+msgctxt "@info font embedding permission"
 msgid ""
 "This font may not be subsetted prior to embedding. Other embedding "
 "restrictions specified in bits 0-3 and 9 also apply."
 msgstr ""
 
-#: src/fmfontstrings.cpp:351
+#: src/fmfontstrings.cpp:357
 #, kde-format
+msgctxt "@info font embedding permission"
 msgid ""
 "Only bitmaps contained in this font may be embedded. No outline data may be "
 "embedded. If there are no bitmaps available in this font, then it is "
@@ -2959,571 +3086,686 @@ msgid ""
 "embedding restrictions specified in bits 0-3 and 8 also apply."
 msgstr ""
 
-#: src/fmfontstrings.cpp:357
+#: src/fmfontstrings.cpp:363
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Mark, NonSpacing"
 msgstr "Repère, sans chasse"
 
-#: src/fmfontstrings.cpp:358
+#: src/fmfontstrings.cpp:364
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Mark, SpacingCombining"
 msgstr "Repère, combinatoire"
 
-#: src/fmfontstrings.cpp:359
+#: src/fmfontstrings.cpp:365
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Mark, Enclosing"
 msgstr "Repère, fermant"
 
-#: src/fmfontstrings.cpp:360
+#: src/fmfontstrings.cpp:366
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Number, DecimalDigit"
 msgstr "Nombre, chiffre décimal"
 
-#: src/fmfontstrings.cpp:361
+#: src/fmfontstrings.cpp:367
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Number, Letter"
 msgstr "Nombre, lettre"
 
-#: src/fmfontstrings.cpp:362
+#: src/fmfontstrings.cpp:368
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Number, Other"
 msgstr "Nombre, autre"
 
-#: src/fmfontstrings.cpp:363
+#: src/fmfontstrings.cpp:369
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Separator, Space"
 msgstr "Séparateur, espace"
 
-#: src/fmfontstrings.cpp:364
+#: src/fmfontstrings.cpp:370
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Separator, Line"
 msgstr "Séparateur, ligne"
 
-#: src/fmfontstrings.cpp:365
+#: src/fmfontstrings.cpp:371
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Separator, Paragraph"
 msgstr "Séparateur, paragraphe"
 
-#: src/fmfontstrings.cpp:366
+#: src/fmfontstrings.cpp:372
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Other, Control"
 msgstr "Autre, contrôle"
 
-#: src/fmfontstrings.cpp:367
+#: src/fmfontstrings.cpp:373
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Other, Format"
 msgstr "Autre, formatage"
 
-#: src/fmfontstrings.cpp:368
+#: src/fmfontstrings.cpp:374
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Other, Surrogate"
 msgstr "Autre, substitut"
 
-#: src/fmfontstrings.cpp:369
+#: src/fmfontstrings.cpp:375
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Other, PrivateUse"
 msgstr "Autre, usage privé"
 
-#: src/fmfontstrings.cpp:370
+#: src/fmfontstrings.cpp:376
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Other, NotAssigned"
 msgstr "Autre, non assigné"
 
-#: src/fmfontstrings.cpp:371
+#: src/fmfontstrings.cpp:377
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Letter, Uppercase"
 msgstr "Lettre, haut de casse"
 
-#: src/fmfontstrings.cpp:372
+#: src/fmfontstrings.cpp:378
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Letter, Lowercase"
 msgstr "Lettre, bas de casse"
 
-#: src/fmfontstrings.cpp:373
+#: src/fmfontstrings.cpp:379
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Letter, Titlecase"
 msgstr "Lettre, casse de titrage"
 
-#: src/fmfontstrings.cpp:374
+#: src/fmfontstrings.cpp:380
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Letter, Modifier"
 msgstr "Lettre, modificateur"
 
-#: src/fmfontstrings.cpp:375
+#: src/fmfontstrings.cpp:381
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Letter, Other"
 msgstr "Lettre, autre"
 
-#: src/fmfontstrings.cpp:376
+#: src/fmfontstrings.cpp:382
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, Connector"
 msgstr "Ponctuation, connecteur"
 
-#: src/fmfontstrings.cpp:377
+#: src/fmfontstrings.cpp:383
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, Dash"
 msgstr "Ponctuation, trait"
 
-#: src/fmfontstrings.cpp:378
+#: src/fmfontstrings.cpp:384
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, Open"
 msgstr "Ponctuation, ouverture"
 
-#: src/fmfontstrings.cpp:379
+#: src/fmfontstrings.cpp:385
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, Close"
 msgstr "Ponctuation, fermeture"
 
-#: src/fmfontstrings.cpp:380
+#: src/fmfontstrings.cpp:386
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, InitialQuote"
 msgstr "Ponctutation, début de citation"
 
-#: src/fmfontstrings.cpp:381
+#: src/fmfontstrings.cpp:387
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, FinalQuote"
 msgstr "Ponctutation, fin de citation"
 
-#: src/fmfontstrings.cpp:382
+#: src/fmfontstrings.cpp:388
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Punctuation, Other"
 msgstr "Ponctuation, autre"
 
-#: src/fmfontstrings.cpp:383
+#: src/fmfontstrings.cpp:389
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Symbol, Math"
 msgstr "Symbole, mathématiques"
 
-#: src/fmfontstrings.cpp:384
+#: src/fmfontstrings.cpp:390
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Symbol, Currency"
 msgstr "Symbole, monnaie"
 
-#: src/fmfontstrings.cpp:385
+#: src/fmfontstrings.cpp:391
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Symbol, Modifier"
 msgstr "Symbole, modificateur"
 
-#: src/fmfontstrings.cpp:386
+#: src/fmfontstrings.cpp:392
 #, kde-format
+msgctxt "@item:intable Unicode general category"
 msgid "Symbol, Other"
 msgstr "Symbole, autre"
 
-#: src/fmfontstrings.cpp:391
+#: src/fmfontstrings.cpp:397
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Arabic"
 msgstr "Arabe"
 
-#: src/fmfontstrings.cpp:392
+#: src/fmfontstrings.cpp:398
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Armenian"
 msgstr "Arménien"
 
-#: src/fmfontstrings.cpp:393
+#: src/fmfontstrings.cpp:399
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Balinese"
 msgstr "Balinais"
 
-#: src/fmfontstrings.cpp:394
+#: src/fmfontstrings.cpp:400
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Bengali"
 msgstr "Bengali"
 
-#: src/fmfontstrings.cpp:395
+#: src/fmfontstrings.cpp:401
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Bopomofo"
 msgstr "Bopomofo"
 
-#: src/fmfontstrings.cpp:396
+#: src/fmfontstrings.cpp:402
 #, fuzzy, kde-format
 #| msgid "Braille Patterns"
+msgctxt "@item:inlistbox OpenType script"
 msgid "Braille"
 msgstr "combinaisons brailles"
 
-#: src/fmfontstrings.cpp:397
+#: src/fmfontstrings.cpp:403
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Buginese"
 msgstr "Buginese"
 
-#: src/fmfontstrings.cpp:398
+#: src/fmfontstrings.cpp:404
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Buhid"
 msgstr "Bouhide"
 
-#: src/fmfontstrings.cpp:399
+#: src/fmfontstrings.cpp:405
 #, fuzzy, kde-format
 #| msgid "Byzantine Musical Symbols"
+msgctxt "@item:inlistbox OpenType script"
 msgid "Byzantine Music"
 msgstr "symboles musicaux byzantins"
 
-#: src/fmfontstrings.cpp:400
+#: src/fmfontstrings.cpp:406
 #, fuzzy, kde-format
 #| msgid "Unified Canadian Aboriginal Syllabics"
+msgctxt "@item:inlistbox OpenType script"
 msgid "Canadian Syllabics"
 msgstr "syllabaires autochtones canadiens unifiés"
 
-#: src/fmfontstrings.cpp:401
+#: src/fmfontstrings.cpp:407
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Cherokee"
 msgstr "Chérokî"
 
-#: src/fmfontstrings.cpp:402
+#: src/fmfontstrings.cpp:408
 #, fuzzy, kde-format
 #| msgid "CJK Unified Ideographs"
+msgctxt "@item:inlistbox OpenType script"
 msgid "CJK Ideographic"
 msgstr "idéophonogrammes unifiés CJC"
 
-#: src/fmfontstrings.cpp:403
+#: src/fmfontstrings.cpp:409
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Coptic"
 msgstr "Copte"
 
-#: src/fmfontstrings.cpp:404
+#: src/fmfontstrings.cpp:410
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Cypriot Syllabary"
 msgstr "syllabaire chypriote"
 
-#: src/fmfontstrings.cpp:405
+#: src/fmfontstrings.cpp:411
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Cyrillic"
 msgstr "Cyrillique"
 
-#: src/fmfontstrings.cpp:406
+#: src/fmfontstrings.cpp:412
 #, fuzzy, kde-format
 #| msgid "default"
+msgctxt "@item:inlistbox OpenType script"
 msgid "Default"
 msgstr "défaut"
 
-#: src/fmfontstrings.cpp:407
+#: src/fmfontstrings.cpp:413
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Deseret"
 msgstr "Déséret"
 
-#: src/fmfontstrings.cpp:408
+#: src/fmfontstrings.cpp:414
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Devanagari"
 msgstr "Dévanâgarî"
 
-#: src/fmfontstrings.cpp:409
+#: src/fmfontstrings.cpp:415
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Ethiopic"
 msgstr "Éthiopien"
 
-#: src/fmfontstrings.cpp:410
+#: src/fmfontstrings.cpp:416
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Georgian"
 msgstr "Géorgien"
 
-#: src/fmfontstrings.cpp:411
+#: src/fmfontstrings.cpp:417
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Glagolitic"
 msgstr "Glagolitique"
 
-#: src/fmfontstrings.cpp:412
+#: src/fmfontstrings.cpp:418
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Gothic"
 msgstr "Gotique"
 
-#: src/fmfontstrings.cpp:413
+#: src/fmfontstrings.cpp:419
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Greek"
 msgstr ""
 
-#: src/fmfontstrings.cpp:414
+#: src/fmfontstrings.cpp:420
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Gujarati"
 msgstr "Goudjerate"
 
-#: src/fmfontstrings.cpp:415
+#: src/fmfontstrings.cpp:421
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Gurmukhi"
 msgstr "Gourmoukhî"
 
-#: src/fmfontstrings.cpp:416
+#: src/fmfontstrings.cpp:422
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Hangul Jamo"
 msgstr "Jamos Hangûl"
 
-#: src/fmfontstrings.cpp:417 src/opentypetags.h:53
+#: src/fmfontstrings.cpp:423
 #, fuzzy, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Hangul"
 msgstr "Hangul"
 
-#: src/fmfontstrings.cpp:418
+#: src/fmfontstrings.cpp:424
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Hanunoo"
 msgstr "Hanounó"
 
-#: src/fmfontstrings.cpp:419
+#: src/fmfontstrings.cpp:425
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Hebrew"
 msgstr "Hébreu"
 
-#: src/fmfontstrings.cpp:420
+#: src/fmfontstrings.cpp:426
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Hiragana and Katakana"
 msgstr ""
 
-#: src/fmfontstrings.cpp:421
+#: src/fmfontstrings.cpp:427
 #, fuzzy, kde-format
 #| msgid "Balinese"
+msgctxt "@item:inlistbox OpenType script"
 msgid "Javanese"
 msgstr "Balinais"
 
-#: src/fmfontstrings.cpp:422
+#: src/fmfontstrings.cpp:428
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Kannada"
 msgstr "Kannara"
 
-#: src/fmfontstrings.cpp:423
+#: src/fmfontstrings.cpp:429
 #, fuzzy, kde-format
 #| msgid "Kharoshthi"
+msgctxt "@item:inlistbox OpenType script"
 msgid "Kharosthi"
 msgstr "Kharoṣṭhī"
 
-#: src/fmfontstrings.cpp:424
+#: src/fmfontstrings.cpp:430
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Khmer"
 msgstr "Khmer"
 
-#: src/fmfontstrings.cpp:425
+#: src/fmfontstrings.cpp:431
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Lao"
 msgstr "Lao"
 
-#: src/fmfontstrings.cpp:426
+#: src/fmfontstrings.cpp:432
 #, fuzzy, kde-format
 #| msgid "Basic Latin"
+msgctxt "@item:inlistbox OpenType script"
 msgid "Latin"
 msgstr "Latin de base"
 
-#: src/fmfontstrings.cpp:427
+#: src/fmfontstrings.cpp:433
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Limbu"
 msgstr "Limbou"
 
-#: src/fmfontstrings.cpp:428
+#: src/fmfontstrings.cpp:434
 #, fuzzy, kde-format
 #| msgid "Linear B Syllabary"
+msgctxt "@item:inlistbox OpenType script"
 msgid "Linear B"
 msgstr "syllabaire linéaire B"
 
-#: src/fmfontstrings.cpp:429
+#: src/fmfontstrings.cpp:435
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Malayalam"
 msgstr "Malayalam"
 
-#: src/fmfontstrings.cpp:430
+#: src/fmfontstrings.cpp:436
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Mathematical Alphanumeric Symbols"
 msgstr "symboles mathématiques alphanumériques"
 
-#: src/fmfontstrings.cpp:431
+#: src/fmfontstrings.cpp:437
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Mongolian"
 msgstr "Mongol"
 
-#: src/fmfontstrings.cpp:432
+#: src/fmfontstrings.cpp:438
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Musical Symbols"
 msgstr "symboles musicaux"
 
-#: src/fmfontstrings.cpp:433
+#: src/fmfontstrings.cpp:439
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Myanmar"
 msgstr "Birman"
 
-#: src/fmfontstrings.cpp:434
+#: src/fmfontstrings.cpp:440
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "N'ko"
 msgstr ""
 
-#: src/fmfontstrings.cpp:435
+#: src/fmfontstrings.cpp:441
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Ogham"
 msgstr "Ogam"
 
-#: src/fmfontstrings.cpp:436
+#: src/fmfontstrings.cpp:442
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Old Italic"
 msgstr "Italien, ancien"
 
-#: src/fmfontstrings.cpp:437
+#: src/fmfontstrings.cpp:443
 #, fuzzy, kde-format
 #| msgid "Old Persian"
+msgctxt "@item:inlistbox OpenType script"
 msgid "Old Persian Cuneiform"
 msgstr "Vieux-perse"
 
-#: src/fmfontstrings.cpp:438
+#: src/fmfontstrings.cpp:444
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Oriya"
 msgstr "Oriya"
 
-#: src/fmfontstrings.cpp:439
+#: src/fmfontstrings.cpp:445
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Osmanya"
 msgstr "Osmanya"
 
-#: src/fmfontstrings.cpp:440
+#: src/fmfontstrings.cpp:446
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Phags-pa"
 msgstr "Phagspa"
 
-#: src/fmfontstrings.cpp:441
+#: src/fmfontstrings.cpp:447
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Phoenician"
 msgstr "Phénicien"
 
-#: src/fmfontstrings.cpp:442
+#: src/fmfontstrings.cpp:448
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Runic"
 msgstr "Runes"
 
-#: src/fmfontstrings.cpp:443
+#: src/fmfontstrings.cpp:449
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Shavian"
 msgstr "Shavien (alphabet de Shaw)"
 
-#: src/fmfontstrings.cpp:444
+#: src/fmfontstrings.cpp:450
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Sinhala"
 msgstr "Singhalais"
 
-#: src/fmfontstrings.cpp:445
-#, kde-format
-msgid "Sumero-Akkadian Cuneiform"
-msgstr ""
-
-#: src/fmfontstrings.cpp:446
-#, kde-format
-msgid "Syloti Nagri"
-msgstr "Sylotî Nagrî"
-
-#: src/fmfontstrings.cpp:447
-#, kde-format
-msgid "Syriac"
-msgstr "Syriaque"
-
-#: src/fmfontstrings.cpp:448
-#, kde-format
-msgid "Tagalog"
-msgstr "Tagalog"
-
-#: src/fmfontstrings.cpp:449
-#, kde-format
-msgid "Tagbanwa"
-msgstr "Tagbanoua"
-
-#: src/fmfontstrings.cpp:450
-#, kde-format
-msgid "Tai Le"
-msgstr "Taï-le"
-
 #: src/fmfontstrings.cpp:451
 #, fuzzy, kde-format
-#| msgid "Tai Le"
-msgid "Tai Lu"
-msgstr "Taï-le"
+#| msgid "Old Persian"
+msgctxt "@item:inlistbox OpenType script"
+msgid "Sumero-Akkadian Cuneiform"
+msgstr "Vieux-perse"
 
 #: src/fmfontstrings.cpp:452
 #, kde-format
-msgid "Tamil"
-msgstr "Tamoul"
+msgctxt "@item:inlistbox OpenType script"
+msgid "Syloti Nagri"
+msgstr "Sylotî Nagrî"
 
 #: src/fmfontstrings.cpp:453
 #, kde-format
-msgid "Telugu"
-msgstr "Télougou"
+msgctxt "@item:inlistbox OpenType script"
+msgid "Syriac"
+msgstr "Syriaque"
 
 #: src/fmfontstrings.cpp:454
 #, kde-format
-msgid "Thaana"
-msgstr "Thâna"
+msgctxt "@item:inlistbox OpenType script"
+msgid "Tagalog"
+msgstr "Tagalog"
 
 #: src/fmfontstrings.cpp:455
 #, kde-format
-msgid "Thai"
-msgstr "Thaï"
+msgctxt "@item:inlistbox OpenType script"
+msgid "Tagbanwa"
+msgstr "Tagbanoua"
 
 #: src/fmfontstrings.cpp:456
 #, kde-format
-msgid "Tibetan"
-msgstr "Tibétain"
+msgctxt "@item:inlistbox OpenType script"
+msgid "Tai Le"
+msgstr "Taï-le"
 
 #: src/fmfontstrings.cpp:457
-#, kde-format
-msgid "Tifinagh"
-msgstr "Tifinagh"
+#, fuzzy, kde-format
+#| msgid "Tai Le"
+msgctxt "@item:inlistbox OpenType script"
+msgid "Tai Lu"
+msgstr "Taï-le"
 
 #: src/fmfontstrings.cpp:458
-#, fuzzy, kde-format
-#| msgid "Cuneiform"
-msgid "Ugaritic Cuneiform"
-msgstr "cunéiforme"
+#, kde-format
+msgctxt "@item:inlistbox OpenType script"
+msgid "Tamil"
+msgstr "Tamoul"
 
 #: src/fmfontstrings.cpp:459
 #, kde-format
+msgctxt "@item:inlistbox OpenType script"
+msgid "Telugu"
+msgstr "Télougou"
+
+#: src/fmfontstrings.cpp:460
+#, kde-format
+msgctxt "@item:inlistbox OpenType script"
+msgid "Thaana"
+msgstr "Thâna"
+
+#: src/fmfontstrings.cpp:461
+#, kde-format
+msgctxt "@item:inlistbox OpenType script"
+msgid "Thai"
+msgstr "Thaï"
+
+#: src/fmfontstrings.cpp:462
+#, kde-format
+msgctxt "@item:inlistbox OpenType script"
+msgid "Tibetan"
+msgstr "Tibétain"
+
+#: src/fmfontstrings.cpp:463
+#, kde-format
+msgctxt "@item:inlistbox OpenType script"
+msgid "Tifinagh"
+msgstr "Tifinagh"
+
+#: src/fmfontstrings.cpp:464
+#, fuzzy, kde-format
+#| msgid "Cuneiform"
+msgctxt "@item:inlistbox OpenType script"
+msgid "Ugaritic Cuneiform"
+msgstr "cunéiforme"
+
+#: src/fmfontstrings.cpp:465
+#, kde-format
+msgctxt "@item:inlistbox OpenType script"
 msgid "Yi"
 msgstr ""
 
-#: src/fmfontstrings.cpp:505
-#, kde-format
-msgid "Not Restricted"
-msgstr ""
-
-#: src/fmfontstrings.cpp:507
-#, kde-format
-msgid "Restricted"
-msgstr ""
-
-#: src/fmfontstrings.cpp:509
-#, kde-format
-msgid "Preview/Print"
-msgstr ""
-
 #: src/fmfontstrings.cpp:511
-#, kde-format
-msgid "Edit/Embed"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Nothing selected"
+msgctxt "@label font embedding permission"
+msgid "Not Restricted"
+msgstr "Rien"
 
 #: src/fmfontstrings.cpp:513
+#, fuzzy, kde-format
+#| msgid "&Restore"
+msgctxt "@label font embedding permission"
+msgid "Restricted"
+msgstr "&Restaurer"
+
+#: src/fmfontstrings.cpp:515
+#, fuzzy, kde-format
+msgctxt "@label font embedding permission"
+msgid "Preview/Print"
+msgstr "Aperçu"
+
+#: src/fmfontstrings.cpp:517
+#, fuzzy, kde-format
+#| msgid "Edit"
+msgctxt "@label font embedding permission"
+msgid "Edit/Embed"
+msgstr "Édition"
+
+#: src/fmfontstrings.cpp:519
 #, kde-format
+msgctxt "@label font embedding permission"
 msgid "No Subset"
 msgstr ""
 
-#: src/fmfontstrings.cpp:515
+#: src/fmfontstrings.cpp:521
 #, kde-format
+msgctxt "@label font embedding permission"
 msgid "Bitmap Only"
 msgstr ""
 
 #: src/fminfodisplay.cpp:107
 #, fuzzy, kde-format
 #| msgid "Unicode character"
+msgctxt "@title:group"
 msgid "Unicode Ranges"
 msgstr "Caractère unicode"
 
 #: src/fminfodisplay.cpp:178
 #, fuzzy, kde-format
+msgctxt "@label"
 msgid "File"
 msgstr "Fichier"
 
 #: src/fminfodisplay.cpp:179
 #, kde-format
+msgctxt "@label"
 msgid "Glyphs count"
 msgstr "Nombre de glyphes"
 
 #: src/fminfodisplay.cpp:180
 #, kde-format
+msgctxt "@label"
 msgid "Font Type"
 msgstr "Type de fonte"
 
 #: src/fminfodisplay.cpp:192
 #, kde-format
+msgctxt "@title:group"
 msgid "Charmaps List"
 msgstr "Cartes de caractères"
 
-#: src/fmmatchraster.cpp:134
+#: src/fmmatchraster.cpp:135
 #, kde-format
+msgctxt "@info"
 msgid ""
 "The font %1 scores %2.\n"
 "Do you want to add it to the filtered fonts?"
@@ -3531,26 +3773,31 @@ msgstr ""
 "La fonte %1 fait %2\n"
 "Souhaitez vous l’intégrer au lot de fontes filtrées ?"
 
-#: src/fmmatchraster.cpp:183
+#: src/fmmatchraster.cpp:184
 #, kde-format
+msgctxt "@info"
 msgid "No font match the submitted image"
 msgstr "Aucune fonte ne correspond à l’image que vous avez soumise"
 
-#: src/fmmissingfonthelper.cpp:16
+#: src/fmmissingfonthelper.cpp:17
 #, kde-format
+msgctxt "@info"
 msgid ""
 "Fontmatrix has been unable to load the font in file \n"
 "%1.\n"
 " Please check missing files."
 msgstr ""
 
-#: src/fmmissingfonthelper.cpp:16 src/fmmissingfonthelper.cpp:26
-#, kde-format
+#: src/fmmissingfonthelper.cpp:18 src/fmmissingfonthelper.cpp:28
+#, fuzzy, kde-format
+#| msgid "Font Family"
+msgctxt "@title:window"
 msgid "Missing Font File"
-msgstr ""
+msgstr "Nom de famille"
 
-#: src/fmmissingfonthelper.cpp:25
+#: src/fmmissingfonthelper.cpp:27
 #, kde-format
+msgctxt "@info"
 msgid ""
 "Fontmatrix has been unable to load fonts in files \n"
 "%1.\n"
@@ -3560,27 +3807,32 @@ msgstr ""
 #: src/fontbook.cpp:88
 #, fuzzy, kde-format
 #| msgid "Export Font Book"
+msgctxt "@title:window"
 msgid "Print Fontbook"
 msgstr "Exporte un catalogue de fontes"
 
 #: src/fontbook.cpp:438
 #, fuzzy, kde-format
 #| msgid "Unicode character"
+msgctxt "@label"
 msgid "Unicode coverage"
 msgstr "Caractère unicode"
 
 #: src/fontbookdialog.cpp:93
 #, kde-format
+msgctxt "@title:window"
 msgid "Save fontBook"
 msgstr "Sauvegarde le catalogue"
 
 #: src/fontbookdialog.cpp:126 src/fontbookdialog.cpp:151
 #, kde-format
+msgctxt "@info"
 msgid "Cannot read %1."
 msgstr ""
 
 #: src/fontbookdialog.cpp:131 src/fontbookdialog.cpp:156
 #, kde-format
+msgctxt "@info"
 msgid "%1 is not a valid XML file."
 msgstr ""
 
@@ -3592,6 +3844,7 @@ msgstr "Aucune"
 
 #: src/fontitem.cpp:1964
 #, kde-format
+msgctxt "@info"
 msgid "codepoint is U+"
 msgstr "le point de code est U+"
 
@@ -3605,26 +3858,32 @@ msgstr ""
 
 #: src/fontitem.cpp:2762
 #, kde-format
+msgctxt "@title:window"
 msgid "Fontmatrix - Download"
 msgstr "Fontmatrix - téléchargement"
 
 #: src/fontitem.cpp:2763
 #, kde-format
+msgctxt "@info:progress"
 msgid "Downloading %1."
 msgstr "Télécharge %1."
 
 #: src/importedfontsdialog.cpp:23
 #, kde-format
+msgctxt ""
+"@item:inlistbox appended to the name of a font that could not be loaded"
 msgid " (not loaded)"
 msgstr "  (pas chargée)"
 
 #: src/importedfontsdialog.cpp:30
 #, kde-format
+msgctxt "@label"
 msgid "Number of Imported Fonts "
 msgstr "Nombre de fontes importées "
 
-#: src/mainviewwidget.cpp:1140
+#: src/mainviewwidget.cpp:1142
 #, kde-format
+msgctxt "@info"
 msgid ""
 " is activated.\n"
 "If you want to remove it from Fontmatrix database, please deactivate it "
@@ -3633,17 +3892,19 @@ msgstr ""
 " est activée.\n"
 "Avant de la supprimer, vous devez la désactiver."
 
-#: src/mainviewwidget.cpp:1144
+#: src/mainviewwidget.cpp:1146
 #, kde-format
+msgctxt "@info"
 msgid "You are about to remove a font from Fontmatrix database"
 msgstr "Vous êtes sur le point de supprimer une fonte de la base de données"
 
-#: src/mainviewwidget.cpp:1145
+#: src/mainviewwidget.cpp:1147
 #, kde-format
+msgctxt "@info"
 msgid "Do you want to continue?"
 msgstr "Voulez-vous continuer ?"
 
-#: src/mainviewwidget.cpp:1146
+#: src/mainviewwidget.cpp:1148
 #, fuzzy, kde-format
 #| msgid "Remove"
 msgctxt "@title:window"
@@ -3652,636 +3913,781 @@ msgstr "Supprimer"
 
 #: src/opentypetags.h:17
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Access All Alternates"
 msgstr "Toutes les variantes"
 
 #: src/opentypetags.h:18
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Above-Base Forms"
 msgstr "Formes supérieures"
 
 #: src/opentypetags.h:19
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Above-Base Mark Positioning"
 msgstr "Positionnement supérieur"
 
 #: src/opentypetags.h:20
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Above-Base Substitutions"
 msgstr "Substitutions supérieures"
 
 #: src/opentypetags.h:21
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Alternative Fractions"
 msgstr "Fractions alternatives"
 
 #: src/opentypetags.h:22
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Akhands"
 msgstr "Ligatures (écritures indiennes)"
 
 #: src/opentypetags.h:23
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Below-Base Forms"
 msgstr "Formes inférieures"
 
 #: src/opentypetags.h:24
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Below-Base Mark Positioning"
 msgstr "Positionnement inférieur"
 
 #: src/opentypetags.h:25
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Below-Base Substitutions"
 msgstr "Substitutions inférieures"
 
 #: src/opentypetags.h:26
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Petite Capitals From Capitals"
 msgstr "Capitales en petites capitales"
 
 #: src/opentypetags.h:27
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Small Capitals From Capitals"
 msgstr "Capitales en «Small caps»"
 
 #: src/opentypetags.h:28
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Contextual Alternates"
 msgstr "Variantes contextuelles"
 
 #: src/opentypetags.h:29
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Case-Sensitive Forms"
 msgstr "Formes dépendantes de la casse"
 
 #: src/opentypetags.h:30
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Glyph Composition/Decomposition"
 msgstr "Composition et décomposition des glyphes"
 
 #: src/opentypetags.h:31
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Contextual Ligatures"
 msgstr "Ligatures contextuelles"
 
 #: src/opentypetags.h:32
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Conjunct Forms"
 msgstr "Formes jointives"
 
 #: src/opentypetags.h:33
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Capital Spacing"
 msgstr "Espacement pour les capitales"
 
 #: src/opentypetags.h:34
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Contextual Swash"
 msgstr "Décoratives contextuelles"
 
 #: src/opentypetags.h:35
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Cursive Positioning"
 msgstr "Positionnement des cursives"
 
 #: src/opentypetags.h:36
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Default Processing"
 msgstr "Traitement par défaut"
 
 #: src/opentypetags.h:37
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Distances"
 msgstr "Distances"
 
 #: src/opentypetags.h:38
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Discretionary Ligatures"
 msgstr "Ligatures supplémentaires"
 
 #: src/opentypetags.h:39
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Denominators"
 msgstr "Dénominateurs"
 
 #: src/opentypetags.h:40
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Expert Forms"
 msgstr "Formes expertes (mais en quoi ?)"
 
 #: src/opentypetags.h:41
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Final glyph Alternates"
 msgstr "Variantes de glyphes en fin de mot"
 
 #: src/opentypetags.h:42
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Terminal Forms #2"
 msgstr "Formes terminales #2"
 
 #: src/opentypetags.h:43
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Terminal Forms #3"
 msgstr "Formes terminales #3"
 
 #: src/opentypetags.h:44
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Terminal Forms"
 msgstr "Formes terminales"
 
 #: src/opentypetags.h:45
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Fractions"
 msgstr "Fractions"
 
 #: src/opentypetags.h:46
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Full Width"
 msgstr "Pleines chasses"
 
 #: src/opentypetags.h:47
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Half Forms"
 msgstr "Demi formes"
 
 #: src/opentypetags.h:48
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Halant Forms"
 msgstr "Formes du halant"
 
 #: src/opentypetags.h:49
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Alternate Half Width"
 msgstr "Variantes de demi chasses"
 
 #: src/opentypetags.h:50
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Historical Forms"
 msgstr "Formes historiques"
 
 #: src/opentypetags.h:51
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Horizontal Kana Alternates"
 msgstr "Variantes hrizontales de kana"
 
 #: src/opentypetags.h:52
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Historical Ligatures"
 msgstr "Ligatures historiques"
 
+#: src/opentypetags.h:53
+#, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
+msgid "Hangul"
+msgstr "Hangul"
+
 #: src/opentypetags.h:54
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Hojo Kanji Forms (JIS x 212-1990 Kanji Forms)"
 msgstr "Hojo Kanji Forms (JIS x 212-1990 Kanji Forms)"
 
 #: src/opentypetags.h:55
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Half Width"
 msgstr "Demi chasses"
 
 #: src/opentypetags.h:56
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Initial Forms"
 msgstr "Formes de début de mot"
 
 #: src/opentypetags.h:57
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Isolated Forms"
 msgstr "Formes isolées"
 
 #: src/opentypetags.h:58
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Italics"
 msgstr "Italiques"
 
 #: src/opentypetags.h:59
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Justification Alternatives"
 msgstr "Variantes justifiantes"
 
 #: src/opentypetags.h:60
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "JIS78 Forms"
 msgstr "Formes JIS78"
 
 #: src/opentypetags.h:61
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "JIS83 Forms"
 msgstr "Formes JIS83"
 
 #: src/opentypetags.h:62
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "JIS90 Forms"
 msgstr "Formes JIS90"
 
 #: src/opentypetags.h:63
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "JIS2004 Forms"
 msgstr "Formes JIS2004"
 
+#: src/opentypetags.h:64
+#, kde-format
+msgctxt "@item:intable OpenType feature"
+msgid "Kerning"
+msgstr "Crénage"
+
 #: src/opentypetags.h:65
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Left Bounds"
 msgstr "Limites gauche"
 
 #: src/opentypetags.h:66
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Standard Ligatures"
 msgstr "Ligatures habituelles"
 
 #: src/opentypetags.h:67
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Leading Jamo Forms"
 msgstr "Formes de Jamo en chef"
 
 #: src/opentypetags.h:68
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Lining Figures"
 msgstr "Figures appuyées"
 
 #: src/opentypetags.h:69
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Localized Forms"
 msgstr "Formes localisées"
 
 #: src/opentypetags.h:70
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Mark Positioning"
 msgstr "Positionnelment par repères"
 
 #: src/opentypetags.h:71
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Medial Forms #2"
 msgstr "Form de milieu de mot #2"
 
 #: src/opentypetags.h:72
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Medial Forms"
 msgstr "Form de milieu de mot"
 
 #: src/opentypetags.h:73
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Mathematical Greek"
 msgstr "Grec pour les mathématiques"
 
 #: src/opentypetags.h:74
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Mark to Mark Positioning"
 msgstr "Positionnement de repère à repère"
 
 #: src/opentypetags.h:75
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Mark Positioning via Substitution"
 msgstr "Positionnement par repère via une substitution (confus?)"
 
 #: src/opentypetags.h:76
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Alternate Annotation Forms"
 msgstr "Variantes de formes annotativatoires"
 
 #: src/opentypetags.h:77
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "NLC Kanji Forms"
 msgstr "Formes de kanjis NLC"
 
 #: src/opentypetags.h:78
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Nukta Forms"
 msgstr "Formes du Nukta"
 
 #: src/opentypetags.h:79
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Numerators"
 msgstr "Numérateurs"
 
 #: src/opentypetags.h:80
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Old Style Figures"
 msgstr "Figures à l’anciennes (chiffres elzéviriens)"
 
 #: src/opentypetags.h:81
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Optical Bounds"
 msgstr "Limites optiques"
 
 #: src/opentypetags.h:82
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Ordinals"
 msgstr "Ordinaux"
 
 #: src/opentypetags.h:83
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Ornaments"
 msgstr "Ornements"
 
 #: src/opentypetags.h:84
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Proportional Alternate Width"
 msgstr "Variantes à chasse variable"
 
 #: src/opentypetags.h:85
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Petite Capitals"
 msgstr "Petites capitales"
 
 #: src/opentypetags.h:86
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Proportional Figures"
 msgstr "Figures proportionnelles"
 
 #: src/opentypetags.h:87
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Pre-base Forms"
 msgstr "Formes antérieures"
 
 #: src/opentypetags.h:88
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Pre-base Substitutions"
 msgstr "Substitutions antérieures"
 
 #: src/opentypetags.h:89
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Post-base Forms"
 msgstr "Formes postérieures"
 
 #: src/opentypetags.h:90
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Post-base Substitutions"
 msgstr "Substitutions postérieures"
 
 #: src/opentypetags.h:91
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Proportional Widths"
 msgstr "Chasses proportionnelles"
 
 #: src/opentypetags.h:92
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Quarter Widths"
 msgstr "Quart de chasse"
 
 #: src/opentypetags.h:93
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Randomize"
 msgstr "Hasard"
 
 #: src/opentypetags.h:94
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Rakar Forms"
 msgstr "Formes du rakar"
 
 #: src/opentypetags.h:95
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Required Ligatures"
 msgstr "Ligatures requises"
 
 #: src/opentypetags.h:96
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Reph Form"
 msgstr "Formes du repha"
 
 #: src/opentypetags.h:97
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Right Bounds"
 msgstr "Limites droite"
 
 #: src/opentypetags.h:98
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Right-To-Left Alternates"
 msgstr "Variantes pour disposition de droite à gauche"
 
 #: src/opentypetags.h:99
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Ruby Notation Forms"
 msgstr "Formes de noation rubinique"
 
 #: src/opentypetags.h:100
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Alternates"
 msgstr "Variantes de style"
 
 #: src/opentypetags.h:101
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Scientific Inferiors"
 msgstr "Inférieures scientifiques"
 
 #: src/opentypetags.h:102
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Optical Size"
 msgstr "Taille optique"
 
 #: src/opentypetags.h:103
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Small Capitals"
 msgstr "Petites (small) capitales"
 
 #: src/opentypetags.h:104
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Simplified Forms"
 msgstr "Formes simplifiées"
 
 #: src/opentypetags.h:105
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 1"
 msgstr "Ensemble de styles 1"
 
 #: src/opentypetags.h:106
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 2"
 msgstr "Ensemble de styles 2"
 
 #: src/opentypetags.h:107
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 3"
 msgstr "Ensemble de styles 3"
 
 #: src/opentypetags.h:108
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 4"
 msgstr "Ensemble de styles 4"
 
 #: src/opentypetags.h:109
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 5"
 msgstr "Ensemble de styles 5"
 
 #: src/opentypetags.h:110
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 6"
 msgstr "Ensemble de styles 6"
 
 #: src/opentypetags.h:111
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 7"
 msgstr "Ensemble de styles 7"
 
 #: src/opentypetags.h:112
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 8"
 msgstr "Ensemble de styles 8"
 
 #: src/opentypetags.h:113
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 9"
 msgstr "Ensemble de styles 9"
 
 #: src/opentypetags.h:114
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 10"
 msgstr "Ensemble de styles 10"
 
 #: src/opentypetags.h:115
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 11"
 msgstr "Ensemble de styles 11"
 
 #: src/opentypetags.h:116
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 12"
 msgstr "Ensemble de styles 12"
 
 #: src/opentypetags.h:117
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 13"
 msgstr "Ensemble de styles 13"
 
 #: src/opentypetags.h:118
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 14"
 msgstr "Ensemble de styles 14"
 
 #: src/opentypetags.h:119
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 15"
 msgstr "Ensemble de styles 15"
 
 #: src/opentypetags.h:120
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 16"
 msgstr "Ensemble de styles 16"
 
 #: src/opentypetags.h:121
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 17"
 msgstr "Ensemble de styles 17"
 
 #: src/opentypetags.h:122
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 18"
 msgstr "Ensemble de styles 18"
 
 #: src/opentypetags.h:123
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 19"
 msgstr "Ensemble de styles 19"
 
 #: src/opentypetags.h:124
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Stylistic Set 20"
 msgstr "Ensemble de styles 20"
 
 #: src/opentypetags.h:125
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Subscript"
 msgstr "Souscrit"
 
 #: src/opentypetags.h:126
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Superscript"
 msgstr "Suscrit"
 
 #: src/opentypetags.h:127
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Swash"
 msgstr "Variantes «Swash»"
 
 #: src/opentypetags.h:128
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Titling"
 msgstr "Titrage"
 
 #: src/opentypetags.h:129
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Trailing Jamo Forms"
 msgstr "Formes Jamo en queue"
 
 #: src/opentypetags.h:130
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Traditional Name Forms"
 msgstr "Formes de noms traditionnels"
 
 #: src/opentypetags.h:131
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Tabular Figures"
 msgstr "Figures pour tableaux"
 
 #: src/opentypetags.h:132
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Traditional Forms"
 msgstr "Formes traditionnelles"
 
 #: src/opentypetags.h:133
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Third Widths"
 msgstr "Tiers de chasse"
 
 #: src/opentypetags.h:134
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Unicase"
 msgstr "Casse unique"
 
 #: src/opentypetags.h:135
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Alternate Vertical Metrics"
 msgstr "Variantes de métriques verticales"
 
 #: src/opentypetags.h:136
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Vattu Variants"
 msgstr "Variantes vattu"
 
 #: src/opentypetags.h:137
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Vertical Writing"
 msgstr "Ecriture verticale"
 
 #: src/opentypetags.h:138
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Alternate Vertical Half Metrics"
 msgstr "Variantes de demi-mesures verticales"
 
 #: src/opentypetags.h:139
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Vowel Jamo Forms"
 msgstr "Formes de voyelles Jamo"
 
 #: src/opentypetags.h:140
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Vertical Kana Alternates"
 msgstr "Variantes de kana à la verticale"
 
 #: src/opentypetags.h:141
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Vertical Kerning"
 msgstr "Crénage vertical"
 
 #: src/opentypetags.h:142
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Proportional Alternate Vertical Metrics"
 msgstr "Variantes proportionnelles des métriques verticales"
 
 #: src/opentypetags.h:143
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Vertical Rotation"
 msgstr "Rotation verticale"
 
 #: src/opentypetags.h:144
 #, fuzzy, kde-format
+msgctxt "@item:intable OpenType feature"
 msgid "Slashed Zero"
 msgstr "Zéro barré"
 
+#: src/playwidget.cpp:22
+#, kde-format
+msgctxt "@title:window"
+msgid "Playground"
+msgstr "Aire de jeu"
+
 #: src/playwidget.cpp:104
 #, kde-format
+msgctxt "@title:window"
 msgid "Print Playground"
 msgstr "Imprimer l’aire de jeu"
 
@@ -4292,21 +4698,60 @@ msgctxt "@title:window"
 msgid "Preferences"
 msgstr "Préférences"
 
+#: src/prefspaneldialog.cpp:44
+#, kde-format
+msgctxt "@title:tab"
+msgid "General"
+msgstr "Général"
+
+#: src/prefspaneldialog.cpp:46
+#, kde-format
+msgctxt "@title:tab"
+msgid "System tray"
+msgstr "Boîte à miniatures"
+
+#: src/prefspaneldialog.cpp:48
+#, kde-format
+msgctxt "@title:tab"
+msgid "Display"
+msgstr "Affichage"
+
+#: src/prefspaneldialog.cpp:50
+#, kde-format
+msgctxt "@title:tab"
+msgid "Tools"
+msgstr "Outils"
+
+#: src/prefspaneldialog.cpp:52
+#, kde-format
+msgctxt "@title:tab"
+msgid "Samples collection"
+msgstr "Collection d’exemples"
+
 #: src/prefspaneldialog.cpp:54
 #, fuzzy, kde-format
 #| msgid "Files & Folders"
+msgctxt "@title:tab"
 msgid "Files && Folders"
 msgstr "Fichiers et répertoires"
 
+#: src/prefspaneldialog.cpp:56
+#, kde-format
+msgctxt "@title:tab"
+msgid "Shortcuts"
+msgstr "Raccourcis"
+
 #: src/prefspaneldialog.cpp:66
 #, kde-format
+msgctxt "@info"
 msgid ""
 "This desktop does not provide a system tray. The options below have no "
 "effect."
 msgstr ""
 
-#: src/prefspaneldialog.cpp:92
+#: src/prefspaneldialog.cpp:93
 #, kde-format
+msgctxt "@info:tooltip"
 msgid ""
 "You can use the following keywords to be replaced by data from fonts: "
 "<strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; "
@@ -4317,37 +4762,38 @@ msgstr ""
 "strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</"
 "strong>"
 
-#: src/prefspaneldialog.cpp:105
+#: src/prefspaneldialog.cpp:106
 #, kde-format
 msgctxt "@info:placeholder sample text in font requester"
 msgid "Aa Bb 123"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:111
+#: src/prefspaneldialog.cpp:112
 #, kde-format
+msgctxt "@info"
 msgid "Please select an item in the list or create a new one."
 msgstr "Veuillez sélectionner une entrée dans la liste ou en créer une."
 
-#: src/prefspaneldialog.cpp:241
+#: src/prefspaneldialog.cpp:242
 #, kde-format
 msgctxt "@info:status validation"
 msgid "Please enter a name for the new sample."
 msgstr ""
 
-#: src/prefspaneldialog.cpp:246
+#: src/prefspaneldialog.cpp:247
 #, kde-format
 msgctxt "@info:status validation"
 msgid "A sample named \"%1\" already exists."
 msgstr ""
 
-#: src/prefspaneldialog.cpp:252
+#: src/prefspaneldialog.cpp:253
 #, fuzzy, kde-format
 #| msgid "Sample Text"
 msgctxt "A default sample text inserted when creating a new sample"
 msgid "Sample Text"
 msgstr "Exemple"
 
-#: src/prefspaneldialog.cpp:265
+#: src/prefspaneldialog.cpp:266
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "PrefsPanelDialog|the name of a sample text will be append to the string"
@@ -4356,164 +4802,184 @@ msgctxt "the name of a sample text will be append to the string"
 msgid "Do you confirm that you want to remove:"
 msgstr "Confirmez-vous la suppression de :"
 
-#: src/prefspaneldialog.cpp:269
+#: src/prefspaneldialog.cpp:270
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Remove Sample Text"
 msgstr "Exemples nommés"
 
-#: src/prefspaneldialog.cpp:353
+#: src/prefspaneldialog.cpp:354
 #, kde-format
+msgctxt "@title:window"
 msgid "Select font editor"
 msgstr "Éditeur de police"
 
-#: src/prefspaneldialog.cpp:391
+#: src/prefspaneldialog.cpp:392
 #, kde-format
+msgctxt "@title:window"
 msgid "Select Templates Folder"
 msgstr "Séctionnez un répertoire contenant les modèles"
 
-#: src/prefspaneldialog.cpp:467 src/prefspaneldialog.cpp:508
+#: src/prefspaneldialog.cpp:468 src/prefspaneldialog.cpp:509
 #, kde-format
 msgid "Alt"
 msgstr "Alt"
 
-#: src/prefspaneldialog.cpp:467 src/prefspaneldialog.cpp:508
+#: src/prefspaneldialog.cpp:468 src/prefspaneldialog.cpp:509
 #, kde-format
 msgid "Ctrl"
 msgstr "Ctrl"
 
-#: src/prefspaneldialog.cpp:467 src/prefspaneldialog.cpp:508
+#: src/prefspaneldialog.cpp:468 src/prefspaneldialog.cpp:509
 #, kde-format
 msgid "Shift"
 msgstr "Shift"
 
-#: src/prefspaneldialog.cpp:467 src/prefspaneldialog.cpp:508
+#: src/prefspaneldialog.cpp:468 src/prefspaneldialog.cpp:509
 #, kde-format
 msgid "Meta"
 msgstr "Meta"
 
-#: src/prefspaneldialog.cpp:473
+#: src/prefspaneldialog.cpp:474
 #, kde-format
 msgid "Meta+"
 msgstr "Meta+"
 
-#: src/prefspaneldialog.cpp:477
+#: src/prefspaneldialog.cpp:478
 #, kde-format
 msgid "Shift+"
 msgstr "Shift+"
 
-#: src/prefspaneldialog.cpp:481
+#: src/prefspaneldialog.cpp:482
 #, kde-format
 msgid "Alt+"
 msgstr "Alt+"
 
-#: src/prefspaneldialog.cpp:485
+#: src/prefspaneldialog.cpp:486
 #, kde-format
 msgid "Ctrl+"
 msgstr "Ctrl+"
 
-#: src/prefspaneldialog.cpp:565
+#: src/prefspaneldialog.cpp:566
 #, kde-format
 msgctxt "action name will be appended to this"
 msgid "Shortcut is already in use for"
 msgstr "Raccourci déjà utilisé pour "
 
-#: src/prefspaneldialog.cpp:566
+#: src/prefspaneldialog.cpp:567
 #, kde-format
+msgctxt "@info"
 msgid "Do you still want to assign it?"
 msgstr "Voulez-vous vraiment lui assigner ?"
 
-#: src/prefspaneldialog.cpp:567
+#: src/prefspaneldialog.cpp:568
 #, kde-format
+msgctxt "@title:window"
 msgid "Replace"
 msgstr "Remplacer"
 
-#: src/prefspaneldialog.cpp:568
+#: src/prefspaneldialog.cpp:569
 #, fuzzy, kde-format
 #| msgid "Designer"
 msgctxt "@action:button"
 msgid "Reassign"
 msgstr "Créateur"
 
-#: src/prefspaneldialog.cpp:602
+#: src/prefspaneldialog.cpp:603
 #, kde-format
+msgctxt "@title:column"
 msgid "Action"
 msgstr "Action"
 
-#: src/prefspaneldialog.cpp:603
+#: src/prefspaneldialog.cpp:604
 #, kde-format
+msgctxt "@title:column"
 msgid "Shortcut"
 msgstr "Raccourcis"
 
-#: src/prefspaneldialog.cpp:604
+#: src/prefspaneldialog.cpp:605
 #, kde-format
+msgctxt "@title:column"
 msgid "Tip"
 msgstr "Astuce"
 
-#: src/prefspaneldialog.cpp:635
+#: src/prefspaneldialog.cpp:636
 #, kde-format
+msgctxt "@title:window"
 msgid "Select hyphenation dictionary"
 msgstr "Sélectionnez un dictionnaire de coupures"
 
 #: src/remotedir.cpp:53 src/remotedir.cpp:231
 #, kde-format
+msgctxt "@info:status"
 msgid "Downloading"
 msgstr "Télécharge"
 
 #: src/sampletoolbar.cpp:87
 #, fuzzy, kde-format
 #| msgid "Select Style"
+msgctxt "@item:inlistbox"
 msgid "Select language"
 msgstr "Selection d’un style"
 
 #: src/samplewidget.cpp:726
 #, kde-format
+msgctxt "@item:inlistbox group of the samples the user made"
 msgid "User"
 msgstr "Personnel"
 
 #: src/samplewidget.cpp:785
 #, kde-format
+msgctxt "@title:window"
 msgid "Print Sample"
 msgstr "Imprimer l’exemple"
 
 #: src/samplewidget.cpp:864
 #, fuzzy, kde-format
 #| msgid "Sample"
+msgctxt "@item:inlistbox default name of a new sample text"
 msgid "New Sample"
 msgstr "Exemple"
 
 #: src/systray.cpp:217
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "&Activate all"
 msgstr "Tout &Activer"
 
 #: src/systray.cpp:220
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "&Deactivate all"
 msgstr "Tout &Désactiver"
 
 #: src/systray.cpp:223
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Mi&nimize"
 msgstr "Mi&nimiser"
 
 #: src/systray.cpp:226
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "&Restore"
 msgstr "&Restaurer"
 
 #: src/systray.cpp:229
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "E&xit"
 msgstr "&Quitter"
 
 #: src/systray.cpp:241
 #, kde-format
+msgctxt "@title:menu"
 msgid "&Tags"
 msgstr "É&tiquettes"
 
 #: src/tagswidget.cpp:56
 #, kde-format
+msgctxt "@info"
 msgid ""
 "Please confirm that you want to remove\n"
 "the following tag from database:"
@@ -4530,16 +4996,19 @@ msgstr "Supprimer"
 #: src/tagswidget_listmodel.cpp:19
 #, fuzzy, kde-format
 #| msgid "New Tai Lue"
+msgctxt "@item:inlistbox default name of a new tag"
 msgid "New Tag"
 msgstr "nouveau Taî-le"
 
 #: src/tttableview.cpp:80
 #, kde-format
+msgctxt "@title:window"
 msgid "Save File"
 msgstr "Fichier"
 
-#: src/typotek.cpp:311
+#: src/typotek.cpp:312
 #, kde-format
+msgctxt "@info"
 msgid ""
 "The program will keep running in the system tray. To terminate the program, "
 "choose <b>Exit</b> in the context menu of the system tray entry."
@@ -4547,110 +5016,135 @@ msgstr ""
 "L’application continuera à vivre dans la boîte à miniatures, pour l’achever, "
 "selectionnez l’entrée <b>Quitter</b> du menu contextuel de l’icône et tirer."
 
-#: src/typotek.cpp:375
+#: src/typotek.cpp:376
 #, kde-format
+msgctxt "@title:window"
 msgid "Add Directory"
 msgstr "Ajouter un répertoire"
 
-#: src/typotek.cpp:422
+#: src/typotek.cpp:424
 #, fuzzy, kde-format
 #| msgctxt ""
 #| "PrefsPanelDialog|the name of a sample text will be append to the string"
 #| msgid "Do you confirm that you want to remove:"
+msgctxt "@info"
 msgid "Do you confirm you want to import %1 font?"
 msgid_plural "Do you confirm you want to import %1 fonts?"
 msgstr[0] "Confirmez-vous la suppression de :"
 msgstr[1] "Confirmez-vous la suppression de :"
 
-#: src/typotek.cpp:423
+#: src/typotek.cpp:425
 #, fuzzy, kde-format
 #| msgid "Font Information"
+msgctxt "@title:window"
 msgid "Confirmation"
 msgstr "Informations"
 
-#: src/typotek.cpp:424
+#: src/typotek.cpp:426
 #, fuzzy, kde-format
 #| msgid "Import"
 msgctxt "@action:button"
 msgid "Import"
 msgstr "Importe"
 
-#: src/typotek.cpp:442 src/typotek.cpp:549
+#: src/typotek.cpp:444 src/typotek.cpp:553
 #, kde-format
+msgctxt "@info:progress"
 msgid "Importing font files... "
 msgstr "Importe les fichiers de fonte..."
 
-#: src/typotek.cpp:475
+#: src/typotek.cpp:454 src/typotek.cpp:558
 #, kde-format
+msgctxt "@info:progress"
+msgid "Import"
+msgstr "Importe"
+
+#: src/typotek.cpp:477
+#, kde-format
+msgctxt "@info"
 msgid "Cannot import this font because it is broken:"
 msgstr "Impossible d’importer cette fonte défectueuse :"
 
-#: src/typotek.cpp:502 src/typotek.cpp:590
+#: src/typotek.cpp:504 src/typotek.cpp:594
 #, kde-format
+msgctxt "@info:status"
 msgid "Fonts imported: %1"
 msgstr "Fontes importées : %1"
 
-#: src/typotek.cpp:514
+#: src/typotek.cpp:516
 #, kde-format
+msgctxt "@title:window"
 msgid "Select Files to Import"
 msgstr ""
 
-#: src/typotek.cpp:514
+#: src/typotek.cpp:518
 #, fuzzy, kde-format
 #| msgid "Font Family"
+msgctxt "@item:inlistbox file type filter"
 msgid "Font Files"
 msgstr "Nom de famille"
 
-#: src/typotek.cpp:621
+#: src/typotek.cpp:625
 #, fuzzy, kde-format
 #| msgid "Import Directory"
+msgctxt "@action:inmenu"
 msgid "&Import Directory..."
 msgstr "Importer un répertoire"
 
-#: src/typotek.cpp:623
+#: src/typotek.cpp:627
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Import a directory"
 msgstr "Importer un répertoire"
 
-#: src/typotek.cpp:629
+#: src/typotek.cpp:633
 #, fuzzy, kde-format
 #| msgid "Import File"
+msgctxt "@action:inmenu"
 msgid "Import &Files..."
 msgstr "Importer un fichier"
 
-#: src/typotek.cpp:631
+#: src/typotek.cpp:635
 #, fuzzy, kde-format
 #| msgid "Import File"
+msgctxt "@info:tooltip"
 msgid "Import Files"
 msgstr "Importer un fichier"
 
-#: src/typotek.cpp:635
-#, kde-format
+#: src/typotek.cpp:639
+#, fuzzy, kde-format
+msgctxt "@action:inmenu"
 msgid "Export &fonts"
-msgstr ""
-
-#: src/typotek.cpp:636
-#, kde-format
-msgid "Export a fontset"
-msgstr "Exporte un choix de fontes"
+msgstr "Export des &Fontes"
 
 #: src/typotek.cpp:640
 #, kde-format
+msgctxt "@info:status"
+msgid "Export a fontset"
+msgstr "Exporte un choix de fontes"
+
+#: src/typotek.cpp:644
+#, kde-format
+msgctxt "@action:inmenu"
 msgid "Export font book..."
 msgstr "Livre de fontes..."
 
-#: src/typotek.cpp:641
+#: src/typotek.cpp:645
 #, kde-format
+msgctxt "@info:status"
 msgid "Export a PDF document that shows selected fonts"
 msgstr "Exporter un document PDF montrant les fontes sélectionnées"
 
-#: src/typotek.cpp:645
-#, kde-format
+#: src/typotek.cpp:649
+#, fuzzy, kde-format
+#| msgid "Fontmatrix - Export font info for packaging"
+msgctxt "@action:inmenu"
 msgid "Export font info for packaging..."
-msgstr ""
+msgstr "Fontmatrix - export des informations"
 
-#: src/typotek.cpp:646
+#: src/typotek.cpp:650
 #, kde-format
+msgctxt "@info:status"
 msgid ""
 "Fill a template file with metadata for packaging currently selected font to "
 "a Linux distribution"
@@ -4660,38 +5154,45 @@ msgstr "Exporter des informations selon un modèle (SPEC file par exemple)"
 #. tagsetAct->setIcon ( QIcon ( ":/fontmatrix_tagseteditor_icon.png" ) );
 #. scuts->add(tagsetAct);
 #. connect ( tagsetAct,SIGNAL ( triggered( ) ),this,SLOT ( popupTagsetEditor() ) );
-#: src/typotek.cpp:654
+#: src/typotek.cpp:658
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Activate all current"
 msgstr "Active les fontes visibles"
 
-#: src/typotek.cpp:655
+#: src/typotek.cpp:659
 #, kde-format
+msgctxt "@info:status"
 msgid "Activate all currently visible fonts"
 msgstr "Active toutes les fontes actuellement filtrées"
 
-#: src/typotek.cpp:659
+#: src/typotek.cpp:663
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Deactivate all current"
 msgstr "Désactive les fontes visibles"
 
-#: src/typotek.cpp:660
+#: src/typotek.cpp:664
 #, kde-format
+msgctxt "@info:status"
 msgid "Deactivate all currently visible fonts"
 msgstr "Désactive toutes les fontes actuellement filtrées"
 
-#: src/typotek.cpp:664
+#: src/typotek.cpp:668
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Edit current font"
 msgstr "Éditer la fonte sélectionnée"
 
-#: src/typotek.cpp:668
+#: src/typotek.cpp:672
 #, kde-format
+msgctxt "@info:status"
 msgid "Edit currently selected font in a font editor of your choice"
 msgstr "Éditer la fonte courante"
 
-#: src/typotek.cpp:671
+#: src/typotek.cpp:676
 #, kde-format
+msgctxt "@info:status"
 msgid ""
 "You don't seem to have a font editor installed. Path to font editor can be "
 "set in Preferences dialog."
@@ -4699,206 +5200,256 @@ msgstr ""
 "Fontmatrix n’a pu détecter un éditeur de fonte sur votre système, vous "
 "pouvez le sélectionner dans les préférences."
 
-#: src/typotek.cpp:674
-#, fuzzy, kde-format
-#| msgid "Reload Tree"
-msgid "Reload Filtered"
-msgstr "Recharger"
-
-#: src/typotek.cpp:675
-#, kde-format
-msgid ""
-"Reload informations for filtered fonts from the font files they belong to"
-msgstr ""
-
 #: src/typotek.cpp:679
 #, fuzzy, kde-format
 #| msgid "Reload Tree"
-msgid "Reload Selected"
+msgctxt "@action:inmenu"
+msgid "Reload Filtered"
 msgstr "Recharger"
 
 #: src/typotek.cpp:680
 #, kde-format
-msgid "Reload informations for selected font from the font file"
+msgctxt "@info:status"
+msgid ""
+"Reload informations for filtered fonts from the font files they belong to"
 msgstr ""
 
 #: src/typotek.cpp:684
-#, kde-format
-msgid "Check Database"
-msgstr "Vérifie la base"
+#, fuzzy, kde-format
+#| msgid "Reload Tree"
+msgctxt "@action:inmenu"
+msgid "Reload Selected"
+msgstr "Recharger"
 
 #: src/typotek.cpp:685
 #, kde-format
+msgctxt "@info:status"
+msgid "Reload informations for selected font from the font file"
+msgstr ""
+
+#: src/typotek.cpp:689
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Check Database"
+msgstr "Vérifie la base"
+
+#: src/typotek.cpp:690
+#, kde-format
+msgctxt "@info:status"
 msgid "Check Fontmatrix database for dead links to font files"
 msgstr ""
 "Vérifie la bonne synchronisation entre l’état des fichiers de fontes sur le "
 "disque et la base de donnée"
 
-#: src/typotek.cpp:692
-#, kde-format
-msgid "Tag All Filtered..."
-msgstr ""
-
-#: src/typotek.cpp:693
-#, kde-format
-msgid "Tag all currently visible files"
-msgstr "Étiquetter toutes les fontes filtrées"
-
 #: src/typotek.cpp:697
-#, kde-format
-msgid "Show TrueType tables"
-msgstr "Affiche les tables TT"
+#, fuzzy, kde-format
+msgctxt "@action:inmenu"
+msgid "Tag All Filtered..."
+msgstr "Étiquette tout..."
 
 #: src/typotek.cpp:698
 #, kde-format
+msgctxt "@info:status"
+msgid "Tag all currently visible files"
+msgstr "Étiquetter toutes les fontes filtrées"
+
+#: src/typotek.cpp:702
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Show TrueType tables"
+msgstr "Affiche les tables TT"
+
+#: src/typotek.cpp:703
+#, kde-format
+msgctxt "@info:status"
 msgid ""
 "View hexadecimal values of TrueType tables for currently selected font file"
 msgstr "Affiche les tables TrueType"
 
-#: src/typotek.cpp:702
+#: src/typotek.cpp:707
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Edit PANOSE metadata"
 msgstr "Éditer les infos PANOSE"
 
-#: src/typotek.cpp:703
+#: src/typotek.cpp:708
 #, kde-format
+msgctxt "@info:status"
 msgid "Edit PANOSE metadata without saving changes to font files"
 msgstr ""
 "Éditer les informations PANOSE sans toucher au fichier de fonte lui-même"
 
-#: src/typotek.cpp:709
+#: src/typotek.cpp:712
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Playground"
+msgstr "Aire de jeu"
+
+#: src/typotek.cpp:714
 #, fuzzy, kde-format
 #| msgid "Print Playground"
+msgctxt "@info:tooltip"
 msgid "Show/Hide Playground"
 msgstr "Imprimer l’aire de jeu"
 
-#: src/typotek.cpp:715
+#: src/typotek.cpp:720
 #, kde-format
+msgctxt "@action:inmenu"
 msgid "Compare"
 msgstr "Comparaison"
 
-#: src/typotek.cpp:717
-#, kde-format
-msgid "Show/Hide Compare glyphs"
-msgstr ""
-
-#: src/typotek.cpp:723
+#: src/typotek.cpp:722
 #, fuzzy, kde-format
-#| msgid "Close"
-msgid "Close All"
-msgstr "Fermer"
-
-#: src/typotek.cpp:724
-#, kde-format
-msgid "Close all floating windows"
-msgstr ""
+#| msgid "Compare with:"
+msgctxt "@info:tooltip"
+msgid "Show/Hide Compare glyphs"
+msgstr "Compare avec :"
 
 #: src/typotek.cpp:728
 #, fuzzy, kde-format
-#| msgid "Show"
-msgid "Show All"
-msgstr "Montrer"
+#| msgid "Close"
+msgctxt "@action:inmenu"
+msgid "Close All"
+msgstr "Fermer"
 
 #: src/typotek.cpp:729
 #, fuzzy, kde-format
-msgid "Show all floating windows"
+msgctxt "@info:tooltip"
+msgid "Close all floating windows"
 msgstr "Voir toutes les fontes activées"
 
 #: src/typotek.cpp:733
 #, fuzzy, kde-format
+#| msgid "Show"
+msgctxt "@action:inmenu"
+msgid "Show All"
+msgstr "Montrer"
+
+#: src/typotek.cpp:734
+#, fuzzy, kde-format
+msgctxt "@info:tooltip"
+msgid "Show all floating windows"
+msgstr "Voir toutes les fontes activées"
+
+#: src/typotek.cpp:738
+#, fuzzy, kde-format
+msgctxt "@action:inmenu"
 msgid "Hide All"
 msgstr "Tout voir"
 
-#: src/typotek.cpp:734
-#, kde-format
+#: src/typotek.cpp:739
+#, fuzzy, kde-format
+msgctxt "@info:tooltip"
 msgid "Hide all floating windows"
-msgstr ""
-
-#: src/typotek.cpp:751
-#, kde-format
-msgid "Extract fonts..."
-msgstr "Extraire des fontes…"
-
-#: src/typotek.cpp:752
-#, kde-format
-msgid "Extract fonts from documents like PDF to PFM file format"
-msgstr "Extrait des fontes d’un containeur tel que PDF, ZIP, etc."
+msgstr "Voir toutes les fontes activées"
 
 #: src/typotek.cpp:756
 #, kde-format
-msgid "Find a font using raster sample..."
-msgstr "Trouver une fonte depuis à une image…"
+msgctxt "@action:inmenu"
+msgid "Extract fonts..."
+msgstr "Extraire des fontes…"
 
 #: src/typotek.cpp:757
 #, kde-format
-msgid "Find a font using a raster sample of a letter"
-msgstr "Trouve une fonte dans la collection à partir de l’image d’une lettre"
+msgctxt "@info:status"
+msgid "Extract fonts from documents like PDF to PFM file format"
+msgstr "Extrait des fontes d’un containeur tel que PDF, ZIP, etc."
 
 #: src/typotek.cpp:761
-#, fuzzy, kde-format
-#| msgid "Export font book..."
-msgid "Export font list as XeTeX..."
-msgstr "Livre de fontes..."
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Find a font using raster sample..."
+msgstr "Trouver une fonte depuis à une image…"
 
 #: src/typotek.cpp:762
 #, kde-format
+msgctxt "@info:status"
+msgid "Find a font using a raster sample of a letter"
+msgstr "Trouve une fonte dans la collection à partir de l’image d’une lettre"
+
+#: src/typotek.cpp:766
+#, fuzzy, kde-format
+#| msgid "Export font book..."
+msgctxt "@action:inmenu"
+msgid "Export font list as XeTeX..."
+msgstr "Livre de fontes..."
+
+#: src/typotek.cpp:767
+#, kde-format
+msgctxt "@info:status"
 msgid "Export the current filtered font list as a XeTeX source file"
 msgstr ""
 
-#: src/typotek.cpp:855
+#: src/typotek.cpp:860
 #, fuzzy, kde-format
 #| msgid "Remote directories"
+msgctxt "@action:button"
 msgid "Browse Directories"
 msgstr "Répertoires distants"
 
-#: src/typotek.cpp:857
+#: src/typotek.cpp:862
 #, kde-format
+msgctxt "@info:tooltip"
 msgid "Toggle Files/Collection view"
 msgstr ""
 
-#: src/typotek.cpp:863
+#: src/typotek.cpp:868
 #, kde-format
+msgctxt "@info:progress"
 msgid "Load settings"
 msgstr "Chargement des paramètres"
 
-#: src/typotek.cpp:995
+#: src/typotek.cpp:1000
 #, kde-format
+msgctxt "@info:progress"
 msgid "Check for Fontmatrix own dir"
 msgstr "Vérification du répertoire"
 
-#: src/typotek.cpp:1221
-#, kde-format
+#: src/typotek.cpp:1226
+#, fuzzy, kde-format
+#| msgid "System Fonts"
+msgctxt "@info:progress"
 msgid "Loading System Fonts"
-msgstr ""
+msgstr "Fontes systèmes"
 
-#: src/typotek.cpp:1222
+#: src/typotek.cpp:1227
 #, kde-format
+msgctxt "@item:inlistbox name of the tag given to system fonts"
 msgid "System Fonts"
 msgstr "Fontes systèmes"
 
-#: src/typotek.cpp:1252 src/typotek.cpp:1254
+#: src/typotek.cpp:1257
 #, kde-format
+msgctxt "@info:progress"
 msgid "Adding"
 msgstr "Ajoute"
 
-#: src/typotek.cpp:1252 src/typotek.cpp:1254
+#: src/typotek.cpp:1258 src/typotek.cpp:1259
 #, kde-format
 msgctxt "followed by a directory name"
 msgid "fonts from"
 msgstr "fontes depuis"
 
-#: src/typotek.cpp:1277
+#: src/typotek.cpp:1259
 #, kde-format
+msgid "Adding"
+msgstr "Ajoute"
+
+#: src/typotek.cpp:1282
+#, kde-format
+msgctxt "@info:progress"
 msgid "system fonts added."
 msgstr "fontes système ajoutées"
 
-#: src/typotek.cpp:1332
+#: src/typotek.cpp:1337
 #, kde-format
+msgctxt "@info:status"
 msgid "font descriptions imported from network"
 msgstr "descriptions de fontes importées depuis le réseau"
 
-#: src/typotek.cpp:1357
+#: src/typotek.cpp:1362
 #, kde-format
+msgctxt "@info"
 msgid ""
 "You are about to activate a bunch of fonts,\n"
 "it is time to cancel if it was not your intent"
@@ -4906,109 +5457,120 @@ msgstr ""
 "Vous allez activer un paquet de fontes\n"
 "C’est le moment ou janmais d’annuler"
 
-#: src/typotek.cpp:1358
+#: src/typotek.cpp:1363
 #, fuzzy, kde-format
 #| msgid "Activate"
 msgctxt "@title:window"
 msgid "Activate Fonts"
 msgstr "Active"
 
-#: src/typotek.cpp:1359
-#, fuzzy, kde-format
-#| msgid "Activate"
-msgctxt "@action:button"
-msgid "Activate"
-msgstr "Active"
-
-#: src/typotek.cpp:1370
+#: src/typotek.cpp:1375
 #, kde-format
+msgctxt "@info"
 msgid ""
 "You are about to deactivate a bunch of fonts,\n"
 "it is time to cancel if it was not your intent"
 msgstr ""
 "Vous allez désactiver un paquet de fontesC’est le moment ou janmais d’annuler"
 
-#: src/typotek.cpp:1371
+#: src/typotek.cpp:1376
 #, fuzzy, kde-format
 #| msgid "Deactivate"
 msgctxt "@title:window"
 msgid "Deactivate Fonts"
 msgstr "Désactive"
 
-#: src/typotek.cpp:1372
+#: src/typotek.cpp:1377
 #, fuzzy, kde-format
 #| msgid "Deactivate"
 msgctxt "@action:button"
 msgid "Deactivate"
 msgstr "Désactive"
 
-#: src/typotek.cpp:1389
+#: src/typotek.cpp:1395
 #, kde-format
+msgctxt "@info"
 msgid ""
 "This will hide the menu bar completely. You can show it again by typing %1."
 msgstr ""
 
-#: src/typotek.cpp:1389
+#: src/typotek.cpp:1396
 #, kde-format
+msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 
-#: src/typotek.cpp:1399 src/typotek.cpp:2074
+#: src/typotek.cpp:1406 src/typotek.cpp:2084
 #, kde-format
+msgctxt "@info:status"
 msgid "There is no font selected"
 msgstr "Il n’y a pas de fonte sélectionnée"
 
-#: src/typotek.cpp:1444
+#: src/typotek.cpp:1451
 #, kde-format
+msgctxt "@info:status"
 msgid "Support of DragNDrop over http is sheduled but not yet effective"
 msgstr ""
 "Le \"glisser-déposer\" ne marche pas encore pour des ressources sur le web"
 
-#: src/typotek.cpp:1463
+#: src/typotek.cpp:1470
 #, fuzzy, kde-format
 #| msgid "You bring something over me I canât handle"
+msgctxt "@info:status"
 msgid "You bring something over me I can’t handle"
 msgstr "Je gère pas çà"
 
-#: src/typotek.cpp:1524
+#: src/typotek.cpp:1531
 #, fuzzy, kde-format
 #| msgid "Edit"
+msgctxt "@info default content of a new sample text"
 msgid "Edit me!"
 msgstr "Édition"
 
-#: src/typotek.cpp:1603
+#: src/typotek.cpp:1610
 #, kde-format
 msgid "default"
 msgstr "défaut"
 
-#: src/typotek.cpp:1687
+#: src/typotek.cpp:1694
 #, kde-format
+msgctxt "@info:status"
 msgid "Try to run font editor with the selected font as argument"
 msgstr "Essaie de lancer Fontforge avec la fonte sélectionnée comme argument"
 
-#: src/typotek.cpp:1690
+#: src/typotek.cpp:1697
 #, kde-format
+msgctxt "@info:status"
 msgid ""
 "You don't seem to have font editor installed. Path to font editor can be set "
 "in preferences."
 msgstr "Il semble que vous ne disposez pas de boîte à miniatures"
 
-#: src/typotek.cpp:1975
+#: src/typotek.cpp:1983
 #, fuzzy, kde-format
 #| msgid "Export a fontset"
+msgctxt "@title:window"
 msgid "Export font list as XeTeX"
 msgstr "Exporte un choix de fontes"
 
-#: src/typotek.cpp:1975
+#: src/typotek.cpp:1985
 #, kde-format
+msgctxt "@item:inlistbox file type filter"
 msgid "TeX files (*.tex)"
 msgstr ""
 
-#: src/typotek.cpp:2157
+#: src/typotek.cpp:2095
+#, kde-format
+msgctxt "@action:button"
+msgid "Close"
+msgstr "Fermer"
+
+#: src/typotek.cpp:2167
 #, fuzzy, kde-format
 #| msgid ""
 #| "Failed to extract:\n"
 #| "%1"
+msgctxt "@info:status"
 msgid "Failed to reload %1 font"
 msgid_plural "Failed to reload %1 fonts"
 msgstr[0] ""
@@ -5018,7 +5580,7 @@ msgstr[1] ""
 "Impossible d’opérer l’extraction :\n"
 "%1"
 
-#: src/typotek.cpp:2199
+#: src/typotek.cpp:2209
 #, kde-format
 msgctxt "number of filtererd fonts showed in status bar"
 msgid "Filtered Font: %1"
@@ -5026,7 +5588,7 @@ msgid_plural "Filtered Fonts: %1"
 msgstr[0] "Fonte filtrée : %1"
 msgstr[1] "Fontes filtrées : %1"
 
-#: src/typotek.cpp:2204
+#: src/typotek.cpp:2214
 #, fuzzy, kde-format
 #| msgctxt "followed by currently selected font name (in status bar)"
 #| msgid "Current Font:"
@@ -5034,7 +5596,7 @@ msgctxt "followed by currently selected font name (in status bar)"
 msgid "Current Font"
 msgstr "Fonte courante :"
 
-#: src/typotek.cpp:2228
+#: src/typotek.cpp:2238
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5043,11 +5605,986 @@ msgid ""
 "at <link>%1</link>."
 msgstr ""
 
-#: src/typotek.cpp:2231
+#: src/typotek.cpp:2241
 #, kde-format
 msgctxt "@title:window"
 msgid "Handbook Not Available"
 msgstr ""
+
+#, kde-format
+#~ msgid "Import Directory"
+#~ msgstr "Importer un répertoire"
+
+#, kde-format
+#~ msgid "Import recursively"
+#~ msgstr "Importer un répertoire récursivement"
+
+#, kde-format
+#~ msgid "Import File"
+#~ msgstr "Importer un fichier"
+
+#, kde-format
+#~ msgid "Un-Mapped Glyphs"
+#~ msgstr "Glyphs non référencés"
+
+#, kde-format
+#~ msgid "View all mapped glyphs"
+#~ msgstr "tous les glyphes référencées"
+
+#, kde-format
+#~ msgid "Block (%1):"
+#~ msgstr "bloc (%1) :"
+
+#, kde-format
+#~ msgid "Print Chart"
+#~ msgstr "Imprimer le tableau"
+
+#, kde-format
+#~ msgid "Choose Directory"
+#~ msgstr "Choisissez un répertoire"
+
+#, kde-format
+#~ msgid "Copying files"
+#~ msgstr "Copie des fichiers"
+
+#, kde-format
+#~ msgid "cancel"
+#~ msgstr "Annuler"
+
+#, kde-format
+#~ msgid "And"
+#~ msgstr "Et"
+
+#, kde-format
+#~ msgid "Not"
+#~ msgstr "Non"
+
+#, kde-format
+#~ msgid "Unable to link"
+#~ msgstr "Impossible de lier"
+
+#, kde-format
+#~ msgid "Font already activated"
+#~ msgstr "Fontes déjà active"
+
+#, kde-format
+#~ msgid "Unable to un-link"
+#~ msgstr "Impossible de délier"
+
+#, kde-format
+#~ msgid "Font already de-activated"
+#~ msgstr "Fontes déjà désactivée"
+
+#, kde-format
+#~ msgid "Cannot link or copy the metrics file"
+#~ msgstr "Impossible de lier ou copier le fichier de métriques"
+
+#, kde-format
+#~ msgid "File does not exist:"
+#~ msgstr "Ce fichier n’existe pas :"
+
+#, kde-format
+#~ msgid "Format not handled."
+#~ msgstr "Format non pris en charge."
+
+#, kde-format
+#~ msgid ""
+#~ "Failed to extract:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Impossible d’opérer l’extraction :\n"
+#~ "%1"
+
+#, kde-format
+#~ msgid "Copyright"
+#~ msgstr "Droit de copie"
+
+#, kde-format
+#~ msgid "Font Family"
+#~ msgstr "Nom de famille"
+
+#, kde-format
+#~ msgid "Font Subfamily"
+#~ msgstr "Variante"
+
+#, kde-format
+#~ msgid "Unique font identifier"
+#~ msgstr "Identifiant unique"
+
+#, kde-format
+#~ msgid "Full font name"
+#~ msgstr "Nom complet"
+
+#, kde-format
+#~ msgid "Version string"
+#~ msgstr "Version"
+
+#, kde-format
+#~ msgid "Postscript name"
+#~ msgstr "Nom Postscript"
+
+#, kde-format
+#~ msgid "Trademark"
+#~ msgstr "Marque déposée"
+
+#, kde-format
+#~ msgid "Manufacturer"
+#~ msgstr "Fabricant"
+
+#, kde-format
+#~ msgid "Designer"
+#~ msgstr "Créateur"
+
+#, kde-format
+#~ msgid "URL Vendor"
+#~ msgstr "URL du fournisseur"
+
+#, kde-format
+#~ msgid "URL Designer"
+#~ msgstr "URL du créateur"
+
+#, kde-format
+#~ msgid "License Description"
+#~ msgstr "Licence"
+
+#, kde-format
+#~ msgid "License Info URL"
+#~ msgstr "URL de la license"
+
+#, kde-format
+#~ msgid "Preferred Family"
+#~ msgstr "Famille péférée"
+
+#, kde-format
+#~ msgid "Preferred Subfamily"
+#~ msgstr "Variante préférée"
+
+#, kde-format
+#~ msgid "Compatible Full (Macintosh only)"
+#~ msgstr "Compatibilité Macintosh"
+
+#, kde-format
+#~ msgid "Sample text"
+#~ msgstr "Texte d’exemple"
+
+#, kde-format
+#~ msgid "PostScript CID findfont name"
+#~ msgstr "Identifiant CID"
+
+#, kde-format
+#~ msgid "All fields"
+#~ msgstr "Tous"
+
+#, kde-format
+#~ msgid "Any"
+#~ msgstr "Aucun"
+
+#, kde-format
+#~ msgid "No Fit"
+#~ msgstr "PAs de correspondance"
+
+#, kde-format
+#~ msgid "Family Type"
+#~ msgstr "Type"
+
+#, kde-format
+#~ msgid ""
+#~ "This value is deprecated and was never used nor reported by FreeType. "
+#~ "Don't use or test for it."
+#~ msgstr "Passe ton chemin."
+
+#, kde-format
+#~ msgid "Character to glyph mapping"
+#~ msgstr "Association du caractère au glyphe"
+
+#, kde-format
+#~ msgid "Font header"
+#~ msgstr "En-tête, informations générales"
+
+#, kde-format
+#~ msgid "Horizontal header"
+#~ msgstr "Informations disposition horizontale"
+
+#, kde-format
+#~ msgid "Horizontal metrics"
+#~ msgstr "Métriques horizontales"
+
+#, kde-format
+#~ msgid "Maximum profile"
+#~ msgstr "Informations taille de la fonte"
+
+#, kde-format
+#~ msgid "Naming table"
+#~ msgstr "Noms"
+
+#, kde-format
+#~ msgid "OS/2 and Windows specific metrics"
+#~ msgstr "OS/2 et informations spécifiques à Windows"
+
+#, kde-format
+#~ msgid "PostScript information"
+#~ msgstr ""
+#~ "Informations nécessaires pour utilisation avec un interpréteur Postscript"
+
+#, kde-format
+#~ msgid "Control Value Table"
+#~ msgstr "Tableau de variables"
+
+#, kde-format
+#~ msgid "Font program"
+#~ msgstr "Instructions TrueType exécutées au chargement de la fonte"
+
+#, kde-format
+#~ msgid "Glyph data"
+#~ msgstr "Contours de glyphes des fontes TrueType"
+
+#, kde-format
+#~ msgid "Index to location"
+#~ msgstr "Indices dans la table «glyf»"
+
+#, kde-format
+#~ msgid "CVT Program"
+#~ msgstr "Instructions TrueType"
+
+#, kde-format
+#~ msgid "PostScript font program"
+#~ msgstr "Programme de fonte Postscript (Compact Font Format)"
+
+#, kde-format
+#~ msgid "Vertical Origin"
+#~ msgstr "Origines Verticales de chaque glyphe pour une fonte OpenType"
+
+#, kde-format
+#~ msgid "Embedded bitmap data"
+#~ msgstr "Images de glyphes incluses (données)"
+
+#, kde-format
+#~ msgid "Embedded bitmap location data"
+#~ msgstr "Images de glyphes incluses (offsets)"
+
+#, kde-format
+#~ msgid "Embedded bitmap scaling data"
+#~ msgstr "Images de glyphes incluses (mise à l’échelle)"
+
+#, kde-format
+#~ msgid "Baseline data"
+#~ msgstr "Informations d’alignement"
+
+#, kde-format
+#~ msgid "Glyph definition data"
+#~ msgstr "Nature des glyphes"
+
+#, kde-format
+#~ msgid "Glyph positioning data"
+#~ msgstr "Positionnement des glyphes"
+
+#, kde-format
+#~ msgid "Glyph substitution data"
+#~ msgstr "Substitutions de glyphes"
+
+#, kde-format
+#~ msgid "Justification data"
+#~ msgstr "Justification"
+
+#, kde-format
+#~ msgid "Digital signature"
+#~ msgstr "Signature digitale"
+
+#, kde-format
+#~ msgid "Grid-fitting/Scan-conversion"
+#~ msgstr "Alignement à la grille"
+
+#, kde-format
+#~ msgid "Horizontal device metrics"
+#~ msgstr "Métriques horizontales dépendantes du prériphérique"
+
+#, kde-format
+#~ msgid "Kerning"
+#~ msgstr "Crénage"
+
+#, kde-format
+#~ msgid "Linear threshold data"
+#~ msgstr "Ajustements des approches"
+
+#, kde-format
+#~ msgid "PCL 5 data"
+#~ msgstr "Table PCL 5"
+
+#, kde-format
+#~ msgid "Vertical device metrics"
+#~ msgstr "Métriques verticales dépendantes du prériphérique"
+
+#, kde-format
+#~ msgid "Vertical Metrics header"
+#~ msgstr "Informations dispositions verticales"
+
+#, kde-format
+#~ msgid "Vertical Metrics"
+#~ msgstr "Métriques verticales"
+
+#, kde-format
+#~ msgid "Mark, NonSpacing"
+#~ msgstr "Repère, sans chasse"
+
+#, kde-format
+#~ msgid "Mark, SpacingCombining"
+#~ msgstr "Repère, combinatoire"
+
+#, kde-format
+#~ msgid "Mark, Enclosing"
+#~ msgstr "Repère, fermant"
+
+#, kde-format
+#~ msgid "Number, DecimalDigit"
+#~ msgstr "Nombre, chiffre décimal"
+
+#, kde-format
+#~ msgid "Number, Letter"
+#~ msgstr "Nombre, lettre"
+
+#, kde-format
+#~ msgid "Number, Other"
+#~ msgstr "Nombre, autre"
+
+#, kde-format
+#~ msgid "Separator, Space"
+#~ msgstr "Séparateur, espace"
+
+#, kde-format
+#~ msgid "Separator, Line"
+#~ msgstr "Séparateur, ligne"
+
+#, kde-format
+#~ msgid "Separator, Paragraph"
+#~ msgstr "Séparateur, paragraphe"
+
+#, kde-format
+#~ msgid "Other, Control"
+#~ msgstr "Autre, contrôle"
+
+#, kde-format
+#~ msgid "Other, Format"
+#~ msgstr "Autre, formatage"
+
+#, kde-format
+#~ msgid "Other, Surrogate"
+#~ msgstr "Autre, substitut"
+
+#, kde-format
+#~ msgid "Other, PrivateUse"
+#~ msgstr "Autre, usage privé"
+
+#, kde-format
+#~ msgid "Other, NotAssigned"
+#~ msgstr "Autre, non assigné"
+
+#, kde-format
+#~ msgid "Letter, Uppercase"
+#~ msgstr "Lettre, haut de casse"
+
+#, kde-format
+#~ msgid "Letter, Lowercase"
+#~ msgstr "Lettre, bas de casse"
+
+#, kde-format
+#~ msgid "Letter, Titlecase"
+#~ msgstr "Lettre, casse de titrage"
+
+#, kde-format
+#~ msgid "Letter, Other"
+#~ msgstr "Lettre, autre"
+
+#, kde-format
+#~ msgid "Punctuation, Connector"
+#~ msgstr "Ponctuation, connecteur"
+
+#, kde-format
+#~ msgid "Punctuation, Dash"
+#~ msgstr "Ponctuation, trait"
+
+#, kde-format
+#~ msgid "Punctuation, Open"
+#~ msgstr "Ponctuation, ouverture"
+
+#, kde-format
+#~ msgid "Punctuation, Close"
+#~ msgstr "Ponctuation, fermeture"
+
+#, kde-format
+#~ msgid "Punctuation, InitialQuote"
+#~ msgstr "Ponctutation, début de citation"
+
+#, kde-format
+#~ msgid "Punctuation, FinalQuote"
+#~ msgstr "Ponctutation, fin de citation"
+
+#, kde-format
+#~ msgid "Punctuation, Other"
+#~ msgstr "Ponctuation, autre"
+
+#, kde-format
+#~ msgid "Symbol, Math"
+#~ msgstr "Symbole, mathématiques"
+
+#, kde-format
+#~ msgid "Symbol, Currency"
+#~ msgstr "Symbole, monnaie"
+
+#, kde-format
+#~ msgid "Symbol, Modifier"
+#~ msgstr "Symbole, modificateur"
+
+#, kde-format
+#~ msgid "Symbol, Other"
+#~ msgstr "Symbole, autre"
+
+#, kde-format
+#~ msgid "Arabic"
+#~ msgstr "Arabe"
+
+#, kde-format
+#~ msgid "Armenian"
+#~ msgstr "Arménien"
+
+#, kde-format
+#~ msgid "Balinese"
+#~ msgstr "Balinais"
+
+#, kde-format
+#~ msgid "Bengali"
+#~ msgstr "Bengali"
+
+#, kde-format
+#~ msgid "Bopomofo"
+#~ msgstr "Bopomofo"
+
+#, kde-format
+#~ msgid "Buginese"
+#~ msgstr "Buginese"
+
+#, kde-format
+#~ msgid "Buhid"
+#~ msgstr "Bouhide"
+
+#, kde-format
+#~ msgid "Cherokee"
+#~ msgstr "Chérokî"
+
+#, kde-format
+#~ msgid "Coptic"
+#~ msgstr "Copte"
+
+#, kde-format
+#~ msgid "Cypriot Syllabary"
+#~ msgstr "syllabaire chypriote"
+
+#, kde-format
+#~ msgid "Cyrillic"
+#~ msgstr "Cyrillique"
+
+#, kde-format
+#~ msgid "Deseret"
+#~ msgstr "Déséret"
+
+#, kde-format
+#~ msgid "Devanagari"
+#~ msgstr "Dévanâgarî"
+
+#, kde-format
+#~ msgid "Ethiopic"
+#~ msgstr "Éthiopien"
+
+#, kde-format
+#~ msgid "Georgian"
+#~ msgstr "Géorgien"
+
+#, kde-format
+#~ msgid "Glagolitic"
+#~ msgstr "Glagolitique"
+
+#, kde-format
+#~ msgid "Gothic"
+#~ msgstr "Gotique"
+
+#, kde-format
+#~ msgid "Gujarati"
+#~ msgstr "Goudjerate"
+
+#, kde-format
+#~ msgid "Gurmukhi"
+#~ msgstr "Gourmoukhî"
+
+#, kde-format
+#~ msgid "Hangul Jamo"
+#~ msgstr "Jamos Hangûl"
+
+#, kde-format
+#~ msgid "Hanunoo"
+#~ msgstr "Hanounó"
+
+#, kde-format
+#~ msgid "Hebrew"
+#~ msgstr "Hébreu"
+
+#, kde-format
+#~ msgid "Kannada"
+#~ msgstr "Kannara"
+
+#, kde-format
+#~ msgid "Khmer"
+#~ msgstr "Khmer"
+
+#, kde-format
+#~ msgid "Lao"
+#~ msgstr "Lao"
+
+#, kde-format
+#~ msgid "Limbu"
+#~ msgstr "Limbou"
+
+#, kde-format
+#~ msgid "Malayalam"
+#~ msgstr "Malayalam"
+
+#, kde-format
+#~ msgid "Mathematical Alphanumeric Symbols"
+#~ msgstr "symboles mathématiques alphanumériques"
+
+#, kde-format
+#~ msgid "Mongolian"
+#~ msgstr "Mongol"
+
+#, kde-format
+#~ msgid "Musical Symbols"
+#~ msgstr "symboles musicaux"
+
+#, kde-format
+#~ msgid "Myanmar"
+#~ msgstr "Birman"
+
+#, kde-format
+#~ msgid "Ogham"
+#~ msgstr "Ogam"
+
+#, kde-format
+#~ msgid "Old Italic"
+#~ msgstr "Italien, ancien"
+
+#, kde-format
+#~ msgid "Oriya"
+#~ msgstr "Oriya"
+
+#, kde-format
+#~ msgid "Osmanya"
+#~ msgstr "Osmanya"
+
+#, kde-format
+#~ msgid "Phags-pa"
+#~ msgstr "Phagspa"
+
+#, kde-format
+#~ msgid "Phoenician"
+#~ msgstr "Phénicien"
+
+#, kde-format
+#~ msgid "Runic"
+#~ msgstr "Runes"
+
+#, kde-format
+#~ msgid "Shavian"
+#~ msgstr "Shavien (alphabet de Shaw)"
+
+#, kde-format
+#~ msgid "Sinhala"
+#~ msgstr "Singhalais"
+
+#, kde-format
+#~ msgid "Syloti Nagri"
+#~ msgstr "Sylotî Nagrî"
+
+#, kde-format
+#~ msgid "Syriac"
+#~ msgstr "Syriaque"
+
+#, kde-format
+#~ msgid "Tagalog"
+#~ msgstr "Tagalog"
+
+#, kde-format
+#~ msgid "Tagbanwa"
+#~ msgstr "Tagbanoua"
+
+#, kde-format
+#~ msgid "Tai Le"
+#~ msgstr "Taï-le"
+
+#, kde-format
+#~ msgid "Tamil"
+#~ msgstr "Tamoul"
+
+#, kde-format
+#~ msgid "Telugu"
+#~ msgstr "Télougou"
+
+#, kde-format
+#~ msgid "Thaana"
+#~ msgstr "Thâna"
+
+#, kde-format
+#~ msgid "Thai"
+#~ msgstr "Thaï"
+
+#, kde-format
+#~ msgid "Tibetan"
+#~ msgstr "Tibétain"
+
+#, kde-format
+#~ msgid "Tifinagh"
+#~ msgstr "Tifinagh"
+
+#, kde-format
+#~ msgid "Glyphs count"
+#~ msgstr "Nombre de glyphes"
+
+#, kde-format
+#~ msgid "Font Type"
+#~ msgstr "Type de fonte"
+
+#, kde-format
+#~ msgid "Charmaps List"
+#~ msgstr "Cartes de caractères"
+
+#, kde-format
+#~ msgid ""
+#~ "The font %1 scores %2.\n"
+#~ "Do you want to add it to the filtered fonts?"
+#~ msgstr ""
+#~ "La fonte %1 fait %2\n"
+#~ "Souhaitez vous l’intégrer au lot de fontes filtrées ?"
+
+#, kde-format
+#~ msgid "No font match the submitted image"
+#~ msgstr "Aucune fonte ne correspond à l’image que vous avez soumise"
+
+#, kde-format
+#~ msgid "Save fontBook"
+#~ msgstr "Sauvegarde le catalogue"
+
+#, kde-format
+#~ msgid "codepoint is U+"
+#~ msgstr "le point de code est U+"
+
+#, kde-format
+#~ msgid "Fontmatrix - Download"
+#~ msgstr "Fontmatrix - téléchargement"
+
+#, kde-format
+#~ msgid "Downloading %1."
+#~ msgstr "Télécharge %1."
+
+#, kde-format
+#~ msgid " (not loaded)"
+#~ msgstr "  (pas chargée)"
+
+#, kde-format
+#~ msgid "Number of Imported Fonts "
+#~ msgstr "Nombre de fontes importées "
+
+#, kde-format
+#~ msgid ""
+#~ " is activated.\n"
+#~ "If you want to remove it from Fontmatrix database, please deactivate it "
+#~ "first."
+#~ msgstr ""
+#~ " est activée.\n"
+#~ "Avant de la supprimer, vous devez la désactiver."
+
+#, kde-format
+#~ msgid "You are about to remove a font from Fontmatrix database"
+#~ msgstr "Vous êtes sur le point de supprimer une fonte de la base de données"
+
+#, kde-format
+#~ msgid "Do you want to continue?"
+#~ msgstr "Voulez-vous continuer ?"
+
+#, kde-format
+#~ msgid "Print Playground"
+#~ msgstr "Imprimer l’aire de jeu"
+
+#, kde-format
+#~ msgid ""
+#~ "You can use the following keywords to be replaced by data from fonts: "
+#~ "<strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; "
+#~ "<strong>&#60;variant&#62;</strong>"
+#~ msgstr ""
+#~ "Vous pouvez utiliser les mot clés suivants qui seront remplacés par les "
+#~ "données correspondantes extraites de la fonte : <strong>&#60;name&#62;</"
+#~ "strong> ; <strong>&#60;family&#62;</strong> ; <strong>&#60;variant&#62;</"
+#~ "strong>"
+
+#, kde-format
+#~ msgid "Please select an item in the list or create a new one."
+#~ msgstr "Veuillez sélectionner une entrée dans la liste ou en créer une."
+
+#, kde-format
+#~ msgid "Select font editor"
+#~ msgstr "Éditeur de police"
+
+#, kde-format
+#~ msgid "Select Templates Folder"
+#~ msgstr "Séctionnez un répertoire contenant les modèles"
+
+#, kde-format
+#~ msgid "Do you still want to assign it?"
+#~ msgstr "Voulez-vous vraiment lui assigner ?"
+
+#, kde-format
+#~ msgid "Replace"
+#~ msgstr "Remplacer"
+
+#, kde-format
+#~ msgid "Action"
+#~ msgstr "Action"
+
+#, kde-format
+#~ msgid "Shortcut"
+#~ msgstr "Raccourcis"
+
+#, kde-format
+#~ msgid "Tip"
+#~ msgstr "Astuce"
+
+#, kde-format
+#~ msgid "Select hyphenation dictionary"
+#~ msgstr "Sélectionnez un dictionnaire de coupures"
+
+#, kde-format
+#~ msgid "Downloading"
+#~ msgstr "Télécharge"
+
+#, kde-format
+#~ msgid "User"
+#~ msgstr "Personnel"
+
+#, kde-format
+#~ msgid "Print Sample"
+#~ msgstr "Imprimer l’exemple"
+
+#, kde-format
+#~ msgid "&Activate all"
+#~ msgstr "Tout &Activer"
+
+#, kde-format
+#~ msgid "&Deactivate all"
+#~ msgstr "Tout &Désactiver"
+
+#, kde-format
+#~ msgid "Mi&nimize"
+#~ msgstr "Mi&nimiser"
+
+#, kde-format
+#~ msgid "E&xit"
+#~ msgstr "&Quitter"
+
+#, kde-format
+#~ msgid "&Tags"
+#~ msgstr "É&tiquettes"
+
+#, kde-format
+#~ msgid ""
+#~ "Please confirm that you want to remove\n"
+#~ "the following tag from database:"
+#~ msgstr ""
+#~ "Veuillez confirmer votre farouche volonté de ne plus entendre parler de : "
+
+#, kde-format
+#~ msgid "Save File"
+#~ msgstr "Fichier"
+
+#, kde-format
+#~ msgid ""
+#~ "The program will keep running in the system tray. To terminate the "
+#~ "program, choose <b>Exit</b> in the context menu of the system tray entry."
+#~ msgstr ""
+#~ "L’application continuera à vivre dans la boîte à miniatures, pour "
+#~ "l’achever, selectionnez l’entrée <b>Quitter</b> du menu contextuel de "
+#~ "l’icône et tirer."
+
+#, kde-format
+#~ msgid "Add Directory"
+#~ msgstr "Ajouter un répertoire"
+
+#, kde-format
+#~ msgid "Importing font files... "
+#~ msgstr "Importe les fichiers de fonte..."
+
+#, kde-format
+#~ msgid "Cannot import this font because it is broken:"
+#~ msgstr "Impossible d’importer cette fonte défectueuse :"
+
+#, kde-format
+#~ msgid "Fonts imported: %1"
+#~ msgstr "Fontes importées : %1"
+
+#, kde-format
+#~ msgid "Import a directory"
+#~ msgstr "Importer un répertoire"
+
+#, kde-format
+#~ msgid "Export a fontset"
+#~ msgstr "Exporte un choix de fontes"
+
+#, kde-format
+#~ msgid "Export font book..."
+#~ msgstr "Livre de fontes..."
+
+#, kde-format
+#~ msgid "Export a PDF document that shows selected fonts"
+#~ msgstr "Exporter un document PDF montrant les fontes sélectionnées"
+
+#, kde-format
+#~ msgid ""
+#~ "Fill a template file with metadata for packaging currently selected font "
+#~ "to a Linux distribution"
+#~ msgstr "Exporter des informations selon un modèle (SPEC file par exemple)"
+
+#, kde-format
+#~ msgid "Activate all current"
+#~ msgstr "Active les fontes visibles"
+
+#, kde-format
+#~ msgid "Activate all currently visible fonts"
+#~ msgstr "Active toutes les fontes actuellement filtrées"
+
+#, kde-format
+#~ msgid "Deactivate all current"
+#~ msgstr "Désactive les fontes visibles"
+
+#, kde-format
+#~ msgid "Deactivate all currently visible fonts"
+#~ msgstr "Désactive toutes les fontes actuellement filtrées"
+
+#, kde-format
+#~ msgid "Edit current font"
+#~ msgstr "Éditer la fonte sélectionnée"
+
+#, kde-format
+#~ msgid "Edit currently selected font in a font editor of your choice"
+#~ msgstr "Éditer la fonte courante"
+
+#, kde-format
+#~ msgid ""
+#~ "You don't seem to have a font editor installed. Path to font editor can "
+#~ "be set in Preferences dialog."
+#~ msgstr ""
+#~ "Fontmatrix n’a pu détecter un éditeur de fonte sur votre système, vous "
+#~ "pouvez le sélectionner dans les préférences."
+
+#, kde-format
+#~ msgid "Check Database"
+#~ msgstr "Vérifie la base"
+
+#, kde-format
+#~ msgid "Check Fontmatrix database for dead links to font files"
+#~ msgstr ""
+#~ "Vérifie la bonne synchronisation entre l’état des fichiers de fontes sur "
+#~ "le disque et la base de donnée"
+
+#, kde-format
+#~ msgid "Tag all currently visible files"
+#~ msgstr "Étiquetter toutes les fontes filtrées"
+
+#, kde-format
+#~ msgid "Show TrueType tables"
+#~ msgstr "Affiche les tables TT"
+
+#, kde-format
+#~ msgid ""
+#~ "View hexadecimal values of TrueType tables for currently selected font "
+#~ "file"
+#~ msgstr "Affiche les tables TrueType"
+
+#, kde-format
+#~ msgid "Edit PANOSE metadata"
+#~ msgstr "Éditer les infos PANOSE"
+
+#, kde-format
+#~ msgid "Edit PANOSE metadata without saving changes to font files"
+#~ msgstr ""
+#~ "Éditer les informations PANOSE sans toucher au fichier de fonte lui-même"
+
+#, kde-format
+#~ msgid "Compare"
+#~ msgstr "Comparaison"
+
+#, kde-format
+#~ msgid "Extract fonts..."
+#~ msgstr "Extraire des fontes…"
+
+#, kde-format
+#~ msgid "Extract fonts from documents like PDF to PFM file format"
+#~ msgstr "Extrait des fontes d’un containeur tel que PDF, ZIP, etc."
+
+#, kde-format
+#~ msgid "Find a font using raster sample..."
+#~ msgstr "Trouver une fonte depuis à une image…"
+
+#, kde-format
+#~ msgid "Find a font using a raster sample of a letter"
+#~ msgstr ""
+#~ "Trouve une fonte dans la collection à partir de l’image d’une lettre"
+
+#, kde-format
+#~ msgid "Load settings"
+#~ msgstr "Chargement des paramètres"
+
+#, kde-format
+#~ msgid "Check for Fontmatrix own dir"
+#~ msgstr "Vérification du répertoire"
+
+#, kde-format
+#~ msgid "system fonts added."
+#~ msgstr "fontes système ajoutées"
+
+#, kde-format
+#~ msgid "font descriptions imported from network"
+#~ msgstr "descriptions de fontes importées depuis le réseau"
+
+#, kde-format
+#~ msgid ""
+#~ "You are about to activate a bunch of fonts,\n"
+#~ "it is time to cancel if it was not your intent"
+#~ msgstr ""
+#~ "Vous allez activer un paquet de fontes\n"
+#~ "C’est le moment ou janmais d’annuler"
+
+#, kde-format
+#~ msgid ""
+#~ "You are about to deactivate a bunch of fonts,\n"
+#~ "it is time to cancel if it was not your intent"
+#~ msgstr ""
+#~ "Vous allez désactiver un paquet de fontesC’est le moment ou janmais "
+#~ "d’annuler"
+
+#, kde-format
+#~ msgid "There is no font selected"
+#~ msgstr "Il n’y a pas de fonte sélectionnée"
+
+#, kde-format
+#~ msgid "Support of DragNDrop over http is sheduled but not yet effective"
+#~ msgstr ""
+#~ "Le \"glisser-déposer\" ne marche pas encore pour des ressources sur le web"
+
+#, kde-format
+#~ msgid "Try to run font editor with the selected font as argument"
+#~ msgstr ""
+#~ "Essaie de lancer Fontforge avec la fonte sélectionnée comme argument"
+
+#, kde-format
+#~ msgid ""
+#~ "You don't seem to have font editor installed. Path to font editor can be "
+#~ "set in preferences."
+#~ msgstr "Il semble que vous ne disposez pas de boîte à miniatures"
 
 #~ msgid "About Fontmatrix"
 #~ msgstr "À propos de Fontmatrix"
@@ -5702,9 +7239,6 @@ msgstr ""
 #~ "the following tag:"
 #~ msgstr "Un nom de remplacement pour l’étiquette :"
 
-#~ msgid "Nothing selected"
-#~ msgstr "Rien"
-
 #~ msgid "Fontmatrix"
 #~ msgstr "Fontmatrix"
 
@@ -5900,11 +7434,6 @@ msgstr ""
 
 #, fuzzy
 #~ msgctxt "BookExportDialog|"
-#~ msgid "Style "
-#~ msgstr "Style"
-
-#, fuzzy
-#~ msgctxt "BookExportDialog|"
 #~ msgid "Text"
 #~ msgstr "Texte"
 
@@ -5922,11 +7451,6 @@ msgstr ""
 #~ msgctxt "BookExportDialog|"
 #~ msgid "Body"
 #~ msgstr "Corps de texte"
-
-#, fuzzy
-#~ msgctxt "BookExportDialog|"
-#~ msgid "Headline"
-#~ msgstr "PremiÃ¨re ligne"
 
 #, fuzzy
 #~ msgctxt "BookExportDialog|"
@@ -6052,11 +7576,6 @@ msgstr ""
 #~ msgctxt "FontBook|"
 #~ msgid "body"
 #~ msgstr "Corps de texte"
-
-#, fuzzy
-#~ msgctxt "FontBook|"
-#~ msgid "style"
-#~ msgstr "Style"
 
 #, fuzzy
 #~ msgctxt "FontBook|"
@@ -7698,16 +9217,6 @@ msgstr ""
 #~ msgctxt "typotek|"
 #~ msgid "Canât import this font because itâs broken :"
 #~ msgstr "Cette fonte ne peut être importée car elle est cassée :"
-
-#, fuzzy
-#~ msgctxt "typotek|"
-#~ msgid "Export &Fonts"
-#~ msgstr "Export des &Fontes"
-
-#, fuzzy
-#~ msgctxt "typotek|"
-#~ msgid "Tag All..."
-#~ msgstr "Étiquette tout..."
 
 #, fuzzy
 #~ msgctxt "typotek|"

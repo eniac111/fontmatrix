@@ -16,7 +16,7 @@
 
 TagsWidget_ListModel::TagsWidget_ListModel(QObject *parent)
     : QAbstractListModel(parent)
-    , newTagString(i18n("New Tag"))
+    , newTagString(i18nc("@item:inlistbox default name of a new tag", "New Tag"))
 {
     connect(FMFontDb::DB(), &FMFontDb::tagsChanged, this, &TagsWidget_ListModel::updateTags);
 }

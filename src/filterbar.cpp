@@ -37,17 +37,17 @@
 
 const QString &FilterBar::andOp()
 {
-    static const QString s = i18n("And");
+    static const QString s = i18nc("@item:intext filter operator", "And");
     return s;
 }
 const QString &FilterBar::notOp()
 {
-    static const QString s = i18n("Not");
+    static const QString s = i18nc("@item:intext filter operator", "Not");
     return s;
 }
 const QString &FilterBar::orOp()
 {
-    static const QString s = i18n("Or");
+    static const QString s = i18nc("@item:intext filter operator", "Or");
     return s;
 }
 
@@ -91,7 +91,8 @@ QVariant TagListModel::data(const QModelIndex &index, int role) const
         return QVariant();
     // getTags() is cached and sorted, the specials come first
     const bool special(index.row() < specialTagsCount);
-    const QString tag(special ? i18n("Activated") : FMFontDb::DB()->getTags().value(index.row() - specialTagsCount));
+    const QString tag(special ? i18nc("@item:inlistbox pseudo tag that lists the activated fonts", "Activated")
+                              : FMFontDb::DB()->getTags().value(index.row() - specialTagsCount));
     if (role == Qt::DisplayRole) {
         //		return tag;
         return QVariant();
@@ -470,7 +471,12 @@ void FilterBar::slotTagEdit(const QModelIndex &index)
         return;
     QString tag(tagListModel->data(index, TagListModel::TagString).toString());
     bool ok;
-    QString newTag(QInputDialog::getText(this, i18n("Fontmatrix - edit tag"), i18n("Edit tag: ") + tag, QLineEdit::Normal, QString(), &ok));
+    QString newTag(QInputDialog::getText(this,
+                                         i18nc("@title:window", "Fontmatrix - edit tag"),
+                                         i18nc("@label:textbox", "Edit tag: ") + tag,
+                                         QLineEdit::Normal,
+                                         QString(),
+                                         &ok));
     if (!ok || newTag.isEmpty() || newTag == tag)
         return;
 
@@ -526,7 +532,12 @@ void FilterBar::slotSaveFilter()
         return;
 
     bool ok;
-    QString fname = QInputDialog::getText(this, i18n("Fontmatrix - Filter name"), i18n("Filter name:"), QLineEdit::Normal, QString(""), &ok);
+    QString fname = QInputDialog::getText(this,
+                                          i18nc("@title:window", "Fontmatrix - Filter name"),
+                                          i18nc("@label:textbox", "Filter name:"),
+                                          QLineEdit::Normal,
+                                          QString(""),
+                                          &ok);
     if (!ok || fname.isEmpty())
         return;
 

@@ -104,7 +104,7 @@ QString FMInfoDisplay::writeLangOS2(FontItem *font)
     QStringList llist(font->supportedLangDeclaration());
     if (llist.count() > 0) {
         ret += "<div id=\"langblock\">\n";
-        ret += "\t<div class=\"langblockname\">" + i18n("Unicode Ranges") + "</div>\n";
+        ret += "\t<div class=\"langblockname\">" + i18nc("@title:group", "Unicode Ranges") + "</div>\n";
         ret += "\t<ul>\n";
         for (const auto &ln : std::as_const(llist)) {
             ret += QString("\t\t<li>%1</li>\n").arg(ln);
@@ -175,9 +175,9 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem *font)
         fontType = QString("OpenType");
 
     // one arg() call each: a path or a name may hold a "%2" of its own
-    ret += modelItem.arg(i18n("File"), font->path().replace("/", "/&shy;"));
-    ret += modelItem.arg(i18n("Glyphs count"), QString::number(font->glyphsCount()));
-    ret += modelItem.arg(i18n("Font Type"), fontType);
+    ret += modelItem.arg(i18nc("@label", "File"), font->path().replace("/", "/&shy;"));
+    ret += modelItem.arg(i18nc("@label", "Glyphs count"), QString::number(font->glyphsCount()));
+    ret += modelItem.arg(i18nc("@label", "Font Type"), fontType);
 
     QStringList cmapStrings;
     for (const auto charsets = font->getCharsets(); const auto &c : charsets) {
@@ -189,8 +189,8 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem *font)
         else
             cmapStrings << "<span class=\"encoding\">" + encString + "</span>\n";
     }
-    ret += "<div class=\"infoblock\"><div class=\"infoname\">" + i18n("Charmaps List") + "</div><div class=\"langundefined\">" + font->charmaps().join(", ")
-        + "</div></div>\n";
+    ret += "<div class=\"infoblock\"><div class=\"infoname\">" + i18nc("@title:group", "Charmaps List") + "</div><div class=\"langundefined\">"
+        + font->charmaps().join(", ") + "</div></div>\n";
 
     // 	if ( !moreInfo.isEmpty() ) // moreInfo.isNotEmpty
     {

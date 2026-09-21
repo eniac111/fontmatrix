@@ -52,14 +52,14 @@ FMFloatingMenu::FMFloatingMenu(QWidget *parent, FontItem *item)
 
     bool act(false);
     if (item && !item->isActivated()) {
-        actButton = new QPushButton(i18n("Activate"), this);
+        actButton = new QPushButton(i18nc("@action:button", "Activate"), this);
         actButton->setFont(f);
         menuLayout->addWidget(actButton, 0, 2, Qt::AlignRight);
         connect(actButton, &QPushButton::clicked, this, &FMFloatingMenu::activateFont);
         act = true;
     }
 
-    closeButton = new QPushButton(i18n("close"), this);
+    closeButton = new QPushButton(i18nc("@action:button", "close"), this);
     closeButton->setFont(f);
     menuLayout->addWidget(closeButton, 0, act ? 3 : 2, Qt::AlignRight);
 

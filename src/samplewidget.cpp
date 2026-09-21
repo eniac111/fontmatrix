@@ -723,7 +723,7 @@ void SampleWidget::refillSampleList()
     QList<QString> ul(sl.take(QString("User")));
     uRoot = new QTreeWidgetItem(ui->sampleTextTree);
     //: Identify root of user defined sample texts
-    uRoot->setText(0, i18n("User"));
+    uRoot->setText(0, i18nc("@item:inlistbox group of the samples the user made", "User"));
     if (ul.count()) {
         bool first(true);
         for (const auto &uk : std::as_const(ul)) {
@@ -782,7 +782,7 @@ void SampleWidget::slotPrint()
         connect(printDialog, qOverload<QPrinter *>(&QPrintDialog::accepted), this, &SampleWidget::slotDoPrinting);
     }
 
-    printDialog->setWindowTitle("Fontmatrix - " + i18n("Print Sample") + " - " + font->fancyName());
+    printDialog->setWindowTitle("Fontmatrix - " + i18nc("@title:window", "Print Sample") + " - " + font->fancyName());
     printDialog->open();
 }
 
@@ -861,7 +861,7 @@ void SampleWidget::slotShowOpenType(bool b)
 
 void SampleWidget::slotAddSample()
 {
-    QString nu(i18n("New Sample"));
+    QString nu(i18nc("@item:inlistbox default name of a new sample text", "New Sample"));
     newSampleName = new QTreeWidgetItem();
     newSampleName->setText(0, nu);
     newSampleName->setData(0, Qt::UserRole, QString("NEW_SAMPLE"));

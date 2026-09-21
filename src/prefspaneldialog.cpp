@@ -41,19 +41,19 @@ PrefsPanelDialog::PrefsPanelDialog(QWidget *parent)
     m_uiHolder->setVisible(false);
     setupUi(m_uiHolder);
 
-    m_pageGeneral = addPage(page, i18n("General"));
+    m_pageGeneral = addPage(page, i18nc("@title:tab", "General"));
     m_pageGeneral->setIcon(QIcon::fromTheme(QStringLiteral("preferences-other")));
-    m_pageSystray = addPage(pageSystray, i18n("System tray"));
+    m_pageSystray = addPage(pageSystray, i18nc("@title:tab", "System tray"));
     m_pageSystray->setIcon(QIcon::fromTheme(QStringLiteral("preferences-system")));
-    m_pageDisplay = addPage(pageDisplay, i18n("Display"));
+    m_pageDisplay = addPage(pageDisplay, i18nc("@title:tab", "Display"));
     m_pageDisplay->setIcon(QIcon::fromTheme(QStringLiteral("preferences-desktop-display")));
-    m_pageTools = addPage(page_5, i18n("Tools"));
+    m_pageTools = addPage(page_5, i18nc("@title:tab", "Tools"));
     m_pageTools->setIcon(QIcon::fromTheme(QStringLiteral("applications-utilities")));
-    m_pageSampleText = addPage(page_2, i18n("Samples collection"));
+    m_pageSampleText = addPage(page_2, i18nc("@title:tab", "Samples collection"));
     m_pageSampleText->setIcon(QIcon::fromTheme(QStringLiteral("format-text-bold")));
-    m_pageFiles = addPage(page_3, i18n("Files && Folders"));
+    m_pageFiles = addPage(page_3, i18nc("@title:tab", "Files && Folders"));
     m_pageFiles->setIcon(QIcon::fromTheme(QStringLiteral("folder")));
-    m_pageShortcuts = addPage(page_4, i18n("Shortcuts"));
+    m_pageShortcuts = addPage(page_4, i18nc("@title:tab", "Shortcuts"));
     m_pageShortcuts->setIcon(QIcon::fromTheme(QStringLiteral("configure-shortcuts")));
 
     // Inline banner shown on the System tray page when the host has no tray
@@ -63,7 +63,7 @@ PrefsPanelDialog::PrefsPanelDialog(QWidget *parent)
     m_systrayUnavailable = new KMessageWidget(pageSystray);
     m_systrayUnavailable->setMessageType(KMessageWidget::Warning);
     m_systrayUnavailable->setIcon(QIcon::fromTheme(QStringLiteral("dialog-warning")));
-    m_systrayUnavailable->setText(i18n("This desktop does not provide a system tray. The options below have no effect."));
+    m_systrayUnavailable->setText(i18nc("@info", "This desktop does not provide a system tray. The options below have no effect."));
     m_systrayUnavailable->setCloseButtonVisible(false);
     m_systrayUnavailable->setWordWrap(true);
     m_systrayUnavailable->hide();
@@ -89,8 +89,9 @@ PrefsPanelDialog::PrefsPanelDialog(QWidget *parent)
     systrayFrame->setCheckable(true);
     previewWord->setText(typotek::getInstance()->word());
     previewWord->setToolTip(
-        i18n("You can use the following keywords to be replaced by data from fonts: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; "
-             "<strong>&#60;variant&#62;</strong>"));
+        i18nc("@info:tooltip",
+              "You can use the following keywords to be replaced by data from fonts: <strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; "
+              "<strong>&#60;variant&#62;</strong>"));
     previewSizeSpin->setValue(pSize);
     previewIsRTL->setChecked(typotek::getInstance()->getPreviewRTL());
     previewSubtitled->setChecked(typotek::getInstance()->getPreviewSubtitled());
@@ -108,7 +109,7 @@ PrefsPanelDialog::PrefsPanelDialog(QWidget *parent)
     // 	qDebug()<< "ss" << FMConfig::value("SplashScreen",false).toBool();
     splashCheck->setChecked(FMConfig::value(QStringLiteral("SplashScreen"), true).toBool());
 
-    namedSampleTextText->setText(i18n("Please select an item in the list or create a new one."));
+    namedSampleTextText->setText(i18nc("@info", "Please select an item in the list or create a new one."));
     namedSampleTextText->setEnabled(false);
 
     doConnect();
@@ -350,7 +351,7 @@ void PrefsPanelDialog::setupFontEditor(QString s)
 
 void PrefsPanelDialog::slotFontEditorBrowse()
 {
-    QString s = QFileDialog::getOpenFileName(this, i18n("Select font editor"));
+    QString s = QFileDialog::getOpenFileName(this, i18nc("@title:window", "Select font editor"));
     if (!s.isEmpty()) {
         fontEditorPath->setText(s);
     }
@@ -388,7 +389,7 @@ void PrefsPanelDialog::showPage(PAGE page)
 
 void PrefsPanelDialog::slotTemplatesBrowse()
 {
-    QString s = QFileDialog::getExistingDirectory(this, i18n("Select Templates Folder"), QDir::homePath(), QFileDialog::ShowDirsOnly);
+    QString s = QFileDialog::getExistingDirectory(this, i18nc("@title:window", "Select Templates Folder"), QDir::homePath(), QFileDialog::ShowDirsOnly);
     if (!s.isEmpty()) {
         templatesFolder->setText(s);
     }
@@ -563,8 +564,8 @@ void PrefsPanelDialog::shortcutSet(const QString &shortcut)
     {
         if (KMessageBox::questionTwoActions(this,
                                             "<qt>" + i18nc("action name will be appended to this", "Shortcut is already in use for")
-                                                + QString("<br/><b>%1</b>.<br/>").arg(reserved) + i18n("Do you still want to assign it?") + "</qt>",
-                                            i18n("Replace"),
+                                                + QString("<br/><b>%1</b>.<br/>").arg(reserved) + i18nc("@info", "Do you still want to assign it?") + "</qt>",
+                                            i18nc("@title:window", "Replace"),
                                             KGuiItem(i18nc("@action:button", "Reassign")),
                                             KStandardGuiItem::cancel())
             == KMessageBox::PrimaryAction) {
@@ -599,9 +600,9 @@ void PrefsPanelDialog::reloadShortcuts()
         iRow << iText << iShortcut << iTooltip;
         shortcutModel->appendRow(iRow);
     }
-    shortcutModel->setHeaderData(0, Qt::Horizontal, i18n("Action"));
-    shortcutModel->setHeaderData(1, Qt::Horizontal, i18n("Shortcut"));
-    shortcutModel->setHeaderData(2, Qt::Horizontal, i18n("Tip"));
+    shortcutModel->setHeaderData(0, Qt::Horizontal, i18nc("@title:column", "Action"));
+    shortcutModel->setHeaderData(1, Qt::Horizontal, i18nc("@title:column", "Shortcut"));
+    shortcutModel->setHeaderData(2, Qt::Horizontal, i18nc("@title:column", "Tip"));
     shortcutList->resizeColumnsToContents();
     shortcutList->resizeRowsToContents();
     shortcutList->setSortingEnabled(true);
@@ -632,7 +633,7 @@ void PrefsPanelDialog::slotSplashScreen(bool state)
 
 void PrefsPanelDialog::slotDictDialog()
 {
-    QString s = QFileDialog::getOpenFileName(this, i18n("Select hyphenation dictionary"), QDir::homePath());
+    QString s = QFileDialog::getOpenFileName(this, i18nc("@title:window", "Select hyphenation dictionary"), QDir::homePath());
     if (!s.isEmpty())
         dictEdit->setText(s);
 }

@@ -90,7 +90,7 @@ void FontBookDialog::slotCancel()
 
 void FontBookDialog::slotFileDialog()
 {
-    QString theFile = QFileDialog::getSaveFileName(this, i18n("Save fontBook"), QDir::homePath(), "Portable Document Format (*.pdf)");
+    QString theFile = QFileDialog::getSaveFileName(this, i18nc("@title:window", "Save fontBook"), QDir::homePath(), "Portable Document Format (*.pdf)");
     fileNameEdit->setText(theFile);
 }
 
@@ -123,12 +123,12 @@ void FontBookDialog::slotLoadTemplate(const QString &theTemplate)
     QFile file(templatesMap.value(theTemplate));
     QDomDocument doc("template");
     if (!file.open(QFile::ReadOnly)) {
-        KMessageBox::error(this, i18n("Cannot read %1.", file.fileName()));
+        KMessageBox::error(this, i18nc("@info", "Cannot read %1.", file.fileName()));
         return;
     }
     if (!doc.setContent(&file)) {
         file.close();
-        KMessageBox::error(this, i18n("%1 is not a valid XML file.", file.fileName()));
+        KMessageBox::error(this, i18nc("@info", "%1 is not a valid XML file.", file.fileName()));
         return;
     }
     file.close();
@@ -148,12 +148,12 @@ void FontBookDialog::fillTemplates()
         QFile file(tDir.absoluteFilePath(pathList.at(i)));
         QDomDocument doc("template");
         if (!file.open(QFile::ReadOnly)) {
-            KMessageBox::error(this, i18n("Cannot read %1.", file.fileName()));
+            KMessageBox::error(this, i18nc("@info", "Cannot read %1.", file.fileName()));
             return;
         }
         if (!doc.setContent(&file)) {
             file.close();
-            KMessageBox::error(this, i18n("%1 is not a valid XML file.", file.fileName()));
+            KMessageBox::error(this, i18nc("@info", "%1 is not a valid XML file.", file.fileName()));
             return;
         }
         file.close();

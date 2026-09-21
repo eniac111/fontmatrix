@@ -53,7 +53,7 @@ void TagsWidget::slotActRemovetag()
         return;
     QString currentTag(model->data(idx, Qt::DisplayRole).toString());
     QString message;
-    message = i18n("Please confirm that you want to remove\nthe following tag from database:") + " " + currentTag;
+    message = i18nc("@info", "Please confirm that you want to remove\nthe following tag from database:") + " " + currentTag;
     if (KMessageBox::warningContinueCancel(typotek::getInstance(),
                                            message,
                                            i18nc("@title:window", "Remove Tag"),

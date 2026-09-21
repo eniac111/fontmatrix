@@ -1961,7 +1961,7 @@ QString FontItem::infoGlyph([[maybe_unused]] int index, int code)
     ensureFace();
     QString ret;
     ret += glyphName(code);
-    ret += ", " + i18n("codepoint is U+");
+    ret += ", " + i18nc("@info", "codepoint is U+");
     ret += QString("%1").arg(code, 4, 16, QChar(0x0030));
     ret += " (int" + QString::number(code) + ")";
 
@@ -2759,8 +2759,8 @@ int FontItem::getFromNetwork()
 	rHttp = new QHttp ( url.host() );
 	qCDebug(FONTMATRIX_LOG) << "Init progress Dialog";
 	rProgressDialog = new QProgressDialog ( typotek::getInstance() );
-	rProgressDialog->setWindowTitle ( i18n( "Fontmatrix - Download" ) );
-	rProgressDialog->setLabelText ( i18n ( "Downloading %1.", m_path ) );
+	rProgressDialog->setWindowTitle ( i18nc( "@title:window", "Fontmatrix - Download" ) );
+	rProgressDialog->setLabelText ( i18nc ( "@info:progress", "Downloading %1.", m_path ) );
 	rProgressDialog->show();
 	rProgressDialog->raise();
 	rProgressDialog->activateWindow();

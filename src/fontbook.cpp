@@ -85,7 +85,7 @@ void FontBook::doBook(FontBook::Style s)
     printer = new QPrinter(QPrinter::HighResolution);
     printerRect = printer->pageLayout().fullRectPoints();
     QPrintDialog dialog(printer);
-    dialog.setWindowTitle("Fontmatrix - " + i18n("Print Fontbook"));
+    dialog.setWindowTitle("Fontmatrix - " + i18nc("@title:window", "Print Fontbook"));
 
     if (dialog.exec() != QDialog::Accepted)
         return;
@@ -435,7 +435,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 
         if (!llist.isEmpty()) {
             nameFont.setPointSizeF(6.0);
-            QGraphicsSimpleTextItem *uniText(pScene.addSimpleText(i18n("Unicode coverage"), nameFont));
+            QGraphicsSimpleTextItem *uniText(pScene.addSimpleText(i18nc("@label", "Unicode coverage"), nameFont));
             uniText->setPos(printerRect.width() * 0.5, 600);
             nameFont.setPointSizeF(4.0);
             QGraphicsTextItem *uniList(pScene.addText(llist.join(", ") + QString("."), nameFont));

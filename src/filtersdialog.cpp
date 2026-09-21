@@ -20,17 +20,17 @@
 
 const QString &FiltersDialog::andOp()
 {
-    static const QString s = i18n("And");
+    static const QString s = i18nc("@item:intext filter operator", "And");
     return s;
 }
 const QString &FiltersDialog::notOp()
 {
-    static const QString s = i18n("Not");
+    static const QString s = i18nc("@item:intext filter operator", "Not");
     return s;
 }
 const QString &FiltersDialog::orOp()
 {
-    static const QString s = i18n("Or");
+    static const QString s = i18nc("@item:intext filter operator", "Or");
     return s;
 }
 

@@ -1137,12 +1137,14 @@ void MainViewWidget::slotRemoveCurrentItem()
     if (curItemName.isEmpty())
         return;
     if (theVeryFont->isActivated()) {
-        KMessageBox::information(this, curItemName + i18n(" is activated.\nIf you want to remove it from Fontmatrix database, please deactivate it first."));
+        KMessageBox::information(this,
+                                 curItemName
+                                     + i18nc("@info", " is activated.\nIf you want to remove it from Fontmatrix database, please deactivate it first."));
         return;
     }
     if (KMessageBox::warningContinueCancel(this,
-                                           i18n("You are about to remove a font from Fontmatrix database") + "\n" + curItemName + "\n"
-                                               + i18n("Do you want to continue?"),
+                                           i18nc("@info", "You are about to remove a font from Fontmatrix database") + "\n" + curItemName + "\n"
+                                               + i18nc("@info", "Do you want to continue?"),
                                            i18nc("@title:window", "Remove Font"),
                                            KStandardGuiItem::remove(),
                                            KStandardGuiItem::cancel(),

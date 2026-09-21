@@ -53,7 +53,7 @@ void FMFontExtract::loadDoc(const QString &path)
 {
     QFileInfo fi(path);
     if (!fi.exists()) {
-        docPath->setText(i18n("File does not exist:") + " " + fi.fileName());
+        docPath->setText(i18nc("@info:status", "File does not exist:") + " " + fi.fileName());
         return;
     }
 
@@ -68,7 +68,7 @@ void FMFontExtract::loadDoc(const QString &path)
             }
         }
     } else {
-        docPath->setText(i18n("Format not handled."));
+        docPath->setText(i18nc("@info:status", "Format not handled."));
     }
 
     for (int i(0); i < fontList->count(); ++i) {
@@ -120,7 +120,7 @@ void FMFontExtract::slotExtract()
         }
     }
     if (!failedExt.isEmpty()) {
-        KMessageBox::error(this, i18n("Failed to extract:\n%1", failedExt.join("\n")));
+        KMessageBox::error(this, i18nc("@info", "Failed to extract:\n%1", failedExt.join("\n")));
     }
 }
 
