@@ -46,7 +46,6 @@
 #include "playwidget.h"
 #include "prefspaneldialog.h"
 #include "remotedir.h"
-//#include "savedata.h"
 #include "shortcuts.h"
 #include "systray.h"
 #include "tagswidget.h"
