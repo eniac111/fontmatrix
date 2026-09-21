@@ -26,8 +26,8 @@ FMUniBlocks::FMUniBlocks()
 	loadBlocks();
 	Q_ASSERT(!p.isEmpty());
 	
-	f = c = p.keys().first();
-	l = p.keys().last();
+	f = c = p.firstKey();
+	l = p.lastKey();
 	
 }
 

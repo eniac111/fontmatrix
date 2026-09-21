@@ -318,9 +318,10 @@ QString FMInfoDisplay::writePanose(FontItem * font)
 		QStringList pl ( pN.split ( ":" ) );
 		if ( pl.count() == 10 )
 		{
-			for ( int i ( 0 );  i < FontStrings::Panose().keys().count(); ++i )
+			const auto panoseKeys(FontStrings::Panose().keys());
+			for ( int i ( 0 );  i < panoseKeys.count(); ++i )
 			{
-				FontStrings::PanoseKey k ( FontStrings::Panose().keys() [i] );
+				FontStrings::PanoseKey k ( panoseKeys.at ( i ) );
 				int pValue ( pl[i].toInt() );
 				panBlockOut += "<div class=\"panose_name\">" + FontStrings::PanoseKeyName ( k ) + "</div>\n";
 				panBlockOut += "<div class=\"panose_desc\">" + FontStrings::Panose().value ( k ).value ( pValue )/* + " - "+ pl[i]*/ +"</div>\n";

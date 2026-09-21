@@ -209,7 +209,7 @@ QVariant FMFontDb::getValue ( const QString & id, Field field, bool useCache )
 	{
 		if(rValueCache.contains(id))
 		{
-			if(rValueCache[id].contains(field))
+			if(rValueCache.value ( id ).contains(field))
 			{
 				// 			qDebug() <<"getCachedValue"<< fieldName.value ( field ) <<id <<rValueCache[id][field];
 				return rValueCache[id][field];
@@ -297,7 +297,7 @@ FontInfoMap FMFontDb::getInfoMap ( const QString & id )
 	if ( temporaryFont.contains(id) )
 	{
 		qCDebug(FONTMATRIX_LOG) <<"It is a temp Id";
-		return temporaryFont[id]->moreInfo();
+		return temporaryFont.value ( id )->moreInfo();
 	}
 	QString qs ( QStringLiteral ( "SELECT * FROM %1 WHERE %2=?" )
 	             .arg ( tableName.value ( Info ), fieldName.value ( Id ) ) );
@@ -630,11 +630,11 @@ FontItem * FMFontDb::Font ( const QString & id , bool noTemporary )
 	{
 		if(noTemporary)
 		{
-			delete temporaryFont[id];
+			delete temporaryFont.value ( id );
 			temporaryFont.remove(id);
 		}
 		else
-			return temporaryFont[id];
+			return temporaryFont.value ( id );
 	}
 	int fid ( getId ( id ) );
 	if ( fid > 0 )

@@ -47,7 +47,7 @@ FloatingWidget * FloatingWidgetsRegister::Widget(const QString &fid, const QStri
 	FloatingWidgetsRegister *fwr(that());
 	if(fwr->fwMap.contains(typ))
 	{
-		if(fwr->fwMap[typ].contains(fid))
+		if(fwr->fwMap.value ( typ ).contains(fid))
 		{
 			if(fwr->fwMap[typ][fid].isNull())
 				fwr->fwMap[typ].remove(fid);
@@ -65,7 +65,7 @@ QList<FloatingWidget*> FloatingWidgetsRegister::AllWidgets()
 	ret.clear();
 	for (const auto keysList = fwr->fwMap.keys(); const auto& t : keysList)
 	{
-		for (const auto loopKeys = fwr->fwMap[t].keys(); const auto& f : loopKeys)
+		for (const auto loopKeys = fwr->fwMap.value ( t ).keys(); const auto& f : loopKeys)
 		{
 			if(fwr->fwMap[t][f].isNull())
 				fwr->fwMap[t].remove(f);

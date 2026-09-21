@@ -56,7 +56,7 @@ FMAltContext * FMAltContextLib::SetCurrentContext ( const QString & tid, const Q
 
 	emit that()->contextChanged();
 
-	return that()->cmap[cid];
+	return that()->cmap.value ( cid );
 
 }
 
@@ -64,7 +64,7 @@ FMAltContext * FMAltContextLib::GetCurrentContext()
 {
 	if ( that()->cmap.contains ( that()->current ) )
 	{
-		return that()->cmap[that()->current];
+		return that()->cmap.value ( that()->current );
 	}
 	return nullptr;
 }

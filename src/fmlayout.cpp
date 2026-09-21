@@ -967,7 +967,7 @@ int FMLayout::sepCount(int start, int end, const GlyphList & gl)
 {
 	if ( sepCache.contains ( start ) )
 	{
-		if ( sepCache[start].contains ( end ) )
+		if ( sepCache.value ( start ).contains ( end ) )
 			return sepCache[start][end];
 	}
 	int storeStart(start);
@@ -1006,7 +1006,7 @@ double FMLayout::distance ( int start, int end, const GlyphList& gl, bool strip 
 	{
 		if ( distCache.contains ( start ) )
 		{
-			if ( distCache[start].contains ( end ) )
+			if ( distCache.value ( start ).contains ( end ) )
 				return distCache[start][end];
 		}
 	}
@@ -1014,7 +1014,7 @@ double FMLayout::distance ( int start, int end, const GlyphList& gl, bool strip 
 	{
 		if ( stripCache.contains ( start ) )
 		{
-			if ( stripCache[start].contains ( end ) )
+			if ( stripCache.value ( start ).contains ( end ) )
 				return stripCache[start][end];
 		}
 	}

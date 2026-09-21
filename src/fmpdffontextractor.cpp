@@ -130,7 +130,7 @@ bool FMPDFFontExtractor::write(const QString & name, QIODevice* openedDevice)
 	if (!mfont.contains(name))
 		return false;
 
-	PoDoFo::PdfObject* fontFile = mfont[name];
+	PoDoFo::PdfObject* fontFile = mfont.value ( name );
 	auto* stream = fontFile->GetStream();
 	if (!stream)
 		return false;

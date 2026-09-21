@@ -136,7 +136,7 @@ void MetaWidget::addFilter()
 		for (const auto metFieldsKeys = metFields.keys(); auto* l : metFieldsKeys)
 		{
 			QString t(l->text());
-			FMFontDb::InfoItem it(metFields[l]);
+			FMFontDb::InfoItem it(metFields.value ( l ));
 			if(!t.isEmpty())
 			{
 				if(!mList.contains(t))

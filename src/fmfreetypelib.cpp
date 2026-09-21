@@ -65,7 +65,7 @@ void FMFreetypeLib::releaseLibrary()
 		QThread *t(reinterpret_cast<QThread*>(sender()));
 		if(t && libraries.contains(t))
 		{
-			FT_Done_FreeType(libraries[t]);
+			FT_Done_FreeType(libraries.value ( t ));
 			libraries.remove(t);
 		}
 	}

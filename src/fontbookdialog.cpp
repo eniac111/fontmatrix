@@ -141,7 +141,7 @@ void FontBookDialog::slotLoadTemplate(const QString &theTemplate)
 	if(theTemplate.isEmpty())
 		return;
 	
-	QFile file(templatesMap[theTemplate]);
+	QFile file(templatesMap.value ( theTemplate ));
 	QDomDocument doc("template");
 	if ( !file.open ( QFile::ReadOnly ) )
 	{

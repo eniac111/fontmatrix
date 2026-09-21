@@ -84,9 +84,9 @@ void FilterData::operateFilter(QList<FontItem *>fl)
 	QList<FontItem*> notList;
 	QList<FontItem*> andList;
 
-	bool notOp(vData[Not].toBool());
-	bool andOp(vData[And].toBool());
-	bool orOp(vData[Or].toBool());
+	bool notOp(vData.value ( Not ).toBool());
+	bool andOp(vData.value ( And ).toBool());
+	bool orOp(vData.value ( Or ).toBool());
 
 	FMFontDb* fmdb(FMFontDb::DB());
 

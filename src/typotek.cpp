@@ -1748,7 +1748,7 @@ QString typotek::defaultSampleName()
 	if(us.contains(i18n("default")))
 		return QString("User::") + QString("default");
 	else if(us.count() > 0)
-		return QString("User::") + us.keys().first();
+		return QString("User::") + us.firstKey();
 	else
 	{
 		const QMap<QString, QMap<QString,QString> >& ss(dataLoader->systemSamples());
@@ -1759,7 +1759,7 @@ QString typotek::defaultSampleName()
 		const QLocale sysLocale(QLocale::system());
 		QString l(groupOf(sysLocale));
 		if((sysLocale.language() != QLocale::C) && (ss.contains(l)) && (ss[l].count() > 0))
-			return l + QString("::") + ss[l].keys().first();
+			return l + QString("::") + ss.value(l).firstKey();
 		else
 		{
 			// Prefer Latin-script samples as fallback so the widget shows something on first use
@@ -1768,12 +1768,12 @@ QString typotek::defaultSampleName()
 			{
 				const QString preferred(groupOf(QLocale(code)));
 				if(ss.contains(preferred) && ss[preferred].count() > 0)
-					return preferred + QString("::") + ss[preferred].keys().first();
+					return preferred + QString("::") + ss.value(preferred).firstKey();
 			}
 			for (const auto sampleGroups = ss.keys(); const auto& k : sampleGroups)
 			{
 				if(ss[k].count() > 0)
-					return k + QString("::") + ss[k].keys().first();
+					return k + QString("::") + ss.value(k).firstKey();
 			}
 		}
 	}
@@ -2509,7 +2509,7 @@ void typotek::updateFloatingStatus()
 	{
 		if(!fwl.contains(f))
 		{
-			viewMenu->removeAction(floatingWidgets[f]);
+			viewMenu->removeAction(floatingWidgets.value ( f ));
 			floatingWidgets.remove(f);
 		}
 	}
@@ -2518,7 +2518,7 @@ void typotek::updateFloatingStatus()
 	{
 		if(floatingWidgets.contains(f))
 		{
-			floatingWidgets[f]->setChecked(f->isVisible());
+			floatingWidgets.value ( f )->setChecked(f->isVisible());
 		}
 		else
 		{
@@ -2527,7 +2527,7 @@ void typotek::updateFloatingStatus()
 			connect(f, SIGNAL(visibilityChange()), this, SLOT(updateFloatingStatus()));
 			connect(wa, SIGNAL(triggered(bool)), f, SLOT(activate(bool)));
 			floatingWidgets.insert(f,  wa);
-			floatingWidgets[f]->setChecked(f->isVisible());
+			floatingWidgets.value ( f )->setChecked(f->isVisible());
 			viewMenu->addAction(wa);
 		}
 	}

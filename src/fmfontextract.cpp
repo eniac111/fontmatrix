@@ -72,7 +72,7 @@ void FMFontExtract::loadDoc(const QString & path)
 
 	if(extractors.contains(suffix))
 	{
-		currentExtractor = extractors[suffix];
+		currentExtractor = extractors.value ( suffix );
 		fontList->clear();
 		if(currentExtractor->loadFile(path))
 		{

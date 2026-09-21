@@ -26,7 +26,7 @@ class FMDumpInfo
 		~FMDumpInfo();
 		
 		QStringList infos(){return m_info.keys();}
-		QString info(const QString& k){return m_info[k];}
+		QString info(const QString& k){return m_info.value ( k );}
 		void setModel(const QString& model){m_model = model;}
 		bool dumpInfo(const QString& filepath);
 		

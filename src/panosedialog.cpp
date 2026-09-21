@@ -36,11 +36,11 @@ FMPanoseDialog::~ FMPanoseDialog()
 {
 	for (const auto m_boxKeys = m_box.keys(); const auto& s : m_boxKeys)
 	{
-		delete m_box[s];
+		delete m_box.value ( s );
 	}
 	for (const auto m_labelKeys = m_label.keys(); const auto& s : m_labelKeys)
 	{
-		delete m_label[s];
+		delete m_label.value ( s );
 	}
 }
 
@@ -71,21 +71,21 @@ void FMPanoseDialog::populateDialog()
 		int cIndex(0);
 		for (const auto pmapKeys = pmap[pk].keys(); const auto& ik : pmapKeys)
 		{
-			m_box[sk]->addItem( pmap.value(pk).value(ik), ik );
+			m_box.value ( sk )->addItem( pmap.value(pk).value(ik), ik );
 			if(ik == pValue)
-				m_box[sk]->setCurrentIndex(cIndex);
+				m_box.value ( sk )->setCurrentIndex(cIndex);
 			++cIndex;
 			
 		}
-		vLayout->addWidget(m_label[sk]);
-		vLayout->addWidget(m_box[sk]);
+		vLayout->addWidget(m_label.value ( sk ));
+		vLayout->addWidget(m_box.value ( sk ));
 		
 		pk = FontStrings::nextPanoseKey(pk);
 	}
 	
 	for (const auto m_boxKeysList = m_box.keys(); const auto& sk : m_boxKeysList)
 	{
-		connect(m_box[sk], SIGNAL(currentIndexChanged (int)), this, SLOT(panoseChange(int)));
+		connect(m_box.value ( sk ), SIGNAL(currentIndexChanged (int)), this, SLOT(panoseChange(int)));
 	}
 }
 

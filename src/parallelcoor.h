@@ -18,6 +18,8 @@
 #ifndef PARALLELCOOR_H
 #define PARALLELCOOR_H
 
+#include <iterator>
+
 #include <QString>
 #include <QPair>
 #include <QMap>
@@ -69,8 +71,9 @@ class ParallelCoorDataSet : public QMap<QString, QList<QString> >
 		{
 			if(idx < count())
 			{
-				const QString k(keys().at(idx));
-				return QPair<QString, QList<QString> >(k, value(k));
+				auto it(constBegin());
+				std::advance(it, idx);
+				return QPair<QString, QList<QString> >(it.key(), it.value());
 			}
 			return QPair<QString, QList<QString> >();
 		}

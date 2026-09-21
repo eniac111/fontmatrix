@@ -36,8 +36,8 @@ void FilterPanose::operate()
 {
 	QList<FontDBResult> dbresult( FMFontDb::DB()->getValues( FMFontDb::Panose ) );
 	QList<FontItem*> fil;
-	int paramIdx(vData[Param].toInt());
-	int val(vData[Value].toInt());
+	int paramIdx(vData.value ( Param ).toInt());
+	int val(vData.value ( Value ).toInt());
 	int fv(0);
 	for(int i(0); i < dbresult.count() ; ++i)
 	{

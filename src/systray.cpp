@@ -234,7 +234,7 @@ void Systray::newTag(QString name)
 
 void Systray::deleteTag(const QString &name)
 {
-	QAction *tmp = tagActions[name];
+	QAction *tmp = tagActions.value ( name );
 	if (tmp) {
 		tagMenu->removeAction(tmp);
 		tagActions.remove(name);

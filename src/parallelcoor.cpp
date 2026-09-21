@@ -501,7 +501,7 @@ void ParallelCoorView::drawValues()
 		marks << mi;
 		if(cfilter.contains(di))
 		{
-			if(cfilter[di].contains(i))
+			if(cfilter.value ( di ).contains(i))
 				vi->setFont(fontS);
 			else
 				vi->setFont(fontV);
@@ -581,7 +581,7 @@ void ParallelCoorView::setFilter ( const QMap< QString, QStringList >& theValue 
 	{
 		if(m_filter.contains(m_dataSet->at(i).first))
 		{
-			for (const auto range = m_filter[m_dataSet->at(i).first]; const auto& v : range)
+			for (const auto range = m_filter.value ( m_dataSet->at(i).first ); const auto& v : range)
 			{
 				cfilter[i] << m_dataSet->at(i).second.indexOf(v);
 			}

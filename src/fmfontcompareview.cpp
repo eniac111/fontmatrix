@@ -296,8 +296,8 @@ void FMFontCompareView::removeFont(int level)
 {
 	if(glyphs.contains(level))
 	{
-		if(glyphs[level])
-			delete glyphs[level];
+		if(glyphs.value ( level ))
+			delete glyphs.value ( level );
 		glyphs.remove(level);
 	}
 	elements.remove(level);
@@ -313,7 +313,7 @@ void FMFontCompareView::removeFont(int level)
 		{
 			glyphs[i-1] = glyphs[i];
 			glyphs.remove(i);
-			glyphs[i-1]->setIndex(i-1);
+			glyphs.value ( i-1 )->setIndex(i-1);
 			
 			elements[i-1] = elements[i];
 			elements.remove(i);
@@ -330,7 +330,7 @@ void FMFontCompareView::changeChar(uint ccode)
 	thechar = ccode;
 	for (const auto glyphsKeysList = glyphs.keys(); const auto& l : glyphsKeysList)
 	{
-		glyphs[l]->setChar(thechar);
+		glyphs.value ( l )->setChar(thechar);
 	}
 	updateGlyphs();
 }
@@ -338,7 +338,7 @@ void FMFontCompareView::changeChar(uint ccode)
 void FMFontCompareView::changeChar(int level, uint ccode)
 {
 	if(glyphs.contains(level))
-		glyphs[level]->setChar(ccode);
+		glyphs.value ( level )->setChar(ccode);
 	updateGlyphs();
 }
 
@@ -351,7 +351,7 @@ void FMFontCompareView::setElements(int level, FMFontCompareItem::GElements elem
 
 FMFontCompareItem::GElements FMFontCompareView::getElements(int level)
 {
-	return elements[level];
+	return elements.value ( level );
 }
 
 void FMFontCompareView::setColor(int level, QColor color)
@@ -368,7 +368,7 @@ void FMFontCompareView::setOffset(int level, double offset)
 
 double FMFontCompareView::getOffset(int level)
 {
-	return offsets[level];
+	return offsets.value ( level );
 }
 
 void FMFontCompareView::initPensAndBrushes()
@@ -400,7 +400,7 @@ void FMFontCompareView::updateGlyphs()
 {
 	for (const auto loopGlyphsKeys = glyphs.keys(); const auto& l : loopGlyphsKeys)
 	{
-		glyphs[l]->show(elements[l], colors[l], offsets[l]);
+		glyphs.value ( l )->show(elements.value ( l ), colors.value ( l ), offsets.value ( l ));
 	}
 }
 
@@ -409,7 +409,7 @@ QColor FMFontCompareView::getColor(int level)
 // 	if(glyphs.contains(level))
 // 		return glyphs[level]->getColor();
 // 	return QColor();
-	return colors[level];
+	return colors.value ( level );
 }
 
 void FMFontCompareView::mousePressEvent(QMouseEvent * e)

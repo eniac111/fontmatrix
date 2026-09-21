@@ -173,9 +173,9 @@ void RemoteDir::eventEndDownload()
 	QMap<int, QByteArray*>::const_iterator bIt;
 	for(bIt = httpBuffers.constBegin(); bIt != httpBuffers.constEnd(); ++bIt)
 	{
-		if(httpRequests[bIt.key()] == 0)
+		if(httpRequests.value ( bIt.key() ) == 0)
 			continue;
-		QString path(rDirs[bIt.key()]);
+		QString path(rDirs.value ( bIt.key() ));
 		qCDebug(FONTMATRIX_LOG)<< "Path("<<bIt.key()<<")->"<< path;
 		QDomDocument doc ( "fontdata" );
 		doc.setContent(*(bIt.value()));
@@ -224,7 +224,7 @@ void RemoteDir::getPreviews()
 	QMap<int, QByteArray*>::const_iterator bIt;
 	for(bIt = httpBuffers.constBegin(); bIt != httpBuffers.constEnd(); ++bIt)
 	{
-		if(httpRequests[bIt.key()] == 0)
+		if(httpRequests.value ( bIt.key() ) == 0)
 			continue;
 		
 		QDomDocument doc ( "fontdata" );

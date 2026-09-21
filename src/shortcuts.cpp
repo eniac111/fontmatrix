@@ -89,16 +89,16 @@ QString Shortcuts::isReserved(const QString &shortcut, const QString &actionText
 void Shortcuts::setShortcut(const QString &shortcut, const QString &actionText)
 {
 	if (actions.contains(cleanName(actionText))) {
-		actions[cleanName(actionText)]->setShortcut(shortcut);
-		FMConfig::setValue(settingsKey(actions[cleanName(actionText)]), shortcut);
+		actions.value ( cleanName(actionText) )->setShortcut(shortcut);
+		FMConfig::setValue(settingsKey(actions.value ( cleanName(actionText) )), shortcut);
 	}
 }
 
 void Shortcuts::clearShortcut(const QString &actionText)
 {
 	if (actions.contains(cleanName(actionText))) {
-		actions[cleanName(actionText)]->setShortcut(QKeySequence());
-		FMConfig::setValue(settingsKey(actions[cleanName(actionText)]), QString());
+		actions.value ( cleanName(actionText) )->setShortcut(QKeySequence());
+		FMConfig::setValue(settingsKey(actions.value ( cleanName(actionText) )), QString());
 	}
 }
 

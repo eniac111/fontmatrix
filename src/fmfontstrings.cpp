@@ -485,7 +485,7 @@ QString FontStrings::FsType(int fstype_part, bool shortString)
 {
 	FontStrings *that(getInstance());
 	if(!shortString)
-		return that->m_FsType[fstype_part];
+		return that->m_FsType.value ( fstype_part );
 	else
 	{
 		if(FontItem::NOT_RESTRICTED == fstype_part)

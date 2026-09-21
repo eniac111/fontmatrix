@@ -36,8 +36,8 @@ QString FilterMeta::type() const
 
 void FilterMeta::operate()
 {
-	QString fs ( vData[Value].toString() );
-	int ff(vData[Field].toInt());
+	QString fs ( vData.value ( Value ).toString() );
+	int ff(vData.value ( Field ).toInt());
 
 	if(ff == FILTER_FIELD_SPECIAL_UNICODE)  //Unicode
 	{
@@ -72,9 +72,10 @@ void FilterMeta::operate()
 		FMFontDb::InfoItem k;
 		QList<FontItem*> tmpList;
 		tmpList.clear();
-		for(int gIdx(0); gIdx < FontStrings::Names().keys().size() ; ++gIdx)
+		const auto infoNames(FontStrings::Names().keys());
+		for(int gIdx(0); gIdx < infoNames.size() ; ++gIdx)
 		{
-			k = FontStrings::Names().keys()[gIdx];
+			k = infoNames.at(gIdx);
 			if(k !=  FMFontDb::AllInfo)
 			{
 				tmpList +=  FMFontDb::DB()->Fonts(fs,k);

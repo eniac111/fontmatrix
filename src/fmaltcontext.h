@@ -73,8 +73,8 @@ public:
 	void restoreRun(){run r = runStore.takeLast(); runPar = r.par;runWord = r.word; runChunk = r.chunk;}
 
 	int maxPar(){return m_alt.count();}
-	int maxWord(){return m_alt[runPar].count();}
-	int maxChunk(){return m_alt[runPar][runWord].count();}
+	int maxWord(){return m_alt.value ( runPar ).count();}
+	int maxChunk(){return m_alt.value ( runPar ).value ( runWord ).count();}
 	int maxGlyph(){return m_alt[runPar][runWord][runChunk].count();}
 	int maxAlt(const int& gIdx){return m_alt[runPar][runWord][runChunk][gIdx].count();}
 
@@ -115,7 +115,7 @@ public:
 		QMap<int , QMap< int , QMap<int , QString> > > t_chunks;
 		for(int p(0);p < m_alt.count(); ++p)
 		{
-			for(int w(0);w < m_alt[p].count(); ++w)
+			for(int w(0);w < m_alt.value ( p ).count(); ++w)
 			{
 				for(int c(0);c < m_alt[p][w].count(); ++c)
 				{
