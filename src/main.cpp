@@ -45,8 +45,13 @@
 #include "systray.h"
 
 #ifdef Q_OS_WIN
+// KDECompilerSettings already defines both on the command line
+#ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
+#endif
+#ifndef NOMINMAX
 #define NOMINMAX
+#endif
 #include <windows.h>
 #include <cstdio>
 #endif

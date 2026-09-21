@@ -10,10 +10,10 @@ QString getWin32SystemFontDir()
 	WCHAR dir[512];
 	if ( SHGetSpecialFolderPathW(nullptr, dir, CSIDL_FONTS, false) )
 	{
-		qstr = QString::fromUtf16((const unsigned short*) dir);
-		if( !qstr.endsWith("\\") )
-			qstr += "\\";
-		qstr.replace( '\\', '/' );
+		qstr = QString::fromWCharArray(dir);
+		if( !qstr.endsWith(QLatin1Char('\\')) )
+			qstr += QLatin1Char('\\');
+		qstr.replace( QLatin1Char('\\'), QLatin1Char('/') );
 	}
 	return qstr;
 }
