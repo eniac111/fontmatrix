@@ -242,19 +242,19 @@ void Systray::deleteTag(const QString &name)
 void Systray::createActions()
 {
     activateAllAction = new QAction(i18n("&Activate all"), this);
-    connect(activateAllAction, SIGNAL(triggered()), this, SLOT(slotActivateAll()));
+    connect(activateAllAction, &QAction::triggered, this, &Systray::slotActivateAll);
 
     deactivateAllAction = new QAction(i18n("&Deactivate all"), this);
-    connect(deactivateAllAction, SIGNAL(triggered()), this, SLOT(slotDeactivateAll()));
+    connect(deactivateAllAction, &QAction::triggered, this, &Systray::slotDeactivateAll);
 
     minimizeAction = new QAction(i18n("Mi&nimize"), this);
-    connect(minimizeAction, SIGNAL(triggered()), this, SLOT(slotMinimize()));
+    connect(minimizeAction, &QAction::triggered, this, &Systray::slotMinimize);
 
     restoreAction = new QAction(i18n("&Restore"), this);
-    connect(restoreAction, SIGNAL(triggered()), this, SLOT(slotRestore()));
+    connect(restoreAction, &QAction::triggered, this, &Systray::slotRestore);
 
     quitAction = new QAction(i18n("E&xit"), this);
-    connect(quitAction, SIGNAL(triggered()), this, SLOT(slotQuit()));
+    connect(quitAction, &QAction::triggered, this, &Systray::slotQuit);
 }
 
 void Systray::createTrayIcon()
@@ -301,7 +301,7 @@ void Systray::createTagMenu()
 			newTag(tagName);
 	}
 
-	connect(tagMenu, SIGNAL(triggered(QAction*)), this, SLOT(slotTagMenuClicked(QAction*)));
+	connect(tagMenu, &QMenu::triggered, this, &Systray::slotTagMenuClicked);
 }
 
 bool Systray::isVisible()

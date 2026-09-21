@@ -26,13 +26,13 @@ FMDumpDialog::FMDumpDialog(FontItem * font, QWidget * parent)
 	m_dumpinfo = new FMDumpInfo(font);
 	nameList->addItems(m_dumpinfo->infos());
 	
-	connect(browseButton, SIGNAL(clicked()), this, SLOT(browseFile()));
-	connect(loadButton, SIGNAL(clicked()), this, SLOT(browseModel()));
+	connect(browseButton, &QPushButton::clicked, this, &FMDumpDialog::browseFile);
+	connect(loadButton, &QPushButton::clicked, this, &FMDumpDialog::browseModel);
 	
-	connect(buttonBox, SIGNAL(accepted()), this, SLOT(slotDumpIt()));
-	connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+	connect(buttonBox, &QDialogButtonBox::accepted, this, &FMDumpDialog::slotDumpIt);
+	connect(buttonBox, &QDialogButtonBox::rejected, this, &FMDumpDialog::reject);
 	
-	connect(modelText, SIGNAL(insertContent()), this, SLOT(insertSelectedField()));
+	connect(modelText, &ModelText::insertContent, this, &FMDumpDialog::insertSelectedField);
 }
 
 FMDumpDialog::~ FMDumpDialog()

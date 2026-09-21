@@ -63,15 +63,15 @@ FamilyWidget::FamilyWidget(QWidget *parent) :
 
 
 
-	connect(ui->returnListButton, SIGNAL(clicked()), this, SIGNAL(backToList()));
-	connect(ui->familyPreview, SIGNAL(widthChanged(int)),this,SLOT(slotPreviewUpdateSize(int)));
-	connect(ui->familyPreview,SIGNAL(activated ( const QModelIndex&)),this,SLOT( slotPreviewSelected(const QModelIndex& )));
-	connect(ui->familyPreview,SIGNAL(clicked ( const QModelIndex&)),this,SLOT( slotPreviewSelected(const QModelIndex& )));
-	connect(ui->familyPreview,SIGNAL(pressed( const QModelIndex&)),this,SLOT( slotPreviewSelected(const QModelIndex& )));
-	connect(ui->infoButton, SIGNAL(clicked()), this, SLOT(slotShowInfo()));
-	connect(ui->sampleButton, SIGNAL(clicked()), this, SLOT(slotShowSample()));
-	connect(ui->chartButton, SIGNAL(clicked()), this, SLOT(slotShowChart()));
-	connect(ui->activationButton, SIGNAL(clicked()), this, SLOT(slotShowActivation()));
+	connect(ui->returnListButton, &QPushButton::clicked, this, &FamilyWidget::backToList);
+	connect(ui->familyPreview, &FMPreviewView::widthChanged, this, &FamilyWidget::slotPreviewUpdateSize);
+	connect(ui->familyPreview, &FMPreviewView::activated, this, &FamilyWidget::slotPreviewSelected);
+	connect(ui->familyPreview, &FMPreviewView::clicked, this, &FamilyWidget::slotPreviewSelected);
+	connect(ui->familyPreview, &FMPreviewView::pressed, this, &FamilyWidget::slotPreviewSelected);
+	connect(ui->infoButton, &QToolButton::clicked, this, &FamilyWidget::slotShowInfo);
+	connect(ui->sampleButton, &QToolButton::clicked, this, &FamilyWidget::slotShowSample);
+	connect(ui->chartButton, &QToolButton::clicked, this, &FamilyWidget::slotShowChart);
+	connect(ui->activationButton, &QToolButton::clicked, this, &FamilyWidget::slotShowActivation);
 
 }
 
@@ -205,7 +205,7 @@ void FamilyWidget::slotShowSample()
 			SampleWidget *sw(new SampleWidget(curVariant, ui->pageSample));
 			ui->displayStack->insertWidget(FAMILY_VIEW_SAMPLE, sw);
 			sample = sw;
-			connect(sample, SIGNAL(detached()), this, SLOT(slotDetachSample()));
+			connect(sample, &FloatingWidget::detached, this, &FamilyWidget::slotDetachSample);
 		}
 		ui->displayStack->setCurrentWidget(sample);
 	}
@@ -236,7 +236,7 @@ void FamilyWidget::slotShowChart()
 			ChartWidget *cw(new ChartWidget(curVariant, uniBlock, ui->pageChart));
 			ui->displayStack->insertWidget(FAMILY_VIEW_CHART, cw);
 			chart = cw;
-			connect(chart, SIGNAL(detached()), this, SLOT(slotDetachChart()));
+			connect(chart, &FloatingWidget::detached, this, &FamilyWidget::slotDetachChart);
 		}
 		ui->displayStack->setCurrentWidget(chart);
 	}
@@ -272,14 +272,14 @@ void FamilyWidget::slotShowActivation()
 
 void FamilyWidget::slotDetachSample()
 {
-	disconnect(sample, SIGNAL(detached()), this, SLOT(slotDetachSample()));
+	disconnect(sample, &FloatingWidget::detached, this, &FamilyWidget::slotDetachSample);
 	sample = nullptr;
 	slotShowInfo();
 }
 
 void FamilyWidget::slotDetachChart()
 {
-	disconnect(chart, SIGNAL(detached()), this, SLOT(slotDetachChart()));
+	disconnect(chart, &FloatingWidget::detached, this, &FamilyWidget::slotDetachChart);
 	uniBlock = reinterpret_cast<ChartWidget*>(chart)->currentBlock();
 	chart = nullptr;
 	slotShowInfo();

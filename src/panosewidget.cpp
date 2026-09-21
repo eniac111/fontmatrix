@@ -76,7 +76,7 @@ PanoseWidget::PanoseWidget(QWidget *parent) :
 		}
 	}
 
-	connect(m_ui->pTree, SIGNAL(itemClicked(QTreeWidgetItem * , int )), this, SLOT(slotSelect(QTreeWidgetItem * , int )));
+	connect(m_ui->pTree, &QTreeWidget::itemClicked, this, &PanoseWidget::slotSelect);
 }
 
 PanoseWidget::~PanoseWidget()
@@ -89,11 +89,11 @@ void PanoseWidget::doConnect(const bool &c)
 {
 	if(c)
 	{
-		connect(m_ui->pTree, SIGNAL(itemClicked(QTreeWidgetItem * , int )), this, SLOT(slotSelect(QTreeWidgetItem * , int )));
+		connect(m_ui->pTree, &QTreeWidget::itemClicked, this, &PanoseWidget::slotSelect);
 	}
 	else
 	{
-		disconnect(m_ui->pTree, SIGNAL(itemClicked(QTreeWidgetItem * , int )), this, SLOT(slotSelect(QTreeWidgetItem * , int )));
+		disconnect(m_ui->pTree, &QTreeWidget::itemClicked, this, &PanoseWidget::slotSelect);
 	}
 }
 

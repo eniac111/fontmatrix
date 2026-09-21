@@ -45,8 +45,8 @@ FiltersDialogItem::FiltersDialogItem(const QString& name, const QString& f, QWid
     ui->filterName->setToolTip(f);
 //    ui->filters->setText(f);
 
-    connect(ui->filterButton, SIGNAL(clicked()), this, SLOT(slotFilter()));
-    connect(ui->removeButton, SIGNAL(clicked()), this, SLOT(slotRemove()));
+    connect(ui->filterButton, &QToolButton::clicked, this, &FiltersDialogItem::slotFilter);
+    connect(ui->removeButton, &QToolButton::clicked, this, &FiltersDialogItem::slotRemove);
 }
 
 FiltersDialogItem::~FiltersDialogItem()

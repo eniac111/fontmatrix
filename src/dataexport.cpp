@@ -49,8 +49,8 @@ DataExport::DataExport(QWidget* parent):
 	}
 
 	show();
-	connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(close()));
-	connect(ui->continueButton, SIGNAL(clicked()), this, SLOT(doExport()));
+	connect(ui->cancelButton, &QPushButton::clicked, this, &DataExport::close);
+	connect(ui->continueButton, &QPushButton::clicked, this, &DataExport::doExport);
 }
 
 DataExport::~DataExport()

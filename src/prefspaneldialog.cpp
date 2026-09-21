@@ -184,44 +184,44 @@ void PrefsPanelDialog::initShortcuts()
 
 void PrefsPanelDialog::doConnect()
 {
-	connect ( commitSample,SIGNAL ( clicked() ),this,SLOT ( validateSampleName() ) );
-	connect ( addSampleTextNameButton,SIGNAL ( released() ),this,SLOT ( addSampleName() ) );
-	connect ( newSampleTextNameText,SIGNAL ( editingFinished() ),this,SLOT ( addSampleName() ) );
-	connect ( deleteSampleTextNameButton,SIGNAL ( released() ),this,SLOT ( deleteSampleName() ) );
-	connect ( sampleTextNamesList,SIGNAL ( currentTextChanged ( const QString& ) ),this,SLOT ( displayNamedText() ) );
-	connect ( dictButton, SIGNAL ( clicked() ), this, SLOT ( slotDictDialog() ) );
+	connect ( commitSample, &QPushButton::clicked, this, &PrefsPanelDialog::validateSampleName );
+	connect ( addSampleTextNameButton, &QPushButton::released, this, &PrefsPanelDialog::addSampleName );
+	connect ( newSampleTextNameText, &QLineEdit::editingFinished, this, &PrefsPanelDialog::addSampleName );
+	connect ( deleteSampleTextNameButton, &QPushButton::released, this, &PrefsPanelDialog::deleteSampleName );
+	connect ( sampleTextNamesList, &QListWidget::currentTextChanged, this, &PrefsPanelDialog::displayNamedText );
+	connect ( dictButton, &QToolButton::clicked, this, &PrefsPanelDialog::slotDictDialog );
 // 	connect ( applySampleTextButton,SIGNAL ( released() ),this,SLOT ( applySampleText() ) );
 
-	connect ( systrayFrame, SIGNAL ( clicked ( bool ) ), this, SLOT ( setSystrayVisible ( bool ) ) );
-	connect ( activateAllFrame, SIGNAL ( clicked ( bool ) ), this, SLOT ( setSystrayActivateAll ( bool ) ) );
-	connect ( activateAllConfirmation, SIGNAL ( clicked ( bool ) ), this, SLOT ( setSystrayAllConfirmation ( bool ) ) );
-	connect ( tagsConfirmation, SIGNAL ( clicked ( bool ) ), this, SLOT ( setSystrayTagsConfirmation ( bool ) ) );
-	connect ( closeToSystray, SIGNAL ( clicked ( bool ) ), typotek::getInstance(), SLOT ( slotCloseToSystray ( bool ) ) );
-	connect ( startToSystemTray , SIGNAL ( clicked ( bool ) ), typotek::getInstance(), SLOT ( slotSystrayStart(bool) ) );
+	connect ( systrayFrame, &QGroupBox::clicked, this, &PrefsPanelDialog::setSystrayVisible );
+	connect ( activateAllFrame, &QGroupBox::clicked, this, &PrefsPanelDialog::setSystrayActivateAll );
+	connect ( activateAllConfirmation, &QCheckBox::clicked, this, &PrefsPanelDialog::setSystrayAllConfirmation );
+	connect ( tagsConfirmation, &QCheckBox::clicked, this, &PrefsPanelDialog::setSystrayTagsConfirmation );
+	connect ( closeToSystray, &QCheckBox::clicked, typotek::getInstance(), &typotek::slotCloseToSystray );
+	connect ( startToSystemTray, &QCheckBox::clicked, typotek::getInstance(), &typotek::slotSystrayStart );
 
-	connect ( previewWord, SIGNAL ( textChanged ( const QString ) ), this, SLOT ( updateWord ( QString ) ) );
-	connect ( previewSizeSpin, SIGNAL ( valueChanged ( double ) ), this, SLOT ( updateWordSize ( double ) ) );
+	connect ( previewWord, &QLineEdit::textChanged, this, &PrefsPanelDialog::updateWord );
+	connect ( previewSizeSpin, &QDoubleSpinBox::valueChanged, this, &PrefsPanelDialog::updateWordSize );
 	connect ( previewIsRTL, SIGNAL ( stateChanged ( int ) ), this, SLOT ( updateWordRTL ( int ) ) );
 	connect ( previewSubtitled, SIGNAL ( stateChanged ( int ) ), this, SLOT ( updateWordSubtitled ( int ) ) );
 
-	connect ( chartFontRequester, SIGNAL( fontSelected( const QFont& ) ), this, SLOT( updateChartFont( const QFont& ) ) );
+	connect ( chartFontRequester, &KFontRequester::fontSelected, this, &PrefsPanelDialog::updateChartFont );
 
-	connect ( fontEditorPath, SIGNAL ( textChanged ( const QString ) ), this, SLOT ( setupFontEditor ( QString ) ) );
-	connect ( fontEditorBrowse, SIGNAL ( clicked() ), this, SLOT ( slotFontEditorBrowse() ) );
+	connect ( fontEditorPath, &QLineEdit::textChanged, this, &PrefsPanelDialog::setupFontEditor );
+	connect ( fontEditorBrowse, &QPushButton::clicked, this, &PrefsPanelDialog::slotFontEditorBrowse );
 	
-	connect ( initTagBox, SIGNAL ( clicked ( bool ) ), typotek::getInstance(), SLOT ( slotUseInitialTags ( bool ) ) );
+	connect ( initTagBox, &QCheckBox::clicked, typotek::getInstance(), &typotek::slotUseInitialTags );
 // 	connect ( familyNameScheme,SIGNAL ( toggled ( bool ) ),this,SLOT ( slotFamilyNotPreferred ( bool ) ) );
-	connect ( splashCheck,SIGNAL ( toggled ( bool ) ),this,SLOT ( slotSplashScreen ( bool ) ) );
+	connect ( splashCheck, &QCheckBox::toggled, this, &PrefsPanelDialog::slotSplashScreen );
 
-	connect ( templatesDirBrowse,SIGNAL ( clicked( ) ),this, SLOT ( slotTemplatesBrowse() ) );
-	connect ( templatesFolder,SIGNAL ( textChanged ( const QString& ) ),this,SLOT ( setupTemplates ( const QString& ) ) );
+	connect ( templatesDirBrowse, &QPushButton::clicked, this, &PrefsPanelDialog::slotTemplatesBrowse );
+	connect ( templatesFolder, &QLineEdit::textChanged, this, &PrefsPanelDialog::setupTemplates );
 
 
 	connect ( showNamesBox, SIGNAL ( stateChanged ( int ) ), this, SLOT ( slotShowImportedFonts ( int ) ) );
 
-	connect ( clearButton, SIGNAL ( clicked() ), this, SLOT ( slotClearShortcut() ) );
-	connect ( changeButton, SIGNAL ( clicked() ), this, SLOT ( slotChangeShortcut() ) );
-	connect ( shortcutList, SIGNAL ( clicked ( const QModelIndex& ) ), this, SLOT ( slotActionSelected ( const QModelIndex& ) ) );
+	connect ( clearButton, &QToolButton::clicked, this, &PrefsPanelDialog::slotClearShortcut );
+	connect ( changeButton, &QToolButton::clicked, this, &PrefsPanelDialog::slotChangeShortcut );
+	connect ( shortcutList, &QTableView::clicked, this, &PrefsPanelDialog::slotActionSelected );
 	// connect ( shortcutList, SIGNAL ( activated ( const QModelIndex& ) ), changeButton, SLOT ( toggle() ) );
 }
 

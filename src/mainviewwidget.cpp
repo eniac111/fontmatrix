@@ -132,39 +132,39 @@ MainViewWidget::~MainViewWidget()
 
 void MainViewWidget::doConnect()
 {
-	connect(familyWidget, SIGNAL(familyStateChanged()), previewModel, SLOT(dataChanged()));
+	connect(familyWidget, &FamilyWidget::familyStateChanged, previewModel, &FMPreviewModel::dataChanged);
 
-	connect(filterBar,SIGNAL(filterChanged()),previewModel,SLOT(dataChanged()));
-	connect(filterBar,SIGNAL(filterChanged()),typo, SLOT(showToltalFilteredFonts()));
-	connect(saveButton, SIGNAL(clicked()), filterBar, SLOT(slotSaveFilter()));
+	connect(filterBar, &FilterBar::filterChanged, previewModel, &FMPreviewModel::dataChanged);
+	connect(filterBar, &FilterBar::filterChanged, typo, &typotek::showToltalFilteredFonts);
+	connect(saveButton, &QPushButton::clicked, filterBar, qOverload<>(&FilterBar::slotSaveFilter));
 	connect(clearButton, SIGNAL(clicked()), filterBar, SLOT(slotClearFilter()));
 
 
-	connect(listView, SIGNAL(widthChanged(int)),this,SLOT(slotPreviewUpdateSize(int)));
-	connect(listView, SIGNAL(activated(const QModelIndex&)), this, SLOT(slotShowFamily(const QModelIndex&)));
-	connect(familyWidget, SIGNAL(backToList()), this, SLOT(slotQuitFamily()));
-	connect(familyWidget, SIGNAL(fontSelected(const QString&)), this, SLOT(slotFontSelectedByName(const QString&)));
+	connect(listView, &FMPreviewView::widthChanged, this, &MainViewWidget::slotPreviewUpdateSize);
+	connect(listView, &FMPreviewView::activated, this, &MainViewWidget::slotShowFamily);
+	connect(familyWidget, &FamilyWidget::backToList, this, &MainViewWidget::slotQuitFamily);
+	connect(familyWidget, &FamilyWidget::fontSelected, this, &MainViewWidget::slotFontSelectedByName);
 
-	connect(quickSearch, SIGNAL(textEdited(QString)), this, SLOT(slotQuickSearch(QString)));
-	connect(quickSearch, SIGNAL(returnPressed()), this, SLOT(slotSelectFromQuickSearch()));
-	connect(listView, SIGNAL(keyPressed(QString)), this, SLOT(slotQuickSearch(QString)));
+	connect(quickSearch, &QLineEdit::textEdited, this, &MainViewWidget::slotQuickSearch);
+	connect(quickSearch, &QLineEdit::returnPressed, this, &MainViewWidget::slotSelectFromQuickSearch);
+	connect(listView, &FMPreviewView::keyPressed, this, &MainViewWidget::slotQuickSearch);
 }
 
 void MainViewWidget::disConnect()
 {
-	disconnect(familyWidget, SIGNAL(familyStateChanged()), previewModel, SLOT(dataChanged()));
+	disconnect(familyWidget, &FamilyWidget::familyStateChanged, previewModel, &FMPreviewModel::dataChanged);
 
-	disconnect(filterBar,SIGNAL(filterChanged()),previewModel,SLOT(dataChanged()));
-	disconnect(filterBar,SIGNAL(filterChanged()),typo, SLOT(showToltalFilteredFonts()));
-	disconnect(saveButton, SIGNAL(clicked()), filterBar, SLOT(slotSaveFilter()));
+	disconnect(filterBar, &FilterBar::filterChanged, previewModel, &FMPreviewModel::dataChanged);
+	disconnect(filterBar, &FilterBar::filterChanged, typo, &typotek::showToltalFilteredFonts);
+	disconnect(saveButton, &QPushButton::clicked, filterBar, qOverload<>(&FilterBar::slotSaveFilter));
 	disconnect(clearButton, SIGNAL(clicked()), filterBar, SLOT(slotClearFilter()));
 
-	disconnect(listView, SIGNAL(widthChanged(int)),this,SLOT(slotPreviewUpdateSize(int)));
-	disconnect(listView, SIGNAL(activated(const QModelIndex&)), this, SLOT(slotShowFamily(const QModelIndex&)));
-	disconnect(familyWidget, SIGNAL(backToList()), this, SLOT(slotQuitFamily()));
-	disconnect(familyWidget, SIGNAL(fontSelected(const QString&)), this, SLOT(slotFontSelectedByName(const QString&)));
+	disconnect(listView, &FMPreviewView::widthChanged, this, &MainViewWidget::slotPreviewUpdateSize);
+	disconnect(listView, &FMPreviewView::activated, this, &MainViewWidget::slotShowFamily);
+	disconnect(familyWidget, &FamilyWidget::backToList, this, &MainViewWidget::slotQuitFamily);
+	disconnect(familyWidget, &FamilyWidget::fontSelected, this, &MainViewWidget::slotFontSelectedByName);
 
-	disconnect(quickSearch, SIGNAL(textEdited(QString)), this, SLOT(slotQuickSearch(QString)));
+	disconnect(quickSearch, &QLineEdit::textEdited, this, &MainViewWidget::slotQuickSearch);
 }
 
 //void MainViewWidget::fillTree()
@@ -1241,7 +1241,7 @@ void MainViewWidget::slotQuickSearch(const QString& text)
 		if(!quickSearchTimer)
 		{
 			quickSearchTimer = new QTimer;
-			connect(quickSearchTimer, SIGNAL(timeout()), this, SLOT(slotEndQuickSearch()));
+			connect(quickSearchTimer, &QTimer::timeout, this, &MainViewWidget::slotEndQuickSearch);
 		}
 		quickSearchTimer->start(quickSearchWait);
 		quickSearchString = text;

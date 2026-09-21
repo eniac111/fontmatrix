@@ -80,19 +80,19 @@ BrowserWidget::BrowserWidget(QWidget *parent) :
 	dirWatcher = new QFileSystemWatcher(this);
 	initWatcher(theDirModel->index(0,0));
 
-	connect(ui->infoButton, SIGNAL(clicked()), this, SLOT(slotShowInfo()));
-	connect(ui->sampleButton, SIGNAL(clicked()), this, SLOT(slotShowSample()));
-	connect(ui->chartButton, SIGNAL(clicked()), this, SLOT(slotShowChart()));
+	connect(ui->infoButton, &QToolButton::clicked, this, &BrowserWidget::slotShowInfo);
+	connect(ui->sampleButton, &QToolButton::clicked, this, &BrowserWidget::slotShowSample);
+	connect(ui->chartButton, &QToolButton::clicked, this, &BrowserWidget::slotShowChart);
 
-	connect(ui->importButton, SIGNAL(clicked()), this, SLOT(slotImport()));
+	connect(ui->importButton, &QPushButton::clicked, this, &BrowserWidget::slotImport);
 
-	connect(ui->browserView, SIGNAL(activated( const QModelIndex& )), this, SLOT(slotFolderItemclicked(QModelIndex)));
-	connect(ui->browserView, SIGNAL(clicked( const QModelIndex& )), this, SLOT(slotFolderItemclicked(QModelIndex)));
-	connect(ui->browserView,SIGNAL(pressed( const QModelIndex& )),this,SLOT(slotFolderPressed(QModelIndex)));
+	connect(ui->browserView, &QTreeView::activated, this, &BrowserWidget::slotFolderItemclicked);
+	connect(ui->browserView, &QTreeView::clicked, this, &BrowserWidget::slotFolderItemclicked);
+	connect(ui->browserView, &QTreeView::pressed, this, &BrowserWidget::slotFolderPressed);
 
-	connect(ui->browserView, SIGNAL(customContextMenuRequested(const QPoint &)), this, SLOT(slotFolderViewContextMenu(const QPoint &)));
+	connect(ui->browserView, &QTreeView::customContextMenuRequested, this, &BrowserWidget::slotFolderViewContextMenu);
 
-	connect(dirWatcher, SIGNAL(directoryChanged(QString)), this, SLOT(slotFolderRefresh(QString)));
+	connect(dirWatcher, &QFileSystemWatcher::directoryChanged, this, &BrowserWidget::slotFolderRefresh);
 
 }
 
@@ -224,7 +224,7 @@ void BrowserWidget::slotShowChart()
 			ChartWidget *cw(new ChartWidget(curVariant, uniBlock, ui->pageChart));
 			ui->displayStack->insertWidget(BROWSER_VIEW_CHART, cw);
 			chart = cw;
-			connect(chart, SIGNAL(detached()), this, SLOT(slotDetachChart()));
+			connect(chart, &FloatingWidget::detached, this, &BrowserWidget::slotDetachChart);
 		}
 		ui->displayStack->setCurrentWidget(chart);
 	}
@@ -247,7 +247,7 @@ void BrowserWidget::slotShowSample()
 			SampleWidget *sw(new SampleWidget(curVariant, ui->pageSample));
 			ui->displayStack->insertWidget(BROWSER_VIEW_SAMPLE, sw);
 			sample = sw;
-			connect(sample, SIGNAL(detached()), this, SLOT(slotDetachSample()));
+			connect(sample, &FloatingWidget::detached, this, &BrowserWidget::slotDetachSample);
 		}
 		ui->displayStack->setCurrentWidget(sample);
 	}
@@ -261,14 +261,14 @@ void BrowserWidget::slotShowSample()
 
 void BrowserWidget::slotDetachChart()
 {
-	disconnect(chart, SIGNAL(detached()), this, SLOT(slotDetachChart()));
+	disconnect(chart, &FloatingWidget::detached, this, &BrowserWidget::slotDetachChart);
 	chart = nullptr;
 	slotShowInfo();
 }
 
 void BrowserWidget::slotDetachSample()
 {
-	disconnect(sample, SIGNAL(detached()), this, SLOT(slotDetachSample()));
+	disconnect(sample, &FloatingWidget::detached, this, &BrowserWidget::slotDetachSample);
 	sample = nullptr;
 	slotShowInfo();
 }
@@ -338,9 +338,9 @@ FolderViewMenu::FolderViewMenu()
 	addAction(dirRecursiveAction);
 	addAction(fileAction);
 
-	connect(dirAction, SIGNAL(triggered()), this, SLOT(slotImportDir()));
-	connect(dirRecursiveAction, SIGNAL(triggered()), this, SLOT(slotImportDirRecursively()));
-	connect(fileAction, SIGNAL(triggered()), this, SLOT(slotImportFile()));
+	connect(dirAction, &QAction::triggered, this, &FolderViewMenu::slotImportDir);
+	connect(dirRecursiveAction, &QAction::triggered, this, &FolderViewMenu::slotImportDirRecursively);
+	connect(fileAction, &QAction::triggered, this, &FolderViewMenu::slotImportFile);
 }
 
 void FolderViewMenu::exec(const QFileInfo &fi, const QPoint &p)

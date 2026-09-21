@@ -40,9 +40,9 @@ PlayWidget::PlayWidget() :
     playScene->setSceneRect ( 0,0,10000,10000 );
     ui->playView->setScene( playScene );
 
-    connect ( ui->playView, SIGNAL(pleaseZoom(int)),this,SLOT(slotZoom(int)));
-    connect(ui->toolbar, SIGNAL(Hide()), this, SLOT(hide()));
-    connect(ui->toolbar, SIGNAL(Print()), this, SLOT(print()));
+    connect ( ui->playView, &FMPlayGround::pleaseZoom, this, &PlayWidget::slotZoom );
+    connect(ui->toolbar, &FloatingWidgetToolBar::Hide, this, &PlayWidget::hide);
+    connect(ui->toolbar, &FloatingWidgetToolBar::Print, this, &PlayWidget::print);
 }
 
 PlayWidget::~PlayWidget()

@@ -81,7 +81,7 @@ MetaWidget::MetaWidget(QWidget *parent) :
 			metFields[line] = k;
 			line->setCompleter(completer);
 			label->setBuddy(line);
-			connect(line,SIGNAL(returnPressed()), this, SLOT(addFilter()));
+			connect(line, &QLineEdit::returnPressed, this, &MetaWidget::addFilter);
 			if((gIdx) < limit)
 			{
 				ui->grid->addWidget(label,gIdx,0);
@@ -96,8 +96,8 @@ MetaWidget::MetaWidget(QWidget *parent) :
 		}
 	}
 
-	connect(ui->cancelButton, SIGNAL(clicked()), this, SIGNAL(Close()));
-	connect(ui->filterButton, SIGNAL(clicked()), this, SLOT(addFilter()));
+	connect(ui->cancelButton, &QPushButton::clicked, this, &MetaWidget::Close);
+	connect(ui->filterButton, &QPushButton::clicked, this, &MetaWidget::addFilter);
 }
 
 MetaWidget::~MetaWidget()

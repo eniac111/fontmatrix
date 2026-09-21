@@ -28,8 +28,8 @@ FMPanoseDialog::FMPanoseDialog(FontItem * font, QWidget * parent)
 	if(!m_sourcepanose.isEmpty())
 		populateDialog();
 	
-	connect(buttonBox, SIGNAL(accepted()), this, SLOT(closeOk()));
-	connect(buttonBox, SIGNAL(rejected()), this, SLOT(closeCancel()));
+	connect(buttonBox, &QDialogButtonBox::accepted, this, &FMPanoseDialog::closeOk);
+	connect(buttonBox, &QDialogButtonBox::rejected, this, &FMPanoseDialog::closeCancel);
 }
 
 FMPanoseDialog::~ FMPanoseDialog()
@@ -85,7 +85,7 @@ void FMPanoseDialog::populateDialog()
 	
 	for (const auto m_boxKeysList = m_box.keys(); const auto& sk : m_boxKeysList)
 	{
-		connect(m_box.value ( sk ), SIGNAL(currentIndexChanged (int)), this, SLOT(panoseChange(int)));
+		connect(m_box.value ( sk ), &QComboBox::currentIndexChanged, this, &FMPanoseDialog::panoseChange);
 	}
 }
 

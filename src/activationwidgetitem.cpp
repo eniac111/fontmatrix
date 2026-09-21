@@ -37,7 +37,7 @@ ActivationWidgetItem::ActivationWidgetItem(const QString& fontID, QWidget *paren
 	ui->activatedStatus->setText(fileName);
 	ui->activatedStatus->setChecked(f->isActivated());
 
-	connect(ui->activatedStatus, SIGNAL(toggled(bool)), this, SLOT(activate(bool)));
+	connect(ui->activatedStatus, &QCheckBox::toggled, this, &ActivationWidgetItem::activate);
 }
 
 ActivationWidgetItem::~ActivationWidgetItem()

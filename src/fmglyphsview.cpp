@@ -58,7 +58,7 @@ FMGlyphsView::FMGlyphsView ( QWidget *parent )
 	m_lock = false;
 	m_oper = false;
 
-	connect ( verticalScrollBar() , SIGNAL ( valueChanged ( int ) ), this, SLOT ( slotViewMoved ( int ) ) );
+	connect ( verticalScrollBar(), &QScrollBar::valueChanged, this, &FMGlyphsView::slotViewMoved );
 
 }
 

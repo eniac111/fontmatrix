@@ -47,11 +47,11 @@ ActivationWidget::ActivationWidget(const QString& familyName, QWidget *parent) :
 		ui->listLayout->addWidget(i);
 		items.append(i);
 
-		connect(i, SIGNAL(fontStateChanged()), this, SIGNAL(familyStateChanged()));
+		connect(i, &ActivationWidgetItem::fontStateChanged, this, &ActivationWidget::familyStateChanged);
 	}
 
-	connect(ui->activateAll, SIGNAL(clicked()), this, SLOT(slotActivate()));
-	connect(ui->deactivateAll, SIGNAL(clicked()), this, SLOT(slotDeactivate()));
+	connect(ui->activateAll, &QPushButton::clicked, this, &ActivationWidget::slotActivate);
+	connect(ui->deactivateAll, &QPushButton::clicked, this, &ActivationWidget::slotDeactivate);
 }
 
 ActivationWidget::~ActivationWidget()

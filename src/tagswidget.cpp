@@ -34,8 +34,8 @@ TagsWidget::TagsWidget ( QWidget * parent )
 	model = new TagsWidget_ListModel(this);
 	tagsListView->setModel(model);
 
-	connect ( newTagButton,SIGNAL ( clicked ( bool ) ),this,SLOT ( slotNewTag() ) );
-	connect( removeTagButton, SIGNAL(clicked()), this, SLOT(slotActRemovetag()));
+	connect ( newTagButton, &QPushButton::clicked, this, &TagsWidget::slotNewTag );
+	connect( removeTagButton, &QPushButton::clicked, this, &TagsWidget::slotActRemovetag );
 
 }
 

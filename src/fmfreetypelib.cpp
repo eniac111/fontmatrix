@@ -54,7 +54,7 @@ FT_Library FMFreetypeLib::lib(QThread *t)
 	FTLibFactory ff;
 	ff.moveToThread(t);
 	that()->libraries.insert(t, ff.createLib());
-	connect(t, SIGNAL(finished()), that(), SLOT(releaseLibrary()));
+	connect(t, &QThread::finished, that(), &FMFreetypeLib::releaseLibrary);
 	return that()->libraries.value(t);
 }
 

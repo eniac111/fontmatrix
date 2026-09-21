@@ -43,21 +43,21 @@ FmRepair::~ FmRepair()
 
 void FmRepair::doConnect()
 {
-	connect(closeButton,SIGNAL(clicked()),this,SLOT(close()));
+	connect(closeButton, &QPushButton::clicked, this, &FmRepair::close);
 	
-	connect(selectAllDead,SIGNAL(clicked()),this,SLOT(slotSelAllDead()));
-	connect(removeDead,SIGNAL(clicked()),this,SLOT(slotRemoveDead()));
+	connect(selectAllDead, &QPushButton::clicked, this, &FmRepair::slotSelAllDead);
+	connect(removeDead, &QPushButton::clicked, this, &FmRepair::slotRemoveDead);
 	
-	connect(selectAllActNot,SIGNAL(clicked()),this,SLOT(slotSelAllActNotLinked()));
-	connect(relinkActNot,SIGNAL(clicked()),this,SLOT(slotRelinkActNotLinked()));
-	connect(deactActNot,SIGNAL(clicked()),this,SLOT(slotDeactivateActNotLinked()));
+	connect(selectAllActNot, &QPushButton::clicked, this, &FmRepair::slotSelAllActNotLinked);
+	connect(relinkActNot, &QPushButton::clicked, this, &FmRepair::slotRelinkActNotLinked);
+	connect(deactActNot, &QPushButton::clicked, this, &FmRepair::slotDeactivateActNotLinked);
 	
-	connect(selectAllDeactLink,SIGNAL(clicked()),this,SLOT(slotSelAllDeactLinked()));
-	connect(delinkDeactLink,SIGNAL(clicked()),this,SLOT(slotDelinkDeactLinked()));
-	connect(activateDeactLink,SIGNAL(clicked()),this,SLOT(slotActivateDeactLinked()));
+	connect(selectAllDeactLink, &QPushButton::clicked, this, &FmRepair::slotSelAllDeactLinked);
+	connect(delinkDeactLink, &QPushButton::clicked, this, &FmRepair::slotDelinkDeactLinked);
+	connect(activateDeactLink, &QPushButton::clicked, this, &FmRepair::slotActivateDeactLinked);
 	
-	connect(selectAllUnreferenced,SIGNAL(clicked()),this,SLOT(slotSelectAllUnref()));
-	connect(removeUnreferenced,SIGNAL(clicked()),this,SLOT(slotRemoveUnref()));
+	connect(selectAllUnreferenced, &QPushButton::clicked, this, &FmRepair::slotSelectAllUnref);
+	connect(removeUnreferenced, &QPushButton::clicked, this, &FmRepair::slotRemoveUnref);
 }
 
 void FmRepair::fillLists()

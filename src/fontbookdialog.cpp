@@ -62,9 +62,9 @@ FontBookDialog::FontBookDialog ( QWidget *parent )
 	
 // 	slotPreview();
 	
-	connect ( okButton,SIGNAL ( accepted () ),this,SLOT ( slotAccept() ) );
-	connect ( okButton,SIGNAL ( rejected() ),this,SLOT ( slotCancel() ) );
-	connect ( fileNameButton,SIGNAL ( released() ),this,SLOT ( slotFileDialog() ) );
+	connect ( okButton, &QDialogButtonBox::accepted, this, &FontBookDialog::slotAccept );
+	connect ( okButton, &QDialogButtonBox::rejected, this, &FontBookDialog::slotCancel );
+	connect ( fileNameButton, &QPushButton::released, this, &FontBookDialog::slotFileDialog );
 // 	connect ( paperSizeCombo,SIGNAL ( activated ( int ) ),this,SLOT ( slotPageSize ( int ) ) );
 // 	connect(this,SIGNAL(updateView()),this,SLOT(slotPreview()));
 	
@@ -87,7 +87,7 @@ FontBookDialog::FontBookDialog ( QWidget *parent )
 	
 // 	connect(loadTemplateButton,SIGNAL(released()),this,SLOT(slotLoadTemplate()));
 	
-	connect( templatesList,SIGNAL(currentTextChanged( const QString& )),this,SLOT(slotPreviewTemplate(const QString&)));
+	connect( templatesList, &QListWidget::currentTextChanged, this, &FontBookDialog::slotPreviewTemplate );
 
 }
 

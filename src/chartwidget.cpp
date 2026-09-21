@@ -83,35 +83,35 @@ ChartWidget::~ChartWidget()
 
 void ChartWidget::createConnections()
 {
-	connect ( ui->abcView,SIGNAL ( pleaseShowSelected() ),this,SLOT ( slotShowOneGlyph() ) );
-	connect ( ui->abcView,SIGNAL ( pleaseShowAll() ),this,SLOT ( slotShowAllGlyph() ) );
-	connect ( ui->abcView,SIGNAL ( refit ( int ) ),this,SLOT ( slotAdjustGlyphView ( int ) ) );
-	connect ( ui->abcView, SIGNAL(pleaseUpdateMe()), this, SLOT(slotUpdateGView()));
-	connect ( ui->abcView, SIGNAL(pleaseUpdateSingle()), this, SLOT(slotUpdateGViewSingle()));
-	connect ( ui->uniPlaneCombo,SIGNAL ( activated ( int ) ),this,SLOT ( slotPlaneSelected ( int ) ) );
-	connect ( ui->clipboardCheck, SIGNAL (toggled ( bool )),this,SLOT(slotShowULine(bool)));
-	connect ( ui->charSearchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchCharName()));
+	connect ( ui->abcView, &FMGlyphsView::pleaseShowSelected, this, &ChartWidget::slotShowOneGlyph );
+	connect ( ui->abcView, &FMGlyphsView::pleaseShowAll, this, &ChartWidget::slotShowAllGlyph );
+	connect ( ui->abcView, &FMGlyphsView::refit, this, &ChartWidget::slotAdjustGlyphView );
+	connect ( ui->abcView, &FMGlyphsView::pleaseUpdateMe, this, &ChartWidget::slotUpdateGView );
+	connect ( ui->abcView, &FMGlyphsView::pleaseUpdateSingle, this, &ChartWidget::slotUpdateGViewSingle );
+	connect ( ui->uniPlaneCombo, &QComboBox::activated, this, &ChartWidget::slotPlaneSelected );
+	connect ( ui->clipboardCheck, &QToolButton::toggled, this, &ChartWidget::slotShowULine );
+	connect ( ui->charSearchLine, &QLineEdit::returnPressed, this, &ChartWidget::slotSearchCharName );
 
-	connect(ui->toolbar, SIGNAL(Close()), this, SLOT(close()));
-	connect(ui->toolbar, SIGNAL(Hide()), this, SLOT(hide()));
-	connect(ui->toolbar, SIGNAL(Print()), this, SLOT(slotPrint()));
-	connect(ui->toolbar, SIGNAL(Detach()), this, SLOT(ddetach()));
+	connect(ui->toolbar, &FloatingWidgetToolBar::Close, this, &ChartWidget::close);
+	connect(ui->toolbar, &FloatingWidgetToolBar::Hide, this, &ChartWidget::hide);
+	connect(ui->toolbar, &FloatingWidgetToolBar::Print, this, &ChartWidget::slotPrint);
+	connect(ui->toolbar, &FloatingWidgetToolBar::Detach, this, &ChartWidget::ddetach);
 }
 
 void ChartWidget::removeConnections()
 {
-	disconnect ( ui->abcView,SIGNAL ( pleaseShowSelected() ),this,SLOT ( slotShowOneGlyph() ) );
-	disconnect ( ui->abcView,SIGNAL ( pleaseShowAll() ),this,SLOT ( slotShowAllGlyph() ) );
-	disconnect ( ui->abcView,SIGNAL ( refit ( int ) ),this,SLOT ( slotAdjustGlyphView ( int ) ) );
-	disconnect ( ui->abcView, SIGNAL(pleaseUpdateMe()), this, SLOT(slotUpdateGView()));
-	disconnect ( ui->abcView, SIGNAL(pleaseUpdateSingle()), this, SLOT(slotUpdateGViewSingle()));
-	disconnect ( ui->uniPlaneCombo,SIGNAL ( activated ( int ) ),this,SLOT ( slotPlaneSelected ( int ) ) );
-	disconnect ( ui->clipboardCheck, SIGNAL (toggled ( bool )),this,SLOT(slotShowULine(bool)));
-	disconnect ( ui->charSearchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchCharName()));
+	disconnect ( ui->abcView, &FMGlyphsView::pleaseShowSelected, this, &ChartWidget::slotShowOneGlyph );
+	disconnect ( ui->abcView, &FMGlyphsView::pleaseShowAll, this, &ChartWidget::slotShowAllGlyph );
+	disconnect ( ui->abcView, &FMGlyphsView::refit, this, &ChartWidget::slotAdjustGlyphView );
+	disconnect ( ui->abcView, &FMGlyphsView::pleaseUpdateMe, this, &ChartWidget::slotUpdateGView );
+	disconnect ( ui->abcView, &FMGlyphsView::pleaseUpdateSingle, this, &ChartWidget::slotUpdateGViewSingle );
+	disconnect ( ui->uniPlaneCombo, &QComboBox::activated, this, &ChartWidget::slotPlaneSelected );
+	disconnect ( ui->clipboardCheck, &QToolButton::toggled, this, &ChartWidget::slotShowULine );
+	disconnect ( ui->charSearchLine, &QLineEdit::returnPressed, this, &ChartWidget::slotSearchCharName );
 
-	disconnect(ui->toolbar, SIGNAL(Close()), this, SLOT(close()));
-	disconnect(ui->toolbar, SIGNAL(Hide()), this, SLOT(hide()));
-	disconnect(ui->toolbar, SIGNAL(Print()), this, SLOT(slotPrint()));
+	disconnect(ui->toolbar, &FloatingWidgetToolBar::Close, this, &ChartWidget::close);
+	disconnect(ui->toolbar, &FloatingWidgetToolBar::Hide, this, &ChartWidget::hide);
+	disconnect(ui->toolbar, &FloatingWidgetToolBar::Print, this, &ChartWidget::slotPrint);
 }
 
 void ChartWidget::changeEvent(QEvent *e)

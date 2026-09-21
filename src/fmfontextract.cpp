@@ -38,9 +38,9 @@ FMFontExtract::FMFontExtract(QWidget * parent)
 	
 	docPath->clear();
 	
-	connect(browsePDF,SIGNAL(clicked()),this,SLOT(slotBrowseDoc()));
-	connect(browseDir,SIGNAL(clicked()),this,SLOT(slotBrowseDir()));
-	connect(extractButton,SIGNAL(clicked()),this,SLOT(slotExtract()));
+	connect(browsePDF, &QPushButton::clicked, this, &FMFontExtract::slotBrowseDoc);
+	connect(browseDir, &QPushButton::clicked, this, &FMFontExtract::slotBrowseDir);
+	connect(extractButton, &QPushButton::clicked, this, &FMFontExtract::slotExtract);
 	
 }
 

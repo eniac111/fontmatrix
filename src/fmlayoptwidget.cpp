@@ -18,19 +18,19 @@ FMLayOptWidget::FMLayOptWidget ( QWidget * parent )
 {
 	setupUi ( this );
 
-	connect ( beforeSlid,SIGNAL ( valueChanged ( int ) ),this,SLOT ( bChanged ( int ) ) );
-	connect ( fitSlid,SIGNAL ( valueChanged ( int ) ),this,SLOT ( exChanged ( int ) ) );
-	connect ( afterSlid,SIGNAL ( valueChanged ( int ) ),this,SLOT ( aChanged ( int ) ) );
-	connect ( endSlid,SIGNAL ( valueChanged ( int ) ),this,SLOT ( enChanged ( int ) ) );
-	connect ( hyphSlid,SIGNAL ( valueChanged ( int ) ),this,SLOT ( hChanged ( int ) ) );
-	connect ( spaceSlid,SIGNAL( valueChanged ( int ) ),this,SLOT ( sChanged( int ) ) );
+	connect ( beforeSlid, &QSlider::valueChanged, this, &FMLayOptWidget::bChanged );
+	connect ( fitSlid, &QSlider::valueChanged, this, &FMLayOptWidget::exChanged );
+	connect ( afterSlid, &QSlider::valueChanged, this, &FMLayOptWidget::aChanged );
+	connect ( endSlid, &QSlider::valueChanged, this, &FMLayOptWidget::enChanged );
+	connect ( hyphSlid, &QSlider::valueChanged, this, &FMLayOptWidget::hChanged );
+	connect ( spaceSlid, &QSlider::valueChanged, this, &FMLayOptWidget::sChanged );
 
-	connect ( beforeSlid,SIGNAL ( sliderReleased () ),this,SLOT ( bEdited() ) );
-	connect ( fitSlid,SIGNAL ( sliderReleased () ),this,SLOT ( exEdited() ) );
-	connect ( afterSlid,SIGNAL ( sliderReleased () ),this,SLOT ( aEdited() ) );
-	connect ( endSlid,SIGNAL ( sliderReleased () ),this,SLOT ( enEdited() ) );
-	connect ( hyphSlid,SIGNAL ( sliderReleased () ),this,SLOT ( hEdited() ) );
-	connect ( spaceSlid,SIGNAL ( sliderReleased () ),this,SLOT ( sEdited() ) );
+	connect ( beforeSlid, &QSlider::sliderReleased, this, &FMLayOptWidget::bEdited );
+	connect ( fitSlid, &QSlider::sliderReleased, this, &FMLayOptWidget::exEdited );
+	connect ( afterSlid, &QSlider::sliderReleased, this, &FMLayOptWidget::aEdited );
+	connect ( endSlid, &QSlider::sliderReleased, this, &FMLayOptWidget::enEdited );
+	connect ( hyphSlid, &QSlider::sliderReleased, this, &FMLayOptWidget::hEdited );
+	connect ( spaceSlid, &QSlider::sliderReleased, this, &FMLayOptWidget::sEdited );
 }
 
 void FMLayOptWidget::bChanged ( int cv )

@@ -20,7 +20,7 @@ TagsWidget_ListModel::TagsWidget_ListModel(QObject *parent)
 		:QAbstractListModel(parent),
 		newTagString(i18n("New Tag"))
 {
-	connect(FMFontDb::DB(), SIGNAL(tagsChanged()), this, SLOT(updateTags()));
+	connect(FMFontDb::DB(), &FMFontDb::tagsChanged, this, &TagsWidget_ListModel::updateTags);
 }
 
 void TagsWidget_ListModel::updateTags()

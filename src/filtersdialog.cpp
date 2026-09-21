@@ -58,7 +58,7 @@ FiltersDialog::FiltersDialog(const QList<FilterItem*>& currentFilters, QWidget *
 
 	loadFilters();
 
-	connect(ui->addButton, SIGNAL(clicked()), this, SLOT(slotAddFilter()));
+	connect(ui->addButton, &QPushButton::clicked, this, &FiltersDialog::slotAddFilter);
 //	connect(ui->moreButton, SIGNAL(clicked(bool)), this, SLOT(showAdd(bool)));
 
 	if(!currentFilters.isEmpty())
@@ -169,9 +169,9 @@ void FiltersDialog::loadFilters()
 		FiltersDialogItem *fdi(new FiltersDialogItem(fname, fString, this));
 		items.append(fdi);
 		ui->filtersLayout->addWidget(fdi);
-		connect(fdi, SIGNAL(Filter(QString)), this, SIGNAL(Filter(QString)));
-		connect(fdi, SIGNAL(Filter(QString)), this, SLOT(close()));
-		connect(fdi, SIGNAL(Remove(QString)), this, SLOT(slotRemoveFilter(QString)));
+		connect(fdi, &FiltersDialogItem::Filter, this, &FiltersDialog::Filter);
+		connect(fdi, &FiltersDialogItem::Filter, this, &FiltersDialog::close);
+		connect(fdi, &FiltersDialogItem::Remove, this, &FiltersDialog::slotRemoveFilter);
 	}
 }
 

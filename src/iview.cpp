@@ -53,7 +53,7 @@ IView::IView ( QWidget * parent )
 	curBL->setZValue(100.0);
 	curBR->setZValue(100.0);
 	
-	connect(this, SIGNAL(rectChange(QRect)), this, SLOT(drawSelRect(QRect)));
+	connect(this, &IView::rectChange, this, &IView::drawSelRect);
 }
 
 void IView::mouseMoveEvent ( QMouseEvent * e )

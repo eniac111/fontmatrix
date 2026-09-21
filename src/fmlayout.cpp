@@ -373,7 +373,7 @@ FMLayout::FMLayout ( QGraphicsScene * scene, FontItem * font , QRectF rect )
 	optionLayout->addWidget(optionsWidget,0,0);
 
 //	connect ( optionsWidget,SIGNAL ( valueChanged ( int ) ),this,SLOT ( slotOption ( int ) ) );
-	connect(this, SIGNAL(objectWanted(QObject*)), typotek::getInstance(), SLOT(pushObject(QObject*)));
+	connect(this, &FMLayout::objectWanted, typotek::getInstance(), &typotek::pushObject);
 
 }
 

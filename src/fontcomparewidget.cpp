@@ -86,33 +86,33 @@ void FontCompareWidget::initColors()
 
 void FontCompareWidget::doconnect()
 {
-	connect( compareAdd,SIGNAL(clicked()), this, SLOT(addFont()));
-	connect( compareRemove,SIGNAL(clicked()), this, SLOT(removeFont()));
-	connect( compareShow,SIGNAL(clicked()), this, SLOT(showChange()));
-	connect( compareFillColor,SIGNAL(currentIndexChanged(int)), this, SLOT(fillChange(int)));
-	connect( comparePoints,SIGNAL(clicked()), this, SLOT(pointsChange()));
-	connect( compareControls,SIGNAL(clicked()), this, SLOT(controlsChange()));
-	connect( compareMetrics,SIGNAL(clicked()), this, SLOT(metricsChange()));
-	connect( compareOffset, SIGNAL(valueChanged(int)), this, SLOT(offsetChange(int)));
-	connect( compareCharSelect,SIGNAL(valueChanged(int)), this, SLOT(characterChange(int)));
-	connect( compareCharBox,SIGNAL(currentIndexChanged(int)), this, SLOT(characterBoxChange(int)));
-	connect( compareList, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), this, SLOT(fontChange(QListWidgetItem*,QListWidgetItem*)));
+	connect( compareAdd, &QPushButton::clicked, this, &FontCompareWidget::addFont );
+	connect( compareRemove, &QPushButton::clicked, this, &FontCompareWidget::removeFont );
+	connect( compareShow, &QGroupBox::clicked, this, &FontCompareWidget::showChange );
+	connect( compareFillColor, &QComboBox::currentIndexChanged, this, &FontCompareWidget::fillChange );
+	connect( comparePoints, &QGroupBox::clicked, this, &FontCompareWidget::pointsChange );
+	connect( compareControls, &QCheckBox::clicked, this, &FontCompareWidget::controlsChange );
+	connect( compareMetrics, &QCheckBox::clicked, this, &FontCompareWidget::metricsChange );
+	connect( compareOffset, &QSlider::valueChanged, this, &FontCompareWidget::offsetChange );
+	connect( compareCharSelect, &QSlider::valueChanged, this, &FontCompareWidget::characterChange );
+	connect( compareCharBox, &QComboBox::currentIndexChanged, this, &FontCompareWidget::characterBoxChange );
+	connect( compareList, &QListWidget::currentItemChanged, this, &FontCompareWidget::fontChange );
 	connect( compareSyncChars, SIGNAL(stateChanged( int )), this, SLOT(syncChange(int)));
 }
 
 void FontCompareWidget::dodisconnect()
 {
-	disconnect( compareAdd,SIGNAL(clicked()), this, SLOT(addFont()));
-	disconnect( compareRemove,SIGNAL(clicked()), this, SLOT(removeFont()));
-	disconnect( compareShow,SIGNAL(clicked()), this, SLOT(showChange()));
-	disconnect( compareFillColor,SIGNAL(currentIndexChanged(int)), this, SLOT(fillChange(int)));
-	disconnect( comparePoints,SIGNAL(clicked()), this, SLOT(pointsChange()));
-	disconnect( compareControls,SIGNAL(clicked()), this, SLOT(controlsChange()));
-	disconnect( compareMetrics,SIGNAL(clicked()), this, SLOT(metricsChange()));
-	disconnect( compareOffset, SIGNAL(valueChanged(int)), this, SLOT(offsetChange(int)));
-	disconnect( compareCharSelect,SIGNAL(valueChanged(int)), this, SLOT(characterChange(int)));
-	disconnect( compareCharBox,SIGNAL(currentIndexChanged(int)), this, SLOT(characterBoxChange(int)));
-	disconnect( compareList, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), this, SLOT(fontChange(QListWidgetItem*,QListWidgetItem*)));
+	disconnect( compareAdd, &QPushButton::clicked, this, &FontCompareWidget::addFont );
+	disconnect( compareRemove, &QPushButton::clicked, this, &FontCompareWidget::removeFont );
+	disconnect( compareShow, &QGroupBox::clicked, this, &FontCompareWidget::showChange );
+	disconnect( compareFillColor, &QComboBox::currentIndexChanged, this, &FontCompareWidget::fillChange );
+	disconnect( comparePoints, &QGroupBox::clicked, this, &FontCompareWidget::pointsChange );
+	disconnect( compareControls, &QCheckBox::clicked, this, &FontCompareWidget::controlsChange );
+	disconnect( compareMetrics, &QCheckBox::clicked, this, &FontCompareWidget::metricsChange );
+	disconnect( compareOffset, &QSlider::valueChanged, this, &FontCompareWidget::offsetChange );
+	disconnect( compareCharSelect, &QSlider::valueChanged, this, &FontCompareWidget::characterChange );
+	disconnect( compareCharBox, &QComboBox::currentIndexChanged, this, &FontCompareWidget::characterBoxChange );
+	disconnect( compareList, &QListWidget::currentItemChanged, this, &FontCompareWidget::fontChange );
 	disconnect( compareSyncChars, SIGNAL(stateChanged( int )), this, SLOT(syncChange(int)));
 }
 

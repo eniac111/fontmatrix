@@ -203,84 +203,84 @@ void SampleWidget::createConnections()
 {
 	// connections
 
-	connect ( ui->loremView, SIGNAL(pleaseUpdateMe()), this, SLOT(slotUpdateSView()));
-	connect ( ui->loremView, SIGNAL(pleaseZoom(int)),this,SLOT(slotZoom(int)));
+	connect ( ui->loremView, &FMSampleTextView::pleaseUpdateMe, this, &SampleWidget::slotUpdateSView );
+	connect ( ui->loremView, &FMSampleTextView::pleaseZoom, this, &SampleWidget::slotZoom );
 
-	connect ( ui->loremView_FT, SIGNAL(pleaseZoom(int)),this,SLOT(slotZoom(int)));
-	connect ( ui->loremView_FT, SIGNAL(pleaseUpdateMe()), this, SLOT(slotUpdateRView()));
+	connect ( ui->loremView_FT, &FMSampleTextView::pleaseZoom, this, &SampleWidget::slotZoom );
+	connect ( ui->loremView_FT, &FMSampleTextView::pleaseUpdateMe, this, &SampleWidget::slotUpdateRView );
 
-	connect ( textLayoutVect, SIGNAL(updateLayout()),this, SLOT(slotView()));
-	connect ( this, SIGNAL(stopLayout()), textLayoutVect,SLOT(stopLayout()));
-	connect ( textLayoutFT, SIGNAL(updateLayout()),this, SLOT(slotView()));
-	connect ( this, SIGNAL(stopLayout()), textLayoutFT,SLOT(stopLayout()));
+	connect ( textLayoutVect, &FMLayout::updateLayout, this, &SampleWidget::slotView );
+	connect ( this, &SampleWidget::stopLayout, textLayoutVect, &FMLayout::stopLayout );
+	connect ( textLayoutFT, &FMLayout::updateLayout, this, &SampleWidget::slotView );
+	connect ( this, &SampleWidget::stopLayout, textLayoutFT, &FMLayout::stopLayout );
 
-	connect ( ui->sampleTextTree,SIGNAL ( itemSelectionChanged ()),this,SLOT ( slotSampleChanged() ) );
-	connect ( ui->sampleTextTree,SIGNAL ( itemSelectionChanged ()),this,SLOT ( slotEditSample() ) );
-	connect ( sampleToolBar, SIGNAL( SizeChanged(double) ),this,SLOT(slotLiveFontSize(double)));
+	connect ( ui->sampleTextTree, &QTreeWidget::itemSelectionChanged, this, &SampleWidget::slotSampleChanged );
+	connect ( ui->sampleTextTree, &QTreeWidget::itemSelectionChanged, this, &SampleWidget::slotEditSample );
+	connect ( sampleToolBar, &SampleToolBar::SizeChanged, this, &SampleWidget::slotLiveFontSize );
 
-	connect ( ui->OpenTypeTree, SIGNAL ( itemClicked ( QTreeWidgetItem*, int ) ), this, SLOT ( slotFeatureChanged() ) );
-	connect ( ui->saveDefOTFBut, SIGNAL(released()),this,SLOT(slotDefaultOTF()));
-	connect ( ui->resetDefOTFBut, SIGNAL(released()),this,SLOT(slotResetOTF()));
+	connect ( ui->OpenTypeTree, &QTreeWidget::itemClicked, this, &SampleWidget::slotFeatureChanged );
+	connect ( ui->saveDefOTFBut, &QPushButton::released, this, &SampleWidget::slotDefaultOTF );
+	connect ( ui->resetDefOTFBut, &QPushButton::released, this, &SampleWidget::slotResetOTF );
 
 //	connect ( ui->textProgression, SIGNAL ( stateChanged (  ) ),this ,SLOT(slotProgressionChanged()));
 
-	connect(ui->toolbar, SIGNAL(Print()), this, SLOT(slotPrint()));
-	connect(ui->toolbar, SIGNAL(Close()), this, SLOT(close()));
-	connect(ui->toolbar, SIGNAL(Hide()), this, SLOT(hide()));
-	connect(ui->toolbar, SIGNAL(Detach()), this, SLOT(ddetach()));
+	connect(ui->toolbar, &FloatingWidgetToolBar::Print, this, &SampleWidget::slotPrint);
+	connect(ui->toolbar, &FloatingWidgetToolBar::Close, this, &SampleWidget::close);
+	connect(ui->toolbar, &FloatingWidgetToolBar::Hide, this, &SampleWidget::hide);
+	connect(ui->toolbar, &FloatingWidgetToolBar::Detach, this, &SampleWidget::ddetach);
 
-	connect(sysWatcher, SIGNAL(fileChanged(QString)),this, SLOT(slotFileChanged(QString)));
-	connect(reloadTimer,SIGNAL(timeout()), this, SLOT(slotReload()));
-	connect(layoutTimer, SIGNAL(timeout()), this, SLOT(doRender()));
+	connect(sysWatcher, &QFileSystemWatcher::fileChanged, this, &SampleWidget::slotFileChanged);
+	connect(reloadTimer, &QTimer::timeout, this, &SampleWidget::slotReload);
+	connect(layoutTimer, &QTimer::timeout, this, &SampleWidget::doRender);
 
-	connect(this, SIGNAL(stateChanged()), this, SLOT(saveState()));
+	connect(this, &SampleWidget::stateChanged, this, &SampleWidget::saveState);
 
-	connect(sampleToolBar, SIGNAL(OpenTypeToggled(bool)), this, SLOT(slotShowOpenType(bool)));
-	connect(sampleToolBar, SIGNAL(SampleToggled(bool)), this, SLOT(slotShowSamples(bool)));
-	connect(sampleToolBar, SIGNAL(ScriptSelected()), this, SLOT(slotScriptChange()));
+	connect(sampleToolBar, &SampleToolBar::OpenTypeToggled, this, &SampleWidget::slotShowOpenType);
+	connect(sampleToolBar, &SampleToolBar::SampleToggled, this, &SampleWidget::slotShowSamples);
+	connect(sampleToolBar, &SampleToolBar::ScriptSelected, this, &SampleWidget::slotScriptChange);
 
-	connect(ui->addSampleButton, SIGNAL(clicked()), this, SLOT(slotAddSample()));
-	connect(ui->removeSampleButton, SIGNAL(clicked()), this, SLOT(slotRemoveSample()));
-	connect(sampleNameEditor, SIGNAL(closeEditor(QWidget*)), this, SLOT(slotSampleNameEdited(QWidget*)));
-	connect(ui->sampleEdit, SIGNAL(textChanged()), this, SLOT(slotUpdateSample()));
+	connect(ui->addSampleButton, &QPushButton::clicked, this, &SampleWidget::slotAddSample);
+	connect(ui->removeSampleButton, &QPushButton::clicked, this, &SampleWidget::slotRemoveSample);
+	connect(sampleNameEditor, &QStyledItemDelegate::closeEditor, this, &SampleWidget::slotSampleNameEdited);
+	connect(ui->sampleEdit, &QPlainTextEdit::textChanged, this, &SampleWidget::slotUpdateSample);
 
 
-	connect(textLayoutFT, SIGNAL(clearScene()), this, SLOT(clearFTScene()));
+	connect(textLayoutFT, &FMLayout::clearScene, this, &SampleWidget::clearFTScene);
 }
 
 
 void SampleWidget::removeConnections()
 {
 
-	disconnect ( ui->loremView, SIGNAL(pleaseUpdateMe()), this, SLOT(slotUpdateSView()));
-	disconnect ( ui->loremView, SIGNAL(pleaseZoom(int)),this,SLOT(slotZoom(int)));
+	disconnect ( ui->loremView, &FMSampleTextView::pleaseUpdateMe, this, &SampleWidget::slotUpdateSView );
+	disconnect ( ui->loremView, &FMSampleTextView::pleaseZoom, this, &SampleWidget::slotZoom );
 
-	disconnect ( ui->loremView_FT, SIGNAL(pleaseZoom(int)),this,SLOT(slotZoom(int)));
-	disconnect ( ui->loremView_FT, SIGNAL(pleaseUpdateMe()), this, SLOT(slotUpdateRView()));
+	disconnect ( ui->loremView_FT, &FMSampleTextView::pleaseZoom, this, &SampleWidget::slotZoom );
+	disconnect ( ui->loremView_FT, &FMSampleTextView::pleaseUpdateMe, this, &SampleWidget::slotUpdateRView );
 
-	disconnect ( textLayoutVect, SIGNAL(updateLayout()),this, SLOT(slotView()));
-	disconnect ( this, SIGNAL(stopLayout()), textLayoutVect,SLOT(stopLayout()));
-	disconnect ( textLayoutFT, SIGNAL(updateLayout()),this, SLOT(slotView()));
-	disconnect ( this, SIGNAL(stopLayout()), textLayoutFT,SLOT(stopLayout()));
+	disconnect ( textLayoutVect, &FMLayout::updateLayout, this, &SampleWidget::slotView );
+	disconnect ( this, &SampleWidget::stopLayout, textLayoutVect, &FMLayout::stopLayout );
+	disconnect ( textLayoutFT, &FMLayout::updateLayout, this, &SampleWidget::slotView );
+	disconnect ( this, &SampleWidget::stopLayout, textLayoutFT, &FMLayout::stopLayout );
 
-	disconnect ( ui->sampleTextTree,SIGNAL ( itemSelectionChanged ()),this,SLOT ( slotSampleChanged() ) );
-	disconnect ( sampleToolBar, SIGNAL( SizeChanged(double) ),this,SLOT(slotLiveFontSize(double)));
+	disconnect ( ui->sampleTextTree, &QTreeWidget::itemSelectionChanged, this, &SampleWidget::slotSampleChanged );
+	disconnect ( sampleToolBar, &SampleToolBar::SizeChanged, this, &SampleWidget::slotLiveFontSize );
 
-	disconnect ( ui->OpenTypeTree, SIGNAL ( itemClicked ( QTreeWidgetItem*, int ) ), this, SLOT ( slotFeatureChanged() ) );
-	disconnect ( ui->saveDefOTFBut, SIGNAL(released()),this,SLOT(slotDefaultOTF()));
-	disconnect ( ui->resetDefOTFBut, SIGNAL(released()),this,SLOT(slotResetOTF()));
+	disconnect ( ui->OpenTypeTree, &QTreeWidget::itemClicked, this, &SampleWidget::slotFeatureChanged );
+	disconnect ( ui->saveDefOTFBut, &QPushButton::released, this, &SampleWidget::slotDefaultOTF );
+	disconnect ( ui->resetDefOTFBut, &QPushButton::released, this, &SampleWidget::slotResetOTF );
 
 //	disconnect ( ui->textProgression, SIGNAL ( stateChanged (  ) ),this ,SLOT(slotProgressionChanged()));
 
-	disconnect(ui->toolbar, SIGNAL(Print()), this, SLOT(slotPrint()));
-	disconnect(ui->toolbar, SIGNAL(Close()), this, SLOT(close()));
-	disconnect(ui->toolbar, SIGNAL(Hide()), this, SLOT(hide()));
-	disconnect(ui->toolbar, SIGNAL(Detach()), this, SLOT(ddetach()));
+	disconnect(ui->toolbar, &FloatingWidgetToolBar::Print, this, &SampleWidget::slotPrint);
+	disconnect(ui->toolbar, &FloatingWidgetToolBar::Close, this, &SampleWidget::close);
+	disconnect(ui->toolbar, &FloatingWidgetToolBar::Hide, this, &SampleWidget::hide);
+	disconnect(ui->toolbar, &FloatingWidgetToolBar::Detach, this, &SampleWidget::ddetach);
 
-	disconnect(sysWatcher, SIGNAL(fileChanged(QString)),this, SLOT(slotFileChanged(QString)));
-	disconnect(layoutTimer, SIGNAL(timeout()), this, SLOT(doRender()));
+	disconnect(sysWatcher, &QFileSystemWatcher::fileChanged, this, &SampleWidget::slotFileChanged);
+	disconnect(layoutTimer, &QTimer::timeout, this, &SampleWidget::doRender);
 
-	disconnect(this, SIGNAL(stateChanged()), this, SLOT(saveState()));
+	disconnect(this, &SampleWidget::stateChanged, this, &SampleWidget::saveState);
 }
 
 void SampleWidget::changeEvent(QEvent *e)
@@ -444,7 +444,7 @@ void SampleWidget::doRender()
 void SampleWidget::drawPixmap(int index, double fontsize, double x, double y)
 {
 	if(index < 0) {
-		disconnect(textLayoutFT, SIGNAL(drawPixmapForMe(int,double,double,double)), this, SLOT(drawPixmap(int,double,double,double)));
+		disconnect(textLayoutFT, &FMLayout::drawPixmapForMe, this, &SampleWidget::drawPixmap);
 		return;
 	}
 	FontItem * f( FMFontDb::DB()->Font( fontIdentifier ) );
@@ -967,11 +967,11 @@ void SampleWidget::slotRemoveSample()
 
 void SampleWidget::slotEditSample()
 {
-	disconnect(ui->sampleEdit, SIGNAL(textChanged()), this, SLOT(slotUpdateSample()));
+	disconnect(ui->sampleEdit, &QPlainTextEdit::textChanged, this, &SampleWidget::slotUpdateSample);
 	QTreeWidgetItem * currentItem = ui->sampleTextTree->currentItem();
 	ui->sampleEdit->setPlainText(typotek::getInstance()->namedSample( currentItem->data(0, Qt::UserRole).toString() ));
 	ui->sampleEdit->setReadOnly(currentItem->parent() != uRoot);
-	connect(ui->sampleEdit, SIGNAL(textChanged()), this, SLOT(slotUpdateSample()));
+	connect(ui->sampleEdit, &QPlainTextEdit::textChanged, this, &SampleWidget::slotUpdateSample);
 }
 
 void SampleWidget::slotUpdateSample()

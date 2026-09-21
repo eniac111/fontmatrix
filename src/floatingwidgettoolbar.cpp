@@ -34,10 +34,10 @@ FloatingWidgetToolBar::FloatingWidgetToolBar(QWidget *parent) :
 {
 	ui->setupUi(this);
 
-	connect(ui->closeButton, SIGNAL(clicked()), this, SIGNAL(Close()));
-	connect(ui->hideButton, SIGNAL(clicked()), this, SIGNAL(Hide()));
-	connect(ui->printButton, SIGNAL(clicked()), this, SIGNAL(Print()));
-	connect(ui->detachButton, SIGNAL(clicked()), this, SLOT(setDetached()));
+	connect(ui->closeButton, &QToolButton::clicked, this, &FloatingWidgetToolBar::Close);
+	connect(ui->hideButton, &QToolButton::clicked, this, &FloatingWidgetToolBar::Hide);
+	connect(ui->printButton, &QToolButton::clicked, this, &FloatingWidgetToolBar::Print);
+	connect(ui->detachButton, &QToolButton::clicked, this, &FloatingWidgetToolBar::setDetached);
         setupMenu();
 
 }

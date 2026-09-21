@@ -29,9 +29,9 @@ ImportTags::ImportTags(QWidget * parent, QStringList tags)
 		it->setCheckState(Qt::Unchecked);
 	}
 	
-	connect(tagNewButton,SIGNAL(released()),this,SLOT(slotNewTag()));
-	connect(tagText,SIGNAL(editingFinished()),this,SLOT(slotNewTag()));
-	connect(okButton,SIGNAL(released()),this,SLOT(slotEnd()));
+	connect(tagNewButton, &QPushButton::released, this, &ImportTags::slotNewTag);
+	connect(tagText, &QLineEdit::editingFinished, this, &ImportTags::slotNewTag);
+	connect(okButton, &QPushButton::released, this, &ImportTags::slotEnd);
 }
 
 

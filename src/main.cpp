@@ -322,9 +322,7 @@ int main ( int argc, char *argv[] )
 		spFont.setPointSize ( 9 );
 		theSplash.setPixmap ( theSplashPix );
 		theSplash.setFont ( spFont );
-		QObject::connect ( mw, SIGNAL ( relayStartingStepOut ( QString, int, QColor ) ),
-		                   &theSplash, SLOT ( showMessage ( const QString&, int, const QColor& ) ),
-		                   Qt::DirectConnection );
+		QObject::connect ( mw, &typotek::relayStartingStepOut, &theSplash, &QSplashScreen::showMessage, Qt::DirectConnection );
 	}
 
 	QElapsedTimer splashTimer;

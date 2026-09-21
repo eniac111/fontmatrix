@@ -71,7 +71,7 @@ FMFloatingMenu::FMFloatingMenu(QWidget * parent, FontItem * item)
 		actButton = new QPushButton(i18n("Activate"),this);
 		actButton->setFont(f);
 		menuLayout->addWidget(actButton, 0,2, Qt::AlignRight);
-		connect(actButton, SIGNAL(clicked()),this,SLOT(activateFont()));
+		connect(actButton, &QPushButton::clicked, this, &FMFloatingMenu::activateFont);
 		act = true;
 	}
 
@@ -83,8 +83,8 @@ FMFloatingMenu::FMFloatingMenu(QWidget * parent, FontItem * item)
 	text->setFont(f);
 	menuLayout->addWidget(text,1, 0, 1, -1);
 
-	connect(text, SIGNAL(textEdited(QString)), reinterpret_cast<FMFloatingPreview*>(parent), SLOT(updatePreview(QString)));
-	connect(closeButton, SIGNAL(clicked()), this, SLOT(forwardCloseClicked()));
+	connect(text, &QLineEdit::textEdited, reinterpret_cast<FMFloatingPreview*>(parent), &FMFloatingPreview::updatePreview);
+	connect(closeButton, &QPushButton::clicked, this, &FMFloatingMenu::forwardCloseClicked);
 }
 
 //void FMFloatingMenu::enterEvent(QEvent *e)
@@ -139,7 +139,7 @@ FMFloatingPreview::FMFloatingPreview(QWidget * parent, FontItem * item)
 	mainLayout->addWidget(previewLabel, Qt::AlignHCenter);
 
 
-	connect(menuWidget, SIGNAL(closeClicked()), this, SLOT(close()));
+	connect(menuWidget, &FMFloatingMenu::closeClicked, this, &FMFloatingPreview::close);
 }
 
 FMFloatingPreview::~FMFloatingPreview()

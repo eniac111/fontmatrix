@@ -61,7 +61,7 @@ FMPlayGround::FMPlayGround ( QWidget *parent )
 	CursorTimer = new QTimer(this);
 	CursorTimer->setInterval(1000);
 	CursorTimer->stop();
-	connect(CursorTimer, SIGNAL(timeout()), this, SLOT(blinkCursor()));
+	connect(CursorTimer, &QTimer::timeout, this, &FMPlayGround::blinkCursor);
 }
 
 FMPlayGround::~ FMPlayGround()

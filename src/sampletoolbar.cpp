@@ -30,10 +30,10 @@ SampleToolBar::SampleToolBar(QWidget *parent) :
     ui->setupUi(this);
 //    setAutoFillBackground(true);
 
-    connect(ui->liveSize, SIGNAL(valueChanged(double)), this, SIGNAL(SizeChanged(double)));
-    connect(ui->sampleButton, SIGNAL(toggled(bool)), this, SIGNAL(SampleToggled(bool)));
-    connect(ui->opentypeButton, SIGNAL(toggled(bool)), this, SIGNAL(OpenTypeToggled(bool)));
-    connect(ui->languageCombo, SIGNAL(currentIndexChanged(int)), this, SIGNAL(ScriptSelected()));
+    connect(ui->liveSize, &QDoubleSpinBox::valueChanged, this, &SampleToolBar::SizeChanged);
+    connect(ui->sampleButton, &QToolButton::toggled, this, &SampleToolBar::SampleToggled);
+    connect(ui->opentypeButton, &QToolButton::toggled, this, &SampleToolBar::OpenTypeToggled);
+    connect(ui->languageCombo, &QComboBox::currentIndexChanged, this, &SampleToolBar::ScriptSelected);
 }
 
 SampleToolBar::~SampleToolBar()

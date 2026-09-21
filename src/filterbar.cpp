@@ -270,19 +270,19 @@ FilterBar::FilterBar(QWidget *parent) :
 	loadFilters();
 
 
-	connect(ui->tagsView, SIGNAL(clicked(QModelIndex)), this, SLOT(slotTagSelect(QModelIndex)));
-	connect(ui->tagsView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(slotTagEdit(QModelIndex)));
+	connect(ui->tagsView, &TagListView::clicked, this, &FilterBar::slotTagSelect);
+	connect(ui->tagsView, &TagListView::doubleClicked, this, &FilterBar::slotTagEdit);
 
-	connect(ui->metadataLineEdit, SIGNAL(editingFinished()), this, SLOT(metaFilter()));
-	connect(ui->fieldCombo, SIGNAL(activated(int)), this, SLOT(metaSelectField(int)));
+	connect(ui->metadataLineEdit, &QLineEdit::editingFinished, this, &FilterBar::metaFilter);
+	connect(ui->fieldCombo, &QComboBox::activated, this, &FilterBar::metaSelectField);
 //	connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(slotClearFilter()));
-	connect(ui->panoseWidget, SIGNAL(filterChanged()), this, SLOT(slotPanoFilter()));
-	connect(FMFontDb::DB(), SIGNAL(tagsChanged()), tagListModel, SLOT(tagsDBChanged()));
+	connect(ui->panoseWidget, &PanoseWidget::filterChanged, this, &FilterBar::slotPanoFilter);
+	connect(FMFontDb::DB(), &FMFontDb::tagsChanged, tagListModel, &TagListModel::tagsDBChanged);
 
-	connect(ui->tagsArrow, SIGNAL(openChanged(bool)), this, SLOT(slotToggleTags(bool)));
-	connect(ui->metadataArrow, SIGNAL(openChanged(bool)), this, SLOT(slotToggleMeta(bool)));
-	connect(ui->panoseArrow, SIGNAL(openChanged(bool)), this, SLOT(slotTogglePano(bool)));
-	connect(ui->filtersArrow, SIGNAL(openChanged(bool)), this, SLOT(slotToggleFilter(bool)));
+	connect(ui->tagsArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotToggleTags);
+	connect(ui->metadataArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotToggleMeta);
+	connect(ui->panoseArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotTogglePano);
+	connect(ui->filtersArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotToggleFilter);
 
 	ui->tagsArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/TagsOpen"), true).toBool());
 	ui->metadataArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/MetaOpen"), false).toBool());
@@ -396,8 +396,8 @@ void FilterBar::addFilterItem(FilterData *f, bool process)
 		{
 			if(f->data(FilterData::Replace).toBool())
 				removeAllFilters();
-			connect(it, SIGNAL(remove()), this, SLOT(slotRemoveFilterItem()));
-			connect(f, SIGNAL(Changed()), this, SLOT(processFilters()));
+			connect(it, &FilterItem::remove, this, [this]() { slotRemoveFilterItem(); });
+			connect(f, &FilterData::Changed, this, &FilterBar::processFilters);
 			filters.append(it);
 			filterListLayout->addWidget(it);
 
@@ -484,8 +484,8 @@ void FilterBar::loadFilters()
 		FiltersDialogItem *fdi(new FiltersDialogItem(fname, fString, this));
 		items.append(fdi);
 		ui->filtersLayout->addWidget(fdi, 0, Qt::AlignTop);
-		connect(fdi, SIGNAL(Filter(QString)), this, SLOT(slotLoadFilter(QString)));
-		connect(fdi, SIGNAL(Remove(QString)), this, SLOT(slotRemoveFilter(QString)));
+		connect(fdi, &FiltersDialogItem::Filter, this, &FilterBar::slotLoadFilter);
+		connect(fdi, &FiltersDialogItem::Remove, this, &FilterBar::slotRemoveFilter);
 	}
 }
 
@@ -695,9 +695,9 @@ void FilterBar::slotRemoveFilter(const QString &fname)
 void FilterBar::filtersDialog()
 {
 	FiltersDialog *fd(new FiltersDialog(filters, this));
-	connect(fd, SIGNAL(Filter(QString)), this, SLOT(slotLoadFilter(QString)));
-	connect(fd, SIGNAL(AddFilter(QString)), this, SLOT(slotSaveFilter(QString)));
-	connect(fd, SIGNAL(RemoveFilter(QString)), this, SLOT(slotRemoveFilter(QString)));
+	connect(fd, &FiltersDialog::Filter, this, &FilterBar::slotLoadFilter);
+	connect(fd, &FiltersDialog::AddFilter, this, qOverload<const QString &>(&FilterBar::slotSaveFilter));
+	connect(fd, &FiltersDialog::RemoveFilter, this, &FilterBar::slotRemoveFilter);
 	fd->exec();
 }
 

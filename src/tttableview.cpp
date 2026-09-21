@@ -49,8 +49,8 @@ TTTableView::TTTableView(FontItem * font, QWidget * parent)
 	}
 	tView->resizeColumnToContents(DESCRIPTION);
 	
-	connect(tView,SIGNAL(itemSelectionChanged()),this,SLOT(updateHexView()));
-	connect(exportButton,SIGNAL(clicked()),this,SLOT(exportHex()));
+	connect(tView, &QTreeWidget::itemSelectionChanged, this, &TTTableView::updateHexView);
+	connect(exportButton, &QPushButton::clicked, this, &TTTableView::exportHex);
 	
 	if(hasTable)
 	{

@@ -45,20 +45,20 @@ FMMatchRaster::FMMatchRaster ( QWidget * parent )
 	refCodepoint = 0;
 
 
-	connect ( browseButton,SIGNAL ( clicked() ),this, SLOT ( browseImage() ) );
-	connect ( grabZoom , SIGNAL ( valueChanged(int) ) ,this, SLOT ( zoomChanged(int)) );
-	connect ( grabModeBox , SIGNAL ( toggled(bool) ) ,this, SLOT ( enterGrabMode(bool) ) );
-	connect ( tweakRectBox, SIGNAL(toggled(bool)),this,SLOT(switchControlRect(bool)));
-	connect ( letter,SIGNAL ( textChanged ( const QString & ) ),this,SLOT ( addImage ( const QString & ) ) );
-	connect ( searchButton,SIGNAL ( clicked() ),this,SLOT ( search() ) );
+	connect ( browseButton, &QPushButton::clicked, this, &FMMatchRaster::browseImage );
+	connect ( grabZoom, &QSlider::valueChanged, this, &FMMatchRaster::zoomChanged );
+	connect ( grabModeBox, &QCheckBox::toggled, this, &FMMatchRaster::enterGrabMode );
+	connect ( tweakRectBox, &QCheckBox::toggled, this, &FMMatchRaster::switchControlRect );
+	connect ( letter, &QLineEdit::textChanged, this, &FMMatchRaster::addImage );
+	connect ( searchButton, &QPushButton::clicked, this, &FMMatchRaster::search );
 
-	connect ( iView,SIGNAL ( rectChange ( QRect ) ),this,SLOT ( recordCurrentRect ( QRect ) ) );
-	connect ( iView,SIGNAL ( selColorChanged ( QRgb ) ),this,SLOT ( recordCurrentColor ( QRgb ) ) );
+	connect ( iView, &IView::rectChange, this, &FMMatchRaster::recordCurrentRect );
+	connect ( iView, &IView::selColorChanged, this, &FMMatchRaster::recordCurrentColor );
 
-	connect ( buttonBox,SIGNAL ( rejected() ),this,SLOT ( slotRefuseFont() ) );
-	connect ( buttonBox,SIGNAL ( accepted() ),this,SLOT ( slotAcceptFont() ) );
+	connect ( buttonBox, &QDialogButtonBox::rejected, this, &FMMatchRaster::slotRefuseFont );
+	connect ( buttonBox, &QDialogButtonBox::accepted, this, &FMMatchRaster::slotAcceptFont );
 
-	connect ( stopButton,SIGNAL ( clicked() ), this, SLOT ( slotStop() ) );
+	connect ( stopButton, &QPushButton::clicked, this, &FMMatchRaster::slotStop );
 }
 
 FMMatchRaster::~ FMMatchRaster()

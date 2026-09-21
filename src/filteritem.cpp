@@ -43,9 +43,9 @@ FilterItem::FilterItem(FilterData *filter, QWidget *parent) :
 	ui->andButton->setChecked(d->data(FilterData::And).toBool());
 	ui->noButton->setChecked(d->data(FilterData::Not).toBool());
 
-	connect(ui->andButton, SIGNAL(clicked(bool)), this, SLOT(setAndMode(bool)));
-	connect(ui->noButton, SIGNAL(clicked(bool)), this, SLOT(setNoMode(bool)));
-	connect(ui->removeButton, SIGNAL(clicked()), this, SIGNAL(remove()));
+	connect(ui->andButton, &QToolButton::clicked, this, &FilterItem::setAndMode);
+	connect(ui->noButton, &QToolButton::clicked, this, &FilterItem::setNoMode);
+	connect(ui->removeButton, &QToolButton::clicked, this, &FilterItem::remove);
 }
 
 void FilterItem::updateText()

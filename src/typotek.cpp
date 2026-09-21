@@ -312,8 +312,7 @@ void typotek::installDock(const QString& id, const QString& name, QWidget * w, c
 	if(!dockGeometry[id].isNull())
 		dw->setGeometry(dockGeometry[id]);
 
-	connect(dw , SIGNAL(dockLocationChanged( Qt::DockWidgetArea )),
-		this, SLOT(slotDockAreaChanged(Qt::DockWidgetArea )));
+	connect(dw, &QDockWidget::dockLocationChanged, this, &typotek::slotDockAreaChanged);
 }
 
 void typotek::postInit()
@@ -323,11 +322,11 @@ void typotek::postInit()
 void typotek::doConnect()
 {
 	if(getSystray())
-		connect ( FMActivate::getInstance() ,SIGNAL ( activationEvent ( const QStringList& ) ), getSystray(),SLOT ( updateTagMenu ( const QStringList& ) ) );
+		connect ( FMActivate::getInstance(), &FMActivate::activationEvent, getSystray(), &Systray::updateTagMenu );
 
 //	connect(FMLayout::getLayout()->optionDialog,SIGNAL(finished( int )),this,SLOT(slotUpdateLayOptStatus()));
-	connect(toggleMainViewButton, SIGNAL(toggled(bool)), this, SLOT(toggleMainView(bool)));
-	connect(this, SIGNAL(newFontsArrived()), theMainView, SLOT(slotFontDbChanged()));
+	connect(toggleMainViewButton, &QToolButton::toggled, this, &typotek::toggleMainView);
+	connect(this, &typotek::newFontsArrived, theMainView, &MainViewWidget::slotFontDbChanged);
 }
 
 void typotek::closeEvent ( QCloseEvent *event )
@@ -692,28 +691,28 @@ void typotek::createActions()
 	openAct->setShortcut ( QKeySequence(Qt::CTRL | Qt::Key_O) );
 	openAct->setToolTip( i18n( "Import a directory" ) );
 	scuts->add(openAct);
-	connect ( openAct, SIGNAL ( triggered() ), this, SLOT ( open() ) );
+	connect ( openAct, &QAction::triggered, this, [this]() { open(); } );
 
 	importFilesAction = new QAction( i18n( "Import &Files..." ), this );
 	importFilesAction->setShortcut( QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_O) );
 	importFilesAction->setToolTip(i18n("Import Files"));
 	scuts->add(importFilesAction);
-	connect(importFilesAction, SIGNAL(triggered()), this, SLOT(importFiles()));
+	connect(importFilesAction, &QAction::triggered, this, &typotek::importFiles);
 
 	exportFontSetAct = new QAction(i18n("Export &fonts"),this);
 	exportFontSetAct->setStatusTip(i18n("Export a fontset"));
 	scuts->add(exportFontSetAct);
-	connect( exportFontSetAct,SIGNAL(triggered( )),this,SLOT(slotExportFontSet()));
+	connect( exportFontSetAct, &QAction::triggered, this, &typotek::slotExportFontSet );
 
 
 	fontBookAct = new QAction ( i18n( "Export font book..." ),this );
 	fontBookAct->setStatusTip ( i18n( "Export a PDF document that shows selected fonts" ) );
 	scuts->add(fontBookAct);
-	connect ( fontBookAct, SIGNAL ( triggered() ), this, SLOT ( fontBook() ) );
+	connect ( fontBookAct, &QAction::triggered, this, &typotek::fontBook );
 
 	dumpInfoAct = new QAction(i18n("Export font info for packaging..."), this);
 	dumpInfoAct->setStatusTip ( i18n( "Fill a template file with metadata for packaging currently selected font to a Linux distribution" ) );
-	connect(dumpInfoAct, SIGNAL(triggered()), this, SLOT(slotDumpInfo()));
+	connect(dumpInfoAct, &QAction::triggered, this, &typotek::slotDumpInfo);
 
 // 	tagsetAct = new QAction ( i18n( "&Tag Sets" ),this );
 // 	tagsetAct->setIcon ( QIcon ( ":/fontmatrix_tagseteditor_icon.png" ) );
@@ -723,16 +722,16 @@ void typotek::createActions()
 	activCurAct = new QAction ( i18n( "Activate all current" ),this );
 	activCurAct->setStatusTip ( i18n( "Activate all currently visible fonts" ) );
 	scuts->add(activCurAct);
-	connect ( activCurAct,SIGNAL ( triggered( ) ),this,SLOT ( slotActivateCurrents() ) );
+	connect ( activCurAct, &QAction::triggered, this, &typotek::slotActivateCurrents );
 
 	deactivCurAct = new QAction ( i18n( "Deactivate all current" ),this );
 	deactivCurAct->setStatusTip ( i18n( "Deactivate all currently visible fonts" ) );
 	scuts->add(deactivCurAct);
-	connect ( deactivCurAct,SIGNAL ( triggered( ) ),this,SLOT ( slotDeactivateCurrents() ) );
+	connect ( deactivCurAct, &QAction::triggered, this, &typotek::slotDeactivateCurrents );
 
 	fonteditorAct = new QAction ( i18n( "Edit current font" ),this );
 	scuts->add(fonteditorAct);
-	connect ( fonteditorAct,SIGNAL ( triggered( ) ),this,SLOT ( slotEditFont() ) );
+	connect ( fonteditorAct, &QAction::triggered, this, &typotek::slotEditFont );
 	if ( QFile::exists ( fonteditorPath ) )
 	{
 		fonteditorAct->setStatusTip ( i18n( "Edit currently selected font in a font editor of your choice" ) );
@@ -746,17 +745,17 @@ void typotek::createActions()
 	reloadAct = new QAction( i18n("Reload Filtered"), this );
 	reloadAct->setStatusTip(i18n("Reload informations for filtered fonts from the font files they belong to"));
 	scuts->add(reloadAct);
-	connect(reloadAct, SIGNAL(triggered()), this, SLOT(slotReloadFiltered()));
+	connect(reloadAct, &QAction::triggered, this, &typotek::slotReloadFiltered);
 
 	reloadSingleAct = new QAction(i18n("Reload Selected"), this);
 	reloadSingleAct->setStatusTip(i18n("Reload informations for selected font from the font file"));
 	scuts->add(reloadSingleAct);
-	connect(reloadSingleAct, SIGNAL(triggered()), this, SLOT(slotReloadSingle()));
+	connect(reloadSingleAct, &QAction::triggered, this, &typotek::slotReloadSingle);
 
 	repairAct = new QAction ( i18n("Check Database"), this);
 	repairAct->setStatusTip ( i18n( "Check Fontmatrix database for dead links to font files" ) );
 	scuts->add(repairAct);
-	connect( repairAct, SIGNAL ( triggered() ),this,SLOT (slotRepair()));
+	connect( repairAct, &QAction::triggered, this, &typotek::slotRepair );
 
 //	if ( systray )
 //		connect ( theMainView, SIGNAL ( newTag ( QString ) ), systray, SLOT ( newTag ( QString ) ) );
@@ -764,17 +763,17 @@ void typotek::createActions()
 	tagAll = new QAction(i18n("Tag All Filtered..."), this);
 	tagAll->setStatusTip ( i18n( "Tag all currently visible files" ) );
 	scuts->add(tagAll);
-	connect(tagAll,SIGNAL(triggered()),this,SLOT(slotTagAll()));
+	connect(tagAll, &QAction::triggered, this, &typotek::slotTagAll);
 
 	showTTTAct = new QAction(i18n("Show TrueType tables"),this);
 	showTTTAct->setStatusTip ( i18n( "View hexadecimal values of TrueType tables for currently selected font file" ) );
 	scuts->add(showTTTAct);
-	connect(showTTTAct,SIGNAL(triggered( )),this,SLOT(slotShowTTTables()));
+	connect(showTTTAct, &QAction::triggered, this, &typotek::slotShowTTTables);
 
 	editPanoseAct = new QAction(i18n("Edit PANOSE metadata"), this);
 	editPanoseAct->setStatusTip ( i18n( "Edit PANOSE metadata without saving changes to font files" ) );
 	scuts->add(editPanoseAct);
-	connect(editPanoseAct, SIGNAL(triggered()), this, SLOT(slotEditPanose()));
+	connect(editPanoseAct, &QAction::triggered, this, &typotek::slotEditPanose);
 
 
 	playAction = new QAction(i18n("Playground"), this);
@@ -783,7 +782,7 @@ void typotek::createActions()
 	playAction->setCheckable(true);
 	playAction->setChecked(false);
 	scuts->add(playAction);
-	connect(playAction, SIGNAL(triggered(bool)), PlayWidget::getInstance(), SLOT(setVisible(bool)));
+	connect(playAction, &QAction::triggered, PlayWidget::getInstance(), &PlayWidget::setVisible);
 
 	compareAction = new QAction(i18n("Compare"), this);
 	compareAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_R));
@@ -791,22 +790,22 @@ void typotek::createActions()
 	compareAction->setCheckable(true);
 	compareAction->setChecked(false);
 	scuts->add(compareAction);
-	connect(compareAction, SIGNAL(triggered(bool)), FontCompareWidget::getInstance(), SLOT(setVisible(bool)));
+	connect(compareAction, &QAction::triggered, FontCompareWidget::getInstance(), &FontCompareWidget::setVisible);
 
 	closeAllFloat = new QAction(i18n("Close All"), this);
 	closeAllFloat->setToolTip(i18n("Close all floating windows"));
 	scuts->add(closeAllFloat);
-	connect(closeAllFloat, SIGNAL(triggered()), this, SLOT(closeAllFloatings()));
+	connect(closeAllFloat, &QAction::triggered, this, &typotek::closeAllFloatings);
 
 	showAllFloat = new QAction(i18n("Show All"), this);
 	showAllFloat->setToolTip(i18n("Show all floating windows"));
 	scuts->add(showAllFloat);
-	connect(showAllFloat, SIGNAL(triggered()), this, SLOT(showAllFloatings()));
+	connect(showAllFloat, &QAction::triggered, this, &typotek::showAllFloatings);
 
 	hideAllFloat = new QAction(i18n("Hide All"), this);
 	hideAllFloat->setToolTip(i18n("Hide all floating windows"));
 	scuts->add(hideAllFloat);
-	connect(hideAllFloat, SIGNAL(triggered()), this, SLOT(hideAllFloatings()));
+	connect(hideAllFloat, &QAction::triggered, this, &typotek::hideAllFloatings);
 
 	floatSep = new QAction(this);
 	floatSep->setSeparator(true);
@@ -818,26 +817,24 @@ void typotek::createActions()
 	// them from their own title bar — so without these the Playground and
 	// Compare buttons stay checked until the View menu is next opened, which
 	// is what refreshed them before.
-	connect(PlayWidget::getInstance(), SIGNAL(visibilityChanged()),
-	        this, SLOT(updateFloatingStatus()));
-	connect(FontCompareWidget::getInstance(), SIGNAL(visibilityChanged()),
-	        this, SLOT(updateFloatingStatus()));
+	connect(PlayWidget::getInstance(), &PlayWidget::visibilityChanged, this, &typotek::updateFloatingStatus);
+	connect(FontCompareWidget::getInstance(), &FontCompareWidget::visibilityChanged, this, &typotek::updateFloatingStatus);
 
 	
 	extractFontAction = new QAction(i18n("Extract fonts..."),this);
 	extractFontAction->setStatusTip ( i18n( "Extract fonts from documents like PDF to PFM file format" ) );
 	scuts->add(extractFontAction);
-	connect(extractFontAction,SIGNAL(triggered()),this,SLOT(slotExtractFont()));
+	connect(extractFontAction, &QAction::triggered, this, &typotek::slotExtractFont);
 	
 	matchRasterAct = new QAction(i18n("Find a font using raster sample..."), this); // FIXME find a name for it
 	matchRasterAct->setStatusTip ( i18n( "Find a font using a raster sample of a letter" ) );
 	scuts->add(matchRasterAct);
-	connect(matchRasterAct,SIGNAL(triggered()),this,SLOT(slotMatchRaster()));
+	connect(matchRasterAct, &QAction::triggered, this, &typotek::slotMatchRaster);
 
 	exportXeTeXAct = new QAction(i18n("Export font list as XeTeX..."), this);
 	exportXeTeXAct->setStatusTip(i18n("Export the current filtered font list as a XeTeX source file"));
 	scuts->add(exportXeTeXAct);
-	connect(exportXeTeXAct, SIGNAL(triggered()), this, SLOT(slotExportXeTeX()));
+	connect(exportXeTeXAct, &QAction::triggered, this, &typotek::slotExportXeTeX);
 
 	auto *ac = actionCollection();
 
@@ -2265,7 +2262,7 @@ void typotek::slotShowTTTables()
 		drect.setWidth(tv.rect().width() * 1.2);
 		drect.setHeight(tv.rect().height() * 1.2);
 		dia.setGeometry(drect);
-		connect(&pbutton,SIGNAL(released()),&dia,SLOT(close()));
+		connect(&pbutton, &QPushButton::released, &dia, &QDialog::close);
 		dia.exec();
 	}
 }
@@ -2523,8 +2520,8 @@ void typotek::updateFloatingStatus()
 		{
 			QAction *wa(new QAction(f->getActionName(),this));
 			wa->setCheckable(true);
-			connect(f, SIGNAL(visibilityChange()), this, SLOT(updateFloatingStatus()));
-			connect(wa, SIGNAL(triggered(bool)), f, SLOT(activate(bool)));
+			connect(f, &FloatingWidget::visibilityChange, this, &typotek::updateFloatingStatus);
+			connect(wa, &QAction::triggered, f, &FloatingWidget::activate);
 			floatingWidgets.insert(f,  wa);
 			floatingWidgets.value ( f )->setChecked(f->isVisible());
 			viewMenu->addAction(wa);
