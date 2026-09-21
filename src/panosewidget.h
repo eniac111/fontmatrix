@@ -39,7 +39,7 @@ public:
 	~PanoseWidget() override;
 
 	void setFilter(const QMap<int, QList<int> >& filter);
-	QMap<int, QList<int> > getFilter() const{return m_filter;}
+	[[nodiscard]] QMap<int, QList<int> > getFilter() const{return m_filter;}
 
 protected:
 	//    void changeEvent(QEvent *e);

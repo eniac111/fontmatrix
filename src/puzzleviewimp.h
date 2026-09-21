@@ -23,7 +23,7 @@ class SVect
 		SVect() :x ( 0.0 ),y ( 0.0 ) {}
 		SVect ( double xx, double yy ) :x ( xx ),y ( yy ) {}
 
-		inline double squareDistance ( const SVect& other ) const
+		[[nodiscard]] inline double squareDistance ( const SVect& other ) const
 		{
 			double C1 ( other.x - x );
 			double C2 ( other.y - y );

@@ -29,12 +29,12 @@ public:
 	void setAttributes(const QString &attrs);
 
 	/** Determine the difference between the selected font and the other font. */
-	int diff (const QString &other) const;
+	[[nodiscard]] int diff (const QString &other) const;
 
 private:
 	QList<int> attributes;
 
-	QList<int> parse(const QString &panoseString) const;
+	[[nodiscard]] QList<int> parse(const QString &panoseString) const;
 
 	/** Calculate the square of the difference between two Panose values. */
 	static int calcdiffm (int, int, int);

@@ -48,7 +48,7 @@ public:
 	void paint ( QPainter * painter, const QRect & rect, QIcon::Mode mode, QIcon::State state ) override;
 	void addPixmap ( const QPixmap & pixmap, QIcon::Mode mode, QIcon::State state ) override;
 	void setActivation(Activation a){activatedFont = a;}
-	QIconEngine *clone() const override;
+	[[nodiscard]] QIconEngine *clone() const override;
 
 private:
 	// only clone() copies an engine
@@ -75,7 +75,7 @@ class FMPreviewView : public QListView
 public:
 	FMPreviewView(QWidget * parent = nullptr);
 	~FMPreviewView() override= default;
-	int getUsedWidth() const{return usedWidth;}
+	[[nodiscard]] int getUsedWidth() const{return usedWidth;}
 	// n = 1 for a single column layout (list); n = 2 for multi columns layout
 	void setNumCol(int n){columns = n;}
 	bool moveTo(const QString& fname); // fname can be the begining of a fancy name
@@ -112,11 +112,11 @@ public:
 
 	FMPreviewModel ( QObject * pa , FMPreviewView * wPa, QList<FontItem*> db = QList<FontItem*>());
 	//returns a preview
-	QVariant data ( const QModelIndex &index, int role = Qt::DisplayRole ) const override;
+	[[nodiscard]] QVariant data ( const QModelIndex &index, int role = Qt::DisplayRole ) const override;
 	//returns flags for items
-	Qt::ItemFlags flags ( const QModelIndex &index ) const override;
+	[[nodiscard]] Qt::ItemFlags flags ( const QModelIndex &index ) const override;
 	//returns the number of items
-	int rowCount ( const QModelIndex &parent ) const override;
+	[[nodiscard]] int rowCount ( const QModelIndex &parent ) const override;
 
 	void resetBase(QList<FontItem*> db);
 	QList<FontItem*> getBase();
@@ -124,7 +124,7 @@ public:
 	void setFamilyMode(bool f){familyMode =f;}
 	void setSpecString(const QString& s){specString = s;}
 
-	bool getFamilyMode() const{return familyMode;}
+	[[nodiscard]] bool getFamilyMode() const{return familyMode;}
 
 private:
 	FMPreviewView *m_view = nullptr;

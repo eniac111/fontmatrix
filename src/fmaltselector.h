@@ -77,7 +77,7 @@ class FMAltSelectorModel : public QAbstractItemModel
 		~FMAltItemDelegate() override{delete pmodel;}
 
 		void paint ( QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const override;
-		QSize sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const override;
+		[[nodiscard]] QSize sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const override;
 	};
 	FMAltItemDelegate * altDelegate = nullptr;
 
@@ -87,12 +87,12 @@ public:
 
 	void reModel(FMAltContext * ctx);
 
-	QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const override;
-	QModelIndex parent ( const QModelIndex & index ) const override;
-	int rowCount ( const QModelIndex & parent = QModelIndex() ) const override;
-	int columnCount ( const QModelIndex & parent = QModelIndex() ) const override ;
-	Qt::ItemFlags flags(const QModelIndex &index) const override;
-	QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const override;
+	[[nodiscard]] QModelIndex index ( int row, int column, const QModelIndex & parent = QModelIndex() ) const override;
+	[[nodiscard]] QModelIndex parent ( const QModelIndex & index ) const override;
+	[[nodiscard]] int rowCount ( const QModelIndex & parent = QModelIndex() ) const override;
+	[[nodiscard]] int columnCount ( const QModelIndex & parent = QModelIndex() ) const override ;
+	[[nodiscard]] Qt::ItemFlags flags(const QModelIndex &index) const override;
+	[[nodiscard]] QVariant data ( const QModelIndex & index, int role = Qt::DisplayRole ) const override;
 
 	FMAltItemDelegate * AltDelegate(){return altDelegate;}
 	friend class FMAltItemDelegate;

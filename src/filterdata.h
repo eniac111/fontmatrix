@@ -49,13 +49,13 @@ public:
 	};
 
 	virtual void setData(int index, QVariant data, bool signalChange = false);
-	virtual QVariant data(int index) const;
-	virtual QString getText() const;
-	virtual QByteArray toByteArray() const;
+	[[nodiscard]] virtual QVariant data(int index) const;
+	[[nodiscard]] virtual QString getText() const;
+	[[nodiscard]] virtual QByteArray toByteArray() const;
 	virtual void fromByteArray(const QByteArray& ba);
 	virtual FilterItem* item();
 
-	virtual QString type() const = 0;
+	[[nodiscard]] virtual QString type() const = 0;
 	virtual void operate() = 0;
 
 protected:

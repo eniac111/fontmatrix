@@ -142,7 +142,7 @@ class FMFontDb : public QObject, public QSqlDatabase
 		void filterAllFonts();
 		QList<FontItem*> getFilteredFonts(bool familyOnly = false);
 		void setFilterdFonts(const QList<FontItem*>& flist);
-		int countFilteredFonts() const;
+		[[nodiscard]] int countFilteredFonts() const;
 		void insertFilteredFont(FontItem* item);
 		void removeFilteredFont(FontItem* item);
 		bool isFiltered(FontItem* item) const;

@@ -2299,7 +2299,7 @@ void typotek::slotReloadFiltered()
 	FontItem * cf(theMainView->selectedFont());
 	QString cfName;
 	if(cf)
-		cf->path();
+		cfName = cf->path();
 
 	QStringList toReload;
 	QApplication::changeOverrideCursor(Qt::WaitCursor);

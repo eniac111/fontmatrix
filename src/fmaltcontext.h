@@ -79,32 +79,32 @@ public:
 	int maxAlt(const int& gIdx){return m_alt[runPar][runWord][runChunk][gIdx].count();}
 
 	void setPar(const int& p = 0){runPar = p;}
-	int par() const {return runPar;}
+	[[nodiscard]] int par() const {return runPar;}
 
 	void setWord(const int& w = 0){runWord = w;}
-	int word() const{return runWord;}
+	[[nodiscard]] int word() const{return runWord;}
 
 	void setChunk(const int& c = 0){runChunk = c;}
-	int chunk() const{return runChunk;}
+	[[nodiscard]] int chunk() const{return runChunk;}
 
 	void addAlt(const int& gIndex, const int& gAlt)
 	{
 		if(!m_alt[runPar][runWord][runChunk][gIndex].contains(gAlt))
 			m_alt[runPar][runWord][runChunk][gIndex].append(gAlt);
 	}
-	QList<int> alts(const int& gIndex) const { return m_alt.value(runPar).value(runWord).value(runChunk).value(gIndex); }
+	[[nodiscard]] QList<int> alts(const int& gIndex) const { return m_alt.value(runPar).value(runWord).value(runChunk).value(gIndex); }
 
 	void setControl(const int& gIndex, const int& c){ m_control[runPar][runWord][runChunk][gIndex] = c; }
-	int control(const int& gIndex) const {return m_control.value(runPar).value(runWord).value(runChunk).value(gIndex);}
+	[[nodiscard]] int control(const int& gIndex) const {return m_control.value(runPar).value(runWord).value(runChunk).value(gIndex);}
 
 	void setSelect(const int& gIndex, const int& s){ m_select[runPar][runWord][runChunk][gIndex] = s; }
-	int select(const int& gIndex) const { return m_select.value(runPar).value(runWord).value(runChunk).value(gIndex); }
+	[[nodiscard]] int select(const int& gIndex) const { return m_select.value(runPar).value(runWord).value(runChunk).value(gIndex); }
 	
 	void fileWord(const QString& s){m_words[runPar][runWord] = s;}
-	QString wordString()const{return m_words.value(runPar).value(runWord);}
+	[[nodiscard]] QString wordString()const{return m_words.value(runPar).value(runWord);}
 
 	void fileChunk(const QString& s){m_chunks[runPar][runWord][runChunk] = s;}
-	QString chunkString()const{return m_chunks.value(runPar).value(runWord).value(runChunk);}
+	[[nodiscard]] QString chunkString()const{return m_chunks.value(runPar).value(runWord).value(runChunk);}
 
 	void cleanup()
 	{

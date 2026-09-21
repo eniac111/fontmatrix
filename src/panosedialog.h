@@ -26,9 +26,9 @@ class FMPanoseDialog : public QDialog, private Ui::PanoseDialog
 		FMPanoseDialog(FontItem * font, QWidget *parent);
 		~FMPanoseDialog() override;
 		
-		QString getSourcePanose() const{return m_sourcepanose;}
-		QString getTargetPanose() const{return m_targetpanose;}
-		bool getOk() const{return m_ok;}
+		[[nodiscard]] QString getSourcePanose() const{return m_sourcepanose;}
+		[[nodiscard]] QString getTargetPanose() const{return m_targetpanose;}
+		[[nodiscard]] bool getOk() const{return m_ok;}
 	private:
 		FontItem *m_font = nullptr;
 		QString m_sourcepanose;

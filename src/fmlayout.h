@@ -165,7 +165,7 @@ class FMLayout : public QObject
 		bool layoutIsFinished;
 
 	public: //accessors
-		QRectF getRect()const{return theRect;}
+		[[nodiscard]] QRectF getRect()const{return theRect;}
 		void setRect(const QRectF& r){theRect = r;}
 		void setProcessFeatures ( bool theValue ){processFeatures = theValue;}
 		void setScript ( const QString& theValue ){script = theValue;}

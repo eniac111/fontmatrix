@@ -86,7 +86,7 @@ public:
 		unsigned int renderHinting; // 0 = No; 1 = Normal; 2 = Light
 		QString shaper;
 		QString script;
-		QByteArray toByteArray() const;
+		[[nodiscard]] QByteArray toByteArray() const;
 		State fromByteArray(QByteArray b);
 
 	// private:
@@ -97,8 +97,8 @@ public:
 	explicit SampleWidget(const QString& fid, QWidget *parent = nullptr);
 	~SampleWidget() override;
 
-	QGraphicsScene* textScene() const;
-	State state() const;
+	[[nodiscard]] QGraphicsScene* textScene() const;
+	[[nodiscard]] State state() const;
 	void setState(const State& s);
 
 protected:

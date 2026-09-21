@@ -95,12 +95,12 @@ class MetaGlyphItem : public QGraphicsItem
 	QMap<int, QVariant> m_Data;
 public:
 	void paint(QPainter *, const QStyleOptionGraphicsItem *, QWidget *) override{}
-	QRectF boundingRect() const override {return QRectF();}
+	[[nodiscard]] QRectF boundingRect() const override {return QRectF();}
 	void setMetaData(int key, const QVariant &value)
 	{
 		m_Data.insert(key,value);
 	}
-	QVariant metaData(int key) const
+	[[nodiscard]] QVariant metaData(int key) const
 	{
 		return m_Data.value(key);
 	}
@@ -289,14 +289,14 @@ class FontItem : public QObject
 		
 	public:
 
-		QString path() const {return m_path;}
-		QString afm() const {return m_afm;}
+		[[nodiscard]] QString path() const {return m_path;}
+		[[nodiscard]] QString afm() const {return m_afm;}
 		void setAfm ( QString apath ) {m_afm = apath;}
-		QString faceFlags() const {return m_faceFlags;}
-		QString family() const {return m_family;}
-		QString variant() const {return m_variant;}
-		QStringList tags() const  ;
-		int glyphsCount() const;
+		[[nodiscard]] QString faceFlags() const {return m_faceFlags;}
+		[[nodiscard]] QString family() const {return m_family;}
+		[[nodiscard]] QString variant() const {return m_variant;}
+		[[nodiscard]] QStringList tags() const  ;
+		[[nodiscard]] int glyphsCount() const;
 		QString type(){return m_type;}
 		QStringList charmaps();
 		void setTags ( QStringList l );
@@ -357,7 +357,7 @@ class FontItem : public QObject
 		QPixmap oneLinePreviewPixmap ( QString oneline , QColor fg_color, QColor bg_color, int size_w = 0, int fsize = 0);
 		void clearPreview();
 
-		bool isActivated() const;
+		[[nodiscard]] bool isActivated() const;
 		void setActivated ( bool act );
 		
 		bool isLocal();
@@ -377,10 +377,10 @@ class FontItem : public QObject
 		QStringList features();
 		
 		void setFTRaster(bool f){m_rasterFreetype = f;}
-		bool rasterFreetype()const{return m_rasterFreetype;}
+		[[nodiscard]] bool rasterFreetype()const{return m_rasterFreetype;}
 		
 		void setProgression(int p){m_progression = p;}
-		int progression()const{return m_progression;}
+		[[nodiscard]] int progression()const{return m_progression;}
 		
 		// sfnt names
 // 		static void fillNamesMeaning();
@@ -398,7 +398,7 @@ class FontItem : public QObject
 		int getFromNetwork();
 
 	void setShaperType ( int theValue );
-	int shaperType() const;
+	[[nodiscard]] int shaperType() const;
 	
 	void setRenderReturnWidth ( bool theValue )
 	{
@@ -407,17 +407,17 @@ class FontItem : public QObject
 
 	double getUnitPerEm();
 	void setFTHintMode ( unsigned int theValue );
-	unsigned int getFTHintMode() const;
+	[[nodiscard]] unsigned int getFTHintMode() const;
 	
 	void dumpIntoDB();
 
-	bool getUnicodeBuiltIn() const;
+	[[nodiscard]] bool getUnicodeBuiltIn() const;
 
-	FT_Encoding getCurrentEncoding() const;
+	[[nodiscard]] FT_Encoding getCurrentEncoding() const;
 
-	double getUnitPerEm() const;
+	[[nodiscard]] double getUnitPerEm() const;
 
-	QList< FT_Encoding > getCharsets() const;
+	[[nodiscard]] QList< FT_Encoding > getCharsets() const;
 	
 	
 	

@@ -75,10 +75,10 @@ class FMOtf
 		QList<unsigned int> lastGlyphs;
 		GlyphList m_lastRun;
 
-		hb_tag_t tableTag() const;
+		[[nodiscard]] hb_tag_t tableTag() const;
 		bool currentScript ( unsigned int *scriptIndex ) const;
-		unsigned int currentLanguage ( unsigned int scriptIndex ) const;
-		QList<hb_feature_t> featureList ( const QStringList& enabled ) const;
+		[[nodiscard]] unsigned int currentLanguage ( unsigned int scriptIndex ) const;
+		[[nodiscard]] QList<hb_feature_t> featureList ( const QStringList& enabled ) const;
 		GlyphList shapeBuffer ( hb_buffer_t *buffer, hb_font_t *font, const QString& script, const QString& lang,
 		                        const QList<hb_feature_t>& features, bool ltr = true );
 		void collectAlternates ( const QString& s, const QString& script, const QString& lang );
@@ -122,7 +122,7 @@ class FMOtf
 		void set_lang ( QString );
 		void set_features ( QStringList );
 
-	FT_Face face() const
+	[[nodiscard]] FT_Face face() const
 	{
 		return _face;
 	}

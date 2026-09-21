@@ -270,7 +270,7 @@ public:
 
 	// TODO there is a lot of things here which MUST go to an independent PrefsManager class
 
-	Systray *getSystray() const {return systray;}
+	[[nodiscard]] Systray *getSystray() const {return systray;}
 	void setSystrayVisible(bool);
 	void showActivateAllSystray(bool);
 	void systrayAllConfirmation(bool);
@@ -308,66 +308,66 @@ public:
 
 	void showStatusMessage(const QString &message);
 
-	QString remoteTmpDir() const {return m_remoteTmpDir;}
+	[[nodiscard]] QString remoteTmpDir() const {return m_remoteTmpDir;}
 	void setRemoteTmpDir(const QString &s);
 
 
 
 
 
-	bool familySchemeFreetype() const{return m_familySchemeFreetype;}
+	[[nodiscard]] bool familySchemeFreetype() const{return m_familySchemeFreetype;}
 	void setFamilySchemeFreetype ( bool theValue ){m_familySchemeFreetype = theValue;}
 
-	FMHyphenator* getHyphenator() const;
+	[[nodiscard]] FMHyphenator* getHyphenator() const;
 
 	void setDefaultOTFScript ( const QString& theValue );
-	QString getDefaultOTFScript() const;
+	[[nodiscard]] QString getDefaultOTFScript() const;
 	void setDefaultOTFLang ( const QString& theValue );
-	QString getDefaultOTFLang() const;
+	[[nodiscard]] QString getDefaultOTFLang() const;
 	void setDefaultOTFGPOS ( const QStringList& theValue );
-	QStringList getDefaultOTFGPOS() const;
+	[[nodiscard]] QStringList getDefaultOTFGPOS() const;
 	void setDefaultOTFGSUB ( const QStringList& theValue );
-	QStringList getDefaultOTFGSUB() const;
+	[[nodiscard]] QStringList getDefaultOTFGSUB() const;
 
 	void startProgressJob(int max);
 	void runProgressJob(int i = 0);
 	void endProgressJob();
 
-	int getChartInfoFontSize() const{return chartInfoFontSize;}
-	QString getChartInfoFontName() const{return chartInfoFontName;}
+	[[nodiscard]] int getChartInfoFontSize() const{return chartInfoFontSize;}
+	[[nodiscard]] QString getChartInfoFontName() const{return chartInfoFontName;}
 
 	void setChartInfoFontSize ( int theValue ){chartInfoFontSize = theValue;}
 	void setChartInfoFontName ( const QString& theValue ){chartInfoFontName = theValue;}
 
-	MainViewWidget* getTheMainView() const{return theMainView;}
+	[[nodiscard]] MainViewWidget* getTheMainView() const{return theMainView;}
 
 	void setDatabaseDriver ( const QString& theValue ){databaseDriver = theValue;}
-	QString getDatabaseDriver() const{return databaseDriver;}
+	[[nodiscard]] QString getDatabaseDriver() const{return databaseDriver;}
 
 	void setDatabaseHostname ( const QString& theValue ){databaseHostname = theValue;}
-	QString getDatabaseHostname() const{return databaseHostname;}
+	[[nodiscard]] QString getDatabaseHostname() const{return databaseHostname;}
 
 	void setDatabaseDbName ( const QString& theValue ){databaseDbName = theValue;}
-	QString getDatabaseDbName() const{return databaseDbName;}
+	[[nodiscard]] QString getDatabaseDbName() const{return databaseDbName;}
 
 	void setDatabaseUser ( const QString& theValue ){databaseUser = theValue;}
-	QString getDatabaseUser() const{return databaseUser;}
+	[[nodiscard]] QString getDatabaseUser() const{return databaseUser;}
 
 	void setDatabasePassword ( const QString& theValue ){databasePassword = theValue;}
-	QString getDatabasePassword() const{return databasePassword;}
+	[[nodiscard]] QString getDatabasePassword() const{return databasePassword;}
 
 	void setPanoseMatchTreshold ( int theValue );
-	int getPanoseMatchTreshold() const;
+	[[nodiscard]] int getPanoseMatchTreshold() const;
 
-	double getPreviewInfoFontSize() const{return previewInfoFontSize;}
+	[[nodiscard]] double getPreviewInfoFontSize() const{return previewInfoFontSize;}
 
-	QDir getOwnDir() const{return ownDir;}
-	QDir getConfigDir() const{return configDir;}
+	[[nodiscard]] QDir getOwnDir() const{return ownDir;}
+	[[nodiscard]] QDir getConfigDir() const{return configDir;}
 
-	QString getSysTagName() const { return m_sysTagName; }
+	[[nodiscard]] QString getSysTagName() const { return m_sysTagName; }
 
-	double getDpiX() const {return m_dpiX;}
-	double getDpiY() const {return m_dpiY;}
+	[[nodiscard]] double getDpiX() const {return m_dpiX;}
+	[[nodiscard]] double getDpiY() const {return m_dpiY;}
 	
 	
 protected:

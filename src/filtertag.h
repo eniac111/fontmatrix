@@ -35,7 +35,7 @@ public:
 		Tag
 	};
 
-	QString type() const override;
+	[[nodiscard]] QString type() const override;
 	void operate() override;
 };
 

@@ -25,8 +25,8 @@ class FMDumpDialog : public QDialog, private Ui::DumpDialog
 		FMDumpDialog(FontItem * font, QWidget * parent);
 		~FMDumpDialog() override;
 
-		QString getModel() const;
-		QString getFilePath() const;
+		[[nodiscard]] QString getModel() const;
+		[[nodiscard]] QString getFilePath() const;
 		
 	private:
 		FMDumpInfo * m_dumpinfo = nullptr;

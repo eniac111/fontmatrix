@@ -14,7 +14,7 @@ public:
 	explicit OpenCloseArrow(QWidget *parent = nullptr, bool open = true);
 	~OpenCloseArrow() override;
 
-	bool isOpen() const {return openingState;}
+	[[nodiscard]] bool isOpen() const {return openingState;}
 
 private:
 	bool openingState;

@@ -49,7 +49,7 @@ public:
 	
 public:
 	void setCommentServer(CommentServerInterface *p);
-	CommentServerInterface * commentServer() const;
+	[[nodiscard]] CommentServerInterface * commentServer() const;
 		
 protected:
 	void paintEvent(QPaintEvent * event) override;
@@ -75,15 +75,15 @@ public Q_SLOTS:
 	void repaintView();
 		
 public:
-	address_t addressOffset() const;
-	bool showHexDump() const;
-	bool showAddress() const;
-	bool showAsciiDump() const;
-	bool showComments() const;
-	QColor lineColor() const;
-	QColor addressColor() const;
-	int wordWidth() const;
-	int rowWidth() const;
+	[[nodiscard]] address_t addressOffset() const;
+	[[nodiscard]] bool showHexDump() const;
+	[[nodiscard]] bool showAddress() const;
+	[[nodiscard]] bool showAsciiDump() const;
+	[[nodiscard]] bool showComments() const;
+	[[nodiscard]] QColor lineColor() const;
+	[[nodiscard]] QColor addressColor() const;
+	[[nodiscard]] int wordWidth() const;
+	[[nodiscard]] int rowWidth() const;
 	
 private:
 	int m_RowWidth;			// amount of "words" per row
@@ -99,40 +99,40 @@ public:
 	void setAddressOffset(address_t offset);
 	void scrollTo(unsigned int offset);
 	
-	address_t selectedBytesAddress() const;
-	unsigned int selectedBytesSize() const;
-	QByteArray selectedBytes() const;
-	QByteArray allBytes() const;
+	[[nodiscard]] address_t selectedBytesAddress() const;
+	[[nodiscard]] unsigned int selectedBytesSize() const;
+	[[nodiscard]] QByteArray selectedBytes() const;
+	[[nodiscard]] QByteArray allBytes() const;
 	QMenu *createStandardContextMenu();
 
 public Q_SLOTS:
 	void clear();
 	void selectAll();
 	void deselect();
-	bool hasSelectedText() const;
+	[[nodiscard]] bool hasSelectedText() const;
 	void mnuSetFont();
 	void mnuCopy();
 
 private:
 	void updateScrollbars();
 	
-	bool isSelected(int index) const;
-	bool isInViewableArea(int index) const;
+	[[nodiscard]] bool isSelected(int index) const;
+	[[nodiscard]] bool isInViewableArea(int index) const;
 	
-	int pixelToWord(int x, int y) const;
+	[[nodiscard]] int pixelToWord(int x, int y) const;
 	
-	unsigned int charsPerWord() const;
-	int hexDumpLeft() const;
-	int asciiDumpLeft() const;
-	int commentLeft() const;
-	unsigned int addressLen() const;
-	int line1() const;
-	int line2() const;
-	int line3() const;
+	[[nodiscard]] unsigned int charsPerWord() const;
+	[[nodiscard]] int hexDumpLeft() const;
+	[[nodiscard]] int asciiDumpLeft() const;
+	[[nodiscard]] int commentLeft() const;
+	[[nodiscard]] unsigned int addressLen() const;
+	[[nodiscard]] int line1() const;
+	[[nodiscard]] int line2() const;
+	[[nodiscard]] int line3() const;
 
-	unsigned int bytesPerRow() const;
+	[[nodiscard]] unsigned int bytesPerRow() const;
 	
-	int dataSize() const;
+	[[nodiscard]] int dataSize() const;
 	
 	void drawAsciiDump(QPainter &painter, unsigned int offset, unsigned int row) const;
 	void drawHexDump(QPainter &painter, unsigned int offset, unsigned int row, int &wordCount) const;

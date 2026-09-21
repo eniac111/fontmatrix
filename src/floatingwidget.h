@@ -35,7 +35,7 @@ public:
 	explicit FloatingWidget(const QString &f, const QString& typ, QWidget *parent = nullptr);
 	~FloatingWidget() override;
 
-	QString getActionName()const{return actionName;}
+	[[nodiscard]] QString getActionName()const{return actionName;}
 
 private:
 	QString fName;

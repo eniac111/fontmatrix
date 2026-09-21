@@ -41,7 +41,7 @@ public:
 	    OpenTypeButton
     };
 
-    double getFontSize() const;
+    [[nodiscard]] double getFontSize() const;
     void setFontSize(double fs);
 
     bool isChecked(Button b);

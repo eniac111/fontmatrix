@@ -60,11 +60,11 @@ class ParallelCoorDataSet : public QMap<QString, QList<QString> >
 	public:
 		// put here set/get methods
 		void setCategoryDescriptions ( const QMap< QString , QString >& theValue );
-		QMap< QString , QString> getCategoryDescriptions() const;
+		[[nodiscard]] QMap< QString , QString> getCategoryDescriptions() const;
 		void setValueDescriptions ( const QMap< QString , QString >& theValue );
-		QMap< QString , QString> getValueDescriptions() const;
+		[[nodiscard]] QMap< QString , QString> getValueDescriptions() const;
 		void setData ( const ParallelCoorDataType& theValue );
-		ParallelCoorDataType getData() const;
+		[[nodiscard]] ParallelCoorDataType getData() const;
 
 		/// compatibility layer :)
 		QPair<QString, QList<QString> > at(int idx)
@@ -161,16 +161,16 @@ class ParallelCoorView : public QGraphicsView
 		~ParallelCoorView() override;
 		
 		void selectField(const QString& field);
-		bool matchFilter(QList<int> list) const;
+		[[nodiscard]] bool matchFilter(QList<int> list) const;
 	
 		// put here set/get methods
 		void setDataSet ( ParallelCoorDataSet* theValue );
-		ParallelCoorDataSet* getDataSet() const;
+		[[nodiscard]] ParallelCoorDataSet* getDataSet() const;
 		void setFilter ( const QMap< QString, QStringList >& theValue );
-		QMap< QString, QStringList > getFilter() const;
+		[[nodiscard]] QMap< QString, QStringList > getFilter() const;
 		QString filterAsString();
 		void setCurrentField ( const QString& theValue );
-		QString getCurrentField() const;
+		[[nodiscard]] QString getCurrentField() const;
 		
 	public Q_SLOTS:
 		void updateGraphic();
