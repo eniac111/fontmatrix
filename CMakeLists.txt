@@ -41,7 +41,13 @@ MESSAGE(STATUS "Fontmatrix will be installed under ${CMAKE_INSTALL_PREFIX}")
 # ECM and KDE Frameworks are required on every platform. The application
 # code is uniform across Linux, macOS, and Windows; only the Windows CI
 # pipeline (packaging, vcpkg-based KF6 acquisition) is deferred.
-find_package(ECM 6.0 REQUIRED NO_MODULE)
+# The oldest versions the project is built and run against: the org.kde.Platform 6.10
+# Flatpak runtime (Qt 6.10) and the developers' machines (KDE Frameworks 6.28). CI also
+# covers Arch and KDE Craft, both newer. Nothing older has been tried.
+set(QT_MIN_VERSION "6.10.0")
+set(KF_MIN_VERSION "6.28.0")
+
+find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
 
 # Set before KDECompilerSettings so it doesn't override us.
@@ -60,16 +66,17 @@ remove_definitions(
     -DQT_NO_CAST_FROM_ASCII
 )
 
-# Nothing deprecated up to these versions is used; keep it that way.
+# Nothing deprecated up to the minimum versions is used; keep it that way.
+# A Linux build does not see the _WIN32 and PLATFORM_APPLE blocks: read them before raising this.
 include(ECMDeprecationSettings)
 ecm_set_disabled_deprecation_versions(
-    QT 6.10.0
-    KF 6.18.0
+    QT ${QT_MIN_VERSION}
+    KF ${KF_MIN_VERSION}
 )
 
 include(FeatureSummary)
 
-find_package(KF6 REQUIRED COMPONENTS
+find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     CoreAddons
     I18n
     Config
@@ -80,7 +87,7 @@ find_package(KF6 REQUIRED COMPONENTS
     DBusAddons
 )
 # KDocTools is optional — if absent, the handbook is skipped but the app still builds.
-find_package(KF6DocTools)
+find_package(KF6DocTools ${KF_MIN_VERSION})
 set_package_properties(KF6DocTools PROPERTIES
     DESCRIPTION "Tools to generate documentation in various formats from DocBook"
     TYPE OPTIONAL
@@ -159,7 +166,7 @@ ENDIF(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
 # A lot from Scribus
 #<< Qt
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets Svg SvgWidgets Sql Xml PrintSupport)
+find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core Widgets Svg SvgWidgets Sql Xml PrintSupport)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
