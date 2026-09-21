@@ -211,11 +211,7 @@ msgstr "Търсене:"
 #. i18n: file: src/chartwidget.ui:91
 #. i18n: ectx: property (toolTip), widget (QLineEdit, charSearchLine)
 #: rc.cpp:75
-#, fuzzy, kde-format
-#| msgid ""
-#| "Search a character by its codepoint (expressed in hexadecimal\n"
-#| "and prefixed with \"U+\", \"u+\" or \"+\") or a glyph by its name.\n"
-#| "Press enter after editing to run the search."
+#, kde-format
 msgid ""
 "Search a character by its codepoint (expressed in hexadecimal \n"
 "and prefixed with \"U+\", \"u+\" or \"+\") or a glyph by its name.\n"
@@ -817,14 +813,14 @@ msgstr "&Инструменти"
 #: rc.cpp:346
 #, kde-format
 msgid "Main Toolbar"
-msgstr ""
+msgstr "Основна лента с инструменти"
 
 #. i18n: file: src/fontmatrixui.rc:57
 #. i18n: ectx: ToolBar (hamburgerBar)
 #: rc.cpp:349
 #, kde-format
 msgid "Hamburger Menu Toolbar"
-msgstr ""
+msgstr "Лента с бутона за менюто"
 
 #. i18n: file: src/importedfonts.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, ImportedFonts)
@@ -1585,11 +1581,7 @@ msgstr "OpenType"
 #. i18n: file: src/sampletoolbar.ui:77
 #. i18n: ectx: property (toolTip), widget (QComboBox, languageCombo)
 #: rc.cpp:760
-#, fuzzy, kde-format
-#| msgid ""
-#| "Depending of the font, some scripts\n"
-#| "are especially supported if processed\n"
-#| "through some logic (ICU here)."
+#, kde-format
 msgid ""
 "Depending of the font, some scripts \n"
 "are especially supported if processed \n"
@@ -3559,11 +3551,7 @@ msgid "No font match the submitted image"
 msgstr "Нито един шрифт не съответства на подаденото изображение"
 
 #: src/fmmissingfonthelper.cpp:16
-#, fuzzy, kde-format
-#| msgid ""
-#| "Fontmatrix has been unable to load the font in file\n"
-#| "%1.\n"
-#| " Please check missing files."
+#, kde-format
 msgid ""
 "Fontmatrix has been unable to load the font in file \n"
 "%1.\n"
@@ -3579,11 +3567,7 @@ msgid "Missing Font File"
 msgstr "Липсващ файл на шрифт"
 
 #: src/fmmissingfonthelper.cpp:25
-#, fuzzy, kde-format
-#| msgid ""
-#| "Fontmatrix has been unable to load fonts in files\n"
-#| "%1.\n"
-#| " Please check missing files."
+#, kde-format
 msgid ""
 "Fontmatrix has been unable to load fonts in files \n"
 "%1.\n"
@@ -3611,12 +3595,12 @@ msgstr "Запазване на каталога с шрифтове"
 #: src/fontbookdialog.cpp:126 src/fontbookdialog.cpp:151
 #, kde-format
 msgid "Cannot read %1."
-msgstr ""
+msgstr "Файлът „%1“ не може да бъде прочетен."
 
 #: src/fontbookdialog.cpp:131 src/fontbookdialog.cpp:156
 #, kde-format
 msgid "%1 is not a valid XML file."
-msgstr ""
+msgstr "„%1“ не е валиден XML файл."
 
 #: src/fontcomparewidget.cpp:64
 #, kde-format
@@ -3630,11 +3614,7 @@ msgid "codepoint is U+"
 msgstr "кодова точка е U+"
 
 #: src/fontitem.cpp:2045
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "FontItem|when doing the font preview, used to denote a font that can not "
-#| "displayed its name"
-#| msgid "(%1)"
+#, kde-format
 msgctxt ""
 "when doing the font preview, used to denote a font that can not displayed "
 "its name"
@@ -3683,11 +3663,10 @@ msgid "Do you want to continue?"
 msgstr "Искате ли да продължите?"
 
 #: src/mainviewwidget.cpp:1146
-#, fuzzy, kde-format
-#| msgid "Remove Filter"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Font"
-msgstr "Изтриване на филтъра"
+msgstr "Премахване на шрифт"
 
 #: src/opentypetags.h:17
 #, kde-format
@@ -4325,15 +4304,13 @@ msgid "Print Playground"
 msgstr "Печат на пясъчника"
 
 #: src/prefspaneldialog.cpp:33
-#, fuzzy, kde-format
-#| msgid "Preferences"
+#, kde-format
 msgctxt "@title:window"
 msgid "Preferences"
 msgstr "Предпочитания"
 
 #: src/prefspaneldialog.cpp:54
-#, fuzzy, kde-format
-#| msgid "Files & Folders"
+#, kde-format
 msgid "Files && Folders"
 msgstr "Файлове и папки"
 
@@ -4343,6 +4320,8 @@ msgid ""
 "This desktop does not provide a system tray. The options below have no "
 "effect."
 msgstr ""
+"Тази работна среда не предоставя системен трей. Настройките по-долу нямат "
+"ефект."
 
 #: src/prefspaneldialog.cpp:92
 #, kde-format
@@ -4359,7 +4338,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info:placeholder sample text in font requester"
 msgid "Aa Bb 123"
-msgstr ""
+msgstr "Аа Бб 123"
 
 #: src/prefspaneldialog.cpp:111
 #, kde-format
@@ -4370,20 +4349,16 @@ msgstr "Моля, изберете елемент от списъка или с�
 #, kde-format
 msgctxt "@info:status validation"
 msgid "Please enter a name for the new sample."
-msgstr ""
+msgstr "Въведете име за новия примерен текст."
 
 #: src/prefspaneldialog.cpp:246
-#, fuzzy, kde-format
-#| msgid "The file %1 already exists"
+#, kde-format
 msgctxt "@info:status validation"
 msgid "A sample named \"%1\" already exists."
-msgstr "Файлът %1 вече съществува"
+msgstr "Вече съществува примерен текст с име „%1“."
 
 #: src/prefspaneldialog.cpp:252
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "PrefsPanelDialog|A default sample text inserted when creating a new sample"
-#| msgid "Sample Text"
+#, kde-format
 msgctxt "A default sample text inserted when creating a new sample"
 msgid "Sample Text"
 msgstr ""
@@ -4394,27 +4369,16 @@ msgstr ""
 "Ein Textbeispiel"
 
 #: src/prefspaneldialog.cpp:265
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "PrefsPanelDialog|the name of a sample text will be append to the string"
-#| msgid "Do you confirm that you want to remove:"
+#, kde-format
 msgctxt "the name of a sample text will be append to the string"
 msgid "Do you confirm that you want to remove:"
 msgstr "Потвърждавате ли, че искате да премахнете:"
 
 #: src/prefspaneldialog.cpp:269
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "PrefsPanelDialog|A default sample text inserted when creating a new sample"
-#| msgid "Sample Text"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Sample Text"
-msgstr ""
-"Примерен текст\n"
-"\n"
-"Sample text\n"
-"\n"
-"Ein Textbeispiel"
+msgstr "Премахване на примерен текст"
 
 #: src/prefspaneldialog.cpp:353
 #, kde-format
@@ -4483,11 +4447,10 @@ msgid "Replace"
 msgstr "Замяна"
 
 #: src/prefspaneldialog.cpp:568
-#, fuzzy, kde-format
-#| msgid "Designer"
+#, kde-format
 msgctxt "@action:button"
 msgid "Reassign"
-msgstr "Дизайнер"
+msgstr "Преназначаване"
 
 #: src/prefspaneldialog.cpp:602
 #, kde-format
@@ -4574,8 +4537,7 @@ msgstr ""
 "следния етикет от базата данни:"
 
 #: src/tagswidget.cpp:59
-#, fuzzy, kde-format
-#| msgid "Remove Tag"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Tag"
 msgstr "Премахване на етикет"
@@ -4617,8 +4579,7 @@ msgid "Confirmation"
 msgstr "Потвърждение"
 
 #: src/typotek.cpp:424
-#, fuzzy, kde-format
-#| msgid "Import"
+#, kde-format
 msgctxt "@action:button"
 msgid "Import"
 msgstr "Внасяне"
@@ -4880,15 +4841,15 @@ msgid "Find a font using a raster sample of a letter"
 msgstr "Намиране на шрифт по растерна извадка на буква"
 
 #: src/typotek.cpp:761
-#, fuzzy, kde-format
-#| msgid "Export font book..."
+#, kde-format
 msgid "Export font list as XeTeX..."
-msgstr "Изнасяне на каталог с шрифтове..."
+msgstr "Изнасяне на списъка с шрифтове като XeTeX..."
 
 #: src/typotek.cpp:762
 #, kde-format
 msgid "Export the current filtered font list as a XeTeX source file"
 msgstr ""
+"Изнасяне на текущия филтриран списък с шрифтове като изходен файл на XeTeX"
 
 #: src/typotek.cpp:855
 #, kde-format
@@ -4951,15 +4912,13 @@ msgstr ""
 "Ако не е бил намерението ви, отменете действието."
 
 #: src/typotek.cpp:1358
-#, fuzzy, kde-format
-#| msgid "Activation"
+#, kde-format
 msgctxt "@title:window"
 msgid "Activate Fonts"
-msgstr "Активиране"
+msgstr "Активиране на шрифтове"
 
 #: src/typotek.cpp:1359
-#, fuzzy, kde-format
-#| msgid "Activate"
+#, kde-format
 msgctxt "@action:button"
 msgid "Activate"
 msgstr "Активиране"
@@ -4974,15 +4933,13 @@ msgstr ""
 "Ако не е бил намерението ви, отменете действието."
 
 #: src/typotek.cpp:1371
-#, fuzzy, kde-format
-#| msgid "Deactivate"
+#, kde-format
 msgctxt "@title:window"
 msgid "Deactivate Fonts"
-msgstr "Деактивиране"
+msgstr "Деактивиране на шрифтове"
 
 #: src/typotek.cpp:1372
-#, fuzzy, kde-format
-#| msgid "Deactivate"
+#, kde-format
 msgctxt "@action:button"
 msgid "Deactivate"
 msgstr "Деактивиране"
@@ -4992,11 +4949,12 @@ msgstr "Деактивиране"
 msgid ""
 "This will hide the menu bar completely. You can show it again by typing %1."
 msgstr ""
+"Лентата с менюто ще бъде скрита напълно. Може да я покажете отново с %1."
 
 #: src/typotek.cpp:1389
 #, kde-format
 msgid "Hide menu bar"
-msgstr ""
+msgstr "Скриване на лентата с менюто"
 
 #: src/typotek.cpp:1399 src/typotek.cpp:2074
 #, kde-format
@@ -5011,8 +4969,7 @@ msgstr ""
 "реализирана"
 
 #: src/typotek.cpp:1463
-#, fuzzy, kde-format
-#| msgid "You bring something over me I canât handle"
+#, kde-format
 msgid "You bring something over me I can’t handle"
 msgstr "Пуснахте нещо, което не мога да обработя"
 
@@ -5041,15 +4998,14 @@ msgstr ""
 "в предпочитанията."
 
 #: src/typotek.cpp:1975
-#, fuzzy, kde-format
-#| msgid "Export a fontset"
+#, kde-format
 msgid "Export font list as XeTeX"
-msgstr "Изнасяне на набор от шрифтове"
+msgstr "Изнасяне на списъка с шрифтове като XeTeX"
 
 #: src/typotek.cpp:1975
 #, kde-format
 msgid "TeX files (*.tex)"
-msgstr ""
+msgstr "Файлове на TeX (*.tex)"
 
 #: src/typotek.cpp:2157
 #, kde-format
@@ -5080,12 +5036,15 @@ msgid ""
 "application>, which is not installed on this system.<nl/>The project page is "
 "at <link>%1</link>."
 msgstr ""
+"Наръчникът на Fontmatrix се показва от <application>Помощния център на KDE</"
+"application>, който не е инсталиран на тази система.<nl/>Страницата на "
+"проекта е на адрес <link>%1</link>."
 
 #: src/typotek.cpp:2231
 #, kde-format
 msgctxt "@title:window"
 msgid "Handbook Not Available"
-msgstr ""
+msgstr "Наръчникът не е наличен"
 
 #~ msgid "About Fontmatrix"
 #~ msgstr "За Fontmatrix"
