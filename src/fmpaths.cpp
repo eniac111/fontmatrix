@@ -101,6 +101,30 @@ QString FMPaths::FiltersDir()
     return dir;
 }
 
+QString FMPaths::HyphenationDictionary(const QLocale &locale)
+{
+    const QString language(QLocale::languageToCode(locale.language()));
+    if (language.isEmpty() || locale.language() == QLocale::C)
+        return QString();
+    const QString territory(QLocale::territoryToCode(locale.territory()));
+
+    // in the order of preference: exact, same language any territory, language alone
+    QStringList wanted;
+    if (!territory.isEmpty())
+        wanted << QStringLiteral("hyph_%1_%2.dic").arg(language, territory);
+    wanted << QStringLiteral("hyph_%1_*.dic").arg(language) << QStringLiteral("hyph_%1.dic").arg(language);
+
+    const QStringList dirs(QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("hyphen"), QStandardPaths::LocateDirectory));
+    for (const QString &pattern : std::as_const(wanted)) {
+        for (const QString &d : dirs) {
+            const QStringList found(QDir(d).entryList({pattern}, QDir::Files | QDir::Readable, QDir::Name));
+            if (!found.isEmpty())
+                return QDir(d).absoluteFilePath(found.first());
+        }
+    }
+    return QString();
+}
+
 QString FMPaths::LocalizedDirPath(const QString &base, const QString &fallback)
 {
     const QString sep(QStringLiteral("_"));

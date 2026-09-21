@@ -36,5 +36,13 @@ public:
     static QString LocalizedDirPath(const QString &base, const QString &fallback = QStringLiteral("en"));
 
     static QString LocalizedFilePath(const QString &base, const QString &ext, const QString &fallback = QStringLiteral("en"));
+    /**
+     * The hyphenation dictionary for @p locale among those installed on the system
+     * (the hyph_xx_YY.dic files of the hunspell "hyphen-*" packages, in every
+     * <data dir>/hyphen: /usr/share/hyphen, the Flatpak runtime, <appdir>/data on
+     * Windows). "bg_BG" is tried, then any "bg_*", then any "bg"; an empty string when
+     * there is none.
+     */
+    static QString HyphenationDictionary(const QLocale &locale = QLocale::system());
 };
 #endif

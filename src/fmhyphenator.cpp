@@ -79,11 +79,20 @@ HyphList FMHyphenator::hyphenate(const QString &word) const
     if (!dict)
         return ret;
 
-    // the same characters go to the library and come back in the pairs, so that the
-    // break positions match; a dot is a pattern boundary in libhyphen, not a letter
-    QString ref(word);
-    ref.remove(QLatin1Char('.'));
-    if (ref.isEmpty())
+    // Only the letters go to the library: the punctuation around the word ("sollen."
+    // or "(schnell") is put back on the pairs, and a break position is counted in the
+    // whole word, which is what the layout looks up. A dot inside the word is libhyphen's
+    // pattern boundary; such a word is left unhyphenated.
+    int head(0);
+    while (head < word.size() && !word.at(head).isLetter())
+        ++head;
+    int tail(word.size());
+    while (tail > head && !word.at(tail - 1).isLetter())
+        --tail;
+    const QString prefix(word.left(head));
+    const QString suffix(word.mid(tail));
+    const QString ref(word.mid(head, tail - head));
+    if (ref.size() < 2 || ref.contains(QLatin1Char('.')))
         return ret;
     QByteArray hw(textEncoder ? textEncoder->encode(ref.toLower()) : ref.toLower().toLocal8Bit());
     QByteArray ht(hw.size() + 5, '0');
@@ -107,9 +116,10 @@ HyphList FMHyphenator::hyphenate(const QString &word) const
             const QString r(textDecoder ? textDecoder->decode(QByteArray(rep[i])) : QString::fromLocal8Bit(rep[i]));
             const int at(i - (pos ? pos[i] : 0) + 1);
             const int len(cut ? cut[i] : 0);
-            ret[i] = QPair<QString, QString>(ref.left(at) + r.section(QLatin1Char('='), 0, 0), r.section(QLatin1Char('='), 1) + ref.mid(at + len));
+            ret[head + i] =
+                QPair<QString, QString>(prefix + ref.left(at) + r.section(QLatin1Char('='), 0, 0), r.section(QLatin1Char('='), 1) + ref.mid(at + len) + suffix);
         } else
-            ret[i] = QPair<QString, QString>(ref.left(i + 1), ref.mid(i + 1));
+            ret[head + i] = QPair<QString, QString>(prefix + ref.left(i + 1), ref.mid(i + 1) + suffix);
     }
 
     // allocated by hnj_hyphen_hyphenate2() when the word has a non-standard hyphenation,
