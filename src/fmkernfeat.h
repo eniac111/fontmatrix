@@ -1,14 +1,10 @@
-//
-// C++ Interface: fmkernfeat
-//
-// Description: Test how to build a kern table out of a kern feature
-//
-//
-// Author: Pierre Marchand <pierremarc@oep-h.com>, (C) 2009
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*
+    SPDX-FileCopyrightText: 2009 Pierre Marchand <pierremarc@oep-h.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
+
+// Test how to build a kern table out of a kern feature
 
 #ifndef FMKERNFEAT_H
 #define FMKERNFEAT_H

@@ -1,14 +1,9 @@
-//
-// C++ Implementation: fmshaper
-//
-// Description:
-//
-//
-// Author: Pierre Marchand <pierremarc@oep-h.com>, (C) 2007
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*
+    SPDX-FileCopyrightText: 2007 Pierre Marchand <pierremarc@oep-h.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
+
 #include "fmshaper.h"
 #include "fontmatrix_debug.h"
 

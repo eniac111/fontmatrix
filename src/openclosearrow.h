@@ -1,3 +1,9 @@
+/*
+    SPDX-FileCopyrightText: 2010 Pierre Marchand <pierre@oep-h.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
+
 #ifndef OPENCLOSEARROW_H
 #define OPENCLOSEARROW_H
 

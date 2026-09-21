@@ -1,3 +1,9 @@
+/*
+    SPDX-FileCopyrightText: 2026 Blagovest Petrov <blagovest@petrovs.info>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
+
 #include "fmconfig.h"
 
 #include <KSharedConfig>

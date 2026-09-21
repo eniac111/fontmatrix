@@ -1,8 +1,8 @@
-// Author: Pierre Marchand <pierremarc@oep-h.com>, (C) 2011
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*
+    SPDX-FileCopyrightText: 2011 Pierre Marchand <pierremarc@oep-h.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "tagswidget_listmodel.h"
 

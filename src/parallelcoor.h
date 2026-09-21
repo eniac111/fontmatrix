@@ -1,19 +1,10 @@
-//
-// C++ Interface: parallelcoor
-//
-// Description: Holds ParallelCoorView & ParallelCoorDataSet
-//
-//		The main idea here is that a classification can generally
-// 		be expressed as multidimensional space. So we dumbly follow
-//		what has been said to be an acceptable vizualisation method
-// 		for this type of data set.
-//
-//
-// Author: Pierre Marchand <pierremarc@oep-h.com>, (C) 2008
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*
+    SPDX-FileCopyrightText: 2008 Pierre Marchand <pierremarc@oep-h.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
+
+// Holds ParallelCoorView & ParallelCoorDataSet
 
 #ifndef PARALLELCOOR_H
 #define PARALLELCOOR_H

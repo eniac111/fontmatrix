@@ -1,15 +1,8 @@
-//
-// C++ Implementation: fmmatchraster
-//
-// Description:
-//
-//
-// Author: Pierre Marchand <pierremarc@oep-h.com>, (C) 2009
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*
+    SPDX-FileCopyrightText: 2009 Pierre Marchand <pierremarc@oep-h.com>
 
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
 
 #include "puzzleviewimp.h"
 #include "fmmatchraster.h"

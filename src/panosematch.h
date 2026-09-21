@@ -1,18 +1,9 @@
-//
-// C++ Interface: panosematch
-//
-// Description:
-//
-//
-// Author: Riku Leino <riku.leino@gmail.com>, (C) 2008
-//         David L. Wagner, International Business Machines Corp., 2002
-//
-// This file is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published
-// by the Free Software Foundation; either version 2.1 of the License, or
-// (at your option) any later version.
-// http://www.gnu.org/copyleft/lesser.html
-//
+/*
+    SPDX-FileCopyrightText: 2008 Riku Leino <riku.leino@gmail.com>
+    SPDX-FileCopyrightText: 2002 David L. Wagner, International Business Machines Corp.
+
+    SPDX-License-Identifier: LGPL-2.1-or-later
+*/
 
 #ifndef PANOSEMATCH_H
 #define PANOSEMATCH_H

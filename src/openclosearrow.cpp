@@ -1,3 +1,9 @@
+/*
+    SPDX-FileCopyrightText: 2010 Pierre Marchand <pierre@oep-h.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
+
 #include "openclosearrow.h"
 
 OpenCloseArrow::OpenCloseArrow(QWidget *parent, bool open) :

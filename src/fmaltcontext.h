@@ -1,14 +1,10 @@
-//
-// C++ Interface: fmaltcontext
-//
-// Description: Maintains state of user defined alternate glyphs in specific context
-//
-//
-// Author: Pierre Marchand <pierremarc@oep-h.com>, (C) 2009
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/*
+    SPDX-FileCopyrightText: 2009 Pierre Marchand <pierremarc@oep-h.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+*/
+
+// Maintains state of user defined alternate glyphs in specific context
 
 #ifndef FMALTCONTEXT_H
 #define FMALTCONTEXT_H
