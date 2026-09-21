@@ -42,7 +42,7 @@ public:
     ~FiltersDialog() override;
 
 private:
-    Ui::FiltersDialog *ui = nullptr;
+    Ui::FiltersDialog *const ui;
 
     void loadFilters();
     QString filterString(FilterData *d, bool first = false);

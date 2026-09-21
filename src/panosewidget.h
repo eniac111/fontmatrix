@@ -46,7 +46,7 @@ protected:
 	void closeEvent(QCloseEvent *) override;
 
 private:
-	Ui::PanoseWidget *m_ui = nullptr;
+	Ui::PanoseWidget *const m_ui;
 
 	int m_filterKey;
 	QMap<int, QList<int> > m_filter;

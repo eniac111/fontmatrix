@@ -50,7 +50,7 @@ public:
 	~BrowserWidget() override;
 
 private:
-	Ui::BrowserWidget *ui = nullptr;
+	Ui::BrowserWidget *const ui;
 
 	QString curVariant;
 

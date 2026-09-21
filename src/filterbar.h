@@ -114,7 +114,7 @@ protected:
     void changeEvent(QEvent *e) override;
 
 private:
-    Ui::FilterBar *ui = nullptr;
+    Ui::FilterBar *const ui;
     QHBoxLayout * filterListLayout = nullptr;
     QWidget * curFilterWidget = nullptr;
 

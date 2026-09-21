@@ -52,7 +52,7 @@ protected:
     void changeEvent(QEvent *e) override;
 
 private:
-    Ui::MetaWidget *ui = nullptr;
+    Ui::MetaWidget *const ui;
 
     static QStringListModel *mModel;
     static QStringList mList;

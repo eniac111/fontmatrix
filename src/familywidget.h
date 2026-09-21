@@ -61,7 +61,7 @@ protected:
     void buildList(const QList<FontItem*>& fl);
 
 private:
-    Ui::FamilyWidget *ui = nullptr;
+    Ui::FamilyWidget *const ui;
     FMPreviewModel * previewModel = nullptr;
     FloatingWidget *sample = nullptr;
     FloatingWidget *chart = nullptr;

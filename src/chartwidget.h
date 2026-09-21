@@ -47,7 +47,7 @@ protected:
     void changeEvent(QEvent *e) override;
 
 private:
-    Ui::ChartWidget *ui = nullptr;
+    Ui::ChartWidget *const ui;
     const QString fontIdentifier;
 
     QGraphicsScene *abcScene = nullptr;

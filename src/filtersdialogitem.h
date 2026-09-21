@@ -41,7 +41,7 @@ protected:
     void leaveEvent(QEvent *) override;
 
 private:
-    Ui::FiltersDialogItem *ui = nullptr;
+    Ui::FiltersDialogItem *const ui;
 
     void setButtonsVisible(bool v);
     QString filterName;

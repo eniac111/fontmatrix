@@ -107,7 +107,7 @@ protected:
 	unsigned int hinting();
 
 private:
-	Ui::SampleWidget *ui = nullptr;
+	Ui::SampleWidget *const ui;
 	SampleToolBar * sampleToolBar = nullptr;
 	QTreeWidgetItem * uRoot = nullptr;
 	QTreeWidgetItem * newSampleName = nullptr;
@@ -144,7 +144,7 @@ private:
 	int pixmapDrawn = 0;
 #ifdef PLATFORM_APPLE
       QFileInfo fileInfo;
-      qint64 fileLastModified;
+      qint64 fileLastModified = 0;
 #endif
 	void reSize(double fSize, double lSize){sampleFontSize = fSize; sampleInterSize = lSize;}
 

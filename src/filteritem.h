@@ -54,7 +54,7 @@ protected:
 	void changeEvent(QEvent *e) override;
 
 private:
-	Ui::FilterItem *ui = nullptr;
+	Ui::FilterItem *const ui;
 
 Q_SIGNALS:
 	void remove();

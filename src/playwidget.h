@@ -58,7 +58,7 @@ protected:
 	void showEvent(QShowEvent *) override;
 
 private:
-	Ui::PlayWidget *ui = nullptr;
+	Ui::PlayWidget *const ui;
 	QGraphicsScene *playScene = nullptr;
 
 private Q_SLOTS:

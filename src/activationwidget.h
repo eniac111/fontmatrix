@@ -43,7 +43,7 @@ protected:
 
 private:
 	const QString family;
-	Ui::ActivationWidget *ui = nullptr;
+	Ui::ActivationWidget *const ui;
 
 	QList<ActivationWidgetItem*> items;
 	void activateAll(bool c);

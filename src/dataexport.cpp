@@ -54,7 +54,9 @@ DataExport::DataExport(QWidget* parent):
 }
 
 DataExport::~DataExport()
-= default;
+{
+	delete ui;
+}
 
 void DataExport::doExport()
 {

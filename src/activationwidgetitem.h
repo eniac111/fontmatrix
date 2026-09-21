@@ -42,7 +42,7 @@ protected:
 
 private:
 	const QString fileName;
-	Ui::ActivationWidgetItem *ui = nullptr;
+	Ui::ActivationWidgetItem *const ui;
 
 private Q_SLOTS:
 	void activate(bool a);
