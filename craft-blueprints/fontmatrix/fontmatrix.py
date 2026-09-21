@@ -63,6 +63,9 @@ class subinfo(info.infoclass):
         self.runtimeDependencies["kde/frameworks/tier1/breeze-icons"] = None
 
         self.runtimeDependencies["libs/freetype"] = None
+        # Qt brings it along already, since Craft builds Qt against the system
+        # HarfBuzz. Fontmatrix links it itself, so it is named.
+        self.runtimeDependencies["libs/harfbuzz"] = None
         self.runtimeDependencies["libs/podofo"] = None
 
 
@@ -74,7 +77,6 @@ class Package(CMakePackageBase):
         # args, so one set here has no effect. It comes from Compile/BuildType
         # in .github/craft/CraftConfig.ini.
         cmake_args = [
-            "-DWANT_HARFBUZZ=true",
             "-DWANT_FONTCONFIG=false",
         ]
         for component in ("MAJOR", "MINOR", "PATCH"):

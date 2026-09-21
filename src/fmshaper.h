@@ -23,6 +23,9 @@
 
 /**
 	@author Pierre Marchand <pierremarc@oep-h.com>
+
+	Text shaped the way an application does it: HarfBuzz applies the features
+	the script asks for. FMOtf, which owns the font, does the work.
 */
 class FMShaper
 {
@@ -30,29 +33,18 @@ class FMShaper
 		FMShaper(FMOtf *anchor);
 
 		~FMShaper();
-		/* Will return false if there is no GSUB nor GPOS table */
-		bool setFont (/*FT_Face face, HB_Font font*/ );
 
+		/* An OpenType script tag: "arab", "deva". Returns false for an
+		   empty one, HarfBuzz then shapes without a script. */
 		bool setScript ( QString script );
 
-		
 		QList<RenderedGlyph> doShape(QString string , bool ltr);
 
-		HB_Buffer out_buffer();
-
 	private:
-		// owns the arrays of the shaper item
+		// the anchor owns the HarfBuzz font, nothing to copy here
 		Q_DISABLE_COPY ( FMShaper )
 		FMOtf *anchorOTF;
-		FT_Face anchorFace;
-		HB_ShaperItem m;
-
-		bool faceisset;
-		bool langisset;
-		bool allocated;
-
-		HB_FontRec hbFont;
-		HB_FontClass fontClass;
+		QString m_script;
 
 };
 

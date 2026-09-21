@@ -90,16 +90,6 @@ IF(APPLE)
 	ADD_DEFINITIONS( -DPLATFORM_APPLE )
 ENDIF(APPLE)
 
-#<< harfbuzz (shaper)
-IF(WANT_HARFBUZZ)
-# Since Harfbuzz source code is included into
-# FM source tree, it’s just a matter of activation
-# and « cohérence »
-	ADD_DEFINITIONS( -DHAVE_HARFBUZZ )
-	SET(HARFBUZZSHAPER 1)
-	MESSAGE(STATUS "Build Harbuzz shaper support")
-ENDIF(WANT_HARFBUZZ)
-#>> harfbuzz (shaper)
 
 #<< ICU
 IF(WANT_ICU)
@@ -169,10 +159,14 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 #>> Qt
 
-SET(HARFBUZZ_DIR harfbuzz/src)
-ADD_SUBDIRECTORY(${HARFBUZZ_DIR})
-MESSAGE(STATUS "Adding ${CMAKE_SOURCE_DIR}/${HARFBUZZ_DIR}")
-SET(HARFBUZZ_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/${HARFBUZZ_DIR})
+# HarfBuzz reads the OpenType tables and shapes the samples. It comes from the
+# platform like Qt, which links it too: a distribution package, the Flatpak
+# runtime, libs/harfbuzz in Craft. 2.6.8 has the call that lists alternates.
+find_package(HarfBuzz 2.6.8 REQUIRED)
+set_package_properties(HarfBuzz PROPERTIES
+    TYPE REQUIRED
+    PURPOSE "OpenType scripts, languages and features, text shaping"
+)
 
 # SET(PUZZLE_DIR libpuzzle/src)
 # ADD_SUBDIRECTORY(${PUZZLE_DIR})

@@ -34,60 +34,63 @@
 
 #include "fmshaper_own.h"
 #include "fmsharestruct.h"
-// added to pacify gcc44 PL
-#include <stdint.h>
-#include <ctype.h>
+
+#include <hb.h>
+#include <hb-ot.h>
 
 
-#include <harfbuzz.h>
-
-
-// using namespace std;
-
+/**
+ * The OpenType side of a font: which scripts, languages and features its
+ * GSUB and GPOS tables offer, and text shaped with a chosen set of them.
+ * HarfBuzz does the work.
+ *
+ * Shaping here answers "what does this feature do": a feature that is not
+ * asked for is switched off, including those a script gets by default in
+ * applications. shape() is the exception and behaves like an application.
+ *
+ * Results are in font units and in logical order, whatever the script.
+ */
 class FMOtf
 {
 	public:
+		// scale is not used any more, positions are always in font units
 		FMOtf ( FT_Face, double scale = 0.0 );
 		~FMOtf ();
 
 		QString curString;
 
 	private:
-		// owns the HarfBuzz tables and buffer
+		// owns the HarfBuzz face and fonts
 		Q_DISABLE_COPY ( FMOtf )
 		FT_Face _face;
-//   ScShaper * shaper;
-		bool useShaper;
-		HB_FontRec hbFont;
-		QByteArray _memgdef,_memgsub,_memgpos;
-		HB_StreamRec* gdefstream;
-		HB_StreamRec* gsubstream;
-		HB_StreamRec* gposstream;
-		HB_GDEF _gdef;
-		HB_GSUB _gsub;
-		HB_GPOS _gpos;
+		hb_face_t *hbFace;
+		// glyphs are looked up by FreeType, with the charmap the application selected
+		hb_font_t *hbFont;
+		// for input that is glyph indices already
+		hb_font_t *hbGlyphFont;
 
-		//OTF_GlyphString mys;
-		HB_Buffer _buffer;
+		bool GSUB, GPOS;
+		// all the feature tags of the font, to switch off those not asked for
+		QList<hb_tag_t> fontFeatures;
+		QList<unsigned int> lastGlyphs;
+		GlyphList m_lastRun;
 
-		bool glyphAlloc;
-
-		int GDEF, GSUB, GPOS;
-
-
-
+		hb_tag_t tableTag() const;
+		bool currentScript ( unsigned int *scriptIndex ) const;
+		unsigned int currentLanguage ( unsigned int scriptIndex ) const;
+		QList<hb_feature_t> featureList ( const QStringList& enabled ) const;
+		GlyphList shapeBuffer ( hb_buffer_t *buffer, hb_font_t *font, const QString& script, const QString& lang,
+		                        const QList<hb_feature_t>& features, bool ltr = true );
+		void collectAlternates ( const QString& s, const QString& script, const QString& lang );
 
 	public:
-
-// 	OTF_GlyphString * FMOtfString() {return &mys;}
-// 	int unicode(int gid){ return OTF_get_unicode(my, gid);}
-		int get_glyph ( int index );//{return _buffer->out_string[index].gindex;}
+		// glyph index at a position of the last shaped run
+		int get_glyph ( int index );
 		QString curTable;
-		HB_UShort curScript, curLang, curLangReq;
 		QString curScriptName, curLangName;
 		QStringList curFeatures;
 
-		static HB_UShort manageAlternates ( HB_UInt    pos,HB_UShort   glyphID,HB_UShort   num_alternates,HB_UShort*  alternates, void*       data );
+		// All the alternates 'aalt' offers for the text of the last procstring()
 		static QList<int> altGlyphs;
 		/*
 		 * These members functions apply features currently set
@@ -96,8 +99,13 @@ class FMOtf
 		// Yes there are a lot, doubtless too much.
 		int procstring ( QString s, QString script, QString lang, QStringList gsub, QStringList gpos );
 		QList<RenderedGlyph> procstring ( QString s, OTFSet set );
+		// each character carries the features that apply to it alone
 		QList<RenderedGlyph> procstring ( QList<Character> shaped , QString script );
+		// input is glyph indices, not characters
 		QList<RenderedGlyph> procstring ( QList<unsigned int> glyList , QString script, QString lang, QStringList gsub, QStringList gpos );
+
+		// The way an application shapes: the script decides the features
+		QList<RenderedGlyph> shape ( const QString& s, const QString& script, bool ltr );
 
 		/*
 		  * These functions give access to informations contained in the fontfile
@@ -114,22 +122,12 @@ class FMOtf
 		void set_lang ( QString );
 		void set_features ( QStringList );
 
-
-//   uint get_position(int,GlyphLayout *);
-//   uint presentAlternates(HB_UInt, HB_UShort, QList<HB_UShort>);
-		GlyphList get_position ( HB_Buffer abuffer = nullptr );
-
 	FT_Face face() const
 	{
 		return _face;
 	}
-	
 
 		friend class FontItem;
-		friend class FMShaper;
-
-
-
 };
 
 #endif
