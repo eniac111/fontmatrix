@@ -211,6 +211,13 @@ void TagListModel::removeFromCurrents(const QString &t)
 }
 
 
+void TagListModel::renameCurrent(const QString &from, const QString &to)
+{
+	const int idx(currentTags.indexOf(from));
+	if(idx >= 0)
+		currentTags[idx] = to;
+}
+
 void TagListModel::tagsDBChanged()
 {
 	// The number of rows may have changed, dataChanged() is not enough
@@ -525,13 +532,32 @@ void FilterBar::slotTagSelect(const QModelIndex & index)
 
 void FilterBar::slotTagEdit(const QModelIndex &index)
 {
+	// "Activated" is not a tag of the database, there is nothing to rename
+	if(tagListModel->data(index, TagListModel::TagType).toString() != QString("TAG"))
+		return;
 	QString tag(tagListModel->data(index, TagListModel::TagString).toString());
 	bool ok;
 	QString newTag(QInputDialog::getText(this, i18n("Fontmatrix - edit tag"), i18n("Edit tag: ") + tag, QLineEdit::Normal, QString(), &ok));
-	if(!ok || newTag.isEmpty())
+	if(!ok || newTag.isEmpty() || newTag == tag)
 		return;
+
+	// A filter on this tag would go on asking for the old name and find
+	// nothing. The fonts are the same, so nothing has to be filtered again.
+	for (auto* f : std::as_const(filters))
+	{
+		FilterData *fd(f->filter());
+		if(fd->type() == QString("Tag")
+		   && fd->data(FilterTag::Key).toString() == QString("TAG")
+		   && fd->data(FilterTag::Tag).toString() == tag)
+		{
+			fd->setData(FilterTag::Tag, newTag);
+			fd->setData(FilterData::Text, newTag);
+			f->updateText();
+		}
+	}
+	// before editTag(): it resets the model, which reads the current tags
+	tagListModel->renameCurrent(tag, newTag);
 	FMFontDb::DB()->editTag(tag, newTag);
-	ui->tagsView->update(index);
 
 }
 

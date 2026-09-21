@@ -48,6 +48,11 @@ FilterItem::FilterItem(FilterData *filter, QWidget *parent) :
 	connect(ui->removeButton, SIGNAL(clicked()), this, SIGNAL(remove()));
 }
 
+void FilterItem::updateText()
+{
+	ui->filterLabel->setText(d->getText());
+}
+
 FilterItem::~FilterItem()
 {
 	delete ui;

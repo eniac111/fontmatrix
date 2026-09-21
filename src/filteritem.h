@@ -47,6 +47,8 @@ public:
 
 	FilterData* filter(){return d;}
 	void hideOperation(Operation op);
+	// to call after the text of the filter has changed
+	void updateText();
 
 protected:
 	void changeEvent(QEvent *e) override;
