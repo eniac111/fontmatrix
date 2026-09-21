@@ -31,7 +31,7 @@ bool FMVerticalButton::event(QEvent * event)
 {
 	if (event->type() == QEvent::Paint)
 	{
-		QPaintEvent *pe = reinterpret_cast<QPaintEvent*>(event);
+		auto pe = reinterpret_cast<QPaintEvent*>(event);
 		setToolButtonStyle(Qt::ToolButtonIconOnly);
 		if(m_text.isEmpty())
 		{

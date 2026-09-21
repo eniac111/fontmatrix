@@ -221,7 +221,7 @@ void BrowserWidget::slotShowChart()
 	{
 		if(nullptr == chart)
 		{
-			ChartWidget *cw(new ChartWidget(curVariant, uniBlock, ui->pageChart));
+			auto cw(new ChartWidget(curVariant, uniBlock, ui->pageChart));
 			ui->displayStack->insertWidget(BROWSER_VIEW_CHART, cw);
 			chart = cw;
 			connect(chart, &FloatingWidget::detached, this, &BrowserWidget::slotDetachChart);
@@ -244,7 +244,7 @@ void BrowserWidget::slotShowSample()
 	{
 		if(nullptr == sample)
 		{
-			SampleWidget *sw(new SampleWidget(curVariant, ui->pageSample));
+			auto sw(new SampleWidget(curVariant, ui->pageSample));
 			ui->displayStack->insertWidget(BROWSER_VIEW_SAMPLE, sw);
 			sample = sw;
 			connect(sample, &FloatingWidget::detached, this, &BrowserWidget::slotDetachSample);
@@ -276,7 +276,7 @@ void BrowserWidget::slotDetachSample()
 void BrowserWidget::slotFolderViewContextMenu(const QPoint &p)
 {
 	qCDebug(FONTMATRIX_LOG)<<"P"<<p;
-	QFileSystemModel *dm = static_cast<QFileSystemModel*>(ui->browserView->model());
+	auto dm = static_cast<QFileSystemModel*>(ui->browserView->model());
 	if (!dm)
 		return;
 

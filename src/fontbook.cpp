@@ -335,8 +335,8 @@ void FontBook::doFullBookPageRight(const QString &family)
 	double bigSize(10.0);
 	QGraphicsScene layoutLeftScene(printerRect);
 	QGraphicsScene layoutRightScene(printerRect);
-	FMLayout *layoutLeft = new  FMLayout(&layoutLeftScene , rFont, colLeftRect);
-	FMLayout *layoutRight = new  FMLayout(&layoutRightScene , rFont, colRightRect);
+	auto layoutLeft = new  FMLayout(&layoutLeftScene , rFont, colLeftRect);
+	auto layoutRight = new  FMLayout(&layoutRightScene , rFont, colRightRect);
 	layoutLeft->setDeviceIndy(true);
 	layoutLeft->setAdjustedSampleInter( littleSize*1.2 );
 //	layoutLeft->setRect(colLeftRect);

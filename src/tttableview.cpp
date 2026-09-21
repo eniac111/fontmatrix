@@ -32,7 +32,7 @@ TTTableView::TTTableView(FontItem * font, QWidget * parent)
 		int len(font->table(tname));
 		if(len > 0)
 		{
-			QTreeWidgetItem *twi(new QTreeWidgetItem);
+			auto twi(new QTreeWidgetItem);
 			twi->setText(NAME, tname);
 			twi->setText(DESCRIPTION, FontStrings::Tables()[tname]);
 			twi->setText(SIZE, QString::number(len));

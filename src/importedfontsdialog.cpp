@@ -38,7 +38,7 @@ ImportedFontsDialog::ImportedFontsDialog(QWidget * parent, QStringList fontlist)
 			s = s.mid(16) + i18n(" (not loaded)");
 			++buggyFonts;
 		}
-		QListWidgetItem *it=new QListWidgetItem(s);
+		auto it=new QListWidgetItem(s);
 		it->setForeground(success ? Qt::black : Qt::red);
 		fontList->addItem(it);
 	}

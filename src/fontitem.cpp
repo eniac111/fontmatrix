@@ -108,7 +108,7 @@ struct FM_Vector // :)
 static int _moveTo ( const FT_Vector*  to26, void*   user )
 {
 	FM_Vector to(to26);
-	SizedPath* sp = reinterpret_cast<SizedPath*> ( user );
+	auto sp = reinterpret_cast<SizedPath*> ( user );
 	QPainterPath * p( sp->p );
 	double sf( sp->s );
 	p->moveTo ( to.x * sf , to.y * sf * -1.0 );
@@ -117,7 +117,7 @@ static int _moveTo ( const FT_Vector*  to26, void*   user )
 static int _lineTo ( const FT_Vector*  to26, void*   user )
 {
 	FM_Vector to(to26);
-	SizedPath* sp = reinterpret_cast<SizedPath*> ( user );
+	auto sp = reinterpret_cast<SizedPath*> ( user );
 	QPainterPath * p( sp->p );
 	double sf( sp->s );
 	p->lineTo ( to.x * sf, to.y  * sf * -1.0 );
@@ -127,7 +127,7 @@ static int _conicTo ( const FT_Vector* control26, const FT_Vector*  to26, void* 
 {
 	FM_Vector control(control26);
 	FM_Vector to(to26);
-	SizedPath* sp = reinterpret_cast<SizedPath*> ( user );
+	auto sp = reinterpret_cast<SizedPath*> ( user );
 	QPainterPath * p( sp->p );
 	double sf( sp->s );
 	p->quadTo ( control.x * sf,control.y * sf * -1.0,to.x * sf,to.y * sf * -1.0 );
@@ -138,7 +138,7 @@ static int _cubicTo ( const FT_Vector* control126, const FT_Vector* control226, 
 	FM_Vector control1(control126);
 	FM_Vector control2(control226);
 	FM_Vector to(to26);
-	SizedPath* sp = reinterpret_cast<SizedPath*> ( user );
+	auto sp = reinterpret_cast<SizedPath*> ( user );
 	QPainterPath * p( sp->p );
 	double sf( sp->s );
 	p->cubicTo ( control1.x * sf,control1.y * sf * -1.0,control2.x * sf,control2.y * sf * -1.0,to.x * sf,to.y  * sf * -1.0);
@@ -382,7 +382,7 @@ FontItem::FontItem(QString path, QString family, QString variant, QString type,b
 
 FontItem * FontItem::Clone()
 {
-	FontItem *fitem = new FontItem ( m_path, m_family, m_variant, m_type, m_active );
+	auto fitem = new FontItem ( m_path, m_family, m_variant, m_type, m_active );
 	return fitem;
 }
 
@@ -559,7 +559,7 @@ int FontItem::glyphsCount() const
 	{
 		return m_numGlyphs;
 	}
-	FontItem * that(const_cast<FontItem*>(this));
+	auto that(const_cast<FontItem*>(this));
 	that->ensureFace();
 	that->m_numGlyphs = m_face->num_glyphs;
 	that->releaseFace();
@@ -633,7 +633,7 @@ QGraphicsPathItem * FontItem::itemFromGindex ( int index, double size )
 	{
 		QPainterPath glyphPath;
 		glyphPath.addRect ( 0.0,0.0, size, size );
-		QGraphicsPathItem *glyph = new  QGraphicsPathItem;
+		auto glyph = new  QGraphicsPathItem;
 		glyph->setBrush ( QBrush ( Qt::red ) );
 		glyph->setPath ( glyphPath );
 		glyph->setData ( GLYPH_DATA_GLYPH, index);
@@ -651,7 +651,7 @@ QGraphicsPathItem * FontItem::itemFromGindex ( int index, double size )
 	sp.s = scalefactor;
 	FT_Outline_Decompose ( outline, &outline_funcs, &sp );
 	glyphPath.closeSubpath();
-	QGraphicsPathItem *glyph = new  QGraphicsPathItem;
+	auto glyph = new  QGraphicsPathItem;
 
 	if ( glyphPath.elementCount() < 3 && !spaceIndex.contains ( index ) )
 	{
@@ -718,7 +718,7 @@ QGraphicsPixmapItem * FontItem::itemFromGindexPix ( int index, double size )
 	{
 		QPixmap square ( qRound(size) , qRound(size) );
 		square.fill ( Qt::red );
-		QGraphicsPixmapItem *glyph = new QGraphicsPixmapItem ( square );
+		auto glyph = new QGraphicsPixmapItem ( square );
 		glyph->setData ( GLYPH_DATA_GLYPH ,index );
 		glyph->setData ( GLYPH_DATA_BITMAPLEFT , 0 );
 		glyph->setData ( GLYPH_DATA_BITMAPTOP,size );
@@ -741,7 +741,7 @@ QGraphicsPixmapItem * FontItem::itemFromGindexPix ( int index, double size )
 	{
 		QPixmap square ( qRound(size) , qRound(size) );
 		square.fill ( Qt::red );
-		QGraphicsPixmapItem *glyph = new QGraphicsPixmapItem ( square );
+		auto glyph = new QGraphicsPixmapItem ( square );
 		glyph->setData ( GLYPH_DATA_GLYPH , index );
 		glyph->setData ( GLYPH_DATA_BITMAPLEFT , 0 );
 		glyph->setData ( GLYPH_DATA_BITMAPTOP,size );
@@ -752,7 +752,7 @@ QGraphicsPixmapItem * FontItem::itemFromGindexPix ( int index, double size )
 
 
 	QImage img ( glyphImage() );
-	QGraphicsPixmapItem *glyph = new  QGraphicsPixmapItem;
+	auto glyph = new  QGraphicsPixmapItem;
 
 	if ( img.isNull() && !spaceIndex.contains ( index ) )
 	{
@@ -796,7 +796,7 @@ MetaGlyphItem * FontItem::itemFromGindexPix_mt(int index, double size)
 		return nullptr;
 	int charcode = index ;
 //	qDebug()<<"FontItem::itemFromGindexPix_mt"<< thread();
-	MetaGlyphItem * glyph = new MetaGlyphItem;
+	auto glyph = new MetaGlyphItem;
 	double scaleFactor = size / m_face->units_per_EM;
 
 	// Set size
@@ -2416,7 +2416,7 @@ QString FontItem::panose()
 	if(!ensureFace())
 		return QString("0:0:0:0:0:0:0:0:0:0");
 	QStringList pl;
-	TT_OS2 *os2 = static_cast<TT_OS2*> ( FT_Get_Sfnt_Table ( m_face, ft_sfnt_os2 ) );
+	auto os2 = static_cast<TT_OS2*> ( FT_Get_Sfnt_Table ( m_face, ft_sfnt_os2 ) );
 	if ( os2 )
 	{
 		for ( int bI ( 0 ); bI < 10; ++bI )
@@ -2441,7 +2441,7 @@ QStringList FontItem::supportedLangDeclaration()
 	if ( !ensureFace() )
 		return ret;
 
-	TT_OS2 *os2 = static_cast<TT_OS2*> ( FT_Get_Sfnt_Table ( m_face, ft_sfnt_os2 ) );
+	auto os2 = static_cast<TT_OS2*> ( FT_Get_Sfnt_Table ( m_face, ft_sfnt_os2 ) );
 	if ( os2 )
 	{
 		QList<FT_ULong> uMaskList;
@@ -2480,7 +2480,7 @@ double FontItem::italicAngle()
 		return ret;
 	if ( testFlag ( m_face->face_flags, FT_FACE_FLAG_SFNT, "1","0" ) == "1" )
 	{
-		TT_Postscript *post = static_cast<TT_Postscript*> ( FT_Get_Sfnt_Table ( m_face, ft_sfnt_post ) );
+		auto post = static_cast<TT_Postscript*> ( FT_Get_Sfnt_Table ( m_face, ft_sfnt_post ) );
 		if ( post )
 			ret = ( double(post->italicAngle) / double (0x10000) ) ;
 	}
@@ -2503,7 +2503,7 @@ FontItem::FsType FontItem::getFsType()
 	if(!ensureFace())
 		return fst;
 	
-	TT_OS2 *os2 = static_cast<TT_OS2*> ( FT_Get_Sfnt_Table ( m_face, ft_sfnt_os2 ) );
+	auto os2 = static_cast<TT_OS2*> ( FT_Get_Sfnt_Table ( m_face, ft_sfnt_os2 ) );
 	
 	if ( os2 )
 	{
@@ -2612,7 +2612,7 @@ static QString decodeMacRoman ( const QByteArray& bytes )
 	result.reserve ( bytes.size() );
 	for ( const char c : bytes )
 	{
-		const unsigned char b = static_cast<unsigned char> ( c );
+		const auto b = static_cast<unsigned char> ( c );
 		result.append ( b < 0x80 ? QChar ( b ) : QChar ( upper[b - 0x80] ) );
 	}
 	return result;
@@ -3000,7 +3000,7 @@ int FontItem::showFancyGlyph ( QGraphicsView *view, int charcode , bool charcode
 
 	painter.end();
 
-	QGraphicsPixmapItem *fancyGlyph = new  QGraphicsPixmapItem;
+	auto fancyGlyph = new  QGraphicsPixmapItem;
 	fancyGlyph->setPixmap ( pix );
 	fancyGlyph->setZValue ( 10000 );
 	fancyGlyph->setPos ( targetRect.topLeft() );
@@ -3008,7 +3008,7 @@ int FontItem::showFancyGlyph ( QGraphicsView *view, int charcode , bool charcode
 	fancyGlyphs[ref] =  fancyGlyph ;
 
 
-	QGraphicsTextItem *textIt = new QGraphicsTextItem;
+	auto textIt = new QGraphicsTextItem;
 	textIt->setTextWidth ( allRect.width() );
 
 	QString itemNameStyle ( "background-color:#000;color:#fff;font-weight:bold;font-size:13pt;padding:0 3px;" );
@@ -3888,7 +3888,7 @@ unsigned short FontItem::getNamedChar(const QString & name)
 	if(FT_HAS_GLYPH_NAMES( m_face ))
 	{
 		int bLen(256);
-		char* buffer(new char[bLen]);
+		auto buffer(new char[bLen]);
 		FT_UInt index (1);
 		FT_UInt cc =  FT_Get_First_Char ( m_face, &index );
 		QString cname;
@@ -3919,7 +3919,7 @@ QStringList FontItem::getNames()
 	if(FT_HAS_GLYPH_NAMES( m_face ))
 	{
 		int bLen(256);
-		char* buffer(new char[bLen]);
+		auto buffer(new char[bLen]);
 		FT_UInt index (1);
 		FT_UInt cc =  FT_Get_First_Char ( m_face, &index );
 		while ( index )

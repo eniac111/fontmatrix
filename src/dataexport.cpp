@@ -43,7 +43,7 @@ DataExport::DataExport(QWidget* parent):
 	fonts = FMFontDb::DB()->getFilteredFonts();
 	for (auto* f : std::as_const(fonts))
 	{
-		QListWidgetItem *it(new QListWidgetItem(f->path()));
+		auto it(new QListWidgetItem(f->path()));
 		it->setCheckState(Qt::Checked);
 		ui->listWidget->addItem(it);
 	}

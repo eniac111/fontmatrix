@@ -202,7 +202,7 @@ void FamilyWidget::slotShowSample()
 	{
 		if(nullptr == sample)
 		{
-			SampleWidget *sw(new SampleWidget(curVariant, ui->pageSample));
+			auto sw(new SampleWidget(curVariant, ui->pageSample));
 			ui->displayStack->insertWidget(FAMILY_VIEW_SAMPLE, sw);
 			sample = sw;
 			connect(sample, &FloatingWidget::detached, this, &FamilyWidget::slotDetachSample);
@@ -233,7 +233,7 @@ void FamilyWidget::slotShowChart()
 	{
 		if(nullptr == chart)
 		{
-			ChartWidget *cw(new ChartWidget(curVariant, uniBlock, ui->pageChart));
+			auto cw(new ChartWidget(curVariant, uniBlock, ui->pageChart));
 			ui->displayStack->insertWidget(FAMILY_VIEW_CHART, cw);
 			chart = cw;
 			connect(chart, &FloatingWidget::detached, this, &FamilyWidget::slotDetachChart);
@@ -255,7 +255,7 @@ void FamilyWidget::slotShowActivation()
 	{
 		if(nullptr == activation)
 		{
-			ActivationWidget *aw(new ActivationWidget(family, ui->pageActivation));
+			auto aw(new ActivationWidget(family, ui->pageActivation));
 			ui->displayStack->insertWidget(FAMILY_VIEW_ACTIVATION, aw);
 			activation = aw;
 			connect(aw, &ActivationWidget::familyStateChanged, this, &FamilyWidget::slotStateChange);

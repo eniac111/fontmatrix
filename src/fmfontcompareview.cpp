@@ -132,7 +132,7 @@ void FMFontCompareItem::drawPoint(QPointF point , bool control)
 	double u = control ? 1.0 : 2.0;
 
 	QRectF r(point.x()-u,point.y()-u,2*u,2*u);
-	QGraphicsEllipseItem *ri = new QGraphicsEllipseItem(r);
+	auto ri = new QGraphicsEllipseItem(r);
 	ri->setBrush(Qt::NoBrush);
 	if(control)
 		ri->setPen(FMFontCompareView::pens[QStringLiteral("control-point")]);

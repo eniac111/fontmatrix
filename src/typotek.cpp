@@ -300,7 +300,7 @@ void typotek::initMatrix()
 
 void typotek::installDock(const QString& id, const QString& name, QWidget * w, const QString& tip)
 {
-	QDockWidget * dw = new QDockWidget(name);
+	auto dw = new QDockWidget(name);
 	dw->setObjectName(id);
 	dockWidget[id] = dw;
 	dw->setWidget( w );
@@ -1513,7 +1513,7 @@ void typotek::slotEditFont()
 	QStringList arguments;
 	arguments << "-nosplash" << item->path() ;
 
-	QProcess *myProcess = new QProcess ( this );
+	auto myProcess = new QProcess ( this );
 	myProcess->start ( fonteditorPath, arguments );
 }
 
@@ -2083,7 +2083,7 @@ void typotek::showEvent(QShowEvent * event)
 
 void typotek::slotDockAreaChanged(Qt::DockWidgetArea area)
 {
-	QDockWidget * dw(reinterpret_cast<QDockWidget*>(sender()));
+	auto dw(reinterpret_cast<QDockWidget*>(sender()));
 
 	if(dw)
 	{
@@ -2515,7 +2515,7 @@ void typotek::updateFloatingStatus()
 		}
 		else
 		{
-			QAction *wa(new QAction(f->getActionName(),this));
+			auto wa(new QAction(f->getActionName(),this));
 			wa->setCheckable(true);
 			connect(f, &FloatingWidget::visibilityChange, this, &typotek::updateFloatingStatus);
 			connect(wa, &QAction::triggered, f, &FloatingWidget::activate);

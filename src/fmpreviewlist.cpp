@@ -252,7 +252,7 @@ QVariant FMPreviewModel::data(const QModelIndex & index, int role) const
 		else
 			word = typotek::getInstance()->word(fit, specString);
 		QPixmap im(fit->oneLinePreviewPixmap(word,fgColor, bgColor, width ) );
-		FMPreviewIconEngine * pie(new FMPreviewIconEngine);
+		auto pie(new FMPreviewIconEngine);
 		if(!familyMode)
 			pie->setActivation(fit->isActivated() ? FMPreviewIconEngine::Activated : FMPreviewIconEngine::NotActivated);
 		else
@@ -390,7 +390,7 @@ bool FMPreviewView::moveTo(const QString &fname)
 
 	if(rFont != fl_count)
 	{
-		QAbstractListModel *mod(reinterpret_cast<QAbstractListModel*>(model()));
+		auto mod(reinterpret_cast<QAbstractListModel*>(model()));
 		QModelIndex mi(mod->index(rFont));
 		if(mi.isValid())
 		{
@@ -448,7 +448,7 @@ void FMPreviewView::mouseMoveEvent(QMouseEvent * event)
 	if ((event->pos() - startDragPoint).manhattanLength() < QApplication::startDragDistance())
 		return;
 
-	FMPreviewModel * m(reinterpret_cast<FMPreviewModel*>(model()));
+	auto m(reinterpret_cast<FMPreviewModel*>(model()));
 	if(m && m->getFamilyMode())
 		return;
 	// Create a window with the current preview
@@ -499,7 +499,7 @@ void FMPreviewView::setCurrentFont(const QString & name)
 	
 	if(rFont != fl_count)
 	{
-		QAbstractListModel *mod(reinterpret_cast<QAbstractListModel*>(model()));
+		auto mod(reinterpret_cast<QAbstractListModel*>(model()));
 		QModelIndex mi(mod->index(rFont));
 		if(mi.isValid())
 		{

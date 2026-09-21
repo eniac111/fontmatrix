@@ -300,10 +300,10 @@ void ParallelCoorView::drawBars()
 {
 	for ( int i ( 0 ); i < units.C ; ++i )
 	{
-		double di ( static_cast<double> ( i ) );
+		auto di ( static_cast<double> ( i ) );
 		QLineF bl(units.XOffset + ( di * units.step ),  units.YOffset,
 			  units.XOffset + ( di * units.step ),  units.YOffset + units.H);
-		ParallelCoorBarItem * bi ( new ParallelCoorBarItem(m_dataSet->at(i).first, this) );
+		auto bi ( new ParallelCoorBarItem(m_dataSet->at(i).first, this) );
 		bars << bi;
 		bi->setPen(pens[QStringLiteral("bar")]);
 		bi->setLine(bl);
@@ -439,7 +439,7 @@ void ParallelCoorView::drawFields()
 		double sw(w * fsize / 100.0 );
 		fontF.setPointSizeF(fsize);
 		
-		ParallelCoorFieldItem * ti = new ParallelCoorFieldItem(f,this);
+		auto ti = new ParallelCoorFieldItem(f,this);
 		fieldLabels << ti;
 		ti->setFont(fontF);
 		scene()->addItem(ti);
@@ -492,9 +492,9 @@ void ParallelCoorView::drawValues()
 	QList<QString> list (m_dataSet->at(di).second);
 	for(int i(0); i< list.count(); ++i)
 	{
-		ParallelCoorValueItem *vi = new ParallelCoorValueItem(list[i], this);
+		auto vi = new ParallelCoorValueItem(list[i], this);
 		valueLabels << vi;
-		ParallelCoorMarkItem *mi = new ParallelCoorMarkItem(vi, this);
+		auto mi = new ParallelCoorMarkItem(vi, this);
 		marks << mi;
 		if(cfilter.contains(di))
 		{
@@ -650,7 +650,7 @@ void ParallelCoorFieldItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *)
 {
 	if(QLatin1String(pview->metaObject()->className()) == QLatin1String("ParallelCoorView") )
 	{
-		ParallelCoorView *pcv = reinterpret_cast<ParallelCoorView*>(pview);
+		auto pcv = reinterpret_cast<ParallelCoorView*>(pview);
 		pcv->selectField(text());
 	}
 
@@ -696,7 +696,7 @@ void ParallelCoorValueItem::click(int mod)
 {
 	if(QLatin1String(pview->metaObject()->className()) == QLatin1String("ParallelCoorView") )
 	{
-		ParallelCoorView *pcv = reinterpret_cast<ParallelCoorView*>(pview);
+		auto pcv = reinterpret_cast<ParallelCoorView*>(pview);
 		
 		QMap<QString, QStringList> filter;
 		if(mod == 0) // bare left click
@@ -760,7 +760,7 @@ void ParallelCoorBarItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
 	setPen(ParallelCoorView::pens[QStringLiteral("bar-hover")]);
 	if(QLatin1String(pview->metaObject()->className()) == QLatin1String("ParallelCoorView") )
 	{
-		ParallelCoorView *pcv = reinterpret_cast<ParallelCoorView*>(pview);
+		auto pcv = reinterpret_cast<ParallelCoorView*>(pview);
 		pcv->selectField(attachedField);
 	}
 }

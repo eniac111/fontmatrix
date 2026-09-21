@@ -25,7 +25,7 @@ ImportTags::ImportTags(QWidget * parent, QStringList tags)
 // 	m_tags.removeAll("Activated_Off");
 	for(int i = 0 ; i < m_tags.count() ; ++i)
 	{
-		QListWidgetItem *it = new QListWidgetItem( m_tags.at ( i ) , tagsList );
+		auto it = new QListWidgetItem( m_tags.at ( i ) , tagsList );
 		it->setCheckState(Qt::Unchecked);
 	}
 	
@@ -51,7 +51,7 @@ void ImportTags::slotNewTag()
 	if(nTag.simplified().isEmpty())
 		return;
 	m_tags << nTag;
-	QListWidgetItem *it = new QListWidgetItem(nTag , tagsList);
+	auto it = new QListWidgetItem(nTag , tagsList);
 	it->setCheckState(Qt::Checked);	
 	tagText->clear();
 	

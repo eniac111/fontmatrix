@@ -39,8 +39,8 @@ void RemoteDir::run()
 	qCDebug(FONTMATRIX_LOG)<<"RemoteDir::run()";
 	for(int ridx(0); ridx < argDirs.size(); ++ridx)
 	{
-		QByteArray *ba = new QByteArray;
-		QBuffer *buffer = new QBuffer;
+		auto ba = new QByteArray;
+		auto buffer = new QBuffer;
 		buffers << buffer;
 		buffer->setBuffer(ba);
 		buffer->open(QIODevice::WriteOnly);
@@ -235,8 +235,8 @@ void RemoteDir::getPreviews()
 			QDomNode col = colList.item ( i );
 			QString p = col.namedItem ( "file" ).toElement().text();
 			
-			QByteArray *ba = new QByteArray;
-			QBuffer *buffer = new QBuffer;
+			auto ba = new QByteArray;
+			auto buffer = new QBuffer;
 			buffers << buffer;
 			buffer->setBuffer(ba);
 			buffer->open(QIODevice::WriteOnly);

@@ -612,15 +612,15 @@ void PrefsPanelDialog::reloadShortcuts()
 	Shortcuts *scuts = Shortcuts::getInstance();
 	for (auto* act : std::as_const(alist))
 	{
-		QStandardItem *iText = new QStandardItem ( scuts->cleanName(act->text()) );
-		QStandardItem *iShortcut = new QStandardItem ( act->shortcut().toString() );
+		auto iText = new QStandardItem ( scuts->cleanName(act->text()) );
+		auto iShortcut = new QStandardItem ( act->shortcut().toString() );
 		iShortcut->setFont ( font );
 		QString tooltip = act->toolTip();
 		QString statusTip = act->statusTip();
 		QString tip = tooltip;
 		if ( statusTip.length() > tooltip.length() )
 			tip = statusTip;
-		QStandardItem *iTooltip = new QStandardItem ( tip );
+		auto iTooltip = new QStandardItem ( tip );
 		QList<QStandardItem *> iRow;
 		iRow << iText << iShortcut << iTooltip;
 		shortcutModel->appendRow ( iRow );

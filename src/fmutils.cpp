@@ -22,8 +22,8 @@
 
 void printBacktrace ( int frames )
 {
-	void ** trace = new void*[frames + 1];
-	char **messages = ( char ** ) nullptr;
+	auto trace = new void*[frames + 1];
+	auto messages = ( char ** ) nullptr;
 	int i, trace_size = 0;
 
 	trace_size = backtrace ( trace, frames + 1 );

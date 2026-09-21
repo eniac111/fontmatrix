@@ -183,7 +183,7 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 					if ( lyt->hyphenList.contains ( soon ) )
 						disN *= lyt->FM_LAYOUT_HYPHEN_PENALTY;
 
-					Node::ListItem* vN = new Node::ListItem( sN, qAbs ( disN * lyt->FM_LAYOUT_NODE_SOON_F ) );
+					auto vN = new Node::ListItem( sN, qAbs ( disN * lyt->FM_LAYOUT_NODE_SOON_F ) );
 					nodes_insert(vN);
 					if ( QChar ( lyt->theString.at ( soon ).lChar ).category() == QChar::Separator_Space )
 						break;
@@ -208,7 +208,7 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 						if ( lyt->hyphenList.contains ( fit ) )
 							disF *= lyt->FM_LAYOUT_HYPHEN_PENALTY;
 
-						Node::ListItem* vF = new Node::ListItem ( sF,qAbs ( disF * lyt->FM_LAYOUT_NODE_FIT_F ) );
+						auto vF = new Node::ListItem ( sF,qAbs ( disF * lyt->FM_LAYOUT_NODE_FIT_F ) );
 						// 				curNode->nodes << vF;
 						nodes_insert ( vF );
 						
@@ -238,7 +238,7 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 					if ( lyt->hyphenList.contains ( late ) )
 						disL *= lyt->FM_LAYOUT_HYPHEN_PENALTY;
 
-					Node::ListItem* vL = new Node::ListItem ( sL, qAbs ( disL * lyt->FM_LAYOUT_NODE_LATE_F ) );
+					auto vL = new Node::ListItem ( sL, qAbs ( disL * lyt->FM_LAYOUT_NODE_LATE_F ) );
 					nodes_insert ( vL );
 
 					if ( late < lyt->theString.count() && QChar ( lyt->theString.at ( late ).lChar ).category() == QChar::Separator_Space )
@@ -264,7 +264,7 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 				sN = new Node (lyt,  soon );
 				double disN = lyt->lineWidth ( deep ) - lyt->distance ( cIdx, soon,lyt->theString );
 
-				Node::ListItem* vN = new Node::ListItem ( sN, qAbs ( disN * lyt->FM_LAYOUT_NODE_END_F ) );
+				auto vN = new Node::ListItem ( sN, qAbs ( disN * lyt->FM_LAYOUT_NODE_END_F ) );
 				// 				curNode->nodes << vN;
 				nodes_insert ( vN );
 			}
@@ -875,7 +875,7 @@ void FMLayout::doDraw()
 				else
 				{
 //					refGlyph[i].dump();
-					MetaGlyphItem * mgi(reinterpret_cast<MetaGlyphItem*>(glyph));
+					auto mgi(reinterpret_cast<MetaGlyphItem*>(glyph));
 //					qDebug()<<refGlyph[i].glyph<<pen.y() << ( refGlyph[i].yoffset * pixelAdjustY ) << mgi->metaData ( GLYPH_DATA_BITMAPTOP ).toDouble();
 					Q_EMIT drawPixmapForMe(refGlyph[i].glyph,
 							     fontSize,

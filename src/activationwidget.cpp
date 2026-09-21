@@ -43,7 +43,7 @@ ActivationWidget::ActivationWidget(const QString& familyName, QWidget *parent) :
 	QList<FontItem*> fl(FMVariants::Order(FMFontDb::DB()->FamilySet(family)));
 	for (auto* f : std::as_const(fl))
 	{
-		ActivationWidgetItem * i(new ActivationWidgetItem(f->path(), this));
+		auto i(new ActivationWidgetItem(f->path(), this));
 		ui->listLayout->addWidget(i);
 		items.append(i);
 

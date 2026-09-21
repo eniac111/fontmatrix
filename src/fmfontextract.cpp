@@ -27,7 +27,7 @@ FMFontExtract::FMFontExtract(QWidget * parent)
 	setupUi(this);
 	currentExtractor = nullptr;
 #ifdef HAVE_PODOFO
-	FMPDFFontExtractor * pdfExtr(new FMPDFFontExtractor);
+	auto pdfExtr(new FMPDFFontExtractor);
 	for (const auto extensionsList = pdfExtr->extensions(); const auto& e : extensionsList)
 	{
 		extractors[e] = pdfExtr;

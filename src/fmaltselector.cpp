@@ -43,25 +43,25 @@ void FMAltSelectorModel::reModel(FMAltContext * ctx)
 	for(int p(0); p < ctx->maxPar(); ++p)
 	{
 		ctx->setPar(p);
-		AltItem * parItem = new AltItem(AltItem::PARAGRAPH, p);
+		auto parItem = new AltItem(AltItem::PARAGRAPH, p);
 		rootItem->addChild(parItem);
 		for(int w(0); w < ctx->maxWord(); ++w)
 		{
 			ctx->setWord(w);
 			if(ctx->wordString().isEmpty())
 				continue;
-			AltItem * wordItem = new AltItem(AltItem::WORD, ctx->wordString());
+			auto wordItem = new AltItem(AltItem::WORD, ctx->wordString());
 			parItem->addChild(wordItem);
 			for(int c(0);c < ctx->maxChunk();++c)
 			{
 				ctx->setChunk(c);
-				AltItem * chunkItem = new AltItem(AltItem::CHUNK, ctx->chunkString());
+				auto chunkItem = new AltItem(AltItem::CHUNK, ctx->chunkString());
 				wordItem->addChild(chunkItem);
 				for(int g(0); g < ctx->maxGlyph(); ++g)
 				{
 					if( ctx->alts(g).count())
 					{
-						AltItem * glyphItem = new AltItem(AltItem::GLYPH, g);
+						auto glyphItem = new AltItem(AltItem::GLYPH, g);
 						glyphItem->alts = ctx->alts(g);
 						chunkItem->addChild(glyphItem);
 					}
@@ -109,7 +109,7 @@ QModelIndex FMAltSelectorModel::parent ( const QModelIndex & index ) const
 	if (!index.isValid())
 		return QModelIndex();
 
-	AltItem *childItem = static_cast<AltItem*>(index.internalPointer());
+	auto childItem = static_cast<AltItem*>(index.internalPointer());
 	AltItem *parentItem = childItem->parent;
 
 	if (parentItem == rootItem)
@@ -143,7 +143,7 @@ int FMAltSelectorModel::columnCount ( const QModelIndex & parent  ) const
 
 	if (parent.isValid())
 	{
-		AltItem* pItem =  static_cast<AltItem*>(parent.internalPointer());
+		auto pItem =  static_cast<AltItem*>(parent.internalPointer());
 		if(pItem)
 		{
 			if(pItem->T == AltItem::CHUNK) // means the current index is a GLYPH
@@ -173,7 +173,7 @@ QVariant FMAltSelectorModel::data ( const QModelIndex & index, int role ) const
 
 	if(index.column() == 0 && role == Qt::DisplayRole)
 	{
-		AltItem *item = static_cast<AltItem*>(index.internalPointer());
+		auto item = static_cast<AltItem*>(index.internalPointer());
 		if(item)
 		{
 			if(item->T == AltItem::PARAGRAPH)
@@ -210,7 +210,7 @@ void FMAltSelectorModel::FMAltItemDelegate::paint(QPainter * painter, const QSty
 //	qDebug()<<"Paint"<<index.row()<<index.column() ;
 	if(!index.isValid())
 		return;
-	FMAltSelectorModel::AltItem * item = static_cast<FMAltSelectorModel::AltItem*>(index.internalPointer());
+	auto item = static_cast<FMAltSelectorModel::AltItem*>(index.internalPointer());
 	if((!item) )
 	{
 		qCDebug(FONTMATRIX_LOG)<<"Item is not"<< index.row()<<index.column();
@@ -251,7 +251,7 @@ QSize FMAltSelectorModel::FMAltItemDelegate::sizeHint( [[maybe_unused]] const QS
 	FontItem * fi(typotek::getInstance()->getSelectedFont());
 	if(!fi)
 		return ret;
-	FMAltSelectorModel::AltItem * item = static_cast<FMAltSelectorModel::AltItem*>(index.internalPointer());
+	auto item = static_cast<FMAltSelectorModel::AltItem*>(index.internalPointer());
 	if(!item)
 		return ret;
 	for (const auto& idx : std::as_const(item->alts))

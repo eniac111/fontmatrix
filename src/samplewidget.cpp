@@ -72,7 +72,7 @@ void FMLayoutThread::setLayout(FMLayout * l, const QList<GlyphList>& spec , doub
 
 void FMLayoutThread::run()
 {
-	FontItem * tf(new FontItem(font->path(),font->family(),font->variant(),font->type(), font->isActivated()));
+	auto tf(new FontItem(font->path(),font->family(),font->variant(),font->type(), font->isActivated()));
 	tf->setFTHintMode(fHinting);
 	pLayout->doLayout(gl, fontSize, tf);
 	delete tf;
@@ -432,7 +432,7 @@ void SampleWidget::doRender()
 			list << f->glyphs(stl[p], fSize);
 	}
 
-	FontItem *tf = new FontItem(f->path(), f->family(), f->variant(), f->type(), f->isActivated());
+	auto tf = new FontItem(f->path(), f->family(), f->variant(), f->type(), f->isActivated());
 	tf->setFTHintMode(hinting());
 	textLayout->doLayout(list, fSize, tf);
 	delete tf;
@@ -502,24 +502,24 @@ void SampleWidget::fillOTTree()
 		for (const auto tablesList = otf->get_tables(); const auto& table : tablesList)
 		{
 			otf->set_table ( table );
-			QTreeWidgetItem *tab_item = new QTreeWidgetItem ( ui->OpenTypeTree,QStringList ( table ) );
+			auto tab_item = new QTreeWidgetItem ( ui->OpenTypeTree,QStringList ( table ) );
 			tab_item->setExpanded ( true );
 			for (const auto scriptsList = otf->get_scripts(); const auto& script : scriptsList)
 			{
 				scripts << script;
 				otf->set_script ( script );
-				QTreeWidgetItem *script_item = new QTreeWidgetItem ( tab_item, QStringList ( script ) );
+				auto script_item = new QTreeWidgetItem ( tab_item, QStringList ( script ) );
 				script_item->setExpanded ( true );
 				for (const auto langsList = otf->get_langs(); const auto& lang : langsList)
 				{
 					otf->set_lang ( lang );
-					QTreeWidgetItem *lang_item = new QTreeWidgetItem ( script_item, QStringList ( lang ) );
+					auto lang_item = new QTreeWidgetItem ( script_item, QStringList ( lang ) );
 					lang_item->setExpanded ( true );
 					for (const auto featuresList = otf->get_features(); const auto& feature : featuresList)
 					{
 						QStringList f ( feature );
 						f << OTTagMeans ( feature );
-						QTreeWidgetItem *feature_item = new QTreeWidgetItem ( lang_item, f );
+						auto feature_item = new QTreeWidgetItem ( lang_item, f );
 						feature_item->setCheckState ( 0, Qt::Unchecked );
 						if(table == "GPOS")
 						{
@@ -798,7 +798,7 @@ void SampleWidget::refillSampleList()
 				uRoot->setData(0, Qt::UserRole , QString(QString("User::") + uk));
 				curIt = uRoot;
 			}
-			QTreeWidgetItem * it = new QTreeWidgetItem();
+			auto it = new QTreeWidgetItem();
 			it->setText(0, uk);
 			it->setData(0, Qt::UserRole , QString(QString("User::") + uk));
 			uRoot->addChild(it);
@@ -806,7 +806,7 @@ void SampleWidget::refillSampleList()
 	}
 	for (const auto slKeys = sl.keys(); const auto& k : slKeys)
 	{
-		QTreeWidgetItem * kRoot = new QTreeWidgetItem(ui->sampleTextTree);
+		auto kRoot = new QTreeWidgetItem(ui->sampleTextTree);
 		kRoot->setText(0, k);
 		bool first(true);
 		for (const auto range = sl[k]; const auto& n : range)
@@ -818,7 +818,7 @@ void SampleWidget::refillSampleList()
 				if(!curIt)
 					curIt = kRoot;
 			}
-			QTreeWidgetItem * it = new QTreeWidgetItem();
+			auto it = new QTreeWidgetItem();
 			it->setText(0, n);
 			it->setData(0, Qt::UserRole, QString(k + QString("::") + n));
 			kRoot->addChild(it);

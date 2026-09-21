@@ -129,7 +129,7 @@ void QHexView::setHexFont(const QFont &f) {
 //------------------------------------------------------------------------------
 QMenu *QHexView::createStandardContextMenu() {
 
-	QMenu *const menu = new QMenu(this);
+	auto const menu = new QMenu(this);
 	
 	menu->addAction(QStringLiteral("Set &Font"), this, &QHexView::mnuSetFont);
 	menu->addSeparator();
@@ -138,13 +138,13 @@ QMenu *QHexView::createStandardContextMenu() {
 	addToggleActionToMenu(menu, QStringLiteral("Show &Ascii"), m_ShowAscii, this, &QHexView::setShowAsciiDump);
 	addToggleActionToMenu(menu, QStringLiteral("Show &Comments"), m_ShowComments, this, &QHexView::setShowComments);
 
-	QMenu *const wordMenu = new QMenu(QStringLiteral("Set Word Width"), this);
+	auto const wordMenu = new QMenu(QStringLiteral("Set Word Width"), this);
 	for (const int bytes : {1, 2, 4, 8}) {
 		const QString caption = (bytes == 1) ? QStringLiteral("1 Byte") : QStringLiteral("%1 Bytes").arg(bytes);
 		addToggleActionToMenu(wordMenu, caption, m_WordWidth == bytes, this, [this, bytes]() { setWordWidth(bytes); });
 	}
 
-	QMenu *const rowMenu = new QMenu(QStringLiteral("Set Row Width"), this);
+	auto const rowMenu = new QMenu(QStringLiteral("Set Row Width"), this);
 	for (const int words : {1, 2, 4, 8, 16}) {
 		const QString caption = (words == 1) ? QStringLiteral("1 Word") : QStringLiteral("%1 Words").arg(words);
 		addToggleActionToMenu(rowMenu, caption, m_RowWidth == words, this, [this, words]() { setRowWidth(words); });

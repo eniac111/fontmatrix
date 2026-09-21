@@ -889,7 +889,7 @@ bool FMFontDb::insertTemporaryFont ( const QString & path )
 	}
 
 	// Build an item
-	FontItem *item ( new FontItem ( absPath ) );
+	auto item ( new FontItem ( absPath ) );
 	if ( !item->isValid() )
 	{
 		delete item;

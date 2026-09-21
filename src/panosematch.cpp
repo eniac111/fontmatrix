@@ -263,7 +263,7 @@ QList< FontItem * > PanoseMatchFont::similar ( FontItem * ref, int treshold )
 	if ( panose.isEmpty() )
 		return QList< FontItem * >();
 	
-	PanoseMatchFont * pm ( new PanoseMatchFont );
+	auto pm ( new PanoseMatchFont );
 	pm->setAttributes ( panose );
 
 	QList<FontDBResult> dbresult ( FMFontDb::DB()->getValues ( FMFontDb::Panose ) );

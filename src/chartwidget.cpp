@@ -53,9 +53,9 @@ ChartWidget::ChartWidget(const QString& fid, const QString& block, QWidget *pare
 	abcScene = new QGraphicsScene;
 	ui->abcView->setScene ( abcScene );
 	ui->abcView->setRenderHint ( QPainter::Antialiasing, true );
-	QStringListModel* cslModel(new QStringListModel);
+	auto cslModel(new QStringListModel);
 	cslModel->setStringList(theVeryFont->getNames());
-	QCompleter* cslCompleter(new QCompleter(ui->charSearchLine));
+	auto cslCompleter(new QCompleter(ui->charSearchLine));
 	cslCompleter->setModel(cslModel);
 	ui->charSearchLine->setCompleter(cslCompleter);
 	unMapGlyphName = i18n("Un-Mapped Glyphs");
@@ -367,7 +367,7 @@ void ChartWidget::slotSearchCharName()
 					if((sit->data(1).toString() == "select")
 						&& (sit->data(3).toInt() == cc))
 						{
-						QGraphicsRectItem* ms(reinterpret_cast<QGraphicsRectItem*> (sit));
+						auto ms(reinterpret_cast<QGraphicsRectItem*> (sit));
 						if(ms)
 						{
 							QRectF rf(ms->rect());
@@ -405,7 +405,7 @@ void ChartWidget::slotSearchCharName()
 				if((sit->data(1).toString() == "select")
 					&& (sit->data(3).toInt() == cc))
 					{
-					QGraphicsRectItem* ms(reinterpret_cast<QGraphicsRectItem*> (sit));
+					auto ms(reinterpret_cast<QGraphicsRectItem*> (sit));
 					if(ms)
 					{
 						QRectF rf(ms->rect());

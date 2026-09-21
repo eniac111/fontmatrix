@@ -148,7 +148,7 @@ FMFloatingPreview::~FMFloatingPreview()
 
 void FMFloatingPreview::create(FontItem *item, QRect rect)
 {
-	FMFloatingPreview * p(new FMFloatingPreview(typotek::getInstance(), item));
+	auto p(new FMFloatingPreview(typotek::getInstance(), item));
 	p->fontItem = item;
 	QColor bgC;
 	if(p->canTransparent())

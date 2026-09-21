@@ -49,7 +49,7 @@ MetaWidget::MetaWidget(QWidget *parent) :
 	}
 //	QGridLayout * ui->grid(new QGridLayout(this));
 	// line edits do not take ownership of a completer
-	QCompleter * completer(new QCompleter(mModel, this));
+	auto completer(new QCompleter(mModel, this));
 
 	//	dont know why but it doesn't want to be placed in the ui->grid ###
 //	QLabel *lab(new QLabel(i18n("<div style=\"font-weight:bold;\">Fill-in a text field and press enter.</div>"), this));
@@ -76,8 +76,8 @@ MetaWidget::MetaWidget(QWidget *parent) :
 			QString fieldname(FontStrings::Names().value(k));
 			if(k == FMFontDb::AllInfo)
 				fieldname = QString("<div style=\"font-weight:bold\">%1</div>").arg(fieldname);
-			QLabel *label(new QLabel(fieldname,this));
-			QLineEdit *line(new QLineEdit(this));
+			auto label(new QLabel(fieldname,this));
+			auto line(new QLineEdit(this));
 			metFields[line] = k;
 			line->setCompleter(completer);
 			label->setBuddy(line);

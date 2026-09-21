@@ -136,7 +136,7 @@ void FontCompareWidget::addFont()
 		return;
 	dodisconnect();
 	curFont = f->path();
-	QListWidgetItem* witem = new QListWidgetItem(f->fancyName());
+	auto witem = new QListWidgetItem(f->fancyName());
 	witem->setData(Qt::UserRole, f->path());
 	witem->setToolTip(f->path()); // Here we say: « Deux fois valent mieux qu’une !»
 	compareList->addItem(witem);

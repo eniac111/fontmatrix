@@ -318,7 +318,7 @@ void FilterBar::metaFilter()
 	if(ui->metadataLineEdit->text().isEmpty())
 		return;
 
-	FilterMeta *fm(new FilterMeta);
+	auto fm(new FilterMeta);
 
 	if(!mList.contains(ui->metadataLineEdit->text()))
 	{
@@ -359,7 +359,7 @@ void FilterBar::processFilters()
 
 void FilterBar::slotRemoveFilterItem(bool process)
 {
-	FilterItem * fi(reinterpret_cast<FilterItem*>(sender()));
+	auto fi(reinterpret_cast<FilterItem*>(sender()));
 	if(fi != nullptr)
 	{
 		filters.removeAll(fi);
@@ -481,7 +481,7 @@ void FilterBar::loadFilters()
 				}
 			}
 		}
-		FiltersDialogItem *fdi(new FiltersDialogItem(fname, fString, this));
+		auto fdi(new FiltersDialogItem(fname, fString, this));
 		items.append(fdi);
 		ui->filtersLayout->addWidget(fdi, 0, Qt::AlignTop);
 		connect(fdi, &FiltersDialogItem::Filter, this, &FilterBar::slotLoadFilter);
@@ -510,7 +510,7 @@ void FilterBar::slotTagSelect(const QModelIndex & index)
 		slotClearFilter();
 		tagListModel->clearCurrents();
 	}
-	FilterTag * ft(new FilterTag);
+	auto ft(new FilterTag);
 	ft->setData(FilterData::Text, tag);
 	ft->setData(FilterTag::Key, key);
 	ft->setData(FilterTag::Tag, tag);
@@ -568,9 +568,9 @@ void FilterBar::slotPanoFilter()
 	{
 		for (const auto range = pv[k]; const auto& v : range)
 		{
-			FontStrings::PanoseKey pk (static_cast<FontStrings::PanoseKey>(k));
+			auto pk (static_cast<FontStrings::PanoseKey>(k));
 			QString text(FontStrings::PanoseKeyName(pk) + QString(" : ") + ps.value(pk).value(v));
-			FilterPanose *fp(new FilterPanose);
+			auto fp(new FilterPanose);
 			fp->setData(FilterData::Text, text);
 			fp->setData(FilterPanose::Param, k);
 			fp->setData(FilterPanose::Value, v);
@@ -694,7 +694,7 @@ void FilterBar::slotRemoveFilter(const QString &fname)
 
 void FilterBar::filtersDialog()
 {
-	FiltersDialog *fd(new FiltersDialog(filters, this));
+	auto fd(new FiltersDialog(filters, this));
 	connect(fd, &FiltersDialog::Filter, this, &FilterBar::slotLoadFilter);
 	connect(fd, &FiltersDialog::AddFilter, this, qOverload<const QString &>(&FilterBar::slotSaveFilter));
 	connect(fd, &FiltersDialog::RemoveFilter, this, &FilterBar::slotRemoveFilter);

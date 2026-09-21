@@ -81,7 +81,7 @@ void FmRepair::fillDeadLink()
 		{
 			if( !QFileInfo::exists(list[i].symLinkTarget()) )
 			{
-				QListWidgetItem *lit = new QListWidgetItem(list[i].absoluteFilePath());
+				auto lit = new QListWidgetItem(list[i].absoluteFilePath());
 				lit->setCheckState(Qt::Unchecked);
 				lit->setToolTip(list[i].absoluteFilePath());
 				deadList->addItem(lit);
@@ -132,7 +132,7 @@ void FmRepair::fillActNotLinked()
 	{
 		if(!linked.contains(activated[i]))
 		{
-			QListWidgetItem *lit = new QListWidgetItem(activated[i]);
+			auto lit = new QListWidgetItem(activated[i]);
 			lit->setCheckState(Qt::Unchecked);
 			lit->setToolTip(activated[i]);
 			actNotLinkList->addItem(lit);
@@ -173,7 +173,7 @@ void FmRepair::fillDeactLinked()
 		if(deactivated.contains(linked[i]))
 		{
 // 			qDebug() << "NO " << linked[i] ;
-			QListWidgetItem *lit = new QListWidgetItem(linked[i]);
+			auto lit = new QListWidgetItem(linked[i]);
 			lit->setCheckState(Qt::Unchecked);
 			lit->setToolTip(linked[i]);
 			deactLinkList->addItem(lit);
@@ -309,7 +309,7 @@ void FmRepair::fillUnreferenced()
 	{
 		if(!QFile::exists(fid))
 		{
-			QListWidgetItem *lit = new QListWidgetItem(fid);
+			auto lit = new QListWidgetItem(fid);
 			lit->setCheckState(Qt::Unchecked);
 			unrefList->addItem(lit);
 // 			listItems << lit;

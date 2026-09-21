@@ -166,7 +166,7 @@ void FiltersDialog::loadFilters()
 				}
 			}
 		}
-		FiltersDialogItem *fdi(new FiltersDialogItem(fname, fString, this));
+		auto fdi(new FiltersDialogItem(fname, fString, this));
 		items.append(fdi);
 		ui->filtersLayout->addWidget(fdi);
 		connect(fdi, &FiltersDialogItem::Filter, this, &FiltersDialog::Filter);

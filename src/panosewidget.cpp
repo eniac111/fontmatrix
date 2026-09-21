@@ -53,7 +53,7 @@ PanoseWidget::PanoseWidget(QWidget *parent) :
 	for (const auto pKeys = p.keys(); const auto& k : pKeys)
 	{
 		QString fn(pDir + QString::number(k) + QDir::separator() + QLatin1String("attribute.png"));
-		QTreeWidgetItem  * pItem(new QTreeWidgetItem(m_ui->pTree));
+		auto pItem(new QTreeWidgetItem(m_ui->pTree));
 
 		pItem->setText(0, FontStrings::PanoseKeyName(k));
 		pItem->setData(0,Qt::UserRole,k);
@@ -66,7 +66,7 @@ PanoseWidget::PanoseWidget(QWidget *parent) :
 			{
 				QString fn2(pDir + QString::number(k) + QDir::separator() + QString::number(v) +QLatin1String(".png"));
 
-				QTreeWidgetItem * item(new QTreeWidgetItem(pItem));
+				auto item(new QTreeWidgetItem(pItem));
 				item->setText(0, p.value(k).value(v));
 				item->setData(0,Qt::UserRole,v);
 //				item->setForeground(0, QColor(qrand() % 255, qrand() % 255, qrand() % 255));
