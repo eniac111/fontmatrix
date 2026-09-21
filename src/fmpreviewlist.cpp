@@ -113,7 +113,7 @@ QVector<QRgb> FMPreviewIconEngine::actualSelPalette(const QVector<QRgb>& orig)
 		int v(0);
 		for(int c(oIdx.size() - 1); c >= 0 ; --c)
 		{
-			ret [oIdx[c]] =  m_selPalette[v];
+			ret [oIdx[c]] =  m_selPalette.at ( v );
 			++v;
 		}
 	}
@@ -122,7 +122,7 @@ QVector<QRgb> FMPreviewIconEngine::actualSelPalette(const QVector<QRgb>& orig)
 		int v(0);
 		for(int c(0); c < oIdx.size() ; c++)
 		{
-			ret [oIdx[c]] =  m_selPalette[v];
+			ret [oIdx[c]] =  m_selPalette.at ( v );
 			++v;
 		}
 	}
@@ -259,7 +259,7 @@ QVariant FMPreviewModel::data(const QModelIndex & index, int role) const
 		{
 			bool hasActive(false);
 			bool hasNotActive(false);
-			for (auto* f : FMFontDb::DB()->FamilySet(fit->family()))
+			for (const auto familySet = FMFontDb::DB()->FamilySet(fit->family()); auto* f : familySet)
 			{
 				if(f->isActivated())
 					hasActive = true;

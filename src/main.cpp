@@ -202,7 +202,7 @@ int main ( int argc, char *argv[] )
 	}
 	if (parser.isSet(QStringLiteral("author"))) {
 		fprintf(stdout, "%s was written by:\n", qPrintable(aboutData.displayName()));
-		for (const KAboutPerson &person : aboutData.authors()) {
+		for (const auto authorsList = aboutData.authors(); const KAboutPerson &person : authorsList) {
 			if (!person.emailAddress().isEmpty())
 				fprintf(stdout, "    %s <%s>\n",
 				        qPrintable(person.name()), qPrintable(person.emailAddress()));

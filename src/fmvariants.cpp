@@ -153,7 +153,7 @@ QList<FontItem*> FMVariants::Order(QList<FontItem*> ul)
 	}
 	for (const auto& v : std::as_const(vs->variants))
 	{
-		for (auto* f : fl.keys())
+		for (const auto flKeys = fl.keys(); auto* f : flKeys)
 		{
 			if(vs->compareVariants(v,fl[f]))
 			{
@@ -167,7 +167,7 @@ QList<FontItem*> FMVariants::Order(QList<FontItem*> ul)
 		// for Univers-like fonts, we get the number key
 		QMap<int, QMap<QString,FontItem*> > ulikeFonts;
 		bool intOK(false);
-		for (auto* f : fl.keys())
+		for (const auto flKeysList = fl.keys(); auto* f : flKeysList)
 		{
 			intOK = false;
 			QString fs(fl[f].first());
@@ -178,9 +178,9 @@ QList<FontItem*> FMVariants::Order(QList<FontItem*> ul)
 				fl.remove(f);
 			}
 		}
-		for (const auto& k : ulikeFonts.keys())
+		for (const auto ulikeFontsKeys = ulikeFonts.keys(); const auto& k : ulikeFontsKeys)
 		{
-			for (const auto& v : ulikeFonts[k].keys())
+			for (const auto ulikeFontsKeysList = ulikeFonts[k].keys(); const auto& v : ulikeFontsKeysList)
 				ret << ulikeFonts[k][v];
 		}
 
@@ -188,11 +188,11 @@ QList<FontItem*> FMVariants::Order(QList<FontItem*> ul)
 		if(fl.count() > 0)
 		{
 			QMap<QString, FontItem*> lastChance;
-			for (auto* f : fl.keys())
+			for (const auto loopFlKeys = fl.keys(); auto* f : loopFlKeys)
 			{
 				lastChance[f->variant()] = f;
 			}
-			for (const auto& v : lastChance.keys())
+			for (const auto lastChanceKeys = lastChance.keys(); const auto& v : lastChanceKeys)
 				ret << lastChance[v];
 		}
 	}

@@ -212,9 +212,9 @@ void FMFontCompareItem::show(FMFontCompareItem::GElements elems, QColor color, d
 					QLineF l1(curPos, cur);
 					QLineF l2(c2, c1);
 					lines_controls << new QGraphicsLineItem(l1);
-					lines_controls.last()->setPen(FMFontCompareView::pens["control-line"]);
+					lines_controls.constLast()->setPen(FMFontCompareView::pens["control-line"]);
 					lines_controls << new QGraphicsLineItem(l2);
-					lines_controls.last()->setPen(FMFontCompareView::pens["control-line"]);
+					lines_controls.constLast()->setPen(FMFontCompareView::pens["control-line"]);
 				}
 				
 				i += 2;
@@ -229,8 +229,8 @@ void FMFontCompareItem::show(FMFontCompareItem::GElements elems, QColor color, d
 	if(elems.testFlag(Metrics))
 	{
 		double xadvance((path->data(GLYPH_DATA_HADVANCE).toDouble() * sf) + offset);
-		QPointF XY(scene->views().first()->mapToScene(0,0));
-		QPointF WH(scene->views().first()->mapToScene(scene->views().first()->width(), scene->views().first()->height()));
+		QPointF XY(scene->views().constFirst()->mapToScene(0,0));
+		QPointF WH(scene->views().constFirst()->mapToScene(scene->views().constFirst()->width(), scene->views().constFirst()->height()));
 		double minx(XY.x() + offset);
 		double maxx(WH.x() + offset);
 		double miny(XY.y());
@@ -242,17 +242,17 @@ void FMFontCompareItem::show(FMFontCompareItem::GElements elems, QColor color, d
 		QPen mPen(penColor,1.0);
 // 		mPen.setCosmetic(true);
 		lines_controls << new QGraphicsLineItem(leftL);
-		lines_controls.last()->setPen(mPen);
+		lines_controls.constLast()->setPen(mPen);
 		lines_controls << new QGraphicsLineItem(rightL);
-		lines_controls.last()->setPen(mPen);
+		lines_controls.constLast()->setPen(mPen);
 		lines_controls << new QGraphicsLineItem(bottomL);
-		lines_controls.last()->setPen(mPen);
+		lines_controls.constLast()->setPen(mPen);
 		
 		QString advanceString("%1/%2");
 		text_metrics << new QGraphicsSimpleTextItem(advanceString.arg(path->data(GLYPH_DATA_HADVANCE).toDouble()).arg(font->getUnitPerEm()));
-		double th(text_metrics.last()->boundingRect().height());
-		text_metrics.last()->setPos(xadvance, th * zindex );
-		text_metrics.last()->setBrush(color);
+		double th(text_metrics.constLast()->boundingRect().height());
+		text_metrics.constLast()->setPos(xadvance, th * zindex );
+		text_metrics.constLast()->setBrush(color);
 		
 	}
 	
@@ -303,7 +303,7 @@ void FMFontCompareView::removeFont(int level)
 	elements.remove(level);
 	offsets.remove(level);
 	int maxLevel(0);
-	for (const auto& l : glyphs.keys())
+	for (const auto glyphsKeys = glyphs.keys(); const auto& l : glyphsKeys)
 	{
 		maxLevel = qMax(maxLevel, l);
 	}
@@ -328,7 +328,7 @@ void FMFontCompareView::removeFont(int level)
 void FMFontCompareView::changeChar(uint ccode)
 {
 	thechar = ccode;
-	for (const auto& l : glyphs.keys())
+	for (const auto glyphsKeysList = glyphs.keys(); const auto& l : glyphsKeysList)
 	{
 		glyphs[l]->setChar(thechar);
 	}
@@ -398,7 +398,7 @@ void FMFontCompareView::initPensAndBrushes()
 
 void FMFontCompareView::updateGlyphs()
 {
-	for (const auto& l : glyphs.keys())
+	for (const auto loopGlyphsKeys = glyphs.keys(); const auto& l : loopGlyphsKeys)
 	{
 		glyphs[l]->show(elements[l], colors[l], offsets[l]);
 	}
@@ -502,7 +502,7 @@ void FMFontCompareView::resizeEvent(QResizeEvent * )
 void FMFontCompareView::fitGlyphsView()
 {
 	QRectF maxrect;
-	for (const auto& l : glyphs.keys())
+	for (const auto glyphLayers = glyphs.keys(); const auto& l : glyphLayers)
 	{
 		maxrect = maxrect.united(glyphs[l]->boundingRect());
 	}

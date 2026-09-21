@@ -208,7 +208,7 @@ int FMOwnShaper::Compare(int inIndex, int matchIndex)
 		return 0;
 	for(int i(0); i < matchLen; ++i)
 	{
-		Character car = In[inIndex + i];
+		Character car = In.at ( inIndex + i );
 		Character mat = Matches.at(matchIndex).Properties[i];
 		if(mat.isNull())// We’ll just compare properties
 		{
@@ -301,7 +301,7 @@ void FMOwnShaper::Replace(int repIndex, QList< Character > chunk)
 		}
 	}
 	// Let replace :)
-	for (const auto& rep : std::as_const(Replacements[repIndex].Properties))
+	for (const auto& rep : std::as_const(Replacements.at ( repIndex ).Properties))
 	{
 		if(rep.isNull())
 		{

@@ -133,7 +133,7 @@ QString FMUniBlocks::nextBlock(int & start, int & end)
 	}
 	bool current(false);
 	
-	for (const auto& k : that()->p.keys())
+	for (const auto keysList = that()->p.keys(); const auto& k : keysList)
 	{
 		if(current)
 		{
@@ -158,7 +158,7 @@ QString FMUniBlocks::currentBlock(int & start, int & end)
 
 int FMUniBlocks::start(const int & codepoint)
 {
-	for (const auto& k : (that()->p.keys()))
+	for (const auto range = (that()->p.keys()); const auto& k : range)
 	{
 		if((codepoint >= k.first) 
 				  && (codepoint <= k.second))
@@ -169,7 +169,7 @@ int FMUniBlocks::start(const int & codepoint)
 
 int FMUniBlocks::end(const int & codepoint)
 {
-	for (const auto& k : (that()->p.keys()))
+	for (const auto rangeList = (that()->p.keys()); const auto& k : rangeList)
 	{
 		if((codepoint >= k.first) 
 				  && (codepoint <= k.second))
@@ -180,7 +180,7 @@ int FMUniBlocks::end(const int & codepoint)
 
 FMUniBlocks::bKey FMUniBlocks::interval(const QString & blockName)
 {
-	for (const auto& k : that()->p.keys())
+	for (const auto loopKeys = that()->p.keys(); const auto& k : loopKeys)
 	{
 		if(that()->p.value(k) == blockName)
 			return k;

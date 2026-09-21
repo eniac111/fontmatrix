@@ -63,9 +63,9 @@ QList<FloatingWidget*> FloatingWidgetsRegister::AllWidgets()
 	QList<FloatingWidget*> ret;
 	FloatingWidgetsRegister *fwr(that());
 	ret.clear();
-	for (const auto& t : fwr->fwMap.keys())
+	for (const auto keysList = fwr->fwMap.keys(); const auto& t : keysList)
 	{
-		for (const auto& f : fwr->fwMap[t].keys())
+		for (const auto loopKeys = fwr->fwMap[t].keys(); const auto& f : loopKeys)
 		{
 			if(fwr->fwMap[t][f].isNull())
 				fwr->fwMap[t].remove(f);

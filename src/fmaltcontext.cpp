@@ -24,7 +24,7 @@ FMAltContextLib::FMAltContextLib()
 
 FMAltContextLib::~ FMAltContextLib()
 {
-	for (auto* actx : cmap.values())
+	for (const auto cmapValues = cmap.values(); auto* actx : cmapValues)
 	{
 		delete actx;
 	}

@@ -470,7 +470,7 @@ void SampleWidget::clearFTScene()
 	qCDebug(FONTMATRIX_LOG)<<"SampleWidget::clearFTScene"<< layoutSwitch;
 //	if(layoutSwitch)
 //		return;
-	for (auto* gi : ftScene->items())
+	for (const auto itemsList = ftScene->items(); auto* gi : itemsList)
 	{
 		if(gi->data(GLYPH_DATA_GLYPH).toInt() > 0)
 			delete gi;
@@ -499,23 +499,23 @@ void SampleWidget::fillOTTree()
 	if ( theVeryFont && theVeryFont->isOpenType() )
 	{
 		FMOtf * otf = theVeryFont->takeOTFInstance();
-		for (const auto& table : otf->get_tables())
+		for (const auto tablesList = otf->get_tables(); const auto& table : tablesList)
 		{
 			otf->set_table ( table );
 			QTreeWidgetItem *tab_item = new QTreeWidgetItem ( ui->OpenTypeTree,QStringList ( table ) );
 			tab_item->setExpanded ( true );
-			for (const auto& script : otf->get_scripts())
+			for (const auto scriptsList = otf->get_scripts(); const auto& script : scriptsList)
 			{
 				scripts << script;
 				otf->set_script ( script );
 				QTreeWidgetItem *script_item = new QTreeWidgetItem ( tab_item, QStringList ( script ) );
 				script_item->setExpanded ( true );
-				for (const auto& lang : otf->get_langs())
+				for (const auto langsList = otf->get_langs(); const auto& lang : langsList)
 				{
 					otf->set_lang ( lang );
 					QTreeWidgetItem *lang_item = new QTreeWidgetItem ( script_item, QStringList ( lang ) );
 					lang_item->setExpanded ( true );
-					for (const auto& feature : otf->get_features())
+					for (const auto featuresList = otf->get_features(); const auto& feature : featuresList)
 					{
 						QStringList f ( feature );
 						f << OTTagMeans ( feature );
@@ -804,12 +804,12 @@ void SampleWidget::refillSampleList()
 			uRoot->addChild(it);
 		}
 	}
-	for (const auto& k : sl.keys())
+	for (const auto slKeys = sl.keys(); const auto& k : slKeys)
 	{
 		QTreeWidgetItem * kRoot = new QTreeWidgetItem(ui->sampleTextTree);
 		kRoot->setText(0, k);
 		bool first(true);
-		for (const auto& n : sl[k])
+		for (const auto range = sl[k]; const auto& n : range)
 		{
 			if(first)
 			{

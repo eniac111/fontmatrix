@@ -167,7 +167,7 @@ void ChartWidget::slotShowOneGlyph()
 		return;
 	if ( ui->abcView->lock() )
 	{
-		QGraphicsRectItem* curGlyph = reinterpret_cast<QGraphicsRectItem*> ( abcScene->selectedItems().first() );
+		QGraphicsRectItem* curGlyph = reinterpret_cast<QGraphicsRectItem*> ( abcScene->selectedItems().constFirst() );
 		curGlyph->setSelected ( false );
 		if ( fancyGlyphInUse < 0 )
 		{
@@ -344,7 +344,7 @@ void ChartWidget::slotSearchCharName()
 		return;
 	}
 
-	for (const auto& key : FMUniBlocks::blocks())
+	for (const auto blocksList = FMUniBlocks::blocks(); const auto& key : blocksList)
 	{
 		QPair<int,int> p(FMUniBlocks::interval(key));
 		if((cc >= p.first)
@@ -362,7 +362,7 @@ void ChartWidget::slotSearchCharName()
 					ui->abcView->verticalScrollBar()->setValue(sv + ui->abcView->height());
 					sv = ui->abcView->verticalScrollBar()->value();
 				}
-				for (auto* sit : abcScene->items())
+				for (const auto itemsList = abcScene->items(); auto* sit : itemsList)
 				{
 					if((sit->data(1).toString() == "select")
 						&& (sit->data(3).toInt() == cc))
@@ -400,7 +400,7 @@ void ChartWidget::slotSearchCharName()
 				ui->abcView->verticalScrollBar()->setValue(sv + ui->abcView->height());
 				sv = ui->abcView->verticalScrollBar()->value();
 			}
-			for (auto* sit : abcScene->items())
+			for (const auto loopItems = abcScene->items(); auto* sit : loopItems)
 			{
 				if((sit->data(1).toString() == "select")
 					&& (sit->data(3).toInt() == cc))

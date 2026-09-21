@@ -146,7 +146,7 @@ QByteArray FilterData::toByteArray() const
 {
 	QByteArray ba;
 	QDataStream ds(&ba, QIODevice::WriteOnly);
-	for (int idx : vData.keys())
+	for (const auto vDataKeys = vData.keys(); int idx : vDataKeys)
 	{
 		int t = vData.value(idx).typeId();
 		QVariant v(vData[idx]);

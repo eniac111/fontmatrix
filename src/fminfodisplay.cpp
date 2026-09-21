@@ -145,7 +145,7 @@ QString FMInfoDisplay::writeSVGPreview(FontItem * font)
 	double horOffset ( 0 );
 	tf.translate ( horOffset , vertOffset );
 
-	for (const auto& c : font->fancyName())
+	for (const auto fancyNameList = font->fancyName(); const auto& c : fancyNameList)
 	{
 		QGraphicsPathItem * gpi ( font->itemFromChar ( c.unicode(), pifs ) );
 		if ( gpi )
@@ -202,7 +202,7 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 
 
 	QStringList cmapStrings;
-	for (const auto& c : font->getCharsets())
+	for (const auto charsets = font->getCharsets(); const auto& c : charsets)
 	{
 		QString encString ( FontStrings::Encoding ( c ) );
 		if ( ( c == FT_ENCODING_UNICODE ) && ( !font->getUnicodeBuiltIn() ) )

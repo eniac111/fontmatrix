@@ -28,7 +28,7 @@ FMFontExtract::FMFontExtract(QWidget * parent)
 	currentExtractor = nullptr;
 #ifdef HAVE_PODOFO
 	FMPDFFontExtractor * pdfExtr(new FMPDFFontExtractor);
-	for (const auto& e : pdfExtr->extensions())
+	for (const auto extensionsList = pdfExtr->extensions(); const auto& e : extensionsList)
 	{
 		extractors[e] = pdfExtr;
 	}
@@ -47,7 +47,7 @@ FMFontExtract::FMFontExtract(QWidget * parent)
 FMFontExtract::~ FMFontExtract()
 {
 	QList<FMFontExtractorBase*> extP;
-	for (auto* b : extractors.values())
+	for (const auto extractorsValues = extractors.values(); auto* b : extractorsValues)
 	{
 		if(!extP.contains(b))
 			extP << b;
@@ -76,7 +76,7 @@ void FMFontExtract::loadDoc(const QString & path)
 		fontList->clear();
 		if(currentExtractor->loadFile(path))
 		{
-			for (const auto& n : currentExtractor->list())
+			for (const auto listRange = currentExtractor->list(); const auto& n : listRange)
 			{
 				fontList->addItem(n);
 			}

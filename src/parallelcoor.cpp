@@ -203,12 +203,12 @@ void ParallelCoorView::initPensAndBrushes()
 	pens["debug-1"] = QPen(Qt::blue, 5.0);
 	
 	QString cat("Panose/color-%1");
-	for (const auto& attr : pens.keys())
+	for (const auto pensKeys = pens.keys(); const auto& attr : pensKeys)
 	{
 		pens[attr].setColor( QColor(FMConfig::value(cat.arg(attr), pens[attr].color().name()).toString()) );
 		FMConfig::setValue(cat.arg(attr), pens[attr].color().name());
 	}
-	for (const auto& attr : brushes.keys())
+	for (const auto brushesKeys = brushes.keys(); const auto& attr : brushesKeys)
 	{
 		brushes[attr].setColor( QColor(FMConfig::value(cat.arg(attr), brushes[attr].color().name()).toString()) );
 		FMConfig::setValue(cat.arg(attr), pens[attr].color().name());
@@ -410,7 +410,7 @@ void ParallelCoorView::drawVertices()
 	QGraphicsScene * ls(scene());
 	for(int i(0); i < vcount; ++i)
 	{
-		ls->addItem( vertices[i] );
+		ls->addItem( vertices.at ( i ) );
 	}
 	ta = t.elapsed();
 	qCDebug(FONTMATRIX_LOG)<<"R"<< to << tc << td << ta;
@@ -554,7 +554,7 @@ QMap< QString, QStringList > ParallelCoorView::getFilter() const
 QString ParallelCoorView::filterAsString()
 {
 	QString ret;
-	for (const auto& key : m_filter.keys())
+	for (const auto m_filterKeys = m_filter.keys(); const auto& key : m_filterKeys)
 	{
 		const QStringList& l = m_filter[key];
 		if(!l.isEmpty())
@@ -581,7 +581,7 @@ void ParallelCoorView::setFilter ( const QMap< QString, QStringList >& theValue 
 	{
 		if(m_filter.contains(m_dataSet->at(i).first))
 		{
-			for (const auto& v : m_filter[m_dataSet->at(i).first])
+			for (const auto range = m_filter[m_dataSet->at(i).first]; const auto& v : range)
 			{
 				cfilter[i] << m_dataSet->at(i).second.indexOf(v);
 			}

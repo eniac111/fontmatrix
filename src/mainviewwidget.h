@@ -112,7 +112,7 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 		void listChanged();
 
 	public:
-		QString defaultOrd() {return ord[0];}
+		QString defaultOrd() {return ord.at ( 0 );}
 		QList<FontItem*> curFonts();
 		void setCurFonts(QList<FontItem*> flist);
 		FontItem* selectedFont(){return theVeryFont;}

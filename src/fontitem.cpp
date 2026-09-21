@@ -485,7 +485,7 @@ void FontItem::encodeFace()
 // 		cmaps.remove(FT_ENCODING_UNICODE);
 // 		m_isEncoded = true;
 // 	}
-	for (const auto& e : cmaps.keys())
+	for (const auto cmapsKeys = cmaps.keys(); const auto& e : cmapsKeys)
 	{
 // 		QString cs(FontStrings::Encoding(e));
 // 		if(isType1 && (e == FT_ENCODING_UNICODE))
@@ -525,7 +525,7 @@ bool FontItem::ensureFace()
 		int gIndex ( 0 );
 		for ( int i ( 0 ); i < legitimateNonPathChars.size(); ++i )
 		{
-			gIndex =   FT_Get_Char_Index ( m_face , legitimateNonPathChars[i] );
+			gIndex =   FT_Get_Char_Index ( m_face , legitimateNonPathChars.at ( i ) );
 			if ( gIndex )
 			{
 				spaceIndex << gIndex;
@@ -1694,41 +1694,41 @@ void FontItem::deRenderAll()
 // 	QSet<QGraphicsScene*> collectedScenes;
 	for ( int i = 0; i < pixList.size(); ++i )
 	{
-		if ( pixList[i]->scene() )
+		if ( pixList.at ( i )->scene() )
 		{
 // 			collectedScenes.insert ( pixList[i]->scene() );
-			pixList[i]->scene()->removeItem ( pixList[i] );
-			delete pixList[i];
+			pixList.at ( i )->scene()->removeItem ( pixList.at ( i ) );
+			delete pixList.at ( i );
 		}
 	}
 	pixList.clear();
 	for ( int i = 0; i < glyphList.size(); ++i )
 	{
-		if ( glyphList[i]->scene() )
+		if ( glyphList.at ( i )->scene() )
 		{
 // 			collectedScenes.insert ( pixList[i]->scene() );
-			glyphList[i]->scene()->removeItem ( glyphList[i] );
-			delete glyphList[i];
+			glyphList.at ( i )->scene()->removeItem ( glyphList.at ( i ) );
+			delete glyphList.at ( i );
 		}
 	}
 	glyphList.clear();
 	for ( int i = 0; i < labList.size(); ++i )
 	{
-		if ( labList[i]->scene() )
+		if ( labList.at ( i )->scene() )
 		{
 // 			collectedScenes.insert ( pixList[i]->scene() );
-			labList[i]->scene()->removeItem ( labList[i] );
-			delete labList[i];
+			labList.at ( i )->scene()->removeItem ( labList.at ( i ) );
+			delete labList.at ( i );
 		}
 	}
 	labList.clear();
 	for ( int i = 0; i < selList.size(); ++i )
 	{
-		if ( selList[i]->scene() )
+		if ( selList.at ( i )->scene() )
 		{
 // 			collectedScenes.insert ( pixList[i]->scene() );
-			selList[i]->scene()->removeItem ( selList[i] );
-			delete selList[i];
+			selList.at ( i )->scene()->removeItem ( selList.at ( i ) );
+			delete selList.at ( i );
 		}
 	}
 	selList.clear();
@@ -1888,7 +1888,7 @@ void FontItem::renderAll ( QGraphicsScene * scene , int begin_code, int end_code
 
 	FMGlyphsView *allView(nullptr);
 	if(scene->views().size() > 0)
-		allView = reinterpret_cast<FMGlyphsView*> ( scene->views() [0] );
+		allView = reinterpret_cast<FMGlyphsView*> ( scene->views().at ( 0 ) );
 	else
 	{
 		releaseFace();
@@ -2893,16 +2893,16 @@ QStringList FontItem::features()
 		return ret;
 	}
 	
-	for (const auto& table : otf->get_tables())
+	for (const auto tables = otf->get_tables(); const auto& table : tables)
 	{
 		otf->set_table ( table );
-		for (const auto& script : otf->get_scripts())
+		for (const auto scripts = otf->get_scripts(); const auto& script : scripts)
 		{
 			otf->set_script ( script );
-			for (const auto& lang : otf->get_langs())
+			for (const auto langs = otf->get_langs(); const auto& lang : langs)
 			{
 				otf->set_lang ( lang );
-				for (const auto& feature : otf->get_features())
+				for (const auto featuresList = otf->get_features(); const auto& feature : featuresList)
 				{
 					if(ret.contains(feature))
 						ret << feature;
@@ -3284,7 +3284,7 @@ void FontItem::trimSpacesIndex()
 	int gIndex ( 0 );
 	for ( int i ( 0 ); i < legitimateNonPathChars.size(); ++i )
 	{
-		gIndex =   FT_Get_Char_Index ( m_face , legitimateNonPathChars[i] );
+		gIndex =   FT_Get_Char_Index ( m_face , legitimateNonPathChars.at ( i ) );
 		if ( gIndex )
 		{
 // 			qDebug()<<"Space : " << legitimateNonPathChars[i] << " is : "<<gIndex;
@@ -3335,10 +3335,10 @@ QList< int > FontItem::getAlternates ( int ccode )
 	setList.clear();
 
 	otf->set_table ( "GSUB" );
-	for (const auto& script : otf->get_scripts())
+	for (const auto scriptsList = otf->get_scripts(); const auto& script : scriptsList)
 	{
 		otf->set_script ( script );
-		for (const auto& lang : otf->get_langs())
+		for (const auto langsList = otf->get_langs(); const auto& lang : langsList)
 		{
 			otf->set_lang ( lang );
 			QStringList fl ( otf->get_features() );

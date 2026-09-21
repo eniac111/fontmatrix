@@ -101,7 +101,7 @@ FMFloatingMenu::FMFloatingMenu(QWidget * parent, FontItem * item)
 
 void FMFloatingMenu::childrenVisible(bool v)
 {
-	for (auto* w : findChildren<QWidget*>())
+	for (const auto range = findChildren<QWidget*>(); auto* w : range)
 	{
 		w->setVisible(v);
 	}

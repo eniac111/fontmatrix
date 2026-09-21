@@ -236,7 +236,7 @@ void FMPlayGround::displayGlyphs ( const QString & spec, FontItem * fontI, doubl
 	//	TextProgression *tp = TextProgression::getInstance();
 	QPointF pen(CursorPos);
 
-	for (const auto& g : fontI->glyphs( spec , fontS ))
+	for (const auto glyphsList = fontI->glyphs( spec , fontS ); const auto& g : glyphsList)
 	{
 		QGraphicsPathItem* glyph(fontI->itemFromGindex(g.glyph, fontS));
 		if(!glyph)

@@ -132,7 +132,7 @@ void FontBook::doFullBook()
 	progress->show();
 
 	int familyCounter(0);
-	for (auto* family : FMFontDb::DB()->getFilteredFonts(true))
+	for (const auto filteredFonts = FMFontDb::DB()->getFilteredFonts(true); auto* family : filteredFonts)
 	{
 		progress->setLabel(family->family(), 0);
 		progress->setValue(++familyCounter, 0);
@@ -161,7 +161,7 @@ void FontBook::doFullBookCover()
 	double y(0);
 	double fsize(QRandomGenerator::global()->bounded(module));
 	int gray(QRandomGenerator::global()->bounded(160));
-	for (auto* f : FMFontDb::DB()->getFilteredFonts())
+	for (const auto filteredFontsList = FMFontDb::DB()->getFilteredFonts(); auto* f : filteredFontsList)
 	{
 		int lc(f->lastChar());
 		int charcode(QRandomGenerator::global()->bounded(lc));
@@ -466,7 +466,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 		QStringList llist;
 		for (auto* fi : std::as_const(familyFonts))
 		{
-			for (const auto& sl : fi->supportedLangDeclaration())
+			for (const auto supportedLangDeclarationList = fi->supportedLangDeclaration(); const auto& sl : supportedLangDeclarationList)
 			{
 				if(!llist.contains(sl))
 					llist << sl;

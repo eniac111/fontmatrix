@@ -50,7 +50,7 @@ PanoseWidget::PanoseWidget(QWidget *parent) :
 	QString defaultDir(FMPaths::ResourcesDir() + "Panose/Icons");
 	QString pDir(FMConfig::value(QStringLiteral("Panose/IconDir"), defaultDir).toString() + QDir::separator());
 
-	for (const auto& k : p.keys())
+	for (const auto pKeys = p.keys(); const auto& k : pKeys)
 	{
 		QString fn(pDir + QString::number(k) + QDir::separator() + "attribute.png");
 		QTreeWidgetItem  * pItem(new QTreeWidgetItem(m_ui->pTree));
@@ -60,14 +60,14 @@ PanoseWidget::PanoseWidget(QWidget *parent) :
 		if(QFile::exists(fn))
 			pItem->setIcon(0, QIcon(fn));
 
-		for (const auto& v : p[k].keys())
+		for (const auto pKeysList = p[k].keys(); const auto& v : pKeysList)
 		{
 			if(v > 1) // We do not want "Any" and "No Fit"
 			{
 				QString fn2(pDir + QString::number(k) + QDir::separator() + QString::number(v) +".png");
 
 				QTreeWidgetItem * item(new QTreeWidgetItem(pItem));
-				item->setText(0, p[k][v]);
+				item->setText(0, p.value(k).value(v));
 				item->setData(0,Qt::UserRole,v);
 //				item->setForeground(0, QColor(qrand() % 255, qrand() % 255, qrand() % 255));
 				if(QFile::exists(fn2))

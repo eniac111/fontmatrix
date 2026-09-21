@@ -29,7 +29,7 @@ FMActivationReport::FMActivationReport(QWidget * parent, const QMap<QString,QStr
 	setupUi(this);
 	errorTable->setSortingEnabled(false);
 	int row(0);
-	for (const auto& key : errorMap.keys())
+	for (const auto errorMapKeys = errorMap.keys(); const auto& key : errorMapKeys)
 	{
 		qCDebug(FONTMATRIX_LOG)<<"EM"<<key<<errorMap[key];
 		errorTable->insertRow (row);

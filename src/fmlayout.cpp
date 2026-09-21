@@ -75,7 +75,7 @@ bool Node::hasNode ( int idx )
 {
 	for ( int i ( 0 ); i < nodes.count(); ++i )
 	{
-		if ( nodes[i]->n->index == idx )
+		if ( nodes.at ( i )->n->index == idx )
 			return true;
 	}
 	return false;
@@ -102,7 +102,7 @@ void Node::nodes_insert(ListItem * v)
 		bool ist(false);
 		for ( int nI ( 0 );nI<nodes.count();++nI )
 		{
-			if ( v->distance <= nodes[nI]->distance )
+			if ( v->distance <= nodes.at ( nI )->distance )
 			{
 				nodes.insert ( nI,v );
 				ist = true;
@@ -127,7 +127,7 @@ int Node::deepCount()
 	int c ( nodes.count() );
 	for ( int i ( 0 ); i < c ; ++i )
 	{
-		c += nodes[i]->n->deepCount();
+		c += nodes.at ( i )->n->deepCount();
 	}
 	return c;
 }
@@ -159,9 +159,9 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 			if ( di >= lyt->lineWidth ( deep ) )
 			{
 				/// BEFORE
-				for ( int backIndex ( 1 ) ; ( bIndex - backIndex > 0 ) && ( lyt->breakList[bIndex - backIndex] != cIdx ); ++backIndex )
+				for ( int backIndex ( 1 ) ; ( bIndex - backIndex > 0 ) && ( lyt->breakList.at ( bIndex - backIndex ) != cIdx ); ++backIndex )
 				{
-					int soon ( lyt->breakList[bIndex - backIndex] );
+					int soon ( lyt->breakList.at ( bIndex - backIndex ) );
 					double needWidth(lyt->distance ( cIdx, soon ,lyt->theString ));
 					double needWidthStripped(lyt->distance ( cIdx, soon ,lyt->theString , true ) );
 					double spaceWidth(needWidth - needWidthStripped);
@@ -185,12 +185,12 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 
 					Node::ListItem* vN = new Node::ListItem( sN, qAbs ( disN * lyt->FM_LAYOUT_NODE_SOON_F ) );
 					nodes_insert(vN);
-					if ( QChar ( lyt->theString[soon].lChar ).category() == QChar::Separator_Space )
+					if ( QChar ( lyt->theString.at ( soon ).lChar ).category() == QChar::Separator_Space )
 						break;
 				}
 				/// AT CLOSEST BREAK (after)
 				{
-					int fit ( lyt->breakList[bIndex] );
+					int fit ( lyt->breakList.at ( bIndex ) );
 					
 					double needWidth(lyt->distance ( cIdx, fit,lyt->theString ));
 					double needWidthStripped(lyt->distance ( cIdx, fit ,lyt->theString , true ) );
@@ -217,7 +217,7 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 				/// AFTER
 				for ( int nextIndex ( 1 ); bIndex + nextIndex <  lyt->breakList.count() ; ++nextIndex )
 				{
-					int late ( lyt->breakList[bIndex + nextIndex] );
+					int late ( lyt->breakList.at ( bIndex + nextIndex ) );
 					double needWidth(lyt->distance ( cIdx, late ,lyt->theString ));
 					double needWidthStripped(lyt->distance ( cIdx, late ,lyt->theString , true ) );
 					double spaceWidth(needWidth - needWidthStripped);
@@ -241,7 +241,7 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 					Node::ListItem* vL = new Node::ListItem ( sL, qAbs ( disL * lyt->FM_LAYOUT_NODE_LATE_F ) );
 					nodes_insert ( vL );
 
-					if ( late < lyt->theString.count() && QChar ( lyt->theString[late].lChar ).category() == QChar::Separator_Space )
+					if ( late < lyt->theString.count() && QChar ( lyt->theString.at ( late ).lChar ).category() == QChar::Separator_Space )
 						break;
 				}
 
@@ -256,7 +256,7 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 		else // end of breaks list
 		{
 			// 			qDebug()<<"END OF BREAKS";
-			int soon ( lyt->breakList[bIndex - 1] );
+			int soon ( lyt->breakList.at ( bIndex - 1 ) );
 			if ( soon != cIdx && !hasNode ( soon ) )
 			{
 
@@ -283,11 +283,11 @@ void Node::sPath ( double dist , QList< int > curList, QList< int > & theList, d
 	while ( !nodes.isEmpty() )
 	{
 		// 		ListItem v = nodes.first() ;
-		double d1 ( dist + nodes[0]->distance / curList.count() /** dCorrection*/ );
+		double d1 ( dist + nodes.at ( 0 )->distance / curList.count() /** dCorrection*/ );
 		double d2 ( theScore / qMax ( 1.0, ( double ) theList.count() ) );
 		if ( d1  <  d2 )
 		{
-			nodes[0]->n->sPath ( dist + nodes[0]->distance, curList, theList, theScore );
+			nodes.at ( 0 )->n->sPath ( dist + nodes.at ( 0 )->distance, curList, theList, theScore );
 		}
 		else
 			++fm_layout_total_skip_nod_dbg;
@@ -536,9 +536,9 @@ void FMLayout::doGraph() // Has became doBreaks
 
 	for ( int a ( 0 ) ; a < theString.count() ; ++a )
 	{
-		if ( QChar ( theString[a].lChar ).category() == QChar::Separator_Space )
+		if ( QChar ( theString.at ( a ).lChar ).category() == QChar::Separator_Space )
 			breakList << a+1;
-		if ( theString[a].isBreak )
+		if ( theString.at ( a ).isBreak )
 		{
 			breakList << a+1;
 			hyphenList << a+1;
@@ -583,8 +583,8 @@ void FMLayout::doLines()
 	{
 		if ( stopIt || ((adjustedSampleInter * (lines.count() + 1)) > theRect.height()))
 			break;
-		int start1 ( /*!lIdx ?*/ indices[lIdx] /*: indices[lIdx] + 1*/ );
-		int end1 ( indices[ lIdx + 1 ] );
+		int start1 ( /*!lIdx ?*/ indices.at ( lIdx ) /*: indices[lIdx] + 1*/ );
+		int end1 ( indices.at ( lIdx + 1 ) );
 
 		GlyphList inList ( theString.mid ( start1 , end1 - start1 /*+ 1 */ ) );
 		
@@ -837,7 +837,7 @@ void FMLayout::doDraw()
 		}
 		++drawnLines;
 		clearCaches();
-		GlyphList refGlyph ( lines[lIdx] );
+		GlyphList refGlyph ( lines.at ( lIdx ) );
 //		emit drawBaselineForMe(pen.y());
 		if ( !deviceIndy )
 		{
@@ -1306,10 +1306,10 @@ void FMLayout::resetScene()
 	int pCount ( pixList.count() );
 	for ( int i = 0; i < pCount ; ++i )
 	{
-		if ( pixList[i]->scene() && ( pixList[i]->scene() == theScene ) )
+		if ( pixList.at ( i )->scene() && ( pixList.at ( i )->scene() == theScene ) )
 		{
-			pixList[i]->scene()->removeItem ( pixList[i] );
-			delete pixList[i];
+			pixList.at ( i )->scene()->removeItem ( pixList.at ( i ) );
+			delete pixList.at ( i );
 			pixList[i] = nullptr;
 		}
 	}
@@ -1320,10 +1320,10 @@ void FMLayout::resetScene()
 	for ( int i = 0; i < gCount; ++i )
 	{
 		// 		ss[glyphList[i]->scene()]++;
-		if ( glyphList[i]->scene() && (glyphList[i]->scene() == theScene) )
+		if ( glyphList.at ( i )->scene() && (glyphList.at ( i )->scene() == theScene) )
 		{
-			glyphList[i]->scene()->removeItem ( glyphList[i] );
-			delete glyphList[i];
+			glyphList.at ( i )->scene()->removeItem ( glyphList.at ( i ) );
+			delete glyphList.at ( i );
 			glyphList[i] = nullptr;
 		}
 	}

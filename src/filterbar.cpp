@@ -564,9 +564,9 @@ void FilterBar::slotPanoFilter()
 {
 	QMap<int,QList<int> > pv(ui->panoseWidget->getFilter());
 	const QMap< FontStrings::PanoseKey, QMap<int, QString> >& ps(FontStrings::Panose());
-	for (const auto& k : pv.keys())
+	for (const auto pvKeys = pv.keys(); const auto& k : pvKeys)
 	{
-		for (const auto& v : pv[k])
+		for (const auto range = pv[k]; const auto& v : range)
 		{
 			FontStrings::PanoseKey pk (static_cast<FontStrings::PanoseKey>(k));
 			QString text(FontStrings::PanoseKeyName(pk) + QString(" : ") + ps.value(pk).value(v));
@@ -620,10 +620,10 @@ void FilterBar::slotSaveFilter(const QString &fname)
 	fdir.cd(fname);
 	for(int i(0); i < filters.count(); ++i)
 	{
-		QFile f(fdir.absoluteFilePath( QString("%1-%2").arg(i, 3, 10, QChar('0')).arg(filters[i]->filter()->type()) ));
+		QFile f(fdir.absoluteFilePath( QString("%1-%2").arg(i, 3, 10, QChar('0')).arg(filters.at ( i )->filter()->type()) ));
 		if(f.open(QIODevice::WriteOnly))
 		{
-			f.write(filters[i]->filter()->toByteArray());
+			f.write(filters.at ( i )->filter()->toByteArray());
 			f.close();
 		}
 	}

@@ -35,7 +35,7 @@ PanoseAttributeModel::PanoseAttributeModel(QObject * parent)
 	const QMap< FontStrings::PanoseKey, QMap<int, QString> >& p(FontStrings::Panose());
 	QString defaultDir(FMPaths::ResourcesDir() + "Panose/Icons");
 	QString pDir(FMConfig::value(QStringLiteral("Panose/IconDir"), defaultDir).toString() + QDir::separator());
-	for (const auto& k : p.keys())
+	for (const auto pKeys = p.keys(); const auto& k : pKeys)
 	{
 		QString fn(pDir + QString::number(k) + QDir::separator() + "attribute.png");
 		if(QFile::exists(fn))
@@ -82,9 +82,9 @@ PanoseValueModel::PanoseValueModel( QObject * parent)
 	QString defaultDir(FMPaths::ResourcesDir() + "Panose/Icons");
 	QString pDir(FMConfig::value(QStringLiteral("Panose/IconDir"), defaultDir).toString() + QDir::separator());
 
-	for (const auto& k : p.keys())
+	for (const auto pKeysList = p.keys(); const auto& k : pKeysList)
 	{
-		for (const auto& v : p[k].keys())
+		for (const auto loopPKeys = p[k].keys(); const auto& v : loopPKeys)
 		{
 			if(v > 1) // We do not want "Any" and "No Fit"
 			{
@@ -93,7 +93,7 @@ PanoseValueModel::PanoseValueModel( QObject * parent)
 					m_icons[k] << QIcon(fn);
 				else
 					m_icons[k] << QIcon();
-				m_names[k] << p[k][v];
+				m_names[k] << p.value(k).value(v);
 			}
 		}
 	}

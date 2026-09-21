@@ -27,7 +27,7 @@ TTTableView::TTTableView(FontItem * font, QWidget * parent)
 // 	tView->setColumnCount (3);
 	bool hasTable(false);
 	QTreeWidgetItem *first;
-	for (const auto& tname : FontStrings::Tables().keys())
+	for (const auto keysList = FontStrings::Tables().keys(); const auto& tname : keysList)
 	{
 		int len(font->table(tname));
 		if(len > 0)

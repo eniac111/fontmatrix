@@ -92,19 +92,19 @@ public:
 		if(!m_alt[runPar][runWord][runChunk][gIndex].contains(gAlt))
 			m_alt[runPar][runWord][runChunk][gIndex].append(gAlt);
 	}
-	QList<int> alts(const int& gIndex) const { return m_alt[runPar][runWord][runChunk][gIndex]; }
+	QList<int> alts(const int& gIndex) const { return m_alt.value(runPar).value(runWord).value(runChunk).value(gIndex); }
 
 	void setControl(const int& gIndex, const int& c){ m_control[runPar][runWord][runChunk][gIndex] = c; }
-	int control(const int& gIndex) const {return m_control[runPar][runWord][runChunk][gIndex];}
+	int control(const int& gIndex) const {return m_control.value(runPar).value(runWord).value(runChunk).value(gIndex);}
 
 	void setSelect(const int& gIndex, const int& s){ m_select[runPar][runWord][runChunk][gIndex] = s; }
-	int select(const int& gIndex) const { return m_select[runPar][runWord][runChunk][gIndex]; }
+	int select(const int& gIndex) const { return m_select.value(runPar).value(runWord).value(runChunk).value(gIndex); }
 	
 	void fileWord(const QString& s){m_words[runPar][runWord] = s;}
-	QString wordString()const{return m_words[runPar][runWord];}
+	QString wordString()const{return m_words.value(runPar).value(runWord);}
 
 	void fileChunk(const QString& s){m_chunks[runPar][runWord][runChunk] = s;}
-	QString chunkString()const{return m_chunks[runPar][runWord][runChunk];}
+	QString chunkString()const{return m_chunks.value(runPar).value(runWord).value(runChunk);}
 
 	void cleanup()
 	{

@@ -83,10 +83,10 @@ int DataExport::copyFiles()
 		if ( progress.wasCanceled() )
 			break;
 
-		progress.setLabelText ( fonts[fidx]->fancyName() );
+		progress.setLabelText ( fonts.at ( fidx )->fancyName() );
 		progress.setValue ( ++progressindex );
 		
-		QFile ffile(fonts[fidx]->path());
+		QFile ffile(fonts.at ( fidx )->path());
 		QFileInfo ifile(ffile);
 		if(ffile.copy(exDir.absolutePath() + exDir.separator() + ifile.fileName()) )
 		{
@@ -131,7 +131,7 @@ int DataExport::buildIndex()
 	
 	for(int fidx( 0 ); fidx < fonts.count() ; ++fidx)
 	{
-		FontItem* fitem(fonts[fidx]);
+		FontItem* fitem(fonts.at ( fidx ));
 		{
 			xmlStream.writeStartElement("fontfile");
 			xmlStream.writeAttribute("family", fitem->family());
@@ -191,7 +191,7 @@ int DataExport::buildHtml()
 	xmlStream.writeStartElement("body");
 	for(int fidx( 0 ); fidx < fonts.count() ; ++fidx)
 	{
-		FontItem* fitem(fonts[fidx]);
+		FontItem* fitem(fonts.at ( fidx ));
 		{
 			QFileInfo ffile(fitem->path());
 			
@@ -288,7 +288,7 @@ int DataExport::buildTemplate(const QString& templateDirPath)
 	exp << sTOP;
 	for(int fidx( 0 ); fidx < fonts.count() ; ++fidx)
 	{
-		FontItem* fitem(fonts[fidx]);
+		FontItem* fitem(fonts.at ( fidx ));
 		{
 			QString t(sCENTER);
 			QFileInfo ffile(fitem->path());

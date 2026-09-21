@@ -45,7 +45,7 @@ void RemoteDir::run()
 		buffer->setBuffer(ba);
 		buffer->open(QIODevice::WriteOnly);
 		
-		QUrl url(argDirs[ridx]);
+		QUrl url(argDirs.at ( ridx ));
 #if 0 // TODO Replace this part of code
 		QHttp *rd = new QHttp(url.host());
 		rd->setObjectName(argDirs[ridx]);

@@ -263,7 +263,7 @@ void typotek::initMatrix()
 	if (auto *hm = qobject_cast<KHamburgerMenu *>(actionCollection()->action(QStringLiteral("hamburger_menu"))))
 		hm->hideActionsOf(toolBar());
 	// Wire the dynamic View menu for floating-panel entries
-	for (auto *menuAction : menuBar()->actions()) {
+	for (const auto actionsList = menuBar()->actions(); auto *menuAction : actionsList) {
 		if (QMenu *menu = menuAction->menu(); menu && menu->objectName() == QStringLiteral("view")) {
 			viewMenu = menu;
 			connect(viewMenu, &QMenu::aboutToShow, this, &typotek::updateFloatingStatus);
@@ -352,7 +352,7 @@ void typotek::closeEvent ( QCloseEvent *event )
 	}
 
 	m_closing = true;
-	for (auto* f : FloatingWidgetsRegister::AllWidgets())
+	for (const auto allWidgets = FloatingWidgetsRegister::AllWidgets(); auto* f : allWidgets)
 	{
 		f->close();
 	}
@@ -1670,7 +1670,7 @@ QString typotek::namedSample ( QString name )
 		dataLoader = new DataLoader();
 
 	const QMap<QString,QString>& us(dataLoader->userSamples());
-	for (const auto& k : us.keys())
+	for (const auto usKeys = us.keys(); const auto& k : usKeys)
 	{
 		QString id(QString("User::") + k);
 //		qDebug()<<"\t"<<id;
@@ -1681,15 +1681,15 @@ QString typotek::namedSample ( QString name )
 	}
 
 	const QMap<QString, QMap<QString,QString> >& ss(dataLoader->systemSamples());
-	for (const auto& pk : ss.keys())
+	for (const auto ssKeys = ss.keys(); const auto& pk : ssKeys)
 	{
-		for (const auto& sk : ss[pk].keys())
+		for (const auto ssKeysList = ss[pk].keys(); const auto& sk : ssKeysList)
 		{
 			QString id(pk + QString("::") + sk);
 //			qDebug()<<"\t"<<id;
 			if(id == cn)
 			{
-				return ss[pk][sk];
+				return ss.value(pk).value(sk);
 			}
 		}
 	}
@@ -1704,7 +1704,7 @@ QMap<QString,QList<QString> > typotek::namedSamplesNames()
 	QMap<QString,QList<QString> > ret;
 	const QMap<QString,QString>& us(dataLoader->userSamples());
 	const QMap<QString, QMap<QString,QString> >& ss(dataLoader->systemSamples());
-	for (const auto& key : ss.keys())
+	for (const auto loopSsKeys = ss.keys(); const auto& key : loopSsKeys)
 	{
 		ret[key] << ss[key].keys();
 	}
@@ -1763,13 +1763,14 @@ QString typotek::defaultSampleName()
 		else
 		{
 			// Prefer Latin-script samples as fallback so the widget shows something on first use
-			for(const QString& code : QStringList{"de", "fr", "ru"})
+			static const QStringList fallbackCodes{"de", "fr", "ru"};
+			for(const QString& code : fallbackCodes)
 			{
 				const QString preferred(groupOf(QLocale(code)));
 				if(ss.contains(preferred) && ss[preferred].count() > 0)
 					return preferred + QString("::") + ss[preferred].keys().first();
 			}
-			for (const auto& k : ss.keys())
+			for (const auto sampleGroups = ss.keys(); const auto& k : sampleGroups)
 			{
 				if(ss[k].count() > 0)
 					return k + QString("::") + ss[k].keys().first();
@@ -2311,7 +2312,7 @@ void typotek::slotReloadFiltered()
 	QApplication::changeOverrideCursor(Qt::WaitCursor);
 	QMap<QString, QStringList> tagsRec;
 	FMFontDb *db(FMFontDb::DB());
-	for (auto* f : theMainView->curFonts())
+	for (const auto curFontsList = theMainView->curFonts(); auto* f : curFontsList)
 	{
 		toReload << f->path();
 		tagsRec[f->path()] = f->tags();
@@ -2443,7 +2444,7 @@ void typotek::setVisible(bool visible)
 			it.value()->hide();
 		}
 		visibleFloatingWidgets.clear();
-		for (auto* f : FloatingWidgetsRegister::AllWidgets())
+		for (const auto allWidgetsList = FloatingWidgetsRegister::AllWidgets(); auto* f : allWidgetsList)
 		{
 			visibleFloatingWidgets[f] = f->isVisible();
 			f->setVisible(false);
@@ -2504,7 +2505,7 @@ void typotek::updateFloatingStatus()
 	viewMenu->removeAction(floatSep);
 
 	QList<FloatingWidget*> fwl(FloatingWidgetsRegister::AllWidgets());
-	for (auto* f : floatingWidgets.keys())
+	for (const auto floatingWidgetsKeys = floatingWidgets.keys(); auto* f : floatingWidgetsKeys)
 	{
 		if(!fwl.contains(f))
 		{
@@ -2545,7 +2546,7 @@ void typotek::updateFloatingStatus()
 
 void typotek::closeAllFloatings()
 {
-	for (auto* f : floatingWidgets.keys())
+	for (const auto floatingWidgetsKeysList = floatingWidgets.keys(); auto* f : floatingWidgetsKeysList)
 	{
 		f->close();
 	}
@@ -2553,7 +2554,7 @@ void typotek::closeAllFloatings()
 
 void typotek::showAllFloatings()
 {
-	for (auto* f : floatingWidgets.keys())
+	for (const auto loopFloatingWidgetsKeys = floatingWidgets.keys(); auto* f : loopFloatingWidgetsKeys)
 	{
 		f->setVisible(true);
 	}
@@ -2561,7 +2562,7 @@ void typotek::showAllFloatings()
 
 void typotek::hideAllFloatings()
 {
-	for (auto* f : floatingWidgets.keys())
+	for (const auto floatingList = floatingWidgets.keys(); auto* f : floatingList)
 	{
 		f->setVisible(false);
 	}

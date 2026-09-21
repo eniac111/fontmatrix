@@ -34,11 +34,11 @@ FMPanoseDialog::FMPanoseDialog(FontItem * font, QWidget * parent)
 
 FMPanoseDialog::~ FMPanoseDialog()
 {
-	for (const auto& s : m_box.keys())
+	for (const auto m_boxKeys = m_box.keys(); const auto& s : m_boxKeys)
 	{
 		delete m_box[s];
 	}
-	for (const auto& s : m_label.keys())
+	for (const auto m_labelKeys = m_label.keys(); const auto& s : m_labelKeys)
 	{
 		delete m_label[s];
 	}
@@ -69,9 +69,9 @@ void FMPanoseDialog::populateDialog()
 		
 		
 		int cIndex(0);
-		for (const auto& ik : pmap[pk].keys())
+		for (const auto pmapKeys = pmap[pk].keys(); const auto& ik : pmapKeys)
 		{
-			m_box[sk]->addItem( pmap[pk][ik], ik );
+			m_box[sk]->addItem( pmap.value(pk).value(ik), ik );
 			if(ik == pValue)
 				m_box[sk]->setCurrentIndex(cIndex);
 			++cIndex;
@@ -83,7 +83,7 @@ void FMPanoseDialog::populateDialog()
 		pk = FontStrings::nextPanoseKey(pk);
 	}
 	
-	for (const auto& sk : m_box.keys())
+	for (const auto m_boxKeysList = m_box.keys(); const auto& sk : m_boxKeysList)
 	{
 		connect(m_box[sk], SIGNAL(currentIndexChanged (int)), this, SLOT(panoseChange(int)));
 	}

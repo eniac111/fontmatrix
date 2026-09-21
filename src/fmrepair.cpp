@@ -305,7 +305,7 @@ void FmRepair::slotActivateDeactLinked()
 void FmRepair::fillUnreferenced()
 {
 	unrefList->clear();
-	for (const auto& fid : FMFontDb::DB()->AllFontNames())
+	for (const auto allFontNames = FMFontDb::DB()->AllFontNames(); const auto& fid : allFontNames)
 	{
 		if(!QFile::exists(fid))
 		{
