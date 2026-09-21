@@ -64,6 +64,9 @@ cmake --build build --parallel
 sudo cmake --install build          # installs to /usr/local by default
 ```
 
+Configuring also installs a git pre-commit hook that checks the changed lines against
+the KDE coding style; `ninja -C build clang-format` formats everything.
+
 ---
 
 ### Linux — Flatpak (build locally)

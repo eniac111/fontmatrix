@@ -41,3 +41,6 @@ CMakeFiles/
 # Python bytecode from running the CI helper scripts locally
 __pycache__/
 *.pyc
+
+# Written by KDEClangFormat when CMake runs; the style itself lives in ECM
+/.clang-format

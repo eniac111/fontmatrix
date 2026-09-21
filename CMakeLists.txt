@@ -57,6 +57,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
+include(KDEClangFormat)
+include(KDEGitCommitHooks)
 include(ECMInstallIcons)
 include(ECMQtDeclareLoggingCategory)
 # KDECompilerSettings turns on the Qt strictness definitions. One of them still
@@ -370,6 +372,14 @@ GNU GENERAL PUBLIC LICENSE\n\
 ${_gpl_text}")
 	SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_BINARY_DIR}/LICENSE.txt")
 ENDIF(WIN32)
+
+# The KDE coding style: "ninja clang-format" formats everything, the pre-commit hook checks
+# the lines a commit changes. src/hyphenate is somebody else's code and has its own
+# .clang-format that switches the formatting off.
+file(GLOB_RECURSE FONTMATRIX_CLANG_FORMAT_SOURCES src/*.cpp src/*.h dodict/*.cpp)
+list(FILTER FONTMATRIX_CLANG_FORMAT_SOURCES EXCLUDE REGEX "/src/hyphenate/")
+kde_clang_format(${FONTMATRIX_CLANG_FORMAT_SOURCES})
+kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
 

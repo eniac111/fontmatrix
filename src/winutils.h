@@ -7,8 +7,10 @@
 // Thanks to jghali
 #ifdef _WIN32
 
+// clang-format off: windows.h has to come first
 #include <windows.h>
 #include <shlobj.h>
+// clang-format on
 
 QString getWin32SystemFontDir()
 {
