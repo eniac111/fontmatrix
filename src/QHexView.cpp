@@ -1111,3 +1111,4 @@ int QHexView::rowWidth() const {
 	return m_RowWidth;
 }
 
+#include "moc_QHexView.cpp"

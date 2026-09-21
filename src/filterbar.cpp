@@ -732,3 +732,5 @@ void FilterBar::slotToggleFilter(bool t)
 	else
 		ui->filtersBox->hide();
 }
+
+#include "moc_filterbar.cpp"

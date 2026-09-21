@@ -101,4 +101,5 @@ void TTTableView::exportHex()
 	}
 }
 
+#include "moc_tttableview.cpp"
 

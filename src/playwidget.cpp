@@ -132,3 +132,5 @@ void PlayWidget::print()
 	PlayWidget::getInstance()->clearSelection();
 	PlayWidget::getInstance()->getPlayScene()->render(&aPainter, targetR ,sourceR, Qt::KeepAspectRatio );
 }
+
+#include "moc_playwidget.cpp"

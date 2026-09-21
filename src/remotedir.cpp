@@ -286,5 +286,6 @@ QString RemoteDir::FontInfo::dump()
 	return file + sep + family + sep + variant + sep + type + sep +tags.join(sep);
 }
 
+#include "moc_remotedir.cpp"
 
 

@@ -96,3 +96,5 @@ void FMDumpDialog::insertSelectedField()
 		cursor.insertText(m_dumpinfo->info( nameList->selectedItems().first()->text()));
 	}
 }
+
+#include "moc_dumpdialog.cpp"

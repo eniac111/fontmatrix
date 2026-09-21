@@ -70,3 +70,5 @@ void FMFreetypeLib::releaseLibrary()
 		}
 	}
 }
+
+#include "moc_fmfreetypelib.cpp"

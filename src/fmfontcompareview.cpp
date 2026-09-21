@@ -520,6 +520,7 @@ void FMFontCompareView::fitGlyphsView()
 	ensureVisible(vr);
 }
 
+#include "moc_fmfontcompareview.cpp"
 
 
 

@@ -47,3 +47,5 @@ void OpenCloseArrow::setOpText()
 		setText(QStringLiteral("%1").arg(baseText));
 	}
 }
+
+#include "moc_openclosearrow.cpp"

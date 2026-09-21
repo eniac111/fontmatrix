@@ -372,4 +372,5 @@ void FMPlayGround::blinkCursor()
 	new FMGlyphHighlight(scene(), QRectF(BlinkPos.x() -1, BlinkPos.y() - h , 1, h));
 }
 
+#include "moc_fmplayground.cpp"
 

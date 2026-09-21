@@ -85,3 +85,4 @@ void ActivationWidgetItem::changeState(bool s)
 	ui->activatedStatus->setChecked(s);
 }
 
+#include "moc_activationwidgetitem.cpp"

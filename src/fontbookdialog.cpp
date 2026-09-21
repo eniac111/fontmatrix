@@ -245,3 +245,5 @@ void FontBookDialog::slotPreviewTemplate(const QString &key)
 	}
 	
 }
+
+#include "moc_fontbookdialog.cpp"

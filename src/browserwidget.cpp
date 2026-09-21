@@ -394,3 +394,5 @@ FolderViewMenu::~FolderViewMenu()
 {
 
 }
+
+#include "moc_browserwidget.cpp"

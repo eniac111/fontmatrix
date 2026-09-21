@@ -69,4 +69,5 @@ void ImportTags::slotEnd()
 	close();
 }
 
+#include "moc_importtags.cpp"
 

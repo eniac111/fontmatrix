@@ -987,6 +987,7 @@ void FMFontDb::filterAllFonts()
 	currentFonts = fontMap.values();
 }
 
+#include "moc_fmfontdb.cpp"
 
 
 

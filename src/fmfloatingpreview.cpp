@@ -235,3 +235,5 @@ void FMFloatingPreview::updatePreview(const QString &t)
 	previewLabel->setGeometry(r);
 	previewLabel->setPixmap(preview);
 }
+
+#include "moc_fmfloatingpreview.cpp"

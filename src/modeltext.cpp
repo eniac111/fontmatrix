@@ -40,3 +40,5 @@ void ModelText::insertFromMimeData(const QMimeData * source)
 	else
 		QTextEdit::insertFromMimeData(source);
 }
+
+#include "moc_modeltext.cpp"

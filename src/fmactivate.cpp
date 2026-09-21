@@ -435,3 +435,5 @@ QMap<QString,QString> FMActivate::errors()
 	m_errors.clear();
 	return ret;
 }
+
+#include "moc_fmactivate.cpp"

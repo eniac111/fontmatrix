@@ -3966,3 +3966,5 @@ QList< FT_Encoding > FontItem::getCharsets() const
 {
 	return m_charsets;
 }
+
+#include "moc_fontitem.cpp"

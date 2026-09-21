@@ -2581,3 +2581,5 @@ void typotek::pushObject(QObject *o)
 {
 	o->moveToThread(sender()->thread());
 }
+
+#include "moc_typotek.cpp"

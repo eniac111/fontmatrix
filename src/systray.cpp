@@ -374,3 +374,4 @@ void Systray::updateTagMenu(const QStringList& nameOfFontWhichCausedThisUpdate)
 	
 }
 
+#include "moc_systray.cpp"

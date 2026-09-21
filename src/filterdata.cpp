@@ -221,3 +221,5 @@ void FilterData::fromByteArray(const QByteArray &ba)
 	}
 
 }
+
+#include "moc_filterdata.cpp"

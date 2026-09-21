@@ -358,3 +358,5 @@ void FmRepair::slotRemoveUnref()
 // 	}
 	fillUnreferenced();
 }
+
+#include "moc_fmrepair.cpp"

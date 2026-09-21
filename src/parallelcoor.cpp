@@ -856,6 +856,7 @@ void ParallelCoorView::doConnect()
 // 	connect(this, SIGNAL(destroyed( QObject* )), this, SLOT(slotSaveColors()));
 }
 
+#include "moc_parallelcoor.cpp"
 
 
 

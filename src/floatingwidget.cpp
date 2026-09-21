@@ -89,3 +89,5 @@ void FloatingWidget::ddetach()
 	show();
 	emit detached();
 }
+
+#include "moc_floatingwidget.cpp"

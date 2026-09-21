@@ -1295,3 +1295,4 @@ void MainViewWidget::slotPreviewUpdateSize(int w)
 	listView->setIconSize(QSize(w, 1.3 * typotek::getInstance()->getPreviewSize() * typotek::getInstance()->getDpiY() / 72.0));
 }
 
+#include "moc_mainviewwidget.cpp"

@@ -106,3 +106,5 @@ Shortcuts::~Shortcuts()
 {
 
 }
+
+#include "moc_shortcuts.cpp"

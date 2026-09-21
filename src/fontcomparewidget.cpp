@@ -444,3 +444,5 @@ void FontCompareWidget::showEvent(QShowEvent *e)
 	QWidget::showEvent(e);
 	emit visibilityChanged();
 }
+
+#include "moc_fontcomparewidget.cpp"

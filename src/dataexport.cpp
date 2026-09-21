@@ -308,4 +308,5 @@ int DataExport::buildTemplate(const QString& templateDirPath)
 	return fonts.count();
 }
 
+#include "moc_dataexport.cpp"
 

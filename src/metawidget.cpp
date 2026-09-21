@@ -150,3 +150,5 @@ void MetaWidget::addFilter()
 	}
 	emit filterAdded();
 }
+
+#include "moc_metawidget.cpp"

@@ -146,3 +146,5 @@ void FMFontExtract::slotExtract()
 	}
 	
 }
+
+#include "moc_fmfontextract.cpp"

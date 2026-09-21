@@ -79,4 +79,5 @@ void TagsWidget::slotActRemovetag()
 
 }
 
+#include "moc_tagswidget.cpp"
 

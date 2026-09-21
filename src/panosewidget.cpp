@@ -133,3 +133,5 @@ void PanoseWidget::closeEvent(QCloseEvent *)
 {
 	hide();
 }
+
+#include "moc_panosewidget.cpp"

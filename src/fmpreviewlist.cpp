@@ -508,3 +508,5 @@ void FMPreviewView::setCurrentFont(const QString & name)
 		}
 	}
 }
+
+#include "moc_fmpreviewlist.cpp"

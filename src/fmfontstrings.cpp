@@ -542,3 +542,4 @@ QString FontStrings::scriptTagName(const QString &script)
 	return script;
 }
 
+#include "moc_fmfontstrings.cpp"

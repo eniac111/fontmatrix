@@ -97,3 +97,5 @@ void FilterItem::hideOperation(Operation op)
 		ui->andButton->hide();
 	}
 }
+
+#include "moc_filteritem.cpp"

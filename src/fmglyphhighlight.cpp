@@ -68,3 +68,5 @@ void FMGlyphHighlight::lastFrame()
 // 	qDebug("LAST FRAME");
 	deleteLater();
 }
+
+#include "moc_fmglyphhighlight.cpp"

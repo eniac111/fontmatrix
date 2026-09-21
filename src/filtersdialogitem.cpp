@@ -83,3 +83,5 @@ void FiltersDialogItem::leaveEvent(QEvent *)
 {
 //	setButtonsVisible(false);
 }
+
+#include "moc_filtersdialogitem.cpp"

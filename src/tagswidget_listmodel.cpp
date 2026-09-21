@@ -164,5 +164,6 @@ QModelIndex TagsWidget_ListModel::addTag()
 
 }
 
+#include "moc_tagswidget_listmodel.cpp"
 
 

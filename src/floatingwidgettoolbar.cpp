@@ -92,3 +92,5 @@ void FloatingWidgetToolBar::setNoClose(bool c)
 	noClose = c;
 	setupMenu();
 }
+
+#include "moc_floatingwidgettoolbar.cpp"

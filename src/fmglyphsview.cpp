@@ -174,6 +174,7 @@ void FMGlyphsView::unlock()
 	m_lock = false;
 }
 
+#include "moc_fmglyphsview.cpp"
 
 
 

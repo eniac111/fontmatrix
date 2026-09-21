@@ -344,3 +344,5 @@ void FMMatchRaster::zoomChanged(int)
 {
 	grabScreen();
 }
+
+#include "moc_fmmatchraster.cpp"

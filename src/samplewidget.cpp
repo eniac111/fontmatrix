@@ -980,3 +980,4 @@ void SampleWidget::slotUpdateSample()
 	slotView();
 }
 
+#include "moc_samplewidget.cpp"

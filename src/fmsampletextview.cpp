@@ -210,3 +210,5 @@ void FMSampleTextView::fakePage()
 	fPage = scene()->addRect ( sceneRect() ,QPen ( QColor ( Qt::black ) ), QColor ( Qt::white ) );
 	setBackgroundBrush(Qt::lightGray);
 }
+
+#include "moc_fmsampletextview.cpp"

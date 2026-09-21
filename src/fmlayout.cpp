@@ -1460,6 +1460,7 @@ void FMLayout::setContext(bool c)
 //		emit objectWanted(theFont);
 }
 
+#include "moc_fmlayout.cpp"
 
 
 

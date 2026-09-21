@@ -98,3 +98,5 @@ void ActivationWidget::activateAll(bool c)
 
 	emit familyStateChanged();
 }
+
+#include "moc_activationwidget.cpp"

@@ -559,3 +559,5 @@ void ChartWidget::slotDoPrinting()
 	}
 
 }
+
+#include "moc_chartwidget.cpp"

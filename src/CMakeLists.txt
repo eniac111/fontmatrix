@@ -157,69 +157,8 @@ ${M17N_LIBRARIES}
 )
 
 
-SET(fontmatrix_MOC_HDRS
-browserwidget.h
-activationwidget.h
-activationwidgetitem.h
-chartwidget.h
-dataexport.h
-dumpdialog.h
-familywidget.h
-filterbar.h
-filterdata.h
-filtersdialog.h
-filtersdialogitem.h
-filteritem.h
-floatingwidget.h
-floatingwidgettoolbar.h
-fmactivate.h
-fmaltcontext.h
-fmaltselector.h
-fmfloatingpreview.h
-fmfontcompareview.h
-fmfontdb.h
-fmfontextract.h
-fmfontstrings.h
-fmfreetypelib.h
-fmglyphhighlight.h
-fmglyphsview.h
-fmlayoptwidget.h
-fmlayout.h
-fmmatchraster.h
-fmnamelist.h
-fmplayground.h
-fmpreviewlist.h
-fmrepair.h
-fmsampletextview.h
-fontbookdialog.h
-fontcomparewidget.h
-fontitem.h
-importtags.h
-iview.h
-QHexView.h
-mainviewwidget.h
-metawidget.h
-modeltext.h
-openclosearrow.h
-panosedialog.h
-panosewidget.h
-parallelcoor.h
-playwidget.h
-prefspaneldialog.h
-progressbarduo.h
-remotedir.h
-sampletoolbar.h
-samplewidget.h
-shortcuts.h
-systray.h
-tagswidget.h
-tagswidget_listmodel.h
-#textprogression.h
-tttableview.h
-typotek.h
-)
-qt_wrap_cpp(fontmatrix_MOC_SRCS
-${fontmatrix_MOC_HDRS})
+# AUTOMOC finds the Q_OBJECT headers itself; each source includes its moc_<name>.cpp,
+# so the meta-object code is compiled with the class and not in one large extra unit.
 
 
 SET(fontmatrix_UIS
@@ -296,7 +235,6 @@ IF(UNIX AND NOT APPLE)
 	add_executable(fontmatrix
 	${fontmatrix_SRCS}
 	${SHAPERS_SRCS}
-	${fontmatrix_MOC_SRCS}
 	${fontmatrix_UIS_H}
 	${fontmatrix_RCC_SRCS}
 	${PODOFO_SRCS}
@@ -400,7 +338,6 @@ IF(APPLE)
 	add_executable(fontmatrix MACOSX_BUNDLE
 	${fontmatrix_SRCS}
 	${SHAPERS_SRCS}
-	${fontmatrix_MOC_SRCS}
 	${fontmatrix_UIS_H}
 	${fontmatrix_RCC_SRCS}
 	${PODOFO_SRCS}
@@ -480,7 +417,6 @@ IF(WIN32)
 	add_executable(fontmatrix WIN32
 	${fontmatrix_SRCS}
 	${SHAPERS_SRCS}
-	${fontmatrix_MOC_SRCS}
 	${fontmatrix_UIS_H}
 	${fontmatrix_RCC_SRCS}
 	${PODOFO_SRCS}

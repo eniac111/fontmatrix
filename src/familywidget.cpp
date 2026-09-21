@@ -323,3 +323,4 @@ void FamilyWidget::updateButtons()
 	}
 }
 
+#include "moc_familywidget.cpp"

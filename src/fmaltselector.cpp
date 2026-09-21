@@ -285,3 +285,5 @@ void FMAltSelector::fillFromContext()
 	m_model->reModel( FMAltContextLib::GetCurrentContext() );
 
 }
+
+#include "moc_fmaltselector.cpp"

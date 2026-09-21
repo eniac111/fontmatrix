@@ -93,3 +93,5 @@ void ProgressBarDuo::setMax(int max, int n)
 	if(p)
 		p->setMaximum(max);
 }
+
+#include "moc_progressbarduo.cpp"

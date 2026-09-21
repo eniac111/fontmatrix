@@ -690,6 +690,7 @@ void PrefsPanelDialog::updateChartFont(const QFont & font)
 	typotek::getInstance()->setChartInfoFontSize(size);
 }
 
+#include "moc_prefspaneldialog.cpp"
 
 
 

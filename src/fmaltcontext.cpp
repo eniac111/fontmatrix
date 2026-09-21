@@ -74,3 +74,5 @@ void FMAltContextLib::GetConnected(const QObject * receiver, const char * method
 {
 	connect(that(), SIGNAL(contextChanged()), receiver, method);
 }
+
+#include "moc_fmaltcontext.cpp"

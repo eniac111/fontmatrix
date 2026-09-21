@@ -193,3 +193,4 @@ bool FMNameList::slotSetCurrent(const QString & fname)
 	return false;
 }
 
+#include "moc_fmnamelist.cpp"

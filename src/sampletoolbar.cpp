@@ -115,3 +115,5 @@ QString SampleToolBar::getScript()
 		return ret;
 	return QString();
 }
+
+#include "moc_sampletoolbar.cpp"

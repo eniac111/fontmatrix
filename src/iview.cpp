@@ -410,3 +410,4 @@ void IView::setControlRect(bool u)
 	}
 }
 
+#include "moc_iview.cpp"
