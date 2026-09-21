@@ -23,7 +23,7 @@
 
 
 #include <KLocalizedString>
-#include <QMessageBox>
+#include <KMessageBox>
 
 FiltersDialogItem::FiltersDialogItem(const QString& name, const QString& f, QWidget *parent) :
     QWidget(parent),
@@ -63,7 +63,7 @@ void FiltersDialogItem::slotFilter()
 
 void FiltersDialogItem::slotRemove()
 {
-	if(QMessageBox::question(nullptr, i18n("Remove Filter"), i18n("Confirm deletion of filter:") + filterName, QMessageBox::Ok | QMessageBox::Cancel, QMessageBox::Ok) == QMessageBox::Ok)
+	if(KMessageBox::warningContinueCancel(this, i18n("Confirm deletion of filter:") + filterName, i18n("Remove Filter"), KStandardGuiItem::remove()) == KMessageBox::Continue)
 		Q_EMIT Remove(filterName);
 }
 

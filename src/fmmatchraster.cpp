@@ -28,7 +28,7 @@
 #include "fmconfig.h"
 
 #include <QDebug>
-#include <QMessageBox>
+#include <KMessageBox>
 
 
 FMMatchRaster::FMMatchRaster ( QWidget * parent )
@@ -212,7 +212,7 @@ void FMMatchRaster::slotStop()
 	}
 	else
 	{
-		QMessageBox::information ( this, "Fontmatrix", i18n( "No font match the submitted image" ) );
+		KMessageBox::information ( this, i18n( "No font match the submitted image" ) );
 	}
 	close();
 }

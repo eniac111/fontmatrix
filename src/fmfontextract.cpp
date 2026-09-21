@@ -15,7 +15,7 @@
 #include <KLocalizedString>
 #include <QFileInfo>
 #include <QFileDialog>
-#include <QMessageBox>
+#include <KMessageBox>
 
 #ifdef HAVE_PODOFO
 #include "fmpdffontextractor.h"
@@ -142,7 +142,7 @@ void FMFontExtract::slotExtract()
 	}
 	if(!failedExt.isEmpty())
 	{
-		QMessageBox::information(this,"Fontmatrix",i18n("Failed to extract:\n%1", failedExt.join("\n")));
+		KMessageBox::error(this, i18n("Failed to extract:\n%1", failedExt.join("\n")));
 	}
 	
 }

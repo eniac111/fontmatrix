@@ -12,7 +12,7 @@
 
 #include <KLocalizedString>
 #include <QInputDialog>
-#include <QMessageBox>
+#include <KMessageBox>
 #include <QMenu>
 #include <QDebug>
 #include <QFont>
@@ -66,12 +66,14 @@ void TagsWidget::slotActRemovetag()
 	QString currentTag(model->data(idx, Qt::DisplayRole).toString());
 	QString message;
 	message = i18n( "Please confirm that you want to remove\nthe following tag from database:" ) + " " + currentTag;
-	if ( QMessageBox::question ( typotek::getInstance(),
-	                             "Fontmatrix",
-	                             message ,
-	                             QMessageBox::Ok | QMessageBox::Cancel,
-	                             QMessageBox::Cancel )
-	        == QMessageBox::Ok )
+	if ( KMessageBox::warningContinueCancel ( typotek::getInstance(),
+	                                          message,
+	                                          i18nc ( "@title:window", "Remove Tag" ),
+	                                          KStandardGuiItem::remove(),
+	                                          KStandardGuiItem::cancel(),
+	                                          QString(),
+	                                          KMessageBox::Options(KMessageBox::Notify | KMessageBox::Dangerous) )
+	        == KMessageBox::Continue )
 	{
 		FMFontDb::DB()->removeTagFromDB ( currentTag );
 	}

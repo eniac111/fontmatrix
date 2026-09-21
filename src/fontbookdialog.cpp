@@ -29,7 +29,7 @@
 #include <QDebug>
 #include <QGraphicsScene>
 #include <QDomNodeList>
-#include <QMessageBox>
+#include <KMessageBox>
 
 FontBookDialog::FontBookDialog ( QWidget *parent )
 		: QDialog ( parent )
@@ -142,15 +142,13 @@ void FontBookDialog::slotLoadTemplate(const QString &theTemplate)
 	QDomDocument doc("template");
 	if ( !file.open ( QFile::ReadOnly ) )
 	{
-		QMessageBox::warning (nullptr, QString ( "Fontmatrix" ),
-				      QString ( "Can’t read %1." ).arg(file.fileName()) );
+		KMessageBox::error ( this, i18n ( "Cannot read %1.", file.fileName() ) );
 		return;
 	}
 	if ( !doc.setContent ( &file ) )
 	{
 		file.close();
-		QMessageBox::warning (nullptr, QString ( "Fontmatrix" ),
-				      QString ( "%1 is an invalid XML tree." ).arg(file.fileName()) );
+		KMessageBox::error ( this, i18n ( "%1 is not a valid XML file.", file.fileName() ) );
 		return;
 	}
 	file.close();
@@ -173,15 +171,13 @@ void FontBookDialog::fillTemplates()
 		QDomDocument doc("template");
 		if ( !file.open ( QFile::ReadOnly ) )
 		{
-			QMessageBox::warning (nullptr, QString ( "Fontmatrix" ),
-					      QString ( "Can’t read %1." ).arg(file.fileName()) );
+			KMessageBox::error ( this, i18n ( "Cannot read %1.", file.fileName() ) );
 			return;
 		}
 		if ( !doc.setContent ( &file ) )
 		{
 			file.close();
-			QMessageBox::warning (nullptr, QString ( "Fontmatrix" ),
-					      QString ( "%1 is an invalid XML tree." ).arg(file.fileName()) );
+			KMessageBox::error ( this, i18n ( "%1 is not a valid XML file.", file.fileName() ) );
 			return;
 		}
 		file.close();

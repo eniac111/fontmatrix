@@ -20,7 +20,6 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileInfo>
-#include <QMessageBox>
 
 FmRepair::FmRepair(QWidget *parent)
 	:QDialog(parent)

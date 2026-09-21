@@ -63,7 +63,7 @@
 #include <QProcess>
 #include <QProgressDialog>
 #include <QMenu>
-#include <QMessageBox>
+#include <KMessageBox>
 #include <QStringListModel>
 #include <QTime>
 #include <QTimer>
@@ -1182,10 +1182,11 @@ void MainViewWidget::slotRemoveCurrentItem()
 		return;
 	if(theVeryFont->isActivated())
 	{
-		QMessageBox::information(this, i18n("Fontmatrix takes care of you"), curItemName + i18n(" is activated.\nIf you want to remove it from Fontmatrix database, please deactivate it first."), QMessageBox::Yes );
+		KMessageBox::information(this, curItemName + i18n(" is activated.\nIf you want to remove it from Fontmatrix database, please deactivate it first."));
 		return;
 	}
-	if( QMessageBox::question ( this, i18n("Fontmatrix safe"), i18n("You are about to remove a font from Fontmatrix database") +"\n"+curItemName+"\n" + i18n("Do you want to continue?"),QMessageBox::Yes |  QMessageBox::No, QMessageBox::No) == QMessageBox::Yes )
+	if( KMessageBox::warningContinueCancel ( this, i18n("You are about to remove a font from Fontmatrix database") +"\n"+curItemName+"\n" + i18n("Do you want to continue?"), i18nc("@title:window", "Remove Font"),
+	                                         KStandardGuiItem::remove(), KStandardGuiItem::cancel(), QString(), KMessageBox::Options(KMessageBox::Notify | KMessageBox::Dangerous) ) == KMessageBox::Continue )
 	{
 		theVeryFont->deRenderAll();
 		FMFontDb::DB()->removeFilteredFont(theVeryFont);

@@ -71,7 +71,6 @@
 #include <QProcess>
 #include <QDockWidget>
 #include <QStackedWidget>
-#include <QMessageBox>
 #include <QMenuBar>
 #include <QStatusBar>
 
@@ -337,7 +336,7 @@ void typotek::closeEvent ( QCloseEvent *event )
 		{
 			if ( !FMConfig::value(QStringLiteral("Systray/CloseNoteShown"), false).toBool() )
 			{
-				QMessageBox::information ( this, i18n( "Fontmatrix" ),
+				KMessageBox::information ( this,
 				                           i18n( "The program will keep running in the "
 				                                "system tray. To terminate the program, "
 				                                "choose <b>Exit</b> in the context menu "
@@ -454,14 +453,16 @@ void typotek::open ( QString path, bool recursive, bool announce, bool collect )
 	// It can happen that you wrongly select a dir, it is time to let the user cancel the import.
 	// I want it :) - pm
 	if ( /*( pathList.count() > 1 )
-		&&*/ ( QMessageBox::question ( this,
-	                                     QString ( "Fontmatrix - %1" ).arg ( i18n( "Confirmation" ) ) ,
-	                                     i18np ( "Do you confirm you want to import %1 font?",
-	                                             "Do you confirm you want to import %1 fonts?",
-	                                             pathList.count()),
-	                                     QMessageBox::Yes | QMessageBox::No,
-	                                     QMessageBox::No )
-	             != QMessageBox::Yes ) )
+		&&*/ ( KMessageBox::questionTwoActions ( this,
+	                                               i18np ( "Do you confirm you want to import %1 font?",
+	                                                       "Do you confirm you want to import %1 fonts?",
+	                                                       pathList.count()),
+	                                               i18n( "Confirmation" ),
+	                                               KGuiItem ( i18nc ( "@action:button", "Import" ), QStringLiteral ( "document-import" ) ),
+	                                               KStandardGuiItem::cancel(),
+	                                               QString(),
+	                                               KMessageBox::Options(KMessageBox::Notify | KMessageBox::Dangerous) )
+	             != KMessageBox::PrimaryAction ) )
 	{
 		return;
 	}
@@ -1474,13 +1475,15 @@ void typotek::keyPressEvent ( QKeyEvent * event )
 
 void typotek::slotActivateCurrents()
 {
-	if ( QMessageBox::question ( this,i18n( "Fontmatrix care" ),i18n( "You are about to activate a bunch of fonts,\nit is time to cancel if it was not your intent" ), QMessageBox::Ok|QMessageBox::Cancel, QMessageBox::Cancel ) == QMessageBox::Ok )
+	if ( KMessageBox::warningContinueCancel ( this, i18n( "You are about to activate a bunch of fonts,\nit is time to cancel if it was not your intent" ), i18nc ( "@title:window", "Activate Fonts" ),
+	                                          KGuiItem ( i18nc ( "@action:button", "Activate" ) ), KStandardGuiItem::cancel(), QString(), KMessageBox::Options(KMessageBox::Notify | KMessageBox::Dangerous) ) == KMessageBox::Continue )
 		theMainView->slotActivateAll();
 }
 
 void typotek::slotDeactivateCurrents()
 {
-	if ( QMessageBox::question ( this,i18n( "Fontmatrix care" ),i18n( "You are about to deactivate a bunch of fonts,\nit is time to cancel if it was not your intent" ),QMessageBox::Ok|QMessageBox::Cancel, QMessageBox::Cancel ) == QMessageBox::Ok )
+	if ( KMessageBox::warningContinueCancel ( this, i18n( "You are about to deactivate a bunch of fonts,\nit is time to cancel if it was not your intent" ), i18nc ( "@title:window", "Deactivate Fonts" ),
+	                                          KGuiItem ( i18nc ( "@action:button", "Deactivate" ) ), KStandardGuiItem::cancel(), QString(), KMessageBox::Options(KMessageBox::Notify | KMessageBox::Dangerous) ) == KMessageBox::Continue )
 		theMainView->slotDesactivateAll();
 }
 
@@ -1493,9 +1496,9 @@ void typotek::toggleShowMenuBar(bool showMessage)
 	} else {
 		if (showMessage && toolBar()->isHidden()) {
 			const QString accel = m_paShowMenuBar->shortcut().toString(QKeySequence::NativeText);
-			QMessageBox::information(this,
-			    i18n("Hide menu bar"),
-			    i18n("This will hide the menu bar completely. You can show it again by typing %1.", accel));
+			KMessageBox::information(this,
+			    i18n("This will hide the menu bar completely. You can show it again by typing %1.", accel),
+			    i18n("Hide menu bar"));
 		}
 		menuBar()->hide();
 	}

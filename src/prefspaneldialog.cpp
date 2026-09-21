@@ -26,7 +26,7 @@
 #include "fmconfig.h"
 #include <QFileDialog>
 #include <QStandardItemModel>
-#include <QMessageBox>
+#include <KMessageBox>
 #include <QDialogButtonBox>
 
 PrefsPanelDialog::PrefsPanelDialog ( QWidget *parent )
@@ -281,11 +281,13 @@ void PrefsPanelDialog::deleteSampleName()
 	QString sampleKey ( sel[0]->text() );
 	QString  message ( i18nc("the name of a sample text will be append to the string", "Do you confirm that you want to remove:") + " \"%1\"" );
 
-	if ( QMessageBox::warning ( this ,
-	                            "Fontmatrix",
-	                            message.arg(sampleKey),
-	                            QMessageBox::Yes | QMessageBox::No,
-	                            QMessageBox::No ) ==  QMessageBox::Yes )
+	if ( KMessageBox::warningContinueCancel ( this ,
+	                                          message.arg(sampleKey),
+	                                          i18nc ( "@title:window", "Remove Sample Text" ),
+	                                          KStandardGuiItem::remove(),
+	                                          KStandardGuiItem::cancel(),
+	                                          QString(),
+	                                          KMessageBox::Options(KMessageBox::Notify | KMessageBox::Dangerous) ) == KMessageBox::Continue )
 	{
 		QListWidgetItem * it(sampleTextNamesList->takeItem( sampleTextNamesList->row(sel[0]) ));
 		if(it)
@@ -585,11 +587,13 @@ void PrefsPanelDialog::shortcutSet ( const QString &shortcut )
 	QString reserved = tmp->isReserved ( shortcut, iText );
 	if ( !reserved.isEmpty() ) // shortcut is already in use
 	{
-		if ( QMessageBox::question ( this, i18n( "Replace" ),
-		                             "<qt>" + i18nc("action name will be appended to this", "Shortcut is already in use for") +
-		                             QString ( "<br/><b>%1</b>.<br/>" ).arg ( reserved ) +
-		                             i18n( "Do you still want to assign it?" ) + "</qt>",
-		                             QMessageBox::Yes | QMessageBox::No ) == QMessageBox::Yes )
+		if ( KMessageBox::questionTwoActions ( this,
+		                                       "<qt>" + i18nc("action name will be appended to this", "Shortcut is already in use for") +
+		                                       QString ( "<br/><b>%1</b>.<br/>" ).arg ( reserved ) +
+		                                       i18n( "Do you still want to assign it?" ) + "</qt>",
+		                                       i18n( "Replace" ),
+		                                       KGuiItem ( i18nc ( "@action:button", "Reassign" ) ),
+		                                       KStandardGuiItem::cancel() ) == KMessageBox::PrimaryAction )
 		{
 			tmp->clearShortcut ( reserved );
 		}
