@@ -96,6 +96,22 @@ ${CMAKE_CURRENT_SOURCE_DIR}/tttableview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/typotek.cpp
 )
 
+# Debug output goes through one category, which is off unless asked for:
+#   QT_LOGGING_RULES="fontmatrix.debug=true" fontmatrix
+ecm_qt_declare_logging_category(fontmatrix_SRCS
+	HEADER fontmatrix_debug.h
+	IDENTIFIER FONTMATRIX_LOG
+	CATEGORY_NAME fontmatrix
+	DEFAULT_SEVERITY Info
+	DESCRIPTION "Fontmatrix"
+	EXPORT FONTMATRIX
+)
+ecm_qt_install_logging_categories(
+	EXPORT FONTMATRIX
+	FILE fontmatrix.categories
+	DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
+)
+
 IF(HARFBUZZSHAPER)
 	SET(HARFBUZZ_SRCS
 	harfbuzzqtshaper.cpp

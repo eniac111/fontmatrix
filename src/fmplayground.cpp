@@ -11,6 +11,7 @@
 //
 
 #include "fmplayground.h"
+#include "fontmatrix_debug.h"
 #include "fontitem.h"
 #include "fmglyphhighlight.h"
 #include "typotek.h"
@@ -39,11 +40,11 @@ FMPlayGround::FMPlayGround ( QWidget *parent )
 	if ( glwgt->format().sampleBuffers() )
 	{
 		setViewport ( glwgt );
-		qDebug() <<"opengl enabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
+		qCDebug(FONTMATRIX_LOG) <<"opengl enabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
 	}
 	else
 	{
-		qDebug() <<"opengl disabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
+		qCDebug(FONTMATRIX_LOG) <<"opengl disabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
 		delete glwgt;
 	}
 #endif
@@ -346,7 +347,7 @@ QRectF FMPlayGround::getMaxRect()
 		
 
 	}
-	qDebug()<<"FMPlayGround::getMaxRect = "<< allrect;
+	qCDebug(FONTMATRIX_LOG)<<"FMPlayGround::getMaxRect = "<< allrect;
 	return allrect;
 }
 

@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "fmfreetypelib.h"
+#include "fontmatrix_debug.h"
 
 #include <QThread>
 #include <QMutexLocker>
@@ -32,7 +33,7 @@ FMFreetypeLib::FMFreetypeLib(QObject *parent) :
 	FT_Library theLibrary;
 	FT_Init_FreeType ( &theLibrary );
 	libraries.insert(thread(), theLibrary);
-	qDebug()<<"FT_Library"<<theLibrary<<thread();
+	qCDebug(FONTMATRIX_LOG)<<"FT_Library"<<theLibrary<<thread();
 	mutex = new QMutex;
 }
 

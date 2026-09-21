@@ -21,6 +21,7 @@
 
 
 #include "browserwidget.h"
+#include "fontmatrix_debug.h"
 #include "dataexport.h"
 #include "dataloader.h"
 #include "dumpdialog.h"
@@ -185,12 +186,12 @@ typotek::typotek()
 	m_dpiY = macDisplayPxHeight / macDisplayPhysicalHeight;
 #endif
 
-	qDebug()<< m_dpiX << m_dpiY;
+	qCDebug(FONTMATRIX_LOG)<< m_dpiX << m_dpiY;
 }
 
 void typotek::initMatrix()
 {
-	qDebug()<<"Main Thread:"<<thread();
+	qCDebug(FONTMATRIX_LOG)<<"Main Thread:"<<thread();
 	if(matrix)
 		return;
 	matrix = true;
@@ -306,7 +307,7 @@ void typotek::installDock(const QString& id, const QString& name, QWidget * w, c
 	dw->setWidget( w );
 	dw->setStatusTip ( tip );
 	addDockWidget(fontmatrix::DockPosition[dockArea[id]], dw);
-	qDebug()<<"I"<<id<<dockArea[id]<<dockVisible[id];
+	qCDebug(FONTMATRIX_LOG)<<"I"<<id<<dockArea[id]<<dockVisible[id];
 	if(dockArea[id] == QString("Float"))
 		dw->setFloating(true);
 	if(!dockGeometry[id].isNull())
@@ -998,7 +999,7 @@ void typotek::readSettings()
 	databasePassword = FMConfig::value(QStringLiteral("Database/Password"), "").toString();
 	if( !QSqlDatabase::drivers().contains(databaseDriver) )
 	{
-		qDebug()<<"The SQL driver you request is not available("<< databaseDriver <<")";
+		qCDebug(FONTMATRIX_LOG)<<"The SQL driver you request is not available("<< databaseDriver <<")";
 	}
 
 }
@@ -1310,7 +1311,7 @@ QStringList typotek::getSystemFontDirs()
 	retList << getWin32SystemFontDir();
 #endif // _WIN32
 	
-	qDebug()<<retList.join("\n");
+	qCDebug(FONTMATRIX_LOG)<<retList.join("\n");
 	return retList;
 }
 
@@ -1368,7 +1369,7 @@ void typotek::initDir()
 			if(sysFontCount > 0)
 			{
 				relayStartingStepIn ( i18n( "Adding" ) +" "+ QString::number ( sysFontCount ) +" "+i18nc("followed by a directory name", "fonts from")  +" "+sysDir[sIdx]);
-				qDebug()<< ( i18n( "Adding" ) +" "+ QString::number ( sysFontCount ) +" "+i18nc("followed by a directory name", "fonts from")  +" "+sysDir[sIdx]);
+				qCDebug(FONTMATRIX_LOG)<< ( i18n( "Adding" ) +" "+ QString::number ( sysFontCount ) +" "+i18nc("followed by a directory name", "fonts from")  +" "+sysDir[sIdx]);
 				FMFontDb::DB()->TransactionBegin();
 				for ( int i = 0 ; i < sysFontCount; ++i )
 				{
@@ -1385,7 +1386,7 @@ void typotek::initDir()
 						}
 						else
 						{
-							qDebug() << "Cannot open this font because its broken: " << fi.fileName() ;
+							qCWarning(FONTMATRIX_LOG) << "Cannot open this font because its broken: " << fi.fileName() ;
 						}
 					}
 				}
@@ -1439,7 +1440,7 @@ void typotek::slotRemoteIsReady()
 		std::unique_ptr<FontItem> fi ( new FontItem ( listInfo[rf].file , true ) );
 		if(!fi->isValid())
 		{
-			qDebug() << "ERROR loading : " << listInfo[rf].file;
+			qCWarning(FONTMATRIX_LOG) << "ERROR loading : " << listInfo[rf].file;
 			continue;
 		}
 		fi->fileRemote(listInfo[rf].family,listInfo[rf].variant,listInfo[rf].type, listInfo[rf].info, listInfo[rf].pix);
@@ -1477,7 +1478,7 @@ void typotek::keyPressEvent ( QKeyEvent * event )
 {
 // 	qDebug() << "typotek::keyPressEvent(QKeyEvent * "<<event<<")";
 	if(/*event->modifiers().testFlag(Qt::ControlModifier) &&*/ event->key() == Qt::Key_J)
-		qDebug()<<"NUM FACES OPENED:"<<fm_num_face_opened;
+		qCDebug(FONTMATRIX_LOG)<<"NUM FACES OPENED:"<<fm_num_face_opened;
 }
 
 void typotek::slotActivateCurrents()
@@ -1534,7 +1535,7 @@ void typotek::setupDrop()
 void typotek::dropEvent ( QDropEvent * event )
 {
 
-	qDebug() << "typotek::dropEvent ("<< event->mimeData()->text() <<")";
+	qCDebug(FONTMATRIX_LOG) << "typotek::dropEvent ("<< event->mimeData()->text() <<")";
 // 	qDebug()<<"F: "<<event->mimeData()->formats().join(";");
 
 // 	event->acceptProposedAction();
@@ -1543,9 +1544,9 @@ void typotek::dropEvent ( QDropEvent * event )
 
 	for ( int i = 0; i < uris.count() ; ++i )
 	{
-		qDebug() << "dropped uri["<< i <<"] -> "<< uris[i];
+		qCDebug(FONTMATRIX_LOG) << "dropped uri["<< i <<"] -> "<< uris[i];
 		QUrl url ( uris[i].trimmed() );
-		qDebug() << "\tURL -> " << url.toLocalFile();
+		qCDebug(FONTMATRIX_LOG) << "\tURL -> " << url.toLocalFile();
 		if ( url.scheme() == "file" )
 		{
 			if ( url.toLocalFile().endsWith ( "ttf",Qt::CaseInsensitive ) )
@@ -1566,18 +1567,18 @@ void typotek::dropEvent ( QDropEvent * event )
 			}
 			else
 			{
-				qDebug() << url.toLocalFile ()  << "is not a supported font file";
+				qCDebug(FONTMATRIX_LOG) << url.toLocalFile ()  << "is not a supported font file";
 			}
 		}
 		else if ( url.scheme() == "http" )
 		{
 			// TODO Get fonts over http
-			qDebug() << "Support of DragNDrop over http is sheduled";
+			qCDebug(FONTMATRIX_LOG) << "Support of DragNDrop over http is sheduled";
 			statusBar()->showMessage ( i18n( "Support of DragNDrop over http is sheduled but not yet effective" ), 3000 );
 		}
 		else
 		{
-			qDebug() << "Protocol not supported";
+			qCDebug(FONTMATRIX_LOG) << "Protocol not supported";
 		}
 	}
 
@@ -1589,15 +1590,15 @@ void typotek::dropEvent ( QDropEvent * event )
 
 void typotek::dragEnterEvent ( QDragEnterEvent * event )
 {
-	qDebug() << event->mimeData()->formats().join ( "|" );
+	qCDebug(FONTMATRIX_LOG) << event->mimeData()->formats().join ( "|" );
 	if ( event->mimeData()->hasFormat ( "text/uri-list" ) )
 	{
 		event->acceptProposedAction();
-		qDebug() << "dragEnterEvent accepted " ;
+		qCDebug(FONTMATRIX_LOG) << "dragEnterEvent accepted " ;
 	}
 	else
 	{
-		qDebug() << "dragEnterEvent refused";
+		qCDebug(FONTMATRIX_LOG) << "dragEnterEvent refused";
 		statusBar()->showMessage ( i18n( "You bring something over me I can’t handle" ), 3000 );
 	}
 }
@@ -2283,7 +2284,7 @@ void typotek::slotDumpInfo()
 		FMDumpDialog dia(theMainView->selectedFont(), this);
 		if(dia.exec() != QDialog::Accepted)
 		{
-			qDebug()<< "Dump not saved";
+			qCDebug(FONTMATRIX_LOG)<< "Dump not saved";
 		}
 	}
 

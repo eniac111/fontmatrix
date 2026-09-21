@@ -12,6 +12,7 @@
 
 
 #include "fmbaseshaper.h"
+#include "fontmatrix_debug.h"
 
 #include "fontmatrixshaper.h"
 
@@ -69,30 +70,30 @@ FMShaperFactory::FMShaperFactory ( FMOtf * o, QString s, SHAPER_TYPE st )
 	switch ( shaperType )
 	{
 		case FONTMATRIX :
-			qDebug() << "NEW FontmatrixShaper";
+			qCDebug(FONTMATRIX_LOG) << "NEW FontmatrixShaper";
 			shaperImpl = new FontmatrixShaper ( otf, script );
 			break;
 #ifdef HAVE_HARFBUZZ
 		case HARFBUZZ:
-			qDebug() << "NEW HarfbuzzShaper";
+			qCDebug(FONTMATRIX_LOG) << "NEW HarfbuzzShaper";
 			shaperImpl = new HarfbuzzShaper ( otf, script );
 			break;
 #endif
 #ifdef HAVE_PANGO
 		case PANGO:
-			qDebug() << "NEW PangoShaper";
+			qCDebug(FONTMATRIX_LOG) << "NEW PangoShaper";
 			shaperImpl = new PangoShaper ( otf, script );
 			break;
 #endif
 #ifdef HAVE_ICU
 		case ICU :
-			qDebug() << "NEW IcuShaper";
+			qCDebug(FONTMATRIX_LOG) << "NEW IcuShaper";
 			shaperImpl = new IcuShaper ( otf, script );
 			break;
 #endif
 #ifdef HAVE_M17N
 		case M17N :
-			qDebug() << "NEW M17NShaper";
+			qCDebug(FONTMATRIX_LOG) << "NEW M17NShaper";
 			shaperImpl = new M17NShaper ( otf, script );
 			break;
 #endif

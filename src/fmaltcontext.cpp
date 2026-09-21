@@ -11,6 +11,7 @@
 //
 
 #include "fmaltcontext.h"
+#include "fontmatrix_debug.h"
 
 #include <QDebug>
 
@@ -45,13 +46,13 @@ FMAltContext * FMAltContextLib::SetCurrentContext ( const QString & tid, const Q
 	QString cid(tid + font);
 	if ( !that()->cmap.contains ( cid ) )
 	{
-		qDebug()<<"CREATE context"<<cid;
+		qCDebug(FONTMATRIX_LOG)<<"CREATE context"<<cid;
 		that()->cmap[cid] = new FMAltContext();
 		that()->cmap[cid]->fontID = font;
 		that()->cmap[cid]->textID = tid;
 	}
 	that()->current = cid;
-	qDebug()<<"CTX"<<cid;
+	qCDebug(FONTMATRIX_LOG)<<"CTX"<<cid;
 
 	emit that()->contextChanged();
 

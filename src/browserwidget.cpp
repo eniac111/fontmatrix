@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "browserwidget.h"
+#include "fontmatrix_debug.h"
 #include "ui_browserwidget.h"
 
 #include "fmfontdb.h"
@@ -111,7 +112,7 @@ void BrowserWidget::initWatcher(QModelIndex parent)
 		{
 			QString fp(theDirModel->filePath(mIdx));
 			dirWatcher->addPath(fp);
-			qDebug()<<"***Watch"<<fp;
+			qCDebug(FONTMATRIX_LOG)<<"***Watch"<<fp;
 			initWatcher(mIdx);
 		}
 	}
@@ -119,7 +120,7 @@ void BrowserWidget::initWatcher(QModelIndex parent)
 
 void BrowserWidget::slotFolderAddToWatcher(QModelIndex mIdx)
 {
-	qDebug()<<"Add to watcher"<<theDirModel->filePath(mIdx);
+	qCDebug(FONTMATRIX_LOG)<<"Add to watcher"<<theDirModel->filePath(mIdx);
 	dirWatcher->addPath(theDirModel->filePath(mIdx));
 }
 
@@ -176,7 +177,7 @@ void BrowserWidget::slotFolderRefresh(const QString &dirPath)
 {
 	if(ui->browserView->isVisible())
 	{
-		qDebug()<<"Refresh"<<dirPath;
+		qCDebug(FONTMATRIX_LOG)<<"Refresh"<<dirPath;
 		// QFileSystemModel refreshes automatically via file system monitoring
 		Q_UNUSED(dirPath);
 	}
@@ -184,7 +185,7 @@ void BrowserWidget::slotFolderRefresh(const QString &dirPath)
 
 void BrowserWidget::slotFolderRemoveFromWatcher(QModelIndex mIdx)
 {
-	qDebug()<<"Remove from watcher"<<theDirModel->filePath(mIdx);
+	qCDebug(FONTMATRIX_LOG)<<"Remove from watcher"<<theDirModel->filePath(mIdx);
 	dirWatcher->removePath(theDirModel->filePath(mIdx));
 }
 
@@ -275,7 +276,7 @@ void BrowserWidget::slotDetachSample()
 
 void BrowserWidget::slotFolderViewContextMenu(const QPoint &p)
 {
-	qDebug()<<"P"<<p;
+	qCDebug(FONTMATRIX_LOG)<<"P"<<p;
 	QFileSystemModel *dm = static_cast<QFileSystemModel*>(ui->browserView->model());
 	if (!dm)
 		return;

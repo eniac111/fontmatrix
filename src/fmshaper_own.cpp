@@ -11,6 +11,7 @@
 //
 
 #include "fmshaper_own.h"
+#include "fontmatrix_debug.h"
 
 #include <QDebug>
 #include <QFile>
@@ -65,17 +66,17 @@ int FMOwnShaper::loadRules(QString lang)
 	{
 		actualSDir = ShaperDir + QDir::separator() ;
 	}
-	qDebug()<<"SHAPER_FILES : "<<actualSDir +lang+ ".dict"<<"; "<<actualSDir +lang+".match";
+	qCDebug(FONTMATRIX_LOG)<<"SHAPER_FILES : "<<actualSDir +lang+ ".dict"<<"; "<<actualSDir +lang+".match";
 	QFile dictFile(actualSDir +lang+ ".dict");
 	if(!dictFile.open(QIODevice::ReadOnly))
 	{
-		qDebug()<<"Failed to open " << dictFile.fileName();
+		qCWarning(FONTMATRIX_LOG)<<"Failed to open " << dictFile.fileName();
 		return 1;
 	}
 	QFile matchFile(actualSDir +lang+".match");
 	if(!matchFile.open(QIODevice::ReadOnly))
 	{
-		qDebug()<<"Failed to open " << matchFile.fileName();
+		qCWarning(FONTMATRIX_LOG)<<"Failed to open " << matchFile.fileName();
 		return 1;
 	}
 	
@@ -92,7 +93,7 @@ int FMOwnShaper::loadRules(QString lang)
 			bool ok;
 			int unicode = elems.takeFirst().mid(0,4).toInt(&ok,16) ;
 			if(!ok)
-				qDebug()<<"Oops";
+				qCDebug(FONTMATRIX_LOG)<<"Oops";
 			Dictionnary[unicode] = Character(unicode, elems);
 		}
 		
@@ -133,7 +134,7 @@ void FMOwnShaper::fillIn(const QString& s)
 		}
 		debug << "["+QString::number(s[i].unicode(),16)+"]";
 	}
-	qDebug()<< debug.join(" ");
+	qCDebug(FONTMATRIX_LOG)<< debug.join(" ");
 	
 }
 
@@ -169,7 +170,7 @@ void FMOwnShaper::Op()
 				}
 				chunks.append( QPair< int, QList< Character > >(nm , cl) );
 				
-				qDebug() << "MATCH : "<< debugString;
+				qCDebug(FONTMATRIX_LOG) << "MATCH : "<< debugString;
 				idx += rc;
 				matched = true;
 				break;
@@ -326,7 +327,7 @@ void FMOwnShaper::DumpOut()
 // 	qDebug()<<"FMOwnShaper::DumpOut()";
 	for(int i(0); i < Out.size(); ++i)
 	{
-		qDebug()<<"Unicode("<< QString::number(Out[i].unicode(), 16 ) <<").["<< Out[i].DumpCustom() <<"]";
+		qCDebug(FONTMATRIX_LOG)<<"Unicode("<< QString::number(Out[i].unicode(), 16 ) <<").["<< Out[i].DumpCustom() <<"]";
 	}
 }
 
@@ -399,7 +400,7 @@ void MatchSequence::SetMatch(const QString &b)
 			++idx;
 			int unicode = ref.mid(idx,4).toInt(&ok,16) ;
 			if(!ok)
-				qDebug()<<"Oops";
+				qCDebug(FONTMATRIX_LOG)<<"Oops";
 			idx += 4;
 			if(idx < ref.size() && ref[idx] == '(')// property list
 			{
@@ -489,7 +490,7 @@ void MatchSequence::SetMatch(const QString &b)
 		else
 		{
 			// Error
-			qDebug()<<"ERROR match: current = "<< current;
+			qCWarning(FONTMATRIX_LOG)<<"ERROR match: current = "<< current;
 		}
 	}
 }
@@ -507,7 +508,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 			++idx;
 			int unicode = ref.mid(idx,4).toInt(&ok,16) ;
 			if(!ok)
-				qDebug()<<"Oops";
+				qCDebug(FONTMATRIX_LOG)<<"Oops";
 			idx += 4;
 			if(idx >= ref.size() || ref[idx] != '(')
 			{
@@ -569,7 +570,7 @@ void ReplaceSequence::SetReplace(const QString& b)
 		else
 		{
 			// Error
-			qDebug()<<"ERROR replace: current = "<< current;
+			qCWarning(FONTMATRIX_LOG)<<"ERROR replace: current = "<< current;
 		}
 	}
 }

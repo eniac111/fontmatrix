@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "fmsampletextview.h"
+#include "fontmatrix_debug.h"
 #include <QMouseEvent>
 #include <QGraphicsRectItem>
 #include <QScrollBar>
@@ -42,11 +43,11 @@ FMSampleTextView::FMSampleTextView ( QWidget* parent )
 	if ( glwgt->format().sampleBuffers() )
 	{
 		setViewport ( glwgt );
-		qDebug() <<"opengl enabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
+		qCDebug(FONTMATRIX_LOG) <<"opengl enabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
 	}
 	else
 	{
-		qDebug() <<"opengl disabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
+		qCDebug(FONTMATRIX_LOG) <<"opengl disabled - DirectRendering("<< glwgt->format().directRendering() <<") - SampleBuffers("<< glwgt->format().sampleBuffers() <<")";
 		delete glwgt;
 	}
 #endif

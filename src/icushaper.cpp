@@ -11,6 +11,7 @@
 //
 
 #include <QDebug>
+#include "fontmatrix_debug.h"
 #include "icushaper.h"
 
 #include <iostream>
@@ -23,7 +24,7 @@ IcuShaper::IcuShaper ( FMOtf * o, QString s )
 		:FMBaseShaper ( o,s )
 {
 	fillTagToCode();
-	qDebug()<<"IcuShaper::IcuShaper("<< tagToCode.value ( script ) <<")";
+	qCDebug(FONTMATRIX_LOG)<<"IcuShaper::IcuShaper("<< tagToCode.value ( script ) <<")";
 	LEErrorCode err(LE_NO_ERROR);
 	icuFont = new IcuFontImpl ( otf );
 	icuLE = LayoutEngine::layoutEngineFactory ( icuFont,  tagToCode.value ( script ), -1 , err );
@@ -214,16 +215,16 @@ void IcuShaper::IcuError(int err)
 {
 	switch ( err )
 	{
-		case LE_NO_SUBFONT_WARNING  : qDebug()<<"The font does not contain subfonts.";break;
+		case LE_NO_SUBFONT_WARNING  : qCDebug(FONTMATRIX_LOG)<<"The font does not contain subfonts.";break;
 // 		case LE_NO_ERROR  : qDebug()<<"No error, no warning.";break;
-		case LE_ILLEGAL_ARGUMENT_ERROR  : qDebug()<<"An illegal argument was detected.";break;
-		case LE_MEMORY_ALLOCATION_ERROR  : qDebug()<<"Memory allocation error.";break;
-		case LE_INDEX_OUT_OF_BOUNDS_ERROR  : qDebug()<<"Trying to access an index that is out of bounds.";break;
-		case LE_NO_LAYOUT_ERROR  : qDebug()<<"You must call layoutChars() first.";break;
-		case LE_INTERNAL_ERROR  : qDebug()<<"An internal error was encountered.";break;
-		case LE_FONT_FILE_NOT_FOUND_ERROR  : qDebug()<<"The requested font file cannot be opened.";break;
-		case LE_MISSING_FONT_TABLE_ERROR  : qDebug()<<"The requested font table does not exist.";break;
-		default:/*qDebug()<<"NoCode"*/;
+		case LE_ILLEGAL_ARGUMENT_ERROR  : qCWarning(FONTMATRIX_LOG)<<"An illegal argument was detected.";break;
+		case LE_MEMORY_ALLOCATION_ERROR  : qCWarning(FONTMATRIX_LOG)<<"Memory allocation error.";break;
+		case LE_INDEX_OUT_OF_BOUNDS_ERROR  : qCWarning(FONTMATRIX_LOG)<<"Trying to access an index that is out of bounds.";break;
+		case LE_NO_LAYOUT_ERROR  : qCWarning(FONTMATRIX_LOG)<<"You must call layoutChars() first.";break;
+		case LE_INTERNAL_ERROR  : qCWarning(FONTMATRIX_LOG)<<"An internal error was encountered.";break;
+		case LE_FONT_FILE_NOT_FOUND_ERROR  : qCWarning(FONTMATRIX_LOG)<<"The requested font file cannot be opened.";break;
+		case LE_MISSING_FONT_TABLE_ERROR  : qCWarning(FONTMATRIX_LOG)<<"The requested font table does not exist.";break;
+		default:/*qCDebug(FONTMATRIX_LOG)<<"NoCode"*/;
 	}
 }
 

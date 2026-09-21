@@ -11,6 +11,7 @@
 //
 
 #include "fmkernfeat.h"
+#include "fontmatrix_debug.h"
 
 #include FT_TRUETYPE_TABLES_H
 #include FT_TRUETYPE_TAGS_H
@@ -66,7 +67,7 @@ void FMKernFeature::makeCoverage()
 			FeatureKern_Offset << ( toUint16 ( rawIdx + 4 ) + FeatureList_Offset );
 			if ( out )
 			{
-				qDebug() <<"KERN"<<FeatureKern_Offset;
+				qCDebug(FONTMATRIX_LOG) <<"KERN"<<FeatureKern_Offset;
 			}
 
 		}
@@ -79,8 +80,8 @@ void FMKernFeature::makeCoverage()
 		quint16 LookupCount ( toUint16 ( kern + 2 ) );
 		if ( out )
 		{
-			qDebug() <<"\tParams"<<toUint16 ( kern );
-			qDebug() <<"\tLookupCount"<<LookupCount;
+			qCDebug(FONTMATRIX_LOG) <<"\tParams"<<toUint16 ( kern );
+			qCDebug(FONTMATRIX_LOG) <<"\tLookupCount"<<LookupCount;
 		}
 		for ( int llio ( 0 ) ; llio < LookupCount; ++llio )
 		{
@@ -91,7 +92,7 @@ void FMKernFeature::makeCoverage()
 			}
 		}
 		if ( out )
-			qDebug() <<"\tLookupIndex"<<LookupListIndex;
+			qCDebug(FONTMATRIX_LOG) <<"\tLookupIndex"<<LookupListIndex;
 	}
 
 
@@ -113,15 +114,15 @@ void FMKernFeature::makeCoverage()
 
 			if ( out )
 			{
-				qDebug() <<"\t\tPosFormat"<<PosFormat;
-				qDebug() <<"\t\tCoverageFormat"<<CoverageFormat;
+				qCDebug(FONTMATRIX_LOG) <<"\t\tPosFormat"<<PosFormat;
+				qCDebug(FONTMATRIX_LOG) <<"\t\tCoverageFormat"<<CoverageFormat;
 			}
 			if ( 1 == CoverageFormat ) // glyph indices based
 			{
 				quint16 GlyphCount ( toUint16 ( Coverage_Offset + 2 ) );
 				quint16 GlyphID ( Coverage_Offset + 4 );
 				if ( out )
-					qDebug() <<"\t\t\tGlyphCount"<<GlyphCount;
+					qCDebug(FONTMATRIX_LOG) <<"\t\t\tGlyphCount"<<GlyphCount;
 				for ( unsigned int gl ( 0 ); gl < GlyphCount; ++gl )
 				{
 					coverages[SubTable] << toUint16 ( GlyphID + ( gl * 2 ) );
@@ -131,7 +132,7 @@ void FMKernFeature::makeCoverage()
 			{
 				quint16 RangeCount ( toUint16 ( Coverage_Offset + 2 ) );
 				if ( out )
-					qDebug() <<"\t\t\tRangeCount" <<RangeCount;
+					qCDebug(FONTMATRIX_LOG) <<"\t\t\tRangeCount" <<RangeCount;
 				for ( int r ( 0 ); r < RangeCount; ++r )
 				{
 					quint16 rBase ( Coverage_Offset + 4 + ( r * 6 ) );
@@ -139,16 +140,16 @@ void FMKernFeature::makeCoverage()
 					quint16 End ( toUint16 ( rBase + 2 ) );
 					quint16 StartCoverageIndex ( toUint16 ( rBase + 4 ) );
 					if(out)
-						qDebug()<<"\t\t\t\tRange"<<Start<<End<<StartCoverageIndex;
+						qCDebug(FONTMATRIX_LOG)<<"\t\t\t\tRange"<<Start<<End<<StartCoverageIndex;
 					for ( unsigned int gl ( Start ); gl <= End; ++gl )
 						coverages[SubTable]  << gl;
 				}
 			}
 			else
-				qDebug() <<"Unknow Coverage Format:"<<CoverageFormat;
+				qCDebug(FONTMATRIX_LOG) <<"Unknow Coverage Format:"<<CoverageFormat;
 
 			if(out)
-				qDebug()<<"\t\t**Built a coverage array of length:"<<coverages[SubTable].size();
+				qCDebug(FONTMATRIX_LOG)<<"\t\t**Built a coverage array of length:"<<coverages[SubTable].size();
 			makePairs ( SubTable );
 		}
 
@@ -211,7 +212,7 @@ void FMKernFeature::makePairs ( quint16 subtableOffset )
 		}
 		else
 		{
-			qDebug() <<"ValueFormat1 is null or both ValueFormat1 and ValueFormat2 are null";
+			qCDebug(FONTMATRIX_LOG) <<"ValueFormat1 is null or both ValueFormat1 and ValueFormat2 are null";
 		}
 
 	}
@@ -276,12 +277,12 @@ void FMKernFeature::makePairs ( quint16 subtableOffset )
 		}
 		else
 		{
-			qDebug() <<"ValueFormat1 is null or both ValueFormat1 and ValueFormat2 are null";
+			qCDebug(FONTMATRIX_LOG) <<"ValueFormat1 is null or both ValueFormat1 and ValueFormat2 are null";
 		}
 
 	}
 	else
-		qDebug() <<"unknown PosFormat"<<PosFormat;
+		qCDebug(FONTMATRIX_LOG) <<"unknown PosFormat"<<PosFormat;
 }
 
 quint16 FMKernFeature::toUint16 ( quint16 index )
@@ -366,7 +367,7 @@ FMKernFeature::ClassDefTable FMKernFeature::getClass ( quint16 classDefOffset, q
 		}
 	}
 	else
-		qDebug() <<"Unknown Class Table type";
+		qCDebug(FONTMATRIX_LOG) <<"Unknown Class Table type";
 	
 // 	for (const auto& c : ret.keys())
 // 	{

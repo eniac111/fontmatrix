@@ -11,6 +11,7 @@
 //
 
 #include "fmrepair.h"
+#include "fontmatrix_debug.h"
 #include "typotek.h"
 #include "fontitem.h"
 #include "fmfontdb.h"
@@ -118,12 +119,12 @@ void FmRepair::fillActNotLinked()
 			}
 			else
 			{
-				qDebug()<<list[i].filePath()<<" is a broken symlink";
+				qCDebug(FONTMATRIX_LOG)<<list[i].filePath()<<" is a broken symlink";
 			}
 		}
 		else
 		{
-			qDebug()<<list[i].filePath() << " is not a symlink";
+			qCDebug(FONTMATRIX_LOG)<<list[i].filePath() << " is not a symlink";
 		}
 	}
 	

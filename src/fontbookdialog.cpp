@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "fontbookdialog.h"
+#include "fontmatrix_debug.h"
 #include "fontitem.h"
 #include "typotek.h"
 #include "fmpaths.h"
@@ -136,7 +137,7 @@ QString FontBookDialog::getFileName()
 void FontBookDialog::slotLoadTemplate(const QString &theTemplate)
 {
 // 	QString theTemplate = QFileDialog::getOpenFileName ( this, "Get template", QDir::homePath(), i18n("Templates (*.xml)"));
-	qDebug() << "FontBookDialog::slotLoadTemplate("<<theTemplate<<") -> " << templatesMap[theTemplate];
+	qCDebug(FONTMATRIX_LOG) << "FontBookDialog::slotLoadTemplate("<<theTemplate<<") -> " << templatesMap[theTemplate];
 	if(theTemplate.isEmpty())
 		return;
 	
@@ -226,7 +227,7 @@ void FontBookDialog::fillTemplates()
 
 void FontBookDialog::slotPreviewTemplate(const QString &key)
 {
-	qDebug() << "slotPreviewTemplate("<<key<<") -> "<< templatesMap[key];
+	qCDebug(FONTMATRIX_LOG) << "slotPreviewTemplate("<<key<<") -> "<< templatesMap[key];
 	if(templatesMap.contains(key))
 	{
 		if(!templatesPreviewMap[key].isNull())

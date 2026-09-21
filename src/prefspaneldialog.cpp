@@ -10,6 +10,7 @@
 //
 //
 #include "prefspaneldialog.h"
+#include "fontmatrix_debug.h"
 #include "typotek.h"
 #include "shortcuts.h"
 #include "hyphenate/fmhyphenator.h"
@@ -291,10 +292,10 @@ void PrefsPanelDialog::deleteSampleName()
 		if(it)
 			delete it;
 		typotek::getInstance()->removeNamedSample( sampleKey );
-		qDebug()<<"Removed"<<sampleKey;
+		qCDebug(FONTMATRIX_LOG)<<"Removed"<<sampleKey;
 	}
 	else
-		qDebug()<<"Did not removed"<<sampleKey;
+		qCDebug(FONTMATRIX_LOG)<<"Did not removed"<<sampleKey;
 }
 
 void PrefsPanelDialog::displayNamedText()

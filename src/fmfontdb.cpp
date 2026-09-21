@@ -11,6 +11,7 @@
 //
 
 #include "fmfontdb.h"
+#include "fontmatrix_debug.h"
 #include "typotek.h"
 #include "fontitem.h"
 
@@ -78,14 +79,14 @@ bool FMFontDb::execBound ( QSqlQuery & query, const QString & statement, const Q
 	// Identifiers are composed by the caller, every value is bound here.
 	if ( !query.prepare ( statement ) )
 	{
-		qWarning() << "Cannot prepare" << statement << query.lastError().text();
+		qCWarning(FONTMATRIX_LOG) << "Cannot prepare" << statement << query.lastError().text();
 		return false;
 	}
 	for ( const auto & v : values )
 		query.addBindValue ( v );
 	if ( !query.exec() )
 	{
-		qWarning() << "Cannot execute" << statement << values << query.lastError().text();
+		qCWarning(FONTMATRIX_LOG) << "Cannot execute" << statement << values << query.lastError().text();
 		return false;
 	}
 	return true;
@@ -298,12 +299,12 @@ FontInfoMap FMFontDb::getInfoMap ( const QString & id )
 	FontInfoMap ret;
 	if ( id.isEmpty() )
 	{
-		qDebug() <<"No such font is referenced";
+		qCDebug(FONTMATRIX_LOG) <<"No such font is referenced";
 		return ret;
 	}
 	if ( temporaryFont.contains(id) )
 	{
-		qDebug() <<"It is a temp Id";
+		qCDebug(FONTMATRIX_LOG) <<"It is a temp Id";
 		return temporaryFont[id]->moreInfo();
 	}
 	QString qs ( QString ( "SELECT * FROM %1 WHERE %2=?" )
@@ -321,7 +322,7 @@ FontInfoMap FMFontDb::getInfoMap ( const QString & id )
 	}
 	else
 	{
-		qDebug() <<"Error executing query";	
+		qCDebug(FONTMATRIX_LOG) <<"Error executing query";	
 	}
 	return ret;
 
@@ -474,14 +475,14 @@ void FMFontDb::initFMDb()
 	setPassword ( typotek::getInstance()->getDatabasePassword() );
 	if ( !open() )
 	{
-		qDebug() <<"Connection to"<<hostName() <<"::"<<databaseName() <<"failed miserably!";
-		qDebug() <<"====================================================================";
-		qDebug() <<lastError();
-		qDebug() <<"====================================================================";
+		qCWarning(FONTMATRIX_LOG) <<"Connection to"<<hostName() <<"::"<<databaseName() <<"failed miserably!";
+		qCWarning(FONTMATRIX_LOG) <<"====================================================================";
+		qCWarning(FONTMATRIX_LOG) <<lastError();
+		qCWarning(FONTMATRIX_LOG) <<"====================================================================";
 		return;
 	}
 	else
-		qDebug() <<"Connection to"<<hostName() <<"::"<<databaseName() <<"SUCCESS!";
+		qCDebug(FONTMATRIX_LOG) <<"Connection to"<<hostName() <<"::"<<databaseName() <<"SUCCESS!";
 
 	QStringList tl ( tables ( QSql::Tables ) );
 	bool allIsAlreadyHere ( true );
@@ -534,21 +535,21 @@ void FMFontDb::initFMDb()
 
 		QSqlQuery query ( *this );
 		if ( !query.exec ( cData ) )
-			qDebug() <<"ERROR:"<<cData<<"\n---------------------------------\n"<<query.lastError().databaseText();
+			qCWarning(FONTMATRIX_LOG) <<"ERROR:"<<cData<<"\n---------------------------------\n"<<query.lastError().databaseText();
 		if ( !query.exec ( iData ) )
-			qDebug() <<"ERROR:"<<iData<<"\n---------------------------------\n"<<query.lastError().databaseText();
+			qCWarning(FONTMATRIX_LOG) <<"ERROR:"<<iData<<"\n---------------------------------\n"<<query.lastError().databaseText();
 		if ( !query.exec ( cInfo ) )
-			qDebug() <<"ERROR:"<<cInfo<<"\n---------------------------------\n"<<query.lastError().databaseText();
+			qCWarning(FONTMATRIX_LOG) <<"ERROR:"<<cInfo<<"\n---------------------------------\n"<<query.lastError().databaseText();
 		if ( !query.exec ( iInfo ) )
-			qDebug() <<"ERROR:"<<iInfo<<"\n---------------------------------\n"<<query.lastError().databaseText();
+			qCWarning(FONTMATRIX_LOG) <<"ERROR:"<<iInfo<<"\n---------------------------------\n"<<query.lastError().databaseText();
 		if ( !query.exec ( cTag ) )
-			qDebug() <<"ERROR:"<<cTag<<"\n---------------------------------\n"<<query.lastError().databaseText();
+			qCWarning(FONTMATRIX_LOG) <<"ERROR:"<<cTag<<"\n---------------------------------\n"<<query.lastError().databaseText();
 		if ( !query.exec ( iTag ) )
-			qDebug() <<"ERROR:"<<iTag<<"\n---------------------------------\n"<<query.lastError().databaseText();
+			qCWarning(FONTMATRIX_LOG) <<"ERROR:"<<iTag<<"\n---------------------------------\n"<<query.lastError().databaseText();
 		if ( !query.exec ( cId ) )
-			qDebug() <<"ERROR:"<<cId<<"\n---------------------------------\n"<<query.lastError().databaseText();
+			qCWarning(FONTMATRIX_LOG) <<"ERROR:"<<cId<<"\n---------------------------------\n"<<query.lastError().databaseText();
 		if ( !query.exec ( iId ) )
-			qDebug() <<"ERROR:"<<iId<<"\n---------------------------------\n"<<query.lastError().databaseText();
+			qCWarning(FONTMATRIX_LOG) <<"ERROR:"<<iId<<"\n---------------------------------\n"<<query.lastError().databaseText();
 
 		internalCounter = 0;
 	}
@@ -570,8 +571,8 @@ void FMFontDb::initFMDb()
 		rq = query.exec ( qs1.arg ( tableName[InternalId] ) );
 		if ( !rq )
 		{
-			qDebug() <<query.lastQuery();
-			qDebug() <<lastError();
+			qCWarning(FONTMATRIX_LOG) <<query.lastQuery();
+			qCWarning(FONTMATRIX_LOG) <<lastError();
 			return;
 		}
 		else
@@ -593,8 +594,8 @@ void FMFontDb::initFMDb()
 		                            fieldName[Type], fieldName[Activation], tableName[Data] ) );
 		if ( !rq )
 		{
-			qDebug() <<query.lastQuery();
-			qDebug() <<lastError();
+			qCWarning(FONTMATRIX_LOG) <<query.lastQuery();
+			qCWarning(FONTMATRIX_LOG) <<lastError();
 			return ;
 		}
 		else
@@ -650,7 +651,7 @@ FontItem * FMFontDb::Font ( const QString & id , bool noTemporary )
 			fitem->updateItem() ;
 		}
 		else
-			qDebug() <<"ERROR fetching font item"<<id;
+			qCWarning(FONTMATRIX_LOG) <<"ERROR fetching font item"<<id;
 	}
 	else
 	{
@@ -668,14 +669,14 @@ FontItem * FMFontDb::Font ( const QString & id , bool noTemporary )
 			{
 				delete fitem;
 				fitem = nullptr;
-				qDebug() <<"ERROR creating font item"<<id;
+				qCWarning(FONTMATRIX_LOG) <<"ERROR creating font item"<<id;
 			}
 		}
 		else
 		{
 			delete fitem;
 			fitem = nullptr;
-			qDebug() <<"ERROR creating font item"<<id;
+			qCWarning(FONTMATRIX_LOG) <<"ERROR creating font item"<<id;
 		}
 	}
 	return fitem;
@@ -717,7 +718,7 @@ void FMFontDb::TransactionBegin()
 			++transactionDeep;
 		}
 		else
-			qDebug()<< "Cannot BEGIN transaction";
+			qCWarning(FONTMATRIX_LOG)<< "Cannot BEGIN transaction";
 		// 		qDebug() <<"TransactionBegin";
 	}
 }
@@ -737,14 +738,14 @@ bool FMFontDb::TransactionEnd()
 	else
 	{
 		bool cestGraveDocteur ( false );
-		qDebug() <<"ERRORS ==========================================================================";
+		qCDebug(FONTMATRIX_LOG) <<"ERRORS ==========================================================================";
 		for (const auto& e : transactionError)
 		{
-			qDebug() <<e;
+			qCDebug(FONTMATRIX_LOG) <<e;
 			if ( e.isValid () )
 				cestGraveDocteur = true;
 		}
-		qDebug() <<"=================================================================================";
+		qCDebug(FONTMATRIX_LOG) <<"=================================================================================";
 		if ( cestGraveDocteur )
 		{
 			rollback();
@@ -770,7 +771,7 @@ int FMFontDb::FontCount()
 		}
 	}
 	else
-		qDebug() <<query.lastError();
+		qCWarning(FONTMATRIX_LOG) <<query.lastError();
 	return 0;
 }
 
@@ -817,7 +818,7 @@ QList< FontItem * > FMFontDb::Fonts ( const QString & whereString, const QVarian
 				if ( id > 0 )
 				{
 					if( !fontMap.value(id) )
-						qDebug()<<"ERROR : DB contains references to id"<<id<<"which is not in fontmap";
+						qCWarning(FONTMATRIX_LOG)<<"ERROR : DB contains references to id"<<id<<"which is not in fontmap";
 					else
 					{
 						reg[id] = fontMap.value ( id );

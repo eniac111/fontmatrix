@@ -11,6 +11,7 @@
 //
 
 #include "dataexport.h"
+#include "fontmatrix_debug.h"
 #include "ui_dataexport.h"
 
 #include "typotek.h"
@@ -93,11 +94,11 @@ int DataExport::copyFiles()
 			{
 				if ( !QFile::copy( fonts[fidx]->afm(), exDir.absolutePath() + exDir.separator() +  fonts[fidx]->activationAFMName() ) )
 				{
-					qDebug() << "unable to copy " << fonts[fidx]->afm();
+					qCWarning(FONTMATRIX_LOG) << "unable to copy " << fonts[fidx]->afm();
 				}
 				else
 				{
-					qDebug() << fonts[fidx]->afm() << "copied";
+					qCDebug(FONTMATRIX_LOG) << fonts[fidx]->afm() << "copied";
 				}
 			}
 		}
@@ -116,7 +117,7 @@ int DataExport::buildIndex()
 	QXmlStreamWriter xmlStream(&file);
 	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
 	{
-		qDebug() << "Export Warning : Can't open " << file.fileName();
+		qCWarning(FONTMATRIX_LOG) << "Export Warning : Can't open " << file.fileName();
 		return 0;
 	}
 	else
@@ -169,7 +170,7 @@ int DataExport::buildHtml()
 	QXmlStreamWriter xmlStream(&file);
 	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
 	{
-		qDebug() << "Export Warning : Can't open " << file.fileName();
+		qCWarning(FONTMATRIX_LOG) << "Export Warning : Can't open " << file.fileName();
 		return 0;
 	}
 	else
@@ -251,7 +252,7 @@ int DataExport::buildTemplate(const QString& templateDirPath)
 	QFile file(exDir.absolutePath() + exDir.separator() +"export.html");
 	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
 	{
-		qDebug() << "Export Warning : Can't open " << file.fileName();
+		qCWarning(FONTMATRIX_LOG) << "Export Warning : Can't open " << file.fileName();
 		return 0;
 	}
 	

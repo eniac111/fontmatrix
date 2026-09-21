@@ -10,6 +10,7 @@
 //
 //
 #include "fmshaper.h"
+#include "fontmatrix_debug.h"
 
 #include <QList>
 #include <QMap>
@@ -62,26 +63,26 @@ FMShaper::FMShaper(FMOtf *anchor)
 {
 	faceisset = langisset = allocated = false;
 	setFont();
-	qDebug() << "FMShaper "<< this <<" created";
+	qCDebug(FONTMATRIX_LOG) << "FMShaper "<< this <<" created";
 }
 
 FMShaper::~ FMShaper()
 {
-	qDebug() << "FMShaper "<< this <<" destructor";
+	qCDebug(FONTMATRIX_LOG) << "FMShaper "<< this <<" destructor";
 	if (faceisset)
 	{
 		if(m.font)
 		{
-			qDebug() << "Freeing m.font at "<< m.font;
+			qCDebug(FONTMATRIX_LOG) << "Freeing m.font at "<< m.font;
 			delete m.font;
 		}
 		if(m.face)
 		{
-			qDebug() << "Freeing m.face at "<< m.face;
+			qCDebug(FONTMATRIX_LOG) << "Freeing m.face at "<< m.face;
 			HB_FreeFace(m.face);
 		}
 	}
-	qDebug() << "FMShaper "<< this <<" destroyed";
+	qCDebug(FONTMATRIX_LOG) << "FMShaper "<< this <<" destroyed";
 }
 
 bool FMShaper::setFont (/*FT_Face face, HB_Font font  */)
@@ -118,7 +119,7 @@ bool FMShaper::setScript ( QString script )
 
 QList< RenderedGlyph > FMShaper::doShape(QString string, bool ltr)
 {
-	qDebug() << "FMShaper::doShape("<<string<<","<<ltr<<")";
+	qCDebug(FONTMATRIX_LOG) << "FMShaper::doShape("<<string<<","<<ltr<<")";
 	
 	if(!faceisset)
 		setFont();
@@ -171,9 +172,9 @@ QList< RenderedGlyph > FMShaper::doShape(QString string, bool ltr)
 		m.offsets = hb_offsets.data();
 		m.log_clusters = hb_logClusters.data();
 		
-		qDebug() << "----------------------------------------------item allocated------------";
+		qCDebug(FONTMATRIX_LOG) << "----------------------------------------------item allocated------------";
 		result = HB_ShapeItem ( &m );
-		qDebug() << "----------------------------------------------ShapeItem run"<<++iter<<" - "<< (result ? "has " : "wants ") << m.num_glyphs <<" glyphs-";
+		qCDebug(FONTMATRIX_LOG) << "----------------------------------------------ShapeItem run"<<++iter<<" - "<< (result ? "has " : "wants ") << m.num_glyphs <<" glyphs-";
 	}
 	
 	
@@ -217,7 +218,7 @@ QList< RenderedGlyph > FMShaper::doShape(QString string, bool ltr)
 		dbgS += "["+QString::number(gIndex)+ ";" +QString(QChar(gl.lChar))+"]";
 	}
 // 	qDebug() << "EndOf FMShaper::doShape("<<string<<","<<ltr<<")";
-	qDebug() <<"LOGS:"<<dbgS;
+	qCDebug(FONTMATRIX_LOG) <<"LOGS:"<<dbgS;
 	return renderedString;
 }
 

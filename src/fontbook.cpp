@@ -10,6 +10,7 @@
 //
 //
 #include "fontbook.h"
+#include "fontmatrix_debug.h"
 #include "fontbookdialog.h"
 #include "typotek.h"
 #include "fontitem.h"
@@ -186,7 +187,7 @@ void FontBook::doFullBookCover()
 
 void FontBook::doFullBookPageRight(const QString &family)
 {
-	qDebug()<<"=>"<<family;
+	qCDebug(FONTMATRIX_LOG)<<"=>"<<family;
 	QList<FontItem*> familyFonts = FMFontDb::DB()->FamilySet(family);
 
 	QRectF halfPage(printerRect);
@@ -220,7 +221,7 @@ void FontBook::doFullBookPageRight(const QString &family)
 					&& !stl.contains(t)
 					&& !sizes.contains(t.size()))
 					{
-					qDebug()<<"\t"<<t;
+					qCDebug(FONTMATRIX_LOG)<<"\t"<<t;
 					sizes << t.size();
 					stl << t;
 				}

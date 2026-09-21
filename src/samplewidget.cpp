@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "samplewidget.h"
+#include "fontmatrix_debug.h"
 #include "sampletoolbar.h"
 #include "ui_samplewidget.h"
 #include "typotek.h"
@@ -456,7 +457,7 @@ void SampleWidget::drawBaseline(double y)
 
 void SampleWidget::clearFTScene()
 {
-	qDebug()<<"SampleWidget::clearFTScene"<< layoutSwitch;
+	qCDebug(FONTMATRIX_LOG)<<"SampleWidget::clearFTScene"<< layoutSwitch;
 //	if(layoutSwitch)
 //		return;
 	for (auto* gi : ftScene->items())

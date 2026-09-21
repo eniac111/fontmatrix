@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "fmactivationreport.h"
+#include "fontmatrix_debug.h"
 #include <QDebug>
 //#include <QTableWidget>
 FMActivationReport::FMActivationReport(QWidget * parent, const QMap<QString,QString>& errorMap)
@@ -30,7 +31,7 @@ FMActivationReport::FMActivationReport(QWidget * parent, const QMap<QString,QStr
 	int row(0);
 	for (const auto& key : errorMap.keys())
 	{
-		qDebug()<<"EM"<<key<<errorMap[key];
+		qCDebug(FONTMATRIX_LOG)<<"EM"<<key<<errorMap[key];
 		errorTable->insertRow (row);
 		errorTable->setItem(row,0, new QTableWidgetItem(key));
 		errorTable->setItem(row,1, new QTableWidgetItem(errorMap[key]));

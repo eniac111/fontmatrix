@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "filterbar.h"
+#include "fontmatrix_debug.h"
 #include "ui_filterbar.h"
 #include "fmfontdb.h"
 #include "panosewidget.h"
@@ -661,7 +662,7 @@ void FilterBar::slotRemoveFilter(const QString &fname)
 	}
 	else
 	{
-		qDebug()<< "Directory does not exist:"<<fdir.absolutePath()<<fname;
+		qCDebug(FONTMATRIX_LOG)<< "Directory does not exist:"<<fdir.absolutePath()<<fname;
 	}
 	loadFilters();
 }

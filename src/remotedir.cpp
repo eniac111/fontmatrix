@@ -10,6 +10,7 @@
 //
 //
 #include "remotedir.h"
+#include "fontmatrix_debug.h"
 #include "typotek.h"
 
 // #include <QHttp>
@@ -26,7 +27,7 @@ extern QWaitCondition remoteDirsCond;
 RemoteDir::RemoteDir(const QStringList &dirs)
 	: argDirs(dirs), m_ready(false)
 {
-	qDebug()<<"RemoteDir::RemoteDir("<<dirs.join(";")<<")";
+	qCDebug(FONTMATRIX_LOG)<<"RemoteDir::RemoteDir("<<dirs.join(";")<<")";
 	if (argDirs.isEmpty())
 		m_ready = true;
 	
@@ -35,7 +36,7 @@ RemoteDir::RemoteDir(const QStringList &dirs)
 
 void RemoteDir::run()
 {
-	qDebug()<<"RemoteDir::run()";
+	qCDebug(FONTMATRIX_LOG)<<"RemoteDir::run()";
 	for(int ridx(0); ridx < argDirs.size(); ++ridx)
 	{
 		QByteArray *ba = new QByteArray;
@@ -107,7 +108,7 @@ void RemoteDir::slotEndPreviews(int id, bool error)
 #endif
 	if(!pendingReqs)
 	{
-		qDebug() <<"Get all previews";
+		qCDebug(FONTMATRIX_LOG) <<"Get all previews";
 		stopperEndPreviews = true;
 		eventEndDownload();
 	}
@@ -116,7 +117,7 @@ void RemoteDir::slotEndPreviews(int id, bool error)
 
 void RemoteDir::slotEndReq(int id, bool error)
 {
-	qDebug()<<"RemoteDir::slotEndReq("<< id<<", "<<error<<")";
+	qCDebug(FONTMATRIX_LOG)<<"RemoteDir::slotEndReq("<< id<<", "<<error<<")";
 	if(stopperEndReq)
 		return;
 	if(error)
@@ -138,7 +139,7 @@ void RemoteDir::slotEndReq(int id, bool error)
 #endif
 	if(!hFound)
 	{
-		qDebug()<< "Oops - Can’t determine which Http object called me";
+		qCDebug(FONTMATRIX_LOG)<< "Oops - Can’t determine which Http object called me";
 		return;
 	}
 #if 0 // TODO Replace this code
@@ -175,7 +176,7 @@ void RemoteDir::eventEndDownload()
 		if(httpRequests[bIt.key()] == 0)
 			continue;
 		QString path(rDirs[bIt.key()]);
-		qDebug()<< "Path("<<bIt.key()<<")->"<< path;
+		qCDebug(FONTMATRIX_LOG)<< "Path("<<bIt.key()<<")->"<< path;
 		QDomDocument doc ( "fontdata" );
 		doc.setContent(*(bIt.value()));
 		//loading fonts
@@ -198,7 +199,7 @@ void RemoteDir::eventEndDownload()
 			}
 			else
 			{
-				qDebug() << "No pixmap for " + fi.file;
+				qCDebug(FONTMATRIX_LOG) << "No pixmap for " + fi.file;
 				fi.pix = QPixmap();
 			}
 
@@ -269,12 +270,12 @@ void RemoteDir::slotProgress(int , int )
 #endif
 	if(!hFound)
 	{
-		qDebug()<< "Oops - Can’t determine which Http object called me";
+		qCDebug(FONTMATRIX_LOG)<< "Oops - Can’t determine which Http object called me";
 		return;
 	}
 #if 0
 	QString file(https[ih]->objectName()); // TODO Replace this code
-	qDebug()<< file <<" [" <<done << "/"<< total<<"]";
+	qCDebug(FONTMATRIX_LOG)<< file <<" [" <<done << "/"<< total<<"]";
 #endif
 }
 

@@ -11,6 +11,7 @@
 //
 
 #include "parallelcoor.h"
+#include "fontmatrix_debug.h"
 #include "typotek.h"
 
 
@@ -412,7 +413,7 @@ void ParallelCoorView::drawVertices()
 		ls->addItem( vertices[i] );
 	}
 	ta = t.elapsed();
-	qDebug()<<"R"<< to << tc << td << ta;
+	qCDebug(FONTMATRIX_LOG)<<"R"<< to << tc << td << ta;
 }
 
 void ParallelCoorView::drawFields()

@@ -11,6 +11,7 @@
 //
 
 #include "fmfontcompareview.h"
+#include "fontmatrix_debug.h"
 
 #include "fontitem.h"
 
@@ -160,7 +161,7 @@ void FMFontCompareItem::show(FMFontCompareItem::GElements elems, QColor color, d
 	path = font->itemFromChar( char_code, fsize );
 	if(!path)
 	{
-		qDebug()<<"Unable to load char"<<char_code<<"from font"<<font->fancyName();
+		qCDebug(FONTMATRIX_LOG)<<"Unable to load char"<<char_code<<"from font"<<font->fancyName();
 		return;
 	}
 	path->moveBy(offset, 0.0);
@@ -220,7 +221,7 @@ void FMFontCompareItem::show(FMFontCompareItem::GElements elems, QColor color, d
 				curPos = c2;
 			}
 			else
-				qDebug()<<"Unknown point type"<<cur.type;
+				qCDebug(FONTMATRIX_LOG)<<"Unknown point type"<<cur.type;
 		}
  	
 	}

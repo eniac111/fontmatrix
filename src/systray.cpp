@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include "systray.h"
+#include "fontmatrix_debug.h"
 #include "fmconfig.h"
 #include "mainviewwidget.h"
 #include "typotek.h"
@@ -192,7 +193,7 @@ void Systray::slotPrepareMenu()
 
 void Systray::newTag(QString name)
 {
-	qDebug()<<"Systray::newTag"<<name;
+	qCDebug(FONTMATRIX_LOG)<<"Systray::newTag"<<name;
 	if (tagActions.contains(name))
 		return; // already added
 

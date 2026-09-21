@@ -79,6 +79,8 @@ struct RenderedGlyph
 	void dump() const
 	{
 		QString ds("glyph %1; log %2; xadv %3; yadv %4; xof %5; yof %6; char %7; hyph %8");
+		// plain qDebug(): the hyphenate library shares this header and does
+		// not see the logging category of the application
 		qDebug() << ds.arg(glyph)
 				.arg(log)
 				.arg(xadvance)
