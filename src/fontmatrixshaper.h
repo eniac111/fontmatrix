@@ -24,6 +24,7 @@ class FontmatrixShaper : public FMBaseShaper
 	
 	GlyphList doShape( const QString& s ) override;
 	private:
+		Q_DISABLE_COPY ( FontmatrixShaper )
 		FMOwnShaper *fmos;
 };
 

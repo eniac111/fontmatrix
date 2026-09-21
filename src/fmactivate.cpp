@@ -63,7 +63,7 @@ FMActivate * FMActivate::getInstance()
 void FMActivate::activate(QList<FontItem*> fitList, bool act)
 {
 	// TODO insert error messages.
-	QMap<FontItem*, bool> stack;
+	QHash<FontItem*, bool> stack;
 	typotek *T(typotek::getInstance());
 	for (auto* fit : fitList)
 	{
@@ -158,10 +158,10 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 
 	QStringList aList;
 	FMFontDb::DB()->TransactionBegin();
-	for (auto* f : stack.keys())
+	for (auto it(stack.constBegin()); it != stack.constEnd(); ++it)
 	{
-		f->setActivated(stack[f]);
-		aList << f->path();
+		it.key()->setActivated(it.value());
+		aList << it.key()->path();
 	}
 	FMFontDb::DB()->TransactionEnd();
 
@@ -179,7 +179,7 @@ void FMActivate::activate(QList<FontItem*> fitList, bool act)
 
 void FMActivate::activate(QList< FontItem * > fitList, bool act)
 {
-	QMap<FontItem*, bool> stack;
+	QHash<FontItem*, bool> stack;
 	typotek *T(typotek::getInstance());
 	for (auto* fit : fitList)
 	{
@@ -271,10 +271,10 @@ void FMActivate::activate(QList< FontItem * > fitList, bool act)
 	
 	QStringList aList;
 	FMFontDb::DB()->TransactionBegin();
-	for (auto* f : stack.keys())
+	for (auto it(stack.constBegin()); it != stack.constEnd(); ++it)
 	{
-		f->setActivated(stack[f]);
-		aList << f->path();
+		it.key()->setActivated(it.value());
+		aList << it.key()->path();
 	}
 	FMFontDb::DB()->TransactionEnd();
 

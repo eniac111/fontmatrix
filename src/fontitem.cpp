@@ -2991,8 +2991,8 @@ int FontItem::showFancyGlyph ( QGraphicsView *view, int charcode , bool charcode
 	painter.drawLine ( pPos.x() + (asc * aF), subRect.top(),
 			   pPos.x() - (desc * aF), subRect.bottom() );
 	//right
-	painter.drawLine (  qRound(pPos.x() + m_face->glyph->metrics.horiAdvance / 64 * scaledBy ) + (asc * aF), subRect.top(),
-			    qRound( pPos.x() + m_face->glyph->metrics.horiAdvance / 64 * scaledBy) - (desc * aF), subRect.bottom() );
+	painter.drawLine (  qRound(pPos.x() + m_face->glyph->metrics.horiAdvance / 64.0 * scaledBy ) + (asc * aF), subRect.top(),
+			    qRound( pPos.x() + m_face->glyph->metrics.horiAdvance / 64.0 * scaledBy) - (desc * aF), subRect.bottom() );
 	//baseline
 	painter.drawLine ( subRect.left() , pPos.y() ,
 			   subRect.right(),  pPos.y() );
@@ -3878,6 +3878,8 @@ QString FontItem::renderSVG(const QString & s, const double& size)
 	double vertOffset ( pifs );
 	double horOffset ( 0 );
 	tf.translate ( horOffset , vertOffset );
+	// read now, itemFromChar() takes and releases the face on its own
+	const double svgHeight ( m_face->height * scaleFactor );
 
 	for (const auto& c : s)
 	{
@@ -3895,7 +3897,7 @@ QString FontItem::renderSVG(const QString & s, const double& size)
 	}
 	QString openElem ( QString ( "<svg width=\"%1\" height=\"%2\"  xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">" )
 			.arg ( horOffset )
-			.arg ( m_face->height * scaleFactor ) );
+			.arg ( svgHeight ) );
 	ret += openElem;
 	ret += svg;
 	ret += "</svg>";

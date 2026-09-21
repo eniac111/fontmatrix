@@ -178,19 +178,16 @@ QList< RenderedGlyph > FMShaper::doShape(QString string, bool ltr)
 	
 	
 	QList<RenderedGlyph> renderedString;
-	int base = 0;
 	int baseCorrection = 0;
 	QString dbgS;
-	for(int gIndex = 0; gIndex < m.num_glyphs; ++gIndex)
+	for(hb_uint32 gIndex = 0; gIndex < m.num_glyphs; ++gIndex)
 	{
-		HB_GlyphAttributes attr = m.attributes[gIndex];
 // 		qDebug()<< "ATTR("<< m.glyphs[gIndex] 
 // 				<< ") combiningClass = " << attr.combiningClass
 // 				<< "; clusterStart =" << attr.clusterStart
 // 				<< "; mark = "<< attr.mark;
 		if(m.attributes[gIndex].clusterStart )
 		{
-			base = gIndex;
 			baseCorrection = 0;
 		}
 // 		if(m.attributes[gIndex].mark )

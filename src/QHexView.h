@@ -68,9 +68,9 @@ public slots:
 	//void setAddressColor(QColor);
 	void setWordWidth(int);
 	void setRowWidth(int);
-	void setFont(const QFont &font);
+	void setHexFont(const QFont &font);
 	void setShowAddressSeparator(bool value);
-	void repaint();
+	void repaintView();
 		
 public:
 	address_t addressOffset() const;

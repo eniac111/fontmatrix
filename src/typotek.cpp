@@ -56,6 +56,7 @@
 
 #include <KLocalizedString>
 #include <cstdio>
+#include <memory>
 #include <QScreen>
 #include <QStandardPaths>
 #include <QtGui>
@@ -350,6 +351,7 @@ void typotek::closeEvent ( QCloseEvent *event )
 		}
 	}
 
+	m_closing = true;
 	for (auto* f : FloatingWidgetsRegister::AllWidgets())
 	{
 		f->close();
@@ -1433,7 +1435,8 @@ void typotek::slotRemoteIsReady()
 	for(int rf(0) ;rf < listInfo.count(); ++rf)
 	{
 // 		qDebug()<< rf <<" : " <<listInfo[rf].dump();
-		FontItem *fi = new FontItem ( listInfo[rf].file , true );
+		// nothing takes ownership of the item below
+		std::unique_ptr<FontItem> fi ( new FontItem ( listInfo[rf].file , true ) );
 		if(!fi->isValid())
 		{
 			qDebug() << "ERROR loading : " << listInfo[rf].file;
@@ -2412,39 +2415,49 @@ void typotek::slotHelpContents()
 	                         i18nc("@title:window", "Handbook Not Available"));
 }
 
-void typotek::hide()
+void typotek::setVisible(bool visible)
 {
-	for (const auto& k : dockWidget.keys())
+	// Qt also comes here for a window that is already in the requested
+	// state; the docks and floating windows only follow a real change.
+	if(m_closing || visible == isVisible())
 	{
-		dockVisible[k] = dockWidget[k]->isVisible();
-		dockWidget[k]->hide();
-	}
-	visibleFloatingWidgets.clear();
-	for (auto* f : FloatingWidgetsRegister::AllWidgets())
-	{
-		visibleFloatingWidgets[f] = f->isVisible();
-		f->setVisible(false);
+		KXmlGuiWindow::setVisible(visible);
+		return;
 	}
 
-	playVisible = PlayWidget::getInstance()->isVisible();
-
-	QMainWindow::hide();
-}
-
-void typotek::show()
-{
-	for (const auto& k : dockWidget.keys())
+	if(!visible)
 	{
-		dockWidget[k]->setVisible(dockVisible[k]);
+		for (auto it(dockWidget.constBegin()); it != dockWidget.constEnd(); ++it)
+		{
+			dockVisible[it.key()] = it.value()->isVisible();
+			it.value()->hide();
+		}
+		visibleFloatingWidgets.clear();
+		for (auto* f : FloatingWidgetsRegister::AllWidgets())
+		{
+			visibleFloatingWidgets[f] = f->isVisible();
+			f->setVisible(false);
+		}
+
+		playVisible = PlayWidget::getInstance()->isVisible();
 	}
-	for (auto* f : visibleFloatingWidgets.keys())
+	else
 	{
-		f->setVisible(visibleFloatingWidgets[f]);
+		for (auto it(dockWidget.constBegin()); it != dockWidget.constEnd(); ++it)
+		{
+			// a dock that was never recorded keeps the state it has
+			if(dockVisible.contains(it.key()))
+				it.value()->setVisible(dockVisible.value(it.key()));
+		}
+		for (auto it(visibleFloatingWidgets.constBegin()); it != visibleFloatingWidgets.constEnd(); ++it)
+		{
+			it.key()->setVisible(it.value());
+		}
+
+		PlayWidget::getInstance()->setVisible(playVisible);
 	}
 
-	PlayWidget::getInstance()->setVisible(playVisible);
-
-	QMainWindow::show();
+	KXmlGuiWindow::setVisible(visible);
 }
 
 QString typotek::word(FontItem * item, const QString& alt)

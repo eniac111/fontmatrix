@@ -62,7 +62,7 @@ void printBacktrace ( int frames )
 			QString bts ( "[BT] %1. %2" );
 			qDebug ( "%s", bts.arg ( i ).arg ( name ).toUtf8().data() );
 		}
-		free ( messages );
+		free ( static_cast<void*> ( messages ) );
 	}
 	delete[] trace;
 }

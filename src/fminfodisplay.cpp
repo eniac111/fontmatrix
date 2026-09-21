@@ -343,13 +343,16 @@ QString FMInfoDisplay::writePanose(FontItem * font)
  */
 QString FMInfoDisplay::url2href (QString value )
 {
-	QString punctuationAfter = "\\.\\,;:!?)\"'";
-	value.replace ( QRegularExpression( "([^/])(www\\.[\\w\\d])" ), "\\1http://\\2" ); // add an http to www. without it
-	QRegularExpression rx("(http[s]?://\\S+?)([" + punctuationAfter + "](?:\\s|$))"); // prepare a regexp (non-greedy)
+	static const QString punctuationAfter = "\\.\\,;:!?)\"'";
+	static const QRegularExpression rxWww( "([^/])(www\\.[\\w\\d])" );
+	static const QRegularExpression rx("(http[s]?://\\S+?)([" + punctuationAfter + "](?:\\s|$))"); // non-greedy
+	static const QRegularExpression rxLink( "(http[s]?://\\S+)[\\.]?" );
+	static const QRegularExpression rxSpace( "(</a>)\\s([" + punctuationAfter + "])" );
+	value.replace ( rxWww, "\\1http://\\2" ); // add an http to www. without it
 	value.replace(rx, "\\1 \\2"); // add a space before  punctuation "attached" to url
 	value.replace(rx, "\\1 \\2"); // run the prepared regexp twice for ")."
-	value.replace ( QRegularExpression( "(http[s]?://\\S+)[\\.]?" ), "<a href=\"\\1\">\\1</a>" ); // Make HTTP links
-	value.replace ( QRegularExpression( "(</a>)\\s([" + punctuationAfter + "])" ), "\\1\\2" ); // remove extra space after </a>
+	value.replace ( rxLink, "<a href=\"\\1\">\\1</a>" ); // Make HTTP links
+	value.replace ( rxSpace, "\\1\\2" ); // remove extra space after </a>
 	return value;
 } // url2href
 

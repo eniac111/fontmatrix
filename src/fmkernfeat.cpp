@@ -290,10 +290,8 @@ quint16 FMKernFeature::toUint16 ( quint16 index )
 	{
 		return 0;
 	}
-	quint16 c1 ( GPOSTableRaw.at ( index ) );
-	quint16 c2 ( GPOSTableRaw.at ( index + 1 ) );
-	c1 &= 0xFF;
-	c2 &= 0xFF;
+	quint16 c1 ( static_cast<unsigned char> ( GPOSTableRaw.at ( index ) ) );
+	quint16 c2 ( static_cast<unsigned char> ( GPOSTableRaw.at ( index + 1 ) ) );
 	quint16 ret ( ( c1 << 8 ) | c2 );
 // 	qDebug()<<"**"<<index<<"("<<c1 << c2 <<")"<<ret;
 	return ret;
@@ -306,10 +304,8 @@ qint16 FMKernFeature::toInt16 ( quint16 index )
 		return 0;
 	}
 	// FIXME I just do not know how it has to be done *properly*
-	quint16 c1 ( GPOSTableRaw.at ( index ) );
-	quint16 c2 ( GPOSTableRaw.at ( index + 1 ) );
-	c1 &= 0xFF;
-	c2 &= 0xFF;
+	quint16 c1 ( static_cast<unsigned char> ( GPOSTableRaw.at ( index ) ) );
+	quint16 c2 ( static_cast<unsigned char> ( GPOSTableRaw.at ( index + 1 ) ) );
 	qint16 ret ( ( c1 << 8 ) | c2 );
 	return ret;
 }

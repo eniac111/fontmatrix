@@ -22,8 +22,6 @@ class SVect
 	public:
 		SVect() :x ( 0.0 ),y ( 0.0 ) {}
 		SVect ( double xx, double yy ) :x ( xx ),y ( yy ) {}
-		SVect ( const SVect& other ) {this->x = other.x;this->y = other.y;}
-		SVect& operator= ( const SVect& other ) {this->x = other.x;this->y = other.y; return *this;}
 
 		inline double squareDistance ( const SVect& other ) const
 		{

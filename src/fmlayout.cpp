@@ -822,8 +822,6 @@ void FMLayout::doDraw()
 	double pixelAdjustX = typotek::getInstance()->getDpiX() / 72.0 ;
 	double pixelAdjustY = typotek::getInstance()->getDpiY() / 72.0 ;
 
-	int pd =0;
-
 	for ( int lIdx ( 0 ); lIdx < lines.count() ; ++lIdx )
 	{
 		if ( stopIt )
@@ -879,7 +877,6 @@ void FMLayout::doDraw()
 //					refGlyph[i].dump();
 					MetaGlyphItem * mgi(reinterpret_cast<MetaGlyphItem*>(glyph));
 //					qDebug()<<refGlyph[i].glyph<<pen.y() << ( refGlyph[i].yoffset * pixelAdjustY ) << mgi->metaData ( GLYPH_DATA_BITMAPTOP ).toDouble();
-					++pd;
 					emit drawPixmapForMe(refGlyph[i].glyph,
 							     fontSize,
 							     pen.x()
@@ -964,7 +961,6 @@ void FMLayout::doDraw()
 	// 	qDebug() <<"doDraw T(ms)"<<t.elapsed();
 	emit paintFinished();
 	emit drawPixmapForMe(-1,0,0,0);
-	// qDebug()<<"P emitted:"<<pd;
 }
 
 int FMLayout::sepCount(int start, int end, const GlyphList & gl)

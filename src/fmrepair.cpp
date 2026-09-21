@@ -221,8 +221,8 @@ void FmRepair::slotRelinkActNotLinked()
 	{
 		if(actNotLinkList->item(i)->checkState() == Qt::Checked)
 		{
-			FontItem *font = nullptr;
-			if((font = FMFontDb::DB()->Font(actNotLinkList->item(i)->text())))
+			FontItem *font = FMFontDb::DB()->Font(actNotLinkList->item(i)->text());
+			if(font)
 			{
 				QFile f(font->path());
 				f.link( t->getManagedDir() + QDir::separator() + font->activationName() );
@@ -244,8 +244,8 @@ void FmRepair::slotDeactivateActNotLinked()
 	{
 		if(actNotLinkList->item(i)->checkState() == Qt::Checked)
 		{
-			FontItem *font = nullptr;
-			if((font = FMFontDb::DB()->Font(actNotLinkList->item(i)->text())))
+			FontItem *font = FMFontDb::DB()->Font(actNotLinkList->item(i)->text());
+			if(font)
 			{
 				font->setActivated(false);
 			}
@@ -270,8 +270,8 @@ void FmRepair::slotDelinkDeactLinked()
 	{
 		if(deactLinkList->item(i)->checkState() == Qt::Checked)
 		{
-			FontItem *font = nullptr;
-			if((font = FMFontDb::DB()->Font(deactLinkList->item(i)->text())))
+			FontItem *font = FMFontDb::DB()->Font(deactLinkList->item(i)->text());
+			if(font)
 			{
 				QFile f(t->getManagedDir() + QDir::separator() + font->activationName());
 				f.remove();
@@ -287,8 +287,8 @@ void FmRepair::slotActivateDeactLinked()
 	{
 		if(deactLinkList->item(i)->checkState() == Qt::Checked)
 		{
-			FontItem *font = nullptr;
-			if((font = FMFontDb::DB()->Font(deactLinkList->item(i)->text())))
+			FontItem *font = FMFontDb::DB()->Font(deactLinkList->item(i)->text());
+			if(font)
 			{
 				font->setActivated(true);
 			}

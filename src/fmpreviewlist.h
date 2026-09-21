@@ -48,9 +48,13 @@ public:
 	void paint ( QPainter * painter, const QRect & rect, QIcon::Mode mode, QIcon::State state ) override;
 	void addPixmap ( const QPixmap & pixmap, QIcon::Mode mode, QIcon::State state ) override;
 	void setActivation(Activation a){activatedFont = a;}
-	QIconEngine *clone() const override; // TODO Implement this function
+	QIconEngine *clone() const override;
 
 private:
+	// only clone() copies an engine
+	FMPreviewIconEngine(const FMPreviewIconEngine&) = default;
+	FMPreviewIconEngine& operator=(const FMPreviewIconEngine&) = delete;
+
 	QPixmap m_p;
 	Activation activatedFont;
 	static bool initState;

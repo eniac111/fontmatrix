@@ -162,7 +162,8 @@ HB_Error hb_getPointInOutline ( HB_Font font, HB_Glyph glyph, int flags, hb_uint
 
 	int load_flags = ( flags & HB_ShaperFlag_UseDesignMetrics ) ? FT_LOAD_NO_HINTING : FT_LOAD_DEFAULT;
 
-	if ( ( error = ( HB_Error ) FT_Load_Glyph ( face, glyph, load_flags ) ) )
+	error = ( HB_Error ) FT_Load_Glyph ( face, glyph, load_flags );
+	if ( error )
 		return error;
 
 	if ( face->glyph->format != ft_glyph_format_outline )

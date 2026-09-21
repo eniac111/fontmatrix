@@ -57,10 +57,9 @@ struct Node
 		~ListItem() ;
 		Node* n;
 		double distance;
-		
-		
-// 		private:
-// 		ListItem (const ListItem& v);
+
+		// deletes n
+		Q_DISABLE_COPY ( ListItem )
 	};
 
 	Node (FMLayout * layoutEngine,  int i ) ;
@@ -69,6 +68,9 @@ struct Node
 	QList<ListItem*> nodes;
 	FMLayout *lyt;
 	int index;
+
+	// deletes the items of nodes
+	Q_DISABLE_COPY ( Node )
 
 	bool hasNode ( int idx ) ;
 	void nodes_clear();

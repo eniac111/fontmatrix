@@ -154,8 +154,10 @@ void FMGlyphsView::slotViewMoved ( int )
 
 void FMGlyphsView::keyPressEvent ( QKeyEvent * e )
 {
+	// QGraphicsView's handler is skipped on purpose: no item of this scene
+	// takes key focus. Keys scroll the grid and do nothing on a single glyph.
 	if ( m_state == AllView )
-		QAbstractScrollArea::keyPressEvent ( e );
+		QAbstractScrollArea::keyPressEvent ( e ); // NOLINT(bugprone-parent-virtual-call)
 }
 
 bool FMGlyphsView::lock()

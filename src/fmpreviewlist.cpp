@@ -85,8 +85,8 @@ FMPreviewIconEngine::FMPreviewIconEngine()
 
 QIconEngine *FMPreviewIconEngine::clone() const
 {
-	// TODO Implement this function
-	return nullptr;
+	// QIcon calls this when a shared icon is modified; a null engine crashes it
+	return new FMPreviewIconEngine(*this);
 }
 
 QVector<QRgb> FMPreviewIconEngine::actualSelPalette(const QVector<QRgb>& orig)

@@ -144,6 +144,8 @@ QList<FontItem*> FMVariants::Order(QList<FontItem*> ul)
 	FMVariants *vs(instance);
 
 	QList<FontItem*> ret;
+	// Not a QHash: fonts of the same variant come out in the order of this
+	// map, and a hash is seeded differently on each run.
 	QMap<FontItem*, QStringList> fl;
 	for (auto* f : ul)
 	{

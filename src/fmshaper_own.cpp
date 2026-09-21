@@ -336,7 +336,7 @@ void FMOwnShaper::DumpOut()
 
 /// Character
 Character::Character(int unicode, QList< QByteArray > tokens)
-	:QChar(unicode),MatchAll(false),isMatchedGroup(false)
+	:QChar(unicode),MatchAll(false),isMatchedGroup(false),GroupIndex(0)
 {
 	for(int i(0); i < tokens.size(); ++i)
 		AddProperty( QString(tokens[i].trimmed()));
@@ -344,7 +344,7 @@ Character::Character(int unicode, QList< QByteArray > tokens)
 
 
 Character::Character(int unicode, QStringList tokens)
-	:QChar(unicode),MatchAll(false),isMatchedGroup(false)
+	:QChar(unicode),MatchAll(false),isMatchedGroup(false),GroupIndex(0)
 {
 	for(int i(0); i < tokens.size(); ++i)
 		AddProperty( QString(tokens[i].trimmed()));

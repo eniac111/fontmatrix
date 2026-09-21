@@ -18,7 +18,9 @@
 #include <QSqlRecord>
 #include <QSqlError>
 #include <QSqlDriver>
+#include <QCoreApplication>
 #include <QDebug>
+#include <QThread>
 
 
 
@@ -60,6 +62,8 @@ FMFontDb::FMFontDb()
 
 FMFontDb * FMFontDb::DB()
 {
+	// A QSqlDatabase connection belongs to the thread that opened it
+	Q_ASSERT ( !qApp || QThread::currentThread() == qApp->thread() );
 	if ( !instance )
 	{
 		instance = new FMFontDb;

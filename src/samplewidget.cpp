@@ -97,6 +97,9 @@ SampleWidget::State SampleWidget::State::fromByteArray(QByteArray b)
 	renderHinting = rh;
 	shaper = sh;
 	script = sc;
+	// A copy used to come out as "set" whatever the original said, and
+	// restoring the saved state relied on it. Say it here instead.
+	set = true;
 //	return State(sn,fs,rh,sh,sc);
 	return *this;
 }

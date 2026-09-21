@@ -48,7 +48,8 @@ MetaWidget::MetaWidget(QWidget *parent) :
 		mModel->setStringList(mList);
 	}
 //	QGridLayout * ui->grid(new QGridLayout(this));
-	QCompleter * completer(new QCompleter(mModel));
+	// line edits do not take ownership of a completer
+	QCompleter * completer(new QCompleter(mModel, this));
 
 	//	dont know why but it doesn't want to be placed in the ui->grid ###
 //	QLabel *lab(new QLabel(i18n("<div style=\"font-weight:bold;\">Fill-in a text field and press enter.</div>"), this));
