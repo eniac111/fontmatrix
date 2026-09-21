@@ -171,7 +171,7 @@ void RemoteDir::eventEndDownload()
 	if(stopper)
 		return;
 	QMap<int, QByteArray*>::const_iterator bIt;
-	for(bIt = httpBuffers.begin(); bIt != httpBuffers.end(); ++bIt)
+	for(bIt = httpBuffers.constBegin(); bIt != httpBuffers.constEnd(); ++bIt)
 	{
 		if(httpRequests[bIt.key()] == 0)
 			continue;
@@ -222,7 +222,7 @@ void RemoteDir::eventEndDownload()
 void RemoteDir::getPreviews()
 {
 	QMap<int, QByteArray*>::const_iterator bIt;
-	for(bIt = httpBuffers.begin(); bIt != httpBuffers.end(); ++bIt)
+	for(bIt = httpBuffers.constBegin(); bIt != httpBuffers.constEnd(); ++bIt)
 	{
 		if(httpRequests[bIt.key()] == 0)
 			continue;

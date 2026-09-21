@@ -293,7 +293,7 @@ void FMPlayGround::closeLine()
 		git->setCursor(QCursor(	Qt::OpenHandCursor ) );
 		FontItem * fi(typotek::getInstance()->getTheMainView()->selectedFont());
 		if(fi)
-			git->setToolTip(QString("<strong>%1</strong><br/><em>%2<em/>").arg(fi->fancyName()).arg(fi->path()));
+			git->setToolTip(QString("<strong>%1</strong><br/><em>%2<em/>").arg(fi->fancyName(), fi->path()));
 		glyphLines << git;
 	}
 	BlinkPos = CursorPos;

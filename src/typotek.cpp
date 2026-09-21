@@ -59,7 +59,7 @@
 #include <memory>
 #include <QScreen>
 #include <QStandardPaths>
-#include <QtGui>
+#include <QMimeData>
 #include <QTextEdit>
 #include <QTextStream>
 #include <QCloseEvent>
@@ -277,7 +277,7 @@ void typotek::initMatrix()
 	if(!hyphenator)
 	{
 		QString dP( FMConfig::value(QStringLiteral("Sample/HyphenationDict"), "hyph.dic").toString() );
-		if(!dP.isEmpty() && QFileInfo(dP).exists())
+		if(!dP.isEmpty() && QFileInfo::exists(dP))
 		{
 			hyphenator = new FMHyphenator();
 			if (!hyphenator->loadDict(dP, FMConfig::value(QStringLiteral("Sample/HyphLeft"), 2).toInt(), FMConfig::value(QStringLiteral("Sample/HyphRight"), 3).toInt())) {
@@ -629,8 +629,6 @@ void typotek::openList ( QStringList files )
 		}
 		else
 		{
-			QString errorFont ( i18n( "Cannot import this font because it is broken: " ) +" "+fi.fileName() );
-//			statusBar()->showMessage ( errorFont );
 			nameList << "__FAILEDTOLOAD__" + fi.fileName();
 		}
 	}
@@ -1332,7 +1330,6 @@ void typotek::initDir()
 	{
 		relayStartingStepIn ( i18n( "Loading System Fonts") );
 		m_sysTagName = i18n( "System Fonts" );
-		QStringList tagsList(FMFontDb::DB()->getTags());
 
 		QList<FontItem*> sysFontPtrs;
 
@@ -1347,7 +1344,6 @@ void typotek::initDir()
 		{
 			QDir theDir ( sysDir[sIdx] );
 			QStringList syspathList;
-			QStringList nameList;
 
 			QStringList dirList ( fontmatrix::exploreDirs ( theDir,0 ) );
 			QStringList filters;
@@ -2397,8 +2393,7 @@ void typotek::showToltalFilteredFonts()
 void typotek::presentFontName(QString s)
 {
 	curFontPresentation->setText(QString("%1 : <b>%2</b>")
-				     .arg(i18nc("followed by currently selected font name (in status bar)", "Current Font"))
-				     .arg(s));
+				     .arg(i18nc("followed by currently selected font name (in status bar)", "Current Font"), s));
 }
 
 

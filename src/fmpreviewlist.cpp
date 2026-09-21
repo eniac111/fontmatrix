@@ -337,7 +337,8 @@ int FMPreviewModel::rowCount(const QModelIndex & parent) const
 
 void FMPreviewModel::dataChanged()
 {
-	QAbstractItemModel::dataChanged(index(0),index(rowCount(QModelIndex()) - 1));
+	// qualified: this class has a dataChanged() of its own, which hides the signal
+	emit QAbstractItemModel::dataChanged(index(0),index(rowCount(QModelIndex()) - 1));
 	m_view->updateLayout();
 	emit layoutChanged ();
 }

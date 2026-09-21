@@ -188,8 +188,8 @@ void FMOwnShaper::Op()
 	}
 	
 	// Now we apply replacements as defined in the rules file
-	QList< QPair< int, QList< Character > > >::const_iterator chunkIt = chunks.begin();
-	while(chunkIt != chunks.end())
+	QList< QPair< int, QList< Character > > >::const_iterator chunkIt = chunks.constBegin();
+	while(chunkIt != chunks.constEnd())
 	{
 		Replace(chunkIt->first, chunkIt->second);
 		++chunkIt;

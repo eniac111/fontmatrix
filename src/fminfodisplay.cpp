@@ -195,12 +195,10 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 	if(fontType == QString("CFF"))
 		fontType = QString("OpenType");
 
-	ret += modelItem.arg(i18n("File"))
-	       .arg(font->path().replace("/","/&shy;"));
-	ret += modelItem.arg( i18n( "Glyphs count" ))
-	       .arg(QString::number ( font->glyphsCount() ));
-	ret += modelItem.arg(i18n( "Font Type" ) )
-	       .arg(fontType );
+	// one arg() call each: a path or a name may hold a "%2" of its own
+	ret += modelItem.arg(i18n("File"), font->path().replace("/","/&shy;"));
+	ret += modelItem.arg(i18n( "Glyphs count" ), QString::number ( font->glyphsCount() ));
+	ret += modelItem.arg(i18n( "Font Type" ), fontType );
 
 
 	QStringList cmapStrings;
@@ -220,13 +218,11 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 // 	if ( !moreInfo.isEmpty() ) // moreInfo.isNotEmpty
 	{
 		QString sysLang = QLocale::languageToString ( QLocale::system ().language() ).toUpper();
-		QString sysCountry = QLocale::territoryToString ( QLocale::system ().territory() ).toUpper();
-		QString sysLoc = sysLang + "_"+ sysCountry;
 
 		//We must iter once to find localized strings and ensure default ones are _not_ shown in these cases
 		QList<int> localizedKeys;
 		FontInfoMap moreInfo ( FMFontDb::DB()->getInfoMap ( font->path() ) );
-		for ( QMap<int, QMap<int, QString> >::const_iterator lit = moreInfo.begin(); lit != moreInfo.end(); ++lit )
+		for ( QMap<int, QMap<int, QString> >::const_iterator lit = moreInfo.constBegin(); lit != moreInfo.constEnd(); ++lit )
 		{
 			for ( QMap<int, QString>::const_iterator mit = lit.value().begin(); mit != lit.value().end(); ++mit )
 			{
@@ -238,7 +234,7 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 		}
 
 //		QString styleLangMatch("\"langundefined\"");
-		for ( QMap<int, QMap<int, QString> >::const_iterator lit = moreInfo.begin(); lit != moreInfo.end(); ++lit )
+		for ( QMap<int, QMap<int, QString> >::const_iterator lit = moreInfo.constBegin(); lit != moreInfo.constEnd(); ++lit )
 		{
 //			if ( FMEncData::LangIdMap()[ lit.key() ].contains ( sysLang ) ) // lang match
 //			{
@@ -306,8 +302,7 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem * font)
 	for (const auto& key : std::as_const(order))
 	{
 		if (orderedInfo.contains(key))
-			ret += modelItem.arg(tNames.value(key))
-					.arg(orderedInfo[key].join(" "));
+			ret += modelItem.arg(tNames.value(key), orderedInfo[key].join(" "));
 	}
 	
 	return ret;

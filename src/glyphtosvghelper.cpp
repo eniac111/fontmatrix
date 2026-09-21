@@ -61,7 +61,7 @@ GlyphToSVGHelper::GlyphToSVGHelper(QPainterPath path, QTransform tf)
             qCDebug(FONTMATRIX_LOG, "Unknown point type");
     }
 
-    m_svg += QString("<path d=\"%1\" fill=\"%2\" />").arg(data.join(" ")).arg("black");
+    m_svg += QString("<path d=\"%1\" fill=\"%2\" />").arg(data.join(" "), QStringLiteral("black"));
 
 }
 

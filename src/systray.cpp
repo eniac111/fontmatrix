@@ -26,7 +26,6 @@
 #include "fontitem.h"
 #include "fmfontdb.h"
 #include <KLocalizedString>
-#include <QtGui>
 #include <QMenu>
 #include <QDebug>
 #include <KStatusNotifierItem>

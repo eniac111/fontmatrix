@@ -97,8 +97,6 @@ void FMKernFeature::makeCoverage()
 
 
 	// Extract offsets of lookup tables for feature kern
-	QList<quint16> LookupTables;
-	QList<quint16> PairAdjustmentSubTables;
 	for ( int i ( 0 ); i < LookupListIndex.size(); ++i )
 	{
 		int rawIdx ( LookupList_Offset + 2 + ( LookupListIndex[i] * 2 ) );
@@ -256,7 +254,6 @@ void FMKernFeature::makePairs ( quint16 subtableOffset )
 		{
 			for ( quint16 C1 ( 0 );C1 < Class1Count; ++C1 )
 			{
-				QString cdbg ( QString::number ( C1 ).rightJustified ( 5,QChar ( 32 ) ) );
 				QList<quint16> Class1 ( Class1Data[C1] );
 				quint16 Class2Record ( Class1Record + ( C1 * ( 2 * Class2Count ) ) );
 				for ( quint16 C2 ( 0 );C2 < Class2Count; ++C2 )

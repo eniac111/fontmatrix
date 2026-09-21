@@ -79,7 +79,7 @@ void FmRepair::fillDeadLink()
 	{
 		if(list[i].isSymLink())
 		{
-			if( !QFileInfo(list[i].symLinkTarget()).exists() )
+			if( !QFileInfo::exists(list[i].symLinkTarget()) )
 			{
 				QListWidgetItem *lit = new QListWidgetItem(list[i].absoluteFilePath());
 				lit->setCheckState(Qt::Unchecked);
@@ -112,7 +112,7 @@ void FmRepair::fillActNotLinked()
 	{
 		if(list[i].isSymLink())
 		{
-			if(  QFileInfo(list[i].symLinkTarget()).exists()  )
+			if(  QFileInfo::exists(list[i].symLinkTarget())  )
 			{
 // 				qDebug()<< "ACT NOT LINK "<<list[i].symLinkTarget();
 				linked << list[i].symLinkTarget();
@@ -161,7 +161,7 @@ void FmRepair::fillDeactLinked()
 	{
 		if(list[i].isSymLink())
 		{
-			if(  QFileInfo(list[i].symLinkTarget()).exists()  )
+			if(  QFileInfo::exists(list[i].symLinkTarget())  )
 			{
 				linked << list[i].symLinkTarget();
 			}

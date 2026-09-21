@@ -120,9 +120,9 @@ class FMFontDb : public QObject, public QSqlDatabase
 // 		FontItem* FirstFont();
 // 		FontItem* NextFont();
 
-		QList<FontItem*> Fonts ( const QVariant& pattern, Field field );
+		QList<FontItem*> Fonts ( const QVariant& pattern, FMFontDb::Field field );
 		// codeLang is the language id of the name records, any of them by default
-		QList<FontItem*> Fonts ( const QVariant& pattern, InfoItem info, int codeLang = -1 );
+		QList<FontItem*> Fonts ( const QVariant& pattern, FMFontDb::InfoItem info, int codeLang = -1 );
 		int FontCount();
 
 		// Sorted and without duplicates

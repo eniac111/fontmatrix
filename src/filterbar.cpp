@@ -412,7 +412,6 @@ QString FilterBar::filterString(FilterData *d, bool first)
 	QString fs;
 	if(first)
 	{
-		first = false;
 		if(d->data(FilterData::Not).toBool())
 			fs += notOp() + QString(" [%1] ").arg(d->getText());
 		else

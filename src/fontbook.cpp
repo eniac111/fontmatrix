@@ -300,8 +300,8 @@ void FontBook::doFullBookPageRight(const QString &family)
 		sampleFont[fidx]->setFTRaster(rasterState);
 
 		yPos += 4.0;
-		QGraphicsSimpleTextItem * nameText = pScene.addSimpleText( QString("%1 %2pt").arg(familyFonts[fidx]->variant())
-									   .arg((fSize > 16.0) ? QString::number(qRound(fSize)) : QString::number(fSize, 'f', 1)),
+		QGraphicsSimpleTextItem * nameText = pScene.addSimpleText( QString("%1 %2pt").arg(familyFonts[fidx]->variant(),
+									   (fSize > 16.0) ? QString::number(qRound(fSize)) : QString::number(fSize, 'f', 1)),
 									   nameFont) ;
 		nameText->setPos(xOff, yPos);
 		nameText->setBrush(Qt::gray);

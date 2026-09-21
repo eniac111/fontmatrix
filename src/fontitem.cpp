@@ -2278,7 +2278,7 @@ QString FontItem::toElement()
 {
 	QString ret;
 	ret = "<fontfile><file>%1</file><tag>%2</tag></fontfile>";
-	return ret.arg ( name() ).arg ( tags().join ( "</tag><tag>" ) );
+	return ret.arg ( name(), tags().join ( "</tag><tag>" ) );
 }
 
 QGraphicsPathItem * FontItem::hasCodepointLoaded ( int code )
@@ -3017,10 +3017,7 @@ int FontItem::showFancyGlyph ( QGraphicsView *view, int charcode , bool charcode
 	if ( charcodeIsAGlyphIndex )
 	{
 		QString html(QString("<span style=\"%1\"> %2 </span> <span style=\"%3\"> - Index %4 <span>")
-			     .arg(itemNameStyle)
-			     .arg(glyphName(charcode))
-			     .arg(itemValueStyle)
-			     .arg(QString::number ( charcode )));
+			     .arg(itemNameStyle, glyphName(charcode), itemValueStyle, QString::number ( charcode )));
 		textIt->setHtml ( html );
 	}
 	else
@@ -3029,12 +3026,8 @@ int FontItem::showFancyGlyph ( QGraphicsView *view, int charcode , bool charcode
 		catString = FontStrings::UnicodeCategory(QChar::category(static_cast<uint> ( charcode )));
 
 		QString html(QString("<span style=\"%1\"> %2 </span> <span style=\"%3\"> %4 - U+%5  &#60;&#38;#%6;&#62; <span>")
-			     .arg(itemNameStyle)
-			     .arg(glyphName(charcode))
-			     .arg(itemValueStyle)
-			     .arg(catString)
-			     .arg(QString("%1").arg(charcode, 4, 16, QChar('0')).toUpper())
-			     .arg(charcode));
+			     .arg(itemNameStyle, glyphName(charcode), itemValueStyle, catString,
+				  QString("%1").arg(charcode, 4, 16, QChar('0')).toUpper(), QString::number(charcode)));
 
 		textIt->setHtml ( html );
 	}
@@ -3057,7 +3050,7 @@ int FontItem::showFancyGlyph ( QGraphicsView *view, int charcode , bool charcode
 	{
 		QList<int> alts ( getAlternates ( charcode ) );
 		qCDebug(FONTMATRIX_LOG) << "PALTS"<<alts;
-		double altSize ( squareSide / 6 );
+		double altSize ( squareSide / 6.0 );
 		double altXOffset ( subRect.top() + 10 );
 		for ( int a ( 0 ); a < alts.size() ; ++a )
 		{
@@ -3929,7 +3922,6 @@ QStringList FontItem::getNames()
 		char* buffer(new char[bLen]);
 		FT_UInt index (1);
 		FT_UInt cc =  FT_Get_First_Char ( m_face, &index );
-		QString cname;
 		while ( index )
 		{
 			FT_Get_Glyph_Name(m_face, index , buffer, bLen);

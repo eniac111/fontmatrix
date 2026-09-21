@@ -872,12 +872,8 @@ void SampleWidget::slotFileChanged(const QString &)
 		return;
 	fileLastModified = fileInfo.lastModified().toMSecsSinceEpoch();
 #endif
-	if(reloadTimer->isActive())
-		reloadTimer->start();
-	else
-	{
-		reloadTimer->start();
-	}
+	// start() restarts a timer that is running
+	reloadTimer->start();
 }
 
 void SampleWidget::slotReload()
