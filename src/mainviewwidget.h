@@ -116,6 +116,8 @@ class MainViewWidget :  public QWidget, private Ui::MainView
 		QList<FontItem*> curFonts();
 		void setCurFonts(QList<FontItem*> flist);
 		FontItem* selectedFont(){return theVeryFont;}
+		// The selected font or, in the list, the one of the highlighted tile
+		FontItem* selectedOrCurrentFont();
 
 		
 		QString sampleName();

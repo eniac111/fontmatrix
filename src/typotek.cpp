@@ -2238,13 +2238,22 @@ void typotek::endProgressJob()
 	statusProgressBar->reset();
 }
 
+FontItem * typotek::fontForAction()
+{
+	FontItem *item(theMainView->selectedOrCurrentFont());
+	if(!item)
+		statusBar()->showMessage ( i18n( "There is no font selected" ), 3000 );
+	return item;
+}
+
 void typotek::slotShowTTTables()
 {
-	if(theMainView->selectedFont())
+	FontItem *font(fontForAction());
+	if(font)
 	{
 		QDialog dia(this);
 		QGridLayout glayout(&dia);
-		TTTableView tv(theMainView->selectedFont(),&dia);
+		TTTableView tv(font,&dia);
 		QPushButton pbutton(i18n("Close"),&dia);
 		glayout.addWidget(&tv,0,0,3,3);
 		glayout.addWidget(&pbutton,3,2);
@@ -2263,14 +2272,15 @@ void typotek::slotShowTTTables()
 
 void typotek::slotEditPanose()
 {
-	if(theMainView->selectedFont())
+	FontItem *font(fontForAction());
+	if(font)
 	{
-		FMPanoseDialog dia(theMainView->selectedFont(), this);
+		FMPanoseDialog dia(font, this);
 		dia.exec();
 		if(dia.getOk() && ( dia.getSourcePanose() != dia.getTargetPanose() ))
 		{
-// 			qDebug()<< "Update Panose"<<theMainView->selectedFont()->path();
-			FMFontDb::DB()->setValue(theMainView->selectedFont()->path(), FMFontDb::Panose, dia.getTargetPanose());
+// 			qDebug()<< "Update Panose"<<font->path();
+			FMFontDb::DB()->setValue(font->path(), FMFontDb::Panose, dia.getTargetPanose());
 //			theMainView->slotInfoFont();
 		}
 	}
@@ -2278,9 +2288,10 @@ void typotek::slotEditPanose()
 
 void typotek::slotDumpInfo()
 {
-	if(theMainView->selectedFont())
+	FontItem *font(fontForAction());
+	if(font)
 	{
-		FMDumpDialog dia(theMainView->selectedFont(), this);
+		FMDumpDialog dia(font, this);
 		if(dia.exec() != QDialog::Accepted)
 		{
 			qCDebug(FONTMATRIX_LOG)<< "Dump not saved";

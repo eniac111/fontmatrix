@@ -139,6 +139,10 @@ private:
 	// must not touch them any more when Qt hides the closed window.
 	bool m_closing = false;
 
+	// The font a menu action applies to; says so in the status bar when
+	// there is none.
+	FontItem* fontForAction();
+
 	void checkOwnDir();
 	void fillTagsList();
 

@@ -907,6 +907,19 @@ bool MainViewWidget::slotFontSelectedByName (const QString& fname )
 //	QApplication::restoreOverrideCursor();
 //}
 
+FontItem* MainViewWidget::selectedOrCurrentFont()
+{
+	if(theVeryFont)
+		return theVeryFont;
+	// A font is only selected once its family is open. A single click in the
+	// list highlights a tile, which stands for the same row as in slotShowFamily().
+	const QModelIndex idx(listView->currentIndex());
+	const QList<FontItem*> families(FMFontDb::DB()->getFilteredFonts(true));
+	if(idx.isValid() && idx.row() < families.count())
+		return families.at(idx.row());
+	return nullptr;
+}
+
 void MainViewWidget::slotShowFamily(const QModelIndex& familyIdx)
 {
 	FontItem * fItem(FMFontDb::DB()->getFilteredFonts(true).at(familyIdx.row()));
