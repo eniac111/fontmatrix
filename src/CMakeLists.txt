@@ -1,6 +1,6 @@
 # Fontmatrix src/CMakeLists.txt v1
 
-set(QT_LIBRARIES Qt6::Core Qt6::Widgets Qt6::Svg Qt6::SvgWidgets Qt6::Sql Qt6::Xml Qt6::PrintSupport)
+set(QT_LIBRARIES Qt6::Core Qt6::Widgets Qt6::Svg Qt6::SvgWidgets Qt6::Sql Qt6::Xml Qt6::PrintSupport Qt6::Network)
 
 set(fontmatrix_SRCS
 ${CMAKE_CURRENT_SOURCE_DIR}/activationwidget.cpp

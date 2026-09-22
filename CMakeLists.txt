@@ -145,7 +145,7 @@ ENDIF(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
 # A lot from Scribus
 #<< Qt
-find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core Widgets Svg SvgWidgets Sql Xml PrintSupport)
+find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS Core Widgets Svg SvgWidgets Sql Xml PrintSupport Network)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)

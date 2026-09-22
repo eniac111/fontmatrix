@@ -46,6 +46,7 @@
 #include <QFileDialog>
 #include <QMenuBar>
 #include <QMimeData>
+#include <QNetworkAccessManager>
 #include <QProcess>
 #include <QProgressBar>
 #include <QProgressDialog>
@@ -55,6 +56,7 @@
 #include <QStatusBar>
 #include <QTextEdit>
 #include <QTextStream>
+#include <QUrl>
 #include <cstdio>
 #include <memory>
 
@@ -587,6 +589,7 @@ void typotek::openList(QStringList files)
         DB->addTag(tl, tag);
     }
     DB->TransactionEnd();
+    DB->announceTagsChanged();
     progress.close();
 
     // The User needs and deserves to know what fonts hve been imported
@@ -905,7 +908,9 @@ void typotek::readSettings()
     previewInfoFontSize = FMConfig::value(QStringLiteral("Info/PreviewSize"), 20.0).toDouble();
 
     templatesDir = FMConfig::value(QStringLiteral("Places/TemplatesDir"), "./").toString();
-    m_remoteTmpDir = FMConfig::value(QStringLiteral("Places/RemoteTmpDir"), QDir::tempPath()).toString();
+    // the downloaded files of remote fonts: a cache, kept between sessions
+    const QString remoteCache(QStandardPaths::writableLocation(QStandardPaths::CacheLocation) + QStringLiteral("/remote"));
+    m_remoteTmpDir = FMConfig::value(QStringLiteral("Places/RemoteTmpDir"), remoteCache).toString();
 
     defaultOTFScript = FMConfig::value(QStringLiteral("OTF/Script")).toString();
     defaultOTFLang = FMConfig::value(QStringLiteral("OTF/Lang")).toString();
@@ -1303,52 +1308,80 @@ void typotek::initDir()
     }
 
     // 	qDebug()<<"TIME(fonts) : "<<fontsTime.elapsed();
-    /// Remote dirs
-    // TODO
-    // 	QSettings settings;
-    // 	QStringList remoteDirV ( settings.value ( "RemoteDirectories" ).toStringList() );
-    // 	if ( !remoteDirV.isEmpty() )
-    // 	{
-    // 		relayStartingStepIn ( i18n( "Catching" ) +" "+ QString::number ( remoteDirV.count() ) +" "+i18n( "font descriptions from network" ) );
-    // 		remoteDir = new RemoteDir ( remoteDirV );
-    // 		connect ( remoteDir,SIGNAL ( listIsReady() ),this,SLOT ( slotRemoteIsReady() ) );
-    // 		remoteDir->run();
-    // 	}
+    /// Remote directories: their catalogues are read again at every start
+    fetchRemoteDirectories(FMConfig::value(QStringLiteral("RemoteDirectories"), QStringList()).toStringList());
 }
 
-static bool slotRemoteIsReadyRunOnce = false;
+QNetworkAccessManager *typotek::network()
+{
+    if (!m_network)
+        m_network = new QNetworkAccessManager(this);
+    return m_network;
+}
+
+void typotek::fetchRemoteDirectories(const QStringList &urls)
+{
+    if (urls.isEmpty())
+        return;
+    // one fetch at a time; a second request waits for the first to finish
+    if (remoteDir) {
+        const QStringList later(urls);
+        connect(
+            remoteDir,
+            &RemoteDir::listIsReady,
+            this,
+            [this, later]() {
+                fetchRemoteDirectories(later);
+            },
+            Qt::SingleShotConnection);
+        return;
+    }
+    relayStartingStepIn(
+        i18ncp("@info:progress", "Reading the catalogue of %1 remote directory", "Reading the catalogues of %1 remote directories", urls.count()));
+    remoteDir = new RemoteDir(urls, this);
+    connect(remoteDir, &RemoteDir::listIsReady, this, &typotek::slotRemoteIsReady);
+    remoteDir->run();
+}
+
 void typotek::slotRemoteIsReady()
 {
-    if (!slotRemoteIsReadyRunOnce)
-        slotRemoteIsReadyRunOnce = true;
-    else
+    if (!remoteDir)
         return;
-    QStringList tagsList(FMFontDb::DB()->getTags());
+    const QList<RemoteDir::FontInfo> listInfo(remoteDir->rFonts());
+    remoteDir->deleteLater();
+    remoteDir = nullptr;
 
-    // 	qDebug()<<"typotek::slotRemoteIsReady()";
-    QList<RemoteDir::FontInfo> listInfo(remoteDir->rFonts());
-    // 	qDebug()<< "Have got "<< listInfo.count() <<"remote font descriptions";
-    for (int rf(0); rf < listInfo.count(); ++rf) {
-        // 		qDebug()<< rf <<" : " <<listInfo[rf].dump();
-        // nothing takes ownership of the item below
-        std::unique_ptr<FontItem> fi(new FontItem(listInfo[rf].file, true));
-        if (!fi->isValid()) {
-            qCWarning(FONTMATRIX_LOG) << "ERROR loading : " << listInfo[rf].file;
+    FMFontDb *db(FMFontDb::DB());
+    int added(0);
+    db->TransactionBegin();
+    for (const RemoteDir::FontInfo &info : listInfo) {
+        FontItem *fi = db->Knows(info.file) ? db->Font(info.file) : nullptr;
+        if (!fi) {
+            // a URL cannot be opened as a file: the item is built from the index
+            fi = new FontItem(info.file, true);
+            fi->fileRemote(info.family, info.variant, info.type, info.info, info.pix);
+            fi = db->AddFont(fi);
+            if (!fi)
+                continue;
+            ++added;
+        } else if (fi->isRemote())
+            fi->fileRemote(info.family, info.variant, info.type, info.info, info.pix);
+        else
             continue;
-        }
-        fi->fileRemote(listInfo[rf].family, listInfo[rf].variant, listInfo[rf].type, listInfo[rf].info, listInfo[rf].pix);
-        // 		fontMap.append ( fi );
-        // 		realFontMap[fi->path() ] = fi;
-        fi->setTags(listInfo[rf].tags);
-        for (const auto &tag : std::as_const(listInfo[rf].tags)) {
-            if (!tag.isEmpty() && !tagsList.contains(tag)) {
-                tagsList << tag;
-            }
-        }
+        // the tags of the directory, and the directory itself as a tag
+        QStringList tags(info.tags);
+        const QString host(QUrl(info.file).host());
+        if (!host.isEmpty() && !tags.contains(host))
+            tags << host;
+        for (const QString &tag : std::as_const(tags))
+            db->addTag(info.file, tag);
     }
-    //	theMainView->slotReloadFontList();
-    showStatusMessage(QString::number(listInfo.count()) + " " + i18nc("@info:status", "font descriptions imported from network"));
-    // 	qDebug()<<"END OF slotRemoteIsReady()";
+    db->TransactionEnd();
+    db->announceTagsChanged();
+    if (added > 0) {
+        showStatusMessage(i18ncp("@info:status", "%1 font added from the network", "%1 fonts added from the network", added));
+        Q_EMIT newFontsArrived();
+    }
 }
 
 void typotek::fontBook()

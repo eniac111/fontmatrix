@@ -60,6 +60,7 @@ void DataExport::doExport()
     exDir = QDir(dir);
 
     copyFiles();
+    buildIndex(); // fontmatrix.data, what a remote directory is read from
     buildHtml();
     close();
 }
@@ -80,6 +81,10 @@ int DataExport::copyFiles()
         QFile ffile(fonts.at(fidx)->path());
         QFileInfo ifile(ffile);
         if (ffile.copy(exDir.absolutePath() + exDir.separator() + ifile.fileName())) {
+            // the preview a remote directory shows for the font before its file is downloaded
+            const QPixmap preview(fonts.at(fidx)->oneLinePreviewPixmap(fonts.at(fidx)->fancyName(), Qt::black, Qt::white, 400, 24));
+            if (!preview.isNull() && !preview.save(exDir.absolutePath() + exDir.separator() + ifile.fileName() + QStringLiteral(".png")))
+                qCWarning(FONTMATRIX_LOG) << "unable to write the preview of" << fonts.at(fidx)->path();
             if (!fonts[fidx]->afm().isEmpty()) {
                 if (!QFile::copy(fonts[fidx]->afm(), exDir.absolutePath() + exDir.separator() + fonts[fidx]->activationAFMName())) {
                     qCWarning(FONTMATRIX_LOG) << "unable to copy " << fonts[fidx]->afm();

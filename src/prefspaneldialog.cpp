@@ -23,6 +23,7 @@
 #include <QGridLayout>
 #include <QStandardItemModel>
 #include <QToolTip>
+#include <QUrl>
 
 PrefsPanelDialog::PrefsPanelDialog(QWidget *parent)
     : KPageDialog(parent)
@@ -51,7 +52,7 @@ PrefsPanelDialog::PrefsPanelDialog(QWidget *parent)
     m_pageTools->setIcon(QIcon::fromTheme(QStringLiteral("applications-utilities")));
     m_pageSampleText = addPage(page_2, i18nc("@title:tab", "Samples collection"));
     m_pageSampleText->setIcon(QIcon::fromTheme(QStringLiteral("format-text-bold")));
-    m_pageFiles = addPage(page_3, i18nc("@title:tab", "Files && Folders"));
+    m_pageFiles = addPage(page_3, i18nc("@title:tab", "Files & Folders"));
     m_pageFiles->setIcon(QIcon::fromTheme(QStringLiteral("folder")));
     m_pageShortcuts = addPage(page_4, i18nc("@title:tab", "Shortcuts"));
     m_pageShortcuts->setIcon(QIcon::fromTheme(QStringLiteral("configure-shortcuts")));
@@ -148,6 +149,7 @@ void PrefsPanelDialog::initSampleTextPrefs()
 void PrefsPanelDialog::initFilesAndFolders()
 {
     templatesFolder->setText(typotek::getInstance()->getTemplatesDir());
+    remoteDirsList->addItems(FMConfig::value(QStringLiteral("RemoteDirectories"), QStringList()).toStringList());
 }
 
 void PrefsPanelDialog::initShortcuts()
@@ -205,6 +207,9 @@ void PrefsPanelDialog::doConnect()
 
     connect(templatesDirBrowse, &QPushButton::clicked, this, &PrefsPanelDialog::slotTemplatesBrowse);
     connect(templatesFolder, &QLineEdit::textChanged, this, &PrefsPanelDialog::setupTemplates);
+    connect(remoteDirAdd, &QPushButton::clicked, this, &PrefsPanelDialog::slotRemoteDirAdd);
+    connect(remoteDirEdit, &QLineEdit::returnPressed, this, &PrefsPanelDialog::slotRemoteDirAdd);
+    connect(remoteDirRemove, &QPushButton::clicked, this, &PrefsPanelDialog::slotRemoteDirRemove);
 
     connect(showNamesBox, &QCheckBox::toggled, this, &PrefsPanelDialog::slotShowImportedFonts);
 
@@ -385,6 +390,39 @@ void PrefsPanelDialog::showPage(PAGE page)
     }
     if (target)
         setCurrentPage(target);
+}
+
+void PrefsPanelDialog::slotRemoteDirAdd()
+{
+    const QString text(remoteDirEdit->text().trimmed());
+    const QUrl url(text);
+    if (text.isEmpty())
+        return;
+    if (!url.isValid() || (url.scheme() != QLatin1String("http") && url.scheme() != QLatin1String("https"))) {
+        KMessageBox::error(this, i18nc("@info", "%1 is not the address of a web directory.", text));
+        return;
+    }
+    QStringList dirs(FMConfig::value(QStringLiteral("RemoteDirectories"), QStringList()).toStringList());
+    if (dirs.contains(text))
+        return;
+    dirs << text;
+    FMConfig::setValue(QStringLiteral("RemoteDirectories"), dirs);
+    remoteDirsList->addItem(text);
+    remoteDirEdit->clear();
+    typotek::getInstance()->fetchRemoteDirectories(QStringList() << text);
+}
+
+void PrefsPanelDialog::slotRemoteDirRemove()
+{
+    const QList<QListWidgetItem *> selected(remoteDirsList->selectedItems());
+    if (selected.isEmpty())
+        return;
+    QStringList dirs(FMConfig::value(QStringLiteral("RemoteDirectories"), QStringList()).toStringList());
+    for (QListWidgetItem *item : selected) {
+        dirs.removeAll(item->text());
+        delete item;
+    }
+    FMConfig::setValue(QStringLiteral("RemoteDirectories"), dirs);
 }
 
 void PrefsPanelDialog::slotTemplatesBrowse()

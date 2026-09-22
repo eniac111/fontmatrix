@@ -97,6 +97,8 @@ private Q_SLOTS:
 
     void setupTemplates(const QString &);
     void slotTemplatesBrowse();
+    void slotRemoteDirAdd();
+    void slotRemoteDirRemove();
 
     void slotShowImportedFonts(bool show);
     // 		void slotFamilyNotPreferred(bool state);

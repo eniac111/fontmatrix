@@ -298,6 +298,16 @@ void FilterBar::metaFilter()
     processFilters();
 }
 
+void FilterBar::refilter()
+{
+    if (filters.count() > 0)
+        processFilters();
+    else {
+        FMFontDb::DB()->filterAllFonts();
+        Q_EMIT filterChanged();
+    }
+}
+
 void FilterBar::processFilters()
 {
     if (filters.count() > 0) {

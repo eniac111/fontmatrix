@@ -40,6 +40,7 @@ class QGraphicsView;
 class QGraphicsObject;
 
 class QProgressDialog;
+class QNetworkReply;
 class QFile;
 
 constexpr int PROGRESSION_LTR = 0;
@@ -132,12 +133,12 @@ private:
 
     bool m_remote;
     bool remoteCached;
-    QString remoteHerePath;
+    QString remoteHerePath; ///< the local copy of a remote font, once downloaded
     bool stopperDownload;
-    // 		QHttp *rHttp; // TODO To be replaced
     QFile *rFile = nullptr;
-    int remoteId = 0;
     QProgressDialog *rProgressDialog = nullptr;
+    QPixmap m_remotePreview; ///< the preview the remote directory gave, shown until the file is here
+    QString m_remoteInfo; ///< the information page the remote directory gave
 
     QString m_path;
     QUrl m_url;
@@ -232,16 +233,12 @@ private:
     // if true return width, else return number of _chars_ consumed
     bool renderReturnWidth;
 
-private Q_SLOTS:
-    void slotDownloadStart(int id);
-    void slotDowloadProgress(int done, int total);
-    void slotDownloadEnd(int id, bool error);
-    void slotDownloadDone(bool error);
-
-    void slotDownloadState(int state);
+private:
+    void downloadEnd(QNetworkReply *reply);
 
 Q_SIGNALS:
-    void dowloadFinished();
+    /// the file of a remote font has arrived (ok), or the download failed
+    void downloadFinished(bool ok);
 
 public Q_SLOTS:
     QString renderSVG(const QString &s, const double &size);
@@ -406,19 +403,32 @@ public:
         return m_valid;
     }
 
-    bool isRemote()
+    [[nodiscard]] bool isRemote() const
     {
         return m_remote;
     }
-    bool isCached()
+    /// a remote font whose file has been downloaded
+    [[nodiscard]] bool isCached() const
     {
         return remoteCached;
     }
-    void fileRemote(QString family, QString variant, QString type, QString info, QPixmap pixmap);
+    /// the file to open: the download of a remote font, the path of any other
+    [[nodiscard]] QString localPath() const
+    {
+        return m_remote ? remoteHerePath : m_path;
+    }
+    /// what a remote directory knows about the font, before its file is here
+    void fileRemote(const QString &family, const QString &variant, const QString &type, const QString &info, const QPixmap &pixmap);
     void fileLocal(QString family, QString variant, QString type, QString p);
     void fileLocal(FontLocalInfo);
-    // retval : 1 => Ready; 2 => Wait ; ...
+    /**
+     * Starts the download of a remote font into typotek::remoteTmpDir().
+     * @return 1 when the file is already here, 2 when the download runs or was
+     * started (downloadFinished() tells the end), 0 when it cannot start.
+     */
     int getFromNetwork();
+    /// a path is a remote font when it is a URL
+    static bool isRemotePath(const QString &path);
 
     void setShaperType(int theValue);
     [[nodiscard]] int shaperType() const;

@@ -28,6 +28,7 @@ class FontItem;
 class QDockWidget;
 class Systray;
 class RemoteDir;
+class QNetworkAccessManager;
 class FMHyphenator;
 class QProgressBar;
 class DataLoader;
@@ -199,6 +200,7 @@ private:
     QStringList sysFontList;
 
     RemoteDir *remoteDir = nullptr;
+    QNetworkAccessManager *m_network = nullptr;
     QString m_remoteTmpDir;
 
     QMap<QString, QDockWidget *> dockWidget;
@@ -324,6 +326,10 @@ public:
     {
         return m_remoteTmpDir;
     }
+    /// the one network access manager of the application
+    QNetworkAccessManager *network();
+    /// reads the catalogues of these remote directories and adds their fonts
+    void fetchRemoteDirectories(const QStringList &urls);
     void setRemoteTmpDir(const QString &s);
 
     [[nodiscard]] bool familySchemeFreetype() const

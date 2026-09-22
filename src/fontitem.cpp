@@ -36,7 +36,13 @@
 #include <QPainter>
 #include <QStringDecoder>
 
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
 #include <QProgressDialog>
+#include <QUrl>
+
+#include <climits>
 
 #include "QDebug"
 
@@ -292,8 +298,13 @@ FontItem::FontItem(QString path, bool remote, bool faststart)
 FontItem::FontItem(QString path, QString family, QString variant, QString type, bool active)
 {
     m_valid = true;
-    m_remote = false;
+    m_remote = isRemotePath(path);
     remoteCached = false;
+    if (m_remote) {
+        // downloaded in an earlier session?
+        remoteHerePath = typotek::getInstance()->remoteTmpDir() + QDir::separator() + QFileInfo(QUrl(path).path()).fileName();
+        remoteCached = QFileInfo::exists(remoteHerePath);
+    }
     stopperDownload = false;
     m_face = nullptr;
     lastFace = nullptr;
@@ -443,7 +454,9 @@ bool FontItem::ensureFace()
         ++facesRef;
         return true;
     }
-    QString trueFile(m_remote ? remoteHerePath : m_path);
+    if (m_remote && !remoteCached)
+        return false; // the file is not here; getFromNetwork() brings it
+    const QString trueFile(localPath());
     ft_error = FT_New_Face(ftlib, trueFile.toUtf8().constData(), 0, &m_face);
     if (ft_error) {
         qCWarning(FONTMATRIX_LOG) << "Error loading face [" << trueFile << "]";
@@ -2007,6 +2020,12 @@ QGraphicsPathItem *FontItem::hasCodepointLoaded(int code)
 
 QPixmap FontItem::oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor bg_color, int size_w, int size_f)
 {
+    if (m_remote && !remoteCached) {
+        // what the directory gave, or nothing: the model then shows the name
+        if (m_remotePreview.isNull() || size_w <= 0)
+            return m_remotePreview;
+        return m_remotePreview.scaledToWidth(qMin(size_w, m_remotePreview.width()), Qt::SmoothTransformation);
+    }
     //	if ( m_remote )
     //		return fixedPixmap;
     //	if ( !theOneLinePreviewPixmap.isNull() )
@@ -2089,7 +2108,7 @@ void FontItem::clearPreview()
 FontInfoMap FontItem::moreInfo()
 {
     FontInfoMap ret;
-    if (!ensureFace())
+    if ((m_remote && !remoteCached) || !ensureFace())
         return ret;
 
     if (testFlag(m_face->face_flags, FT_FACE_FLAG_SFNT, "1", "0") == "1") {
@@ -2107,7 +2126,7 @@ FontInfoMap FontItem::moreInfo()
 
 QString FontItem::panose()
 {
-    if (!ensureFace())
+    if ((m_remote && !remoteCached) || !ensureFace())
         return QString("0:0:0:0:0:0:0:0:0:0");
     QStringList pl;
     auto os2 = static_cast<TT_OS2 *>(FT_Get_Sfnt_Table(m_face, ft_sfnt_os2));
@@ -2719,13 +2738,21 @@ bool FontItem::isLocal()
 }
 
 /// We don’t want to download fonts yet. We just want something to fill font tree
-void FontItem::fileRemote(QString f, QString v, QString t, [[maybe_unused]] QString i, [[maybe_unused]] QPixmap p)
+bool FontItem::isRemotePath(const QString &path)
+{
+    return path.startsWith(QLatin1String("http://"), Qt::CaseInsensitive) || path.startsWith(QLatin1String("https://"), Qt::CaseInsensitive);
+}
+
+void FontItem::fileRemote(const QString &f, const QString &v, const QString &t, const QString &i, const QPixmap &p)
 {
     m_family = f;
     m_variant = v;
     m_type = t;
-    // 	m_cacheInfo = i;
-    //	fixedPixmap = p;
+    m_name = QFileInfo(QUrl(m_path).path()).fileName();
+    m_remoteInfo = i;
+    m_remotePreview = p;
+    remoteHerePath = typotek::getInstance()->remoteTmpDir() + QDir::separator() + m_name;
+    remoteCached = QFileInfo::exists(remoteHerePath);
 }
 
 /// the same, but just for speedup startup with a lot of font files
@@ -2757,100 +2784,70 @@ void FontItem::fileLocal(FontLocalInfo fli)
 /// Finally, we have to download the font file
 int FontItem::getFromNetwork()
 {
-    qCDebug(FONTMATRIX_LOG) << "FontItem::getFromNetwork()";
-    if (remoteCached)
+    if (!m_remote || remoteCached)
         return 1;
     if (stopperDownload)
         return 2;
-    else
-        stopperDownload = true;
 
-    QUrl url(m_path);
-    remoteHerePath = typotek::getInstance()->remoteTmpDir() + QDir::separator() + QFileInfo(url.path()).fileName();
-
+    const QDir dir(typotek::getInstance()->remoteTmpDir());
+    if (!dir.exists() && !QDir().mkpath(dir.absolutePath())) {
+        qCWarning(FONTMATRIX_LOG) << "Cannot create the directory for remote fonts" << dir.absolutePath();
+        return 0;
+    }
     rFile = new QFile(remoteHerePath);
     if (!rFile->open(QIODevice::WriteOnly)) {
-        qCDebug(FONTMATRIX_LOG) << "Can’t open " << remoteHerePath;
+        qCWarning(FONTMATRIX_LOG) << "Cannot write" << remoteHerePath;
         delete rFile;
-        // 		return false;
+        rFile = nullptr;
+        return 0;
     }
-#if 0 // TODO Must be re-implemented
-	rHttp = new QHttp ( url.host() );
-	qCDebug(FONTMATRIX_LOG) << "Init progress Dialog";
-	rProgressDialog = new QProgressDialog ( typotek::getInstance() );
-	rProgressDialog->setWindowTitle ( i18nc( "@title:window", "Fontmatrix - Download" ) );
-	rProgressDialog->setLabelText ( i18nc ( "@info:progress", "Downloading %1.", m_path ) );
-	rProgressDialog->show();
-	rProgressDialog->raise();
-	rProgressDialog->activateWindow();
-	qCDebug(FONTMATRIX_LOG) <<"Progress dialog done";
+    stopperDownload = true;
 
-	connect ( rHttp,SIGNAL ( dataReadProgress ( int, int ) ),this,SLOT ( slotDowloadProgress ( int,int ) ) );
-	connect ( rHttp,SIGNAL ( requestFinished ( int, bool ) ),this,SLOT ( slotDownloadEnd ( int, bool ) ) );
-	connect ( rHttp,SIGNAL ( done ( bool ) ),this,SLOT ( slotDownloadDone ( bool ) ) );
-	connect ( rHttp,SIGNAL ( stateChanged ( int ) ),this,SLOT ( slotDownloadState ( int ) ) );
+    rProgressDialog = new QProgressDialog(typotek::getInstance());
+    rProgressDialog->setWindowTitle(i18nc("@title:window", "Downloading a Font"));
+    rProgressDialog->setLabelText(i18nc("@info:progress", "Downloading %1", m_path));
+    rProgressDialog->setMinimumDuration(1000);
 
-	remoteId = rHttp->get ( url.path() , rFile );
-#endif
+    QNetworkReply *reply = typotek::getInstance()->network()->get(QNetworkRequest(QUrl(m_path)));
+    connect(reply, &QNetworkReply::readyRead, this, [this, reply]() {
+        if (rFile)
+            rFile->write(reply->readAll());
+    });
+    connect(reply, &QNetworkReply::downloadProgress, this, [this](qint64 done, qint64 total) {
+        if (rProgressDialog && total > 0) {
+            rProgressDialog->setMaximum(static_cast<int>(qMin<qint64>(total, INT_MAX)));
+            rProgressDialog->setValue(static_cast<int>(qMin<qint64>(done, INT_MAX)));
+        }
+    });
+    connect(rProgressDialog, &QProgressDialog::canceled, reply, &QNetworkReply::abort);
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        downloadEnd(reply);
+    });
     return 2;
 }
 
-void FontItem::slotDownloadStart(int id)
+void FontItem::downloadEnd(QNetworkReply *reply)
 {
-    // 	rProgressDialog->show();
-    if (id != remoteId) {
-        qCDebug(FONTMATRIX_LOG) << "catched a weird request : " << id;
+    reply->deleteLater();
+    const bool ok = (reply->error() == QNetworkReply::NoError);
+    if (rFile) {
+        if (ok)
+            rFile->write(reply->readAll());
+        rFile->close();
+        if (!ok)
+            rFile->remove();
+        delete rFile;
+        rFile = nullptr;
     }
-}
-
-void FontItem::slotDowloadProgress(int done, int total)
-{
-    rProgressDialog->setMaximum(total);
-    rProgressDialog->setValue(done);
-    qCDebug(FONTMATRIX_LOG) << " [" << done << "/" << total << "]";
-}
-
-void FontItem::slotDownloadEnd(int id, [[maybe_unused]] bool error)
-{
-    qCDebug(FONTMATRIX_LOG) << m_path << "::slotDownloadEnd [" << id << "] when remoteCached = " << remoteCached;
-    if (id != remoteId) {
-        qCDebug(FONTMATRIX_LOG) << "WTF this id(" << id << ") comes from nowhere, our is " << remoteId;
-        return;
-    }
-    if (remoteCached) {
-        qCDebug(FONTMATRIX_LOG) << "Youre a bit late dude.";
-        return;
-    } else {
-        remoteCached = true;
-    }
-    rFile->flush();
-    rFile->close();
-#if 0
-	rHttp->close(); // TODO Must be replaced
-#endif
-
     delete rProgressDialog;
-    delete rFile;
-
-    Q_EMIT dowloadFinished();
-}
-
-void FontItem::slotDownloadDone(bool error)
-{
-    qCDebug(FONTMATRIX_LOG) << "slotDownloadDone(" << error << ")";
-}
-
-void FontItem::slotDownloadState([[maybe_unused]] int state)
-{
-#if 0 // TODO Must be re-implemented
-// 	qDebug() << "slotDownloadState("<<state<<")";
-	if ( state == QHttp::Unconnected  && rHttp )
-	{
-		qCDebug(FONTMATRIX_LOG) << "slotDownloadState( QHttp::Unconnected )";
-		delete rHttp;
-		rHttp = 0;
-	}
-#endif
+    rProgressDialog = nullptr;
+    stopperDownload = false;
+    if (ok) {
+        remoteCached = true;
+        qCDebug(FONTMATRIX_LOG) << m_path << "downloaded to" << remoteHerePath;
+    } else
+        qCWarning(FONTMATRIX_LOG) << "Download of" << m_path << "failed:" << reply->errorString();
+    Q_EMIT downloadFinished(ok);
 }
 
 void FontItem::trimSpacesIndex()
@@ -2874,17 +2871,18 @@ void FontItem::trimSpacesIndex()
 
 QString FontItem::activationName()
 {
-    if (m_remote /*|| m_lock*/)
+    // a remote font is activated through its downloaded copy
+    if (m_remote && !remoteCached)
         return QString();
 
-    QFileInfo fi(m_path);
+    QFileInfo fi(localPath());
     QString prefix("%1-");
     return prefix.arg(fi.size()) + fi.fileName();
 }
 
 QString FontItem::activationAFMName()
 {
-    if (m_remote /*|| m_lock*/)
+    if (m_remote && !remoteCached)
         return QString();
     if (m_afm.isEmpty())
         return QString();
