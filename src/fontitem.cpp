@@ -7,6 +7,8 @@
 #include "fontitem.h"
 #include "fmaltcontext.h"
 #include "fmbaseshaper.h"
+#include "fmcolorglyphitem.h"
+#include "fmcolorpainter.h"
 #include "fmencdata.h"
 #include "fmfontdb.h"
 #include "fmfontstrings.h"
@@ -49,6 +51,7 @@
 #include "QDebug"
 
 #include FT_XFREE86_H
+#include FT_COLOR_H
 #include FT_GLYPH_H
 #include FT_OUTLINE_H
 #include FT_MULTIPLE_MASTERS_H
@@ -465,6 +468,15 @@ bool FontItem::ensureFace()
         qCWarning(FONTMATRIX_LOG) << "Error loading face [" << trueFile << "]";
         return false;
     }
+    m_faceSeen = true;
+    m_hasColor = FT_HAS_COLOR(m_face);
+    if (m_hasColor)
+        m_paintFont = FMColorPainter::paintFont(m_face);
+    if (m_face->units_per_EM == 0 && m_headUnitsPerEm <= 0.0) {
+        // a bitmap-only font: FreeType has no scale for it, its head table has the units
+        if (auto *head = static_cast<TT_Header *>(FT_Get_Sfnt_Table(m_face, FT_SFNT_HEAD)))
+            m_headUnitsPerEm = head->Units_Per_EM;
+    }
     readVariation();
     applyVariation();
     encodeFace();
@@ -477,7 +489,7 @@ bool FontItem::ensureFace()
             }
         }
     }
-    unitPerEm = m_face->units_per_EM;
+    unitPerEm = unitsPerEm();
     m_glyph = m_face->glyph;
     facesRef = 1;
     ++fm_num_face_opened;
@@ -489,6 +501,10 @@ void FontItem::releaseFace()
     if (m_face) {
         --facesRef;
         if (facesRef == 0) {
+            if (m_paintFont) {
+                hb_font_destroy(m_paintFont);
+                m_paintFont = nullptr;
+            }
             FT_Done_Face(m_face);
             m_face = nullptr;
             --fm_num_face_opened;
@@ -567,8 +583,8 @@ QGraphicsPathItem *FontItem::itemFromGindex(int index, double size)
     if (!ensureFace())
         return nullptr;
     int charcode = index;
-    double scalefactor = size / m_face->units_per_EM;
-    ft_error = FT_Load_Glyph(m_face, charcode, FT_LOAD_NO_SCALE);
+    double scalefactor = size / unitsPerEm();
+    ft_error = loadUnscaled(charcode);
     if (ft_error) {
         QPainterPath glyphPath;
         glyphPath.addRect(0.0, 0.0, size, size);
@@ -590,6 +606,20 @@ QGraphicsPathItem *FontItem::itemFromGindex(int index, double size)
     sp.s = scalefactor;
     FT_Outline_Decompose(outline, &outline_funcs, &sp);
     glyphPath.closeSubpath();
+
+    if (m_hasColor) {
+        // the base glyph of a colour glyph has no outline of its own, or a fallback one
+        const FT_Glyph_Metrics metrics = m_glyph->metrics;
+        if (QGraphicsPathItem *colored = colorItem(index, scalefactor)) {
+            colored->setData(GLYPH_DATA_GLYPH, index);
+            colored->setData(GLYPH_DATA_HADVANCE, (double)metrics.horiAdvance);
+            colored->setData(GLYPH_DATA_HADVANCE_SCALED, (double)metrics.horiAdvance * scalefactor);
+            colored->setData(5, (double)metrics.vertAdvance);
+            colored->setData(GLYPH_DATA_ERROR, false);
+            releaseFace();
+            return colored;
+        }
+    }
     auto glyph = new QGraphicsPathItem;
 
     if (glyphPath.elementCount() < 3 && !spaceIndex.contains(index)) {
@@ -638,10 +668,10 @@ QGraphicsPixmapItem *FontItem::itemFromGindexPix(int index, double size)
     int charcode = index;
 
     // Set size
-    FT_Set_Char_Size(m_face, qRound(size * 64), 0, typotek::getInstance()->getDpiX(), typotek::getInstance()->getDpiY());
+    setSize(size);
 
     // Grab metrics in FONT UNIT
-    ft_error = FT_Load_Glyph(m_face, charcode, FT_LOAD_NO_SCALE);
+    ft_error = loadUnscaled(charcode);
     if (ft_error) {
         QPixmap square(qRound(size), qRound(size));
         square.fill(Qt::red);
@@ -649,7 +679,7 @@ QGraphicsPixmapItem *FontItem::itemFromGindexPix(int index, double size)
         glyph->setData(GLYPH_DATA_GLYPH, index);
         glyph->setData(GLYPH_DATA_BITMAPLEFT, 0);
         glyph->setData(GLYPH_DATA_BITMAPTOP, size);
-        glyph->setData(GLYPH_DATA_HADVANCE, size / (size / m_face->units_per_EM));
+        glyph->setData(GLYPH_DATA_HADVANCE, size / (size / unitsPerEm()));
         releaseFace();
         return glyph;
     }
@@ -660,7 +690,7 @@ QGraphicsPixmapItem *FontItem::itemFromGindexPix(int index, double size)
 
     // 	if(m_FTHintMode != FT_LOAD_NO_HINTING)
     {
-        ft_error = FT_Load_Glyph(m_face, charcode, FT_LOAD_DEFAULT | m_FTHintMode);
+        ft_error = FT_Load_Glyph(m_face, charcode, loadFlags(FT_LOAD_DEFAULT | m_FTHintMode));
     }
     // Render the glyph into a grayscale bitmap
     ft_error = FT_Render_Glyph(m_face->glyph, FT_RENDER_MODE_NORMAL);
@@ -671,12 +701,16 @@ QGraphicsPixmapItem *FontItem::itemFromGindexPix(int index, double size)
         glyph->setData(GLYPH_DATA_GLYPH, index);
         glyph->setData(GLYPH_DATA_BITMAPLEFT, 0);
         glyph->setData(GLYPH_DATA_BITMAPTOP, size);
-        glyph->setData(GLYPH_DATA_HADVANCE, size / (size / m_face->units_per_EM));
+        glyph->setData(GLYPH_DATA_HADVANCE, size / (size / unitsPerEm()));
         releaseFace();
         return glyph;
     }
 
     QImage img(glyphImage());
+    double bitmapTopPx = bitmapTop();
+    double paintedLeft = takeLeftBeforeRender;
+    if (paintedGlyph(index, img, paintedLeft, bitmapTopPx)) // the pixels into the units the layout scales
+        takeLeftBeforeRender = paintedLeft * unitsPerEm() / size;
     auto glyph = new QGraphicsPixmapItem;
 
     if (img.isNull() && !spaceIndex.contains(index)) {
@@ -686,7 +720,7 @@ QGraphicsPixmapItem *FontItem::itemFromGindexPix(int index, double size)
         glyph->setData(GLYPH_DATA_GLYPH, index);
         glyph->setData(GLYPH_DATA_BITMAPLEFT, 0);
         glyph->setData(GLYPH_DATA_BITMAPTOP, size);
-        glyph->setData(GLYPH_DATA_HADVANCE, size / (size / m_face->units_per_EM));
+        glyph->setData(GLYPH_DATA_HADVANCE, size / (size / unitsPerEm()));
     } else {
 #ifndef PLATFORM_APPLE
         // Convert from Format_Indexed8 (with ARGB color table) to ARGB32 so
@@ -703,7 +737,7 @@ QGraphicsPixmapItem *FontItem::itemFromGindexPix(int index, double size)
         // we need to transport more data
         glyph->setData(GLYPH_DATA_GLYPH, index);
         glyph->setData(GLYPH_DATA_BITMAPLEFT, takeLeftBeforeRender);
-        glyph->setData(GLYPH_DATA_BITMAPTOP, double(m_face->glyph->bitmap_top));
+        glyph->setData(GLYPH_DATA_BITMAPTOP, bitmapTopPx);
         glyph->setData(GLYPH_DATA_HADVANCE, takeAdvanceBeforeRender);
         glyph->setData(GLYPH_DATA_VADVANCE, takeVertAdvanceBeforeRender);
     }
@@ -719,13 +753,13 @@ MetaGlyphItem *FontItem::itemFromGindexPix_mt(int index, double size)
     int charcode = index;
     //	qDebug()<<"FontItem::itemFromGindexPix_mt"<< thread();
     auto glyph = new MetaGlyphItem;
-    double scaleFactor = size / m_face->units_per_EM;
+    double scaleFactor = size / unitsPerEm();
 
     // Set size
-    FT_Set_Char_Size(m_face, qRound(size * 64), 0, typotek::getInstance()->getDpiX(), typotek::getInstance()->getDpiY());
+    setSize(size);
 
     // Grab metrics in FONT UNIT
-    ft_error = FT_Load_Glyph(m_face, charcode, FT_LOAD_NO_SCALE);
+    ft_error = loadUnscaled(charcode);
     if (ft_error) {
         glyph->setMetaData(GLYPH_DATA_GLYPH, index);
         glyph->setMetaData(GLYPH_DATA_BITMAPLEFT, 0);
@@ -741,7 +775,7 @@ MetaGlyphItem *FontItem::itemFromGindexPix_mt(int index, double size)
 
     // 	if(m_FTHintMode != FT_LOAD_NO_HINTING)
     {
-        ft_error = FT_Load_Glyph(m_face, charcode, FT_LOAD_DEFAULT | m_FTHintMode);
+        ft_error = FT_Load_Glyph(m_face, charcode, loadFlags(FT_LOAD_DEFAULT | m_FTHintMode));
     }
     // Render the glyph into a grayscale bitmap
     ft_error = FT_Render_Glyph(m_face->glyph, FT_RENDER_MODE_NORMAL);
@@ -755,6 +789,10 @@ MetaGlyphItem *FontItem::itemFromGindexPix_mt(int index, double size)
     }
 
     QImage img(glyphImage());
+    double bitmapTopPx = bitmapTop();
+    double paintedLeft = takeLeftBeforeRender;
+    if (paintedGlyph(index, img, paintedLeft, bitmapTopPx)) // the pixels into the units the layout scales
+        takeLeftBeforeRender = paintedLeft * unitsPerEm() / size;
 
     if (img.isNull() && !spaceIndex.contains(index)) {
         glyph->setMetaData(GLYPH_DATA_GLYPH, index);
@@ -764,7 +802,7 @@ MetaGlyphItem *FontItem::itemFromGindexPix_mt(int index, double size)
     } else {
         glyph->setMetaData(GLYPH_DATA_GLYPH, index);
         glyph->setMetaData(GLYPH_DATA_BITMAPLEFT, takeLeftBeforeRender);
-        glyph->setMetaData(GLYPH_DATA_BITMAPTOP, double(m_face->glyph->bitmap_top));
+        glyph->setMetaData(GLYPH_DATA_BITMAPTOP, bitmapTopPx);
         glyph->setMetaData(GLYPH_DATA_HADVANCE, takeAdvanceBeforeRender);
         glyph->setMetaData(GLYPH_DATA_VADVANCE, takeVertAdvanceBeforeRender);
     }
@@ -779,8 +817,8 @@ QImage FontItem::charImage(int charcode, double size)
         return QImage();
 
     // Set size
-    FT_Set_Char_Size(m_face, qRound(size * 64), 0, typotek::getInstance()->getDpiX(), typotek::getInstance()->getDpiY());
-    if (FT_Load_Char(m_face, charcode, FT_LOAD_DEFAULT)) {
+    setSize(size);
+    if (FT_Load_Char(m_face, charcode, loadFlags(FT_LOAD_DEFAULT))) {
         releaseFace();
         return QImage();
     }
@@ -790,6 +828,9 @@ QImage FontItem::charImage(int charcode, double size)
     }
 
     QImage cImg(glyphImage());
+    double left = 0.0;
+    double top = 0.0;
+    paintedGlyph(int(FT_Get_Char_Index(m_face, FT_ULong(charcode))), cImg, left, top);
     releaseFace();
     return cImg;
 }
@@ -800,8 +841,8 @@ QImage FontItem::glyphImage(int index, double size)
         return QImage();
 
     // Set size
-    FT_Set_Char_Size(m_face, qRound(size * 64), 0, typotek::getInstance()->getDpiX(), typotek::getInstance()->getDpiY());
-    if (FT_Load_Glyph(m_face, index, FT_LOAD_DEFAULT)) {
+    setSize(size);
+    if (FT_Load_Glyph(m_face, index, loadFlags(FT_LOAD_DEFAULT))) {
         releaseFace();
         return QImage();
     }
@@ -811,6 +852,9 @@ QImage FontItem::glyphImage(int index, double size)
     }
 
     QImage cImg(glyphImage());
+    double left = 0.0;
+    double top = 0.0;
+    paintedGlyph(index, cImg, left, top);
     releaseFace();
     return cImg;
 }
@@ -825,7 +869,7 @@ double FontItem::renderLine(QGraphicsScene *scene, QString spec, QPointF origine
     ensureFace();
 
     double sizz = fsize;
-    double scalefactor = sizz / m_face->units_per_EM;
+    double scalefactor = sizz / unitsPerEm();
     double pWidth = lineWidth;
     const double distance = 20;
     QPointF pen(origine);
@@ -1032,7 +1076,7 @@ double FontItem::renderLine(OTFSet set, QGraphicsScene *scene, QString spec, QPo
     if (!otf)
         return retValue;
     double sizz = fsize;
-    double scalefactor = sizz / m_face->units_per_EM;
+    double scalefactor = sizz / unitsPerEm();
     double pixelAdjustX = scalefactor * (typotek::getInstance()->getDpiX() / 72.0);
     double pixelAdjustY = scalefactor * (typotek::getInstance()->getDpiX() / 72.0);
     double pWidth = lineWidth;
@@ -1268,7 +1312,7 @@ double FontItem::renderLine(QString script, QGraphicsScene *scene, QString spec,
     delete shaperfactory;
 
     double sizz = fsize;
-    double scalefactor = sizz / m_face->units_per_EM;
+    double scalefactor = sizz / unitsPerEm();
     double pixelAdjustX = scalefactor * (typotek::getInstance()->getDpiX() / 72.0);
     double pixelAdjustY = scalefactor * (typotek::getInstance()->getDpiX() / 72.0);
     double pWidth = lineWidth;
@@ -2054,8 +2098,6 @@ QPixmap FontItem::oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor 
     bool pRTL = typotek::getInstance()->getPreviewRTL();
     QPointF pen(pRTL ? theWidth - 16 : 16, theSize * pt2px);
 
-    int fsize = qRound(theSize) * 64;
-
     QPixmap linePixmap(qRound(theWidth), qRound(theHeight));
     linePixmap.fill(bg_color);
     QPainter apainter(&linePixmap);
@@ -2071,18 +2113,22 @@ QPixmap FontItem::oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor 
         for (int i(0); i < oneline.size(); ++i) {
             int glyphIndex = FT_Get_Char_Index(m_face, oneline[i].unicode());
 
-            FT_Set_Char_Size(m_face, fsize, 0, typotek::getInstance()->getDpiX(), typotek::getInstance()->getDpiY());
-
-            if (FT_Load_Glyph(m_face, glyphIndex, FT_LOAD_DEFAULT | FT_LOAD_NO_HINTING) > 0)
+            if (!setSize(qRound(theSize)))
+                continue;
+            if (FT_Load_Glyph(m_face, glyphIndex, loadFlags(FT_LOAD_DEFAULT | FT_LOAD_NO_HINTING)) > 0)
                 continue;
             if (FT_Render_Glyph(m_face->glyph, FT_RENDER_MODE_NORMAL) > 0)
                 continue;
 
+            QImage img(glyphImage(fg_color));
+            double left = bitmapLeft();
+            double top = bitmapTop();
+            paintedGlyph(glyphIndex, img, left, top);
             if (pRTL)
-                pen.rx() -= qRound(double(m_glyph->linearHoriAdvance) / 65536);
-            apainter.drawImage(pen.x() + m_glyph->bitmap_left, pen.y() - m_glyph->bitmap_top, glyphImage(fg_color));
+                pen.rx() -= qRound(bitmapAdvance());
+            apainter.drawImage(QPointF(pen.x() + left, pen.y() - top), img);
             if (!pRTL)
-                pen.rx() += qRound(double(m_glyph->linearHoriAdvance) / 65536);
+                pen.rx() += qRound(bitmapAdvance());
         }
     } else {
         apainter.drawText(pen.x(), pen.y(), i18nc("when doing the font preview, used to denote a font that can not displayed its name", "(%1)", oneline));
@@ -2726,24 +2772,22 @@ int FontItem::showFancyGlyph(QGraphicsView *view, int charcode, bool charcodeIsA
     painter.drawRoundedRect(subRect, 5, 5);
     painter.setPen(QPen(QColor(0, 0, 255, 120)));
 
-    ft_error = FT_Set_Pixel_Sizes(m_face, 0, qRound(subRect.height() * 0.8));
-    if (ft_error) {
+    if (!setPixelSize(subRect.height() * 0.8)) {
         return -1;
     }
     if (!charcodeIsAGlyphIndex)
-        ft_error = FT_Load_Char(m_face, charcode, FT_LOAD_RENDER);
+        ft_error = FT_Load_Char(m_face, charcode, loadFlags(FT_LOAD_RENDER));
     else
-        ft_error = FT_Load_Glyph(m_face, charcode, FT_LOAD_RENDER);
+        ft_error = FT_Load_Glyph(m_face, charcode, loadFlags(FT_LOAD_RENDER));
     if (ft_error) {
         return -1;
     }
 
-    QVector<QRgb> palette;
-    for (int i = 0; i < m_face->glyph->bitmap.num_grays; ++i) {
-        palette << qRgb(255 - i, 255 - i, 255 - i);
-    }
-    QImage img(m_face->glyph->bitmap.buffer, m_face->glyph->bitmap.width, m_face->glyph->bitmap.rows, m_face->glyph->bitmap.pitch, QImage::Format_Indexed8);
-    img.setColorTable(palette);
+    // black, or the colours of the glyph, on the white box painted above
+    QImage img(glyphImage());
+    double left = bitmapLeft();
+    double top = bitmapTop();
+    paintedGlyph(charcodeIsAGlyphIndex ? charcode : int(FT_Get_Char_Index(m_face, FT_ULong(charcode))), img, left, top);
 
     double scaledBy = 1.0;
     if (img.width() > subRect.width()) {
@@ -2760,17 +2804,17 @@ int FontItem::showFancyGlyph(QGraphicsView *view, int charcode, bool charcodeIsA
     /// Draw metrics
     int iAngle(italicAngle());
     QPoint pPos(gPos);
-    pPos.rx() -= qRound(m_face->glyph->bitmap_left * scaledBy);
-    pPos.ry() += qRound(m_face->glyph->bitmap_top * scaledBy);
+    pPos.rx() -= qRound(left * scaledBy);
+    pPos.ry() += qRound(top * scaledBy);
     double aF(tan((3.14 / 180.0) * iAngle));
     double asc(subRect.top() - pPos.y());
     double desc(pPos.y() - subRect.bottom());
     // left
     painter.drawLine(pPos.x() + (asc * aF), subRect.top(), pPos.x() - (desc * aF), subRect.bottom());
     // right
-    painter.drawLine(qRound(pPos.x() + m_face->glyph->metrics.horiAdvance / 64.0 * scaledBy) + (asc * aF),
+    painter.drawLine(qRound(pPos.x() + bitmapAdvance() * scaledBy) + (asc * aF),
                      subRect.top(),
-                     qRound(pPos.x() + m_face->glyph->metrics.horiAdvance / 64.0 * scaledBy) - (desc * aF),
+                     qRound(pPos.x() + bitmapAdvance() * scaledBy) - (desc * aF),
                      subRect.bottom());
     // baseline
     painter.drawLine(subRect.left(), pPos.y(), subRect.right(), pPos.y());
@@ -3109,6 +3153,17 @@ QList<int> FontItem::getAlternates(int ccode)
 
 QImage FontItem::glyphImage(QColor color)
 {
+    const FT_Bitmap &bitmap = m_face->glyph->bitmap;
+    if (bitmap.pixel_mode == FT_PIXEL_MODE_BGRA) {
+        // a colour glyph: FreeType's BGRA, premultiplied, is Qt's ARGB32_Premultiplied byte for byte
+        QImage colorImg(int(bitmap.width), int(bitmap.rows), QImage::Format_ARGB32_Premultiplied);
+        const unsigned char *row = bitmap.buffer;
+        for (int r = 0; r < int(bitmap.rows); ++r) {
+            memcpy(colorImg.scanLine(r), row, size_t(bitmap.width) * 4);
+            row += bitmap.pitch;
+        }
+        return scaledToStrike(colorImg);
+    }
     QImage img(m_face->glyph->bitmap.width, m_face->glyph->bitmap.rows, QImage::Format_Indexed8);
     // 	QImage img ( m_face->glyph->bitmap.buffer,
     // 	             m_face->glyph->bitmap.width,
@@ -3147,7 +3202,220 @@ QImage FontItem::glyphImage(QColor color)
         cursor += m_face->glyph->bitmap.pitch;
     }
 
-    return img;
+    return scaledToStrike(img);
+}
+
+/// Colour fonts and bitmap-only fonts *******************************************
+
+QImage FontItem::scaledToStrike(const QImage &img) const
+{
+    if (qFuzzyCompare(m_bitmapScale, 1.0) || img.isNull())
+        return img;
+    return img.scaled(qMax(1, qRound(img.width() * m_bitmapScale)),
+                      qMax(1, qRound(img.height() * m_bitmapScale)),
+                      Qt::IgnoreAspectRatio,
+                      Qt::SmoothTransformation);
+}
+
+double FontItem::unitsPerEm() const
+{
+    if (m_face && m_face->units_per_EM > 0)
+        return m_face->units_per_EM;
+    if (m_headUnitsPerEm > 0.0)
+        return m_headUnitsPerEm;
+    return 1000.0;
+}
+
+bool FontItem::selectStrike(double ppem)
+{
+    if (!m_face || m_face->num_fixed_sizes <= 0 || !m_face->available_sizes)
+        return false;
+    int best = 0;
+    for (int i = 1; i < m_face->num_fixed_sizes; ++i) {
+        if (qAbs(m_face->available_sizes[i].y_ppem / 64.0 - ppem) < qAbs(m_face->available_sizes[best].y_ppem / 64.0 - ppem))
+            best = i;
+    }
+    if (FT_Select_Size(m_face, best) != 0)
+        return false;
+    const double strikePpem = m_face->available_sizes[best].y_ppem / 64.0;
+    m_bitmapScale = (ppem > 0.0 && strikePpem > 0.0) ? ppem / strikePpem : 1.0;
+    return true;
+}
+
+bool FontItem::setSize(double size)
+{
+    m_bitmapScale = 1.0;
+    if (FT_IS_SCALABLE(m_face))
+        return FT_Set_Char_Size(m_face, qRound(size * 64), 0, typotek::getInstance()->getDpiX(), typotek::getInstance()->getDpiY()) == 0;
+    return selectStrike(size * typotek::getInstance()->getDpiY() / 72.0);
+}
+
+bool FontItem::setPixelSize(double pixels)
+{
+    m_bitmapScale = 1.0;
+    if (FT_IS_SCALABLE(m_face))
+        return FT_Set_Pixel_Sizes(m_face, 0, FT_UInt(qRound(pixels))) == 0;
+    return selectStrike(pixels);
+}
+
+FT_Int32 FontItem::loadFlags(FT_Int32 flags) const
+{
+    return m_hasColor ? (flags | FT_LOAD_COLOR) : flags;
+}
+
+void FontItem::metricsToUnits()
+{
+    // the strike's 26.6 pixels into the units of the design
+    const double ppem = m_face->size ? m_face->size->metrics.y_ppem : 0;
+    if (ppem <= 0)
+        return;
+    const double toUnits = unitsPerEm() / (64.0 * ppem);
+    FT_Glyph_Metrics &m = m_glyph->metrics;
+    m.width = FT_Pos(std::lround(m.width * toUnits));
+    m.height = FT_Pos(std::lround(m.height * toUnits));
+    m.horiBearingX = FT_Pos(std::lround(m.horiBearingX * toUnits));
+    m.horiBearingY = FT_Pos(std::lround(m.horiBearingY * toUnits));
+    m.horiAdvance = FT_Pos(std::lround(m.horiAdvance * toUnits));
+    m.vertBearingX = FT_Pos(std::lround(m.vertBearingX * toUnits));
+    m.vertBearingY = FT_Pos(std::lround(m.vertBearingY * toUnits));
+    m.vertAdvance = FT_Pos(std::lround(m.vertAdvance * toUnits));
+}
+
+FT_Error FontItem::loadUnscaled(int index)
+{
+    if (FT_IS_SCALABLE(m_face))
+        return FT_Load_Glyph(m_face, index, FT_LOAD_NO_SCALE);
+    // a bitmap-only font: the metrics of a strike, the biggest when none is selected, in font units
+    if ((!m_face->size || m_face->size->metrics.y_ppem == 0) && !selectStrike(1e6))
+        return FT_Err_Invalid_Pixel_Size;
+    const double scale = m_bitmapScale;
+    const FT_Error error = FT_Load_Glyph(m_face, index, loadFlags(FT_LOAD_DEFAULT));
+    m_bitmapScale = scale;
+    if (error)
+        return error;
+    metricsToUnits();
+    return 0;
+}
+
+double FontItem::bitmapLeft() const
+{
+    return m_glyph->bitmap_left * m_bitmapScale;
+}
+
+double FontItem::bitmapTop() const
+{
+    return m_glyph->bitmap_top * m_bitmapScale;
+}
+
+double FontItem::bitmapAdvance() const
+{
+    return m_glyph->advance.x / 64.0 * m_bitmapScale;
+}
+
+bool FontItem::paintedGlyph(int index, QImage &img, double &left, double &top)
+{
+    if (!m_paintFont || !m_face->size || index < 0)
+        return false;
+    const double ppem = m_face->size->metrics.y_ppem * m_bitmapScale;
+    QImage painted;
+    double paintedLeft = 0.0;
+    double paintedTop = 0.0;
+    if (!FMColorPainter::paint(m_paintFont, FT_UInt(index), ppem, Qt::black, painted, paintedLeft, paintedTop))
+        return false;
+    img = painted;
+    left = paintedLeft;
+    top = paintedTop;
+    return true;
+}
+
+bool FontItem::hasColor()
+{
+    if (!m_faceSeen) {
+        if (!ensureFace())
+            return false;
+        releaseFace();
+    }
+    return m_hasColor;
+}
+
+QStringList FontItem::colorTables()
+{
+    QStringList ret;
+    if (!hasColor())
+        return ret;
+    for (const char *name : {"COLR", "CPAL", "CBDT", "sbix", "SVG "}) {
+        if (table(QString::fromLatin1(name)) > 0)
+            ret << QString::fromLatin1(name).trimmed();
+    }
+    return ret;
+}
+
+QGraphicsPathItem *FontItem::colorItem(int index, double scalefactor)
+{
+    if (!m_hasColor || !m_face)
+        return nullptr;
+
+    // COLR version 1: painted, sharp enough for the size the item is scaled to
+    if (m_paintFont && FMColorPainter::hasPaint(m_paintFont, FT_UInt(index))) {
+        const double ppem = qBound(64.0, scalefactor * unitsPerEm() * 4.0, 1024.0);
+        QImage img;
+        double left = 0.0;
+        double top = 0.0;
+        if (FMColorPainter::paint(m_paintFont, FT_UInt(index), ppem, Qt::black, img, left, top)) {
+            const double perPixel = scalefactor * unitsPerEm() / ppem;
+            auto *item = new FMColorGlyphItem;
+            item->setImage(img, QRectF(left * perPixel, -top * perPixel, img.width() * perPixel, img.height() * perPixel));
+            return item;
+        }
+    }
+
+    // layers of outlines, each with its colour from the palette (COLR version 0)
+    QList<GlyphLayer> layers;
+    FT_LayerIterator iterator;
+    iterator.p = nullptr;
+    FT_UInt layerGlyph = 0;
+    FT_UInt colorIndex = 0;
+    FT_Color *palette = nullptr;
+    FT_Palette_Data paletteData;
+    paletteData.num_palette_entries = 0;
+    if (FT_Palette_Data_Get(m_face, &paletteData) != 0 || FT_Palette_Select(m_face, 0, &palette) != 0)
+        palette = nullptr;
+    while (FT_Get_Color_Glyph_Layer(m_face, FT_UInt(index), &layerGlyph, &colorIndex, &iterator)) {
+        if (FT_Load_Glyph(m_face, layerGlyph, FT_LOAD_NO_SCALE) != 0)
+            continue;
+        GlyphLayer layer;
+        SizedPath sp{};
+        sp.p = &layer.path;
+        sp.s = scalefactor;
+        FT_Outline_Decompose(&m_glyph->outline, &outline_funcs, &sp);
+        layer.path.closeSubpath();
+        if (palette && colorIndex < paletteData.num_palette_entries) {
+            const FT_Color &c = palette[colorIndex];
+            layer.color = QColor(c.red, c.green, c.blue, c.alpha);
+        }
+        layers << layer;
+    }
+    if (!layers.isEmpty()) {
+        auto *item = new FMColorGlyphItem;
+        item->setLayers(layers);
+        return item;
+    }
+
+    // a bitmap (CBDT, sbix): its biggest strike, in the box the metrics give
+    if (!FT_HAS_FIXED_SIZES(m_face) || !selectStrike(1e6))
+        return nullptr;
+    m_bitmapScale = 1.0;
+    if (FT_Load_Glyph(m_face, index, loadFlags(FT_LOAD_DEFAULT)) != 0 || FT_Render_Glyph(m_glyph, FT_RENDER_MODE_NORMAL) != 0)
+        return nullptr;
+    if (m_glyph->bitmap.pixel_mode != FT_PIXEL_MODE_BGRA || m_glyph->bitmap.width == 0)
+        return nullptr;
+    const QImage img(glyphImage());
+    metricsToUnits();
+    const FT_Glyph_Metrics &m = m_glyph->metrics;
+    const QRectF box(m.horiBearingX * scalefactor, -m.horiBearingY * scalefactor, m.width * scalefactor, m.height * scalefactor);
+    auto *item = new FMColorGlyphItem;
+    item->setImage(img, box);
+    return item;
 }
 
 FontInfoMap FontItem::rawInfo()
@@ -3174,7 +3442,7 @@ GlyphList FontItem::glyphs(QString spec, double fsize)
         return ret;
     if (!ensureFace())
         return ret;
-    double scalefactor = fsize / m_face->units_per_EM;
+    double scalefactor = fsize / unitsPerEm();
 
     QChar spaceChar(' ');
     int startSpaceCount(0);
@@ -3293,7 +3561,7 @@ GlyphList FontItem::shapeWords(const QString &spec, double fsize, const std::fun
     otf = new FMOtf(m_face);
 
     // the engine works in font units
-    const double scalefactor = fsize / m_face->units_per_EM;
+    const double scalefactor = fsize / unitsPerEm();
     const auto scaled = [scalefactor](GlyphList gl) {
         for (RenderedGlyph &g : gl) {
             g.xadvance *= scalefactor;
@@ -3374,7 +3642,7 @@ GlyphList FontItem::glyphs(QString spec, double fsize, QString script)
 
     QStringList stl(spec.split(' ', Qt::SkipEmptyParts));
 
-    double scalefactor = fsize / m_face->units_per_EM;
+    double scalefactor = fsize / unitsPerEm();
     QGraphicsPathItem *glyph = itemFromChar(QChar(' ').unicode(), fsize);
     RenderedGlyph wSpace(glyph->data(GLYPH_DATA_GLYPH).toInt(), 0, glyph->data(GLYPH_DATA_HADVANCE).toDouble() * scalefactor, 0, 0, 0, ' ', false);
     wSpace.lChar = 0x20;

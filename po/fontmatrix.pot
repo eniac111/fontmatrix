@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/eniac111/fontmatrix/issues\n"
-"POT-Creation-Date: 2026-09-22 09:53+0300\n"
+"POT-Creation-Date: 2026-09-22 11:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3900,7 +3900,13 @@ msgctxt "@label"
 msgid "Font Type"
 msgstr ""
 
-#: src/fminfodisplay.cpp:225
+#: src/fminfodisplay.cpp:216
+#, kde-format
+msgctxt "@label the tables a colour font has its colours in"
+msgid "Color"
+msgstr ""
+
+#: src/fminfodisplay.cpp:229
 #, kde-format
 msgctxt "@title:group"
 msgid "Charmaps List"
@@ -4015,13 +4021,13 @@ msgctxt "No fill color in comprae glyph"
 msgid "None"
 msgstr ""
 
-#: src/fontitem.cpp:2001
+#: src/fontitem.cpp:2045
 #, kde-format
 msgctxt "@info"
 msgid "codepoint is U+"
 msgstr ""
 
-#: src/fontitem.cpp:2088
+#: src/fontitem.cpp:2134
 #, kde-format
 msgctxt ""
 "when doing the font preview, used to denote a font that can not displayed "
@@ -4029,7 +4035,7 @@ msgctxt ""
 msgid "(%1)"
 msgstr ""
 
-#: src/fontitem.cpp:2179
+#: src/fontitem.cpp:2225
 #, kde-format
 msgctxt ""
 "@item:inlistbox a named instance of a variable font that has no name, with "
@@ -4037,13 +4043,13 @@ msgctxt ""
 msgid "Instance %1"
 msgstr ""
 
-#: src/fontitem.cpp:2961
+#: src/fontitem.cpp:3005
 #, kde-format
 msgctxt "@title:window"
 msgid "Downloading a Font"
 msgstr ""
 
-#: src/fontitem.cpp:2962
+#: src/fontitem.cpp:3006
 #, kde-format
 msgctxt "@info:progress"
 msgid "Downloading %1"

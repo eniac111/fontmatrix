@@ -30,9 +30,9 @@ Download and run the MSI — Qt and FreeType runtime DLLs are bundled.
 | Qt 6 | ≥ 6.8 | Core, Widgets, Svg, SvgWidgets, Sql, Xml, PrintSupport, Network |
 | KDE Frameworks 6 and extra-cmake-modules | ≥ 6.12 | CoreAddons, I18n, Config, XmlGui, ConfigWidgets, WidgetsAddons, StatusNotifierItem, DBusAddons; DocTools is optional (handbook) |
 | PoDoFo | ≥ 0.10 | optional: *Tools → Extract fonts* (the fonts embedded in a PDF file). Without it, or with 0.9, whose API is another one, the application is built without that entry |
-| HarfBuzz | ≥ 2.6.8 | built with FreeType support; Qt 6 depends on it already |
+| HarfBuzz | ≥ 2.6.8 | built with FreeType support; Qt 6 depends on it already. COLR version 1 glyphs (gradients) are painted with 7.0 or later, older ones show their base glyph |
 | libhyphen | | hyphenation of the sample texts (hunspell's `hyphen`); the KDE Flatpak runtime has it, Craft builds it from `craft-blueprints/libs/hyphen` |
-| FreeType2 | ≥ 2.9 | variable fonts need the OpenType variation support of 2.8 and the axis flags of 2.8.1 |
+| FreeType2 | ≥ 2.10 | variable fonts (the axis flags of 2.8.1) and colour fonts (the COLR layers of 2.10) |
 | Gettext | | `msgfmt`, to compile the translations |
 | Fontconfig | | optional, Linux; without it fonts are managed but not switched on and off for other programs |
 

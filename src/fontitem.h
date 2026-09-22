@@ -30,6 +30,7 @@
 
 #include "fmsharestruct.h"
 
+struct hb_font_t;
 class QGraphicsPixmapItem;
 class QGraphicsScene;
 class QGraphicsRectItem;
@@ -202,6 +203,35 @@ private:
     bool ensureFace();
     void releaseFace();
     void encodeFace();
+
+    // colour fonts, and bitmap-only fonts (CBDT, sbix), which FreeType cannot scale
+    bool m_faceSeen = false; ///< the face was open once: m_hasColor is known
+    bool m_hasColor = false;
+    double m_headUnitsPerEm = 0.0; ///< of a bitmap-only font, whose face says 0
+    double m_bitmapScale = 1.0; ///< what the bitmaps of the strike selected last are to be scaled by
+    /// the units of the design: the face's, the head table's for a bitmap-only font
+    [[nodiscard]] double unitsPerEm() const;
+    /// FT_Set_Char_Size, or the strike of a bitmap-only font nearest to the size
+    bool setSize(double size);
+    bool setPixelSize(double pixels);
+    bool selectStrike(double ppem);
+    /// FT_LOAD_COLOR added for a colour font
+    [[nodiscard]] FT_Int32 loadFlags(FT_Int32 flags) const;
+    /// the metrics of the glyph in font units into m_glyph->metrics, for a bitmap-only font too
+    FT_Error loadUnscaled(int index);
+    void metricsToUnits();
+    /// the bitmap of a strike brought to the size asked for
+    [[nodiscard]] QImage scaledToStrike(const QImage &img) const;
+    /// where the bitmap rendered last sits, scaled like the bitmap
+    [[nodiscard]] double bitmapLeft() const;
+    [[nodiscard]] double bitmapTop() const;
+    [[nodiscard]] double bitmapAdvance() const;
+    /// the glyph of a colour font for a scene of paths; nullptr when it has no colour
+    QGraphicsPathItem *colorItem(int index, double scalefactor);
+    /// COLR version 1: the HarfBuzz font that paints, while the face is open
+    hb_font_t *m_paintFont = nullptr;
+    /// the glyph painted at the size set, in place of what FreeType rendered; false when it has no paint
+    bool paintedGlyph(int index, QImage &img, double &left, double &top);
 
     // variable fonts: the axes and the named instances are read once from the
     // face, the coordinates shown are set on it at every open
@@ -473,6 +503,11 @@ public:
     void dumpIntoDB();
 
     [[nodiscard]] bool getUnicodeBuiltIn() const;
+
+    /// a font with colour glyphs: bitmaps (CBDT, sbix) or layered outlines (COLR)
+    bool hasColor();
+    /// the tables the colour comes from, for the information page
+    QStringList colorTables();
 
     /// a font with variation axes (OpenType Font Variations)
     bool isVariable();

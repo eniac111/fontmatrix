@@ -48,6 +48,8 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmmatchraster.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmmissingfonthelper.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmnamelist.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmotf.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmcolorglyphitem.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmcolorpainter.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmconfig.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmpaths.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmplayground.cpp
@@ -442,6 +444,8 @@ set_source_files_properties(
 	floatingwidget.cpp
 	fmaltselector.cpp
 	fmbaseshaper.cpp
+	fmcolorglyphitem.cpp
+	fmcolorpainter.cpp
 	fmconfig.cpp
 	fmdumpinfo.cpp
 	fmencdata.cpp
