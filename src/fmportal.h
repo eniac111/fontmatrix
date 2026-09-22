@@ -30,6 +30,14 @@ bool isAvailable();
  * save what it changes. False when there is no portal or it refused.
  */
 bool openWith(const QString &path, QWidget *parent = nullptr);
+
+/**
+ * Hands the file to the application the desktop already uses for its kind,
+ * with no question and no permission to write it — how the handbook, which
+ * lives inside the sandbox where no browser of the host can reach it, is
+ * opened. False when there is no portal or it refused.
+ */
+bool openRead(const QString &path, QWidget *parent = nullptr);
 }
 
 #endif

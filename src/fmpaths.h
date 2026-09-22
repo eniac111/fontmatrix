@@ -29,6 +29,13 @@ public:
 
     static QString HelpDir();
 
+    /**
+     * The first page of the handbook as HTML, for the desktops where
+     * KHelpCenter cannot show the DocBook one: a Flatpak, Windows, macOS.
+     * Empty when the build had no KDocTools and nothing was generated.
+     */
+    static QString HandbookFile();
+
     static QString SamplesDir();
 
     static QString FiltersDir();

@@ -41,6 +41,7 @@
 
 #include <KLocalizedString>
 #include <QCloseEvent>
+#include <QDesktopServices>
 #include <QDir>
 #include <QDockWidget>
 #include <QFileDialog>
@@ -2294,17 +2295,27 @@ void typotek::setPanoseMatchTreshold(int theValue)
 
 void typotek::slotHelpContents()
 {
-    // The handbook is a DocBook document shown by KDE Help Center. Try the
-    // help: URL only where a handler can exist, as QDesktopServices::openUrl()
-    // reports no failure for an unhandled scheme.
-    if (KSandbox::isFlatpak() || !QStandardPaths::findExecutable(QStringLiteral("khelpcenter")).isEmpty()) {
+    // The handbook is a DocBook document shown by KDE Help Center where there is
+    // one. A sandbox never has it — and could not show it either, since nothing
+    // of the application is visible to the host — so there the same handbook,
+    // installed as HTML, goes to the desktop as an open file descriptor.
+    if (!KSandbox::isFlatpak() && !QStandardPaths::findExecutable(QStringLiteral("khelpcenter")).isEmpty()) {
         KHelpClient::invokeHelp();
         return;
     }
+    const QString handbook(FMPaths::HandbookFile());
+    if (!handbook.isEmpty()) {
+        // in the sandbox only the portal can do it; outside it the desktop's own
+        // way is the first choice and the portal the fallback
+        const bool opened = KSandbox::isFlatpak() ? (FMPortal::openRead(handbook, this) || QDesktopServices::openUrl(QUrl::fromLocalFile(handbook)))
+                                                  : (QDesktopServices::openUrl(QUrl::fromLocalFile(handbook)) || FMPortal::openRead(handbook, this));
+        if (opened)
+            return;
+    }
     KMessageBox::information(this,
                              xi18nc("@info",
-                                    "The Fontmatrix handbook is displayed by <application>KDE Help Center</application>, which is not installed on this "
-                                    "system.<nl/>The project page is at <link>%1</link>.",
+                                    "The Fontmatrix handbook could not be opened: neither <application>KDE Help Center</application> nor a copy to read in a "
+                                    "browser is installed.<nl/>The project page is at <link>%1</link>.",
                                     KAboutData::applicationData().homepage()),
                              i18nc("@title:window", "Handbook Not Available"));
 }
