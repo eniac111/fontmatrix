@@ -11,43 +11,7 @@
 
 #include "harfbuzzqtshaper.h"
 
-#ifdef HAVE_ICU
-#include "icushaper.h"
-#endif
-
-#ifdef HAVE_M17N
-#include "m17nshaper.h"
-#endif
-
-#ifdef HAVE_PANGO
-#include "pangoshaper.h"
-#endif
-
 #include <QDebug>
-
-QMap<QString, int> FMShaperFactory::types()
-{
-    QMap<QString, int> ret;
-    ret.clear();
-    ret[QStringLiteral("Fontmatrix")] = FONTMATRIX;
-
-    ret[QStringLiteral("Harfbuzz")] = HARFBUZZ;
-
-#ifdef HAVE_ICU
-    ret["ICU"] = ICU;
-#endif
-
-#ifdef HAVE_M17N
-    ret["m17n"] = M17N;
-#endif
-
-#ifdef HAVE_PANGO
-    ret["Pango"] = PANGO;
-#endif
-    // 	ret << "OMEGA";
-
-    return ret;
-}
 
 FMShaperFactory::FMShaperFactory(FMOtf *o, QString s, SHAPER_TYPE st)
     : shaperType(st)
@@ -64,26 +28,6 @@ FMShaperFactory::FMShaperFactory(FMOtf *o, QString s, SHAPER_TYPE st)
         qCDebug(FONTMATRIX_LOG) << "NEW HarfbuzzShaper";
         shaperImpl = new HarfbuzzShaper(otf, script);
         break;
-#ifdef HAVE_PANGO
-    case PANGO:
-        qCDebug(FONTMATRIX_LOG) << "NEW PangoShaper";
-        shaperImpl = new PangoShaper(otf, script);
-        break;
-#endif
-#ifdef HAVE_ICU
-    case ICU:
-        qCDebug(FONTMATRIX_LOG) << "NEW IcuShaper";
-        shaperImpl = new IcuShaper(otf, script);
-        break;
-#endif
-#ifdef HAVE_M17N
-    case M17N:
-        qCDebug(FONTMATRIX_LOG) << "NEW M17NShaper";
-        shaperImpl = new M17NShaper(otf, script);
-        break;
-#endif
-        // 			case OMEGA : shaperImpl = new OmegaShaper ( otf, script );
-        // 				break;
     default:
         break;
     }

@@ -491,6 +491,8 @@ void MainViewWidget::disConnect()
 
 void MainViewWidget::slotFontDbChanged()
 {
+    // the list shows the database's current set: fonts added since are in it only after a filter run
+    filterBar->refilter();
     previewModel->dataChanged();
 }
 
@@ -641,24 +643,22 @@ bool MainViewWidget::slotFontSelectedByName(const QString &fname)
         theVeryFont = FMFontDb::DB()->Font(faceIndex);
         if (!theVeryFont)
             return false;
-        // 		theVeryFont->updateItem();
-        //		slotFontActionByName ( fname );
-        //		if(theVeryFont->isRemote())
-        //		{
-        //			qDebug() << faceIndex <<" is remote";
-        //			if(!theVeryFont->isCached())
-        //			{
-        //				connect(theVeryFont,SIGNAL(dowloadFinished()), this, SLOT(slotRemoteFinished()));
-        //				theVeryFont->getFromNetwork();
-        //				currentDownload = faceIndex ;
-        //				faceIndex = lastIndex;
-        //				return false;
-        //			}
-        //			else
-        //			{
-        //				currentDownload = "";
-        //			}
-        //		}
+        if (theVeryFont->isRemote() && !theVeryFont->isCached()) {
+            // the file comes now; when it is here, the same selection is made again
+            // and the views can render it
+            connect(
+                theVeryFont,
+                &FontItem::downloadFinished,
+                this,
+                [this, fname](bool ok) {
+                    if (ok && fname == faceIndex) {
+                        m_forceReloadSelection = true;
+                        slotFontSelectedByName(fname);
+                    }
+                },
+                Qt::SingleShotConnection);
+            theVeryFont->getFromNetwork();
+        }
         //		fillOTTree();
 
         //		slotView ( true );

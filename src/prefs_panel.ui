@@ -730,6 +730,59 @@
           </layout>
          </widget>
         </item>
+        <item row="1" column="0" >
+         <widget class="QGroupBox" name="remoteDirsBox" >
+          <property name="title" >
+           <string comment="@title:group">Remote Directories</string>
+          </property>
+          <property name="toolTip" >
+           <string comment="@info:tooltip">A web directory made with File → Export fonts. Its fonts are listed here with their previews and tags; a font's file is downloaded when it is opened or activated.</string>
+          </property>
+          <layout class="QGridLayout" name="remoteDirsLayout" >
+           <item row="0" column="0" colspan="3" >
+            <widget class="QListWidget" name="remoteDirsList" >
+             <property name="minimumSize" >
+              <size>
+               <width>0</width>
+               <height>80</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" >
+            <widget class="QLineEdit" name="remoteDirEdit" >
+             <property name="placeholderText" >
+              <string notr="true">https://server/fonts/</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" >
+            <widget class="QPushButton" name="remoteDirAdd" >
+             <property name="text" >
+              <string comment="@action:button">Add</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2" >
+            <widget class="QPushButton" name="remoteDirRemove" >
+             <property name="text" >
+              <string comment="@action:button">Remove</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="3" >
+            <widget class="QLabel" name="remoteDirsNote" >
+             <property name="text" >
+              <string comment="@info">The catalogue of a directory is read when it is added and at every start. Fonts already listed stay after the directory is removed.</string>
+             </property>
+             <property name="wordWrap" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_4" >

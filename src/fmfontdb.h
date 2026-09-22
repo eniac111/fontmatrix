@@ -105,6 +105,16 @@ public:
 
 public Q_SLOTS:
     FontItem *Font(const QString &id, bool noTemporary = false);
+    /**
+     * Records a font item that was built outside (a remote font, known from a
+     * directory's index rather than from its file). The item is owned by the
+     * database from then on; on failure it is deleted and nullptr returned.
+     */
+    FontItem *AddFont(FontItem *fitem);
+    /// whether the font is in the database (without creating it, as Font() would)
+    bool Knows(const QString &id);
+    /// after tags were given to many fonts with addTag(): the tag list is rebuilt once
+    void announceTagsChanged();
 
     QList<FontItem *> AllFonts();
     QStringList AllFontNames();

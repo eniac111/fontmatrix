@@ -67,7 +67,7 @@ void FMActivate::activate(QList<FontItem *> fitList, bool act)
 
                     // 				QFileInfo fofi ( fit->path() );
 
-                    if (!QFile::copy(fit->path(), T->getManagedDir() + "/" + fit->activationName())) {
+                    if (!QFile::copy(fit->localPath(), T->getManagedDir() + "/" + fit->activationName())) {
                         qCWarning(FONTMATRIX_LOG) << "unable to copy " << fit->path();
                     } else {
                         // Success
@@ -146,9 +146,23 @@ void FMActivate::activate(QList<FontItem *> fitList, bool act)
     for (auto *fit : fitList) {
         if (act) // Activation
         {
+            if (fit->isRemote() && !fit->isCached()) {
+                // the file comes first; this font is activated on its own when it is here
+                connect(
+                    fit,
+                    &FontItem::downloadFinished,
+                    this,
+                    [this, fit](bool ok) {
+                        if (ok)
+                            activate(QList<FontItem *>() << fit, true);
+                    },
+                    Qt::SingleShotConnection);
+                fit->getFromNetwork();
+                continue;
+            }
             if (!T->isSysFont(fit)) {
                 if (!fit->isActivated()) {
-                    if (!QFile::link(fit->path(), T->getManagedDir() + "/" + fit->activationName())) {
+                    if (!QFile::link(fit->localPath(), T->getManagedDir() + "/" + fit->activationName())) {
                         qCWarning(FONTMATRIX_LOG) << "unable to link " << fit->path();
                         m_errors[fit->path()] = errorStrings[NO_LINK];
                     } else {

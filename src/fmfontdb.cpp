@@ -360,6 +360,12 @@ QStringList FMFontDb::getTags()
     return tagsCache;
 }
 
+void FMFontDb::announceTagsChanged()
+{
+    invalidateTags();
+    Q_EMIT tagsChanged();
+}
+
 void FMFontDb::addTagToDB(const QString &t)
 {
     // 	qDebug() << "addtag"<< t;
@@ -551,24 +557,32 @@ FontItem *FMFontDb::Font(const QString &id, bool noTemporary)
             qCWarning(FONTMATRIX_LOG) << "ERROR fetching font item" << id;
     } else {
         // 		qDebug() <<"New font"<< id;
-        fitem = new FontItem(id);
-        if (fitem->isValid()) {
-            fitem->dumpIntoDB();
-            fid = getId(id);
-            if (fid > 0) {
-                fontMap[fid] = fitem;
-            } else {
-                delete fitem;
-                fitem = nullptr;
-                qCWarning(FONTMATRIX_LOG) << "ERROR creating font item" << id;
-            }
-        } else {
-            delete fitem;
-            fitem = nullptr;
-            qCWarning(FONTMATRIX_LOG) << "ERROR creating font item" << id;
-        }
+        fitem = AddFont(new FontItem(id));
     }
     return fitem;
+}
+
+bool FMFontDb::Knows(const QString &id)
+{
+    return !id.isEmpty() && getId(id) > 0;
+}
+
+FontItem *FMFontDb::AddFont(FontItem *fitem)
+{
+    if (!fitem)
+        return nullptr;
+    const QString id(fitem->path());
+    if (fitem->isValid()) {
+        fitem->dumpIntoDB();
+        const int fid(getId(id));
+        if (fid > 0) {
+            fontMap[fid] = fitem;
+            return fitem;
+        }
+    }
+    delete fitem;
+    qCWarning(FONTMATRIX_LOG) << "ERROR creating font item" << id;
+    return nullptr;
 }
 
 QList<FontItem *> FMFontDb::AllFonts()

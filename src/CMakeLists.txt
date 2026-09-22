@@ -1,6 +1,6 @@
 # Fontmatrix src/CMakeLists.txt v1
 
-set(QT_LIBRARIES Qt6::Core Qt6::Widgets Qt6::Svg Qt6::SvgWidgets Qt6::Sql Qt6::Xml Qt6::PrintSupport)
+set(QT_LIBRARIES Qt6::Core Qt6::Widgets Qt6::Svg Qt6::SvgWidgets Qt6::Sql Qt6::Xml Qt6::PrintSupport Qt6::Network)
 
 set(fontmatrix_SRCS
 ${CMAKE_CURRENT_SOURCE_DIR}/activationwidget.cpp
@@ -34,6 +34,8 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmfontcompareview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontdb.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontextract.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmhyphenator.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmshaper.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/harfbuzzqtshaper.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontstrings.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfreetypelib.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmglyphhighlight.cpp
@@ -78,7 +80,6 @@ ${CMAKE_CURRENT_SOURCE_DIR}/panosedialog.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/panosematch.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/panosemodel.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/panosewidget.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/pangoshaper.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/playwidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/prefspaneldialog.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/progressbarduo.cpp
@@ -110,20 +111,6 @@ ecm_qt_install_logging_categories(
 	DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
 )
 
-# HarfBuzz is required, its shaper needs no option any more
-SET(HARFBUZZ_SRCS
-harfbuzzqtshaper.cpp
-fmshaper.cpp)
-
-IF(ICUSHAPER)
-	SET(ICU_SRCS icushaper.cpp)
-ENDIF(ICUSHAPER)
-
-IF(M17NSHAPER)
-	SET(M17N_SRCS
-	m17nshaper.cpp
-	)
-ENDIF(M17NSHAPER)
 
 IF(PODOFO)
 	SET(PODOFO_SRCS
@@ -146,16 +133,6 @@ IF(PODOFO)
 	ENDIF()
 ENDIF(PODOFO)
 
-SET(SHAPERS_SRCS
-${HARFBUZZ_SRCS}
-${ICU_SRCS}
-${M17N_SRCS}
-)
-
-SET(SHAPERS_LIBRARIES
-${ICU_LIBRARIES}
-${M17N_LIBRARIES}
-)
 
 
 # AUTOMOC finds the Q_OBJECT headers itself; each source includes its moc_<name>.cpp,
@@ -231,8 +208,6 @@ ${CMAKE_CURRENT_BINARY_DIR}
 ${QT_INCLUDE_DIR}
 ${QT_QT_INCLUDE_DIR}
 ${FREETYPE_INCLUDE_DIRS}
-${ICU_INCLUDE_DIR}
-${M17N_INCLUDE_DIR}
 )
 # only when the module found it: "LIBPODOFO_INCLUDE_DIR-NOTFOUND" is not a directory
 if(PODOFO AND LIBPODOFO_INCLUDE_DIR)
@@ -243,7 +218,6 @@ endif()
 IF(UNIX AND NOT APPLE)
 	add_executable(fontmatrix
 	${fontmatrix_SRCS}
-	${SHAPERS_SRCS}
 	${fontmatrix_UIS_H}
 	${fontmatrix_RCC_SRCS}
 	${PODOFO_SRCS}
@@ -253,7 +227,6 @@ IF(UNIX AND NOT APPLE)
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	$<TARGET_NAME_IF_EXISTS:Fontconfig::Fontconfig>
-	${SHAPERS_LIBRARIES}
 	${PODOFO_LINK_LIBS}
 	KF6::CoreAddons
 	KF6::I18n
@@ -346,7 +319,6 @@ ENDIF(UNIX AND NOT APPLE)
 IF(APPLE)
 	add_executable(fontmatrix MACOSX_BUNDLE
 	${fontmatrix_SRCS}
-	${SHAPERS_SRCS}
 	${fontmatrix_UIS_H}
 	${fontmatrix_RCC_SRCS}
 	${PODOFO_SRCS}
@@ -355,7 +327,6 @@ IF(APPLE)
 	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz Hyphen::Hyphen
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
-	${SHAPERS_LIBRARIES}
 	${PODOFO_LINK_LIBS}
 	"-framework ApplicationServices"
 	KF6::CoreAddons
@@ -410,7 +381,6 @@ INSTALL(TARGETS ${PROGNAME}
 SET(APPLE_LIBS
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
-	${SHAPERS_LIBRARIES}
 	${PODOFO_LINK_LIBS}
 )
 SET(APPLE_DIRS "${QT_PLUGINS_DIR}/sqldrivers")
@@ -425,7 +395,6 @@ ENDIF(APPLE)
 IF(WIN32)
 	add_executable(fontmatrix WIN32
 	${fontmatrix_SRCS}
-	${SHAPERS_SRCS}
 	${fontmatrix_UIS_H}
 	${fontmatrix_RCC_SRCS}
 	${PODOFO_SRCS}
@@ -435,7 +404,6 @@ IF(WIN32)
 	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz Hyphen::Hyphen
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
-	${SHAPERS_LIBRARIES}
 	${PODOFO_LINK_LIBS}
 	KF6::CoreAddons
 	KF6::I18n

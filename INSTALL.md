@@ -27,7 +27,7 @@ Download and run the MSI — Qt and FreeType runtime DLLs are bundled.
 |---|---|---|
 | CMake | ≥ 3.16 | |
 | C++ compiler | C++20 | GCC / Clang / MSVC 2022 |
-| Qt 6 | ≥ 6.8 | Core, Widgets, Svg, SvgWidgets, Sql, Xml, PrintSupport |
+| Qt 6 | ≥ 6.8 | Core, Widgets, Svg, SvgWidgets, Sql, Xml, PrintSupport, Network |
 | KDE Frameworks 6 and extra-cmake-modules | ≥ 6.12 | CoreAddons, I18n, Config, XmlGui, ConfigWidgets, WidgetsAddons, StatusNotifierItem, DBusAddons; DocTools is optional (handbook) |
 | PoDoFo | ≥ 0.10 | optional: *Tools → Extract fonts* (the fonts embedded in a PDF file). Without it, or with 0.9, whose API is another one, the application is built without that entry |
 | HarfBuzz | ≥ 2.6.8 | built with FreeType support; Qt 6 depends on it already |
@@ -101,23 +101,12 @@ in `.github/craft/CraftConfig.ini`, and the exact steps in the `windows` job ("B
 
 ---
 
-## Optional features
+## Build options
 
-Pass these flags to the initial `cmake` command:
+There are no optional features to switch on: PoDoFo and Fontconfig are used when found,
+and everything else is required. Two switches change how it is built:
 
-| Flag | Dependency | Description |
-|---|---|---|
-| `-DWANT_ICU=true` | `libicu-dev` / ICU | ICU-based text shaping |
-| `-DWANT_M17N=true` | `libm17n-dev` / M17N | M17N multilingual shaping |
-| `-DWANT_PYTHONQT=true` | PythonQt + `libpython3-dev` | In-app Python scripting console |
-
-Fontconfig is detected automatically on Linux; `-DCMAKE_DISABLE_FIND_PACKAGE_Fontconfig=ON`
-builds without it. `-DFONTMATRIX_WERROR=ON` turns warnings in the project's own sources into
-errors, as CI does.
-
-Example with ICU:
-
-```bash
-cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DWANT_ICU=true
-cmake --build build --parallel
-```
+| Flag | Effect |
+|---|---|
+| `-DCMAKE_DISABLE_FIND_PACKAGE_Fontconfig=ON` | build without Fontconfig (fonts are managed but not switched on and off for other programs) |
+| `-DFONTMATRIX_WERROR=ON` | warnings in the project's own sources are errors, as in CI |

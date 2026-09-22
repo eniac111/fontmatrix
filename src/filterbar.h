@@ -159,6 +159,8 @@ private Q_SLOTS:
 
 public Q_SLOTS:
     void slotClearFilter();
+    /// applies the filters again, or shows every font when there is none: for fonts added to the database
+    void refilter();
     void slotSaveFilter();
     void slotSaveFilter(const QString &fname);
 };

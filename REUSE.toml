@@ -10,12 +10,11 @@ version = 1
 path = [
     "src/**/*.ui", "src/**/*.rc", "src/**/*.qrc", "src/**/*.xml", "src/**/*.png", "src/**/*.svg",
     "src/**/*.ico", "src/**/*.icns", "src/**/*.txt", "src/langs/**", "src/fontmatrix*",
-    "CMakeLists.txt", "**/CMakeLists.txt", "cmake/modules/FindICU.cmake", "cmake/modules/FindM17N.cmake",
-    "cmake/modules/OwnIngestOSXBundleLibraries.cmake",
+    "CMakeLists.txt", "**/CMakeLists.txt",     "cmake/modules/OwnIngestOSXBundleLibraries.cmake",
     "doc/**", "dodict/**", "OSX-package/**", "craft-blueprints/**", ".github/**",
     "com.github.fontmatrix.Fontmatrix.json", "com.github.fontmatrix.Fontmatrix.desktop", "fontmatrix.1",
     "doc/screenshots/**",
-    "README.md", "INSTALL.md", "AUTHORS", "ChangeLog", "debian-ubuntu-install.txt",
+    "README.md", "INSTALL.md", "AUTHORS", "ChangeLog",
     ".gitignore", "src/ReadMe", "samples/CREDITS",
 ]
 precedence = "closest"

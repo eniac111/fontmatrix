@@ -8,260 +8,134 @@
 #include "fontmatrix_debug.h"
 #include "typotek.h"
 
-// #include <QHttp>
 #include <KLocalizedString>
-#include <QBuffer>
-#include <QByteArray>
-#include <QDebug>
+
 #include <QDomDocument>
-#include <QUrl>
-#include <QWaitCondition>
+#include <QImage>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
 
-extern QWaitCondition remoteDirsCond;
-
-RemoteDir::RemoteDir(const QStringList &dirs)
-    : argDirs(dirs)
-    , m_ready(false)
+QString RemoteDir::indexFileName()
 {
-    qCDebug(FONTMATRIX_LOG) << "RemoteDir::RemoteDir(" << dirs.join(";") << ")";
+    return QStringLiteral("fontmatrix.data");
+}
+
+RemoteDir::RemoteDir(const QStringList &dirs, QObject *parent)
+    : QObject(parent)
+    , argDirs(dirs)
+{
+    qCDebug(FONTMATRIX_LOG) << "RemoteDir" << dirs;
     if (argDirs.isEmpty())
         m_ready = true;
-
-    stopper = stopperEndPreviews = stopperEndReq = false;
 }
+
+RemoteDir::~RemoteDir() = default;
 
 void RemoteDir::run()
 {
-    qCDebug(FONTMATRIX_LOG) << "RemoteDir::run()";
-    for (int ridx(0); ridx < argDirs.size(); ++ridx) {
-        auto ba = new QByteArray;
-        auto buffer = new QBuffer;
-        buffers << buffer;
-        buffer->setBuffer(ba);
-        buffer->open(QIODevice::WriteOnly);
-
-        QUrl url(argDirs.at(ridx));
-#if 0 // TODO Replace this part of code
-		QHttp *rd = new QHttp(url.host());
-		rd->setObjectName(argDirs[ridx]);
-		https << rd;
-		
-		connect(rd,SIGNAL(requestFinished( int, bool )),this,SLOT(slotEndReq(int, bool)));
-// 		connect(rd,SIGNAL(dataReadProgress( int, int )),this,SLOT(slotProgress(int, int)));
-		
-		int rdId(rd->get(url.path()+"/fontmatrix.data", buffer));
-		typotek::getInstance()->showStatusMessage(i18nc("@info:status", "Downloading")+" " + url.toString() + "/fontmatrix.data");
-		rDirs[rdId] = argDirs[ridx];
-		httpRequests[rdId] = 1;
-		httpBuffers[rdId] = ba;
-		reverseHttp[rdId] = rd;
-		httpPaths[rdId] = url.path();
-#endif
-    }
-}
-
-RemoteDir::~RemoteDir()
-{
-#if 0 // TODO Replace this code
-	for (auto* h : https)
-	{
-		delete h;
-	}
-#endif
-    for (auto *b : std::as_const(buffers)) {
-        delete b;
-    }
-    for (QMap<int, QByteArray *>::iterator ba = httpBuffers.begin(); ba != httpBuffers.end(); ++ba)
-        delete ba.value();
-}
-
-void RemoteDir::slotEndPreviews(int id, bool error)
-{
-    // 	qDebug()<<"RemoteDir::slotEndPreviews("<< id<<", "<<error<<")";
-    if (stopperEndPreviews)
-        return;
-    if (error)
-        pendingPixmaps[id] = 0;
-    else
-        pendingPixmaps[id] = 2;
-
-    int pendingReqs(0);
-#if 0 // TODO Replace this code
-	for(int i(0);i < https.size(); ++i)
-	{
-		if (https[i]->hasPendingRequests())
-		{
-			++pendingReqs;
-		}
-		else
-		{
-			https[i]->close();
-		}
-	}
-#endif
-    if (!pendingReqs) {
-        qCDebug(FONTMATRIX_LOG) << "Get all previews";
-        stopperEndPreviews = true;
-        eventEndDownload();
-    }
-}
-
-void RemoteDir::slotEndReq(int id, bool error)
-{
-    qCDebug(FONTMATRIX_LOG) << "RemoteDir::slotEndReq(" << id << ", " << error << ")";
-    if (stopperEndReq)
-        return;
-    if (error)
-        httpRequests[id] = 0;
-    else
-        httpRequests[id] = 2;
-
-    bool hFound = false;
-#if 0 // TODO Replace this code
-	int ih(0);
-	for(;ih < https.size();++ih)
-	{
-		if(sender() == https[ih])
-		{
-			hFound = true;
-			break;
-		}
-	}
-#endif
-    if (!hFound) {
-        qCDebug(FONTMATRIX_LOG) << "Oops - Can’t determine which Http object called me";
+    if (argDirs.isEmpty()) {
+        Q_EMIT listIsReady();
         return;
     }
-#if 0 // TODO Replace this code
-	disconnect( https[ih],SIGNAL(requestFinished( int, bool )),this,SLOT(slotEndReq(int, bool)));
-#endif
-    int pendingReqs(0);
-#if 0 // TODO Replace this code
-	for(int i(0);i < https.size(); ++i)
-	{
-		if (https[i]->hasPendingRequests())
-		{
-			++pendingReqs;
-		}
-// 		else
-// 		{
-// 			https[i]->close();
-// 		}
-	}
-#endif
-    if (!pendingReqs) {
-        stopperEndReq = true;
-        getPreviews();
-    }
-}
-
-void RemoteDir::eventEndDownload()
-{
-    if (stopper)
-        return;
-    QMap<int, QByteArray *>::const_iterator bIt;
-    for (bIt = httpBuffers.constBegin(); bIt != httpBuffers.constEnd(); ++bIt) {
-        if (httpRequests.value(bIt.key()) == 0)
+    QNetworkAccessManager *net = typotek::getInstance()->network();
+    for (const QString &dir : std::as_const(argDirs)) {
+        QUrl base(dir);
+        if (!base.isValid() || base.scheme().isEmpty()) {
+            qCWarning(FONTMATRIX_LOG) << "Not a URL, no remote directory:" << dir;
             continue;
-        QString path(rDirs.value(bIt.key()));
-        qCDebug(FONTMATRIX_LOG) << "Path(" << bIt.key() << ")->" << path;
-        QDomDocument doc("fontdata");
-        doc.setContent(*(bIt.value()));
-        // loading fonts
-        QDomNodeList colList = doc.elementsByTagName("fontfile");
-        for (int i = 0; i < colList.length(); ++i) {
-            QDomNode col = colList.item(i);
-
-            FontInfo fi;
-
-            fi.family = col.toElement().attributeNode("family").value();
-            fi.variant = col.toElement().attributeNode("variant").value();
-            fi.type = col.toElement().attributeNode("type").value();
-            QString basename(col.namedItem("file").toElement().text());
-            fi.file = path + basename;
-            fi.info = col.namedItem("info").toElement().text();
-            if (pixmaps.contains(basename)) {
-                fi.pix = QPixmap::fromImage(QImage::fromData((const uchar *)pixmaps[basename]->data(), pixmaps[basename]->size()));
-            } else {
-                qCDebug(FONTMATRIX_LOG) << "No pixmap for " + fi.file;
-                fi.pix = QPixmap();
-            }
-
-            QDomNodeList taglist = col.toElement().elementsByTagName("tag");
-            fi.tags.clear();
-            for (int ti = 0; ti < taglist.size(); ++ti) {
-                if (!fi.tags.contains(taglist.at(ti).toElement().text()))
-                    fi.tags << taglist.at(ti).toElement().text();
-            }
-
-            m_fonts << fi;
         }
+        // the index and the files sit in the directory itself
+        QString path(base.path());
+        if (!path.endsWith(QLatin1Char('/')))
+            path += QLatin1Char('/');
+        base.setPath(path);
+        QUrl index(base.resolved(QUrl(indexFileName())));
+        typotek::getInstance()->showStatusMessage(i18nc("@info:status", "Downloading %1", index.toString()));
+        ++m_pending;
+        QNetworkReply *reply = net->get(QNetworkRequest(index));
+        connect(reply, &QNetworkReply::finished, this, [this, reply, base]() {
+            indexArrived(reply, base);
+        });
     }
+    if (m_pending == 0) {
+        m_ready = true;
+        Q_EMIT listIsReady();
+    }
+}
+
+void RemoteDir::indexArrived(QNetworkReply *reply, const QUrl &base)
+{
+    reply->deleteLater();
+    if (reply->error() != QNetworkReply::NoError) {
+        qCWarning(FONTMATRIX_LOG) << "Cannot read the remote directory" << base.toString() << ":" << reply->errorString();
+        requestDone();
+        return;
+    }
+    QDomDocument doc;
+    if (!doc.setContent(reply->readAll())) {
+        qCWarning(FONTMATRIX_LOG) << base.toString() << "has no readable" << indexFileName();
+        requestDone();
+        return;
+    }
+    QNetworkAccessManager *net = typotek::getInstance()->network();
+    const QDomNodeList colList = doc.elementsByTagName(QStringLiteral("fontfile"));
+    for (int i = 0; i < colList.length(); ++i) {
+        const QDomElement col = colList.item(i).toElement();
+        const QString basename(col.namedItem(QStringLiteral("file")).toElement().text());
+        if (basename.isEmpty())
+            continue;
+        FontInfo fi;
+        fi.family = col.attribute(QStringLiteral("family"));
+        fi.variant = col.attribute(QStringLiteral("variant"));
+        fi.type = col.attribute(QStringLiteral("type"));
+        fi.file = base.resolved(QUrl(basename)).toString();
+        fi.info = col.namedItem(QStringLiteral("info")).toElement().text();
+        const QDomNodeList taglist = col.elementsByTagName(QStringLiteral("tag"));
+        for (int ti = 0; ti < taglist.size(); ++ti) {
+            const QString tag(taglist.at(ti).toElement().text());
+            if (!tag.isEmpty() && !fi.tags.contains(tag))
+                fi.tags << tag;
+        }
+        m_fonts << fi;
+
+        // the preview is optional: a directory made before it was written has none
+        const int fontIndex = m_fonts.size() - 1;
+        ++m_pending;
+        QNetworkReply *preview = net->get(QNetworkRequest(base.resolved(QUrl(basename + QStringLiteral(".png")))));
+        connect(preview, &QNetworkReply::finished, this, [this, preview, fontIndex]() {
+            previewArrived(preview, fontIndex);
+        });
+    }
+    qCDebug(FONTMATRIX_LOG) << base.toString() << ":" << colList.length() << "fonts";
+    requestDone();
+}
+
+void RemoteDir::previewArrived(QNetworkReply *reply, int fontIndex)
+{
+    reply->deleteLater();
+    if (reply->error() == QNetworkReply::NoError && fontIndex >= 0 && fontIndex < m_fonts.size()) {
+        const QImage img(QImage::fromData(reply->readAll()));
+        if (!img.isNull())
+            m_fonts[fontIndex].pix = QPixmap::fromImage(img);
+    }
+    requestDone();
+}
+
+void RemoteDir::requestDone()
+{
+    if (--m_pending > 0)
+        return;
     m_ready = true;
-    stopper = true;
+    typotek::getInstance()->showStatusMessage(
+        i18ncp("@info:status", "%1 font description from the network", "%1 font descriptions from the network", m_fonts.size()));
     Q_EMIT listIsReady();
 }
 
-void RemoteDir::getPreviews()
-{
-    QMap<int, QByteArray *>::const_iterator bIt;
-    for (bIt = httpBuffers.constBegin(); bIt != httpBuffers.constEnd(); ++bIt) {
-        if (httpRequests.value(bIt.key()) == 0)
-            continue;
-
-        QDomDocument doc("fontdata");
-        doc.setContent(*(bIt.value()));
-        QDomNodeList colList = doc.elementsByTagName("fontfile");
-        for (int i = 0; i < colList.length(); ++i) {
-            QDomNode col = colList.item(i);
-            QString p = col.namedItem("file").toElement().text();
-
-            auto ba = new QByteArray;
-            auto buffer = new QBuffer;
-            buffers << buffer;
-            buffer->setBuffer(ba);
-            buffer->open(QIODevice::WriteOnly);
-            pixmaps[p] = ba;
-
-#if 0 // TODO Replace this code
-			connect(reverseHttp[bIt.key()],SIGNAL(requestFinished( int, bool )),this,SLOT(slotEndPreviews(int, bool)));
-			int rdId(reverseHttp[bIt.key()]->get(httpPaths[bIt.key()]+"/"+ p + ".png", buffer));
-			pendingPixmaps[rdId] = 1; 
-// 			qDebug() << "Started download of " << httpPaths[bIt.key()]+"/"+ p + ".png";
-			typotek::getInstance()->showStatusMessage(i18nc("@info:status", "Downloading") +" "+ httpPaths[bIt.key()]+"/"+ p + ".png");
-#endif
-        }
-    }
-}
-
-void RemoteDir::slotProgress(int, int)
-{
-    // 	qDebug()<<"RemoteDir::slotProgress(int done, int total)";
-    bool hFound = false;
-#if 0 // TODO Replace this code
-	for(;ih < https.size();++ih)
-	{
-		if(sender() == https[ih])
-		{
-			hFound = true;
-			break;
-		}
-	}
-#endif
-    if (!hFound) {
-        qCDebug(FONTMATRIX_LOG) << "Oops - Can’t determine which Http object called me";
-        return;
-    }
-#if 0
-	QString file(https[ih]->objectName()); // TODO Replace this code
-	qCDebug(FONTMATRIX_LOG)<< file <<" [" <<done << "/"<< total<<"]";
-#endif
-}
-
 /// FontInfo **********************************************
-QString RemoteDir::FontInfo::dump()
+QString RemoteDir::FontInfo::dump() const
 {
-    QString sep(" | ");
+    const QString sep(QStringLiteral(" | "));
     return file + sep + family + sep + variant + sep + type + sep + tags.join(sep);
 }
 

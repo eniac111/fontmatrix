@@ -84,7 +84,7 @@ hb_font_t *subFont(hb_font_t *parent, hb_font_get_nominal_glyph_func_t mapper, v
 }
 }
 
-// fontitem.cpp, icushaper.cpp and m17nshaper.cpp declare these themselves
+// fontitem.cpp declares these itself
 QString OTF_tag_name(unsigned int tag)
 {
     return nameOf(tag);
