@@ -21,18 +21,19 @@ class FMActivate : public QObject
     FMActivate();
     static FMActivate *instance;
 
+    // no name here may be a macro of windows.h: wingdi.h has ERROR and SYSTEM_FONT
     enum Error {
         NO_LINK = 0,
         ALREADY_ACTIVE,
         NO_UNLINK,
         ALREADY_UNACTIVE,
         MISSING_AFM,
-        ERROR,
+        OTHER_ERROR,
         // Windows
         NO_COPY,
         NO_REGISTRY,
         NO_FONT_RESOURCE,
-        SYSTEM_FONT,
+        LOCKED_FONT,
         UNSUPPORTED_FORMAT
     };
 
