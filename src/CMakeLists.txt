@@ -37,6 +37,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmfloatingpreview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontcompareview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontdb.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontextract.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmhandbook.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmhyphenator.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmlangcoverage.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmlicense.cpp
@@ -467,6 +468,7 @@ set_source_files_properties(
 	fmfontcompareview.cpp
 	fmfontdb.cpp
 	fmglyphsview.cpp
+	fmhandbook.cpp
 	fmkernfeat.cpp
 	fmlangcoverage.cpp
 	fmlicense.cpp

@@ -15,6 +15,7 @@
 #include "fmconfig.h"
 #include "fmfontdb.h"
 #include "fmfontextract.h"
+#include "fmhandbook.h"
 #include "fmhyphenator.h"
 #include "fmlayout.h"
 #include "fmmatchraster.h"
@@ -2298,19 +2299,14 @@ void typotek::slotHelpContents()
     // The handbook is a DocBook document shown by KDE Help Center where there is
     // one. A sandbox never has it — and could not show it either, since nothing
     // of the application is visible to the host — so there the same handbook,
-    // installed as HTML, goes to the desktop as an open file descriptor.
+    // installed as HTML, is read in a window of our own.
     if (!KSandbox::isFlatpak() && !QStandardPaths::findExecutable(QStringLiteral("khelpcenter")).isEmpty()) {
         KHelpClient::invokeHelp();
         return;
     }
-    const QString handbook(FMPaths::HandbookFile());
-    if (!handbook.isEmpty()) {
-        // in the sandbox only the portal can do it; outside it the desktop's own
-        // way is the first choice and the portal the fallback
-        const bool opened = KSandbox::isFlatpak() ? (FMPortal::openRead(handbook, this) || QDesktopServices::openUrl(QUrl::fromLocalFile(handbook)))
-                                                  : (QDesktopServices::openUrl(QUrl::fromLocalFile(handbook)) || FMPortal::openRead(handbook, this));
-        if (opened)
-            return;
+    if (!FMPaths::HandbookFile().isEmpty()) {
+        FMHandbookWindow::showHandbook(this);
+        return;
     }
     KMessageBox::information(this,
                              xi18nc("@info",
