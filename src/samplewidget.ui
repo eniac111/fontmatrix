@@ -298,6 +298,7 @@
        </layout>
       </widget>
      </widget>
+     <widget class="QWidget" name="pageVariations"/>
     </widget>
    </item>
   </layout>

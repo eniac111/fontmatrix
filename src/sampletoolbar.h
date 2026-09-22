@@ -25,7 +25,8 @@ public:
 
     enum Button {
         SampleButton,
-        OpenTypeButton
+        OpenTypeButton,
+        VariationsButton
     };
 
     [[nodiscard]] double getFontSize() const;
@@ -35,6 +36,8 @@ public:
     void toggle(Button b, bool c);
 
     void enableButton(Button b, bool c);
+    /// a button that means nothing for the font is not shown at all
+    void showButton(Button b, bool s);
 
     void setScripts(const QStringList &ll);
     QString getScript();
@@ -49,6 +52,7 @@ Q_SIGNALS:
     void SizeChanged(double);
     void SampleToggled(bool);
     void OpenTypeToggled(bool);
+    void VariationsToggled(bool);
     void ScriptSelected();
 };
 

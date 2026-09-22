@@ -10,6 +10,9 @@
 #include <hb-ft.h>
 
 #include <QSet>
+#include <QVarLengthArray>
+
+#include FT_MULTIPLE_MASTERS_H
 
 QList<int> FMOtf::altGlyphs;
 
@@ -109,6 +112,17 @@ FMOtf::FMOtf(FT_Face f, double)
     // so that advances and offsets come out in font units
     hb_font_t *base(hb_font_create(hbFace));
     hb_ot_font_set_funcs(base);
+    // a variable font is shaped where the face is set (FontItem::setVariationCoordinates())
+    const unsigned int axisCount = hb_ot_var_get_axis_count(hbFace);
+    if (axisCount > 0) {
+        QVarLengthArray<FT_Fixed, 8> fixed(axisCount);
+        if (FT_Get_Var_Design_Coordinates(_face, axisCount, fixed.data()) == 0) {
+            QVarLengthArray<float, 8> coords;
+            for (const FT_Fixed f : fixed)
+                coords.append(static_cast<float>(f / 65536.0));
+            hb_font_set_var_coords_design(base, coords.data(), axisCount);
+        }
+    }
     hbFont = subFont(base, glyphByFreeType, _face);
     hbGlyphFont = subFont(base, glyphIsGiven, nullptr);
     hb_font_destroy(base);

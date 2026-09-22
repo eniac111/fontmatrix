@@ -24,6 +24,7 @@
 #include <cmath>
 
 #include <QApplication>
+#include <QByteArrayView>
 #include <QDebug>
 #include <QFileInfo>
 #include <QGraphicsObject>
@@ -41,6 +42,7 @@
 #include <QNetworkRequest>
 #include <QProgressDialog>
 #include <QUrl>
+#include <QVarLengthArray>
 
 #include <climits>
 
@@ -49,6 +51,7 @@
 #include FT_XFREE86_H
 #include FT_GLYPH_H
 #include FT_OUTLINE_H
+#include FT_MULTIPLE_MASTERS_H
 #include FT_SFNT_NAMES_H
 #include FT_TYPE1_TABLES_H
 #include FT_TRUETYPE_TABLES_H
@@ -462,6 +465,8 @@ bool FontItem::ensureFace()
         qCWarning(FONTMATRIX_LOG) << "Error loading face [" << trueFile << "]";
         return false;
     }
+    readVariation();
+    applyVariation();
     encodeFace();
     if (spaceIndex.isEmpty()) {
         int gIndex(0);
@@ -2103,6 +2108,155 @@ void FontItem::clearPreview()
     //		return;
     //	if ( !theOneLinePreviewPixmap.isNull() )
     //		theOneLinePreviewPixmap = QPixmap();
+}
+
+/// Variable fonts *******************************************
+
+/// the name of the record, English first, then any other language of the record
+QString FontItem::sfntName(unsigned int nameId)
+{
+    if (!m_face)
+        return QString();
+    QString english;
+    QString other;
+    const FT_UInt count = FT_Get_Sfnt_Name_Count(m_face);
+    for (FT_UInt n = 0; n < count && english.isEmpty(); ++n) {
+        FT_SfntName sn;
+        if (FT_Get_Sfnt_Name(m_face, n, &sn) != 0 || sn.name_id != nameId || sn.string_len == 0)
+            continue;
+        const QByteArrayView bytes(reinterpret_cast<const char *>(sn.string), sn.string_len);
+        QString value;
+        if (sn.platform_id == TT_PLATFORM_MICROSOFT) {
+            // every Microsoft name record is UTF-16BE
+            value = QString(QStringDecoder(QStringDecoder::Utf16BE)(bytes)).trimmed();
+        } else if (sn.platform_id == TT_PLATFORM_MACINTOSH && sn.encoding_id == TT_MAC_ID_ROMAN) {
+            value = QString::fromLatin1(bytes).trimmed();
+        }
+        if (value.isEmpty())
+            continue;
+        if (sn.platform_id == TT_PLATFORM_MICROSOFT && sn.language_id == TT_MS_LANGID_ENGLISH_UNITED_STATES)
+            english = value;
+        else if (other.isEmpty())
+            other = value;
+    }
+    return english.isEmpty() ? other : english;
+}
+
+void FontItem::readVariation()
+{
+    if (m_variationRead || !m_face)
+        return;
+    m_variationRead = true;
+    if (!FT_HAS_MULTIPLE_MASTERS(m_face))
+        return;
+    FT_MM_Var *mm = nullptr;
+    if (FT_Get_MM_Var(m_face, &mm) != 0 || !mm)
+        return;
+    constexpr double fixedOne = 65536.0;
+    for (FT_UInt a = 0; a < mm->num_axis; ++a) {
+        const FT_Var_Axis &ax = mm->axis[a];
+        FontVariationAxis axis;
+        const char tag[4] = {char(ax.tag >> 24), char(ax.tag >> 16), char(ax.tag >> 8), char(ax.tag)};
+        axis.tag = QString::fromLatin1(tag, 4);
+        axis.name = sfntName(ax.strid);
+        if (axis.name.isEmpty() && ax.name)
+            axis.name = QString::fromLatin1(ax.name);
+        if (axis.name.isEmpty())
+            axis.name = axis.tag;
+        axis.minimum = ax.minimum / fixedOne;
+        axis.def = ax.def / fixedOne;
+        axis.maximum = ax.maximum / fixedOne;
+        FT_UInt flags = 0;
+        if (FT_Get_Var_Axis_Flags(mm, a, &flags) == 0)
+            axis.hidden = (flags & FT_VAR_AXIS_FLAG_HIDDEN) != 0;
+        m_axes << axis;
+    }
+    for (FT_UInt i = 0; i < mm->num_namedstyles; ++i) {
+        const FT_Var_Named_Style &ns = mm->namedstyle[i];
+        FontNamedInstance instance;
+        instance.name = sfntName(ns.strid);
+        if (instance.name.isEmpty())
+            instance.name = i18nc("@item:inlistbox a named instance of a variable font that has no name, with its number", "Instance %1", i + 1);
+        for (FT_UInt a = 0; a < mm->num_axis; ++a)
+            instance.coords << ns.coords[a] / fixedOne;
+        m_instances << instance;
+    }
+    FT_Done_MM_Var(FMFreetypeLib::lib(thread()), mm);
+}
+
+void FontItem::applyVariation()
+{
+    if (!m_face || m_axes.isEmpty())
+        return;
+    if (m_coords.isEmpty()) {
+        // back to the default of the font
+        FT_Set_Var_Design_Coordinates(m_face, 0, nullptr);
+        return;
+    }
+    QVarLengthArray<FT_Fixed, 8> fixed;
+    for (const double c : m_coords)
+        fixed.append(FT_Fixed(std::lround(c * 65536.0)));
+    FT_Set_Var_Design_Coordinates(m_face, static_cast<FT_UInt>(fixed.size()), fixed.data());
+}
+
+bool FontItem::isVariable()
+{
+    if (!m_variationRead) {
+        if (!ensureFace())
+            return false;
+        releaseFace();
+    }
+    return !m_axes.isEmpty();
+}
+
+QList<FontVariationAxis> FontItem::variationAxes()
+{
+    isVariable();
+    return m_axes;
+}
+
+QList<FontNamedInstance> FontItem::namedInstances()
+{
+    isVariable();
+    return m_instances;
+}
+
+void FontItem::setVariationCoordinates(const QList<double> &coords)
+{
+    if (!isVariable())
+        return;
+    QList<double> c(coords);
+    // one coordinate per axis, whatever was given
+    while (c.size() > m_axes.size())
+        c.removeLast();
+    for (int a = c.size(); a < m_axes.size() && !c.isEmpty(); ++a)
+        c << m_axes.at(a).def;
+    if (c == m_coords)
+        return;
+    m_coords = c;
+    if (m_face) // held open by a caller: the next glyph it loads is at the new place already
+        applyVariation();
+    Q_EMIT variationChanged();
+}
+
+int FontItem::namedInstance()
+{
+    if (!isVariable())
+        return -1;
+    QList<double> shown(m_coords);
+    if (shown.isEmpty()) {
+        for (const FontVariationAxis &axis : std::as_const(m_axes))
+            shown << axis.def;
+    }
+    for (int i = 0; i < m_instances.size(); ++i) {
+        const QList<double> &c = m_instances.at(i).coords;
+        bool same = c.size() == shown.size();
+        for (int a = 0; same && a < c.size(); ++a)
+            same = qAbs(c.at(a) - shown.at(a)) < 0.001;
+        if (same)
+            return i;
+    }
+    return -1;
 }
 
 FontInfoMap FontItem::moreInfo()

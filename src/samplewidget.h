@@ -23,6 +23,7 @@ class QAbstractButton;
 class QFileSystemWatcher;
 class QTimer;
 class SampleToolBar;
+class FMVariationsWidget;
 class QTreeWidgetItem;
 class QStyledItemDelegate;
 class FontItem;
@@ -37,6 +38,7 @@ constexpr int VIEW_PAGE_ABSOLUTE = 1;
 constexpr int VIEW_PAGE_OPENTYPE = 3;
 // #define VIEW_PAGE_SETTINGS 1
 constexpr int VIEW_PAGE_SAMPLES = 4;
+constexpr int VIEW_PAGE_VARIATIONS = 5;
 
 class FMLayoutThread : public QThread
 {
@@ -101,6 +103,7 @@ protected:
 private:
     Ui::SampleWidget *const ui;
     SampleToolBar *sampleToolBar = nullptr;
+    FMVariationsWidget *variationsWidget = nullptr;
     QTreeWidgetItem *uRoot = nullptr;
     QTreeWidgetItem *newSampleName = nullptr;
     QStyledItemDelegate *sampleNameEditor = nullptr;
@@ -177,6 +180,7 @@ private Q_SLOTS:
 
     void slotShowSamples(bool);
     void slotShowOpenType(bool);
+    void slotShowVariations(bool);
 
     void slotPrint();
     void slotDoPrinting();

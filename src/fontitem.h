@@ -73,6 +73,22 @@ struct FontLocalInfo {
     QPixmap pix;
 };
 
+/// an axis of a variable font, in design units
+struct FontVariationAxis {
+    QString tag; ///< "wght", "wdth", "opsz", "ital", "slnt" or the designer's own
+    QString name;
+    double minimum = 0.0;
+    double def = 0.0;
+    double maximum = 0.0;
+    bool hidden = false; ///< the designer asks for it to stay out of the interface
+};
+
+/// a named instance of a variable font: a style name and one design coordinate per axis
+struct FontNamedInstance {
+    QString name;
+    QList<double> coords;
+};
+
 class MetaGlyphItem : public QGraphicsItem
 {
     QMap<int, QVariant> m_Data;
@@ -187,6 +203,16 @@ private:
     void releaseFace();
     void encodeFace();
 
+    // variable fonts: the axes and the named instances are read once from the
+    // face, the coordinates shown are set on it at every open
+    bool m_variationRead = false;
+    QList<FontVariationAxis> m_axes;
+    QList<FontNamedInstance> m_instances;
+    QList<double> m_coords; ///< the design coordinates shown, empty for the default
+    void readVariation();
+    void applyVariation();
+    QString sfntName(unsigned int nameId);
+
     QList<int> getAlternates(int ccode);
     QString panose();
 
@@ -239,6 +265,8 @@ private:
 Q_SIGNALS:
     /// the file of a remote font has arrived (ok), or the download failed
     void downloadFinished(bool ok);
+    /// the coordinates of a variable font moved: what shows the font has to render it again
+    void variationChanged();
 
 public Q_SLOTS:
     QString renderSVG(const QString &s, const double &size);
@@ -445,6 +473,24 @@ public:
     void dumpIntoDB();
 
     [[nodiscard]] bool getUnicodeBuiltIn() const;
+
+    /// a font with variation axes (OpenType Font Variations)
+    bool isVariable();
+    QList<FontVariationAxis> variationAxes();
+    QList<FontNamedInstance> namedInstances();
+    /// the design coordinates the font is shown with, one per axis; empty for the default
+    [[nodiscard]] QList<double> variationCoordinates() const
+    {
+        return m_coords;
+    }
+    /**
+     * Sets the design coordinates every rendering of the font uses from now
+     * on, one per axis, empty for the default of the font. A value outside the
+     * range of its axis is clamped by FreeType.
+     */
+    void setVariationCoordinates(const QList<double> &coords);
+    /// the named instance the coordinates shown are those of, -1 when they are not
+    int namedInstance();
 
     [[nodiscard]] FT_Encoding getCurrentEncoding() const;
 
