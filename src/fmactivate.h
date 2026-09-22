@@ -23,8 +23,7 @@ class FMActivate : public QObject
 
     // no name here may be a macro of windows.h: wingdi.h has ERROR and SYSTEM_FONT
     enum Error {
-        NO_LINK = 0,
-        ALREADY_ACTIVE,
+        ALREADY_ACTIVE = 0,
         NO_UNLINK,
         ALREADY_UNACTIVE,
         MISSING_AFM,
@@ -56,18 +55,35 @@ public:
      * deleted at deactivation because it was in use is deleted now.
      */
     void reconcileUserFonts();
+#elif !defined(PLATFORM_APPLE)
+    /**
+     * Once, from the versions that linked the activated fonts into a private
+     * directory named in the user's fonts.conf and hid system fonts with
+     * rejectfont entries there: the fonts flagged active get their copies,
+     * the directory goes, and fonts.conf loses that directory and those
+     * entries, which become the flags of the fonts and the rejects file.
+     */
+    void migrateActivated(const QString &oldDir);
+    /**
+     * Once per start: a font flagged active whose copy has gone is flagged
+     * inactive, a file of the folder that belongs to no active font goes, and
+     * the rejects file is brought in line with the flags of the system fonts.
+     */
+    void reconcileActivated();
 #endif
 
 Q_SIGNALS:
     void activationEvent(const QStringList &);
 
 private:
-    /*
-    Add and Remove fonts in ~/.config/fontconfig/fonts.conf
-    with <selecfont><rejectfont><glob> sequence
-    */
-    bool addFcReject(const QString &path);
-    bool remFcReject(const QString &path);
+#if !defined(_WIN32) && !defined(PLATFORM_APPLE)
+    /**
+     * Writes the fontconfig file that hides the system fonts switched off:
+     * every system font whose flag is off, as a rejectfont pattern on its
+     * file. With none, the file goes. Written only when it would change.
+     */
+    void writeRejects();
+#endif
 
     QMap<QString, QString> m_errors;
 };

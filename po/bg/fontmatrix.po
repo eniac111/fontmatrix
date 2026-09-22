@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/eniac111/fontmatrix/issues\n"
-"POT-Creation-Date: 2026-09-22 11:03+0300\n"
+"POT-Creation-Date: 2026-09-22 19:17+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,7 +38,7 @@ msgstr "Доклад за грешки при активиране и деакт
 #. i18n: file: src/tagset.ui:231
 #. i18n: ectx: property (text), widget (QPushButton, closeButton)
 #: rc.cpp:9 rc.cpp:231 rc.cpp:276 rc.cpp:477 rc.cpp:636 rc.cpp:761
-#: src/typotek.cpp:2166
+#: src/typotek.cpp:2136
 #, kde-format
 msgctxt "@action:button"
 msgid "Close"
@@ -136,7 +136,7 @@ msgstr "Информация"
 
 #. i18n: file: src/browserwidget.ui:76
 #. i18n: ectx: property (text), widget (QPushButton, importButton)
-#: rc.cpp:42 src/typotek.cpp:452
+#: rc.cpp:42 src/typotek.cpp:450
 #, kde-format
 msgctxt "@action:button"
 msgid "Import"
@@ -1619,7 +1619,7 @@ msgstr "Повторно свързване"
 
 #. i18n: file: src/repair.ui:134
 #. i18n: ectx: property (text), widget (QPushButton, deactActNot)
-#: rc.cpp:657 src/typotek.cpp:1448
+#: rc.cpp:657 src/typotek.cpp:1418
 #, kde-format
 msgctxt "@action:button"
 msgid "Deactivate"
@@ -1643,7 +1643,7 @@ msgstr "Премахване на връзката"
 
 #. i18n: file: src/repair.ui:185
 #. i18n: ectx: property (text), widget (QPushButton, activateDeactLink)
-#: rc.cpp:669 src/fmfloatingpreview.cpp:55 src/typotek.cpp:1435
+#: rc.cpp:669 src/fmfloatingpreview.cpp:55 src/typotek.cpp:1405
 #, kde-format
 msgctxt "@action:button"
 msgid "Activate"
@@ -2079,7 +2079,7 @@ msgctxt "@info:progress"
 msgid "Copying files"
 msgstr "Копиране на файлове"
 
-#: src/dataexport.cpp:70 src/typotek.cpp:470 src/typotek.cpp:579
+#: src/dataexport.cpp:70 src/typotek.cpp:468 src/typotek.cpp:577
 #, kde-format
 msgctxt "@action:button"
 msgid "cancel"
@@ -2145,68 +2145,63 @@ msgctxt "@title:window"
 msgid "Remove Filter"
 msgstr "Изтриване на филтъра"
 
-#: src/fmactivate.cpp:31
-#, kde-format
-msgctxt "@info activation error"
-msgid "Unable to link"
-msgstr "Неуспешно свързване"
-
-#: src/fmactivate.cpp:33
+#: src/fmactivate.cpp:32
 #, kde-format
 msgctxt "@info activation error"
 msgid "Font already activated"
 msgstr "Шрифтът вече е активиран"
 
-#: src/fmactivate.cpp:35
+#: src/fmactivate.cpp:34
 #, kde-format
 msgctxt "@info activation error"
-msgid "Unable to un-link"
-msgstr "Неуспешно премахване на връзката"
+msgid "Unable to remove the font from the user font folder"
+msgstr "Шрифтът не може да се премахне от папката с шрифтове на потребителя"
+"Шрифтовият файл не може да се копира в папката с шрифтове на потребителя"
 
-#: src/fmactivate.cpp:37
+#: src/fmactivate.cpp:36
 #, kde-format
 msgctxt "@info activation error"
 msgid "Font already de-activated"
 msgstr "Шрифтът вече е деактивиран"
 
-#: src/fmactivate.cpp:39
+#: src/fmactivate.cpp:38
 #, kde-format
 msgctxt "@info activation error"
-msgid "Cannot link or copy the metrics file"
-msgstr "Неуспешно свързване или копиране на файла с метрики"
+msgid "Cannot copy the metrics file"
+msgstr "Файлът с метриките не може да се копира"
 
-#: src/fmactivate.cpp:41
+#: src/fmactivate.cpp:40
 #, kde-format
 msgctxt "activation"
 msgid "Error"
 msgstr "Грешка"
 
-#: src/fmactivate.cpp:43
+#: src/fmactivate.cpp:42
 #, kde-format
 msgctxt "@info activation error"
 msgid "Unable to copy the font file into the user font folder"
 msgstr ""
 "Шрифтовият файл не може да се копира в папката с шрифтове на потребителя"
 
-#: src/fmactivate.cpp:45
+#: src/fmactivate.cpp:44
 #, kde-format
 msgctxt "@info activation error"
 msgid "Unable to register the font for this user"
 msgstr "Шрифтът не може да се регистрира за този потребител"
 
-#: src/fmactivate.cpp:47
+#: src/fmactivate.cpp:46
 #, kde-format
 msgctxt "@info activation error"
 msgid "The font is installed but could not be loaded for running applications"
 msgstr "Шрифтът е инсталиран, но не може да се зареди за работещите приложения"
 
-#: src/fmactivate.cpp:49
+#: src/fmactivate.cpp:48
 #, kde-format
 msgctxt "@info activation error"
 msgid "The font is installed by the system and cannot be changed here"
 msgstr "Шрифтът е инсталиран от системата и не може да се променя оттук"
 
-#: src/fmactivate.cpp:51
+#: src/fmactivate.cpp:50
 #, kde-format
 msgctxt "@info activation error"
 msgid "Only TrueType and OpenType fonts can be activated for this user"
@@ -5269,7 +5264,7 @@ msgctxt "@title:window"
 msgid "Save File"
 msgstr "Запазване на файл"
 
-#: src/typotek.cpp:319
+#: src/typotek.cpp:318
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5279,13 +5274,13 @@ msgstr ""
 "Програмата ще продължи да работи в системния трей. За да я затворите, "
 "изберете <b>Изход</b> от контекстното меню на иконата в трея."
 
-#: src/typotek.cpp:400
+#: src/typotek.cpp:398
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Directory"
 msgstr "Добавяне на директория"
 
-#: src/typotek.cpp:450
+#: src/typotek.cpp:448
 #, kde-format
 msgctxt "@info"
 msgid "Do you confirm you want to import %1 font?"
@@ -5293,103 +5288,103 @@ msgid_plural "Do you confirm you want to import %1 fonts?"
 msgstr[0] "Потвърждавате ли внасянето на %1 шрифт?"
 msgstr[1] "Потвърждавате ли внасянето на %1 шрифта?"
 
-#: src/typotek.cpp:451
+#: src/typotek.cpp:449
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirmation"
 msgstr "Потвърждение"
 
-#: src/typotek.cpp:470 src/typotek.cpp:579
+#: src/typotek.cpp:468 src/typotek.cpp:577
 #, kde-format
 msgctxt "@info:progress"
 msgid "Importing font files... "
 msgstr "Внасяне на шрифтови файлове..."
 
-#: src/typotek.cpp:480 src/typotek.cpp:584
+#: src/typotek.cpp:478 src/typotek.cpp:582
 #, kde-format
 msgctxt "@info:progress"
 msgid "Import"
 msgstr "Внасяне"
 
-#: src/typotek.cpp:503
+#: src/typotek.cpp:501
 #, kde-format
 msgctxt "@info"
 msgid "Cannot import this font because it is broken:"
 msgstr "Не може да се внася шрифтът, защото е повреден:"
 
-#: src/typotek.cpp:530 src/typotek.cpp:621
+#: src/typotek.cpp:528 src/typotek.cpp:619
 #, kde-format
 msgctxt "@info:status"
 msgid "Fonts imported: %1"
 msgstr "Внесени шрифтове: %1"
 
-#: src/typotek.cpp:542
+#: src/typotek.cpp:540
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Files to Import"
 msgstr "Избор на файлове за внасяне"
 
-#: src/typotek.cpp:544
+#: src/typotek.cpp:542
 #, kde-format
 msgctxt "@item:inlistbox file type filter"
 msgid "Font Files"
 msgstr "Шрифтови файлове"
 
-#: src/typotek.cpp:652
+#: src/typotek.cpp:650
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Import Directory..."
 msgstr "Внасяне на &директория..."
 
-#: src/typotek.cpp:654
+#: src/typotek.cpp:652
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import a directory"
 msgstr "Внасяне на директория"
 
-#: src/typotek.cpp:660
+#: src/typotek.cpp:658
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Import &Files..."
 msgstr "Внасяне на &файлове..."
 
-#: src/typotek.cpp:662
+#: src/typotek.cpp:660
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import Files"
 msgstr "Внасяне на файлове"
 
-#: src/typotek.cpp:666
+#: src/typotek.cpp:664
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Export &fonts"
 msgstr "Изнасяне на &шрифтове"
 
-#: src/typotek.cpp:667
+#: src/typotek.cpp:665
 #, kde-format
 msgctxt "@info:status"
 msgid "Export a fontset"
 msgstr "Изнасяне на набор от шрифтове"
 
-#: src/typotek.cpp:671
+#: src/typotek.cpp:669
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Export font book..."
 msgstr "Изнасяне на каталог с шрифтове..."
 
-#: src/typotek.cpp:672
+#: src/typotek.cpp:670
 #, kde-format
 msgctxt "@info:status"
 msgid "Export a PDF document that shows selected fonts"
 msgstr "Изнасяне на PDF документ с избраните шрифтове"
 
-#: src/typotek.cpp:676
+#: src/typotek.cpp:674
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Export font info for packaging..."
 msgstr "Изнасяне на информация за шрифта за пакетиране..."
 
-#: src/typotek.cpp:677
+#: src/typotek.cpp:675
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5403,43 +5398,43 @@ msgstr ""
 #. tagsetAct->setIcon ( QIcon ( ":/fontmatrix_tagseteditor_icon.png" ) );
 #. scuts->add(tagsetAct);
 #. connect ( tagsetAct,SIGNAL ( triggered( ) ),this,SLOT ( popupTagsetEditor() ) );
-#: src/typotek.cpp:685
+#: src/typotek.cpp:683
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Activate all current"
 msgstr "Активиране на всички текущи"
 
-#: src/typotek.cpp:686
+#: src/typotek.cpp:684
 #, kde-format
 msgctxt "@info:status"
 msgid "Activate all currently visible fonts"
 msgstr "Активиране на всички видими шрифтове"
 
-#: src/typotek.cpp:690
+#: src/typotek.cpp:688
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Deactivate all current"
 msgstr "Деактивиране на всички текущи"
 
-#: src/typotek.cpp:691
+#: src/typotek.cpp:689
 #, kde-format
 msgctxt "@info:status"
 msgid "Deactivate all currently visible fonts"
 msgstr "Деактивиране на всички видими шрифтове"
 
-#: src/typotek.cpp:695
+#: src/typotek.cpp:693
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Edit current font"
 msgstr "Редактиране на текущия шрифт"
 
-#: src/typotek.cpp:699
+#: src/typotek.cpp:697
 #, kde-format
 msgctxt "@info:status"
 msgid "Edit currently selected font in a font editor of your choice"
 msgstr "Редактиране на избрания шрифт в предпочитания редактор"
 
-#: src/typotek.cpp:703
+#: src/typotek.cpp:701
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5449,13 +5444,13 @@ msgstr ""
 "Изглежда нямате инсталиран редактор на шрифтове. Пътят му може да се зададе "
 "в диалога за предпочитания."
 
-#: src/typotek.cpp:706
+#: src/typotek.cpp:704
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Filtered"
 msgstr "Презареждане на филтрираните"
 
-#: src/typotek.cpp:707
+#: src/typotek.cpp:705
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5463,25 +5458,25 @@ msgid ""
 msgstr ""
 "Презареждане на информацията за филтрираните шрифтове от техните файлове"
 
-#: src/typotek.cpp:711
+#: src/typotek.cpp:709
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Selected"
 msgstr "Презареждане на избрания"
 
-#: src/typotek.cpp:712
+#: src/typotek.cpp:710
 #, kde-format
 msgctxt "@info:status"
 msgid "Reload informations for selected font from the font file"
 msgstr "Презареждане на информацията за избрания шрифт от файла"
 
-#: src/typotek.cpp:716
+#: src/typotek.cpp:714
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Check Database"
 msgstr "Проверка на базата данни"
 
-#: src/typotek.cpp:717
+#: src/typotek.cpp:715
 #, kde-format
 msgctxt "@info:status"
 msgid "Check Fontmatrix database for dead links to font files"
@@ -5489,25 +5484,25 @@ msgstr ""
 "Проверка на базата данни на Fontmatrix за невалидни връзки към шрифтови "
 "файлове"
 
-#: src/typotek.cpp:724
+#: src/typotek.cpp:722
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Tag All Filtered..."
 msgstr "Етикетиране на всички филтрирани..."
 
-#: src/typotek.cpp:725
+#: src/typotek.cpp:723
 #, kde-format
 msgctxt "@info:status"
 msgid "Tag all currently visible files"
 msgstr "Етикетиране на всички видими файлове"
 
-#: src/typotek.cpp:729
+#: src/typotek.cpp:727
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show TrueType tables"
 msgstr "Показване на таблиците на TrueType"
 
-#: src/typotek.cpp:730
+#: src/typotek.cpp:728
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5516,13 +5511,13 @@ msgstr ""
 "Преглед на шестнадесетичните стойности на таблиците TrueType за избрания "
 "шрифтов файл"
 
-#: src/typotek.cpp:734
+#: src/typotek.cpp:732
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Edit PANOSE metadata"
 msgstr "Редактиране на PANOSE метаданни"
 
-#: src/typotek.cpp:735
+#: src/typotek.cpp:733
 #, kde-format
 msgctxt "@info:status"
 msgid "Edit PANOSE metadata without saving changes to font files"
@@ -5530,169 +5525,169 @@ msgstr ""
 "Редактиране на PANOSE метаданни без записване на промените в шрифтовите "
 "файлове"
 
-#: src/typotek.cpp:739
+#: src/typotek.cpp:737
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Playground"
 msgstr "Пясъчник"
 
-#: src/typotek.cpp:741
+#: src/typotek.cpp:739
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show/Hide Playground"
 msgstr "Показване/скриване на пясъчника"
 
-#: src/typotek.cpp:747
+#: src/typotek.cpp:745
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Compare"
 msgstr "Сравняване на глифи"
 
-#: src/typotek.cpp:749
+#: src/typotek.cpp:747
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show/Hide Compare glyphs"
 msgstr "Показване/скриване на сравнението на глифи"
 
-#: src/typotek.cpp:755
+#: src/typotek.cpp:753
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All"
 msgstr "Затваряне на всички"
 
-#: src/typotek.cpp:756
+#: src/typotek.cpp:754
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close all floating windows"
 msgstr "Затваряне на всички плаващи прозорци"
 
-#: src/typotek.cpp:760
+#: src/typotek.cpp:758
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show All"
 msgstr "Показване на всички"
 
-#: src/typotek.cpp:761
+#: src/typotek.cpp:759
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show all floating windows"
 msgstr "Показване на всички плаващи прозорци"
 
-#: src/typotek.cpp:765
+#: src/typotek.cpp:763
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Hide All"
 msgstr "Скриване на всички"
 
-#: src/typotek.cpp:766
+#: src/typotek.cpp:764
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Hide all floating windows"
 msgstr "Скриване на всички плаващи прозорци"
 
-#: src/typotek.cpp:786
+#: src/typotek.cpp:784
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Extract fonts..."
 msgstr "Извличане на шрифтове..."
 
-#: src/typotek.cpp:787
+#: src/typotek.cpp:785
 #, kde-format
 msgctxt "@info:status"
 msgid "Extract fonts from documents like PDF to PFM file format"
 msgstr "Извличане на шрифтове от документи като PDF във формат PFM"
 
-#: src/typotek.cpp:792
+#: src/typotek.cpp:790
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Find a font using raster sample..."
 msgstr "Намиране на шрифт по растерна извадка..."
 
-#: src/typotek.cpp:793
+#: src/typotek.cpp:791
 #, kde-format
 msgctxt "@info:status"
 msgid "Find a font using a raster sample of a letter"
 msgstr "Намиране на шрифт по растерна извадка на буква"
 
-#: src/typotek.cpp:797
+#: src/typotek.cpp:795
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Export font list as XeTeX..."
 msgstr "Изнасяне на списъка с шрифтове като XeTeX..."
 
-#: src/typotek.cpp:798
+#: src/typotek.cpp:796
 #, kde-format
 msgctxt "@info:status"
 msgid "Export the current filtered font list as a XeTeX source file"
 msgstr ""
 "Изнасяне на текущия филтриран списък с шрифтове като изходен файл на XeTeX"
 
-#: src/typotek.cpp:895
+#: src/typotek.cpp:893
 #, kde-format
 msgctxt "@action:button"
 msgid "Browse Directories"
 msgstr "Преглед на директории"
 
-#: src/typotek.cpp:897
+#: src/typotek.cpp:895
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Toggle Files/Collection view"
 msgstr "Превключване между файлов изглед и изглед на колекцията"
 
-#: src/typotek.cpp:903
+#: src/typotek.cpp:901
 #, kde-format
 msgctxt "@info:progress"
 msgid "Load settings"
 msgstr "Зареждане на настройки"
 
-#: src/typotek.cpp:1037
+#: src/typotek.cpp:1035
 #, kde-format
 msgctxt "@info:progress"
 msgid "Check for Fontmatrix own dir"
 msgstr "Проверка на директорията на Fontmatrix"
 
-#: src/typotek.cpp:1263
+#: src/typotek.cpp:1223
 #, kde-format
 msgctxt "@info:progress"
 msgid "Loading System Fonts"
 msgstr "Зареждане на системни шрифтове"
 
-#: src/typotek.cpp:1264
+#: src/typotek.cpp:1224
 #, kde-format
 msgctxt "@item:inlistbox name of the tag given to system fonts"
 msgid "System Fonts"
 msgstr "Системни шрифтове"
 
-#: src/typotek.cpp:1294
+#: src/typotek.cpp:1257
 #, kde-format
 msgctxt "@info:progress"
 msgid "Adding"
 msgstr "Добавяне"
 
-#: src/typotek.cpp:1295 src/typotek.cpp:1296
+#: src/typotek.cpp:1258 src/typotek.cpp:1259
 #, kde-format
 msgctxt "followed by a directory name"
 msgid "fonts from"
 msgstr "шрифтове от"
 
-#: src/typotek.cpp:1296
+#: src/typotek.cpp:1259
 #, kde-format
 msgid "Adding"
 msgstr "Добавяне"
 
-#: src/typotek.cpp:1319
+#: src/typotek.cpp:1282
 #, kde-format
 msgctxt "@info:progress"
 msgid "system fonts added."
 msgstr "системни шрифтове добавени."
 
-#: src/typotek.cpp:1331
+#: src/typotek.cpp:1294 src/typotek.cpp:1297
 #, kde-format
 msgctxt "@info:progress"
 msgid "Checking the activated fonts"
 msgstr "Проверка на активираните шрифтове"
 
-#: src/typotek.cpp:1365
+#: src/typotek.cpp:1335
 #, kde-format
 msgctxt "@info:progress"
 msgid "Reading the catalogue of %1 remote directory"
@@ -5700,7 +5695,7 @@ msgid_plural "Reading the catalogues of %1 remote directories"
 msgstr[0] "Четене на каталога на %1 отдалечена директория"
 msgstr[1] "Четене на каталозите на %1 отдалечени директории"
 
-#: src/typotek.cpp:1407
+#: src/typotek.cpp:1377
 #, kde-format
 msgctxt "@info:status"
 msgid "%1 font added from the network"
@@ -5708,7 +5703,7 @@ msgid_plural "%1 fonts added from the network"
 msgstr[0] "%1 шрифт е добавен от мрежата"
 msgstr[1] "%1 шрифта са добавени от мрежата"
 
-#: src/typotek.cpp:1433
+#: src/typotek.cpp:1403
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5718,13 +5713,13 @@ msgstr ""
 "Предстои активиране на много шрифтове.\n"
 "Ако не е бил намерението ви, отменете действието."
 
-#: src/typotek.cpp:1434
+#: src/typotek.cpp:1404
 #, kde-format
 msgctxt "@title:window"
 msgid "Activate Fonts"
 msgstr "Активиране на шрифтове"
 
-#: src/typotek.cpp:1446
+#: src/typotek.cpp:1416
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5734,13 +5729,13 @@ msgstr ""
 "Предстои деактивиране на много шрифтове.\n"
 "Ако не е бил намерението ви, отменете действието."
 
-#: src/typotek.cpp:1447
+#: src/typotek.cpp:1417
 #, kde-format
 msgctxt "@title:window"
 msgid "Deactivate Fonts"
 msgstr "Деактивиране на шрифтове"
 
-#: src/typotek.cpp:1466
+#: src/typotek.cpp:1436
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5748,19 +5743,19 @@ msgid ""
 msgstr ""
 "Лентата с менюто ще бъде скрита напълно. Може да я покажете отново с %1."
 
-#: src/typotek.cpp:1467
+#: src/typotek.cpp:1437
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Скриване на лентата с менюто"
 
-#: src/typotek.cpp:1477 src/typotek.cpp:2155
+#: src/typotek.cpp:1447 src/typotek.cpp:2125
 #, kde-format
 msgctxt "@info:status"
 msgid "There is no font selected"
 msgstr "Няма избран шрифт"
 
-#: src/typotek.cpp:1522
+#: src/typotek.cpp:1492
 #, kde-format
 msgctxt "@info:status"
 msgid "Support of DragNDrop over http is sheduled but not yet effective"
@@ -5768,30 +5763,30 @@ msgstr ""
 "Поддръжката на плъзгане и пускане по HTTP е планирана, но все още не е "
 "реализирана"
 
-#: src/typotek.cpp:1541
+#: src/typotek.cpp:1511
 #, kde-format
 msgctxt "@info:status"
 msgid "You bring something over me I can’t handle"
 msgstr "Пуснахте нещо, което не мога да обработя"
 
-#: src/typotek.cpp:1602
+#: src/typotek.cpp:1572
 #, kde-format
 msgctxt "@info default content of a new sample text"
 msgid "Edit me!"
 msgstr "Редактирайте ме!"
 
-#: src/typotek.cpp:1681
+#: src/typotek.cpp:1651
 #, kde-format
 msgid "default"
 msgstr "подразбиран"
 
-#: src/typotek.cpp:1765
+#: src/typotek.cpp:1735
 #, kde-format
 msgctxt "@info:status"
 msgid "Try to run font editor with the selected font as argument"
 msgstr "Опит за отваряне на редактора на шрифтове с избрания шрифт"
 
-#: src/typotek.cpp:1768
+#: src/typotek.cpp:1738
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5801,19 +5796,19 @@ msgstr ""
 "Изглежда нямате инсталиран редактор на шрифтове. Пътят му може да се зададе "
 "в предпочитанията."
 
-#: src/typotek.cpp:2054
+#: src/typotek.cpp:2024
 #, kde-format
 msgctxt "@title:window"
 msgid "Export font list as XeTeX"
 msgstr "Изнасяне на списъка с шрифтове като XeTeX"
 
-#: src/typotek.cpp:2056
+#: src/typotek.cpp:2026
 #, kde-format
 msgctxt "@item:inlistbox file type filter"
 msgid "TeX files (*.tex)"
 msgstr "Файлове на TeX (*.tex)"
 
-#: src/typotek.cpp:2238
+#: src/typotek.cpp:2208
 #, kde-format
 msgctxt "@info:status"
 msgid "Failed to reload %1 font"
@@ -5821,7 +5816,7 @@ msgid_plural "Failed to reload %1 fonts"
 msgstr[0] "Неуспешно презареждане на %1 шрифт"
 msgstr[1] "Неуспешно презареждане на %1 шрифта"
 
-#: src/typotek.cpp:2280
+#: src/typotek.cpp:2250
 #, kde-format
 msgctxt "number of filtererd fonts showed in status bar"
 msgid "Filtered Font: %1"
@@ -5829,13 +5824,13 @@ msgid_plural "Filtered Fonts: %1"
 msgstr[0] "Филтриран шрифт: %1"
 msgstr[1] "Филтрирани шрифтове: %1"
 
-#: src/typotek.cpp:2285
+#: src/typotek.cpp:2255
 #, kde-format
 msgctxt "followed by currently selected font name (in status bar)"
 msgid "Current Font"
 msgstr "Текущ шрифт"
 
-#: src/typotek.cpp:2309
+#: src/typotek.cpp:2279
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5847,11 +5842,21 @@ msgstr ""
 "application>, който не е инсталиран на тази система.<nl/>Страницата на "
 "проекта е на адрес <link>%1</link>."
 
-#: src/typotek.cpp:2312
+#: src/typotek.cpp:2282
 #, kde-format
 msgctxt "@title:window"
 msgid "Handbook Not Available"
 msgstr "Наръчникът не е наличен"
+
+#, kde-format
+#~ msgctxt "@info activation error"
+#~ msgid "Unable to link"
+#~ msgstr "Неуспешно свързване"
+
+#, kde-format
+#~ msgctxt "@info activation error"
+#~ msgid "Unable to un-link"
+#~ msgstr "Неуспешно премахване на връзката"
 
 #, kde-format
 #~ msgctxt "@title:window"

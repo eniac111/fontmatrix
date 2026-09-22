@@ -34,7 +34,7 @@ Download and run the MSI — Qt and FreeType runtime DLLs are bundled.
 | libhyphen | | hyphenation of the sample texts (hunspell's `hyphen`); the KDE Flatpak runtime has it, Craft builds it from `craft-blueprints/libs/hyphen` |
 | FreeType2 | ≥ 2.10 | variable fonts (the axis flags of 2.8.1) and colour fonts (the COLR layers of 2.10) |
 | Gettext | | `msgfmt`, to compile the translations |
-| Fontconfig | | optional, Linux; without it fonts are managed but not switched on and off for other programs |
+| Fontconfig | | optional, Linux; it lists the system fonts. Activation itself needs no library: a copy in `~/.local/share/fonts/fontmatrix`, a rejects file in `~/.config/fontconfig/conf.d` |
 
 The Qt and KDE Frameworks versions are the oldest ones the project is built and run
 against: Debian 13 (Qt 6.8.2, KF 6.13) and Ubuntu 25.04 (Qt 6.8.3, KF 6.12). CI covers the
