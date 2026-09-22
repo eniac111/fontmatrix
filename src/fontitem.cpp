@@ -1649,6 +1649,23 @@ void FontItem::renderAll(QGraphicsScene *scene, int begin_code, int end_code)
     charcode = begin_code;
     QPen selPen(Qt::gray);
 
+    // A cell is the 100 x 100 square at (pen.x - 30, pen.y - 50); the glyph sits on the
+    // baseline at pen, so it may reach 68 to the right, 28 to the left and 49 up before
+    // it runs into the frame or the neighbour (a three-em dash, "Blackoak", the basmala).
+    // Such a glyph is scaled down about its origin, which keeps it on the baseline.
+    const auto fitToCell = [](QGraphicsPathItem *item) {
+        const QRectF box(item->path().boundingRect());
+        double scale = 1.0;
+        if (box.right() > 68.0)
+            scale = qMin(scale, 68.0 / box.right());
+        if (box.left() < -28.0)
+            scale = qMin(scale, -28.0 / box.left());
+        if (box.top() < -49.0)
+            scale = qMin(scale, -49.0 / box.top());
+        if (scale < 1.0)
+            item->setScale(scale);
+    };
+
     QFont infoFont(typotek::getInstance()->getChartInfoFontName(), typotek::getInstance()->getChartInfoFontSize());
     QBrush selBrush(QColor(255, 255, 255, 0));
     QColor txtColor(60, 60, 60, 255);
@@ -1676,6 +1693,7 @@ void FontItem::renderAll(QGraphicsScene *scene, int begin_code, int end_code)
                     scene->addItem(pitem);
                     pitem->setPen(Qt::NoPen);
                     pitem->setPos(pen);
+                    fitToCell(pitem);
                     pitem->setData(1, "glyph");
                     pitem->setData(2, gindex);
                     pitem->setData(3, ucharcode);
@@ -1736,6 +1754,7 @@ void FontItem::renderAll(QGraphicsScene *scene, int begin_code, int end_code)
                 if (pitem) {
                     scene->addItem(pitem);
                     pitem->setPos(pen);
+                    fitToCell(pitem);
                     pitem->setData(1, "glyph");
                     pitem->setData(2, gindex);
                     pitem->setData(3, 0);
