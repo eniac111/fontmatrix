@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/eniac111/fontmatrix/issues\n"
-"POT-Creation-Date: 2026-09-22 21:44+0300\n"
+"POT-Creation-Date: 2026-09-22 23:46+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,8 +37,8 @@ msgstr "Доклад за грешки при активиране и деакт
 #. i18n: ectx: property (text), widget (QPushButton, closeButton)
 #. i18n: file: src/tagset.ui:231
 #. i18n: ectx: property (text), widget (QPushButton, closeButton)
-#: rc.cpp:9 rc.cpp:243 rc.cpp:288 rc.cpp:489 rc.cpp:660 rc.cpp:785
-#: src/typotek.cpp:2136
+#: rc.cpp:9 rc.cpp:243 rc.cpp:288 rc.cpp:489 rc.cpp:663 rc.cpp:788
+#: src/typotek.cpp:2163
 #, kde-format
 msgctxt "@action:button"
 msgid "Close"
@@ -112,13 +112,13 @@ msgstr "Изход"
 #. i18n: ectx: property (text), widget (QPushButton, fileNameButton)
 #. i18n: file: src/dumpdialog.ui:48
 #. i18n: ectx: property (text), widget (QPushButton, browseButton)
-#. i18n: file: src/prefs_panel.ui:451
+#. i18n: file: src/prefs_panel.ui:453
 #. i18n: ectx: property (text), widget (QPushButton, fontEditorBrowse)
-#. i18n: file: src/prefs_panel.ui:489
+#. i18n: file: src/prefs_panel.ui:503
 #. i18n: ectx: property (text), widget (QToolButton, dictButton)
-#. i18n: file: src/prefs_panel.ui:713
+#. i18n: file: src/prefs_panel.ui:727
 #. i18n: ectx: property (text), widget (QPushButton, templatesDirBrowse)
-#: rc.cpp:36 rc.cpp:128 rc.cpp:585 rc.cpp:597 rc.cpp:615
+#: rc.cpp:36 rc.cpp:128 rc.cpp:585 rc.cpp:600 rc.cpp:618
 #, kde-format
 msgctxt "@action:button"
 msgid "Browse..."
@@ -136,7 +136,7 @@ msgstr "Информация"
 
 #. i18n: file: src/browserwidget.ui:76
 #. i18n: ectx: property (text), widget (QPushButton, importButton)
-#: rc.cpp:42 src/typotek.cpp:450
+#: rc.cpp:42 src/typotek.cpp:451
 #, kde-format
 msgctxt "@action:button"
 msgid "Import"
@@ -248,13 +248,13 @@ msgstr "Шрифтове"
 #. i18n: ectx: property (text), widget (QPushButton, addButton)
 #. i18n: file: src/importtags.ui:45
 #. i18n: ectx: property (text), widget (QPushButton, tagNewButton)
-#. i18n: file: src/prefs_panel.ui:762
+#. i18n: file: src/prefs_panel.ui:776
 #. i18n: ectx: property (text), widget (QPushButton, remoteDirAdd)
 #. i18n: file: src/samplewidget.ui:274
 #. i18n: ectx: property (text), widget (QPushButton, addSampleButton)
 #. i18n: file: src/tagset.ui:118
 #. i18n: ectx: property (text), widget (QPushButton, addToSetButton)
-#: rc.cpp:80 rc.cpp:237 rc.cpp:330 rc.cpp:624 rc.cpp:752 rc.cpp:770
+#: rc.cpp:80 rc.cpp:237 rc.cpp:330 rc.cpp:627 rc.cpp:755 rc.cpp:773
 #, kde-format
 msgctxt "@action:button"
 msgid "Add"
@@ -264,9 +264,9 @@ msgstr "Добавяне"
 #. i18n: ectx: property (text), widget (QPushButton, compareRemove)
 #. i18n: file: src/filtersdialogitem.ui:114
 #. i18n: ectx: property (text), widget (QToolButton, removeButton)
-#. i18n: file: src/prefs_panel.ui:769
+#. i18n: file: src/prefs_panel.ui:783
 #. i18n: ectx: property (text), widget (QPushButton, remoteDirRemove)
-#. i18n: file: src/prefs_panel.ui:846
+#. i18n: file: src/prefs_panel.ui:860
 #. i18n: ectx: property (text), widget (QToolButton, clearButton)
 #. i18n: file: src/repair.ui:83
 #. i18n: ectx: property (text), widget (QPushButton, removeDead)
@@ -276,8 +276,8 @@ msgstr "Добавяне"
 #. i18n: ectx: property (text), widget (QPushButton, removeSampleButton)
 #. i18n: file: src/tagset.ui:187
 #. i18n: ectx: property (text), widget (QPushButton, removeToSetButton)
-#: rc.cpp:83 rc.cpp:222 rc.cpp:627 rc.cpp:648 rc.cpp:669 rc.cpp:702 rc.cpp:755
-#: rc.cpp:782
+#: rc.cpp:83 rc.cpp:222 rc.cpp:630 rc.cpp:651 rc.cpp:672 rc.cpp:705 rc.cpp:758
+#: rc.cpp:785
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
@@ -371,7 +371,7 @@ msgstr "Изброените шрифтови файлове ще бъдат к�
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
 #. i18n: file: src/progressbarduo.ui:61
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
-#: rc.cpp:116 rc.cpp:450 rc.cpp:654
+#: rc.cpp:116 rc.cpp:450 rc.cpp:657
 #, kde-format
 msgctxt "@action:button"
 msgid "Cancel"
@@ -1008,9 +1008,9 @@ msgstr "Запазване на този филтър за по-нататъшн
 
 #. i18n: file: src/mainview.ui:188
 #. i18n: ectx: property (text), widget (QPushButton, saveButton)
-#. i18n: file: src/prefs_panel.ui:653
+#. i18n: file: src/prefs_panel.ui:667
 #. i18n: ectx: property (text), widget (QPushButton, commitSample)
-#: rc.cpp:387 rc.cpp:609
+#: rc.cpp:387 rc.cpp:612
 #, kde-format
 msgctxt "@action:button"
 msgid "Save"
@@ -1251,7 +1251,7 @@ msgstr "PANOSE атрибути"
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #. i18n: file: src/sampletoolbar.ui:20
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:480 rc.cpp:567 rc.cpp:705
+#: rc.cpp:480 rc.cpp:567 rc.cpp:708
 #, kde-format
 msgctxt "@label"
 msgid "Font Size:"
@@ -1488,7 +1488,7 @@ msgctxt "@title:group"
 msgid "Fonts Editor"
 msgstr "Редактор на шрифтове"
 
-#. i18n: file: src/prefs_panel.ui:441
+#. i18n: file: src/prefs_panel.ui:443
 #. i18n: ectx: property (toolTip), widget (QLineEdit, fontEditorPath)
 #: rc.cpp:582
 #, kde-format
@@ -1496,9 +1496,20 @@ msgctxt "@info:tooltip"
 msgid "Add the full path to your preferred font editor"
 msgstr "Пълен път до предпочитания редактор на шрифтове"
 
-#. i18n: file: src/prefs_panel.ui:474
-#. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_8)
+#. i18n: file: src/prefs_panel.ui:475
+#. i18n: ectx: property (text), widget (QLabel, fontEditorNote)
 #: rc.cpp:588
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Fontmatrix is running in a sandbox and cannot start a program of the system. "
+"<interface>Edit current font</interface> hands the font file to the desktop, "
+"which asks you which application should open it."
+msgstr "Fontmatrix работи в изолирана среда и не може да стартира програма на системата. <interface>Редактиране на текущия шрифт</interface> предава шрифтовия файл на работния плот, който ви пита кое приложение да го отвори."
+
+#. i18n: file: src/prefs_panel.ui:488
+#. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_8)
+#: rc.cpp:591
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Select an  hyphenation dict file as it comes with OpenOffice or Scribus"
@@ -1506,65 +1517,65 @@ msgstr ""
 "Изберете файл с речник за сричкопренасяне, какъвто се доставя с OpenOffice "
 "или Scribus"
 
-#. i18n: file: src/prefs_panel.ui:477
+#. i18n: file: src/prefs_panel.ui:491
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_8)
-#: rc.cpp:591
+#: rc.cpp:594
 #, kde-format
 msgctxt "@title:group"
 msgid "Hyphenation dictionary"
 msgstr "Речник за сричкопренасяне"
 
-#. i18n: file: src/prefs_panel.ui:486
+#. i18n: file: src/prefs_panel.ui:500
 #. i18n: ectx: property (toolTip), widget (QToolButton, dictButton)
-#: rc.cpp:594
+#: rc.cpp:597
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Browse"
 msgstr "Преглед"
 
-#. i18n: file: src/prefs_panel.ui:509
+#. i18n: file: src/prefs_panel.ui:523
 #. i18n: ectx: property (text), widget (QLabel, label_5)
-#: rc.cpp:600
+#: rc.cpp:603
 #, kde-format
 msgctxt "@label"
 msgid "Left:"
 msgstr "Ляво:"
 
-#. i18n: file: src/prefs_panel.ui:522
+#. i18n: file: src/prefs_panel.ui:536
 #. i18n: ectx: property (text), widget (QLabel, label_6)
-#: rc.cpp:603
+#: rc.cpp:606
 #, kde-format
 msgctxt "@label"
 msgid "Right:"
 msgstr "Дясно:"
 
-#. i18n: file: src/prefs_panel.ui:564
+#. i18n: file: src/prefs_panel.ui:578
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: rc.cpp:606
+#: rc.cpp:609
 #, kde-format
 msgctxt "@title:group"
 msgid "Sample Texts"
 msgstr "Примерни текстове"
 
-#. i18n: file: src/prefs_panel.ui:697
+#. i18n: file: src/prefs_panel.ui:711
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
-#: rc.cpp:612
+#: rc.cpp:615
 #, kde-format
 msgctxt "@title:group"
 msgid "Templates Folder"
 msgstr "Папка с шаблони"
 
-#. i18n: file: src/prefs_panel.ui:736
+#. i18n: file: src/prefs_panel.ui:750
 #. i18n: ectx: property (title), widget (QGroupBox, remoteDirsBox)
-#: rc.cpp:618
+#: rc.cpp:621
 #, kde-format
 msgctxt "@title:group"
 msgid "Remote Directories"
 msgstr "Отдалечени директории"
 
-#. i18n: file: src/prefs_panel.ui:739
+#. i18n: file: src/prefs_panel.ui:753
 #. i18n: ectx: property (toolTip), widget (QGroupBox, remoteDirsBox)
-#: rc.cpp:621
+#: rc.cpp:624
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -1576,9 +1587,9 @@ msgstr ""
 "показват тук с изгледите и етикетите си; файлът на шрифт се изтегля при "
 "отваряне или активиране."
 
-#. i18n: file: src/prefs_panel.ui:776
+#. i18n: file: src/prefs_panel.ui:790
 #. i18n: ectx: property (text), widget (QLabel, remoteDirsNote)
-#: rc.cpp:630
+#: rc.cpp:633
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1588,25 +1599,25 @@ msgstr ""
 "Каталогът на директорията се чете при добавянето ѝ и при всяко стартиране. "
 "Вече показаните шрифтове остават и след премахването на директорията."
 
-#. i18n: file: src/prefs_panel.ui:789
+#. i18n: file: src/prefs_panel.ui:803
 #. i18n: ectx: property (title), widget (QGroupBox, activationScopeBox)
-#: rc.cpp:633
+#: rc.cpp:636
 #, kde-format
 msgctxt "@title:group"
 msgid "Activation"
 msgstr "Активиране"
 
-#. i18n: file: src/prefs_panel.ui:795
+#. i18n: file: src/prefs_panel.ui:809
 #. i18n: ectx: property (text), widget (QCheckBox, systemWideCheck)
-#: rc.cpp:636
+#: rc.cpp:639
 #, kde-format
 msgctxt "@option:check"
 msgid "Activate fonts for all users of this computer"
 msgstr "Активиране на шрифтовете за всички потребители на този компютър"
 
-#. i18n: file: src/prefs_panel.ui:798
+#. i18n: file: src/prefs_panel.ui:812
 #. i18n: ectx: property (toolTip), widget (QCheckBox, systemWideCheck)
-#: rc.cpp:639
+#: rc.cpp:642
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -1616,9 +1627,9 @@ msgstr ""
 "Изисква паролата на администратора. Шрифтовете се копират в /usr/local/share/"
 "fonts/fontmatrix, а скритите системни шрифтове са скрити за всички."
 
-#. i18n: file: src/prefs_panel.ui:805
+#. i18n: file: src/prefs_panel.ui:819
 #. i18n: ectx: property (text), widget (QLabel, systemWideNote)
-#: rc.cpp:642
+#: rc.cpp:645
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1628,9 +1639,9 @@ msgstr ""
 "Шрифтовете, активирани преди промяната, остават където са: във вашата папка "
 "или в папката на системата."
 
-#. i18n: file: src/prefs_panel.ui:830
+#. i18n: file: src/prefs_panel.ui:844
 #. i18n: ectx: property (text), widget (QToolButton, changeButton)
-#: rc.cpp:645
+#: rc.cpp:648
 #, kde-format
 msgctxt "@action:button"
 msgid "Change"
@@ -1638,7 +1649,7 @@ msgstr "Промяна"
 
 #. i18n: file: src/progressbarduo.ui:14
 #. i18n: ectx: property (windowTitle), widget (QDialog, ProgressBarDuo)
-#: rc.cpp:651
+#: rc.cpp:654
 #, kde-format
 msgctxt "@title:window"
 msgid "Exporting Font Book"
@@ -1646,7 +1657,7 @@ msgstr "Изнасяне на каталог с шрифтове"
 
 #. i18n: file: src/repair.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, repairDialog)
-#: rc.cpp:657
+#: rc.cpp:660
 #, kde-format
 msgctxt "@title:window"
 msgid "Database repair"
@@ -1654,7 +1665,7 @@ msgstr "Поправяне на базата данни"
 
 #. i18n: file: src/repair.ui:47
 #. i18n: ectx: attribute (title), widget (QWidget, tab)
-#: rc.cpp:663
+#: rc.cpp:666
 #, kde-format
 msgctxt "@title:tab"
 msgid "Dead links"
@@ -1668,7 +1679,7 @@ msgstr "Невалидни връзки"
 #. i18n: ectx: property (text), widget (QPushButton, selectAllDeactLink)
 #. i18n: file: src/repair.ui:202
 #. i18n: ectx: property (text), widget (QPushButton, selectAllUnreferenced)
-#: rc.cpp:666 rc.cpp:675 rc.cpp:687 rc.cpp:699
+#: rc.cpp:669 rc.cpp:678 rc.cpp:690 rc.cpp:702
 #, kde-format
 msgctxt "@action:button"
 msgid "Select all"
@@ -1676,7 +1687,7 @@ msgstr "Избиране на всички"
 
 #. i18n: file: src/repair.ui:91
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
-#: rc.cpp:672
+#: rc.cpp:675
 #, kde-format
 msgctxt "@title:tab"
 msgid "Activated Not Linked"
@@ -1684,7 +1695,7 @@ msgstr "Активирани без връзка"
 
 #. i18n: file: src/repair.ui:127
 #. i18n: ectx: property (text), widget (QPushButton, relinkActNot)
-#: rc.cpp:678
+#: rc.cpp:681
 #, kde-format
 msgctxt "@action:button"
 msgid "Re-link"
@@ -1692,7 +1703,7 @@ msgstr "Повторно свързване"
 
 #. i18n: file: src/repair.ui:134
 #. i18n: ectx: property (text), widget (QPushButton, deactActNot)
-#: rc.cpp:681 src/typotek.cpp:1418
+#: rc.cpp:684 src/typotek.cpp:1413
 #, kde-format
 msgctxt "@action:button"
 msgid "Deactivate"
@@ -1700,7 +1711,7 @@ msgstr "Деактивиране"
 
 #. i18n: file: src/repair.ui:142
 #. i18n: ectx: attribute (title), widget (QWidget, tab_3)
-#: rc.cpp:684
+#: rc.cpp:687
 #, kde-format
 msgctxt "@title:tab"
 msgid "Deactivated Linked"
@@ -1708,7 +1719,7 @@ msgstr "Деактивирани със връзка"
 
 #. i18n: file: src/repair.ui:178
 #. i18n: ectx: property (text), widget (QPushButton, delinkDeactLink)
-#: rc.cpp:690
+#: rc.cpp:693
 #, kde-format
 msgctxt "@action:button"
 msgid "De-link"
@@ -1716,7 +1727,7 @@ msgstr "Премахване на връзката"
 
 #. i18n: file: src/repair.ui:185
 #. i18n: ectx: property (text), widget (QPushButton, activateDeactLink)
-#: rc.cpp:693 src/fmfloatingpreview.cpp:55 src/typotek.cpp:1405
+#: rc.cpp:696 src/fmfloatingpreview.cpp:55 src/typotek.cpp:1400
 #, kde-format
 msgctxt "@action:button"
 msgid "Activate"
@@ -1724,7 +1735,7 @@ msgstr "Активиране"
 
 #. i18n: file: src/repair.ui:193
 #. i18n: ectx: attribute (title), widget (QWidget, tab_4)
-#: rc.cpp:696
+#: rc.cpp:699
 #, kde-format
 msgctxt "@title:tab"
 msgid "Unreferenced Files"
@@ -1732,7 +1743,7 @@ msgstr "Файлове без препратка"
 
 #. i18n: file: src/sampletoolbar.ui:37
 #. i18n: ectx: property (text), widget (QToolButton, sampleButton)
-#: rc.cpp:708
+#: rc.cpp:711
 #, kde-format
 msgctxt "@action:button"
 msgid "Samples"
@@ -1740,7 +1751,7 @@ msgstr "Образци"
 
 #. i18n: file: src/sampletoolbar.ui:56
 #. i18n: ectx: property (text), widget (QToolButton, opentypeButton)
-#: rc.cpp:711
+#: rc.cpp:714
 #, kde-format
 msgctxt "@action:button"
 msgid "OpenType"
@@ -1748,7 +1759,7 @@ msgstr "OpenType"
 
 #. i18n: file: src/sampletoolbar.ui:75
 #. i18n: ectx: property (toolTip), widget (QToolButton, variationsButton)
-#: rc.cpp:714
+#: rc.cpp:717
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "The axes of a variable font"
@@ -1756,7 +1767,7 @@ msgstr "Осите на вариативен шрифт"
 
 #. i18n: file: src/sampletoolbar.ui:78
 #. i18n: ectx: property (text), widget (QToolButton, variationsButton)
-#: rc.cpp:717
+#: rc.cpp:720
 #, kde-format
 msgctxt "@action:button"
 msgid "Variations"
@@ -1764,7 +1775,7 @@ msgstr "Вариации"
 
 #. i18n: file: src/sampletoolbar.ui:99
 #. i18n: ectx: property (toolTip), widget (QComboBox, languageCombo)
-#: rc.cpp:720
+#: rc.cpp:723
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -1778,7 +1789,7 @@ msgstr ""
 
 #. i18n: file: src/sampletoolbar.ui:106
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:725
+#: rc.cpp:728
 #, kde-format
 msgctxt "@label"
 msgid "Shaping:"
@@ -1786,7 +1797,7 @@ msgstr "Оформяне:"
 
 #. i18n: file: src/samplewidget.ui:80
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
-#: rc.cpp:728
+#: rc.cpp:731
 #, kde-format
 msgctxt "@title:group"
 msgid "World is wide"
@@ -1794,7 +1805,7 @@ msgstr "Светът е широк"
 
 #. i18n: file: src/samplewidget.ui:118
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:731
+#: rc.cpp:734
 #, kde-format
 msgctxt "Writing system"
 msgid "Script"
@@ -1802,7 +1813,7 @@ msgstr "Писменост"
 
 #. i18n: file: src/samplewidget.ui:134
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:734
+#: rc.cpp:737
 #, kde-format
 msgctxt "@label"
 msgid "Shaper type"
@@ -1810,7 +1821,7 @@ msgstr "Вид оформяне:"
 
 #. i18n: file: src/samplewidget.ui:150
 #. i18n: ectx: property (text), widget (QCheckBox, useShaperCheck)
-#: rc.cpp:737
+#: rc.cpp:740
 #, kde-format
 msgctxt "@option:check"
 msgid "Use shaper"
@@ -1818,7 +1829,7 @@ msgstr "Използване на оформяне"
 
 #. i18n: file: src/samplewidget.ui:193
 #. i18n: ectx: property (text), widget (QTreeWidget, OpenTypeTree)
-#: rc.cpp:740
+#: rc.cpp:743
 #, kde-format
 msgctxt "@title:column"
 msgid "OpenType Features"
@@ -1826,7 +1837,7 @@ msgstr "Функции на OpenType"
 
 #. i18n: file: src/samplewidget.ui:198
 #. i18n: ectx: property (text), widget (QTreeWidget, OpenTypeTree)
-#: rc.cpp:743
+#: rc.cpp:746
 #, kde-format
 msgctxt "@title:column"
 msgid "Friendly Name"
@@ -1834,7 +1845,7 @@ msgstr "Четливо наименование"
 
 #. i18n: file: src/samplewidget.ui:207
 #. i18n: ectx: property (text), widget (QPushButton, saveDefOTFBut)
-#: rc.cpp:746
+#: rc.cpp:749
 #, kde-format
 msgctxt "@action:button"
 msgid "Save as default"
@@ -1842,7 +1853,7 @@ msgstr "Запазване като подразбирано"
 
 #. i18n: file: src/samplewidget.ui:214
 #. i18n: ectx: property (text), widget (QPushButton, resetDefOTFBut)
-#: rc.cpp:749
+#: rc.cpp:752
 #, kde-format
 msgctxt "@action:button"
 msgid "Reset Default"
@@ -1850,7 +1861,7 @@ msgstr "Нулиране на подразбираното"
 
 #. i18n: file: src/tagset.ui:19
 #. i18n: ectx: property (windowTitle), widget (QDialog, TagSetDialog)
-#: rc.cpp:758
+#: rc.cpp:761
 #, kde-format
 msgctxt "@title:window"
 msgid "TagSet editor"
@@ -1858,7 +1869,7 @@ msgstr "Редактор на набори от етикети"
 
 #. i18n: file: src/tagset.ui:64
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:761
+#: rc.cpp:764
 #, kde-format
 msgctxt "@label"
 msgid "Collections of Tags"
@@ -1866,7 +1877,7 @@ msgstr "Колекции от етикети"
 
 #. i18n: file: src/tagset.ui:80
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:764
+#: rc.cpp:767
 #, kde-format
 msgctxt "@label"
 msgid "Available Tags"
@@ -1874,7 +1885,7 @@ msgstr "Налични етикети"
 
 #. i18n: file: src/tagset.ui:115
 #. i18n: ectx: property (toolTip), widget (QPushButton, addToSetButton)
-#: rc.cpp:767
+#: rc.cpp:770
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Add selected tag to current set."
@@ -1882,7 +1893,7 @@ msgstr "Добавяне на избрания етикет към текущи�
 
 #. i18n: file: src/tagset.ui:138
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:773
+#: rc.cpp:776
 #, kde-format
 msgctxt "@label"
 msgid "Collections"
@@ -1890,7 +1901,7 @@ msgstr "Колекции"
 
 #. i18n: file: src/tagset.ui:153
 #. i18n: ectx: property (text), widget (QPushButton, newSetButton)
-#: rc.cpp:776
+#: rc.cpp:779
 #, kde-format
 msgctxt "@action:button"
 msgid "New"
@@ -1898,7 +1909,7 @@ msgstr "Нов"
 
 #. i18n: file: src/tagset.ui:160
 #. i18n: ectx: property (text), widget (QPushButton, deleteTagsetButton)
-#: rc.cpp:779
+#: rc.cpp:782
 #, kde-format
 msgctxt "@action:button"
 msgid "delete"
@@ -1906,7 +1917,7 @@ msgstr "Изтриване"
 
 #. i18n: file: src/tagswidget.ui:41
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:788
+#: rc.cpp:791
 #, kde-format
 msgctxt "@label"
 msgid "Tags"
@@ -1914,7 +1925,7 @@ msgstr "Етикети"
 
 #. i18n: file: src/tagswidget.ui:54
 #. i18n: ectx: property (toolTip), widget (QPushButton, newTagButton)
-#: rc.cpp:791
+#: rc.cpp:794
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Add a tag"
@@ -1922,7 +1933,7 @@ msgstr "Добавяне на етикет"
 
 #. i18n: file: src/tagswidget.ui:57
 #. i18n: ectx: property (text), widget (QPushButton, newTagButton)
-#: rc.cpp:794
+#: rc.cpp:797
 #, kde-format
 msgctxt "@action:button"
 msgid "Add Tag"
@@ -1930,7 +1941,7 @@ msgstr "Добавяне на етикет"
 
 #. i18n: file: src/tagswidget.ui:67
 #. i18n: ectx: property (text), widget (QPushButton, removeTagButton)
-#: rc.cpp:797
+#: rc.cpp:800
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove Tag"
@@ -1938,7 +1949,7 @@ msgstr "Премахване на етикет"
 
 #. i18n: file: src/tagswidget.ui:77
 #. i18n: ectx: property (statusTip), widget (QListView, tagsListView)
-#: rc.cpp:800
+#: rc.cpp:803
 #, kde-format
 msgctxt "@info:status"
 msgid "Right mouse click on a tag to add it or remove it from TagSet"
@@ -1948,7 +1959,7 @@ msgstr ""
 
 #. i18n: file: src/textprogression.ui:25
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:803
+#: rc.cpp:806
 #, kde-format
 msgctxt "@title:group"
 msgid "Inline progression"
@@ -1958,7 +1969,7 @@ msgstr "Посока на реда"
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineLTR)
 #. i18n: file: src/textprogression.ui:101
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockTTB)
-#: rc.cpp:806 rc.cpp:833
+#: rc.cpp:809 rc.cpp:836
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Latin text"
@@ -1968,7 +1979,7 @@ msgstr "напр. латински текст"
 #. i18n: ectx: property (text), widget (QRadioButton, inlineLTR)
 #. i18n: file: src/textprogression.ui:127
 #. i18n: ectx: property (text), widget (QRadioButton, blockLTR)
-#: rc.cpp:809 rc.cpp:848
+#: rc.cpp:812 rc.cpp:851
 #, kde-format
 msgctxt "@option:radio"
 msgid "Left to right"
@@ -1976,7 +1987,7 @@ msgstr "Отляво надясно"
 
 #. i18n: file: src/textprogression.ui:53
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineRTL)
-#: rc.cpp:812
+#: rc.cpp:815
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Arabic text"
@@ -1986,7 +1997,7 @@ msgstr "напр. арабски текст"
 #. i18n: ectx: property (text), widget (QRadioButton, inlineRTL)
 #. i18n: file: src/textprogression.ui:117
 #. i18n: ectx: property (text), widget (QRadioButton, blockRTL)
-#: rc.cpp:815 rc.cpp:842
+#: rc.cpp:818 rc.cpp:845
 #, kde-format
 msgctxt "@option:radio"
 msgid "Right to left"
@@ -1994,7 +2005,7 @@ msgstr "Отдясно наляво"
 
 #. i18n: file: src/textprogression.ui:63
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineTTB)
-#: rc.cpp:818
+#: rc.cpp:821
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Traditional Chinese & Japanese text"
@@ -2004,7 +2015,7 @@ msgstr "напр. традиционен китайски и японски те
 #. i18n: ectx: property (text), widget (QRadioButton, inlineTTB)
 #. i18n: file: src/textprogression.ui:104
 #. i18n: ectx: property (text), widget (QRadioButton, blockTTB)
-#: rc.cpp:821 rc.cpp:836
+#: rc.cpp:824 rc.cpp:839
 #, kde-format
 msgctxt "@option:radio"
 msgid "Top to bottom"
@@ -2012,7 +2023,7 @@ msgstr "Отгоре надолу"
 
 #. i18n: file: src/textprogression.ui:73
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineBTT)
-#: rc.cpp:824
+#: rc.cpp:827
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Runic text"
@@ -2020,7 +2031,7 @@ msgstr "напр. рунически текст"
 
 #. i18n: file: src/textprogression.ui:76
 #. i18n: ectx: property (text), widget (QRadioButton, inlineBTT)
-#: rc.cpp:827
+#: rc.cpp:830
 #, kde-format
 msgctxt "@option:radio"
 msgid "Bottom to top"
@@ -2028,7 +2039,7 @@ msgstr "Отдолу нагоре"
 
 #. i18n: file: src/textprogression.ui:86
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: rc.cpp:830
+#: rc.cpp:833
 #, kde-format
 msgctxt "@title:group"
 msgid "Block progression"
@@ -2036,7 +2047,7 @@ msgstr "Посока на блока"
 
 #. i18n: file: src/textprogression.ui:114
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockRTL)
-#: rc.cpp:839
+#: rc.cpp:842
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Tarditionnal Chinese & Japanes text"
@@ -2044,7 +2055,7 @@ msgstr "напр. традиционен китайски и японски те
 
 #. i18n: file: src/textprogression.ui:124
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockLTR)
-#: rc.cpp:845
+#: rc.cpp:848
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Traditional Mongolian text"
@@ -2052,7 +2063,7 @@ msgstr "напр. традиционен монголски текст"
 
 #. i18n: file: src/tttablewidget.ui:13
 #. i18n: ectx: property (windowTitle), widget (QWidget, TTTableWidget)
-#: rc.cpp:851
+#: rc.cpp:854
 #, kde-format
 msgctxt "@title:window"
 msgid "TrueType tables display"
@@ -2060,7 +2071,7 @@ msgstr "Показване на таблиците на TrueType"
 
 #. i18n: file: src/tttablewidget.ui:19
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:854
+#: rc.cpp:857
 #, kde-format
 msgctxt "@label"
 msgid "TrueType Tables "
@@ -2068,7 +2079,7 @@ msgstr "Таблици на TrueType"
 
 #. i18n: file: src/tttablewidget.ui:34
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:857
+#: rc.cpp:860
 #, kde-format
 msgctxt "@title:column"
 msgid "Tag"
@@ -2076,7 +2087,7 @@ msgstr "Маркер"
 
 #. i18n: file: src/tttablewidget.ui:39
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:860
+#: rc.cpp:863
 #, kde-format
 msgctxt "@title:column"
 msgid "Description"
@@ -2084,7 +2095,7 @@ msgstr "Описание"
 
 #. i18n: file: src/tttablewidget.ui:44
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:863
+#: rc.cpp:866
 #, kde-format
 msgctxt "@title:column"
 msgid "Size"
@@ -2092,7 +2103,7 @@ msgstr "Размер"
 
 #. i18n: file: src/tttablewidget.ui:85
 #. i18n: ectx: property (text), widget (QPushButton, exportButton)
-#: rc.cpp:866
+#: rc.cpp:869
 #, kde-format
 msgctxt "@action:button"
 msgid "&Export"
@@ -2152,7 +2163,7 @@ msgctxt "@info:progress"
 msgid "Copying files"
 msgstr "Копиране на файлове"
 
-#: src/dataexport.cpp:70 src/typotek.cpp:468 src/typotek.cpp:577
+#: src/dataexport.cpp:70 src/typotek.cpp:469 src/typotek.cpp:578
 #, kde-format
 msgctxt "@action:button"
 msgid "cancel"
@@ -2256,8 +2267,7 @@ msgstr "Шрифтът вече е активиран"
 #, kde-format
 msgctxt "@info activation error"
 msgid "Unable to remove the font from the user font folder"
-msgstr ""
-"Шрифтът не може да се премахне от папката с шрифтове на потребителя"
+msgstr "Шрифтът не може да се премахне от папката с шрифтове на потребителя"
 
 #: src/fmactivate.cpp:36
 #, kde-format
@@ -5148,55 +5158,55 @@ msgctxt "@title:window"
 msgid "Print Playground"
 msgstr "Печат на пясъчника"
 
-#: src/prefspaneldialog.cpp:35
+#: src/prefspaneldialog.cpp:37
 #, kde-format
 msgctxt "@title:window"
 msgid "Preferences"
 msgstr "Предпочитания"
 
-#: src/prefspaneldialog.cpp:46
+#: src/prefspaneldialog.cpp:48
 #, kde-format
 msgctxt "@title:tab"
 msgid "General"
 msgstr "Общи"
 
-#: src/prefspaneldialog.cpp:48
+#: src/prefspaneldialog.cpp:50
 #, kde-format
 msgctxt "@title:tab"
 msgid "System tray"
 msgstr "Системен трей"
 
-#: src/prefspaneldialog.cpp:50
+#: src/prefspaneldialog.cpp:52
 #, kde-format
 msgctxt "@title:tab"
 msgid "Display"
 msgstr "Показване"
 
-#: src/prefspaneldialog.cpp:52
+#: src/prefspaneldialog.cpp:54
 #, kde-format
 msgctxt "@title:tab"
 msgid "Tools"
 msgstr "Инструменти"
 
-#: src/prefspaneldialog.cpp:54
+#: src/prefspaneldialog.cpp:56
 #, kde-format
 msgctxt "@title:tab"
 msgid "Samples collection"
 msgstr "Колекция от примерни текстове"
 
-#: src/prefspaneldialog.cpp:56
+#: src/prefspaneldialog.cpp:58
 #, kde-format
 msgctxt "@title:tab"
 msgid "Files & Folders"
 msgstr "Файлове и папки"
 
-#: src/prefspaneldialog.cpp:58
+#: src/prefspaneldialog.cpp:60
 #, kde-format
 msgctxt "@title:tab"
 msgid "Shortcuts"
 msgstr "Клавишни комбинации"
 
-#: src/prefspaneldialog.cpp:68
+#: src/prefspaneldialog.cpp:70
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5206,7 +5216,7 @@ msgstr ""
 "Тази работна среда не предоставя системен трей. Настройките по-долу нямат "
 "ефект."
 
-#: src/prefspaneldialog.cpp:95
+#: src/prefspaneldialog.cpp:102
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -5218,31 +5228,31 @@ msgstr ""
 "<strong>&#60;name&#62;</strong> ; <strong>&#60;family&#62;</strong> ; "
 "<strong>&#60;variant&#62;</strong>"
 
-#: src/prefspaneldialog.cpp:108
+#: src/prefspaneldialog.cpp:115
 #, kde-format
 msgctxt "@info:placeholder sample text in font requester"
 msgid "Aa Bb 123"
 msgstr "Аа Бб 123"
 
-#: src/prefspaneldialog.cpp:114
+#: src/prefspaneldialog.cpp:121
 #, kde-format
 msgctxt "@info"
 msgid "Please select an item in the list or create a new one."
 msgstr "Моля, изберете елемент от списъка или създайте нов."
 
-#: src/prefspaneldialog.cpp:265
+#: src/prefspaneldialog.cpp:272
 #, kde-format
 msgctxt "@info:status validation"
 msgid "Please enter a name for the new sample."
 msgstr "Въведете име за новия примерен текст."
 
-#: src/prefspaneldialog.cpp:270
+#: src/prefspaneldialog.cpp:277
 #, kde-format
 msgctxt "@info:status validation"
 msgid "A sample named \"%1\" already exists."
 msgstr "Вече съществува примерен текст с име „%1“."
 
-#: src/prefspaneldialog.cpp:276
+#: src/prefspaneldialog.cpp:283
 #, kde-format
 msgctxt "A default sample text inserted when creating a new sample"
 msgid "Sample Text"
@@ -5253,119 +5263,119 @@ msgstr ""
 "\n"
 "Ein Textbeispiel"
 
-#: src/prefspaneldialog.cpp:289
+#: src/prefspaneldialog.cpp:296
 #, kde-format
 msgctxt "the name of a sample text will be append to the string"
 msgid "Do you confirm that you want to remove:"
 msgstr "Потвърждавате ли, че искате да премахнете:"
 
-#: src/prefspaneldialog.cpp:293
+#: src/prefspaneldialog.cpp:300
 #, kde-format
 msgctxt "@title:window"
 msgid "Remove Sample Text"
 msgstr "Премахване на примерен текст"
 
-#: src/prefspaneldialog.cpp:377
+#: src/prefspaneldialog.cpp:384
 #, kde-format
 msgctxt "@title:window"
 msgid "Select font editor"
 msgstr "Избор на редактор на шрифтове"
 
-#: src/prefspaneldialog.cpp:420
+#: src/prefspaneldialog.cpp:427
 #, kde-format
 msgctxt "@info"
 msgid "%1 is not the address of a web directory."
 msgstr "„%1“ не е адрес на уеб директория."
 
-#: src/prefspaneldialog.cpp:448
+#: src/prefspaneldialog.cpp:455
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Templates Folder"
 msgstr "Избор на папка с шаблони"
 
-#: src/prefspaneldialog.cpp:524 src/prefspaneldialog.cpp:565
+#: src/prefspaneldialog.cpp:531 src/prefspaneldialog.cpp:572
 #, kde-format
 msgid "Alt"
 msgstr "Alt"
 
-#: src/prefspaneldialog.cpp:524 src/prefspaneldialog.cpp:565
+#: src/prefspaneldialog.cpp:531 src/prefspaneldialog.cpp:572
 #, kde-format
 msgid "Ctrl"
 msgstr "Ctrl"
 
-#: src/prefspaneldialog.cpp:524 src/prefspaneldialog.cpp:565
+#: src/prefspaneldialog.cpp:531 src/prefspaneldialog.cpp:572
 #, kde-format
 msgid "Shift"
 msgstr "Shift"
 
-#: src/prefspaneldialog.cpp:524 src/prefspaneldialog.cpp:565
+#: src/prefspaneldialog.cpp:531 src/prefspaneldialog.cpp:572
 #, kde-format
 msgid "Meta"
 msgstr "Meta"
 
-#: src/prefspaneldialog.cpp:530
+#: src/prefspaneldialog.cpp:537
 #, kde-format
 msgid "Meta+"
 msgstr "Meta+"
 
-#: src/prefspaneldialog.cpp:534
+#: src/prefspaneldialog.cpp:541
 #, kde-format
 msgid "Shift+"
 msgstr "Shift+"
 
-#: src/prefspaneldialog.cpp:538
+#: src/prefspaneldialog.cpp:545
 #, kde-format
 msgid "Alt+"
 msgstr "Alt+"
 
-#: src/prefspaneldialog.cpp:542
+#: src/prefspaneldialog.cpp:549
 #, kde-format
 msgid "Ctrl+"
 msgstr "Ctrl+"
 
-#: src/prefspaneldialog.cpp:622
+#: src/prefspaneldialog.cpp:629
 #, kde-format
 msgctxt "action name will be appended to this"
 msgid "Shortcut is already in use for"
 msgstr "Клавишната комбинация вече се използва за"
 
-#: src/prefspaneldialog.cpp:623
+#: src/prefspaneldialog.cpp:630
 #, kde-format
 msgctxt "@info"
 msgid "Do you still want to assign it?"
 msgstr "Искате ли все пак да я зададете?"
 
-#: src/prefspaneldialog.cpp:624
+#: src/prefspaneldialog.cpp:631
 #, kde-format
 msgctxt "@title:window"
 msgid "Replace"
 msgstr "Замяна"
 
-#: src/prefspaneldialog.cpp:625
+#: src/prefspaneldialog.cpp:632
 #, kde-format
 msgctxt "@action:button"
 msgid "Reassign"
 msgstr "Преназначаване"
 
-#: src/prefspaneldialog.cpp:659
+#: src/prefspaneldialog.cpp:666
 #, kde-format
 msgctxt "@title:column"
 msgid "Action"
 msgstr "Действие"
 
-#: src/prefspaneldialog.cpp:660
+#: src/prefspaneldialog.cpp:667
 #, kde-format
 msgctxt "@title:column"
 msgid "Shortcut"
 msgstr "Клавишна комбинация"
 
-#: src/prefspaneldialog.cpp:661
+#: src/prefspaneldialog.cpp:668
 #, kde-format
 msgctxt "@title:column"
 msgid "Tip"
 msgstr "Съвет"
 
-#: src/prefspaneldialog.cpp:692
+#: src/prefspaneldialog.cpp:699
 #, kde-format
 msgctxt "@title:window"
 msgid "Select hyphenation dictionary"
@@ -5473,7 +5483,7 @@ msgctxt "@title:window"
 msgid "Save File"
 msgstr "Запазване на файл"
 
-#: src/typotek.cpp:318
+#: src/typotek.cpp:319
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5483,13 +5493,13 @@ msgstr ""
 "Програмата ще продължи да работи в системния трей. За да я затворите, "
 "изберете <b>Изход</b> от контекстното меню на иконата в трея."
 
-#: src/typotek.cpp:398
+#: src/typotek.cpp:399
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Directory"
 msgstr "Добавяне на директория"
 
-#: src/typotek.cpp:448
+#: src/typotek.cpp:449
 #, kde-format
 msgctxt "@info"
 msgid "Do you confirm you want to import %1 font?"
@@ -5497,103 +5507,103 @@ msgid_plural "Do you confirm you want to import %1 fonts?"
 msgstr[0] "Потвърждавате ли внасянето на %1 шрифт?"
 msgstr[1] "Потвърждавате ли внасянето на %1 шрифта?"
 
-#: src/typotek.cpp:449
+#: src/typotek.cpp:450
 #, kde-format
 msgctxt "@title:window"
 msgid "Confirmation"
 msgstr "Потвърждение"
 
-#: src/typotek.cpp:468 src/typotek.cpp:577
+#: src/typotek.cpp:469 src/typotek.cpp:578
 #, kde-format
 msgctxt "@info:progress"
 msgid "Importing font files... "
 msgstr "Внасяне на шрифтови файлове..."
 
-#: src/typotek.cpp:478 src/typotek.cpp:582
+#: src/typotek.cpp:479 src/typotek.cpp:583
 #, kde-format
 msgctxt "@info:progress"
 msgid "Import"
 msgstr "Внасяне"
 
-#: src/typotek.cpp:501
+#: src/typotek.cpp:502
 #, kde-format
 msgctxt "@info"
 msgid "Cannot import this font because it is broken:"
 msgstr "Не може да се внася шрифтът, защото е повреден:"
 
-#: src/typotek.cpp:528 src/typotek.cpp:619
+#: src/typotek.cpp:529 src/typotek.cpp:620
 #, kde-format
 msgctxt "@info:status"
 msgid "Fonts imported: %1"
 msgstr "Внесени шрифтове: %1"
 
-#: src/typotek.cpp:540
+#: src/typotek.cpp:541
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Files to Import"
 msgstr "Избор на файлове за внасяне"
 
-#: src/typotek.cpp:542
+#: src/typotek.cpp:543
 #, kde-format
 msgctxt "@item:inlistbox file type filter"
 msgid "Font Files"
 msgstr "Шрифтови файлове"
 
-#: src/typotek.cpp:650
+#: src/typotek.cpp:651
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Import Directory..."
 msgstr "Внасяне на &директория..."
 
-#: src/typotek.cpp:652
+#: src/typotek.cpp:653
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import a directory"
 msgstr "Внасяне на директория"
 
-#: src/typotek.cpp:658
+#: src/typotek.cpp:659
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Import &Files..."
 msgstr "Внасяне на &файлове..."
 
-#: src/typotek.cpp:660
+#: src/typotek.cpp:661
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import Files"
 msgstr "Внасяне на файлове"
 
-#: src/typotek.cpp:664
+#: src/typotek.cpp:665
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Export &fonts"
 msgstr "Изнасяне на &шрифтове"
 
-#: src/typotek.cpp:665
+#: src/typotek.cpp:666
 #, kde-format
 msgctxt "@info:status"
 msgid "Export a fontset"
 msgstr "Изнасяне на набор от шрифтове"
 
-#: src/typotek.cpp:669
+#: src/typotek.cpp:670
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Export font book..."
 msgstr "Изнасяне на каталог с шрифтове..."
 
-#: src/typotek.cpp:670
+#: src/typotek.cpp:671
 #, kde-format
 msgctxt "@info:status"
 msgid "Export a PDF document that shows selected fonts"
 msgstr "Изнасяне на PDF документ с избраните шрифтове"
 
-#: src/typotek.cpp:674
+#: src/typotek.cpp:675
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Export font info for packaging..."
 msgstr "Изнасяне на информация за шрифта за пакетиране..."
 
-#: src/typotek.cpp:675
+#: src/typotek.cpp:676
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5607,59 +5617,43 @@ msgstr ""
 #. tagsetAct->setIcon ( QIcon ( ":/fontmatrix_tagseteditor_icon.png" ) );
 #. scuts->add(tagsetAct);
 #. connect ( tagsetAct,SIGNAL ( triggered( ) ),this,SLOT ( popupTagsetEditor() ) );
-#: src/typotek.cpp:683
+#: src/typotek.cpp:684
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Activate all current"
 msgstr "Активиране на всички текущи"
 
-#: src/typotek.cpp:684
+#: src/typotek.cpp:685
 #, kde-format
 msgctxt "@info:status"
 msgid "Activate all currently visible fonts"
 msgstr "Активиране на всички видими шрифтове"
 
-#: src/typotek.cpp:688
+#: src/typotek.cpp:689
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Deactivate all current"
 msgstr "Деактивиране на всички текущи"
 
-#: src/typotek.cpp:689
+#: src/typotek.cpp:690
 #, kde-format
 msgctxt "@info:status"
 msgid "Deactivate all currently visible fonts"
 msgstr "Деактивиране на всички видими шрифтове"
 
-#: src/typotek.cpp:693
+#: src/typotek.cpp:694
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Edit current font"
 msgstr "Редактиране на текущия шрифт"
 
-#: src/typotek.cpp:697
-#, kde-format
-msgctxt "@info:status"
-msgid "Edit currently selected font in a font editor of your choice"
-msgstr "Редактиране на избрания шрифт в предпочитания редактор"
-
-#: src/typotek.cpp:701
-#, kde-format
-msgctxt "@info:status"
-msgid ""
-"You don't seem to have a font editor installed. Path to font editor can be "
-"set in Preferences dialog."
-msgstr ""
-"Изглежда нямате инсталиран редактор на шрифтове. Пътят му може да се зададе "
-"в диалога за предпочитания."
-
-#: src/typotek.cpp:704
+#: src/typotek.cpp:699
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Filtered"
 msgstr "Презареждане на филтрираните"
 
-#: src/typotek.cpp:705
+#: src/typotek.cpp:700
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5667,25 +5661,25 @@ msgid ""
 msgstr ""
 "Презареждане на информацията за филтрираните шрифтове от техните файлове"
 
-#: src/typotek.cpp:709
+#: src/typotek.cpp:704
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Selected"
 msgstr "Презареждане на избрания"
 
-#: src/typotek.cpp:710
+#: src/typotek.cpp:705
 #, kde-format
 msgctxt "@info:status"
 msgid "Reload informations for selected font from the font file"
 msgstr "Презареждане на информацията за избрания шрифт от файла"
 
-#: src/typotek.cpp:714
+#: src/typotek.cpp:709
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Check Database"
 msgstr "Проверка на базата данни"
 
-#: src/typotek.cpp:715
+#: src/typotek.cpp:710
 #, kde-format
 msgctxt "@info:status"
 msgid "Check Fontmatrix database for dead links to font files"
@@ -5693,25 +5687,25 @@ msgstr ""
 "Проверка на базата данни на Fontmatrix за невалидни връзки към шрифтови "
 "файлове"
 
-#: src/typotek.cpp:722
+#: src/typotek.cpp:717
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Tag All Filtered..."
 msgstr "Етикетиране на всички филтрирани..."
 
-#: src/typotek.cpp:723
+#: src/typotek.cpp:718
 #, kde-format
 msgctxt "@info:status"
 msgid "Tag all currently visible files"
 msgstr "Етикетиране на всички видими файлове"
 
-#: src/typotek.cpp:727
+#: src/typotek.cpp:722
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show TrueType tables"
 msgstr "Показване на таблиците на TrueType"
 
-#: src/typotek.cpp:728
+#: src/typotek.cpp:723
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5720,13 +5714,13 @@ msgstr ""
 "Преглед на шестнадесетичните стойности на таблиците TrueType за избрания "
 "шрифтов файл"
 
-#: src/typotek.cpp:732
+#: src/typotek.cpp:727
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Edit PANOSE metadata"
 msgstr "Редактиране на PANOSE метаданни"
 
-#: src/typotek.cpp:733
+#: src/typotek.cpp:728
 #, kde-format
 msgctxt "@info:status"
 msgid "Edit PANOSE metadata without saving changes to font files"
@@ -5734,169 +5728,169 @@ msgstr ""
 "Редактиране на PANOSE метаданни без записване на промените в шрифтовите "
 "файлове"
 
-#: src/typotek.cpp:737
+#: src/typotek.cpp:732
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Playground"
 msgstr "Пясъчник"
 
-#: src/typotek.cpp:739
+#: src/typotek.cpp:734
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show/Hide Playground"
 msgstr "Показване/скриване на пясъчника"
 
-#: src/typotek.cpp:745
+#: src/typotek.cpp:740
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Compare"
 msgstr "Сравняване на глифи"
 
-#: src/typotek.cpp:747
+#: src/typotek.cpp:742
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show/Hide Compare glyphs"
 msgstr "Показване/скриване на сравнението на глифи"
 
-#: src/typotek.cpp:753
+#: src/typotek.cpp:748
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All"
 msgstr "Затваряне на всички"
 
-#: src/typotek.cpp:754
+#: src/typotek.cpp:749
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close all floating windows"
 msgstr "Затваряне на всички плаващи прозорци"
 
-#: src/typotek.cpp:758
+#: src/typotek.cpp:753
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show All"
 msgstr "Показване на всички"
 
-#: src/typotek.cpp:759
+#: src/typotek.cpp:754
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show all floating windows"
 msgstr "Показване на всички плаващи прозорци"
 
-#: src/typotek.cpp:763
+#: src/typotek.cpp:758
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Hide All"
 msgstr "Скриване на всички"
 
-#: src/typotek.cpp:764
+#: src/typotek.cpp:759
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Hide all floating windows"
 msgstr "Скриване на всички плаващи прозорци"
 
-#: src/typotek.cpp:784
+#: src/typotek.cpp:779
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Extract fonts..."
 msgstr "Извличане на шрифтове..."
 
-#: src/typotek.cpp:785
+#: src/typotek.cpp:780
 #, kde-format
 msgctxt "@info:status"
 msgid "Extract fonts from documents like PDF to PFM file format"
 msgstr "Извличане на шрифтове от документи като PDF във формат PFM"
 
-#: src/typotek.cpp:790
+#: src/typotek.cpp:785
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Find a font using raster sample..."
 msgstr "Намиране на шрифт по растерна извадка..."
 
-#: src/typotek.cpp:791
+#: src/typotek.cpp:786
 #, kde-format
 msgctxt "@info:status"
 msgid "Find a font using a raster sample of a letter"
 msgstr "Намиране на шрифт по растерна извадка на буква"
 
-#: src/typotek.cpp:795
+#: src/typotek.cpp:790
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Export font list as XeTeX..."
 msgstr "Изнасяне на списъка с шрифтове като XeTeX..."
 
-#: src/typotek.cpp:796
+#: src/typotek.cpp:791
 #, kde-format
 msgctxt "@info:status"
 msgid "Export the current filtered font list as a XeTeX source file"
 msgstr ""
 "Изнасяне на текущия филтриран списък с шрифтове като изходен файл на XeTeX"
 
-#: src/typotek.cpp:893
+#: src/typotek.cpp:888
 #, kde-format
 msgctxt "@action:button"
 msgid "Browse Directories"
 msgstr "Преглед на директории"
 
-#: src/typotek.cpp:895
+#: src/typotek.cpp:890
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Toggle Files/Collection view"
 msgstr "Превключване между файлов изглед и изглед на колекцията"
 
-#: src/typotek.cpp:901
+#: src/typotek.cpp:896
 #, kde-format
 msgctxt "@info:progress"
 msgid "Load settings"
 msgstr "Зареждане на настройки"
 
-#: src/typotek.cpp:1035
+#: src/typotek.cpp:1030
 #, kde-format
 msgctxt "@info:progress"
 msgid "Check for Fontmatrix own dir"
 msgstr "Проверка на директорията на Fontmatrix"
 
-#: src/typotek.cpp:1223
+#: src/typotek.cpp:1218
 #, kde-format
 msgctxt "@info:progress"
 msgid "Loading System Fonts"
 msgstr "Зареждане на системни шрифтове"
 
-#: src/typotek.cpp:1224
+#: src/typotek.cpp:1219
 #, kde-format
 msgctxt "@item:inlistbox name of the tag given to system fonts"
 msgid "System Fonts"
 msgstr "Системни шрифтове"
 
-#: src/typotek.cpp:1257
+#: src/typotek.cpp:1252
 #, kde-format
 msgctxt "@info:progress"
 msgid "Adding"
 msgstr "Добавяне"
 
-#: src/typotek.cpp:1258 src/typotek.cpp:1259
+#: src/typotek.cpp:1253 src/typotek.cpp:1254
 #, kde-format
 msgctxt "followed by a directory name"
 msgid "fonts from"
 msgstr "шрифтове от"
 
-#: src/typotek.cpp:1259
+#: src/typotek.cpp:1254
 #, kde-format
 msgid "Adding"
 msgstr "Добавяне"
 
-#: src/typotek.cpp:1282
+#: src/typotek.cpp:1277
 #, kde-format
 msgctxt "@info:progress"
 msgid "system fonts added."
 msgstr "системни шрифтове добавени."
 
-#: src/typotek.cpp:1294 src/typotek.cpp:1297
+#: src/typotek.cpp:1289 src/typotek.cpp:1292
 #, kde-format
 msgctxt "@info:progress"
 msgid "Checking the activated fonts"
 msgstr "Проверка на активираните шрифтове"
 
-#: src/typotek.cpp:1335
+#: src/typotek.cpp:1330
 #, kde-format
 msgctxt "@info:progress"
 msgid "Reading the catalogue of %1 remote directory"
@@ -5904,7 +5898,7 @@ msgid_plural "Reading the catalogues of %1 remote directories"
 msgstr[0] "Четене на каталога на %1 отдалечена директория"
 msgstr[1] "Четене на каталозите на %1 отдалечени директории"
 
-#: src/typotek.cpp:1377
+#: src/typotek.cpp:1372
 #, kde-format
 msgctxt "@info:status"
 msgid "%1 font added from the network"
@@ -5912,7 +5906,7 @@ msgid_plural "%1 fonts added from the network"
 msgstr[0] "%1 шрифт е добавен от мрежата"
 msgstr[1] "%1 шрифта са добавени от мрежата"
 
-#: src/typotek.cpp:1403
+#: src/typotek.cpp:1398
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5922,13 +5916,13 @@ msgstr ""
 "Предстои активиране на много шрифтове.\n"
 "Ако не е бил намерението ви, отменете действието."
 
-#: src/typotek.cpp:1404
+#: src/typotek.cpp:1399
 #, kde-format
 msgctxt "@title:window"
 msgid "Activate Fonts"
 msgstr "Активиране на шрифтове"
 
-#: src/typotek.cpp:1416
+#: src/typotek.cpp:1411
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5938,13 +5932,13 @@ msgstr ""
 "Предстои деактивиране на много шрифтове.\n"
 "Ако не е бил намерението ви, отменете действието."
 
-#: src/typotek.cpp:1417
+#: src/typotek.cpp:1412
 #, kde-format
 msgctxt "@title:window"
 msgid "Deactivate Fonts"
 msgstr "Деактивиране на шрифтове"
 
-#: src/typotek.cpp:1436
+#: src/typotek.cpp:1431
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5952,19 +5946,25 @@ msgid ""
 msgstr ""
 "Лентата с менюто ще бъде скрита напълно. Може да я покажете отново с %1."
 
-#: src/typotek.cpp:1437
+#: src/typotek.cpp:1432
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr "Скриване на лентата с менюто"
 
-#: src/typotek.cpp:1447 src/typotek.cpp:2125
+#: src/typotek.cpp:1448
 #, kde-format
 msgctxt "@info:status"
-msgid "There is no font selected"
-msgstr "Няма избран шрифт"
+msgid "This font has not been downloaded yet"
+msgstr "Този шрифт още не е изтеглен"
 
-#: src/typotek.cpp:1492
+#: src/typotek.cpp:1456
+#, kde-format
+msgctxt "@info:status"
+msgid "The desktop could not be asked to open this font"
+msgstr "Работният плот не можа да бъде помолен да отвори този шрифт"
+
+#: src/typotek.cpp:1501
 #, kde-format
 msgctxt "@info:status"
 msgid "Support of DragNDrop over http is sheduled but not yet effective"
@@ -5972,52 +5972,65 @@ msgstr ""
 "Поддръжката на плъзгане и пускане по HTTP е планирана, но все още не е "
 "реализирана"
 
-#: src/typotek.cpp:1511
+#: src/typotek.cpp:1520
 #, kde-format
 msgctxt "@info:status"
 msgid "You bring something over me I can’t handle"
 msgstr "Пуснахте нещо, което не мога да обработя"
 
-#: src/typotek.cpp:1572
+#: src/typotek.cpp:1581
 #, kde-format
 msgctxt "@info default content of a new sample text"
 msgid "Edit me!"
 msgstr "Редактирайте ме!"
 
-#: src/typotek.cpp:1651
+#: src/typotek.cpp:1660
 #, kde-format
 msgid "default"
 msgstr "подразбиран"
 
-#: src/typotek.cpp:1735
-#, kde-format
-msgctxt "@info:status"
-msgid "Try to run font editor with the selected font as argument"
-msgstr "Опит за отваряне на редактора на шрифтове с избрания шрифт"
-
-#: src/typotek.cpp:1738
+#: src/typotek.cpp:1759
 #, kde-format
 msgctxt "@info:status"
 msgid ""
-"You don't seem to have font editor installed. Path to font editor can be set "
-"in preferences."
+"Open the selected font in the application the desktop asks you to choose"
+msgstr "Отваряне на избрания шрифт в приложението, което работният плот ви попита да изберете"
+
+#: src/typotek.cpp:1762
+#, kde-format
+msgctxt "@info:status"
+msgid "Edit currently selected font in a font editor of your choice"
+msgstr "Редактиране на избрания шрифт в предпочитания редактор"
+
+#: src/typotek.cpp:1766
+#, kde-format
+msgctxt "@info:status"
+msgid ""
+"You don't seem to have a font editor installed. Path to font editor can be "
+"set in Preferences dialog."
 msgstr ""
 "Изглежда нямате инсталиран редактор на шрифтове. Пътят му може да се зададе "
-"в предпочитанията."
+"в диалога за предпочитания."
 
-#: src/typotek.cpp:2024
+#: src/typotek.cpp:2051
 #, kde-format
 msgctxt "@title:window"
 msgid "Export font list as XeTeX"
 msgstr "Изнасяне на списъка с шрифтове като XeTeX"
 
-#: src/typotek.cpp:2026
+#: src/typotek.cpp:2053
 #, kde-format
 msgctxt "@item:inlistbox file type filter"
 msgid "TeX files (*.tex)"
 msgstr "Файлове на TeX (*.tex)"
 
-#: src/typotek.cpp:2208
+#: src/typotek.cpp:2152
+#, kde-format
+msgctxt "@info:status"
+msgid "There is no font selected"
+msgstr "Няма избран шрифт"
+
+#: src/typotek.cpp:2235
 #, kde-format
 msgctxt "@info:status"
 msgid "Failed to reload %1 font"
@@ -6025,7 +6038,7 @@ msgid_plural "Failed to reload %1 fonts"
 msgstr[0] "Неуспешно презареждане на %1 шрифт"
 msgstr[1] "Неуспешно презареждане на %1 шрифта"
 
-#: src/typotek.cpp:2250
+#: src/typotek.cpp:2277
 #, kde-format
 msgctxt "number of filtererd fonts showed in status bar"
 msgid "Filtered Font: %1"
@@ -6033,13 +6046,13 @@ msgid_plural "Filtered Fonts: %1"
 msgstr[0] "Филтриран шрифт: %1"
 msgstr[1] "Филтрирани шрифтове: %1"
 
-#: src/typotek.cpp:2255
+#: src/typotek.cpp:2282
 #, kde-format
 msgctxt "followed by currently selected font name (in status bar)"
 msgid "Current Font"
 msgstr "Текущ шрифт"
 
-#: src/typotek.cpp:2279
+#: src/typotek.cpp:2306
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -6051,11 +6064,25 @@ msgstr ""
 "application>, който не е инсталиран на тази система.<nl/>Страницата на "
 "проекта е на адрес <link>%1</link>."
 
-#: src/typotek.cpp:2282
+#: src/typotek.cpp:2309
 #, kde-format
 msgctxt "@title:window"
 msgid "Handbook Not Available"
 msgstr "Наръчникът не е наличен"
+
+#, kde-format
+#~ msgctxt "@info:status"
+#~ msgid "Try to run font editor with the selected font as argument"
+#~ msgstr "Опит за отваряне на редактора на шрифтове с избрания шрифт"
+
+#, kde-format
+#~ msgctxt "@info:status"
+#~ msgid ""
+#~ "You don't seem to have font editor installed. Path to font editor can be "
+#~ "set in preferences."
+#~ msgstr ""
+#~ "Изглежда нямате инсталиран редактор на шрифтове. Пътят му може да се "
+#~ "зададе в предпочитанията."
 
 #, kde-format
 #~ msgctxt "@info activation error"

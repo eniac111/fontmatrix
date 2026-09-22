@@ -13,10 +13,12 @@
 
 #include "fmactivate.h"
 #include "fmconfig.h"
+#include "fmportal.h"
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KMessageWidget>
 #include <KPageWidgetItem>
+#include <KSandbox>
 #include <QAction>
 #include <QDebug>
 #include <QDialogButtonBox>
@@ -87,6 +89,11 @@ PrefsPanelDialog::PrefsPanelDialog(QWidget *parent)
         grid->addWidget(m_sampleNameWarning, 3, 0, 1, 3);
 
     fontEditorPath->setText(typotek::getInstance()->fontEditorPath());
+    // in a sandbox a path to a program of the system means nothing: the desktop chooses
+    const bool sandboxed(KSandbox::isInside() && FMPortal::isAvailable());
+    fontEditorNote->setVisible(sandboxed);
+    fontEditorPath->setEnabled(!sandboxed);
+    fontEditorBrowse->setEnabled(!sandboxed);
 
     systrayFrame->setCheckable(true);
     previewWord->setText(typotek::getInstance()->word());
