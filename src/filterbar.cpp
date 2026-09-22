@@ -5,6 +5,7 @@
 */
 
 #include "filterbar.h"
+#include "filterduplicate.h"
 #include "filteritem.h"
 #include "filterlang.h"
 #include "filterlicense.h"
@@ -13,6 +14,7 @@
 #include "filtersdialog.h"
 #include "filtersdialogitem.h"
 #include "filtertag.h"
+#include "fmduplicates.h"
 #include "fmfontdb.h"
 #include "fmlangcoverage.h"
 #include "fmlicense.h"
@@ -27,6 +29,7 @@
 #include "fmconfig.h"
 #include <KLocalizedString>
 #include <QAction>
+#include <QApplication>
 #include <QCompleter>
 #include <QDebug>
 #include <QDialog>
@@ -253,6 +256,8 @@ FilterBar::FilterBar(QWidget *parent)
 
     connect(ui->languagesCombo, &QComboBox::activated, this, &FilterBar::slotLangFilter);
     connect(ui->licenseCombo, &QComboBox::activated, this, &FilterBar::slotLicenseFilter);
+    connect(ui->duplicatesCombo, &QComboBox::activated, this, &FilterBar::slotDuplicateFilter);
+    connect(ui->duplicatesArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotToggleDuplicates);
     connect(ui->languagesArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotToggleLanguages);
     connect(ui->licenseArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotToggleLicense);
 
@@ -267,6 +272,7 @@ FilterBar::FilterBar(QWidget *parent)
     ui->filtersArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/FiltersOpen"), true).toBool());
     ui->languagesArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/LanguagesOpen"), false).toBool());
     ui->licenseArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/LicenseOpen"), false).toBool());
+    ui->duplicatesArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/DuplicatesOpen"), false).toBool());
 }
 
 FilterBar::~FilterBar()
@@ -277,6 +283,7 @@ FilterBar::~FilterBar()
     FMConfig::setValue(QStringLiteral("FilterBar/FiltersOpen"), ui->filtersArrow->isOpen());
     FMConfig::setValue(QStringLiteral("FilterBar/LanguagesOpen"), ui->languagesArrow->isOpen());
     FMConfig::setValue(QStringLiteral("FilterBar/LicenseOpen"), ui->licenseArrow->isOpen());
+    FMConfig::setValue(QStringLiteral("FilterBar/DuplicatesOpen"), ui->duplicatesArrow->isOpen());
     delete ui;
 }
 
@@ -321,12 +328,16 @@ void FilterBar::invalidateCoverage()
     // fonts were added or removed: the languages and the licences are read again
     FMLangCoverage::invalidate();
     FMLicense::invalidate();
+    FMDuplicates::invalidate();
     languagesFilled = false;
     licensesFilled = false;
+    duplicatesFilled = false;
     if (ui->languagesArrow->isOpen())
         fillLanguages();
     if (ui->licenseArrow->isOpen())
         fillLicenses();
+    if (ui->duplicatesArrow->isOpen())
+        fillDuplicates();
 }
 
 void FilterBar::refilter()
@@ -453,6 +464,8 @@ void FilterBar::loadFilters()
                         f = new FilterLang;
                     } else if (type == QString("License")) {
                         f = new FilterLicense;
+                    } else if (type == QString("Duplicate")) {
+                        f = new FilterDuplicate;
                     }
                     if (!f)
                         continue;
@@ -630,6 +643,8 @@ void FilterBar::slotLoadFilter(const QString &fname)
                     f = new FilterLang;
                 } else if (type == QString("License")) {
                     f = new FilterLicense;
+                } else if (type == QString("Duplicate")) {
+                    f = new FilterDuplicate;
                 }
                 if (!f)
                     continue;
@@ -713,6 +728,16 @@ void FilterBar::slotToggleLanguages(bool t)
     }
 }
 
+void FilterBar::slotToggleDuplicates(bool t)
+{
+    if (t) {
+        fillDuplicates();
+        ui->duplicatesBox->show();
+    } else {
+        ui->duplicatesBox->hide();
+    }
+}
+
 void FilterBar::slotToggleLicense(bool t)
 {
     if (t) {
@@ -749,6 +774,45 @@ void FilterBar::fillLicenses()
     const QList<FMLicense::Family> families(FMLicense::families());
     for (const FMLicense::Family family : families)
         ui->licenseCombo->addItem(FMLicense::name(family), int(family));
+}
+
+void FilterBar::fillDuplicates()
+{
+    if (duplicatesFilled)
+        return;
+    duplicatesFilled = true;
+    ui->duplicatesCombo->clear();
+    ui->duplicatesCombo->addItem(i18nc("@item:inlistbox nothing picked yet, in the list of the kinds of duplicate", "Select kind"), -1);
+    // the files are read here, so the count is known before anything is picked
+    typotek::getInstance()->showStatusMessage(i18nc("@info:status", "Looking for the fonts the collection holds more than once..."));
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    const int identical(FMDuplicates::count(FMDuplicates::IdenticalFiles));
+    const int same(FMDuplicates::count(FMDuplicates::SameFont));
+    QApplication::restoreOverrideCursor();
+    typotek::getInstance()->showStatusMessage(QString());
+    ui->duplicatesCombo->addItem(
+        i18ncp("@item:inlistbox files that are byte for byte the same, %1 how many fonts", "Identical file (%1 font)", "Identical files (%1 fonts)", identical),
+        int(FMDuplicates::IdenticalFiles));
+    ui->duplicatesCombo->addItem(i18ncp("@item:inlistbox one family, style and version in files that differ, %1 how many fonts",
+                                        "Same font, other file (%1 font)",
+                                        "Same font, other file (%1 fonts)",
+                                        same),
+                                 int(FMDuplicates::SameFont));
+}
+
+void FilterBar::slotDuplicateFilter(int index)
+{
+    const int kind(ui->duplicatesCombo->itemData(index).toInt());
+    if (kind < 0)
+        return;
+    auto fd(new FilterDuplicate);
+    const QString what(kind == int(FMDuplicates::IdenticalFiles)
+                           ? i18nc("@item a filter on the fonts whose files are the same", "Duplicates: identical files")
+                           : i18nc("@item a filter on the fonts of one family, style and version", "Duplicates: same font, other file"));
+    fd->setData(FilterData::Text, what);
+    fd->setData(FilterDuplicate::Kind, kind);
+    addFilterItem(fd);
+    ui->duplicatesCombo->setCurrentIndex(0);
 }
 
 void FilterBar::slotLangFilter(int index)

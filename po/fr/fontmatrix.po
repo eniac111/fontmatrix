@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/eniac111/fontmatrix/issues\n"
-"POT-Creation-Date: 2026-09-22 23:46+0300\n"
+"POT-Creation-Date: 2026-09-23 01:04+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,7 +37,7 @@ msgstr "Raport d’activation"
 #. i18n: ectx: property (text), widget (QPushButton, closeButton)
 #. i18n: file: src/tagset.ui:231
 #. i18n: ectx: property (text), widget (QPushButton, closeButton)
-#: rc.cpp:9 rc.cpp:243 rc.cpp:288 rc.cpp:489 rc.cpp:663 rc.cpp:788
+#: rc.cpp:9 rc.cpp:249 rc.cpp:294 rc.cpp:495 rc.cpp:669 rc.cpp:794
 #: src/typotek.cpp:2163
 #, kde-format
 msgctxt "@action:button"
@@ -120,7 +120,7 @@ msgstr "Destination"
 #. i18n: ectx: property (text), widget (QToolButton, dictButton)
 #. i18n: file: src/prefs_panel.ui:727
 #. i18n: ectx: property (text), widget (QPushButton, templatesDirBrowse)
-#: rc.cpp:36 rc.cpp:128 rc.cpp:585 rc.cpp:600 rc.cpp:618
+#: rc.cpp:36 rc.cpp:128 rc.cpp:591 rc.cpp:606 rc.cpp:624
 #, kde-format
 msgctxt "@action:button"
 msgid "Browse..."
@@ -243,7 +243,7 @@ msgstr "Compare avec :"
 #. i18n: ectx: property (title), widget (QGroupBox, fgbox)
 #. i18n: file: src/fontextractordialog.ui:51
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: rc.cpp:77 rc.cpp:279
+#: rc.cpp:77 rc.cpp:285
 #, kde-format
 msgctxt "@title:group"
 msgid "Fonts"
@@ -261,7 +261,7 @@ msgstr "Polices"
 #. i18n: ectx: property (text), widget (QPushButton, addSampleButton)
 #. i18n: file: src/tagset.ui:118
 #. i18n: ectx: property (text), widget (QPushButton, addToSetButton)
-#: rc.cpp:80 rc.cpp:237 rc.cpp:330 rc.cpp:627 rc.cpp:755 rc.cpp:773
+#: rc.cpp:80 rc.cpp:243 rc.cpp:336 rc.cpp:633 rc.cpp:761 rc.cpp:779
 #, kde-format
 msgctxt "@action:button"
 msgid "Add"
@@ -283,8 +283,8 @@ msgstr "Ajout"
 #. i18n: ectx: property (text), widget (QPushButton, removeSampleButton)
 #. i18n: file: src/tagset.ui:187
 #. i18n: ectx: property (text), widget (QPushButton, removeToSetButton)
-#: rc.cpp:83 rc.cpp:222 rc.cpp:630 rc.cpp:651 rc.cpp:672 rc.cpp:705 rc.cpp:758
-#: rc.cpp:785
+#: rc.cpp:83 rc.cpp:228 rc.cpp:636 rc.cpp:657 rc.cpp:678 rc.cpp:711 rc.cpp:764
+#: rc.cpp:791
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
@@ -380,7 +380,7 @@ msgstr "Éditer la fonte courante"
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
 #. i18n: file: src/progressbarduo.ui:61
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
-#: rc.cpp:116 rc.cpp:450 rc.cpp:657
+#: rc.cpp:116 rc.cpp:456 rc.cpp:663
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Cancel"
@@ -549,9 +549,27 @@ msgid ""
 "The licence the font states in its name table, recognised from its wording."
 msgstr ""
 
+#. i18n: file: src/filterbar.ui:580
+#. i18n: ectx: property (text), widget (OpenCloseArrow, duplicatesArrow)
+#: rc.cpp:191
+#, kde-format
+msgctxt "@action:button"
+msgid "Duplicates"
+msgstr ""
+
+#. i18n: file: src/filterbar.ui:611
+#. i18n: ectx: property (toolTip), widget (QComboBox, duplicatesCombo)
+#: rc.cpp:194
+#, kde-format
+msgctxt "@info:tooltip"
+msgid ""
+"The fonts the collection holds more than once. Reading the files takes a "
+"moment the first time."
+msgstr ""
+
 #. i18n: file: src/filteritem.ui:71
 #. i18n: ectx: property (toolTip), widget (QToolButton, removeButton)
-#: rc.cpp:191
+#: rc.cpp:197
 #, fuzzy, kde-format
 #| msgid "Save File"
 msgctxt "@info:tooltip"
@@ -560,7 +578,7 @@ msgstr "Fichier"
 
 #. i18n: file: src/filteritem.ui:77
 #. i18n: ectx: property (text), widget (QToolButton, removeButton)
-#: rc.cpp:194
+#: rc.cpp:200
 #, kde-format
 msgctxt "@action:button"
 msgid "X"
@@ -568,7 +586,7 @@ msgstr ""
 
 #. i18n: file: src/filteritem.ui:110
 #. i18n: ectx: property (toolTip), widget (QToolButton, andButton)
-#: rc.cpp:197
+#: rc.cpp:203
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -597,7 +615,7 @@ msgstr ""
 
 #. i18n: file: src/filteritem.ui:142
 #. i18n: ectx: property (toolTip), widget (QToolButton, noButton)
-#: rc.cpp:207
+#: rc.cpp:213
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "if set, it will filter all the fonts but these matching this filter"
@@ -605,7 +623,7 @@ msgstr ""
 
 #. i18n: file: src/filtersdialogitem.ui:72
 #. i18n: ectx: property (text), widget (QLabel, filterName)
-#: rc.cpp:210
+#: rc.cpp:216
 #, fuzzy, kde-format
 #| msgid "File name"
 msgctxt "@label"
@@ -614,7 +632,7 @@ msgstr "Nom de fichier"
 
 #. i18n: file: src/filtersdialogitem.ui:91
 #. i18n: ectx: property (toolTip), widget (QToolButton, filterButton)
-#: rc.cpp:213
+#: rc.cpp:219
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Apply this filter to the list"
@@ -622,7 +640,7 @@ msgstr ""
 
 #. i18n: file: src/filtersdialogitem.ui:94
 #. i18n: ectx: property (text), widget (QToolButton, filterButton)
-#: rc.cpp:216
+#: rc.cpp:222
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Filter"
@@ -630,7 +648,7 @@ msgstr "Filtre :"
 
 #. i18n: file: src/filtersdialogitem.ui:111
 #. i18n: ectx: property (toolTip), widget (QToolButton, removeButton)
-#: rc.cpp:219
+#: rc.cpp:225
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Delete this filter"
@@ -638,7 +656,7 @@ msgstr ""
 
 #. i18n: file: src/filtersdialog.ui:14
 #. i18n: ectx: property (windowTitle), widget (QDialog, FiltersDialog)
-#: rc.cpp:225
+#: rc.cpp:231
 #, fuzzy, kde-format
 #| msgid "File name"
 msgctxt "@title:window"
@@ -647,7 +665,7 @@ msgstr "Nom de fichier"
 
 #. i18n: file: src/filtersdialog.ui:67
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:228
+#: rc.cpp:234
 #, kde-format
 msgctxt "@label"
 msgid ""
@@ -657,7 +675,7 @@ msgstr ""
 
 #. i18n: file: src/filtersdialog.ui:96
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:231
+#: rc.cpp:237
 #, fuzzy, kde-format
 msgctxt "@label"
 msgid "Add Filter"
@@ -665,7 +683,7 @@ msgstr "Filtre :"
 
 #. i18n: file: src/filtersdialog.ui:127
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:234
+#: rc.cpp:240
 #, fuzzy, kde-format
 msgctxt "@label"
 msgid "Filter Name:"
@@ -673,7 +691,7 @@ msgstr "Filtre :"
 
 #. i18n: file: src/filtersdialog.ui:162
 #. i18n: ectx: property (text), widget (QLabel, curFilter)
-#: rc.cpp:240
+#: rc.cpp:246
 #, fuzzy, kde-format
 #| msgid "Edit current font"
 msgctxt "@label"
@@ -682,7 +700,7 @@ msgstr "Éditer la fonte sélectionnée"
 
 #. i18n: file: src/floatingwidgettoolbar.ui:66
 #. i18n: ectx: property (toolTip), widget (QToolButton, printButton)
-#: rc.cpp:246
+#: rc.cpp:252
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Print"
@@ -690,7 +708,7 @@ msgstr "Imprime"
 
 #. i18n: file: src/floatingwidgettoolbar.ui:69
 #. i18n: ectx: property (text), widget (QToolButton, printButton)
-#: rc.cpp:249
+#: rc.cpp:255
 #, kde-format
 msgctxt "@action:button"
 msgid "P"
@@ -698,7 +716,7 @@ msgstr ""
 
 #. i18n: file: src/floatingwidgettoolbar.ui:76
 #. i18n: ectx: property (toolTip), widget (QToolButton, detachButton)
-#: rc.cpp:252
+#: rc.cpp:258
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Detach from main window"
@@ -706,7 +724,7 @@ msgstr "Voir toutes les fontes activées"
 
 #. i18n: file: src/floatingwidgettoolbar.ui:79
 #. i18n: ectx: property (text), widget (QToolButton, detachButton)
-#: rc.cpp:255
+#: rc.cpp:261
 #, kde-format
 msgctxt "@action:button"
 msgid "D"
@@ -714,7 +732,7 @@ msgstr ""
 
 #. i18n: file: src/floatingwidgettoolbar.ui:95
 #. i18n: ectx: property (toolTip), widget (QToolButton, closeButton)
-#: rc.cpp:258
+#: rc.cpp:264
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Close window"
@@ -722,7 +740,7 @@ msgstr "Voir toutes les fontes activées"
 
 #. i18n: file: src/floatingwidgettoolbar.ui:109
 #. i18n: ectx: property (toolTip), widget (QToolButton, hideButton)
-#: rc.cpp:261
+#: rc.cpp:267
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Hide window"
@@ -730,7 +748,7 @@ msgstr "Voir toutes les fontes activées"
 
 #. i18n: file: src/floatingwidgettoolbar.ui:112
 #. i18n: ectx: property (text), widget (QToolButton, hideButton)
-#: rc.cpp:264
+#: rc.cpp:270
 #, kde-format
 msgctxt "@action:button"
 msgid "H"
@@ -738,7 +756,7 @@ msgstr ""
 
 #. i18n: file: src/fontextractordialog.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, FontExtractorDialog)
-#: rc.cpp:267
+#: rc.cpp:273
 #, kde-format
 msgctxt "@title:window"
 msgid "Font extractor"
@@ -746,7 +764,7 @@ msgstr "Extracteur de fontes"
 
 #. i18n: file: src/fontextractordialog.ui:19
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:270
+#: rc.cpp:276
 #, kde-format
 msgctxt "@title:group"
 msgid "Select PDF"
@@ -754,7 +772,7 @@ msgstr "Sélectionner un document ou une archive"
 
 #. i18n: file: src/fontextractordialog.ui:31
 #. i18n: ectx: property (text), widget (QLabel, docPath)
-#: rc.cpp:273
+#: rc.cpp:279
 #, kde-format
 msgctxt "@label"
 msgid "File name"
@@ -764,7 +782,7 @@ msgstr "Nom de fichier"
 #. i18n: ectx: property (text), widget (QPushButton, browsePDF)
 #. i18n: file: src/matchraster.ui:108
 #. i18n: ectx: property (text), widget (QPushButton, browseButton)
-#: rc.cpp:276 rc.cpp:408
+#: rc.cpp:282 rc.cpp:414
 #, kde-format
 msgctxt "@action:button"
 msgid "&Browse"
@@ -772,7 +790,7 @@ msgstr "&Parcourir"
 
 #. i18n: file: src/fontextractordialog.ui:63
 #. i18n: ectx: property (text), widget (QPushButton, browseDir)
-#: rc.cpp:282
+#: rc.cpp:288
 #, kde-format
 msgctxt "@action:button"
 msgid "&Select Dir"
@@ -780,7 +798,7 @@ msgstr "&Sélectionner un répertoire"
 
 #. i18n: file: src/fontextractordialog.ui:70
 #. i18n: ectx: property (text), widget (QPushButton, extractButton)
-#: rc.cpp:285
+#: rc.cpp:291
 #, kde-format
 msgctxt "@action:button"
 msgid "&Extract"
@@ -788,49 +806,49 @@ msgstr "&Extraire"
 
 #. i18n: file: src/fontmatrixui.rc:6
 #. i18n: ectx: Menu (file)
-#: rc.cpp:291
+#: rc.cpp:297
 #, kde-format
 msgid "&File"
 msgstr "&Fichier"
 
 #. i18n: file: src/fontmatrixui.rc:17
 #. i18n: ectx: Menu (edit)
-#: rc.cpp:294
+#: rc.cpp:300
 #, kde-format
 msgid "&Edit"
 msgstr "&Édition"
 
 #. i18n: file: src/fontmatrixui.rc:29
 #. i18n: ectx: Menu (view)
-#: rc.cpp:297
+#: rc.cpp:303
 #, kde-format
 msgid "&View"
 msgstr "&Affichage"
 
 #. i18n: file: src/fontmatrixui.rc:35
 #. i18n: ectx: Menu (tools)
-#: rc.cpp:300
+#: rc.cpp:306
 #, kde-format
 msgid "&Tools"
 msgstr "&Outils"
 
 #. i18n: file: src/fontmatrixui.rc:44
 #. i18n: ectx: ToolBar (mainToolBar)
-#: rc.cpp:303
+#: rc.cpp:309
 #, kde-format
 msgid "Main Toolbar"
 msgstr ""
 
 #. i18n: file: src/fontmatrixui.rc:57
 #. i18n: ectx: ToolBar (hamburgerBar)
-#: rc.cpp:306
+#: rc.cpp:312
 #, kde-format
 msgid "Hamburger Menu Toolbar"
 msgstr ""
 
 #. i18n: file: src/importedfonts.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, ImportedFonts)
-#: rc.cpp:309
+#: rc.cpp:315
 #, kde-format
 msgctxt "@title:window"
 msgid "Imported fonts"
@@ -838,7 +856,7 @@ msgstr "Fontes importées"
 
 #. i18n: file: src/importedfonts.ui:24
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:312
+#: rc.cpp:318
 #, kde-format
 msgctxt "@label"
 msgid "Imported Fonts:"
@@ -846,7 +864,7 @@ msgstr "Fontes importées :"
 
 #. i18n: file: src/importedfonts.ui:55
 #. i18n: ectx: property (toolTip), widget (QCheckBox, dontShowBox)
-#: rc.cpp:315
+#: rc.cpp:321
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -861,7 +879,7 @@ msgstr ""
 
 #. i18n: file: src/importedfonts.ui:58
 #. i18n: ectx: property (text), widget (QCheckBox, dontShowBox)
-#: rc.cpp:321
+#: rc.cpp:327
 #, kde-format
 msgctxt "@option:check"
 msgid "&Do not show this dialog again"
@@ -869,7 +887,7 @@ msgstr "&Ne plus montrer ce message"
 
 #. i18n: file: src/importedfonts.ui:84
 #. i18n: ectx: property (text), widget (QPushButton, btnOk)
-#: rc.cpp:324
+#: rc.cpp:330
 #, kde-format
 msgctxt "@action:button"
 msgid "&OK"
@@ -877,7 +895,7 @@ msgstr "&Ok"
 
 #. i18n: file: src/importtags.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, ImportTagsDialog)
-#: rc.cpp:327
+#: rc.cpp:333
 #, kde-format
 msgctxt "@title:window"
 msgid "Fontmatrix - Tags"
@@ -885,7 +903,7 @@ msgstr "Fontmatrix - étiquettes"
 
 #. i18n: file: src/importtags.ui:72
 #. i18n: ectx: property (text), widget (QPushButton, okButton)
-#: rc.cpp:333
+#: rc.cpp:339
 #, kde-format
 msgctxt "@action:button"
 msgid "Ok"
@@ -893,7 +911,7 @@ msgstr "Ok"
 
 #. i18n: file: src/layoutoptions.ui:19
 #. i18n: ectx: property (windowTitle), widget (QWidget, LayoutOptionWidget)
-#: rc.cpp:336
+#: rc.cpp:342
 #, kde-format
 msgctxt "@title:window"
 msgid "Text layout engine options"
@@ -901,7 +919,7 @@ msgstr "Paramètres de mise en page"
 
 #. i18n: file: src/layoutoptions.ui:25
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:339
+#: rc.cpp:345
 #, kde-format
 msgctxt "@title:group"
 msgid "Weights"
@@ -915,7 +933,7 @@ msgstr "Poids"
 #. i18n: ectx: property (text), widget (QLabel, aScore)
 #. i18n: file: src/layoutoptions.ui:294
 #. i18n: ectx: property (text), widget (QLabel, endScore)
-#: rc.cpp:342 rc.cpp:348 rc.cpp:354 rc.cpp:360
+#: rc.cpp:348 rc.cpp:354 rc.cpp:360 rc.cpp:366
 #, kde-format
 msgctxt "@label"
 msgid "score"
@@ -923,7 +941,7 @@ msgstr "score"
 
 #. i18n: file: src/layoutoptions.ui:91
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:345
+#: rc.cpp:351
 #, kde-format
 msgctxt "@label"
 msgid "Before"
@@ -931,7 +949,7 @@ msgstr "Avant"
 
 #. i18n: file: src/layoutoptions.ui:137
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:351
+#: rc.cpp:357
 #, kde-format
 msgctxt "@label"
 msgid "Exact"
@@ -939,7 +957,7 @@ msgstr "Exact"
 
 #. i18n: file: src/layoutoptions.ui:235
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:357
+#: rc.cpp:363
 #, kde-format
 msgctxt "@label"
 msgid "After"
@@ -947,7 +965,7 @@ msgstr "Aprés"
 
 #. i18n: file: src/layoutoptions.ui:307
 #. i18n: ectx: property (text), widget (QLabel, label_5)
-#: rc.cpp:363
+#: rc.cpp:369
 #, kde-format
 msgctxt "@label"
 msgid "End"
@@ -955,7 +973,7 @@ msgstr "Fin"
 
 #. i18n: file: src/layoutoptions.ui:360
 #. i18n: ectx: property (text), widget (QLabel, hPenalty)
-#: rc.cpp:366
+#: rc.cpp:372
 #, kde-format
 msgctxt "@label"
 msgid "penalty"
@@ -963,7 +981,7 @@ msgstr "Pénalité"
 
 #. i18n: file: src/layoutoptions.ui:373
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:369
+#: rc.cpp:375
 #, kde-format
 msgctxt "@label"
 msgid "H-penalty"
@@ -971,7 +989,7 @@ msgstr "Pénalité de coupure"
 
 #. i18n: file: src/layoutoptions.ui:429
 #. i18n: ectx: property (text), widget (QLabel, minSpace)
-#: rc.cpp:372
+#: rc.cpp:378
 #, kde-format
 msgctxt "@label"
 msgid "space"
@@ -979,7 +997,7 @@ msgstr "Espace"
 
 #. i18n: file: src/layoutoptions.ui:442
 #. i18n: ectx: property (text), widget (QLabel, label_6)
-#: rc.cpp:375
+#: rc.cpp:381
 #, kde-format
 msgctxt "@label"
 msgid "Max. compression"
@@ -987,7 +1005,7 @@ msgstr "compression maximum"
 
 #. i18n: file: src/mainview.ui:24
 #. i18n: ectx: property (windowTitle), widget (QWidget, MainView)
-#: rc.cpp:378
+#: rc.cpp:384
 #, kde-format
 msgctxt "@title:window"
 msgid "main view widget"
@@ -995,7 +1013,7 @@ msgstr "composant vue principale"
 
 #. i18n: file: src/mainview.ui:103
 #. i18n: ectx: property (text), widget (QLabel, quickSearchLabel)
-#: rc.cpp:381
+#: rc.cpp:387
 #, fuzzy, kde-format
 #| msgid "Search:"
 msgctxt "@label"
@@ -1004,7 +1022,7 @@ msgstr "Recherche"
 
 #. i18n: file: src/mainview.ui:185
 #. i18n: ectx: property (toolTip), widget (QPushButton, saveButton)
-#: rc.cpp:384
+#: rc.cpp:390
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Save this filter for later use"
@@ -1014,7 +1032,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QPushButton, saveButton)
 #. i18n: file: src/prefs_panel.ui:667
 #. i18n: ectx: property (text), widget (QPushButton, commitSample)
-#: rc.cpp:387 rc.cpp:612
+#: rc.cpp:393 rc.cpp:618
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Save"
@@ -1022,7 +1040,7 @@ msgstr "Enregi&strer"
 
 #. i18n: file: src/mainview.ui:195
 #. i18n: ectx: property (toolTip), widget (QPushButton, clearButton)
-#: rc.cpp:390
+#: rc.cpp:396
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Reset the filter to show all fonts"
@@ -1030,7 +1048,7 @@ msgstr ""
 
 #. i18n: file: src/mainview.ui:198
 #. i18n: ectx: property (text), widget (QPushButton, clearButton)
-#: rc.cpp:393
+#: rc.cpp:399
 #, kde-format
 msgctxt "@action:button"
 msgid "Clear"
@@ -1038,7 +1056,7 @@ msgstr ""
 
 #. i18n: file: src/matchraster.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, MatchRasterDialog)
-#: rc.cpp:396
+#: rc.cpp:402
 #, kde-format
 msgctxt "@title:window"
 msgid "Find a font using raster sample"
@@ -1046,7 +1064,7 @@ msgstr "Trouver une fonte depuis à une image"
 
 #. i18n: file: src/matchraster.ui:32
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:399
+#: rc.cpp:405
 #, kde-format
 msgctxt "@title:group"
 msgid "Input Image"
@@ -1054,7 +1072,7 @@ msgstr "Image source"
 
 #. i18n: file: src/matchraster.ui:40
 #. i18n: ectx: property (text), widget (QCheckBox, grabModeBox)
-#: rc.cpp:402
+#: rc.cpp:408
 #, kde-format
 msgctxt "@option:check"
 msgid "Grab mode"
@@ -1062,7 +1080,7 @@ msgstr ""
 
 #. i18n: file: src/matchraster.ui:69
 #. i18n: ectx: property (toolTip), widget (QSlider, grabZoom)
-#: rc.cpp:405
+#: rc.cpp:411
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Zoom level"
@@ -1070,7 +1088,7 @@ msgstr ""
 
 #. i18n: file: src/matchraster.ui:126
 #. i18n: ectx: property (title), widget (QGroupBox, sampleBox)
-#: rc.cpp:411
+#: rc.cpp:417
 #, kde-format
 msgctxt "@title:group"
 msgid "Raster sample preview"
@@ -1078,7 +1096,7 @@ msgstr "Aperçu de l’image"
 
 #. i18n: file: src/matchraster.ui:153
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:414
+#: rc.cpp:420
 #, kde-format
 msgctxt "@label"
 msgid "C&haracter:"
@@ -1086,7 +1104,7 @@ msgstr "Ca&ractère :"
 
 #. i18n: file: src/matchraster.ui:169
 #. i18n: ectx: property (toolTip), widget (QLineEdit, letter)
-#: rc.cpp:417
+#: rc.cpp:423
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "A unique character or a four digits hexadecimal Unicode value"
@@ -1096,7 +1114,7 @@ msgstr ""
 
 #. i18n: file: src/matchraster.ui:181
 #. i18n: ectx: property (text), widget (QPushButton, searchButton)
-#: rc.cpp:420
+#: rc.cpp:426
 #, kde-format
 msgctxt "@action:button"
 msgid "&Search"
@@ -1104,7 +1122,7 @@ msgstr "&Cherche"
 
 #. i18n: file: src/matchraster.ui:201
 #. i18n: ectx: property (toolTip), widget (QCheckBox, checkInteractive)
-#: rc.cpp:423
+#: rc.cpp:429
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "If set, you will be prompted for each matching font"
@@ -1112,7 +1130,7 @@ msgstr ""
 
 #. i18n: file: src/matchraster.ui:204
 #. i18n: ectx: property (text), widget (QCheckBox, checkInteractive)
-#: rc.cpp:426
+#: rc.cpp:432
 #, kde-format
 msgctxt "@option:check"
 msgid "Interactive"
@@ -1120,7 +1138,7 @@ msgstr "Interactif"
 
 #. i18n: file: src/matchraster.ui:220
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:429
+#: rc.cpp:435
 #, kde-format
 msgctxt "@label"
 msgid "Click on the letter to let Fontmatrix compute the bounding box"
@@ -1128,7 +1146,7 @@ msgstr "Pointez et pressez l’œil de la lettre, laissez faire l’artiste"
 
 #. i18n: file: src/matchraster.ui:236
 #. i18n: ectx: property (text), widget (QCheckBox, tweakRectBox)
-#: rc.cpp:432
+#: rc.cpp:438
 #, kde-format
 msgctxt "@option:check"
 msgid "Tweak rect"
@@ -1136,7 +1154,7 @@ msgstr ""
 
 #. i18n: file: src/matchraster.ui:279
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:435
+#: rc.cpp:441
 #, kde-format
 msgctxt "@label"
 msgid "Compare with:"
@@ -1144,7 +1162,7 @@ msgstr "Compare avec :"
 
 #. i18n: file: src/matchraster.ui:322
 #. i18n: ectx: property (text), widget (QPushButton, stopButton)
-#: rc.cpp:438
+#: rc.cpp:444
 #, kde-format
 msgctxt "@action:button"
 msgid "Stop"
@@ -1152,7 +1170,7 @@ msgstr "Stop"
 
 #. i18n: file: src/matchraster.ui:336
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
-#: rc.cpp:441
+#: rc.cpp:447
 #, kde-format
 msgctxt "@action:button"
 msgid "&Cancel"
@@ -1160,7 +1178,7 @@ msgstr "&Annuler"
 
 #. i18n: file: src/metawidget.ui:26
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:444
+#: rc.cpp:450
 #, kde-format
 msgctxt "@label"
 msgid ""
@@ -1170,7 +1188,7 @@ msgstr ""
 
 #. i18n: file: src/metawidget.ui:66
 #. i18n: ectx: property (text), widget (QPushButton, filterButton)
-#: rc.cpp:447
+#: rc.cpp:453
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Add Filters"
@@ -1178,7 +1196,7 @@ msgstr "Filtre :"
 
 #. i18n: file: src/multiprintdialog.ui:19
 #. i18n: ectx: property (windowTitle), widget (QDialog, multiPrintDialog)
-#: rc.cpp:453
+#: rc.cpp:459
 #, kde-format
 msgctxt "@title:window"
 msgid "Printing multiple items"
@@ -1186,7 +1204,7 @@ msgstr ""
 
 #. i18n: file: src/multiprintdialog.ui:41
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:456
+#: rc.cpp:462
 #, fuzzy, kde-format
 #| msgid "&View"
 msgctxt "@title:group"
@@ -1195,7 +1213,7 @@ msgstr "&Affichage"
 
 #. i18n: file: src/multiprintdialog.ui:47
 #. i18n: ectx: property (text), widget (QCheckBox, checkInfo)
-#: rc.cpp:459
+#: rc.cpp:465
 #, fuzzy, kde-format
 #| msgid "Font Information"
 msgctxt "@option:check"
@@ -1204,7 +1222,7 @@ msgstr "Informations"
 
 #. i18n: file: src/multiprintdialog.ui:54
 #. i18n: ectx: property (text), widget (QCheckBox, checkPreview)
-#: rc.cpp:462
+#: rc.cpp:468
 #, fuzzy, kde-format
 msgctxt "@option:check"
 msgid "Preview"
@@ -1212,7 +1230,7 @@ msgstr "Aperçu"
 
 #. i18n: file: src/multiprintdialog.ui:61
 #. i18n: ectx: property (text), widget (QCheckBox, checkChart)
-#: rc.cpp:465
+#: rc.cpp:471
 #, fuzzy, kde-format
 #| msgid "Glyphs count"
 msgctxt "@option:check"
@@ -1221,7 +1239,7 @@ msgstr "Nombre de glyphes"
 
 #. i18n: file: src/multiprintdialog.ui:68
 #. i18n: ectx: property (text), widget (QCheckBox, checkPlayground)
-#: rc.cpp:468
+#: rc.cpp:474
 #, kde-format
 msgctxt "@option:check"
 msgid "Playground"
@@ -1229,7 +1247,7 @@ msgstr "Aire de jeu"
 
 #. i18n: file: src/panosedialog.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, PanoseDialog)
-#: rc.cpp:471
+#: rc.cpp:477
 #, kde-format
 msgctxt "@title:window"
 msgid "Fontmatrix - Panose Editor"
@@ -1237,7 +1255,7 @@ msgstr "Fontmatrix - PANOSE"
 
 #. i18n: file: src/panosewidget.ui:14
 #. i18n: ectx: property (windowTitle), widget (QWidget, PanoseWidget)
-#: rc.cpp:474
+#: rc.cpp:480
 #, fuzzy, kde-format
 #| msgid "Meta"
 msgctxt "@title:window"
@@ -1246,7 +1264,7 @@ msgstr "Meta"
 
 #. i18n: file: src/panosewidget.ui:57
 #. i18n: ectx: property (text), widget (QTreeWidget, pTree)
-#: rc.cpp:477
+#: rc.cpp:483
 #, kde-format
 msgctxt "@title:column"
 msgid "Panose Attributes"
@@ -1258,7 +1276,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #. i18n: file: src/sampletoolbar.ui:20
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:480 rc.cpp:567 rc.cpp:708
+#: rc.cpp:486 rc.cpp:573 rc.cpp:714
 #, kde-format
 msgctxt "@label"
 msgid "Font Size:"
@@ -1272,7 +1290,7 @@ msgstr "Taille de fonte :"
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, fontSizeSpin)
 #. i18n: file: src/prefs_panel.ui:408
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, interLineSpin)
-#: rc.cpp:483 rc.cpp:552 rc.cpp:570 rc.cpp:576
+#: rc.cpp:489 rc.cpp:558 rc.cpp:576 rc.cpp:582
 #, kde-format
 msgctxt "@item:valuesuffix"
 msgid " pt"
@@ -1280,7 +1298,7 @@ msgstr " pt"
 
 #. i18n: file: src/prefs_panel.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, PrefsPanel)
-#: rc.cpp:486
+#: rc.cpp:492
 #, kde-format
 msgctxt "@title:window"
 msgid "Preferences Panel"
@@ -1288,7 +1306,7 @@ msgstr "Préférences"
 
 #. i18n: file: src/prefs_panel.ui:74
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:492
+#: rc.cpp:498
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "General"
@@ -1296,7 +1314,7 @@ msgstr "Général"
 
 #. i18n: file: src/prefs_panel.ui:79
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:495
+#: rc.cpp:501
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "System tray"
@@ -1304,7 +1322,7 @@ msgstr "Boîte à miniatures"
 
 #. i18n: file: src/prefs_panel.ui:84
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:498
+#: rc.cpp:504
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Display"
@@ -1312,7 +1330,7 @@ msgstr "Affichage"
 
 #. i18n: file: src/prefs_panel.ui:89
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:501
+#: rc.cpp:507
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Tools"
@@ -1320,7 +1338,7 @@ msgstr "Outils"
 
 #. i18n: file: src/prefs_panel.ui:94
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:504
+#: rc.cpp:510
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Samples collection"
@@ -1328,7 +1346,7 @@ msgstr "Collection d’exemples"
 
 #. i18n: file: src/prefs_panel.ui:99
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:507
+#: rc.cpp:513
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Files & Folders"
@@ -1336,7 +1354,7 @@ msgstr "Fichiers et répertoires"
 
 #. i18n: file: src/prefs_panel.ui:104
 #. i18n: ectx: property (text), item, widget (QListWidget, catList)
-#: rc.cpp:510
+#: rc.cpp:516
 #, kde-format
 msgctxt "@item:inlistbox"
 msgid "Shortcuts"
@@ -1344,7 +1362,7 @@ msgstr "Raccourcis"
 
 #. i18n: file: src/prefs_panel.ui:123
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_10)
-#: rc.cpp:513
+#: rc.cpp:519
 #, kde-format
 msgctxt "@title:group"
 msgid "General"
@@ -1352,7 +1370,7 @@ msgstr "Général"
 
 #. i18n: file: src/prefs_panel.ui:129
 #. i18n: ectx: property (text), widget (QCheckBox, initTagBox)
-#: rc.cpp:516
+#: rc.cpp:522
 #, kde-format
 msgctxt "@option:check"
 msgid "Ask for tag names when importing fonts"
@@ -1360,7 +1378,7 @@ msgstr "Demande un nom d’étiquette à l’import"
 
 #. i18n: file: src/prefs_panel.ui:136
 #. i18n: ectx: property (text), widget (QCheckBox, showNamesBox)
-#: rc.cpp:519
+#: rc.cpp:525
 #, kde-format
 msgctxt "@option:check"
 msgid "Show names of imported fonts after import process"
@@ -1368,7 +1386,7 @@ msgstr "Montrer les fontes importées à la fin"
 
 #. i18n: file: src/prefs_panel.ui:143
 #. i18n: ectx: property (text), widget (QCheckBox, splashCheck)
-#: rc.cpp:522
+#: rc.cpp:528
 #, kde-format
 msgctxt "@option:check"
 msgid "Show splash at startup"
@@ -1376,7 +1394,7 @@ msgstr "Écran de démarrage"
 
 #. i18n: file: src/prefs_panel.ui:170
 #. i18n: ectx: property (title), widget (QGroupBox, systrayFrame)
-#: rc.cpp:525
+#: rc.cpp:531
 #, kde-format
 msgctxt "@title:group"
 msgid "Show Fontmatrix in System Tray"
@@ -1384,7 +1402,7 @@ msgstr "Montrer Fontmatrix dans la boîte à miniatures"
 
 #. i18n: file: src/prefs_panel.ui:185
 #. i18n: ectx: property (text), widget (QCheckBox, closeToSystray)
-#: rc.cpp:528
+#: rc.cpp:534
 #, kde-format
 msgctxt "@option:check"
 msgid "Close to system tray"
@@ -1392,7 +1410,7 @@ msgstr "Fermer «miniaturise» dans la boîte à miniatures"
 
 #. i18n: file: src/prefs_panel.ui:195
 #. i18n: ectx: property (text), widget (QCheckBox, startToSystemTray)
-#: rc.cpp:531
+#: rc.cpp:537
 #, kde-format
 msgctxt "@option:check"
 msgid "Start minimized to system tray"
@@ -1400,7 +1418,7 @@ msgstr "Démarre réduit dans la boîte à miniatures"
 
 #. i18n: file: src/prefs_panel.ui:202
 #. i18n: ectx: property (title), widget (QGroupBox, activateAllFrame)
-#: rc.cpp:534
+#: rc.cpp:540
 #, kde-format
 msgctxt "@title:group"
 msgid "Show \"All\" actions"
@@ -1408,7 +1426,7 @@ msgstr "Montre les actions globales"
 
 #. i18n: file: src/prefs_panel.ui:217
 #. i18n: ectx: property (text), widget (QCheckBox, activateAllConfirmation)
-#: rc.cpp:537
+#: rc.cpp:543
 #, fuzzy, kde-format
 msgctxt "@option:check"
 msgid "Ask for confirmation when activating or deactivating all fonts"
@@ -1416,7 +1434,7 @@ msgstr "Demande confirmation avant de tout désactiver ou activer"
 
 #. i18n: file: src/prefs_panel.ui:230
 #. i18n: ectx: property (text), widget (QCheckBox, tagsConfirmation)
-#: rc.cpp:540
+#: rc.cpp:546
 #, fuzzy, kde-format
 msgctxt "@option:check"
 msgid "Ask for confirmation when activating or deactivating fonts by tags"
@@ -1424,7 +1442,7 @@ msgstr "Demande confirmation avant de désactiver ou activer par étiquette"
 
 #. i18n: file: src/prefs_panel.ui:257
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:543
+#: rc.cpp:549
 #, kde-format
 msgctxt "@title:group"
 msgid "Preview Word"
@@ -1432,7 +1450,7 @@ msgstr "Le mot aperçu"
 
 #. i18n: file: src/prefs_panel.ui:263
 #. i18n: ectx: property (text), widget (QLabel, label_10)
-#: rc.cpp:546
+#: rc.cpp:552
 #, kde-format
 msgctxt "@label"
 msgid "Word:"
@@ -1440,7 +1458,7 @@ msgstr "Mot :"
 
 #. i18n: file: src/prefs_panel.ui:302
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:549
+#: rc.cpp:555
 #, kde-format
 msgctxt "@label"
 msgid "Default font size:"
@@ -1448,7 +1466,7 @@ msgstr "Taille par défaut :"
 
 #. i18n: file: src/prefs_panel.ui:343
 #. i18n: ectx: property (text), widget (QCheckBox, previewSubtitled)
-#: rc.cpp:555
+#: rc.cpp:561
 #, kde-format
 msgctxt "@option:check"
 msgid "subtitled"
@@ -1456,7 +1474,7 @@ msgstr "Sous-titré"
 
 #. i18n: file: src/prefs_panel.ui:350
 #. i18n: ectx: property (text), widget (QCheckBox, previewIsRTL)
-#: rc.cpp:558
+#: rc.cpp:564
 #, kde-format
 msgctxt "@option:check"
 msgid "is RTL"
@@ -1464,7 +1482,7 @@ msgstr "de droite à gauche"
 
 #. i18n: file: src/prefs_panel.ui:360
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_7)
-#: rc.cpp:561
+#: rc.cpp:567
 #, kde-format
 msgctxt "@title:group"
 msgid "Chart Subtitle Font"
@@ -1472,7 +1490,7 @@ msgstr "Fonte de dous-titres dans le tableau"
 
 #. i18n: file: src/prefs_panel.ui:372
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
-#: rc.cpp:564
+#: rc.cpp:570
 #, kde-format
 msgctxt "@title:group"
 msgid "Initial Layout"
@@ -1480,7 +1498,7 @@ msgstr "Mise en page initiale"
 
 #. i18n: file: src/prefs_panel.ui:398
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:573
+#: rc.cpp:579
 #, kde-format
 msgctxt "@label"
 msgid "linespacing:"
@@ -1488,7 +1506,7 @@ msgstr "Interligne :"
 
 #. i18n: file: src/prefs_panel.ui:429
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
-#: rc.cpp:579
+#: rc.cpp:585
 #, kde-format
 msgctxt "@title:group"
 msgid "Fonts Editor"
@@ -1496,7 +1514,7 @@ msgstr "Éditeur de fonte"
 
 #. i18n: file: src/prefs_panel.ui:443
 #. i18n: ectx: property (toolTip), widget (QLineEdit, fontEditorPath)
-#: rc.cpp:582
+#: rc.cpp:588
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Add the full path to your preferred font editor"
@@ -1504,7 +1522,7 @@ msgstr "Ajouter le chemin vers votre éditeur de fontes"
 
 #. i18n: file: src/prefs_panel.ui:475
 #. i18n: ectx: property (text), widget (QLabel, fontEditorNote)
-#: rc.cpp:588
+#: rc.cpp:594
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1515,7 +1533,7 @@ msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:488
 #. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_8)
-#: rc.cpp:591
+#: rc.cpp:597
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Select an  hyphenation dict file as it comes with OpenOffice or Scribus"
@@ -1525,7 +1543,7 @@ msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:491
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_8)
-#: rc.cpp:594
+#: rc.cpp:600
 #, kde-format
 msgctxt "@title:group"
 msgid "Hyphenation dictionary"
@@ -1533,7 +1551,7 @@ msgstr "Dictionnaire de coupures"
 
 #. i18n: file: src/prefs_panel.ui:500
 #. i18n: ectx: property (toolTip), widget (QToolButton, dictButton)
-#: rc.cpp:597
+#: rc.cpp:603
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Browse"
@@ -1541,7 +1559,7 @@ msgstr "Parcourir"
 
 #. i18n: file: src/prefs_panel.ui:523
 #. i18n: ectx: property (text), widget (QLabel, label_5)
-#: rc.cpp:603
+#: rc.cpp:609
 #, kde-format
 msgctxt "@label"
 msgid "Left:"
@@ -1549,7 +1567,7 @@ msgstr "gauche :"
 
 #. i18n: file: src/prefs_panel.ui:536
 #. i18n: ectx: property (text), widget (QLabel, label_6)
-#: rc.cpp:606
+#: rc.cpp:612
 #, kde-format
 msgctxt "@label"
 msgid "Right:"
@@ -1557,7 +1575,7 @@ msgstr "droite :"
 
 #. i18n: file: src/prefs_panel.ui:578
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: rc.cpp:609
+#: rc.cpp:615
 #, kde-format
 msgctxt "@title:group"
 msgid "Sample Texts"
@@ -1565,7 +1583,7 @@ msgstr "Texte d’exemple"
 
 #. i18n: file: src/prefs_panel.ui:711
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
-#: rc.cpp:615
+#: rc.cpp:621
 #, kde-format
 msgctxt "@title:group"
 msgid "Templates Folder"
@@ -1573,7 +1591,7 @@ msgstr "Répertoire des modèles"
 
 #. i18n: file: src/prefs_panel.ui:750
 #. i18n: ectx: property (title), widget (QGroupBox, remoteDirsBox)
-#: rc.cpp:621
+#: rc.cpp:627
 #, fuzzy, kde-format
 #| msgid "Remote directories"
 msgctxt "@title:group"
@@ -1582,7 +1600,7 @@ msgstr "Répertoires distants"
 
 #. i18n: file: src/prefs_panel.ui:753
 #. i18n: ectx: property (toolTip), widget (QGroupBox, remoteDirsBox)
-#: rc.cpp:624
+#: rc.cpp:630
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -1593,7 +1611,7 @@ msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:790
 #. i18n: ectx: property (text), widget (QLabel, remoteDirsNote)
-#: rc.cpp:633
+#: rc.cpp:639
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1603,7 +1621,7 @@ msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:803
 #. i18n: ectx: property (title), widget (QGroupBox, activationScopeBox)
-#: rc.cpp:636
+#: rc.cpp:642
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Activation"
@@ -1611,7 +1629,7 @@ msgstr "Activation de :"
 
 #. i18n: file: src/prefs_panel.ui:809
 #. i18n: ectx: property (text), widget (QCheckBox, systemWideCheck)
-#: rc.cpp:639
+#: rc.cpp:645
 #, kde-format
 msgctxt "@option:check"
 msgid "Activate fonts for all users of this computer"
@@ -1619,7 +1637,7 @@ msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:812
 #. i18n: ectx: property (toolTip), widget (QCheckBox, systemWideCheck)
-#: rc.cpp:642
+#: rc.cpp:648
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -1629,7 +1647,7 @@ msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:819
 #. i18n: ectx: property (text), widget (QLabel, systemWideNote)
-#: rc.cpp:645
+#: rc.cpp:651
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1639,7 +1657,7 @@ msgstr ""
 
 #. i18n: file: src/prefs_panel.ui:844
 #. i18n: ectx: property (text), widget (QToolButton, changeButton)
-#: rc.cpp:648
+#: rc.cpp:654
 #, kde-format
 msgctxt "@action:button"
 msgid "Change"
@@ -1647,7 +1665,7 @@ msgstr "Changer"
 
 #. i18n: file: src/progressbarduo.ui:14
 #. i18n: ectx: property (windowTitle), widget (QDialog, ProgressBarDuo)
-#: rc.cpp:654
+#: rc.cpp:660
 #, fuzzy, kde-format
 #| msgid "Export Font Book"
 msgctxt "@title:window"
@@ -1656,7 +1674,7 @@ msgstr "Exporte un catalogue de fontes"
 
 #. i18n: file: src/repair.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, repairDialog)
-#: rc.cpp:660
+#: rc.cpp:666
 #, kde-format
 msgctxt "@title:window"
 msgid "Database repair"
@@ -1664,7 +1682,7 @@ msgstr "Vérifie la base"
 
 #. i18n: file: src/repair.ui:47
 #. i18n: ectx: attribute (title), widget (QWidget, tab)
-#: rc.cpp:666
+#: rc.cpp:672
 #, kde-format
 msgctxt "@title:tab"
 msgid "Dead links"
@@ -1678,7 +1696,7 @@ msgstr "Liens morts"
 #. i18n: ectx: property (text), widget (QPushButton, selectAllDeactLink)
 #. i18n: file: src/repair.ui:202
 #. i18n: ectx: property (text), widget (QPushButton, selectAllUnreferenced)
-#: rc.cpp:669 rc.cpp:678 rc.cpp:690 rc.cpp:702
+#: rc.cpp:675 rc.cpp:684 rc.cpp:696 rc.cpp:708
 #, kde-format
 msgctxt "@action:button"
 msgid "Select all"
@@ -1686,7 +1704,7 @@ msgstr "Sélectionne tout"
 
 #. i18n: file: src/repair.ui:91
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
-#: rc.cpp:675
+#: rc.cpp:681
 #, kde-format
 msgctxt "@title:tab"
 msgid "Activated Not Linked"
@@ -1694,7 +1712,7 @@ msgstr "Activée Non Liées"
 
 #. i18n: file: src/repair.ui:127
 #. i18n: ectx: property (text), widget (QPushButton, relinkActNot)
-#: rc.cpp:681
+#: rc.cpp:687
 #, kde-format
 msgctxt "@action:button"
 msgid "Re-link"
@@ -1702,7 +1720,7 @@ msgstr "Re-lie"
 
 #. i18n: file: src/repair.ui:134
 #. i18n: ectx: property (text), widget (QPushButton, deactActNot)
-#: rc.cpp:684 src/typotek.cpp:1413
+#: rc.cpp:690 src/typotek.cpp:1413
 #, kde-format
 msgctxt "@action:button"
 msgid "Deactivate"
@@ -1710,7 +1728,7 @@ msgstr "Désactive"
 
 #. i18n: file: src/repair.ui:142
 #. i18n: ectx: attribute (title), widget (QWidget, tab_3)
-#: rc.cpp:687
+#: rc.cpp:693
 #, kde-format
 msgctxt "@title:tab"
 msgid "Deactivated Linked"
@@ -1718,7 +1736,7 @@ msgstr "Liées Désactivées"
 
 #. i18n: file: src/repair.ui:178
 #. i18n: ectx: property (text), widget (QPushButton, delinkDeactLink)
-#: rc.cpp:693
+#: rc.cpp:699
 #, kde-format
 msgctxt "@action:button"
 msgid "De-link"
@@ -1726,7 +1744,7 @@ msgstr "Dé-lie"
 
 #. i18n: file: src/repair.ui:185
 #. i18n: ectx: property (text), widget (QPushButton, activateDeactLink)
-#: rc.cpp:696 src/fmfloatingpreview.cpp:55 src/typotek.cpp:1400
+#: rc.cpp:702 src/fmfloatingpreview.cpp:55 src/typotek.cpp:1400
 #, kde-format
 msgctxt "@action:button"
 msgid "Activate"
@@ -1734,7 +1752,7 @@ msgstr "Active"
 
 #. i18n: file: src/repair.ui:193
 #. i18n: ectx: attribute (title), widget (QWidget, tab_4)
-#: rc.cpp:699
+#: rc.cpp:705
 #, kde-format
 msgctxt "@title:tab"
 msgid "Unreferenced Files"
@@ -1742,7 +1760,7 @@ msgstr "Fichiers introuvables"
 
 #. i18n: file: src/sampletoolbar.ui:37
 #. i18n: ectx: property (text), widget (QToolButton, sampleButton)
-#: rc.cpp:711
+#: rc.cpp:717
 #, fuzzy, kde-format
 #| msgid "Sample"
 msgctxt "@action:button"
@@ -1751,7 +1769,7 @@ msgstr "Exemple"
 
 #. i18n: file: src/sampletoolbar.ui:56
 #. i18n: ectx: property (text), widget (QToolButton, opentypeButton)
-#: rc.cpp:714
+#: rc.cpp:720
 #, kde-format
 msgctxt "@action:button"
 msgid "OpenType"
@@ -1759,7 +1777,7 @@ msgstr "OpenType"
 
 #. i18n: file: src/sampletoolbar.ui:75
 #. i18n: ectx: property (toolTip), widget (QToolButton, variationsButton)
-#: rc.cpp:717
+#: rc.cpp:723
 #, fuzzy, kde-format
 #| msgid "Show complete collection of available fonts"
 msgctxt "@info:tooltip"
@@ -1768,7 +1786,7 @@ msgstr "Montre toutes les fontes disponibles"
 
 #. i18n: file: src/sampletoolbar.ui:78
 #. i18n: ectx: property (text), widget (QToolButton, variationsButton)
-#: rc.cpp:720
+#: rc.cpp:726
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Variations"
@@ -1776,7 +1794,7 @@ msgstr "Fractions"
 
 #. i18n: file: src/sampletoolbar.ui:99
 #. i18n: ectx: property (toolTip), widget (QComboBox, languageCombo)
-#: rc.cpp:723
+#: rc.cpp:729
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -1787,7 +1805,7 @@ msgstr ""
 
 #. i18n: file: src/sampletoolbar.ui:106
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:728
+#: rc.cpp:734
 #, kde-format
 msgctxt "@label"
 msgid "Shaping:"
@@ -1795,7 +1813,7 @@ msgstr ""
 
 #. i18n: file: src/samplewidget.ui:80
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
-#: rc.cpp:731
+#: rc.cpp:737
 #, kde-format
 msgctxt "@title:group"
 msgid "World is wide"
@@ -1803,7 +1821,7 @@ msgstr "Le monde est vaste"
 
 #. i18n: file: src/samplewidget.ui:118
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:734
+#: rc.cpp:740
 #, kde-format
 msgctxt "Writing system"
 msgid "Script"
@@ -1811,7 +1829,7 @@ msgstr "Écriture"
 
 #. i18n: file: src/samplewidget.ui:134
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:737
+#: rc.cpp:743
 #, kde-format
 msgctxt "@label"
 msgid "Shaper type"
@@ -1819,7 +1837,7 @@ msgstr "Type de moteur"
 
 #. i18n: file: src/samplewidget.ui:150
 #. i18n: ectx: property (text), widget (QCheckBox, useShaperCheck)
-#: rc.cpp:740
+#: rc.cpp:746
 #, kde-format
 msgctxt "@option:check"
 msgid "Use shaper"
@@ -1827,7 +1845,7 @@ msgstr "Utiliser un moteur de mise en forme"
 
 #. i18n: file: src/samplewidget.ui:193
 #. i18n: ectx: property (text), widget (QTreeWidget, OpenTypeTree)
-#: rc.cpp:743
+#: rc.cpp:749
 #, kde-format
 msgctxt "@title:column"
 msgid "OpenType Features"
@@ -1835,7 +1853,7 @@ msgstr "Fonctionnalités OpenType"
 
 #. i18n: file: src/samplewidget.ui:198
 #. i18n: ectx: property (text), widget (QTreeWidget, OpenTypeTree)
-#: rc.cpp:746
+#: rc.cpp:752
 #, kde-format
 msgctxt "@title:column"
 msgid "Friendly Name"
@@ -1843,7 +1861,7 @@ msgstr "Appellation complète"
 
 #. i18n: file: src/samplewidget.ui:207
 #. i18n: ectx: property (text), widget (QPushButton, saveDefOTFBut)
-#: rc.cpp:749
+#: rc.cpp:755
 #, kde-format
 msgctxt "@action:button"
 msgid "Save as default"
@@ -1851,7 +1869,7 @@ msgstr "Enregistrer comme modèle"
 
 #. i18n: file: src/samplewidget.ui:214
 #. i18n: ectx: property (text), widget (QPushButton, resetDefOTFBut)
-#: rc.cpp:752
+#: rc.cpp:758
 #, kde-format
 msgctxt "@action:button"
 msgid "Reset Default"
@@ -1859,7 +1877,7 @@ msgstr "Vider le modèle"
 
 #. i18n: file: src/tagset.ui:19
 #. i18n: ectx: property (windowTitle), widget (QDialog, TagSetDialog)
-#: rc.cpp:761
+#: rc.cpp:767
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "TagSet editor"
@@ -1867,7 +1885,7 @@ msgstr "Éditeur de collections"
 
 #. i18n: file: src/tagset.ui:64
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:764
+#: rc.cpp:770
 #, fuzzy, kde-format
 msgctxt "@label"
 msgid "Collections of Tags"
@@ -1875,7 +1893,7 @@ msgstr "Collections d’étiquettes"
 
 #. i18n: file: src/tagset.ui:80
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:767
+#: rc.cpp:773
 #, fuzzy, kde-format
 msgctxt "@label"
 msgid "Available Tags"
@@ -1883,7 +1901,7 @@ msgstr "Étiquettes disponibles"
 
 #. i18n: file: src/tagset.ui:115
 #. i18n: ectx: property (toolTip), widget (QPushButton, addToSetButton)
-#: rc.cpp:770
+#: rc.cpp:776
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Add selected tag to current set."
@@ -1891,7 +1909,7 @@ msgstr "Ajouter l’étiquette à la collection."
 
 #. i18n: file: src/tagset.ui:138
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:776
+#: rc.cpp:782
 #, fuzzy, kde-format
 msgctxt "@label"
 msgid "Collections"
@@ -1899,7 +1917,7 @@ msgstr "Collections"
 
 #. i18n: file: src/tagset.ui:153
 #. i18n: ectx: property (text), widget (QPushButton, newSetButton)
-#: rc.cpp:779
+#: rc.cpp:785
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "New"
@@ -1907,7 +1925,7 @@ msgstr "Nouveau"
 
 #. i18n: file: src/tagset.ui:160
 #. i18n: ectx: property (text), widget (QPushButton, deleteTagsetButton)
-#: rc.cpp:782
+#: rc.cpp:788
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "delete"
@@ -1915,7 +1933,7 @@ msgstr "Supprimer"
 
 #. i18n: file: src/tagswidget.ui:41
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:791
+#: rc.cpp:797
 #, kde-format
 msgctxt "@label"
 msgid "Tags"
@@ -1923,7 +1941,7 @@ msgstr "Étiquettes"
 
 #. i18n: file: src/tagswidget.ui:54
 #. i18n: ectx: property (toolTip), widget (QPushButton, newTagButton)
-#: rc.cpp:794
+#: rc.cpp:800
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Add a tag"
@@ -1931,7 +1949,7 @@ msgstr "Ajout"
 
 #. i18n: file: src/tagswidget.ui:57
 #. i18n: ectx: property (text), widget (QPushButton, newTagButton)
-#: rc.cpp:797
+#: rc.cpp:803
 #, kde-format
 msgctxt "@action:button"
 msgid "Add Tag"
@@ -1939,7 +1957,7 @@ msgstr "Ajouter"
 
 #. i18n: file: src/tagswidget.ui:67
 #. i18n: ectx: property (text), widget (QPushButton, removeTagButton)
-#: rc.cpp:800
+#: rc.cpp:806
 #, fuzzy, kde-format
 #| msgid "Remove"
 msgctxt "@action:button"
@@ -1948,7 +1966,7 @@ msgstr "Supprimer"
 
 #. i18n: file: src/tagswidget.ui:77
 #. i18n: ectx: property (statusTip), widget (QListView, tagsListView)
-#: rc.cpp:803
+#: rc.cpp:809
 #, kde-format
 msgctxt "@info:status"
 msgid "Right mouse click on a tag to add it or remove it from TagSet"
@@ -1956,7 +1974,7 @@ msgstr "***"
 
 #. i18n: file: src/textprogression.ui:25
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:806
+#: rc.cpp:812
 #, kde-format
 msgctxt "@title:group"
 msgid "Inline progression"
@@ -1966,7 +1984,7 @@ msgstr "En-ligne"
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineLTR)
 #. i18n: file: src/textprogression.ui:101
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockTTB)
-#: rc.cpp:809 rc.cpp:836
+#: rc.cpp:815 rc.cpp:842
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Latin text"
@@ -1976,7 +1994,7 @@ msgstr "ex. : texte en français"
 #. i18n: ectx: property (text), widget (QRadioButton, inlineLTR)
 #. i18n: file: src/textprogression.ui:127
 #. i18n: ectx: property (text), widget (QRadioButton, blockLTR)
-#: rc.cpp:812 rc.cpp:851
+#: rc.cpp:818 rc.cpp:857
 #, kde-format
 msgctxt "@option:radio"
 msgid "Left to right"
@@ -1984,7 +2002,7 @@ msgstr "de gauche à droite"
 
 #. i18n: file: src/textprogression.ui:53
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineRTL)
-#: rc.cpp:815
+#: rc.cpp:821
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Arabic text"
@@ -1994,7 +2012,7 @@ msgstr "ex. : texte en arabe"
 #. i18n: ectx: property (text), widget (QRadioButton, inlineRTL)
 #. i18n: file: src/textprogression.ui:117
 #. i18n: ectx: property (text), widget (QRadioButton, blockRTL)
-#: rc.cpp:818 rc.cpp:845
+#: rc.cpp:824 rc.cpp:851
 #, kde-format
 msgctxt "@option:radio"
 msgid "Right to left"
@@ -2002,7 +2020,7 @@ msgstr "de droite à gauche"
 
 #. i18n: file: src/textprogression.ui:63
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineTTB)
-#: rc.cpp:821
+#: rc.cpp:827
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Traditional Chinese & Japanese text"
@@ -2012,7 +2030,7 @@ msgstr "ex. : texte traditionnel en chinois & en japonais"
 #. i18n: ectx: property (text), widget (QRadioButton, inlineTTB)
 #. i18n: file: src/textprogression.ui:104
 #. i18n: ectx: property (text), widget (QRadioButton, blockTTB)
-#: rc.cpp:824 rc.cpp:839
+#: rc.cpp:830 rc.cpp:845
 #, kde-format
 msgctxt "@option:radio"
 msgid "Top to bottom"
@@ -2020,7 +2038,7 @@ msgstr "de haut en bas"
 
 #. i18n: file: src/textprogression.ui:73
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineBTT)
-#: rc.cpp:827
+#: rc.cpp:833
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Runic text"
@@ -2028,7 +2046,7 @@ msgstr "ex. : texte Runique"
 
 #. i18n: file: src/textprogression.ui:76
 #. i18n: ectx: property (text), widget (QRadioButton, inlineBTT)
-#: rc.cpp:830
+#: rc.cpp:836
 #, kde-format
 msgctxt "@option:radio"
 msgid "Bottom to top"
@@ -2036,7 +2054,7 @@ msgstr "de bas en haut"
 
 #. i18n: file: src/textprogression.ui:86
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: rc.cpp:833
+#: rc.cpp:839
 #, kde-format
 msgctxt "@title:group"
 msgid "Block progression"
@@ -2044,7 +2062,7 @@ msgstr "Morceaux"
 
 #. i18n: file: src/textprogression.ui:114
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockRTL)
-#: rc.cpp:842
+#: rc.cpp:848
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Tarditionnal Chinese & Japanes text"
@@ -2052,7 +2070,7 @@ msgstr "ex. : text traditionnel en chinois & en japonais"
 
 #. i18n: file: src/textprogression.ui:124
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockLTR)
-#: rc.cpp:848
+#: rc.cpp:854
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Traditional Mongolian text"
@@ -2060,7 +2078,7 @@ msgstr "ex. : texte en mongol"
 
 #. i18n: file: src/tttablewidget.ui:13
 #. i18n: ectx: property (windowTitle), widget (QWidget, TTTableWidget)
-#: rc.cpp:854
+#: rc.cpp:860
 #, kde-format
 msgctxt "@title:window"
 msgid "TrueType tables display"
@@ -2068,7 +2086,7 @@ msgstr "Fontmatrix - TT"
 
 #. i18n: file: src/tttablewidget.ui:19
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:857
+#: rc.cpp:863
 #, kde-format
 msgctxt "@label"
 msgid "TrueType Tables "
@@ -2076,7 +2094,7 @@ msgstr "Tables TrueType"
 
 #. i18n: file: src/tttablewidget.ui:34
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:860
+#: rc.cpp:866
 #, kde-format
 msgctxt "@title:column"
 msgid "Tag"
@@ -2084,7 +2102,7 @@ msgstr "Étiquette"
 
 #. i18n: file: src/tttablewidget.ui:39
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:863
+#: rc.cpp:869
 #, kde-format
 msgctxt "@title:column"
 msgid "Description"
@@ -2092,7 +2110,7 @@ msgstr "Description"
 
 #. i18n: file: src/tttablewidget.ui:44
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:866
+#: rc.cpp:872
 #, kde-format
 msgctxt "@title:column"
 msgid "Size"
@@ -2100,7 +2118,7 @@ msgstr "Taille"
 
 #. i18n: file: src/tttablewidget.ui:85
 #. i18n: ectx: property (text), widget (QPushButton, exportButton)
-#: rc.cpp:869
+#: rc.cpp:875
 #, kde-format
 msgctxt "@action:button"
 msgid "&Export"
@@ -2166,58 +2184,58 @@ msgctxt "@action:button"
 msgid "cancel"
 msgstr "Annuler"
 
-#: src/filterbar.cpp:44 src/filtersdialog.cpp:23
+#: src/filterbar.cpp:47 src/filtersdialog.cpp:23
 #, kde-format
 msgctxt "@item:intext filter operator"
 msgid "And"
 msgstr "Et"
 
-#: src/filterbar.cpp:49 src/filtersdialog.cpp:28
+#: src/filterbar.cpp:52 src/filtersdialog.cpp:28
 #, kde-format
 msgctxt "@item:intext filter operator"
 msgid "Not"
 msgstr "Non"
 
-#: src/filterbar.cpp:54 src/filtersdialog.cpp:33
+#: src/filterbar.cpp:57 src/filtersdialog.cpp:33
 #, kde-format
 msgctxt "@item:intext filter operator"
 msgid "Or"
 msgstr ""
 
-#: src/filterbar.cpp:98
+#: src/filterbar.cpp:101
 #, kde-format
 msgctxt "@item:inlistbox pseudo tag that lists the activated fonts"
 msgid "Activated"
 msgstr "Active"
 
-#: src/filterbar.cpp:520
+#: src/filterbar.cpp:533
 #, fuzzy, kde-format
 #| msgid "Fontmatrix - Tags"
 msgctxt "@title:window"
 msgid "Fontmatrix - edit tag"
 msgstr "Fontmatrix - étiquettes"
 
-#: src/filterbar.cpp:521
+#: src/filterbar.cpp:534
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Edit tag: "
 msgstr ""
 
-#: src/filterbar.cpp:581
+#: src/filterbar.cpp:594
 #, fuzzy, kde-format
 #| msgid "Fontmatrix - Tags"
 msgctxt "@title:window"
 msgid "Fontmatrix - Filter name"
 msgstr "Fontmatrix - étiquettes"
 
-#: src/filterbar.cpp:582
+#: src/filterbar.cpp:595
 #, fuzzy, kde-format
 #| msgid "File name"
 msgctxt "@label:textbox"
 msgid "Filter name:"
 msgstr "Nom de fichier"
 
-#: src/filterbar.cpp:732
+#: src/filterbar.cpp:757
 #, fuzzy, kde-format
 #| msgid "Select Style"
 msgctxt ""
@@ -2226,7 +2244,7 @@ msgctxt ""
 msgid "Select language"
 msgstr "Selection d’un style"
 
-#: src/filterbar.cpp:748
+#: src/filterbar.cpp:773
 #, fuzzy, kde-format
 #| msgid "Select Style"
 msgctxt ""
@@ -2235,13 +2253,58 @@ msgctxt ""
 msgid "Select license"
 msgstr "Selection d’un style"
 
-#: src/filterbar.cpp:760
+#: src/filterbar.cpp:785
+#, fuzzy, kde-format
+#| msgid "&Select Dir"
+msgctxt ""
+"@item:inlistbox nothing picked yet, in the list of the kinds of duplicate"
+msgid "Select kind"
+msgstr "&Sélectionner un répertoire"
+
+#: src/filterbar.cpp:787
+#, kde-format
+msgctxt "@info:status"
+msgid "Looking for the fonts the collection holds more than once..."
+msgstr ""
+
+#: src/filterbar.cpp:794
+#, kde-format
+msgctxt ""
+"@item:inlistbox files that are byte for byte the same, %1 how many fonts"
+msgid "Identical file (%1 font)"
+msgid_plural "Identical files (%1 fonts)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/filterbar.cpp:797
+#, kde-format
+msgctxt ""
+"@item:inlistbox one family, style and version in files that differ, %1 how "
+"many fonts"
+msgid "Same font, other file (%1 font)"
+msgid_plural "Same font, other file (%1 fonts)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/filterbar.cpp:810
+#, kde-format
+msgctxt "@item a filter on the fonts whose files are the same"
+msgid "Duplicates: identical files"
+msgstr ""
+
+#: src/filterbar.cpp:811
+#, kde-format
+msgctxt "@item a filter on the fonts of one family, style and version"
+msgid "Duplicates: same font, other file"
+msgstr ""
+
+#: src/filterbar.cpp:824
 #, kde-format
 msgctxt "@item a filter on the language a font can set"
 msgid "Language: %1"
 msgstr ""
 
-#: src/filterbar.cpp:772
+#: src/filterbar.cpp:836
 #, kde-format
 msgctxt "@item a filter on the licence of a font"
 msgid "License: %1"
@@ -6328,10 +6391,6 @@ msgstr ""
 #, kde-format
 #~ msgid "&Browse"
 #~ msgstr "&Parcourir"
-
-#, kde-format
-#~ msgid "&Select Dir"
-#~ msgstr "&Sélectionner un répertoire"
 
 #, kde-format
 #~ msgid "&Extract"

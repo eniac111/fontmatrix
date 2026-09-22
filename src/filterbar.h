@@ -134,8 +134,10 @@ private:
     /// the languages and the licences of the collection, read when their section is first opened
     void fillLanguages();
     void fillLicenses();
+    void fillDuplicates();
     bool languagesFilled = false;
     bool licensesFilled = false;
+    bool duplicatesFilled = false;
 
 Q_SIGNALS:
     void initSearch(int, QString);
@@ -163,9 +165,11 @@ private Q_SLOTS:
     void slotToggleFilter(bool t);
     void slotToggleLanguages(bool t);
     void slotToggleLicense(bool t);
+    void slotToggleDuplicates(bool t);
 
     void slotLangFilter(int index);
     void slotLicenseFilter(int index);
+    void slotDuplicateFilter(int index);
 
 public Q_SLOTS:
     void slotClearFilter();
