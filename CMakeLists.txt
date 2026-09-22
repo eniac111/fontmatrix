@@ -95,6 +95,23 @@ set_package_properties(KF6DocTools PROPERTIES
     DESCRIPTION "Tools to generate documentation in various formats from DocBook"
     TYPE OPTIONAL
     PURPOSE "Required to build the Fontmatrix handbook")
+# KAuth serves one feature on Linux: activating fonts for all users of the machine, through a
+# root helper that polkit authorizes. Optional, and only where it can work: a distribution
+# package, whose D-Bus service, policy and helper land on the host. A Flatpak cannot install
+# any of them and passes -DCMAKE_DISABLE_FIND_PACKAGE_KF6Auth=ON.
+set(FONTMATRIX_HAVE_KAUTH FALSE)
+if(UNIX AND NOT APPLE)
+    find_package(KF6Auth ${KF_MIN_VERSION})
+    set_package_properties(KF6Auth PROPERTIES
+        DESCRIPTION "Execute actions as privileged user"
+        TYPE OPTIONAL
+        PURPOSE "Activating fonts for all users of the computer (polkit)")
+    if(KF6Auth_FOUND AND KAUTH_BACKEND_NAME STREQUAL "POLKITQT6-1")
+        set(FONTMATRIX_HAVE_KAUTH TRUE)
+        add_definitions(-DHAVE_KAUTH)
+    endif()
+endif()
+add_feature_info("Font activation for all users" FONTMATRIX_HAVE_KAUTH "a root helper and polkit action, KF6Auth with its polkit backend")
 SET(FONTMATRIX_BIN ${KDE_INSTALL_BINDIR})
 
 # Very generic definition, mainly to sort out bugs reported by mrdocs

@@ -225,6 +225,10 @@ IF(UNIX AND NOT APPLE)
 	${fontmatrix_RCC_SRCS}
 	${PODOFO_SRCS}
 	)
+	if(FONTMATRIX_HAVE_KAUTH)
+		target_link_libraries(fontmatrix KF6::AuthCore)
+		add_subdirectory(helper)
+	endif()
 
 	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz Hyphen::Hyphen
 	${QT_LIBRARIES}

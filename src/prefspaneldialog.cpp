@@ -11,6 +11,7 @@
 #include "shortcuts.h"
 #include "typotek.h"
 
+#include "fmactivate.h"
 #include "fmconfig.h"
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -150,6 +151,22 @@ void PrefsPanelDialog::initFilesAndFolders()
 {
     templatesFolder->setText(typotek::getInstance()->getTemplatesDir());
     remoteDirsList->addItems(FMConfig::value(QStringLiteral("RemoteDirectories"), QStringList()).toStringList());
+#if !defined(_WIN32) && !defined(PLATFORM_APPLE)
+    // only where the root helper is installed and polkit knows its action
+    activationScopeBox->setVisible(FMActivate::systemScopeAvailable());
+    systemWideCheck->setChecked(FMActivate::systemScope());
+#else
+    activationScopeBox->setVisible(false);
+#endif
+}
+
+void PrefsPanelDialog::slotSystemWide([[maybe_unused]] bool checked)
+{
+#if !defined(_WIN32) && !defined(PLATFORM_APPLE)
+    // refused, or the password dialog cancelled: the box says what is
+    if (!FMActivate::getInstance()->setSystemScope(checked))
+        systemWideCheck->setChecked(!checked);
+#endif
 }
 
 void PrefsPanelDialog::initShortcuts()
@@ -207,6 +224,7 @@ void PrefsPanelDialog::doConnect()
 
     connect(templatesDirBrowse, &QPushButton::clicked, this, &PrefsPanelDialog::slotTemplatesBrowse);
     connect(templatesFolder, &QLineEdit::textChanged, this, &PrefsPanelDialog::setupTemplates);
+    connect(systemWideCheck, &QCheckBox::clicked, this, &PrefsPanelDialog::slotSystemWide);
     connect(remoteDirAdd, &QPushButton::clicked, this, &PrefsPanelDialog::slotRemoteDirAdd);
     connect(remoteDirEdit, &QLineEdit::returnPressed, this, &PrefsPanelDialog::slotRemoteDirAdd);
     connect(remoteDirRemove, &QPushButton::clicked, this, &PrefsPanelDialog::slotRemoteDirRemove);

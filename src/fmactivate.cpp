@@ -48,6 +48,8 @@ void FMActivate::setErrorStrings()
     errorStrings[LOCKED_FONT] = i18nc("@info activation error", "The font is installed by the system and cannot be changed here");
     //: Windows: only TrueType and OpenType fonts can be installed per user
     errorStrings[UNSUPPORTED_FORMAT] = i18nc("@info activation error", "Only TrueType and OpenType fonts can be activated for this user");
+    //: Linux: polkit refused, or the user cancelled the password dialog, the activation for all users
+    errorStrings[NO_AUTHORIZATION] = i18nc("@info activation error", "Not authorized to change the fonts of all users");
 }
 
 FMActivate *FMActivate::getInstance()
@@ -586,13 +588,19 @@ void FMActivate::reconcileUserFonts()
     flags of the system fonts. The user's fonts.conf is not touched.
 */
 
+#include "fmconfig.h"
 #include "fmpaths.h"
+#include "helper/fontmatrixsystemfonts.h"
+
+#ifdef HAVE_KAUTH
+#include <KAuth/Action>
+#include <KAuth/ExecuteJob>
+#endif
 
 #include <QDir>
 #include <QFileInfo>
 #include <QSaveFile>
 #include <QSet>
-#include <QXmlStreamWriter>
 
 #include <unistd.h>
 
@@ -607,6 +615,124 @@ bool copyFont(const QString &from, const QString &to)
         return true;
     return QFile::copy(from, to);
 }
+
+const QString systemScopeKey(QStringLiteral("Activation/SystemWide"));
+}
+
+bool FMActivate::systemScopeAvailable()
+{
+#ifdef HAVE_KAUTH
+    // asked of polkit once: the action is there when the helper's policy is installed on the host
+    static const bool available = [] {
+        if (QFileInfo::exists(QStringLiteral("/.flatpak-info")))
+            return false;
+        KAuth::Action action(FontmatrixSystemFonts::HelperId + QStringLiteral(".activate"));
+        action.setHelperId(FontmatrixSystemFonts::HelperId);
+        const KAuth::Action::AuthStatus status = action.status();
+        return status != KAuth::Action::InvalidStatus && status != KAuth::Action::ErrorStatus;
+    }();
+    return available;
+#else
+    return false;
+#endif
+}
+
+bool FMActivate::systemScope()
+{
+    return systemScopeAvailable() && FMConfig::value(systemScopeKey, false).toBool();
+}
+
+bool FMActivate::runHelper([[maybe_unused]] const QString &action, [[maybe_unused]] const QVariantMap &args, QVariantMap *reply, QString *error)
+{
+#ifdef HAVE_KAUTH
+    KAuth::Action kaction(FontmatrixSystemFonts::HelperId + QLatin1Char('.') + action);
+    kaction.setHelperId(FontmatrixSystemFonts::HelperId);
+    kaction.setArguments(args);
+    KAuth::ExecuteJob *job = kaction.execute();
+    const bool ok = job->exec();
+    if (ok) {
+        if (reply)
+            *reply = job->data();
+    } else if (error) {
+        *error = job->errorString();
+    }
+    qCDebug(FONTMATRIX_LOG) << "helper" << action << (ok ? "done" : "failed") << (ok ? QString() : job->errorString());
+    job->deleteLater();
+    return ok;
+#else
+    if (reply)
+        reply->clear();
+    if (error)
+        *error = QStringLiteral("built without KAuth");
+    return false;
+#endif
+}
+
+QString FMActivate::copyOf(FontItem *fit)
+{
+    const QString name(fit->activationName());
+    if (name.isEmpty())
+        return QString();
+    const QString user(typotek::getInstance()->getManagedDir() + QLatin1Char('/') + name);
+    if (QFileInfo::exists(user))
+        return user;
+    const QString system(FontmatrixSystemFonts::Directory + QLatin1Char('/') + name);
+    if (QFileInfo::exists(system))
+        return system;
+    return QString();
+}
+
+QStringList FMActivate::hiddenSystemFonts()
+{
+    typotek *T(typotek::getInstance());
+    QStringList hidden;
+    const QList<FontItem *> fonts(FMFontDb::DB()->AllFonts());
+    for (FontItem *fit : fonts) {
+        if (T->isSysFont(fit) && !fit->isActivated())
+            hidden << fit->path();
+    }
+    hidden.sort();
+    return hidden;
+}
+
+void FMActivate::writeSystemRejects(bool *ok)
+{
+    QVariantMap args;
+    args.insert(QStringLiteral("files"), hiddenSystemFonts());
+    QString error;
+    const bool done = runHelper(QStringLiteral("rejects"), args, nullptr, &error);
+    if (!done)
+        qCWarning(FONTMATRIX_LOG) << "the rejects of the system were not written:" << error;
+    if (ok)
+        *ok = done;
+}
+
+bool FMActivate::setSystemScope(bool system)
+{
+    if (system == FMConfig::value(systemScopeKey, false).toBool())
+        return true;
+    bool ok = true;
+    if (system) {
+        // the hidden fonts hide for everybody now, the user's file has nothing more to say
+        writeSystemRejects(&ok);
+        if (!ok)
+            return false;
+        FMConfig::setValue(systemScopeKey, true);
+        const QString userFile(FMPaths::FontconfigRejectsFile());
+        if (QFileInfo::exists(userFile))
+            QFile::remove(userFile);
+    } else {
+        QVariantMap args;
+        args.insert(QStringLiteral("files"), QStringList());
+        QString error;
+        if (!runHelper(QStringLiteral("rejects"), args, nullptr, &error)) {
+            qCWarning(FONTMATRIX_LOG) << "the rejects of the system were not removed:" << error;
+            return false;
+        }
+        FMConfig::setValue(systemScopeKey, false);
+        writeRejects();
+    }
+    return true;
 }
 
 void FMActivate::activate(QList<FontItem *> fitList, bool act)
@@ -614,6 +740,10 @@ void FMActivate::activate(QList<FontItem *> fitList, bool act)
     QHash<FontItem *, bool> stack;
     typotek *T(typotek::getInstance());
     const QString managed(T->getManagedDir());
+    const bool forEverybody = systemScope();
+    // what goes through the root helper, in one call and one password
+    QList<FontItem *> systemCopies;
+    QList<FontItem *> systemRemovals;
     bool rejectsChanged = false;
     for (auto *fit : fitList) {
         if (act) // Activation
@@ -642,6 +772,10 @@ void FMActivate::activate(QList<FontItem *> fitList, bool act)
                 rejectsChanged = true;
                 continue;
             }
+            if (forEverybody) {
+                systemCopies << fit;
+                continue;
+            }
             const QString copy(managed + QLatin1Char('/') + fit->activationName());
             if (!copyFont(fit->localPath(), copy)) {
                 qCWarning(FONTMATRIX_LOG) << "unable to copy" << fit->localPath() << "to" << copy;
@@ -666,6 +800,11 @@ void FMActivate::activate(QList<FontItem *> fitList, bool act)
                 continue;
             }
             const QString copy(managed + QLatin1Char('/') + fit->activationName());
+            if (!QFileInfo::exists(copy) && QFileInfo::exists(FontmatrixSystemFonts::Directory + QLatin1Char('/') + fit->activationName())) {
+                // activated for everybody: only the helper removes it
+                systemRemovals << fit;
+                continue;
+            }
             if (QFileInfo::exists(copy) && !QFile::remove(copy)) {
                 qCWarning(FONTMATRIX_LOG) << "unable to remove" << copy;
                 m_errors[fit->path()] = errorStrings[NO_UNLINK];
@@ -682,6 +821,45 @@ void FMActivate::activate(QList<FontItem *> fitList, bool act)
         }
     }
 
+    if (!systemCopies.isEmpty()) {
+        QVariantMap args;
+        QStringList sources;
+        QStringList names;
+        for (FontItem *fit : std::as_const(systemCopies)) {
+            sources << fit->localPath();
+            names << fit->activationName();
+        }
+        args.insert(QStringLiteral("sources"), sources);
+        args.insert(QStringLiteral("names"), names);
+        QVariantMap reply;
+        QString error;
+        const bool done = runHelper(QStringLiteral("activate"), args, &reply, &error);
+        const QStringList copied(reply.value(QStringLiteral("copied")).toStringList());
+        for (FontItem *fit : std::as_const(systemCopies)) {
+            if (done && copied.contains(fit->activationName()))
+                stack[fit] = true;
+            else
+                m_errors[fit->path()] = errorStrings[done ? NO_COPY : NO_AUTHORIZATION];
+        }
+    }
+    if (!systemRemovals.isEmpty()) {
+        QVariantMap args;
+        QStringList names;
+        for (FontItem *fit : std::as_const(systemRemovals))
+            names << fit->activationName();
+        args.insert(QStringLiteral("names"), names);
+        QVariantMap reply;
+        QString error;
+        const bool done = runHelper(QStringLiteral("deactivate"), args, &reply, &error);
+        const QStringList removed(reply.value(QStringLiteral("removed")).toStringList());
+        for (FontItem *fit : std::as_const(systemRemovals)) {
+            if (done && removed.contains(fit->activationName()))
+                stack[fit] = false;
+            else
+                m_errors[fit->path()] = errorStrings[done ? NO_UNLINK : NO_AUTHORIZATION];
+        }
+    }
+
     QStringList aList;
     FMFontDb::DB()->TransactionBegin();
     for (auto it(stack.constBegin()); it != stack.constEnd(); ++it) {
@@ -690,50 +868,38 @@ void FMActivate::activate(QList<FontItem *> fitList, bool act)
     }
     FMFontDb::DB()->TransactionEnd();
 
-    if (rejectsChanged)
-        writeRejects();
+    if (rejectsChanged) {
+        if (forEverybody) {
+            bool ok = true;
+            writeSystemRejects(&ok);
+            if (!ok) {
+                // the flags went where the file did not: back
+                FMFontDb::DB()->TransactionBegin();
+                for (auto it(stack.constBegin()); it != stack.constEnd(); ++it) {
+                    if (T->isSysFont(it.key())) {
+                        it.key()->setActivated(!it.value());
+                        m_errors[it.key()->path()] = errorStrings[NO_AUTHORIZATION];
+                    }
+                }
+                FMFontDb::DB()->TransactionEnd();
+            }
+        } else {
+            writeRejects();
+        }
+    }
     Q_EMIT activationEvent(aList);
 }
 
 void FMActivate::writeRejects()
 {
-    typotek *T(typotek::getInstance());
-    QStringList hidden;
-    const QList<FontItem *> fonts(FMFontDb::DB()->AllFonts());
-    for (FontItem *fit : fonts) {
-        if (T->isSysFont(fit) && !fit->isActivated())
-            hidden << fit->path();
-    }
-    hidden.sort();
-
+    const QStringList hidden(hiddenSystemFonts());
     const QString path(FMPaths::FontconfigRejectsFile());
     if (hidden.isEmpty()) {
         if (QFileInfo::exists(path) && !QFile::remove(path))
             qCWarning(FONTMATRIX_LOG) << "cannot remove" << path;
         return;
     }
-
-    QByteArray content;
-    QXmlStreamWriter xml(&content);
-    xml.setAutoFormatting(true);
-    xml.writeStartDocument();
-    xml.writeDTD(QStringLiteral("<!DOCTYPE fontconfig SYSTEM \"urn:fontconfig:fonts.dtd\">"));
-    xml.writeComment(QStringLiteral(" Written by Fontmatrix: the system fonts switched off in it. Fontmatrix rewrites this file; edit the fonts there. "));
-    xml.writeStartElement(QStringLiteral("fontconfig"));
-    xml.writeStartElement(QStringLiteral("selectfont"));
-    xml.writeStartElement(QStringLiteral("rejectfont"));
-    for (const QString &file : std::as_const(hidden)) {
-        xml.writeStartElement(QStringLiteral("pattern"));
-        xml.writeStartElement(QStringLiteral("patelt"));
-        xml.writeAttribute(QStringLiteral("name"), QStringLiteral("file"));
-        xml.writeTextElement(QStringLiteral("string"), file);
-        xml.writeEndElement(); // patelt
-        xml.writeEndElement(); // pattern
-    }
-    xml.writeEndElement(); // rejectfont
-    xml.writeEndElement(); // selectfont
-    xml.writeEndElement(); // fontconfig
-    xml.writeEndDocument();
+    const QByteArray content(FontmatrixSystemFonts::rejectsDocument(hidden));
 
     // fontconfig reads its configuration again when a file changes: only when it does
     QFile old(path);
@@ -847,7 +1013,7 @@ void FMActivate::reconcileActivated()
         if (T->isSysFont(fit) || !fit->isActivated())
             continue;
         const QString name(fit->activationName());
-        if (name.isEmpty() || !QFileInfo::exists(managed + QLatin1Char('/') + name)) {
+        if (name.isEmpty() || copyOf(fit).isEmpty()) {
             qCDebug(FONTMATRIX_LOG) << fit->path() << "has no copy any more";
             stack[fit] = false;
             continue;
@@ -872,7 +1038,9 @@ void FMActivate::reconcileActivated()
         }
     }
 
-    writeRejects();
+    // the rejects of everybody are written when a font is switched: not at every start, not for a password
+    if (!systemScope())
+        writeRejects();
 }
 
 #endif

@@ -35,6 +35,7 @@ Download and run the MSI — Qt and FreeType runtime DLLs are bundled.
 | FreeType2 | ≥ 2.10 | variable fonts (the axis flags of 2.8.1) and colour fonts (the COLR layers of 2.10) |
 | Gettext | | `msgfmt`, to compile the translations |
 | Fontconfig | | optional, Linux; it lists the system fonts. Activation itself needs no library: a copy in `~/.local/share/fonts/fontmatrix`, a rejects file in `~/.config/fontconfig/conf.d` |
+| KF6 Auth (KAuth) with its polkit backend | ≥ 6.12 | optional, Linux: activating fonts for all users of the computer. Builds `fontmatrix_helper`, run as root by KAuth over the system bus, with its D-Bus policy and service files and the polkit action `org.fontmatrix.*`. They have to be installed where the host reads them (`/usr/share/dbus-1/system.d`, `/usr/share/dbus-1/system-services`, `/usr/share/polkit-1/actions`, `/usr/lib/kf6/kauth`), i.e. a package with prefix `/usr`; otherwise the choice stays hidden. A Flatpak cannot install them and passes `-DCMAKE_DISABLE_FIND_PACKAGE_KF6Auth=ON` |
 
 The Qt and KDE Frameworks versions are the oldest ones the project is built and run
 against: Debian 13 (Qt 6.8.2, KF 6.13) and Ubuntu 25.04 (Qt 6.8.3, KF 6.12). CI covers the

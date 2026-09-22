@@ -783,6 +783,35 @@
           </layout>
          </widget>
         </item>
+        <item row="2" column="0" >
+         <widget class="QGroupBox" name="activationScopeBox" >
+          <property name="title" >
+           <string comment="@title:group">Activation</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_activation" >
+           <item>
+            <widget class="QCheckBox" name="systemWideCheck" >
+             <property name="text" >
+              <string comment="@option:check">Activate fonts for all users of this computer</string>
+             </property>
+             <property name="toolTip" >
+              <string comment="@info:tooltip">Asks for the administrator's password. The fonts are copied into /usr/local/share/fonts/fontmatrix and the hidden system fonts are hidden from everybody.</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="systemWideNote" >
+             <property name="text" >
+              <string comment="@info">Fonts activated before the change stay where they are: in your own folder, or in the folder of the system.</string>
+             </property>
+             <property name="wordWrap" >
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_4" >
