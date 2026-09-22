@@ -103,36 +103,6 @@ IF(APPLE)
 ENDIF(APPLE)
 
 
-#<< ICU
-IF(WANT_ICU)
-# 	SET(ICU_DIR ${CMAKE_MODULE_PATH})
-	FIND_PACKAGE(ICU)
-	if(ICU_FOUND)
-		MESSAGE(STATUS "ICU Found OK")
-		ADD_DEFINITIONS( -DHAVE_ICU )
-		SET(ICUSHAPER 1)
-		MESSAGE(STATUS "Build ICU shaper support")
-	ELSE(ICU_FOUND)
-		MESSAGE(FATAL_ERROR "ICU Not Found ARGH")
-	ENDIF(ICU_FOUND)
-ENDIF(WANT_ICU)
-
-#>> ICU
-
-#<< m17n
-IF(WANT_M17N)
-# 	SET(M17N_DIR ${CMAKE_MODULE_PATH})
-	FIND_PACKAGE(M17N)
-	if(M17N_FOUND)
-		MESSAGE(STATUS "M17N Found OK")
-		ADD_DEFINITIONS( -DHAVE_M17N )
-		SET(M17NSHAPER 1)
-		MESSAGE(STATUS "Build m17n shaper support")
-	ELSE(M17N_FOUND)
-		MESSAGE(FATAL_ERROR "M17N Not Found ARGH")
-	ENDIF(M17N_FOUND)
-ENDIF(WANT_M17N)
-#>> m17n
 
 # PoDoFo serves one feature: Tools > Extract fonts, which takes the fonts embedded in a PDF
 # file. It is optional, because Debian and Ubuntu still ship 0.9, whose API is another one.
