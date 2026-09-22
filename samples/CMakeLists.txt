@@ -9,8 +9,15 @@ IF(UNIX AND NOT APPLE)
     # without a make install step (binary at build/bin/ → build/share/...).
     file(COPY ${CMAKE_SOURCE_DIR}/samples/
          DESTINATION "${CMAKE_BINARY_DIR}/share/fontmatrix/resources/Samples"
-         FILES_MATCHING PATTERN "sample")
+         PATTERN "CMakeLists.txt" EXCLUDE
+         PATTERN "CREDITS" EXCLUDE)
 ENDIF()
+
+# Bulgarian
+ADD_SUBDIRECTORY(bg)
+
+# Church Slavonic (Glagolitic)
+ADD_SUBDIRECTORY(cu)
 
 # Bengali
 ADD_SUBDIRECTORY(bn)

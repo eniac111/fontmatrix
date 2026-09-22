@@ -34,5 +34,51 @@ precedence = "closest"
 SPDX-FileCopyrightText = ["The Scribus Team", "2008-2026 The Fontmatrix contributors"]
 SPDX-License-Identifier = "GPL-2.0-or-later"
 
-# samples/ is NOT listed on purpose: texts of other authors (Wikipedia, Schiller, Cervantes,
-# Proust, Gogol, ...), see samples/CREDITS. They need their own licences, not this project's.
+# samples/ holds texts of other authors, not the project's own work, so each one carries the
+# licence of the text it is. samples/CREDITS names the work, the author and the edition.
+
+# Works whose author died more than seventy years ago, and the constitution of 1879, which is
+# an official text of the state: nobody holds rights over them any more.
+[[annotations]]
+path = [
+    "samples/bg/Българският език",        # Иван Вазов, 1850–1921
+    "samples/bg/Търновска конституция",   # Учредително народно събрание, 1879
+    "samples/de/sample",                  # Friedrich Schiller, 1759–1805
+    "samples/fr/Mamere",                  # Marcel Proust, 1871–1922
+    "samples/ru/Гоголь",                  # Николай Гогол, 1809–1852
+]
+precedence = "closest"
+SPDX-FileCopyrightText = "NONE"
+SPDX-License-Identifier = "LicenseRef-PublicDomain"
+
+# Articles of Wikipedia, taken when its text was under version 3.0 of the licence
+[[annotations]]
+path = [
+    "samples/bn/sample", "samples/gu/sample", "samples/hi/sample", "samples/kn/sample",
+    "samples/ml/sample", "samples/mr/sample", "samples/or/sample", "samples/pa/sample",
+    "samples/ta/sample", "samples/te/sample",
+]
+precedence = "closest"
+SPDX-FileCopyrightText = "The Wikipedia contributors"
+SPDX-License-Identifier = "CC-BY-SA-3.0"
+
+# A book of 1508, whose text is free, in a transliteration made for Wikisource
+[[annotations]]
+path = ["samples/cu/Miracles of the Virgin 1508"]
+precedence = "closest"
+SPDX-FileCopyrightText = ["The Wikisource contributors", "Ivana Eterović and Mirjana Crnić Novosel"]
+SPDX-License-Identifier = "CC-BY-SA-4.0"
+
+# The letters of an alphabet, their names as Unicode gives them and their numeric values: facts
+[[annotations]]
+path = ["samples/cu/Glagolitic alphabet"]
+precedence = "closest"
+SPDX-FileCopyrightText = "NONE"
+SPDX-License-Identifier = "CC0-1.0"
+
+# Two files whose terms could not be established, see LICENSES/LicenseRef-UnverifiedSource.txt
+[[annotations]]
+path = ["samples/he/sample", "samples/udm/sample"]
+precedence = "closest"
+SPDX-FileCopyrightText = "NOASSERTION"
+SPDX-License-Identifier = "LicenseRef-UnverifiedSource"
