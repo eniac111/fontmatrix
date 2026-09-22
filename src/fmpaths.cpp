@@ -8,6 +8,8 @@
 #include "typotek.h"
 
 #include <QApplication>
+#include <QDir>
+#include <QFileInfo>
 #include <QStandardPaths>
 
 #include <array>
@@ -172,4 +174,37 @@ QString FMPaths::LocalizedFilePath(const QString &base, const QString &ext, cons
     }
 
     return QString();
+}
+
+namespace
+{
+/**
+ * The host's XDG directory, not the sandbox's: inside a Flatpak, XDG_DATA_HOME
+ * and XDG_CONFIG_HOME name ~/.var/app/<id>/..., while the fontconfig of the
+ * other applications reads ~/.local/share/fonts and ~/.config/fontconfig.
+ */
+QString hostXdgHome(const char *variable, const QString &fallback)
+{
+    if (!QFileInfo::exists(QStringLiteral("/.flatpak-info"))) {
+        const QString value(qEnvironmentVariable(variable));
+        if (!value.isEmpty())
+            return value;
+    }
+    return QDir::homePath() + fallback;
+}
+}
+
+QString FMPaths::UserFontsDir()
+{
+    return hostXdgHome("XDG_DATA_HOME", QStringLiteral("/.local/share")) + QStringLiteral("/fonts/fontmatrix");
+}
+
+QString FMPaths::FontconfigRejectsFile()
+{
+    return hostXdgHome("XDG_CONFIG_HOME", QStringLiteral("/.config")) + QStringLiteral("/fontconfig/conf.d/60-fontmatrix-rejects.conf");
+}
+
+QString FMPaths::FontconfigUserFile()
+{
+    return hostXdgHome("XDG_CONFIG_HOME", QStringLiteral("/.config")) + QStringLiteral("/fontconfig/fonts.conf");
 }

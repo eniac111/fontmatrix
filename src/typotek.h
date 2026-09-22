@@ -175,6 +175,8 @@ private:
     QDir ownDir;
     QDir configDir;
     QDir managedDir;
+    /// Linux: the directory of links that older versions activated fonts into, until it is migrated
+    QString m_oldActivatedDir;
 
     DataLoader *dataLoader = nullptr;
     //		QMap<QString,QString> m_namedSamples;
@@ -195,7 +197,6 @@ private:
     bool m_familySchemeFreetype = false;
     QString m_sysTagName;
 
-    void addFcDirItem(const QString &dirPath);
     QStringList getSystemFontDirs();
     QStringList sysFontList;
 
@@ -242,7 +243,7 @@ private:
 
 public:
     bool isSysFont(FontItem *f);
-    /// the folder activated fonts go into holds nothing to import (Windows)
+    /// the folder activated fonts go into holds nothing to import: the copies of fonts the database has
     [[nodiscard]] bool isInUserFontFolder(const QString &path) const;
     FontItem *getSelectedFont();
     void resetFilter();

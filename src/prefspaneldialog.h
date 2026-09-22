@@ -99,6 +99,7 @@ private Q_SLOTS:
     void slotTemplatesBrowse();
     void slotRemoteDirAdd();
     void slotRemoteDirRemove();
+    void slotSystemWide(bool checked);
 
     void slotShowImportedFonts(bool show);
     // 		void slotFamilyNotPreferred(bool state);

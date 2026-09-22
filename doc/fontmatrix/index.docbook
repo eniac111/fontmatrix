@@ -333,6 +333,42 @@ current</guimenuitem></menuchoice>.</para></listitem>
 the system tray icon and click on a tag name to activate or deactivate
 fonts that have this tag.</para></listitem>
 </itemizedlist>
+
+<sect2 id="management-activation-where">
+<title>What activation does</title>
+<para>On Linux an activated font is a copy (a hard link where the file
+system allows one) in <filename
+class="directory">~/.local/share/fonts/fontmatrix/</filename>, the
+user font directory that fontconfig scans by itself. Every application
+sees it, Flatpak applications included, and GNOME applications pick it
+up without a restart; Qt applications read the font list when they
+start. Deactivating removes the copy. The directory belongs to
+&fontmatrix;: a file in it that no active font accounts for is removed
+at the next start, and a font whose copy has gone is shown as
+deactivated.</para>
+<para>A system font cannot be removed, so deactivating one hides it:
+&fontmatrix; writes <filename>~/.config/fontconfig/conf.d/60-fontmatrix-rejects.conf</filename>
+with every system font switched off, and removes the file when none
+is. Nothing else in <filename
+class="directory">~/.config/fontconfig/</filename> is touched. Flatpak
+applications do not read that file and keep seeing the hidden
+fonts.</para>
+<para>Where the distribution package of &fontmatrix; is installed,
+<guilabel>Settings</guilabel> &gt; <guilabel>Configure Fontmatrix</guilabel>
+&gt; <guilabel>Files &amp; Folders</guilabel> offers <guilabel>Activate
+fonts for all users of this computer</guilabel>. The copies then go into
+<filename class="directory">/usr/local/share/fonts/fontmatrix/</filename>
+and the hidden system fonts into <filename>/etc/fonts/conf.d/60-fontmatrix-rejects.conf</filename>,
+through a helper that runs as root once polkit has asked for the
+administrator's password (once, kept for a few minutes). Fonts activated
+before the change stay where they were. The choice is not offered inside
+a Flatpak: the helper, its D-Bus service and its polkit action have to be
+installed on the host, which a sandboxed application cannot do.</para>
+<para>On Windows an activated font is installed for the current user,
+as <guilabel>Settings &gt; Fonts</guilabel> does: a copy in the user
+font folder, a registry value, and running applications are told at
+once. Fonts installed for all users cannot be changed.</para>
+</sect2>
 </sect1>
 
 <sect1 id="management-tags">

@@ -17,6 +17,7 @@
 #include <QDomElement>
 #include <QDomNodeList>
 #include <QFile>
+#include <QTextStream>
 
 FMActivate *FMActivate::instance = nullptr;
 
@@ -27,19 +28,17 @@ FMActivate::FMActivate()
 
 void FMActivate::setErrorStrings()
 {
-    //: Activation subroutine failed to make a symbolic link to the font file
-    errorStrings[NO_LINK] = i18nc("@info activation error", "Unable to link");
     //: The Font asked for activation is already activated
     errorStrings[ALREADY_ACTIVE] = i18nc("@info activation error", "Font already activated");
-    //: Activation subroutine failed to remove a symbolic link to the font file
-    errorStrings[NO_UNLINK] = i18nc("@info activation error", "Unable to un-link");
+    //: The copy of the font in the user's font folder could not be deleted
+    errorStrings[NO_UNLINK] = i18nc("@info activation error", "Unable to remove the font from the user font folder");
     //: The Font asked for de-activation is already de-activated
     errorStrings[ALREADY_UNACTIVE] = i18nc("@info activation error", "Font already de-activated");
     //: A postcript font (pfb) without its metrics file (afm)
-    errorStrings[MISSING_AFM] = i18nc("@info activation error", "Cannot link or copy the metrics file");
+    errorStrings[MISSING_AFM] = i18nc("@info activation error", "Cannot copy the metrics file");
     //: A generic error in activation or deactivation process
     errorStrings[OTHER_ERROR] = i18nc("activation", "Error");
-    //: Windows: the font file could not be copied into the user's font folder
+    //: The font file could not be copied into the user's font folder
     errorStrings[NO_COPY] = i18nc("@info activation error", "Unable to copy the font file into the user font folder");
     //: Windows: the font could not be written to or removed from the user's font registry key
     errorStrings[NO_REGISTRY] = i18nc("@info activation error", "Unable to register the font for this user");
@@ -49,6 +48,8 @@ void FMActivate::setErrorStrings()
     errorStrings[LOCKED_FONT] = i18nc("@info activation error", "The font is installed by the system and cannot be changed here");
     //: Windows: only TrueType and OpenType fonts can be installed per user
     errorStrings[UNSUPPORTED_FORMAT] = i18nc("@info activation error", "Only TrueType and OpenType fonts can be activated for this user");
+    //: Linux: polkit refused, or the user cancelled the password dialog, the activation for all users
+    errorStrings[NO_AUTHORIZATION] = i18nc("@info activation error", "Not authorized to change the fonts of all users");
 }
 
 FMActivate *FMActivate::getInstance()
@@ -576,12 +577,174 @@ void FMActivate::reconcileUserFonts()
     }
 }
 
-#else // fontconfig
+#else // Linux and the other Unices
+
+/*
+    A font is activated by a copy in ~/.local/share/fonts/fontmatrix, the user
+    font directory every fontconfig scans by itself, which Flatpak hands to
+    every sandbox and GNOME watches: nothing is configured anywhere. A system
+    font is deactivated by hiding it, a rejectfont pattern in a fontconfig
+    file of Fontmatrix's own in ~/.config/fontconfig/conf.d, written from the
+    flags of the system fonts. The user's fonts.conf is not touched.
+*/
+
+#include "fmconfig.h"
+#include "fmpaths.h"
+#include "helper/fontmatrixsystemfonts.h"
+
+#ifdef HAVE_KAUTH
+#include <KAuth/Action>
+#include <KAuth/ExecuteJob>
+#endif
+
+#include <QDir>
+#include <QFileInfo>
+#include <QSaveFile>
+#include <QSet>
+
+#include <unistd.h>
+
+namespace
+{
+/// a copy of the file: a hard link when the file system allows one, the bytes otherwise
+bool copyFont(const QString &from, const QString &to)
+{
+    if (QFileInfo::exists(to))
+        return true;
+    if (::link(QFile::encodeName(from).constData(), QFile::encodeName(to).constData()) == 0)
+        return true;
+    return QFile::copy(from, to);
+}
+
+const QString systemScopeKey(QStringLiteral("Activation/SystemWide"));
+}
+
+bool FMActivate::systemScopeAvailable()
+{
+#ifdef HAVE_KAUTH
+    // asked of polkit once: the action is there when the helper's policy is installed on the host
+    static const bool available = [] {
+        if (QFileInfo::exists(QStringLiteral("/.flatpak-info")))
+            return false;
+        KAuth::Action action(FontmatrixSystemFonts::HelperId + QStringLiteral(".activate"));
+        action.setHelperId(FontmatrixSystemFonts::HelperId);
+        const KAuth::Action::AuthStatus status = action.status();
+        return status != KAuth::Action::InvalidStatus && status != KAuth::Action::ErrorStatus;
+    }();
+    return available;
+#else
+    return false;
+#endif
+}
+
+bool FMActivate::systemScope()
+{
+    return systemScopeAvailable() && FMConfig::value(systemScopeKey, false).toBool();
+}
+
+bool FMActivate::runHelper([[maybe_unused]] const QString &action, [[maybe_unused]] const QVariantMap &args, QVariantMap *reply, QString *error)
+{
+#ifdef HAVE_KAUTH
+    KAuth::Action kaction(FontmatrixSystemFonts::HelperId + QLatin1Char('.') + action);
+    kaction.setHelperId(FontmatrixSystemFonts::HelperId);
+    kaction.setArguments(args);
+    KAuth::ExecuteJob *job = kaction.execute();
+    const bool ok = job->exec();
+    if (ok) {
+        if (reply)
+            *reply = job->data();
+    } else if (error) {
+        *error = job->errorString();
+    }
+    qCDebug(FONTMATRIX_LOG) << "helper" << action << (ok ? "done" : "failed") << (ok ? QString() : job->errorString());
+    job->deleteLater();
+    return ok;
+#else
+    if (reply)
+        reply->clear();
+    if (error)
+        *error = QStringLiteral("built without KAuth");
+    return false;
+#endif
+}
+
+QString FMActivate::copyOf(FontItem *fit)
+{
+    const QString name(fit->activationName());
+    if (name.isEmpty())
+        return QString();
+    const QString user(typotek::getInstance()->getManagedDir() + QLatin1Char('/') + name);
+    if (QFileInfo::exists(user))
+        return user;
+    const QString system(FontmatrixSystemFonts::Directory + QLatin1Char('/') + name);
+    if (QFileInfo::exists(system))
+        return system;
+    return QString();
+}
+
+QStringList FMActivate::hiddenSystemFonts()
+{
+    typotek *T(typotek::getInstance());
+    QStringList hidden;
+    const QList<FontItem *> fonts(FMFontDb::DB()->AllFonts());
+    for (FontItem *fit : fonts) {
+        if (T->isSysFont(fit) && !fit->isActivated())
+            hidden << fit->path();
+    }
+    hidden.sort();
+    return hidden;
+}
+
+void FMActivate::writeSystemRejects(bool *ok)
+{
+    QVariantMap args;
+    args.insert(QStringLiteral("files"), hiddenSystemFonts());
+    QString error;
+    const bool done = runHelper(QStringLiteral("rejects"), args, nullptr, &error);
+    if (!done)
+        qCWarning(FONTMATRIX_LOG) << "the rejects of the system were not written:" << error;
+    if (ok)
+        *ok = done;
+}
+
+bool FMActivate::setSystemScope(bool system)
+{
+    if (system == FMConfig::value(systemScopeKey, false).toBool())
+        return true;
+    bool ok = true;
+    if (system) {
+        // the hidden fonts hide for everybody now, the user's file has nothing more to say
+        writeSystemRejects(&ok);
+        if (!ok)
+            return false;
+        FMConfig::setValue(systemScopeKey, true);
+        const QString userFile(FMPaths::FontconfigRejectsFile());
+        if (QFileInfo::exists(userFile))
+            QFile::remove(userFile);
+    } else {
+        QVariantMap args;
+        args.insert(QStringLiteral("files"), QStringList());
+        QString error;
+        if (!runHelper(QStringLiteral("rejects"), args, nullptr, &error)) {
+            qCWarning(FONTMATRIX_LOG) << "the rejects of the system were not removed:" << error;
+            return false;
+        }
+        FMConfig::setValue(systemScopeKey, false);
+        writeRejects();
+    }
+    return true;
+}
 
 void FMActivate::activate(QList<FontItem *> fitList, bool act)
 {
     QHash<FontItem *, bool> stack;
     typotek *T(typotek::getInstance());
+    const QString managed(T->getManagedDir());
+    const bool forEverybody = systemScope();
+    // what goes through the root helper, in one call and one password
+    QList<FontItem *> systemCopies;
+    QList<FontItem *> systemRemovals;
+    bool rejectsChanged = false;
     for (auto *fit : fitList) {
         if (act) // Activation
         {
@@ -599,59 +762,101 @@ void FMActivate::activate(QList<FontItem *> fitList, bool act)
                 fit->getFromNetwork();
                 continue;
             }
-            if (!T->isSysFont(fit)) {
-                if (!fit->isActivated()) {
-                    if (!QFile::link(fit->localPath(), T->getManagedDir() + "/" + fit->activationName())) {
-                        qCWarning(FONTMATRIX_LOG) << "unable to link " << fit->path();
-                        m_errors[fit->path()] = errorStrings[NO_LINK];
-                    } else {
-                        // Success
-                        stack[fit] = true;
-                        qCDebug(FONTMATRIX_LOG) << fit->path() << " linked";
-                        if (!fit->afm().isEmpty()) {
-                            if (!QFile::link(fit->afm(), T->getManagedDir() + "/" + fit->activationAFMName())) {
-                                qCWarning(FONTMATRIX_LOG) << "unable to link " << fit->afm();
-                                m_errors[fit->path()] = errorStrings[MISSING_AFM];
-                            } else {
-                                qCDebug(FONTMATRIX_LOG) << fit->afm() << " linked";
-                            }
-                        } else {
-                            qCDebug(FONTMATRIX_LOG) << "There is no AFM file attached to " << fit->path();
-                        }
-                    }
-                } else {
-                    qCDebug(FONTMATRIX_LOG) << "\tYet activated";
-                    m_errors[fit->path()] = errorStrings[ALREADY_ACTIVE];
-                }
-
-            } else {
-                remFcReject(fit->path());
+            if (fit->isActivated()) {
+                m_errors[fit->path()] = errorStrings[ALREADY_ACTIVE];
+                continue;
             }
-
+            if (T->isSysFont(fit)) {
+                // hidden until now: shown again once the rejects file is written
+                stack[fit] = true;
+                rejectsChanged = true;
+                continue;
+            }
+            if (forEverybody) {
+                systemCopies << fit;
+                continue;
+            }
+            const QString copy(managed + QLatin1Char('/') + fit->activationName());
+            if (!copyFont(fit->localPath(), copy)) {
+                qCWarning(FONTMATRIX_LOG) << "unable to copy" << fit->localPath() << "to" << copy;
+                m_errors[fit->path()] = errorStrings[NO_COPY];
+                continue;
+            }
+            stack[fit] = true;
+            qCDebug(FONTMATRIX_LOG) << fit->path() << "copied to" << copy;
+            if (!fit->afm().isEmpty() && !copyFont(fit->afm(), managed + QLatin1Char('/') + fit->activationAFMName())) {
+                qCWarning(FONTMATRIX_LOG) << "unable to copy" << fit->afm();
+                m_errors[fit->path()] = errorStrings[MISSING_AFM];
+            }
         } else // Deactivation
         {
-            if (!T->isSysFont(fit)) {
-                if (fit->isActivated()) {
-                    if (!QFile::remove(T->getManagedDir() + "/" + fit->activationName())) {
-                        qCWarning(FONTMATRIX_LOG) << "unable to unlink " << fit->name();
-                        m_errors[fit->path()] = errorStrings[NO_UNLINK];
-                    } else {
-                        stack[fit] = false;
-                        if (!fit->afm().isEmpty()) {
-                            if (!QFile::remove(T->getManagedDir() + "/" + fit->activationAFMName())) {
-                                qCWarning(FONTMATRIX_LOG) << "unable to unlink " << fit->afm();
-                                // if having warnings would not be over done, it would be a warning!
-                                m_errors[fit->afm()] = errorStrings[NO_UNLINK];
-                            }
-                        }
-                    }
-                } else {
-                    m_errors[fit->path()] = errorStrings[ALREADY_UNACTIVE];
-                }
-
-            } else {
-                addFcReject(fit->path());
+            if (!fit->isActivated()) {
+                m_errors[fit->path()] = errorStrings[ALREADY_UNACTIVE];
+                continue;
             }
+            if (T->isSysFont(fit)) {
+                stack[fit] = false;
+                rejectsChanged = true;
+                continue;
+            }
+            const QString copy(managed + QLatin1Char('/') + fit->activationName());
+            if (!QFileInfo::exists(copy) && QFileInfo::exists(FontmatrixSystemFonts::Directory + QLatin1Char('/') + fit->activationName())) {
+                // activated for everybody: only the helper removes it
+                systemRemovals << fit;
+                continue;
+            }
+            if (QFileInfo::exists(copy) && !QFile::remove(copy)) {
+                qCWarning(FONTMATRIX_LOG) << "unable to remove" << copy;
+                m_errors[fit->path()] = errorStrings[NO_UNLINK];
+                continue;
+            }
+            stack[fit] = false;
+            if (!fit->afm().isEmpty()) {
+                const QString afm(managed + QLatin1Char('/') + fit->activationAFMName());
+                if (QFileInfo::exists(afm) && !QFile::remove(afm)) {
+                    qCWarning(FONTMATRIX_LOG) << "unable to remove" << afm;
+                    m_errors[fit->afm()] = errorStrings[NO_UNLINK];
+                }
+            }
+        }
+    }
+
+    if (!systemCopies.isEmpty()) {
+        QVariantMap args;
+        QStringList sources;
+        QStringList names;
+        for (FontItem *fit : std::as_const(systemCopies)) {
+            sources << fit->localPath();
+            names << fit->activationName();
+        }
+        args.insert(QStringLiteral("sources"), sources);
+        args.insert(QStringLiteral("names"), names);
+        QVariantMap reply;
+        QString error;
+        const bool done = runHelper(QStringLiteral("activate"), args, &reply, &error);
+        const QStringList copied(reply.value(QStringLiteral("copied")).toStringList());
+        for (FontItem *fit : std::as_const(systemCopies)) {
+            if (done && copied.contains(fit->activationName()))
+                stack[fit] = true;
+            else
+                m_errors[fit->path()] = errorStrings[done ? NO_COPY : NO_AUTHORIZATION];
+        }
+    }
+    if (!systemRemovals.isEmpty()) {
+        QVariantMap args;
+        QStringList names;
+        for (FontItem *fit : std::as_const(systemRemovals))
+            names << fit->activationName();
+        args.insert(QStringLiteral("names"), names);
+        QVariantMap reply;
+        QString error;
+        const bool done = runHelper(QStringLiteral("deactivate"), args, &reply, &error);
+        const QStringList removed(reply.value(QStringLiteral("removed")).toStringList());
+        for (FontItem *fit : std::as_const(systemRemovals)) {
+            if (done && removed.contains(fit->activationName()))
+                stack[fit] = false;
+            else
+                m_errors[fit->path()] = errorStrings[done ? NO_UNLINK : NO_AUTHORIZATION];
         }
     }
 
@@ -663,127 +868,182 @@ void FMActivate::activate(QList<FontItem *> fitList, bool act)
     }
     FMFontDb::DB()->TransactionEnd();
 
+    if (rejectsChanged) {
+        if (forEverybody) {
+            bool ok = true;
+            writeSystemRejects(&ok);
+            if (!ok) {
+                // the flags went where the file did not: back
+                FMFontDb::DB()->TransactionBegin();
+                for (auto it(stack.constBegin()); it != stack.constEnd(); ++it) {
+                    if (T->isSysFont(it.key())) {
+                        it.key()->setActivated(!it.value());
+                        m_errors[it.key()->path()] = errorStrings[NO_AUTHORIZATION];
+                    }
+                }
+                FMFontDb::DB()->TransactionEnd();
+            }
+        } else {
+            writeRejects();
+        }
+    }
     Q_EMIT activationEvent(aList);
 }
 
-#endif
-
-bool FMActivate::addFcReject([[maybe_unused]] const QString &path)
+void FMActivate::writeRejects()
 {
-#ifdef HAVE_FONTCONFIG
-    QFile fcfile(QDir::homePath() + "/.config/fontconfig/fonts.conf");
-    if (!fcfile.open(QFile::ReadWrite)) {
-        qWarning() << "Cannot open" << fcfile.fileName();
-        return false;
-    } else {
-        QDomDocument fc("fontconfig");
-        fc.setContent(&fcfile);
-        QDomNodeList sellist = fc.elementsByTagName("selectfont");
-        // First we search if there’s yet an entry for path
-        if (!sellist.isEmpty()) {
-            for (int s(0); s < sellist.count(); ++s) {
-                QDomNodeList rejectlist(sellist.at(s).toElement().elementsByTagName("rejectfont"));
-                if (!rejectlist.isEmpty()) {
-                    for (int r(0); r < rejectlist.count(); ++r) {
-                        QDomNodeList globlist(rejectlist.at(r).toElement().elementsByTagName("glob"));
-                        if (!globlist.isEmpty()) {
-                            for (int g(0); g < globlist.count(); ++g) {
-                                QString t(globlist.at(g).toElement().text());
-                                if (t == path) {
-                                    qCDebug(FONTMATRIX_LOG) << "Already here";
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    const QStringList hidden(hiddenSystemFonts());
+    const QString path(FMPaths::FontconfigRejectsFile());
+    if (hidden.isEmpty()) {
+        if (QFileInfo::exists(path) && !QFile::remove(path))
+            qCWarning(FONTMATRIX_LOG) << "cannot remove" << path;
+        return;
+    }
+    const QByteArray content(FontmatrixSystemFonts::rejectsDocument(hidden));
 
-        // Now we can write in the first place available
-        if (!sellist.isEmpty()) {
-            QDomNodeList rejectlist(sellist.at(0).toElement().elementsByTagName("rejectfont"));
-            if (!rejectlist.isEmpty()) {
-                // 				QDomNodeList globlist( rejectlist.at(0).toElement().elementsByTagName("glob") );
-                // 				if(!globlist.isEmpty())
-                // 				{
-                // 					QDomText pathelem = fc.createTextNode( path );
-                // 					globlist.at(0).toElement().appendChild(pathelem);
-                // 				}
-                // 				else
-                // 				{
-                QDomElement globelem = fc.createElement("glob");
-                QDomText pathelem = fc.createTextNode(path);
-                globelem.appendChild(pathelem);
-                rejectlist.at(0).toElement().appendChild(globelem);
-                // 				}
-            } else {
-                QDomElement rejelem = fc.createElement("rejectfont");
-                QDomElement globelem = fc.createElement("glob");
-                QDomText pathelem = fc.createTextNode(path);
-                globelem.appendChild(pathelem);
-                rejelem.appendChild(globelem);
-                sellist.at(0).toElement().appendChild(rejelem);
-            }
-        } else {
-            QDomElement root = fc.documentElement();
-            QDomElement selelem = fc.createElement("selectfont");
-            QDomElement rejelem = fc.createElement("rejectfont");
-            QDomElement globelem = fc.createElement("glob");
-            QDomText pathelem = fc.createTextNode(path);
-            globelem.appendChild(pathelem);
-            rejelem.appendChild(globelem);
-            selelem.appendChild(rejelem);
-            root.appendChild(selelem);
-        }
+    // fontconfig reads its configuration again when a file changes: only when it does
+    QFile old(path);
+    if (old.open(QIODevice::ReadOnly) && old.readAll() == content)
+        return;
+    old.close();
+    QDir().mkpath(QFileInfo(path).absolutePath());
+    QSaveFile file(path);
+    if (!file.open(QIODevice::WriteOnly) || file.write(content) != content.size() || !file.commit())
+        qCWarning(FONTMATRIX_LOG) << "cannot write" << path << ":" << file.errorString();
+    else
+        qCDebug(FONTMATRIX_LOG) << hidden.size() << "system fonts hidden in" << path;
+}
 
-        fcfile.resize(0);
-        QTextStream ts(&fcfile);
-        fc.save(ts, 4);
+void FMActivate::migrateActivated(const QString &oldDir)
+{
+    typotek *T(typotek::getInstance());
+    FMFontDb *db(FMFontDb::DB());
+    const QString managed(T->getManagedDir());
+
+    // the copies, before the links go
+    const QList<FontItem *> fonts(db->AllFonts());
+    for (FontItem *fit : fonts) {
+        if (!fit->isActivated() || T->isSysFont(fit) || fit->activationName().isEmpty())
+            continue;
+        if (!copyFont(fit->localPath(), managed + QLatin1Char('/') + fit->activationName()))
+            qCWarning(FONTMATRIX_LOG) << "migration: unable to copy" << fit->localPath();
+        else if (!fit->afm().isEmpty())
+            copyFont(fit->afm(), managed + QLatin1Char('/') + fit->activationAFMName());
+    }
+    QDir old(oldDir);
+    if (old.exists() && !old.removeRecursively())
+        qCWarning(FONTMATRIX_LOG) << "migration: cannot remove" << oldDir;
+    else
+        qCDebug(FONTMATRIX_LOG) << "migration: the links of" << oldDir << "are copies in" << managed;
+
+    // fonts.conf: the directory entries and the rejectfont globs of the versions before, one last edit
+    QFile fcfile(FMPaths::FontconfigUserFile());
+    if (!fcfile.open(QIODevice::ReadOnly))
+        return;
+    QDomDocument fc;
+    if (!fc.setContent(&fcfile)) {
         fcfile.close();
+        return;
     }
-#endif //  HAVE_FONTCONFIG
-    return true;
-}
-
-bool FMActivate::remFcReject([[maybe_unused]] const QString &path)
-{
-#ifdef HAVE_FONTCONFIG
-    QFile fcfile(QDir::homePath() + "/.config/fontconfig/fonts.conf");
-    if (!fcfile.open(QFile::ReadWrite)) {
-        return false;
-    } else {
-        QDomDocument fc("fontconfig");
-        fc.setContent(&fcfile);
-        QDomNodeList sellist = fc.elementsByTagName("selectfont");
-
-        if (!sellist.isEmpty()) {
-            for (int s(0); s < sellist.count(); ++s) {
-                QDomNodeList rejectlist(sellist.at(s).toElement().elementsByTagName("rejectfont"));
-                if (!rejectlist.isEmpty()) {
-                    for (int r(0); r < rejectlist.count(); ++r) {
-                        QDomNodeList globlist(rejectlist.at(r).toElement().elementsByTagName("glob"));
-                        if (!globlist.isEmpty()) {
-                            for (int g(0); g < globlist.count(); ++g) {
-                                QString t(globlist.at(g).toElement().text());
-                                if (t == path) {
-                                    rejectlist.at(r).removeChild(globlist.at(g).toElement());
-                                    fcfile.resize(0);
-                                    QTextStream ts(&fcfile);
-                                    fc.save(ts, 4);
-                                    fcfile.close();
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+    fcfile.close();
+    bool changed = false;
+    QList<QDomElement> gone;
+    const QDomNodeList dirs = fc.elementsByTagName(QStringLiteral("dir"));
+    for (int i = 0; i < dirs.count(); ++i) {
+        const QDomElement dir = dirs.at(i).toElement();
+        const QString text(dir.text().trimmed());
+        if (text.endsWith(QLatin1String("/Activated"))
+            && (text.contains(QLatin1String("/Fontmatrix/")) || text.contains(QLatin1String("/.Fontmatrix/"))
+                || text.contains(QLatin1String("/Undertype/fontmatrix/"))))
+            gone << dir;
+    }
+    QStringList nowHidden;
+    const QDomNodeList globs = fc.elementsByTagName(QStringLiteral("glob"));
+    for (int i = 0; i < globs.count(); ++i) {
+        const QDomElement glob = globs.at(i).toElement();
+        if (glob.parentNode().nodeName() != QLatin1String("rejectfont"))
+            continue;
+        const QString text(glob.text().trimmed());
+        // a glob on the very file of a system font is one of ours
+        if (T->isSysFont(db->Knows(text) ? db->Font(text) : nullptr)) {
+            nowHidden << text;
+            gone << glob;
         }
     }
-#endif //  HAVE_FONTCONFIG
-    return true;
+    for (QDomElement &element : gone) {
+        QDomNode parent = element.parentNode();
+        parent.removeChild(element);
+        changed = true;
+        // a rejectfont or selectfont left with nothing in it goes too
+        while (!parent.isNull() && parent.isElement() && !parent.hasChildNodes()
+               && (parent.nodeName() == QLatin1String("rejectfont") || parent.nodeName() == QLatin1String("selectfont"))) {
+            QDomNode above = parent.parentNode();
+            above.removeChild(parent);
+            parent = above;
+        }
+    }
+    if (!nowHidden.isEmpty()) {
+        db->TransactionBegin();
+        for (const QString &path : std::as_const(nowHidden))
+            db->Font(path)->setActivated(false);
+        db->TransactionEnd();
+    }
+    if (changed) {
+        QSaveFile out(fcfile.fileName());
+        if (out.open(QIODevice::WriteOnly)) {
+            QTextStream ts(&out);
+            fc.save(ts, 4);
+            ts.flush();
+            if (!out.commit())
+                qCWarning(FONTMATRIX_LOG) << "migration: cannot write" << out.fileName();
+            else
+                qCDebug(FONTMATRIX_LOG) << "migration:" << gone.size() << "entries of" << out.fileName() << "removed";
+        }
+    }
 }
+
+void FMActivate::reconcileActivated()
+{
+    typotek *T(typotek::getInstance());
+    const QString managed(T->getManagedDir());
+    QSet<QString> belongs;
+    QHash<FontItem *, bool> stack;
+    const QList<FontItem *> fonts(FMFontDb::DB()->AllFonts());
+    for (FontItem *fit : fonts) {
+        if (T->isSysFont(fit) || !fit->isActivated())
+            continue;
+        const QString name(fit->activationName());
+        if (name.isEmpty() || copyOf(fit).isEmpty()) {
+            qCDebug(FONTMATRIX_LOG) << fit->path() << "has no copy any more";
+            stack[fit] = false;
+            continue;
+        }
+        belongs << name;
+        if (!fit->afm().isEmpty())
+            belongs << fit->activationAFMName();
+    }
+    if (!stack.isEmpty()) {
+        FMFontDb::DB()->TransactionBegin();
+        for (auto it(stack.constBegin()); it != stack.constEnd(); ++it)
+            it.key()->setActivated(it.value());
+        FMFontDb::DB()->TransactionEnd();
+    }
+
+    // the folder is Fontmatrix's alone: what belongs to no active font is a leftover
+    const QFileInfoList files(QDir(managed).entryInfoList(QDir::Files | QDir::System | QDir::Hidden));
+    for (const QFileInfo &fi : files) {
+        if (!belongs.contains(fi.fileName())) {
+            if (QFile::remove(fi.absoluteFilePath()))
+                qCDebug(FONTMATRIX_LOG) << "removed the leftover" << fi.absoluteFilePath();
+        }
+    }
+
+    // the rejects of everybody are written when a font is switched: not at every start, not for a password
+    if (!systemScope())
+        writeRejects();
+}
+
+#endif
 
 QMap<QString, QString> FMActivate::errors()
 {

@@ -42,7 +42,6 @@
 #include <QCloseEvent>
 #include <QDir>
 #include <QDockWidget>
-#include <QDomDocument>
 #include <QFileDialog>
 #include <QMenuBar>
 #include <QMimeData>
@@ -356,19 +355,18 @@ void typotek::slotQuit()
 }
 
 /**
- * Whether the path is in the folder Fontmatrix activates fonts into. On Windows
- * that is the user's font folder, and what it holds is either an activated
- * copy of a font already in the database or a font installed in Settings,
- * neither of which is imported. Elsewhere the folder only ever holds links.
+ * Whether the path is in the folder Fontmatrix activates fonts into. What it
+ * holds is a copy of a font the database has already (on Windows and macOS,
+ * also fonts the user installed there), so nothing in it is imported.
  */
-bool typotek::isInUserFontFolder([[maybe_unused]] const QString &path) const
+bool typotek::isInUserFontFolder(const QString &path) const
 {
-#ifdef _WIN32
     const QString folder(managedDir.absolutePath() + QLatin1Char('/'));
     const QString p(QDir::cleanPath(path) + QLatin1Char('/'));
+#ifdef _WIN32
     return p.startsWith(folder, Qt::CaseInsensitive);
 #else
-    return false;
+    return p.startsWith(folder);
 #endif
 }
 
@@ -1102,7 +1100,8 @@ void typotek::checkOwnDir()
 
     ownDir.setPath(newDataPath);
     configDir.setPath(newConfigPath);
-    managedDir.setPath(newDataPath + sep + "Activated");
+    // where fontconfig, Flatpak and GNOME all look by themselves
+    managedDir.setPath(FMPaths::UserFontsDir());
 
     QDir().mkpath(newDataPath);
     QDir().mkpath(newConfigPath);
@@ -1155,50 +1154,13 @@ void typotek::checkOwnDir()
     }
 
     if (!managedDir.exists())
-        managedDir.mkpath(newDataPath + sep + "Activated");
+        managedDir.mkpath(managedDir.absolutePath());
+
+    // the links of the versions before: FMActivate::migrateActivated() moves them once the database is up
+    if (QDir(newDataPath + sep + "Activated").exists())
+        m_oldActivatedDir = newDataPath + sep + "Activated";
 
     ResourceFile.setFileName(newConfigPath + sep + "Resource.xml");
-    addFcDirItem(managedDir.absolutePath());
-#endif
-}
-
-void typotek::addFcDirItem([[maybe_unused]] const QString &dirPath)
-{
-#ifdef HAVE_FONTCONFIG
-    QFile fcfile(QDir::homePath() + "/.config/fontconfig/fonts.conf");
-    if (!fcfile.open(QFile::ReadWrite)) {
-        return;
-    } else {
-        QDomDocument fc("fontconfig");
-
-        // .fonts.conf is empty, it seems that we just created it.
-        // Wed have to populate it a bit
-        if (fcfile.size() == 0) {
-            QString ds("<?xml version='1.0'?><!DOCTYPE fontconfig SYSTEM 'fonts.dtd'><fontconfig></fontconfig>");
-            fc.setContent(ds);
-        } else {
-            fc.setContent(&fcfile);
-        }
-
-        bool isconfigured = false;
-        QDomNodeList dirlist = fc.elementsByTagName("dir");
-        for (int i = 0; i < dirlist.count(); ++i) {
-            if (dirlist.at(i).toElement().text() == dirPath)
-                isconfigured = true;
-        }
-        if (!isconfigured) {
-            QDomElement root = fc.documentElement();
-            QDomElement direlem = fc.createElement("dir");
-            QDomText textelem = fc.createTextNode(dirPath);
-            direlem.appendChild(textelem);
-            root.appendChild(direlem);
-            fcfile.resize(0);
-
-            QTextStream ts(&fcfile);
-            fc.save(ts, 4);
-        }
-        fcfile.close();
-    }
 #endif
 }
 
@@ -1211,9 +1173,7 @@ QStringList typotek::getSystemFontDirs()
     FcStrList *sysDirList = FcConfigGetFontDirs(nullptr);
     QString sysDir((char *)FcStrListNext(sysDirList));
     while (!sysDir.isEmpty()) {
-        if (!sysDir.contains("Fontmatrix")) {
-            tmpList << sysDir;
-        }
+        tmpList << sysDir;
         sysDir = ((char *)FcStrListNext(sysDirList));
     }
     // Because we will go recursivly through these directories, we just want to list the top most ones.
@@ -1280,6 +1240,9 @@ void typotek::initDir()
             QStringList filters;
             filters << "*.otf" << "*.pfb" << "*.ttf" << "*.ttc";
             for (const auto &dr : std::as_const(dirList)) {
+                // our own copies live under a fontconfig directory
+                if (isInUserFontFolder(dr))
+                    continue;
                 QDir d(dr);
                 QFileInfoList fil = d.entryInfoList(filters);
                 for (const auto &fp : std::as_const(fil)) {
@@ -1330,6 +1293,13 @@ void typotek::initDir()
     // fonts removed in Settings > Fonts since the last run, and copies that were in use at deactivation
     relayStartingStepIn(i18nc("@info:progress", "Checking the activated fonts"));
     FMActivate::getInstance()->reconcileUserFonts();
+#elif !defined(PLATFORM_APPLE)
+    relayStartingStepIn(i18nc("@info:progress", "Checking the activated fonts"));
+    if (!m_oldActivatedDir.isEmpty()) {
+        FMActivate::getInstance()->migrateActivated(m_oldActivatedDir);
+        m_oldActivatedDir.clear();
+    }
+    FMActivate::getInstance()->reconcileActivated();
 #endif
 
     // 	qDebug()<<"TIME(fonts) : "<<fontsTime.elapsed();

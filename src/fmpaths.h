@@ -44,5 +44,16 @@ public:
      * there is none.
      */
     static QString HyphenationDictionary(const QLocale &locale = QLocale::system());
+
+    /**
+     * Linux: the directory the activated fonts are copied into,
+     * ~/.local/share/fonts/fontmatrix. Fontconfig scans it by itself, Flatpak
+     * gives every sandbox ~/.local/share/fonts, GNOME watches it.
+     */
+    static QString UserFontsDir();
+    /// Linux: the fontconfig file that hides the system fonts switched off, in ~/.config/fontconfig/conf.d
+    static QString FontconfigRejectsFile();
+    /// Linux: the user's own fontconfig file, ~/.config/fontconfig/fonts.conf, which older versions edited
+    static QString FontconfigUserFile();
 };
 #endif

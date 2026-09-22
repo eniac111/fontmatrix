@@ -44,6 +44,9 @@
         {
             "name": "fontmatrix",
             "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_DISABLE_FIND_PACKAGE_KF6Auth=ON"
+            ],
             "sources": [
                 {
                     "type": "dir",
