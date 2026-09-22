@@ -167,8 +167,9 @@ set_package_properties(HarfBuzz PROPERTIES
 
 #<< FreeType2
 # We give a try to the built-in cmake Freetype.cmake
-# 2.9: variable fonts (FT_Get_MM_Var on OpenType, FT_Get_Var_Axis_Flags)
-FIND_PACKAGE(Freetype 2.9 REQUIRED)
+# 2.10: variable fonts (FT_Get_MM_Var on OpenType, FT_Get_Var_Axis_Flags) and
+# colour fonts (FT_LOAD_COLOR rendering the layers of COLR, FT_Get_Color_Glyph_Layer)
+FIND_PACKAGE(Freetype 2.10 REQUIRED)
 IF (FREETYPE_FOUND)
   MESSAGE(STATUS "FreeType2 Library Found OK")
 ELSE (FREETYPE_FOUND)

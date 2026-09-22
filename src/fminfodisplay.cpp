@@ -211,6 +211,10 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem *font)
     ret += modelItem.arg(i18nc("@label", "File"), font->path().replace("/", "/&shy;"));
     ret += modelItem.arg(i18nc("@label", "Glyphs count"), QString::number(font->glyphsCount()));
     ret += modelItem.arg(i18nc("@label", "Font Type"), fontType);
+    if (font->hasColor()) {
+        // CBDT and sbix hold bitmaps, COLR layers of outlines with the colours of CPAL, SVG documents
+        ret += modelItem.arg(i18nc("@label the tables a colour font has its colours in", "Color"), font->colorTables().join(QLatin1String(", ")));
+    }
 
     QStringList cmapStrings;
     for (const auto charsets = font->getCharsets(); const auto &c : charsets) {
