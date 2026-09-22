@@ -14,7 +14,7 @@
         "--own-name=fontmatrix.io.fontmatrix",
         "--filesystem=xdg-data/fonts",
         "--filesystem=xdg-config/fontconfig",
-        "--filesystem=home:ro"
+        "--filesystem=home"
     ],
     "cleanup": [
         "/share/man"

@@ -16,6 +16,7 @@
 #include "typotek.h"
 
 #include <KLocalizedString>
+#include <KMessageBox>
 #include <QDebug>
 #include <QElapsedTimer>
 #include <QFile>
@@ -91,7 +92,20 @@ void FontBook::doBook(FontBook::Style s)
         return;
 
     printer->setFullPage(true);
-    painter = new QPainter(printer);
+    painter = new QPainter;
+    if (!painter->begin(printer)) {
+        // A file the program is not allowed to write: in a sandbox, a path the
+        // desktop did not grant. Qt says so on the console alone, and leaves an
+        // empty file where the book was meant to be.
+        KMessageBox::error(typotek::getInstance(),
+                           xi18nc("@info", "The font book could not be written to <filename>%1</filename>.", printer->outputFileName()),
+                           i18nc("@title:window", "Font Book Not Written"));
+        delete painter;
+        painter = nullptr;
+        delete printer;
+        printer = nullptr;
+        return;
+    }
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setRenderHint(QPainter::TextAntialiasing, true);
 
