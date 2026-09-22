@@ -1,6 +1,6 @@
 # Fontmatrix src/CMakeLists.txt v1
 
-set(QT_LIBRARIES Qt6::Core Qt6::Widgets Qt6::Svg Qt6::SvgWidgets Qt6::Sql Qt6::Xml Qt6::PrintSupport Qt6::Network)
+set(QT_LIBRARIES Qt6::Core Qt6::Widgets Qt6::Svg Qt6::SvgWidgets Qt6::Sql Qt6::Xml Qt6::PrintSupport Qt6::Network Qt6::DBus)
 
 set(fontmatrix_SRCS
 ${CMAKE_CURRENT_SOURCE_DIR}/activationwidget.cpp
@@ -56,6 +56,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmcolorglyphitem.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmcolorpainter.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmconfig.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmpaths.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmportal.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmplayground.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmpreviewlist.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmrepair.cpp
@@ -470,6 +471,7 @@ set_source_files_properties(
 	fmotf.cpp
 	fmpaths.cpp
 	fmpdffontextractor.cpp
+	fmportal.cpp
 	fmplayground.cpp
 	fmshaper.cpp
 	fmshaper_own.cpp

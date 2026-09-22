@@ -371,6 +371,21 @@ once. Fonts installed for all users cannot be changed.</para>
 </sect2>
 </sect1>
 
+<sect1 id="management-editing">
+<title>Editing a font</title>
+<para><menuchoice><guimenu>Edit</guimenu><guimenuitem>Edit current
+font</guimenuitem></menuchoice> opens the selected font — or the one
+highlighted in the list — in the font editor named in
+<guilabel>Settings</guilabel> &gt; <guilabel>Configure
+Fontmatrix</guilabel> &gt; <guilabel>Tools</guilabel>.</para>
+<para>Where that editor cannot be reached — inside a Flatpak, where no
+program of the system is the application's to start, or simply when no
+editor is configured — the font file is handed to the desktop instead,
+which asks which application should open it and gives that application
+the right to write the file, so that an editor can save its
+changes.</para>
+</sect1>
+
 <sect1 id="management-tags">
 <title>Using tags</title>
 

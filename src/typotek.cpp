@@ -19,6 +19,7 @@
 #include "fmlayout.h"
 #include "fmmatchraster.h"
 #include "fmpaths.h"
+#include "fmportal.h"
 #include "fmrepair.h"
 #include "fontbook.h"
 #include "fontcomparewidget.h"
@@ -693,13 +694,7 @@ void typotek::createActions()
     fonteditorAct = new QAction(i18nc("@action:inmenu", "Edit current font"), this);
     scuts->add(fonteditorAct);
     connect(fonteditorAct, &QAction::triggered, this, &typotek::slotEditFont);
-    if (QFile::exists(fonteditorPath)) {
-        fonteditorAct->setStatusTip(i18nc("@info:status", "Edit currently selected font in a font editor of your choice"));
-    } else {
-        fonteditorAct->setEnabled(false);
-        fonteditorAct->setStatusTip(
-            i18nc("@info:status", "You don't seem to have a font editor installed. Path to font editor can be set in Preferences dialog."));
-    }
+    updateFontEditorAction();
 
     reloadAct = new QAction(i18nc("@action:inmenu", "Reload Filtered"), this);
     reloadAct->setStatusTip(i18nc("@info:status", "Reload informations for filtered fonts from the font files they belong to"));
@@ -1442,14 +1437,28 @@ void typotek::toggleShowMenuBar(bool showMessage)
 
 void typotek::slotEditFont()
 {
-    FontItem *item = theMainView->selectedFont();
-    if (!item) {
-        statusBar()->showMessage(i18nc("@info:status", "There is no font selected"), 3000);
+    // a tile highlighted in the list counts as the font to edit, as it does elsewhere
+    FontItem *item = fontForAction();
+    if (!item)
+        return;
+
+    // a remote font is edited in its downloaded copy, like everything else that opens it
+    const QString path(item->localPath());
+    if (path.isEmpty()) {
+        statusBar()->showMessage(i18nc("@info:status", "This font has not been downloaded yet"), 3000);
+        return;
+    }
+
+    if (fontEditorIsDesktop()) {
+        // the desktop is asked which application should open the file, and it is
+        // given the right to write it, so that an editor can save what it changes
+        if (!FMPortal::openWith(path, this))
+            statusBar()->showMessage(i18nc("@info:status", "The desktop could not be asked to open this font"), 3000);
         return;
     }
 
     QStringList arguments;
-    arguments << "-nosplash" << item->path();
+    arguments << "-nosplash" << path;
 
     auto myProcess = new QProcess(this);
     myProcess->start(fonteditorPath, arguments);
@@ -1730,14 +1739,32 @@ void typotek::setPreviewSubtitled(bool d)
 void typotek::setFontEditorPath(const QString &path)
 {
     fonteditorPath = path;
-    if (QFile::exists(fonteditorPath)) {
+    updateFontEditorAction();
+    FMConfig::setValue(QStringLiteral("FontEditor"), fonteditorPath);
+}
+
+bool typotek::fontEditorIsDesktop() const
+{
+    // in a sandbox no program of the system is ours to run, and without an editor
+    // of its own the desktop still knows what can open a font
+    return (KSandbox::isInside() || !QFile::exists(fonteditorPath)) && FMPortal::isAvailable();
+}
+
+void typotek::updateFontEditorAction()
+{
+    if (!fonteditorAct)
+        return;
+    if (fontEditorIsDesktop()) {
         fonteditorAct->setEnabled(true);
-        fonteditorAct->setStatusTip(i18nc("@info:status", "Try to run font editor with the selected font as argument"));
+        fonteditorAct->setStatusTip(i18nc("@info:status", "Open the selected font in the application the desktop asks you to choose"));
+    } else if (QFile::exists(fonteditorPath)) {
+        fonteditorAct->setEnabled(true);
+        fonteditorAct->setStatusTip(i18nc("@info:status", "Edit currently selected font in a font editor of your choice"));
     } else {
         fonteditorAct->setEnabled(false);
-        fonteditorAct->setStatusTip(i18nc("@info:status", "You don't seem to have font editor installed. Path to font editor can be set in preferences."));
+        fonteditorAct->setStatusTip(
+            i18nc("@info:status", "You don't seem to have a font editor installed. Path to font editor can be set in Preferences dialog."));
     }
-    FMConfig::setValue(QStringLiteral("FontEditor"), fonteditorPath);
 }
 
 void typotek::slotUseInitialTags(bool isEnabled)

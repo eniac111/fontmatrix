@@ -284,6 +284,10 @@ public:
     QString defaultSampleName();
 
     void setFontEditorPath(const QString &path);
+    /// the menu entry follows the editor that is reachable: the configured one, or the desktop's choice
+    void updateFontEditorAction();
+    /// whether the font is handed to the desktop rather than to the configured editor
+    [[nodiscard]] bool fontEditorIsDesktop() const;
     QString fontEditorPath()
     {
         return fonteditorPath;

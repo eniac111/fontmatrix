@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/eniac111/fontmatrix/issues\n"
-"POT-Creation-Date: 2026-09-22 21:44+0300\n"
+"POT-Creation-Date: 2026-09-22 23:46+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,8 +37,8 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QPushButton, closeButton)
 #. i18n: file: src/tagset.ui:231
 #. i18n: ectx: property (text), widget (QPushButton, closeButton)
-#: rc.cpp:9 rc.cpp:243 rc.cpp:288 rc.cpp:489 rc.cpp:660 rc.cpp:785
-#: src/typotek.cpp:2136
+#: rc.cpp:9 rc.cpp:243 rc.cpp:288 rc.cpp:489 rc.cpp:663 rc.cpp:788
+#: src/typotek.cpp:2163
 #, kde-format
 msgctxt "@action:button"
 msgid "Close"
@@ -115,13 +115,13 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QPushButton, fileNameButton)
 #. i18n: file: src/dumpdialog.ui:48
 #. i18n: ectx: property (text), widget (QPushButton, browseButton)
-#. i18n: file: src/prefs_panel.ui:451
+#. i18n: file: src/prefs_panel.ui:453
 #. i18n: ectx: property (text), widget (QPushButton, fontEditorBrowse)
-#. i18n: file: src/prefs_panel.ui:489
+#. i18n: file: src/prefs_panel.ui:503
 #. i18n: ectx: property (text), widget (QToolButton, dictButton)
-#. i18n: file: src/prefs_panel.ui:713
+#. i18n: file: src/prefs_panel.ui:727
 #. i18n: ectx: property (text), widget (QPushButton, templatesDirBrowse)
-#: rc.cpp:36 rc.cpp:128 rc.cpp:585 rc.cpp:597 rc.cpp:615
+#: rc.cpp:36 rc.cpp:128 rc.cpp:585 rc.cpp:600 rc.cpp:618
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Browse..."
@@ -139,7 +139,7 @@ msgstr "Font Info"
 
 #. i18n: file: src/browserwidget.ui:76
 #. i18n: ectx: property (text), widget (QPushButton, importButton)
-#: rc.cpp:42 src/typotek.cpp:450
+#: rc.cpp:42 src/typotek.cpp:451
 #, fuzzy, kde-format
 #| msgid "&Import..."
 msgctxt "@action:button"
@@ -249,13 +249,13 @@ msgstr "Font size"
 #. i18n: ectx: property (text), widget (QPushButton, addButton)
 #. i18n: file: src/importtags.ui:45
 #. i18n: ectx: property (text), widget (QPushButton, tagNewButton)
-#. i18n: file: src/prefs_panel.ui:762
+#. i18n: file: src/prefs_panel.ui:776
 #. i18n: ectx: property (text), widget (QPushButton, remoteDirAdd)
 #. i18n: file: src/samplewidget.ui:274
 #. i18n: ectx: property (text), widget (QPushButton, addSampleButton)
 #. i18n: file: src/tagset.ui:118
 #. i18n: ectx: property (text), widget (QPushButton, addToSetButton)
-#: rc.cpp:80 rc.cpp:237 rc.cpp:330 rc.cpp:624 rc.cpp:752 rc.cpp:770
+#: rc.cpp:80 rc.cpp:237 rc.cpp:330 rc.cpp:627 rc.cpp:755 rc.cpp:773
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Add"
@@ -265,9 +265,9 @@ msgstr "Add"
 #. i18n: ectx: property (text), widget (QPushButton, compareRemove)
 #. i18n: file: src/filtersdialogitem.ui:114
 #. i18n: ectx: property (text), widget (QToolButton, removeButton)
-#. i18n: file: src/prefs_panel.ui:769
+#. i18n: file: src/prefs_panel.ui:783
 #. i18n: ectx: property (text), widget (QPushButton, remoteDirRemove)
-#. i18n: file: src/prefs_panel.ui:846
+#. i18n: file: src/prefs_panel.ui:860
 #. i18n: ectx: property (text), widget (QToolButton, clearButton)
 #. i18n: file: src/repair.ui:83
 #. i18n: ectx: property (text), widget (QPushButton, removeDead)
@@ -277,8 +277,8 @@ msgstr "Add"
 #. i18n: ectx: property (text), widget (QPushButton, removeSampleButton)
 #. i18n: file: src/tagset.ui:187
 #. i18n: ectx: property (text), widget (QPushButton, removeToSetButton)
-#: rc.cpp:83 rc.cpp:222 rc.cpp:627 rc.cpp:648 rc.cpp:669 rc.cpp:702 rc.cpp:755
-#: rc.cpp:782
+#: rc.cpp:83 rc.cpp:222 rc.cpp:630 rc.cpp:651 rc.cpp:672 rc.cpp:705 rc.cpp:758
+#: rc.cpp:785
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Remove"
@@ -372,7 +372,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
 #. i18n: file: src/progressbarduo.ui:61
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
-#: rc.cpp:116 rc.cpp:450 rc.cpp:654
+#: rc.cpp:116 rc.cpp:450 rc.cpp:657
 #, kde-format
 msgctxt "@action:button"
 msgid "Cancel"
@@ -1001,9 +1001,9 @@ msgstr ""
 
 #. i18n: file: src/mainview.ui:188
 #. i18n: ectx: property (text), widget (QPushButton, saveButton)
-#. i18n: file: src/prefs_panel.ui:653
+#. i18n: file: src/prefs_panel.ui:667
 #. i18n: ectx: property (text), widget (QPushButton, commitSample)
-#: rc.cpp:387 rc.cpp:609
+#: rc.cpp:387 rc.cpp:612
 #, fuzzy, kde-format
 #| msgid "&Save"
 msgctxt "@action:button"
@@ -1243,7 +1243,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #. i18n: file: src/sampletoolbar.ui:20
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:480 rc.cpp:567 rc.cpp:705
+#: rc.cpp:480 rc.cpp:567 rc.cpp:708
 #, fuzzy, kde-format
 msgctxt "@label"
 msgid "Font Size:"
@@ -1479,7 +1479,7 @@ msgctxt "@title:group"
 msgid "Fonts Editor"
 msgstr "Font Editor"
 
-#. i18n: file: src/prefs_panel.ui:441
+#. i18n: file: src/prefs_panel.ui:443
 #. i18n: ectx: property (toolTip), widget (QLineEdit, fontEditorPath)
 #: rc.cpp:582
 #, kde-format
@@ -1487,75 +1487,86 @@ msgctxt "@info:tooltip"
 msgid "Add the full path to your preferred font editor"
 msgstr ""
 
-#. i18n: file: src/prefs_panel.ui:474
-#. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_8)
+#. i18n: file: src/prefs_panel.ui:475
+#. i18n: ectx: property (text), widget (QLabel, fontEditorNote)
 #: rc.cpp:588
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Fontmatrix is running in a sandbox and cannot start a program of the system. "
+"<interface>Edit current font</interface> hands the font file to the desktop, "
+"which asks you which application should open it."
+msgstr ""
+
+#. i18n: file: src/prefs_panel.ui:488
+#. i18n: ectx: property (toolTip), widget (QGroupBox, groupBox_8)
+#: rc.cpp:591
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Select an  hyphenation dict file as it comes with OpenOffice or Scribus"
 msgstr ""
 
-#. i18n: file: src/prefs_panel.ui:477
+#. i18n: file: src/prefs_panel.ui:491
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_8)
-#: rc.cpp:591
+#: rc.cpp:594
 #, fuzzy, kde-format
 #| msgid "Select font editor"
 msgctxt "@title:group"
 msgid "Hyphenation dictionary"
 msgstr "Select font editor"
 
-#. i18n: file: src/prefs_panel.ui:486
+#. i18n: file: src/prefs_panel.ui:500
 #. i18n: ectx: property (toolTip), widget (QToolButton, dictButton)
-#: rc.cpp:594
+#: rc.cpp:597
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Browse"
 msgstr "Browse..."
 
-#. i18n: file: src/prefs_panel.ui:509
+#. i18n: file: src/prefs_panel.ui:523
 #. i18n: ectx: property (text), widget (QLabel, label_5)
-#: rc.cpp:600
+#: rc.cpp:603
 #, kde-format
 msgctxt "@label"
 msgid "Left:"
 msgstr ""
 
-#. i18n: file: src/prefs_panel.ui:522
+#. i18n: file: src/prefs_panel.ui:536
 #. i18n: ectx: property (text), widget (QLabel, label_6)
-#: rc.cpp:603
+#: rc.cpp:606
 #, kde-format
 msgctxt "@label"
 msgid "Right:"
 msgstr ""
 
-#. i18n: file: src/prefs_panel.ui:564
+#. i18n: file: src/prefs_panel.ui:578
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: rc.cpp:606
+#: rc.cpp:609
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Sample Texts"
 msgstr "Sample Text"
 
-#. i18n: file: src/prefs_panel.ui:697
+#. i18n: file: src/prefs_panel.ui:711
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
-#: rc.cpp:612
+#: rc.cpp:615
 #, kde-format
 msgctxt "@title:group"
 msgid "Templates Folder"
 msgstr ""
 
-#. i18n: file: src/prefs_panel.ui:736
+#. i18n: file: src/prefs_panel.ui:750
 #. i18n: ectx: property (title), widget (QGroupBox, remoteDirsBox)
-#: rc.cpp:618
+#: rc.cpp:621
 #, fuzzy, kde-format
 #| msgid "Import a directory"
 msgctxt "@title:group"
 msgid "Remote Directories"
 msgstr "Import a directory"
 
-#. i18n: file: src/prefs_panel.ui:739
+#. i18n: file: src/prefs_panel.ui:753
 #. i18n: ectx: property (toolTip), widget (QGroupBox, remoteDirsBox)
-#: rc.cpp:621
+#: rc.cpp:624
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -1564,9 +1575,9 @@ msgid ""
 "or activated."
 msgstr ""
 
-#. i18n: file: src/prefs_panel.ui:776
+#. i18n: file: src/prefs_panel.ui:790
 #. i18n: ectx: property (text), widget (QLabel, remoteDirsNote)
-#: rc.cpp:630
+#: rc.cpp:633
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1574,25 +1585,25 @@ msgid ""
 "Fonts already listed stay after the directory is removed."
 msgstr ""
 
-#. i18n: file: src/prefs_panel.ui:789
+#. i18n: file: src/prefs_panel.ui:803
 #. i18n: ectx: property (title), widget (QGroupBox, activationScopeBox)
-#: rc.cpp:633
+#: rc.cpp:636
 #, fuzzy, kde-format
 msgctxt "@title:group"
 msgid "Activation"
 msgstr "Action"
 
-#. i18n: file: src/prefs_panel.ui:795
+#. i18n: file: src/prefs_panel.ui:809
 #. i18n: ectx: property (text), widget (QCheckBox, systemWideCheck)
-#: rc.cpp:636
+#: rc.cpp:639
 #, kde-format
 msgctxt "@option:check"
 msgid "Activate fonts for all users of this computer"
 msgstr ""
 
-#. i18n: file: src/prefs_panel.ui:798
+#. i18n: file: src/prefs_panel.ui:812
 #. i18n: ectx: property (toolTip), widget (QCheckBox, systemWideCheck)
-#: rc.cpp:639
+#: rc.cpp:642
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -1600,9 +1611,9 @@ msgid ""
 "share/fonts/fontmatrix and the hidden system fonts are hidden from everybody."
 msgstr ""
 
-#. i18n: file: src/prefs_panel.ui:805
+#. i18n: file: src/prefs_panel.ui:819
 #. i18n: ectx: property (text), widget (QLabel, systemWideNote)
-#: rc.cpp:642
+#: rc.cpp:645
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -1610,9 +1621,9 @@ msgid ""
 "or in the folder of the system."
 msgstr ""
 
-#. i18n: file: src/prefs_panel.ui:830
+#. i18n: file: src/prefs_panel.ui:844
 #. i18n: ectx: property (text), widget (QToolButton, changeButton)
-#: rc.cpp:645
+#: rc.cpp:648
 #, kde-format
 msgctxt "@action:button"
 msgid "Change"
@@ -1620,7 +1631,7 @@ msgstr ""
 
 #. i18n: file: src/progressbarduo.ui:14
 #. i18n: ectx: property (windowTitle), widget (QDialog, ProgressBarDuo)
-#: rc.cpp:651
+#: rc.cpp:654
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Exporting Font Book"
@@ -1628,7 +1639,7 @@ msgstr "Export Font Book"
 
 #. i18n: file: src/repair.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, repairDialog)
-#: rc.cpp:657
+#: rc.cpp:660
 #, kde-format
 msgctxt "@title:window"
 msgid "Database repair"
@@ -1636,7 +1647,7 @@ msgstr ""
 
 #. i18n: file: src/repair.ui:47
 #. i18n: ectx: attribute (title), widget (QWidget, tab)
-#: rc.cpp:663
+#: rc.cpp:666
 #, kde-format
 msgctxt "@title:tab"
 msgid "Dead links"
@@ -1650,7 +1661,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QPushButton, selectAllDeactLink)
 #. i18n: file: src/repair.ui:202
 #. i18n: ectx: property (text), widget (QPushButton, selectAllUnreferenced)
-#: rc.cpp:666 rc.cpp:675 rc.cpp:687 rc.cpp:699
+#: rc.cpp:669 rc.cpp:678 rc.cpp:690 rc.cpp:702
 #, fuzzy, kde-format
 #| msgid "Select font editor"
 msgctxt "@action:button"
@@ -1659,7 +1670,7 @@ msgstr "Select font editor"
 
 #. i18n: file: src/repair.ui:91
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
-#: rc.cpp:672
+#: rc.cpp:675
 #, fuzzy, kde-format
 msgctxt "@title:tab"
 msgid "Activated Not Linked"
@@ -1667,7 +1678,7 @@ msgstr "Activate all currents"
 
 #. i18n: file: src/repair.ui:127
 #. i18n: ectx: property (text), widget (QPushButton, relinkActNot)
-#: rc.cpp:678
+#: rc.cpp:681
 #, kde-format
 msgctxt "@action:button"
 msgid "Re-link"
@@ -1675,7 +1686,7 @@ msgstr ""
 
 #. i18n: file: src/repair.ui:134
 #. i18n: ectx: property (text), widget (QPushButton, deactActNot)
-#: rc.cpp:681 src/typotek.cpp:1418
+#: rc.cpp:684 src/typotek.cpp:1413
 #, fuzzy, kde-format
 #| msgid "&Deactivate all"
 msgctxt "@action:button"
@@ -1684,7 +1695,7 @@ msgstr "&Deactivate all"
 
 #. i18n: file: src/repair.ui:142
 #. i18n: ectx: attribute (title), widget (QWidget, tab_3)
-#: rc.cpp:684
+#: rc.cpp:687
 #, fuzzy, kde-format
 #| msgid "&Deactivate all"
 msgctxt "@title:tab"
@@ -1693,7 +1704,7 @@ msgstr "&Deactivate all"
 
 #. i18n: file: src/repair.ui:178
 #. i18n: ectx: property (text), widget (QPushButton, delinkDeactLink)
-#: rc.cpp:690
+#: rc.cpp:693
 #, kde-format
 msgctxt "@action:button"
 msgid "De-link"
@@ -1701,7 +1712,7 @@ msgstr ""
 
 #. i18n: file: src/repair.ui:185
 #. i18n: ectx: property (text), widget (QPushButton, activateDeactLink)
-#: rc.cpp:693 src/fmfloatingpreview.cpp:55 src/typotek.cpp:1405
+#: rc.cpp:696 src/fmfloatingpreview.cpp:55 src/typotek.cpp:1400
 #, fuzzy, kde-format
 #| msgid "&Activate all"
 msgctxt "@action:button"
@@ -1710,7 +1721,7 @@ msgstr "&Activate all"
 
 #. i18n: file: src/repair.ui:193
 #. i18n: ectx: attribute (title), widget (QWidget, tab_4)
-#: rc.cpp:696
+#: rc.cpp:699
 #, fuzzy, kde-format
 #| msgid "Preferences"
 msgctxt "@title:tab"
@@ -1719,7 +1730,7 @@ msgstr "Preferences"
 
 #. i18n: file: src/sampletoolbar.ui:37
 #. i18n: ectx: property (text), widget (QToolButton, sampleButton)
-#: rc.cpp:708
+#: rc.cpp:711
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Samples"
@@ -1727,7 +1738,7 @@ msgstr "Sample text"
 
 #. i18n: file: src/sampletoolbar.ui:56
 #. i18n: ectx: property (text), widget (QToolButton, opentypeButton)
-#: rc.cpp:711
+#: rc.cpp:714
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "OpenType"
@@ -1735,7 +1746,7 @@ msgstr "OpenType Features"
 
 #. i18n: file: src/sampletoolbar.ui:75
 #. i18n: ectx: property (toolTip), widget (QToolButton, variationsButton)
-#: rc.cpp:714
+#: rc.cpp:717
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "The axes of a variable font"
@@ -1743,7 +1754,7 @@ msgstr "Show complete collection of available fonts"
 
 #. i18n: file: src/sampletoolbar.ui:78
 #. i18n: ectx: property (text), widget (QToolButton, variationsButton)
-#: rc.cpp:717
+#: rc.cpp:720
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Variations"
@@ -1751,7 +1762,7 @@ msgstr "action"
 
 #. i18n: file: src/sampletoolbar.ui:99
 #. i18n: ectx: property (toolTip), widget (QComboBox, languageCombo)
-#: rc.cpp:720
+#: rc.cpp:723
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -1762,7 +1773,7 @@ msgstr ""
 
 #. i18n: file: src/sampletoolbar.ui:106
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:725
+#: rc.cpp:728
 #, kde-format
 msgctxt "@label"
 msgid "Shaping:"
@@ -1770,7 +1781,7 @@ msgstr ""
 
 #. i18n: file: src/samplewidget.ui:80
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_4)
-#: rc.cpp:728
+#: rc.cpp:731
 #, kde-format
 msgctxt "@title:group"
 msgid "World is wide"
@@ -1778,7 +1789,7 @@ msgstr ""
 
 #. i18n: file: src/samplewidget.ui:118
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:731
+#: rc.cpp:734
 #, kde-format
 msgctxt "Writing system"
 msgid "Script"
@@ -1786,7 +1797,7 @@ msgstr ""
 
 #. i18n: file: src/samplewidget.ui:134
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:734
+#: rc.cpp:737
 #, kde-format
 msgctxt "@label"
 msgid "Shaper type"
@@ -1794,7 +1805,7 @@ msgstr ""
 
 #. i18n: file: src/samplewidget.ui:150
 #. i18n: ectx: property (text), widget (QCheckBox, useShaperCheck)
-#: rc.cpp:737
+#: rc.cpp:740
 #, kde-format
 msgctxt "@option:check"
 msgid "Use shaper"
@@ -1802,7 +1813,7 @@ msgstr ""
 
 #. i18n: file: src/samplewidget.ui:193
 #. i18n: ectx: property (text), widget (QTreeWidget, OpenTypeTree)
-#: rc.cpp:740
+#: rc.cpp:743
 #, fuzzy, kde-format
 msgctxt "@title:column"
 msgid "OpenType Features"
@@ -1810,7 +1821,7 @@ msgstr "OpenType Features"
 
 #. i18n: file: src/samplewidget.ui:198
 #. i18n: ectx: property (text), widget (QTreeWidget, OpenTypeTree)
-#: rc.cpp:743
+#: rc.cpp:746
 #, fuzzy, kde-format
 msgctxt "@title:column"
 msgid "Friendly Name"
@@ -1818,7 +1829,7 @@ msgstr "Friendly Name"
 
 #. i18n: file: src/samplewidget.ui:207
 #. i18n: ectx: property (text), widget (QPushButton, saveDefOTFBut)
-#: rc.cpp:746
+#: rc.cpp:749
 #, kde-format
 msgctxt "@action:button"
 msgid "Save as default"
@@ -1826,7 +1837,7 @@ msgstr ""
 
 #. i18n: file: src/samplewidget.ui:214
 #. i18n: ectx: property (text), widget (QPushButton, resetDefOTFBut)
-#: rc.cpp:749
+#: rc.cpp:752
 #, kde-format
 msgctxt "@action:button"
 msgid "Reset Default"
@@ -1834,7 +1845,7 @@ msgstr ""
 
 #. i18n: file: src/tagset.ui:19
 #. i18n: ectx: property (windowTitle), widget (QDialog, TagSetDialog)
-#: rc.cpp:758
+#: rc.cpp:761
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "TagSet editor"
@@ -1842,7 +1853,7 @@ msgstr "TagSet editor"
 
 #. i18n: file: src/tagset.ui:64
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:761
+#: rc.cpp:764
 #, fuzzy, kde-format
 msgctxt "@label"
 msgid "Collections of Tags"
@@ -1850,7 +1861,7 @@ msgstr "Collections of Tags"
 
 #. i18n: file: src/tagset.ui:80
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:764
+#: rc.cpp:767
 #, fuzzy, kde-format
 msgctxt "@label"
 msgid "Available Tags"
@@ -1858,7 +1869,7 @@ msgstr "Available Tags"
 
 #. i18n: file: src/tagset.ui:115
 #. i18n: ectx: property (toolTip), widget (QPushButton, addToSetButton)
-#: rc.cpp:767
+#: rc.cpp:770
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Add selected tag to current set."
@@ -1866,7 +1877,7 @@ msgstr "Add selected tag to current set."
 
 #. i18n: file: src/tagset.ui:138
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:773
+#: rc.cpp:776
 #, fuzzy, kde-format
 msgctxt "@label"
 msgid "Collections"
@@ -1874,7 +1885,7 @@ msgstr "Collections"
 
 #. i18n: file: src/tagset.ui:153
 #. i18n: ectx: property (text), widget (QPushButton, newSetButton)
-#: rc.cpp:776
+#: rc.cpp:779
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "New"
@@ -1882,7 +1893,7 @@ msgstr "New"
 
 #. i18n: file: src/tagset.ui:160
 #. i18n: ectx: property (text), widget (QPushButton, deleteTagsetButton)
-#: rc.cpp:779
+#: rc.cpp:782
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "delete"
@@ -1890,7 +1901,7 @@ msgstr "delete"
 
 #. i18n: file: src/tagswidget.ui:41
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:788
+#: rc.cpp:791
 #, fuzzy, kde-format
 msgctxt "@label"
 msgid "Tags"
@@ -1898,7 +1909,7 @@ msgstr "Tags"
 
 #. i18n: file: src/tagswidget.ui:54
 #. i18n: ectx: property (toolTip), widget (QPushButton, newTagButton)
-#: rc.cpp:791
+#: rc.cpp:794
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Add a tag"
@@ -1906,7 +1917,7 @@ msgstr "Add Tag"
 
 #. i18n: file: src/tagswidget.ui:57
 #. i18n: ectx: property (text), widget (QPushButton, newTagButton)
-#: rc.cpp:794
+#: rc.cpp:797
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Add Tag"
@@ -1914,7 +1925,7 @@ msgstr "Add Tag"
 
 #. i18n: file: src/tagswidget.ui:67
 #. i18n: ectx: property (text), widget (QPushButton, removeTagButton)
-#: rc.cpp:797
+#: rc.cpp:800
 #, fuzzy, kde-format
 msgctxt "@action:button"
 msgid "Remove Tag"
@@ -1922,7 +1933,7 @@ msgstr "Remove"
 
 #. i18n: file: src/tagswidget.ui:77
 #. i18n: ectx: property (statusTip), widget (QListView, tagsListView)
-#: rc.cpp:800
+#: rc.cpp:803
 #, fuzzy, kde-format
 msgctxt "@info:status"
 msgid "Right mouse click on a tag to add it or remove it from TagSet"
@@ -1930,7 +1941,7 @@ msgstr "Right mouse click on a tag to add it or remove it from TagSet"
 
 #. i18n: file: src/textprogression.ui:25
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: rc.cpp:803
+#: rc.cpp:806
 #, kde-format
 msgctxt "@title:group"
 msgid "Inline progression"
@@ -1940,7 +1951,7 @@ msgstr ""
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineLTR)
 #. i18n: file: src/textprogression.ui:101
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockTTB)
-#: rc.cpp:806 rc.cpp:833
+#: rc.cpp:809 rc.cpp:836
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Latin text"
@@ -1950,7 +1961,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QRadioButton, inlineLTR)
 #. i18n: file: src/textprogression.ui:127
 #. i18n: ectx: property (text), widget (QRadioButton, blockLTR)
-#: rc.cpp:809 rc.cpp:848
+#: rc.cpp:812 rc.cpp:851
 #, kde-format
 msgctxt "@option:radio"
 msgid "Left to right"
@@ -1958,7 +1969,7 @@ msgstr ""
 
 #. i18n: file: src/textprogression.ui:53
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineRTL)
-#: rc.cpp:812
+#: rc.cpp:815
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Arabic text"
@@ -1968,7 +1979,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QRadioButton, inlineRTL)
 #. i18n: file: src/textprogression.ui:117
 #. i18n: ectx: property (text), widget (QRadioButton, blockRTL)
-#: rc.cpp:815 rc.cpp:842
+#: rc.cpp:818 rc.cpp:845
 #, kde-format
 msgctxt "@option:radio"
 msgid "Right to left"
@@ -1976,7 +1987,7 @@ msgstr ""
 
 #. i18n: file: src/textprogression.ui:63
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineTTB)
-#: rc.cpp:818
+#: rc.cpp:821
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Traditional Chinese & Japanese text"
@@ -1986,7 +1997,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QRadioButton, inlineTTB)
 #. i18n: file: src/textprogression.ui:104
 #. i18n: ectx: property (text), widget (QRadioButton, blockTTB)
-#: rc.cpp:821 rc.cpp:836
+#: rc.cpp:824 rc.cpp:839
 #, kde-format
 msgctxt "@option:radio"
 msgid "Top to bottom"
@@ -1994,7 +2005,7 @@ msgstr ""
 
 #. i18n: file: src/textprogression.ui:73
 #. i18n: ectx: property (toolTip), widget (QRadioButton, inlineBTT)
-#: rc.cpp:824
+#: rc.cpp:827
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Runic text"
@@ -2002,7 +2013,7 @@ msgstr ""
 
 #. i18n: file: src/textprogression.ui:76
 #. i18n: ectx: property (text), widget (QRadioButton, inlineBTT)
-#: rc.cpp:827
+#: rc.cpp:830
 #, kde-format
 msgctxt "@option:radio"
 msgid "Bottom to top"
@@ -2010,7 +2021,7 @@ msgstr ""
 
 #. i18n: file: src/textprogression.ui:86
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
-#: rc.cpp:830
+#: rc.cpp:833
 #, kde-format
 msgctxt "@title:group"
 msgid "Block progression"
@@ -2018,7 +2029,7 @@ msgstr ""
 
 #. i18n: file: src/textprogression.ui:114
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockRTL)
-#: rc.cpp:839
+#: rc.cpp:842
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Tarditionnal Chinese & Japanes text"
@@ -2026,7 +2037,7 @@ msgstr ""
 
 #. i18n: file: src/textprogression.ui:124
 #. i18n: ectx: property (toolTip), widget (QRadioButton, blockLTR)
-#: rc.cpp:845
+#: rc.cpp:848
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "e.g. Traditional Mongolian text"
@@ -2034,7 +2045,7 @@ msgstr ""
 
 #. i18n: file: src/tttablewidget.ui:13
 #. i18n: ectx: property (windowTitle), widget (QWidget, TTTableWidget)
-#: rc.cpp:851
+#: rc.cpp:854
 #, kde-format
 msgctxt "@title:window"
 msgid "TrueType tables display"
@@ -2042,7 +2053,7 @@ msgstr ""
 
 #. i18n: file: src/tttablewidget.ui:19
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:854
+#: rc.cpp:857
 #, kde-format
 msgctxt "@label"
 msgid "TrueType Tables "
@@ -2050,7 +2061,7 @@ msgstr ""
 
 #. i18n: file: src/tttablewidget.ui:34
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:857
+#: rc.cpp:860
 #, fuzzy, kde-format
 msgctxt "@title:column"
 msgid "Tag"
@@ -2058,7 +2069,7 @@ msgstr "Tag"
 
 #. i18n: file: src/tttablewidget.ui:39
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:860
+#: rc.cpp:863
 #, kde-format
 msgctxt "@title:column"
 msgid "Description"
@@ -2066,7 +2077,7 @@ msgstr ""
 
 #. i18n: file: src/tttablewidget.ui:44
 #. i18n: ectx: property (text), widget (QTreeWidget, tView)
-#: rc.cpp:863
+#: rc.cpp:866
 #, fuzzy, kde-format
 msgctxt "@title:column"
 msgid "Size"
@@ -2074,7 +2085,7 @@ msgstr "Font Size"
 
 #. i18n: file: src/tttablewidget.ui:85
 #. i18n: ectx: property (text), widget (QPushButton, exportButton)
-#: rc.cpp:866
+#: rc.cpp:869
 #, fuzzy, kde-format
 #| msgid "&Import..."
 msgctxt "@action:button"
@@ -2138,7 +2149,7 @@ msgctxt "@info:progress"
 msgid "Copying files"
 msgstr "Font Size"
 
-#: src/dataexport.cpp:70 src/typotek.cpp:468 src/typotek.cpp:577
+#: src/dataexport.cpp:70 src/typotek.cpp:469 src/typotek.cpp:578
 #, kde-format
 msgctxt "@action:button"
 msgid "cancel"
@@ -5102,56 +5113,56 @@ msgctxt "@title:window"
 msgid "Print Playground"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:35
+#: src/prefspaneldialog.cpp:37
 #, fuzzy, kde-format
 #| msgid "Preferences"
 msgctxt "@title:window"
 msgid "Preferences"
 msgstr "Preferences"
 
-#: src/prefspaneldialog.cpp:46
+#: src/prefspaneldialog.cpp:48
 #, fuzzy, kde-format
 msgctxt "@title:tab"
 msgid "General"
 msgstr "General"
 
-#: src/prefspaneldialog.cpp:48
+#: src/prefspaneldialog.cpp:50
 #, fuzzy, kde-format
 msgctxt "@title:tab"
 msgid "System tray"
 msgstr "Close to System Tray"
 
-#: src/prefspaneldialog.cpp:50
+#: src/prefspaneldialog.cpp:52
 #, kde-format
 msgctxt "@title:tab"
 msgid "Display"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:52
+#: src/prefspaneldialog.cpp:54
 #, kde-format
 msgctxt "@title:tab"
 msgid "Tools"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:54
+#: src/prefspaneldialog.cpp:56
 #, fuzzy, kde-format
 msgctxt "@title:tab"
 msgid "Samples collection"
 msgstr "Collections"
 
-#: src/prefspaneldialog.cpp:56
+#: src/prefspaneldialog.cpp:58
 #, kde-format
 msgctxt "@title:tab"
 msgid "Files & Folders"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:58
+#: src/prefspaneldialog.cpp:60
 #, kde-format
 msgctxt "@title:tab"
 msgid "Shortcuts"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:68
+#: src/prefspaneldialog.cpp:70
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5159,7 +5170,7 @@ msgid ""
 "effect."
 msgstr ""
 
-#: src/prefspaneldialog.cpp:95
+#: src/prefspaneldialog.cpp:102
 #, kde-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -5168,149 +5179,149 @@ msgid ""
 "<strong>&#60;variant&#62;</strong>"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:108
+#: src/prefspaneldialog.cpp:115
 #, kde-format
 msgctxt "@info:placeholder sample text in font requester"
 msgid "Aa Bb 123"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:114
+#: src/prefspaneldialog.cpp:121
 #, kde-format
 msgctxt "@info"
 msgid "Please select an item in the list or create a new one."
 msgstr ""
 
-#: src/prefspaneldialog.cpp:265
+#: src/prefspaneldialog.cpp:272
 #, kde-format
 msgctxt "@info:status validation"
 msgid "Please enter a name for the new sample."
 msgstr ""
 
-#: src/prefspaneldialog.cpp:270
+#: src/prefspaneldialog.cpp:277
 #, kde-format
 msgctxt "@info:status validation"
 msgid "A sample named \"%1\" already exists."
 msgstr ""
 
-#: src/prefspaneldialog.cpp:276
+#: src/prefspaneldialog.cpp:283
 #, fuzzy, kde-format
 msgctxt "A default sample text inserted when creating a new sample"
 msgid "Sample Text"
 msgstr "Sample Text"
 
-#: src/prefspaneldialog.cpp:289
+#: src/prefspaneldialog.cpp:296
 #, kde-format
 msgctxt "the name of a sample text will be append to the string"
 msgid "Do you confirm that you want to remove:"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:293
+#: src/prefspaneldialog.cpp:300
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Remove Sample Text"
 msgstr "Named Sample Texts"
 
-#: src/prefspaneldialog.cpp:377
+#: src/prefspaneldialog.cpp:384
 #, kde-format
 msgctxt "@title:window"
 msgid "Select font editor"
 msgstr "Select font editor"
 
-#: src/prefspaneldialog.cpp:420
+#: src/prefspaneldialog.cpp:427
 #, kde-format
 msgctxt "@info"
 msgid "%1 is not the address of a web directory."
 msgstr ""
 
-#: src/prefspaneldialog.cpp:448
+#: src/prefspaneldialog.cpp:455
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Templates Folder"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:524 src/prefspaneldialog.cpp:565
+#: src/prefspaneldialog.cpp:531 src/prefspaneldialog.cpp:572
 #, kde-format
 msgid "Alt"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:524 src/prefspaneldialog.cpp:565
+#: src/prefspaneldialog.cpp:531 src/prefspaneldialog.cpp:572
 #, kde-format
 msgid "Ctrl"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:524 src/prefspaneldialog.cpp:565
+#: src/prefspaneldialog.cpp:531 src/prefspaneldialog.cpp:572
 #, kde-format
 msgid "Shift"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:524 src/prefspaneldialog.cpp:565
+#: src/prefspaneldialog.cpp:531 src/prefspaneldialog.cpp:572
 #, kde-format
 msgid "Meta"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:530
+#: src/prefspaneldialog.cpp:537
 #, kde-format
 msgid "Meta+"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:534
+#: src/prefspaneldialog.cpp:541
 #, kde-format
 msgid "Shift+"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:538
+#: src/prefspaneldialog.cpp:545
 #, kde-format
 msgid "Alt+"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:542
+#: src/prefspaneldialog.cpp:549
 #, kde-format
 msgid "Ctrl+"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:622
+#: src/prefspaneldialog.cpp:629
 #, kde-format
 msgctxt "action name will be appended to this"
 msgid "Shortcut is already in use for"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:623
+#: src/prefspaneldialog.cpp:630
 #, kde-format
 msgctxt "@info"
 msgid "Do you still want to assign it?"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:624
+#: src/prefspaneldialog.cpp:631
 #, kde-format
 msgctxt "@title:window"
 msgid "Replace"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:625
+#: src/prefspaneldialog.cpp:632
 #, kde-format
 msgctxt "@action:button"
 msgid "Reassign"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:659
+#: src/prefspaneldialog.cpp:666
 #, fuzzy, kde-format
 msgctxt "@title:column"
 msgid "Action"
 msgstr "Action"
 
-#: src/prefspaneldialog.cpp:660
+#: src/prefspaneldialog.cpp:667
 #, kde-format
 msgctxt "@title:column"
 msgid "Shortcut"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:661
+#: src/prefspaneldialog.cpp:668
 #, kde-format
 msgctxt "@title:column"
 msgid "Tip"
 msgstr ""
 
-#: src/prefspaneldialog.cpp:692
+#: src/prefspaneldialog.cpp:699
 #, fuzzy, kde-format
 #| msgid "Select font editor"
 msgctxt "@title:window"
@@ -5417,7 +5428,7 @@ msgctxt "@title:window"
 msgid "Save File"
 msgstr "File"
 
-#: src/typotek.cpp:318
+#: src/typotek.cpp:319
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5427,13 +5438,13 @@ msgstr ""
 "The program will keep running in the system tray. To terminate the program, "
 "choose <b>Exit</b> in the context menu of the system tray entry."
 
-#: src/typotek.cpp:398
+#: src/typotek.cpp:399
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Directory"
 msgstr "Add Directory"
 
-#: src/typotek.cpp:448
+#: src/typotek.cpp:449
 #, kde-format
 msgctxt "@info"
 msgid "Do you confirm you want to import %1 font?"
@@ -5441,109 +5452,109 @@ msgid_plural "Do you confirm you want to import %1 fonts?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/typotek.cpp:449
+#: src/typotek.cpp:450
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Confirmation"
 msgstr "Font Information"
 
-#: src/typotek.cpp:468 src/typotek.cpp:577
+#: src/typotek.cpp:469 src/typotek.cpp:578
 #, fuzzy, kde-format
 #| msgid "&Import..."
 msgctxt "@info:progress"
 msgid "Importing font files... "
 msgstr "&Import..."
 
-#: src/typotek.cpp:478 src/typotek.cpp:582
+#: src/typotek.cpp:479 src/typotek.cpp:583
 #, fuzzy, kde-format
 #| msgid "&Import..."
 msgctxt "@info:progress"
 msgid "Import"
 msgstr "&Import..."
 
-#: src/typotek.cpp:501
+#: src/typotek.cpp:502
 #, kde-format
 msgctxt "@info"
 msgid "Cannot import this font because it is broken:"
 msgstr ""
 
-#: src/typotek.cpp:528 src/typotek.cpp:619
+#: src/typotek.cpp:529 src/typotek.cpp:620
 #, fuzzy, kde-format
 msgctxt "@info:status"
 msgid "Fonts imported: %1"
 msgstr "Font Editor"
 
-#: src/typotek.cpp:540
+#: src/typotek.cpp:541
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Files to Import"
 msgstr ""
 
-#: src/typotek.cpp:542
+#: src/typotek.cpp:543
 #, fuzzy, kde-format
 msgctxt "@item:inlistbox file type filter"
 msgid "Font Files"
 msgstr "Font Size"
 
-#: src/typotek.cpp:650
+#: src/typotek.cpp:651
 #, fuzzy, kde-format
 #| msgid "Import a directory"
 msgctxt "@action:inmenu"
 msgid "&Import Directory..."
 msgstr "Import a directory"
 
-#: src/typotek.cpp:652
+#: src/typotek.cpp:653
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import a directory"
 msgstr "Import a directory"
 
-#: src/typotek.cpp:658
+#: src/typotek.cpp:659
 #, fuzzy, kde-format
 #| msgid "&Import..."
 msgctxt "@action:inmenu"
 msgid "Import &Files..."
 msgstr "&Import..."
 
-#: src/typotek.cpp:660
+#: src/typotek.cpp:661
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Import Files"
 msgstr "Imported Fonts"
 
-#: src/typotek.cpp:664
+#: src/typotek.cpp:665
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Export &fonts"
 msgstr "Imported fonts"
 
-#: src/typotek.cpp:665
+#: src/typotek.cpp:666
 #, fuzzy, kde-format
 msgctxt "@info:status"
 msgid "Export a fontset"
 msgstr "Imported fonts"
 
-#: src/typotek.cpp:669
+#: src/typotek.cpp:670
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Export font book..."
 msgstr "Export font book..."
 
-#: src/typotek.cpp:670
+#: src/typotek.cpp:671
 #, fuzzy, kde-format
 #| msgid "Export a pdf that show selected fonts"
 msgctxt "@info:status"
 msgid "Export a PDF document that shows selected fonts"
 msgstr "Export a pdf that show selected fonts"
 
-#: src/typotek.cpp:674
+#: src/typotek.cpp:675
 #, fuzzy, kde-format
 #| msgid "Export font book..."
 msgctxt "@action:inmenu"
 msgid "Export font info for packaging..."
 msgstr "Export font book..."
 
-#: src/typotek.cpp:675
+#: src/typotek.cpp:676
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5555,43 +5566,380 @@ msgstr ""
 #. tagsetAct->setIcon ( QIcon ( ":/fontmatrix_tagseteditor_icon.png" ) );
 #. scuts->add(tagsetAct);
 #. connect ( tagsetAct,SIGNAL ( triggered( ) ),this,SLOT ( popupTagsetEditor() ) );
-#: src/typotek.cpp:683
+#: src/typotek.cpp:684
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Activate all current"
 msgstr "Activate all current"
 
-#: src/typotek.cpp:684
+#: src/typotek.cpp:685
 #, fuzzy, kde-format
 msgctxt "@info:status"
 msgid "Activate all currently visible fonts"
 msgstr "Activate all currents"
 
-#: src/typotek.cpp:688
+#: src/typotek.cpp:689
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Deactivate all current"
 msgstr "Deactivate all current"
 
-#: src/typotek.cpp:689
+#: src/typotek.cpp:690
 #, fuzzy, kde-format
 msgctxt "@info:status"
 msgid "Deactivate all currently visible fonts"
 msgstr "Deactivate all currents"
 
-#: src/typotek.cpp:693
+#: src/typotek.cpp:694
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Edit current font"
 msgstr "Edit current font"
 
-#: src/typotek.cpp:697
+#: src/typotek.cpp:699
+#, fuzzy, kde-format
+msgctxt "@action:inmenu"
+msgid "Reload Filtered"
+msgstr "Remove"
+
+#: src/typotek.cpp:700
+#, kde-format
+msgctxt "@info:status"
+msgid ""
+"Reload informations for filtered fonts from the font files they belong to"
+msgstr ""
+
+#: src/typotek.cpp:704
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Reload Selected"
+msgstr ""
+
+#: src/typotek.cpp:705
+#, kde-format
+msgctxt "@info:status"
+msgid "Reload informations for selected font from the font file"
+msgstr ""
+
+#: src/typotek.cpp:709
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Check Database"
+msgstr ""
+
+#: src/typotek.cpp:710
+#, kde-format
+msgctxt "@info:status"
+msgid "Check Fontmatrix database for dead links to font files"
+msgstr ""
+
+#: src/typotek.cpp:717
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Tag All Filtered..."
+msgstr ""
+
+#: src/typotek.cpp:718
+#, fuzzy, kde-format
+msgctxt "@info:status"
+msgid "Tag all currently visible files"
+msgstr "Activate all currents"
+
+#: src/typotek.cpp:722
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Show TrueType tables"
+msgstr ""
+
+#: src/typotek.cpp:723
+#, kde-format
+msgctxt "@info:status"
+msgid ""
+"View hexadecimal values of TrueType tables for currently selected font file"
+msgstr ""
+
+#: src/typotek.cpp:727
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Edit PANOSE metadata"
+msgstr ""
+
+#: src/typotek.cpp:728
+#, kde-format
+msgctxt "@info:status"
+msgid "Edit PANOSE metadata without saving changes to font files"
+msgstr ""
+
+#: src/typotek.cpp:732
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Playground"
+msgstr ""
+
+#: src/typotek.cpp:734
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Show/Hide Playground"
+msgstr ""
+
+#: src/typotek.cpp:740
+#, fuzzy, kde-format
+msgctxt "@action:inmenu"
+msgid "Compare"
+msgstr "Glyphs"
+
+#: src/typotek.cpp:742
+#, fuzzy, kde-format
+msgctxt "@info:tooltip"
+msgid "Show/Hide Compare glyphs"
+msgstr "Glyphs"
+
+#: src/typotek.cpp:748
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Close All"
+msgstr ""
+
+#: src/typotek.cpp:749
+#, fuzzy, kde-format
+msgctxt "@info:tooltip"
+msgid "Close all floating windows"
+msgstr "Show all activated fonts"
+
+#: src/typotek.cpp:753
+#, fuzzy, kde-format
+msgctxt "@action:inmenu"
+msgid "Show All"
+msgstr "View All"
+
+#: src/typotek.cpp:754
+#, fuzzy, kde-format
+msgctxt "@info:tooltip"
+msgid "Show all floating windows"
+msgstr "Show all activated fonts"
+
+#: src/typotek.cpp:758
+#, fuzzy, kde-format
+msgctxt "@action:inmenu"
+msgid "Hide All"
+msgstr "View All"
+
+#: src/typotek.cpp:759
+#, fuzzy, kde-format
+msgctxt "@info:tooltip"
+msgid "Hide all floating windows"
+msgstr "Show all activated fonts"
+
+#: src/typotek.cpp:779
+#, fuzzy, kde-format
+#| msgid "Export font book..."
+msgctxt "@action:inmenu"
+msgid "Extract fonts..."
+msgstr "Export font book..."
+
+#: src/typotek.cpp:780
+#, kde-format
+msgctxt "@info:status"
+msgid "Extract fonts from documents like PDF to PFM file format"
+msgstr ""
+
+#: src/typotek.cpp:785
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Find a font using raster sample..."
+msgstr ""
+
+#: src/typotek.cpp:786
+#, kde-format
+msgctxt "@info:status"
+msgid "Find a font using a raster sample of a letter"
+msgstr ""
+
+#: src/typotek.cpp:790
+#, fuzzy, kde-format
+#| msgid "Export font book..."
+msgctxt "@action:inmenu"
+msgid "Export font list as XeTeX..."
+msgstr "Export font book..."
+
+#: src/typotek.cpp:791
+#, kde-format
+msgctxt "@info:status"
+msgid "Export the current filtered font list as a XeTeX source file"
+msgstr ""
+
+#: src/typotek.cpp:888
+#, kde-format
+msgctxt "@action:button"
+msgid "Browse Directories"
+msgstr ""
+
+#: src/typotek.cpp:890
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Toggle Files/Collection view"
+msgstr ""
+
+#: src/typotek.cpp:896
+#, kde-format
+msgctxt "@info:progress"
+msgid "Load settings"
+msgstr ""
+
+#: src/typotek.cpp:1030
+#, kde-format
+msgctxt "@info:progress"
+msgid "Check for Fontmatrix own dir"
+msgstr ""
+
+#: src/typotek.cpp:1218
+#, fuzzy, kde-format
+msgctxt "@info:progress"
+msgid "Loading System Fonts"
+msgstr "Imported Fonts"
+
+#: src/typotek.cpp:1219
+#, fuzzy, kde-format
+msgctxt "@item:inlistbox name of the tag given to system fonts"
+msgid "System Fonts"
+msgstr "Imported Fonts"
+
+#: src/typotek.cpp:1252
+#, kde-format
+msgctxt "@info:progress"
+msgid "Adding"
+msgstr ""
+
+#: src/typotek.cpp:1253 src/typotek.cpp:1254
+#, kde-format
+msgctxt "followed by a directory name"
+msgid "fonts from"
+msgstr ""
+
+#: src/typotek.cpp:1254
+#, kde-format
+msgid "Adding"
+msgstr ""
+
+#: src/typotek.cpp:1277
+#, fuzzy, kde-format
+msgctxt "@info:progress"
+msgid "system fonts added."
+msgstr "Imported Fonts"
+
+#: src/typotek.cpp:1289 src/typotek.cpp:1292
+#, fuzzy, kde-format
+msgctxt "@info:progress"
+msgid "Checking the activated fonts"
+msgstr "Deactivate all currents"
+
+#: src/typotek.cpp:1330
+#, kde-format
+msgctxt "@info:progress"
+msgid "Reading the catalogue of %1 remote directory"
+msgid_plural "Reading the catalogues of %1 remote directories"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/typotek.cpp:1372
+#, kde-format
+msgctxt "@info:status"
+msgid "%1 font added from the network"
+msgid_plural "%1 fonts added from the network"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/typotek.cpp:1398
+#, kde-format
+msgctxt "@info"
+msgid ""
+"You are about to activate a bunch of fonts,\n"
+"it is time to cancel if it was not your intent"
+msgstr ""
+
+#: src/typotek.cpp:1399
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Activate Fonts"
+msgstr "Activate all currents"
+
+#: src/typotek.cpp:1411
+#, kde-format
+msgctxt "@info"
+msgid ""
+"You are about to deactivate a bunch of fonts,\n"
+"it is time to cancel if it was not your intent"
+msgstr ""
+
+#: src/typotek.cpp:1412
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Deactivate Fonts"
+msgstr "Deactivate all currents"
+
+#: src/typotek.cpp:1431
+#, kde-format
+msgctxt "@info"
+msgid ""
+"This will hide the menu bar completely. You can show it again by typing %1."
+msgstr ""
+
+#: src/typotek.cpp:1432
+#, kde-format
+msgctxt "@title:window"
+msgid "Hide menu bar"
+msgstr ""
+
+#: src/typotek.cpp:1448
+#, kde-format
+msgctxt "@info:status"
+msgid "This font has not been downloaded yet"
+msgstr ""
+
+#: src/typotek.cpp:1456
+#, kde-format
+msgctxt "@info:status"
+msgid "The desktop could not be asked to open this font"
+msgstr ""
+
+#: src/typotek.cpp:1501
+#, kde-format
+msgctxt "@info:status"
+msgid "Support of DragNDrop over http is sheduled but not yet effective"
+msgstr "Support of DragNDrop over http is sheduled but not yet effective"
+
+#: src/typotek.cpp:1520
+#, fuzzy, kde-format
+#| msgid "You bring something over me I canât handle"
+msgctxt "@info:status"
+msgid "You bring something over me I can’t handle"
+msgstr "You bring something over me I can't handle"
+
+#: src/typotek.cpp:1581
+#, fuzzy, kde-format
+msgctxt "@info default content of a new sample text"
+msgid "Edit me!"
+msgstr "Edit"
+
+#: src/typotek.cpp:1660
+#, kde-format
+msgid "default"
+msgstr ""
+
+#: src/typotek.cpp:1759
+#, kde-format
+msgctxt "@info:status"
+msgid ""
+"Open the selected font in the application the desktop asks you to choose"
+msgstr ""
+
+#: src/typotek.cpp:1762
 #, kde-format
 msgctxt "@info:status"
 msgid "Edit currently selected font in a font editor of your choice"
 msgstr ""
 
-#: src/typotek.cpp:701
+#: src/typotek.cpp:1766
 #, fuzzy, kde-format
 #| msgid ""
 #| "You don't seem to have font editor installed. Path to font editor can be "
@@ -5604,360 +5952,26 @@ msgstr ""
 "You don't seem to have font editor installed. Path to font editor can be set "
 "in preferences."
 
-#: src/typotek.cpp:704
-#, fuzzy, kde-format
-msgctxt "@action:inmenu"
-msgid "Reload Filtered"
-msgstr "Remove"
-
-#: src/typotek.cpp:705
-#, kde-format
-msgctxt "@info:status"
-msgid ""
-"Reload informations for filtered fonts from the font files they belong to"
-msgstr ""
-
-#: src/typotek.cpp:709
-#, kde-format
-msgctxt "@action:inmenu"
-msgid "Reload Selected"
-msgstr ""
-
-#: src/typotek.cpp:710
-#, kde-format
-msgctxt "@info:status"
-msgid "Reload informations for selected font from the font file"
-msgstr ""
-
-#: src/typotek.cpp:714
-#, kde-format
-msgctxt "@action:inmenu"
-msgid "Check Database"
-msgstr ""
-
-#: src/typotek.cpp:715
-#, kde-format
-msgctxt "@info:status"
-msgid "Check Fontmatrix database for dead links to font files"
-msgstr ""
-
-#: src/typotek.cpp:722
-#, kde-format
-msgctxt "@action:inmenu"
-msgid "Tag All Filtered..."
-msgstr ""
-
-#: src/typotek.cpp:723
-#, fuzzy, kde-format
-msgctxt "@info:status"
-msgid "Tag all currently visible files"
-msgstr "Activate all currents"
-
-#: src/typotek.cpp:727
-#, kde-format
-msgctxt "@action:inmenu"
-msgid "Show TrueType tables"
-msgstr ""
-
-#: src/typotek.cpp:728
-#, kde-format
-msgctxt "@info:status"
-msgid ""
-"View hexadecimal values of TrueType tables for currently selected font file"
-msgstr ""
-
-#: src/typotek.cpp:732
-#, kde-format
-msgctxt "@action:inmenu"
-msgid "Edit PANOSE metadata"
-msgstr ""
-
-#: src/typotek.cpp:733
-#, kde-format
-msgctxt "@info:status"
-msgid "Edit PANOSE metadata without saving changes to font files"
-msgstr ""
-
-#: src/typotek.cpp:737
-#, kde-format
-msgctxt "@action:inmenu"
-msgid "Playground"
-msgstr ""
-
-#: src/typotek.cpp:739
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Show/Hide Playground"
-msgstr ""
-
-#: src/typotek.cpp:745
-#, fuzzy, kde-format
-msgctxt "@action:inmenu"
-msgid "Compare"
-msgstr "Glyphs"
-
-#: src/typotek.cpp:747
-#, fuzzy, kde-format
-msgctxt "@info:tooltip"
-msgid "Show/Hide Compare glyphs"
-msgstr "Glyphs"
-
-#: src/typotek.cpp:753
-#, kde-format
-msgctxt "@action:inmenu"
-msgid "Close All"
-msgstr ""
-
-#: src/typotek.cpp:754
-#, fuzzy, kde-format
-msgctxt "@info:tooltip"
-msgid "Close all floating windows"
-msgstr "Show all activated fonts"
-
-#: src/typotek.cpp:758
-#, fuzzy, kde-format
-msgctxt "@action:inmenu"
-msgid "Show All"
-msgstr "View All"
-
-#: src/typotek.cpp:759
-#, fuzzy, kde-format
-msgctxt "@info:tooltip"
-msgid "Show all floating windows"
-msgstr "Show all activated fonts"
-
-#: src/typotek.cpp:763
-#, fuzzy, kde-format
-msgctxt "@action:inmenu"
-msgid "Hide All"
-msgstr "View All"
-
-#: src/typotek.cpp:764
-#, fuzzy, kde-format
-msgctxt "@info:tooltip"
-msgid "Hide all floating windows"
-msgstr "Show all activated fonts"
-
-#: src/typotek.cpp:784
-#, fuzzy, kde-format
-#| msgid "Export font book..."
-msgctxt "@action:inmenu"
-msgid "Extract fonts..."
-msgstr "Export font book..."
-
-#: src/typotek.cpp:785
-#, kde-format
-msgctxt "@info:status"
-msgid "Extract fonts from documents like PDF to PFM file format"
-msgstr ""
-
-#: src/typotek.cpp:790
-#, kde-format
-msgctxt "@action:inmenu"
-msgid "Find a font using raster sample..."
-msgstr ""
-
-#: src/typotek.cpp:791
-#, kde-format
-msgctxt "@info:status"
-msgid "Find a font using a raster sample of a letter"
-msgstr ""
-
-#: src/typotek.cpp:795
-#, fuzzy, kde-format
-#| msgid "Export font book..."
-msgctxt "@action:inmenu"
-msgid "Export font list as XeTeX..."
-msgstr "Export font book..."
-
-#: src/typotek.cpp:796
-#, kde-format
-msgctxt "@info:status"
-msgid "Export the current filtered font list as a XeTeX source file"
-msgstr ""
-
-#: src/typotek.cpp:893
-#, kde-format
-msgctxt "@action:button"
-msgid "Browse Directories"
-msgstr ""
-
-#: src/typotek.cpp:895
-#, kde-format
-msgctxt "@info:tooltip"
-msgid "Toggle Files/Collection view"
-msgstr ""
-
-#: src/typotek.cpp:901
-#, kde-format
-msgctxt "@info:progress"
-msgid "Load settings"
-msgstr ""
-
-#: src/typotek.cpp:1035
-#, kde-format
-msgctxt "@info:progress"
-msgid "Check for Fontmatrix own dir"
-msgstr ""
-
-#: src/typotek.cpp:1223
-#, fuzzy, kde-format
-msgctxt "@info:progress"
-msgid "Loading System Fonts"
-msgstr "Imported Fonts"
-
-#: src/typotek.cpp:1224
-#, fuzzy, kde-format
-msgctxt "@item:inlistbox name of the tag given to system fonts"
-msgid "System Fonts"
-msgstr "Imported Fonts"
-
-#: src/typotek.cpp:1257
-#, kde-format
-msgctxt "@info:progress"
-msgid "Adding"
-msgstr ""
-
-#: src/typotek.cpp:1258 src/typotek.cpp:1259
-#, kde-format
-msgctxt "followed by a directory name"
-msgid "fonts from"
-msgstr ""
-
-#: src/typotek.cpp:1259
-#, kde-format
-msgid "Adding"
-msgstr ""
-
-#: src/typotek.cpp:1282
-#, fuzzy, kde-format
-msgctxt "@info:progress"
-msgid "system fonts added."
-msgstr "Imported Fonts"
-
-#: src/typotek.cpp:1294 src/typotek.cpp:1297
-#, fuzzy, kde-format
-msgctxt "@info:progress"
-msgid "Checking the activated fonts"
-msgstr "Deactivate all currents"
-
-#: src/typotek.cpp:1335
-#, kde-format
-msgctxt "@info:progress"
-msgid "Reading the catalogue of %1 remote directory"
-msgid_plural "Reading the catalogues of %1 remote directories"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/typotek.cpp:1377
-#, kde-format
-msgctxt "@info:status"
-msgid "%1 font added from the network"
-msgid_plural "%1 fonts added from the network"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/typotek.cpp:1403
-#, kde-format
-msgctxt "@info"
-msgid ""
-"You are about to activate a bunch of fonts,\n"
-"it is time to cancel if it was not your intent"
-msgstr ""
-
-#: src/typotek.cpp:1404
-#, fuzzy, kde-format
-msgctxt "@title:window"
-msgid "Activate Fonts"
-msgstr "Activate all currents"
-
-#: src/typotek.cpp:1416
-#, kde-format
-msgctxt "@info"
-msgid ""
-"You are about to deactivate a bunch of fonts,\n"
-"it is time to cancel if it was not your intent"
-msgstr ""
-
-#: src/typotek.cpp:1417
-#, fuzzy, kde-format
-msgctxt "@title:window"
-msgid "Deactivate Fonts"
-msgstr "Deactivate all currents"
-
-#: src/typotek.cpp:1436
-#, kde-format
-msgctxt "@info"
-msgid ""
-"This will hide the menu bar completely. You can show it again by typing %1."
-msgstr ""
-
-#: src/typotek.cpp:1437
-#, kde-format
-msgctxt "@title:window"
-msgid "Hide menu bar"
-msgstr ""
-
-#: src/typotek.cpp:1447 src/typotek.cpp:2125
-#, kde-format
-msgctxt "@info:status"
-msgid "There is no font selected"
-msgstr "There is no font selected"
-
-#: src/typotek.cpp:1492
-#, kde-format
-msgctxt "@info:status"
-msgid "Support of DragNDrop over http is sheduled but not yet effective"
-msgstr "Support of DragNDrop over http is sheduled but not yet effective"
-
-#: src/typotek.cpp:1511
-#, fuzzy, kde-format
-#| msgid "You bring something over me I canât handle"
-msgctxt "@info:status"
-msgid "You bring something over me I can’t handle"
-msgstr "You bring something over me I can't handle"
-
-#: src/typotek.cpp:1572
-#, fuzzy, kde-format
-msgctxt "@info default content of a new sample text"
-msgid "Edit me!"
-msgstr "Edit"
-
-#: src/typotek.cpp:1651
-#, kde-format
-msgid "default"
-msgstr ""
-
-#: src/typotek.cpp:1735
-#, kde-format
-msgctxt "@info:status"
-msgid "Try to run font editor with the selected font as argument"
-msgstr "Try to run font editor with the selected font as argument"
-
-#: src/typotek.cpp:1738
-#, kde-format
-msgctxt "@info:status"
-msgid ""
-"You don't seem to have font editor installed. Path to font editor can be set "
-"in preferences."
-msgstr ""
-"You don't seem to have font editor installed. Path to font editor can be set "
-"in preferences."
-
-#: src/typotek.cpp:2024
+#: src/typotek.cpp:2051
 #, fuzzy, kde-format
 #| msgid "Export font book..."
 msgctxt "@title:window"
 msgid "Export font list as XeTeX"
 msgstr "Export font book..."
 
-#: src/typotek.cpp:2026
+#: src/typotek.cpp:2053
 #, kde-format
 msgctxt "@item:inlistbox file type filter"
 msgid "TeX files (*.tex)"
 msgstr ""
 
-#: src/typotek.cpp:2208
+#: src/typotek.cpp:2152
+#, kde-format
+msgctxt "@info:status"
+msgid "There is no font selected"
+msgstr "There is no font selected"
+
+#: src/typotek.cpp:2235
 #, kde-format
 msgctxt "@info:status"
 msgid "Failed to reload %1 font"
@@ -5965,7 +5979,7 @@ msgid_plural "Failed to reload %1 fonts"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/typotek.cpp:2250
+#: src/typotek.cpp:2277
 #, kde-format
 msgctxt "number of filtererd fonts showed in status bar"
 msgid "Filtered Font: %1"
@@ -5973,14 +5987,14 @@ msgid_plural "Filtered Fonts: %1"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/typotek.cpp:2255
+#: src/typotek.cpp:2282
 #, fuzzy, kde-format
 #| msgid "Edit current font"
 msgctxt "followed by currently selected font name (in status bar)"
 msgid "Current Font"
 msgstr "Edit current font"
 
-#: src/typotek.cpp:2279
+#: src/typotek.cpp:2306
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5989,11 +6003,25 @@ msgid ""
 "at <link>%1</link>."
 msgstr ""
 
-#: src/typotek.cpp:2282
+#: src/typotek.cpp:2309
 #, kde-format
 msgctxt "@title:window"
 msgid "Handbook Not Available"
 msgstr ""
+
+#, kde-format
+#~ msgctxt "@info:status"
+#~ msgid "Try to run font editor with the selected font as argument"
+#~ msgstr "Try to run font editor with the selected font as argument"
+
+#, kde-format
+#~ msgctxt "@info:status"
+#~ msgid ""
+#~ "You don't seem to have font editor installed. Path to font editor can be "
+#~ "set in preferences."
+#~ msgstr ""
+#~ "You don't seem to have font editor installed. Path to font editor can be "
+#~ "set in preferences."
 
 #, fuzzy, kde-format
 #~ msgctxt "@title:window"

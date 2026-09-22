@@ -428,6 +428,8 @@
           <property name="title" >
            <string comment="@title:group">Fonts Editor</string>
           </property>
+          <layout class="QVBoxLayout" name="fontEditorLayout" >
+           <item>
           <layout class="QHBoxLayout" name="_5" >
            <item>
             <widget class="QLineEdit" name="fontEditorPath" >
@@ -464,6 +466,18 @@
               </size>
              </property>
             </spacer>
+           </item>
+          </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="fontEditorNote" >
+             <property name="text" >
+              <string comment="@info">Fontmatrix is running in a sandbox and cannot start a program of the system. &lt;interface&gt;Edit current font&lt;/interface&gt; hands the font file to the desktop, which asks you which application should open it.</string>
+             </property>
+             <property name="wordWrap" >
+              <bool>true</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
