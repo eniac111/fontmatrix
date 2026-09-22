@@ -2,9 +2,14 @@
 
 file ; author ; title ; reference (url/edition)
 
+The licence of each text is in REUSE.toml, at the root of the source tree.
+
+bg/Българският език ; Иван Вазов (1850–1921) ; Българският език, 1883, от стихосбирката „Поля и гори“ ; <https://chitanka.info/text/5189-bylgarskijat-ezik> — public domain
+bg/Търновска конституция ; Учредително Народно събрание ; Конституция на Българското Княжество, Търново, 16 април 1879, глава XII (в оригиналния правопис) ; <https://bg.wikisource.org/wiki/Конституция_на_Българското_княжество> — public domain
+cu/Glagolitic alphabet ; — ; The Glagolitic script: the Unicode block with the letter names and the numeric values of the letters; the last line is the heading of the Gospel of Mark in the Codex Zographensis (10th–11th c.) ; <https://bg.wikipedia.org/wiki/Глаголица>, <https://en.wikipedia.org/wiki/Codex_Zographensis> — public domain
+cu/Miracles of the Virgin 1508 ; Guido de Monte Rochen, translated by Silvestar Bedričić ; Mirakuli slavne deve Marije, Senj 1508, chapter 3, in the Glagolitic script ; <https://hr.wikisource.org/wiki/Ⱞⰻⱃⰰⰽⱆⰾⰻ_ⱄⰾⰰⰲⱀⰵ_ⰴⰵⰲⰵ_ⱞⰰⱃⰻⰵ/Ⰳ̃> — the book is public domain; the Glagolitic transliteration is by Wikisource contributors after the Latin-script transliteration of Ivana Eterović and Mirjana Crnić Novosel, CC BY-SA 4.0
 bn/sample ; Wikipedia ; বাংলা ভাষা - উইকিপিডিয়া  ; <http://bn.wikipedia.org/wiki/বাংলা>
 de/sample ; Friedrich Schiller ; Kabale und Liebe ; http://de.wikisource.org/wiki/Kabale_und_Liebe/1._Akt
-es/sample ; Miguel de Cervantes Saavedra ; El ingenioso Hidalgo Don Quijote de la Mancha ; http://es.wikisource.org/wiki/Don_Quijote,_Primera_Parte:_Capítulo_I
 fr/Mamere ; Marcel Proust ; À l’ombre des jeune filles en fleurs ; <http://www.gutenberg.org/files/2998/2998-8.txt>
 gu/sample ; Wikipedia ; ગુજરાતી - વિકિપીડિયા; <http://gu.wikipedia.org/wiki/ગુજરાતી>
 he/sample ; http://www.mechon-mamre.org/i/t/t0401.htm
