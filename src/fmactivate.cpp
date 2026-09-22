@@ -38,7 +38,7 @@ void FMActivate::setErrorStrings()
     //: A postcript font (pfb) without its metrics file (afm)
     errorStrings[MISSING_AFM] = i18nc("@info activation error", "Cannot link or copy the metrics file");
     //: A generic error in activation or deactivation process
-    errorStrings[ERROR] = i18nc("activation", "Error");
+    errorStrings[OTHER_ERROR] = i18nc("activation", "Error");
     //: Windows: the font file could not be copied into the user's font folder
     errorStrings[NO_COPY] = i18nc("@info activation error", "Unable to copy the font file into the user font folder");
     //: Windows: the font could not be written to or removed from the user's font registry key
@@ -46,7 +46,7 @@ void FMActivate::setErrorStrings()
     //: Windows: AddFontResource failed, applications will see the font at the next logon only
     errorStrings[NO_FONT_RESOURCE] = i18nc("@info activation error", "The font is installed but could not be loaded for running applications");
     //: Windows: the font is installed for all users or by the user in Settings, Fontmatrix cannot change it
-    errorStrings[SYSTEM_FONT] = i18nc("@info activation error", "The font is installed by the system and cannot be changed here");
+    errorStrings[LOCKED_FONT] = i18nc("@info activation error", "The font is installed by the system and cannot be changed here");
     //: Windows: only TrueType and OpenType fonts can be installed per user
     errorStrings[UNSUPPORTED_FORMAT] = i18nc("@info activation error", "Only TrueType and OpenType fonts can be activated for this user");
 }
@@ -420,7 +420,7 @@ void FMActivate::activate(QList<FontItem *> fitList, bool act)
             }
             if (T->isSysFont(fit) || isInside(fit->localPath(), managed)) {
                 // installed for everybody, or by the user in Settings > Fonts
-                m_errors[fit->path()] = errorStrings[SYSTEM_FONT];
+                m_errors[fit->path()] = errorStrings[LOCKED_FONT];
                 continue;
             }
             if (fit->isActivated()) {
@@ -455,7 +455,7 @@ void FMActivate::activate(QList<FontItem *> fitList, bool act)
         } else // Deactivation
         {
             if (T->isSysFont(fit) || isInside(fit->localPath(), managed)) {
-                m_errors[fit->path()] = errorStrings[SYSTEM_FONT];
+                m_errors[fit->path()] = errorStrings[LOCKED_FONT];
                 continue;
             }
             if (!fit->isActivated()) {
