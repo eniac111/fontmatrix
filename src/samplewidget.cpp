@@ -9,6 +9,7 @@
 #include "fmconfig.h"
 #include "fmfontdb.h"
 #include "fmlayout.h"
+#include "fmvariationswidget.h"
 #include "fontitem.h"
 #include "fontmatrix_debug.h"
 #include "opentypetags.h"
@@ -108,6 +109,11 @@ SampleWidget::SampleWidget(const QString &fid, QWidget *parent)
 
     sampleToolBar = new SampleToolBar(this);
     ui->sampleGridLayout->addWidget(sampleToolBar, 1, 0, Qt::AlignRight | Qt::AlignBottom);
+
+    // the axes of a variable font, on the page the panel is taken from while it is shown
+    variationsWidget = new FMVariationsWidget(ui->stackedViews->widget(VIEW_PAGE_VARIATIONS));
+    variationsWidget->setFont(FMFontDb::DB()->Font(fid));
+    sampleToolBar->showButton(SampleToolBar::VariationsButton, variationsWidget->font() != nullptr);
 
     sampleNameEditor = new QStyledItemDelegate(ui->sampleTextTree);
     ui->sampleTextTree->setItemDelegate(sampleNameEditor);
@@ -218,6 +224,8 @@ void SampleWidget::createConnections()
     connect(this, &SampleWidget::stateChanged, this, &SampleWidget::saveState);
 
     connect(sampleToolBar, &SampleToolBar::OpenTypeToggled, this, &SampleWidget::slotShowOpenType);
+    connect(sampleToolBar, &SampleToolBar::VariationsToggled, this, &SampleWidget::slotShowVariations);
+    connect(variationsWidget, &FMVariationsWidget::coordinatesChanged, this, &SampleWidget::slotView);
     connect(sampleToolBar, &SampleToolBar::SampleToggled, this, &SampleWidget::slotShowSamples);
     connect(sampleToolBar, &SampleToolBar::ScriptSelected, this, &SampleWidget::slotScriptChange);
 
@@ -400,6 +408,8 @@ void SampleWidget::doRender()
 
     auto tf = new FontItem(f->path(), f->family(), f->variant(), f->type(), f->isActivated());
     tf->setFTHintMode(hinting());
+    if (variationsWidget->font())
+        tf->setVariationCoordinates(f->variationCoordinates());
     textLayout->doLayout(list, fSize, tf);
     delete tf;
 
@@ -833,6 +843,8 @@ void SampleWidget::slotShowSamples(bool b)
             ui->opentypeWidget->setParent(ui->stackedViews->widget(VIEW_PAGE_OPENTYPE));
             sampleToolBar->toggle(SampleToolBar::OpenTypeButton, false);
         }
+        if (sampleToolBar->isChecked(SampleToolBar::VariationsButton))
+            sampleToolBar->toggle(SampleToolBar::VariationsButton, false);
         ui->sampleEditWidget->setAutoFillBackground(true);
         ui->sampleEditWidget->resize(ui->sampleGridLayout->geometry().width() / 2, ui->sampleGridLayout->geometry().height());
         ui->sampleGridLayout->addWidget(ui->sampleEditWidget, 0, 0, Qt::AlignRight);
@@ -850,12 +862,31 @@ void SampleWidget::slotShowOpenType(bool b)
             ui->sampleEditWidget->setParent(ui->stackedViews->widget(VIEW_PAGE_SAMPLES));
             sampleToolBar->toggle(SampleToolBar::SampleButton, false);
         }
+        if (sampleToolBar->isChecked(SampleToolBar::VariationsButton))
+            sampleToolBar->toggle(SampleToolBar::VariationsButton, false);
         ui->opentypeWidget->setAutoFillBackground(true);
         ui->opentypeWidget->resize(ui->sampleGridLayout->geometry().width() / 2, ui->sampleGridLayout->geometry().height());
         ui->sampleGridLayout->addWidget(ui->opentypeWidget, 0, 0, Qt::AlignRight);
     } else {
         ui->sampleGridLayout->removeWidget(ui->opentypeWidget);
         ui->opentypeWidget->setParent(ui->stackedViews->widget(VIEW_PAGE_OPENTYPE));
+    }
+}
+
+void SampleWidget::slotShowVariations(bool b)
+{
+    if (b) {
+        // the other two panels go back to their pages
+        if (sampleToolBar->isChecked(SampleToolBar::SampleButton))
+            sampleToolBar->toggle(SampleToolBar::SampleButton, false);
+        if (sampleToolBar->isChecked(SampleToolBar::OpenTypeButton))
+            sampleToolBar->toggle(SampleToolBar::OpenTypeButton, false);
+        variationsWidget->setAutoFillBackground(true);
+        variationsWidget->resize(ui->sampleGridLayout->geometry().width() / 2, ui->sampleGridLayout->geometry().height());
+        ui->sampleGridLayout->addWidget(variationsWidget, 0, 0, Qt::AlignRight);
+    } else {
+        ui->sampleGridLayout->removeWidget(variationsWidget);
+        variationsWidget->setParent(ui->stackedViews->widget(VIEW_PAGE_VARIATIONS));
     }
 }
 

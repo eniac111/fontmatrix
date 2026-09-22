@@ -135,6 +135,8 @@ void FontBook::doFullBook()
             doFullBookPageRight(family->family());
         }
     }
+    restoreStyles();
+    savedCoords.clear();
 
     delete progress;
 }
@@ -175,10 +177,41 @@ void FontBook::doFullBookCover()
     pScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
 }
 
+QList<BookStyle> FontBook::styles(const QList<FontItem *> &fonts)
+{
+    QList<BookStyle> ret;
+    for (FontItem *font : fonts) {
+        const QList<FontNamedInstance> instances(font->isVariable() ? font->namedInstances() : QList<FontNamedInstance>());
+        if (instances.isEmpty()) {
+            ret << BookStyle{font, font->variant(), QList<double>()};
+            continue;
+        }
+        if (!savedCoords.contains(font))
+            savedCoords.insert(font, font->variationCoordinates());
+        for (const FontNamedInstance &instance : instances)
+            ret << BookStyle{font, instance.name, instance.coords};
+    }
+    return ret;
+}
+
+void FontBook::showStyle(const BookStyle &style)
+{
+    if (!style.coords.isEmpty())
+        style.font->setVariationCoordinates(style.coords);
+}
+
+void FontBook::restoreStyles()
+{
+    // the fonts stay on record: the next page sets them again
+    for (auto it = savedCoords.constBegin(); it != savedCoords.constEnd(); ++it)
+        it.key()->setVariationCoordinates(it.value());
+}
+
 void FontBook::doFullBookPageRight(const QString &family)
 {
     qCDebug(FONTMATRIX_LOG) << "=>" << family;
     QList<FontItem *> familyFonts = FMFontDb::DB()->FamilySet(family);
+    const QList<BookStyle> styles(this->styles(familyFonts));
 
     QRectF halfPage(printerRect);
     halfPage.setHeight(halfPage.height() * 0.7);
@@ -196,11 +229,11 @@ void FontBook::doFullBookPageRight(const QString &family)
     QString iString(stringList.join(" "));
     QStringList stl;
     QList<int> sizes;
-    if (familyFonts.size() > 1) {
-        int module(familyFonts.size() * 2);
+    if (styles.size() > 1) {
+        int module(styles.size() * 2);
         int idxS(QRandomGenerator::global()->bounded(qMax(1, iString.size() / 3)));
-        int idxE(qMax(qMax(2, familyFonts.size()), QRandomGenerator::global()->bounded(module)));
-        while (stl.size() < familyFonts.size()) {
+        int idxE(qMax(qMax(2, styles.size()), QRandomGenerator::global()->bounded(module)));
+        while (stl.size() < styles.size()) {
             if ((idxS + idxE) < iString.size()) {
                 QString t(iString.mid(idxS, idxE).simplified());
 
@@ -210,10 +243,10 @@ void FontBook::doFullBookPageRight(const QString &family)
                     stl << t;
                 }
                 idxS = idxE;
-                idxE = qMax(familyFonts.size(), (int)QRandomGenerator::global()->bounded(module));
+                idxE = qMax(styles.size(), (int)QRandomGenerator::global()->bounded(module));
             } else {
                 idxS = QRandomGenerator::global()->bounded(qMax(1, iString.size() / 3));
-                idxE = qMax(familyFonts.size(), (int)QRandomGenerator::global()->bounded(module));
+                idxE = qMax(styles.size(), (int)QRandomGenerator::global()->bounded(module));
             }
         }
     } else // mono variant families can make the algo above to loop
@@ -222,18 +255,19 @@ void FontBook::doFullBookPageRight(const QString &family)
         monoList << "Ab" << "Cd" << "Ef" << "Gh" << "Ij" << "Kl" << "Mn" << "Op" << "Qr" << "St" << "Uv" << "Xy" << "Za";
         stl << monoList.at(QRandomGenerator::global()->bounded(monoList.size()));
     }
-    int diff(familyFonts.size());
+    int diff(styles.size());
     for (int i(0); i < diff; ++i) {
         sampleString[i] = stl[i /* % stl.size() */];
     }
 
     // first we’ll get widths for font size 1000
-    for (int fidx(0); fidx < familyFonts.size(); ++fidx) {
-        sampleFont[fidx] = familyFonts[fidx];
+    for (int fidx(0); fidx < styles.size(); ++fidx) {
+        sampleFont[fidx] = styles[fidx].font;
+        showStyle(styles[fidx]);
         bool rasterState(sampleFont[fidx]->rasterFreetype());
         sampleFont[fidx]->setFTRaster(false);
         sampleFont[fidx]->setRenderReturnWidth(true);
-        logWidth[fidx] = familyFonts[fidx]->renderLine(&tmpScene, sampleString[fidx], QPointF(0.0, 1000.0), 999999.0, 1000.0, 1);
+        logWidth[fidx] = sampleFont[fidx]->renderLine(&tmpScene, sampleString[fidx], QPointF(0.0, 1000.0), 999999.0, 1000.0, 1);
         sampleFont[fidx]->setRenderReturnWidth(false);
         sampleFont[fidx]->setFTRaster(rasterState);
         logAscend[fidx] = 1000.0 - tmpScene.itemsBoundingRect().top();
@@ -253,7 +287,7 @@ void FontBook::doFullBookPageRight(const QString &family)
     QFont nameFont;
     nameFont.setPointSizeF(5.0);
 
-    for (int fidx(0); fidx < familyFonts.size(); ++fidx) {
+    for (int fidx(0); fidx < styles.size(); ++fidx) {
         double fSize((defWidth * 1000.0) / logWidth[fidx]);
         double fAscend(logAscend[fidx] * fSize / 1000.0);
         double fDescend(logDescend[fidx] * fSize / 1000.0);
@@ -267,14 +301,15 @@ void FontBook::doFullBookPageRight(const QString &family)
 
         bool rasterState(sampleFont[fidx]->rasterFreetype());
         sampleFont[fidx]->setFTRaster(false);
+        showStyle(styles[fidx]);
         sampleFont[fidx]->renderLine(&pScene, sampleString[fidx], origine, printerRect.width(), fSize, 0);
         //		pScene.addLine(QLineF(origine, QPointF(xOff + defWidth, yPos)));
         sampleFont[fidx]->setFTRaster(rasterState);
 
         yPos += 4.0;
-        QGraphicsSimpleTextItem *nameText = pScene.addSimpleText(
-            QString("%1 %2pt").arg(familyFonts[fidx]->variant(), (fSize > 16.0) ? QString::number(qRound(fSize)) : QString::number(fSize, 'f', 1)),
-            nameFont);
+        QGraphicsSimpleTextItem *nameText =
+            pScene.addSimpleText(QString("%1 %2pt").arg(styles[fidx].name, (fSize > 16.0) ? QString::number(qRound(fSize)) : QString::number(fSize, 'f', 1)),
+                                 nameFont);
         nameText->setPos(xOff, yPos);
         nameText->setBrush(Qt::gray);
 
@@ -300,6 +335,7 @@ void FontBook::doFullBookPageRight(const QString &family)
     colRightRect.translate(xOff + 220.0, 630.0);
 
     // Select a font, regular preferred
+    restoreStyles();
     FontItem *rFont(FMVariants::Preferred(familyFonts));
 
     // Lets layout !
@@ -354,6 +390,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
 {
     // TODOs
     QList<FontItem *> familyFonts = FMVariants::Order(FMFontDb::DB()->FamilySet(family));
+    const QList<BookStyle> styles(this->styles(familyFonts));
     QGraphicsScene pScene(printerRect);
     QFont nameFont;
     nameFont.setPointSizeF(18.0);
@@ -364,35 +401,38 @@ bool FontBook::doFullBookPageLeft(const QString &family)
     double yPos(printerRect.height() * 0.20);
     double maxYPos(0);
     int colBreak(0);
-    if (familyFonts.size() <= 60) {
-        if ((familyFonts.size() % 4) == 0)
-            colBreak = familyFonts.size() / 4;
+    if (styles.size() <= 60) {
+        if ((styles.size() % 4) == 0)
+            colBreak = styles.size() / 4;
         else
-            colBreak = qMax(1, familyFonts.size() / 3);
+            colBreak = qMax(1, styles.size() / 3);
         double colunit(100);
-        for (int fidx(0); fidx < familyFonts.size(); ++fidx) {
+        for (int fidx(0); fidx < styles.size(); ++fidx) {
             if ((fidx >= colBreak) && ((fidx % colBreak) == 0)) {
                 xPos += colunit + 20;
                 yPos = printerRect.height() * 0.20;
             }
 
             nameFont.setPointSizeF(4.0);
-            QGraphicsSimpleTextItem *varText(pScene.addSimpleText(familyFonts[fidx]->variant(), nameFont));
+            QGraphicsSimpleTextItem *varText(pScene.addSimpleText(styles[fidx].name, nameFont));
             varText->setBrush(Qt::gray);
             varText->setPos(xPos, yPos);
             yPos += varText->boundingRect().height() * 2.2;
             QPointF origine(xPos, yPos);
 
-            bool rasterState(familyFonts[fidx]->rasterFreetype());
-            familyFonts[fidx]->setFTRaster(false);
-            familyFonts[fidx]->renderLine(&pScene, QString("foxy brown fox trot"), origine, printerRect.width() * 0.35, 12.0);
-            familyFonts[fidx]->setFTRaster(rasterState);
+            FontItem *const styleFont(styles[fidx].font);
+            showStyle(styles[fidx]);
+            bool rasterState(styleFont->rasterFreetype());
+            styleFont->setFTRaster(false);
+            styleFont->renderLine(&pScene, QString("foxy brown fox trot"), origine, printerRect.width() * 0.35, 12.0);
+            styleFont->setFTRaster(rasterState);
 
             yPos += 12.0;
             maxYPos = qMax(yPos, maxYPos);
         }
 
         // Characters;
+        restoreStyles();
         FontItem *pf(FMVariants::Preferred(familyFonts));
         int cCount(pf->countChars());
         int charcode(pf->firstChar());
@@ -452,7 +492,7 @@ bool FontBook::doFullBookPageLeft(const QString &family)
         colBreak = 20;
         double colunit(100);
         bool more(false);
-        for (int fidx(0); fidx < familyFonts.size(); ++fidx) {
+        for (int fidx(0); fidx < styles.size(); ++fidx) {
             if ((fidx >= colBreak)) {
                 if (fidx >= (4 * colBreak)) {
                     if (fidx == (4 * colBreak)) {
@@ -473,19 +513,22 @@ bool FontBook::doFullBookPageLeft(const QString &family)
             }
 
             nameFont.setPointSizeF(4.0);
-            QGraphicsSimpleTextItem *varText(pScene.addSimpleText(familyFonts[fidx]->variant(), nameFont));
+            QGraphicsSimpleTextItem *varText(pScene.addSimpleText(styles[fidx].name, nameFont));
             varText->setBrush(Qt::gray);
             varText->setPos(xPos, yPos);
             yPos += varText->boundingRect().height() * 2.2;
             QPointF origine(xPos, yPos);
 
-            bool rasterState(familyFonts[fidx]->rasterFreetype());
-            familyFonts[fidx]->setFTRaster(false);
-            familyFonts[fidx]->renderLine(&pScene, QString("foxy brown fox trot"), origine, printerRect.width() * 0.35, 12.0);
-            familyFonts[fidx]->setFTRaster(rasterState);
+            FontItem *const styleFont(styles[fidx].font);
+            showStyle(styles[fidx]);
+            bool rasterState(styleFont->rasterFreetype());
+            styleFont->setFTRaster(false);
+            styleFont->renderLine(&pScene, QString("foxy brown fox trot"), origine, printerRect.width() * 0.35, 12.0);
+            styleFont->setFTRaster(rasterState);
 
             yPos += 12.0;
         }
+        restoreStyles();
         pScene.render(painter, printer->pageRect(QPrinter::DevicePixel), printerRect);
         return (!more);
     }

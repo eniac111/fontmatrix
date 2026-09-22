@@ -51,6 +51,7 @@ FMInfoDisplay::FMInfoDisplay(FontItem *font)
     html += writeOrderedInfo(font);
     html += writeFsType(font);
     html += "</div>\n"; // general
+    html += writeVariations(font);
     html += writePanose(font);
     html += writeLangOS2(font);
     html += "</body>\n </html>\n";
@@ -96,6 +97,38 @@ QString FMInfoDisplay::writeFsType(FontItem *font)
     embedFlags += "</div>";
 
     return embedFlags;
+}
+
+QString FMInfoDisplay::writeVariations(FontItem *font)
+{
+    if (!font->isVariable())
+        return QString();
+    QString ret;
+    ret += "<div id=\"variations\">\n";
+    ret += "\t<div class=\"langblockname\">" + i18nc("@title:group the axes of a variable font", "Variation Axes") + "</div>\n";
+    ret += "\t<ul>\n";
+    const QList<FontVariationAxis> axes(font->variationAxes());
+    for (const FontVariationAxis &axis : axes) {
+        ret += QString("\t\t<li>%1</li>\n")
+                   .arg(xhtmlifies(i18nc("@item an axis of a variable font: %1 name, %2 tag, %3 minimum, %4 maximum, %5 default",
+                                         "%1 (%2): from %3 to %4, %5 by default",
+                                         axis.name,
+                                         axis.tag,
+                                         QString::number(axis.minimum),
+                                         QString::number(axis.maximum),
+                                         QString::number(axis.def))));
+    }
+    ret += "\t</ul>\n";
+    const QList<FontNamedInstance> instances(font->namedInstances());
+    if (!instances.isEmpty()) {
+        ret += "\t<div class=\"langblockname\">" + i18nc("@title:group the named instances of a variable font", "Named Instances") + "</div>\n";
+        ret += "\t<ul>\n";
+        for (const FontNamedInstance &instance : instances)
+            ret += QString("\t\t<li>%1</li>\n").arg(xhtmlifies(instance.name));
+        ret += "\t</ul>\n";
+    }
+    ret += "</div>\n";
+    return ret;
 }
 
 QString FMInfoDisplay::writeLangOS2(FontItem *font)

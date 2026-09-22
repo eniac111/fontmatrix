@@ -82,7 +82,8 @@ complex queries;</para></listitem>
 glyphs in detail or text lines;</para></listitem>
 <listitem><para>supports searching in PANOSE metadata and allows
 non-destructively editing it;</para></listitem>
-<listitem><para>has advanced OpenType support;</para></listitem>
+<listitem><para>has advanced OpenType support, variable fonts
+included;</para></listitem>
 <listitem><para>ships with sample texts in many languages and scripts to
 assist testing fonts with wide Unicode coverage;</para></listitem>
 <listitem><para>features easy template-based creation of font books
@@ -424,6 +425,19 @@ and block progression for non-Latin scripts (Hebrew, Mongolian,
 reveal a sidebar listing every available OpenType feature in the
 loaded font, grouped by table and subtable. Toggling a feature
 re-renders the canvas immediately.</para>
+</sect2>
+
+<sect2 id="viewing-sample-variations">
+<title>Variations</title>
+<para>For a variable font the <guibutton>Variations</guibutton> button
+reveals a sidebar with its axes: pick a named instance from the list,
+or move the slider of an axis (weight, width, optical size, slant or
+the designer's own) to any point of its range. The sample, the glyphs
+chart and the playground show the font at the chosen coordinates;
+<guibutton>Default</guibutton> takes it back to the position the
+designer chose. The <guilabel>Info</guilabel> page lists the axes and the
+named instances, and the font book shows every named instance as a
+style.</para>
 </sect2>
 </sect1>
 

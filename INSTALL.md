@@ -32,7 +32,7 @@ Download and run the MSI — Qt and FreeType runtime DLLs are bundled.
 | PoDoFo | ≥ 0.10 | optional: *Tools → Extract fonts* (the fonts embedded in a PDF file). Without it, or with 0.9, whose API is another one, the application is built without that entry |
 | HarfBuzz | ≥ 2.6.8 | built with FreeType support; Qt 6 depends on it already |
 | libhyphen | | hyphenation of the sample texts (hunspell's `hyphen`); the KDE Flatpak runtime has it, Craft builds it from `craft-blueprints/libs/hyphen` |
-| FreeType2 | ≥ 2.3.5 | |
+| FreeType2 | ≥ 2.9 | variable fonts need the OpenType variation support of 2.8 and the axis flags of 2.8.1 |
 | Gettext | | `msgfmt`, to compile the translations |
 | Fontconfig | | optional, Linux; without it fonts are managed but not switched on and off for other programs |
 

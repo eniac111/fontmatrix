@@ -19,6 +19,7 @@ SampleToolBar::SampleToolBar(QWidget *parent)
     connect(ui->liveSize, &QDoubleSpinBox::valueChanged, this, &SampleToolBar::SizeChanged);
     connect(ui->sampleButton, &QToolButton::toggled, this, &SampleToolBar::SampleToggled);
     connect(ui->opentypeButton, &QToolButton::toggled, this, &SampleToolBar::OpenTypeToggled);
+    connect(ui->variationsButton, &QToolButton::toggled, this, &SampleToolBar::VariationsToggled);
     connect(ui->languageCombo, &QComboBox::currentIndexChanged, this, &SampleToolBar::ScriptSelected);
 }
 
@@ -49,29 +50,44 @@ void SampleToolBar::setFontSize(double fs)
     ui->liveSize->setValue(fs);
 }
 
+namespace
+{
+QToolButton *buttonOf(Ui::SampleToolBar *ui, SampleToolBar::Button b)
+{
+    switch (b) {
+    case SampleToolBar::SampleButton:
+        return ui->sampleButton;
+    case SampleToolBar::OpenTypeButton:
+        return ui->opentypeButton;
+    case SampleToolBar::VariationsButton:
+        return ui->variationsButton;
+    }
+    return nullptr;
+}
+}
+
 bool SampleToolBar::isChecked(Button b)
 {
-    if (b == SampleButton)
-        return ui->sampleButton->isChecked();
-    else if (b == OpenTypeButton)
-        return ui->opentypeButton->isChecked();
-    return false;
+    QToolButton *button = buttonOf(ui, b);
+    return button && button->isChecked();
 }
 
 void SampleToolBar::toggle(Button b, bool c)
 {
-    if (b == SampleButton)
-        ui->sampleButton->setChecked(c);
-    else if (b == OpenTypeButton)
-        ui->opentypeButton->setChecked(c);
+    if (QToolButton *button = buttonOf(ui, b))
+        button->setChecked(c);
 }
 
 void SampleToolBar::enableButton(Button b, bool c)
 {
-    if (b == SampleButton)
-        ui->sampleButton->setEnabled(c);
-    else if (b == OpenTypeButton)
-        ui->opentypeButton->setEnabled(c);
+    if (QToolButton *button = buttonOf(ui, b))
+        button->setEnabled(c);
+}
+
+void SampleToolBar::showButton(Button b, bool s)
+{
+    if (QToolButton *button = buttonOf(ui, b))
+        button->setVisible(s);
 }
 
 void SampleToolBar::setScripts(const QStringList &ll)

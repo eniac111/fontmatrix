@@ -248,7 +248,19 @@ QVariant FMPreviewModel::data(const QModelIndex &index, int role) const
             sRet += "<div style=\"" + styleTooltipTags + "\">" + fit->tags().join(QString(", ")) + "</div>";
 
             for (auto *ffi : std::as_const(fam)) {
-                sRet += "<div style=\"" + styleTooltipPath + "\">" + ffi->variant() + "</div>";
+                QString style(ffi->variant());
+                if (ffi->isVariable()) {
+                    // the named instances of a variable font are its styles
+                    QStringList names;
+                    const QList<FontNamedInstance> instances(ffi->namedInstances());
+                    for (const FontNamedInstance &instance : instances)
+                        names << instance.name;
+                    style = i18nc("@info:tooltip a variable font and its named instances, %1 the style name, %2 the instances",
+                                  "%1 (variable: %2)",
+                                  ffi->variant(),
+                                  names.join(QStringLiteral(", ")));
+                }
+                sRet += "<div style=\"" + styleTooltipPath + "\">" + style + "</div>";
             }
             return sRet;
         }

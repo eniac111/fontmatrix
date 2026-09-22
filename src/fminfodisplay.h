@@ -26,6 +26,7 @@ class FMInfoDisplay
     QString writeOrderedInfo(FontItem *font);
     QString writePanose(FontItem *font);
     QString writeLangOS2(FontItem *font);
+    QString writeVariations(FontItem *font);
 
     QString url2href(QString value);
     QString xhtmlifies(const QString &value);

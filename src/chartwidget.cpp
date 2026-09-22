@@ -77,6 +77,8 @@ void ChartWidget::createConnections()
     connect(ui->uniPlaneCombo, &QComboBox::activated, this, &ChartWidget::slotPlaneSelected);
     connect(ui->clipboardCheck, &QToolButton::toggled, this, &ChartWidget::slotShowULine);
     connect(ui->charSearchLine, &QLineEdit::returnPressed, this, &ChartWidget::slotSearchCharName);
+    if (FontItem *font = FMFontDb::DB()->Font(fontIdentifier))
+        connect(font, &FontItem::variationChanged, this, &ChartWidget::slotUpdateGView);
 
     connect(ui->toolbar, &FloatingWidgetToolBar::Close, this, &ChartWidget::close);
     connect(ui->toolbar, &FloatingWidgetToolBar::Hide, this, &ChartWidget::hide);
@@ -94,6 +96,8 @@ void ChartWidget::removeConnections()
     disconnect(ui->uniPlaneCombo, &QComboBox::activated, this, &ChartWidget::slotPlaneSelected);
     disconnect(ui->clipboardCheck, &QToolButton::toggled, this, &ChartWidget::slotShowULine);
     disconnect(ui->charSearchLine, &QLineEdit::returnPressed, this, &ChartWidget::slotSearchCharName);
+    if (FontItem *font = FMFontDb::DB()->Font(fontIdentifier))
+        disconnect(font, &FontItem::variationChanged, this, &ChartWidget::slotUpdateGView);
 
     disconnect(ui->toolbar, &FloatingWidgetToolBar::Close, this, &ChartWidget::close);
     disconnect(ui->toolbar, &FloatingWidgetToolBar::Hide, this, &ChartWidget::hide);

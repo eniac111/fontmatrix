@@ -58,6 +58,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmshaper_own.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmuniblocks.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmutils.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmvariants.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmvariationswidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmverticalbutton.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fontbook.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fontbookdialog.cpp
@@ -459,6 +460,7 @@ set_source_files_properties(
 	fmuniblocks.cpp
 	fmutils.cpp
 	fmvariants.cpp
+	fmvariationswidget.cpp
 	glyphtosvghelper.cpp
 	modeltext.cpp
 	openclosearrow.cpp

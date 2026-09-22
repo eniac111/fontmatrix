@@ -9,6 +9,8 @@
 
 #include <QColor>
 #include <QDomDocument>
+#include <QHash>
+#include <QList>
 #include <QMap>
 #include <QObject>
 #include <QPageSize>
@@ -108,6 +110,15 @@ struct FontBookContext {
     FBCLevel level;*/
 };
 
+class FontItem;
+
+/// a style the book shows: a font, or one named instance of a variable font
+struct BookStyle {
+    FontItem *font = nullptr;
+    QString name; ///< the style name, or the name of the instance
+    QList<double> coords; ///< the coordinates of the instance; empty for the font as it is
+};
+
 class FontBook : public QObject
 {
 public:
@@ -127,6 +138,14 @@ private:
     bool doFullBookPageLeft(const QString &family);
     void doFullBookPageRight(const QString &family);
     void doOneLinerBook();
+
+    /// the styles of the fonts, a variable font contributing every named instance it has
+    QList<BookStyle> styles(const QList<FontItem *> &fonts);
+    /// puts a variable font at the coordinates of the style before it renders
+    static void showStyle(const BookStyle &style);
+    /// back to the coordinates the fonts had before the book
+    void restoreStyles();
+    QHash<FontItem *, QList<double>> savedCoords;
 
     QPrinter *printer = nullptr;
     QPainter *painter = nullptr;
