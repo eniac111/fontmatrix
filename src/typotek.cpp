@@ -355,6 +355,23 @@ void typotek::slotQuit()
     close();
 }
 
+/**
+ * Whether the path is in the folder Fontmatrix activates fonts into. On Windows
+ * that is the user's font folder, and what it holds is either an activated
+ * copy of a font already in the database or a font installed in Settings,
+ * neither of which is imported. Elsewhere the folder only ever holds links.
+ */
+bool typotek::isInUserFontFolder([[maybe_unused]] const QString &path) const
+{
+#ifdef _WIN32
+    const QString folder(managedDir.absolutePath() + QLatin1Char('/'));
+    const QString p(QDir::cleanPath(path) + QLatin1Char('/'));
+    return p.startsWith(folder, Qt::CaseInsensitive);
+#else
+    return false;
+#endif
+}
+
 /// IMPORT
 // if announce == true user will be shown a dialog of imported fonts
 // if announce == false and collect == true all fonts imported will be
@@ -403,6 +420,8 @@ void typotek::open(QString path, bool recursive, bool announce, bool collect)
         QStringList filters;
         filters << "*.otf" << "*.pfb" << "*.ttf" << "*.ttc";
         for (const auto &dr : std::as_const(dirList)) {
+            if (isInUserFontFolder(dr))
+                continue;
             QDir d(dr);
             QFileInfoList fil = d.entryInfoList(filters);
             for (const auto &fp : std::as_const(fil)) {
@@ -419,7 +438,7 @@ void typotek::open(QString path, bool recursive, bool announce, bool collect)
                 }
             }
         }
-    } else if (finfo.isFile())
+    } else if (finfo.isFile() && !isInUserFontFolder(finfo.absoluteFilePath()))
         pathList << finfo.absoluteFilePath();
 
     // It can happen that you wrongly select a dir, it is time to let the user cancel the import.
@@ -1306,6 +1325,12 @@ void typotek::initDir()
         }
         FMFontDb::DB()->addTag(tl, m_sysTagName);
     }
+
+#ifdef _WIN32
+    // fonts removed in Settings > Fonts since the last run, and copies that were in use at deactivation
+    relayStartingStepIn(i18nc("@info:progress", "Checking the activated fonts"));
+    FMActivate::getInstance()->reconcileUserFonts();
+#endif
 
     // 	qDebug()<<"TIME(fonts) : "<<fontsTime.elapsed();
     /// Remote directories: their catalogues are read again at every start

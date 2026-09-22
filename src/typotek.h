@@ -242,6 +242,8 @@ private:
 
 public:
     bool isSysFont(FontItem *f);
+    /// the folder activated fonts go into holds nothing to import (Windows)
+    [[nodiscard]] bool isInUserFontFolder(const QString &path) const;
     FontItem *getSelectedFont();
     void resetFilter();
 
