@@ -492,6 +492,7 @@ void MainViewWidget::disConnect()
 void MainViewWidget::slotFontDbChanged()
 {
     // the list shows the database's current set: fonts added since are in it only after a filter run
+    filterBar->invalidateCoverage();
     filterBar->refilter();
     previewModel->dataChanged();
 }

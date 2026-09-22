@@ -101,6 +101,7 @@ public:
     QVariant getValue(const QString &id, Field field, bool useCache = true);
     QList<FontDBResult> getValues(Field field, const QList<FontItem *> &fonts = QList<FontItem *>());
     FontInfoMap getInfoMap(const QString &id);
+    /// every font's value of one information field; a negative codeLang takes the record of any language
     QList<FontDBResult> getInfo(const QList<FontItem *> &fonts, InfoItem info, int codeLang = 0);
 
 public Q_SLOTS:

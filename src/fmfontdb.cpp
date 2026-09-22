@@ -269,10 +269,17 @@ FontInfoMap FMFontDb::getInfoMap(const QString &id)
 QList<FontDBResult> FMFontDb::getInfo([[maybe_unused]] const QList<FontItem *> &fonts, InfoItem info, int codeLang)
 {
     QList<FontDBResult> ret;
-    QString qs(QStringLiteral("SELECT %1,%2 FROM %3 WHERE (%4=?) AND (%5=?)")
-                   .arg(fieldName.value(Id), fieldName.value(InfoValue), tableName.value(Info), fieldName.value(InfoKey), fieldName.value(Lang)));
+    // a name comes once per platform and language; a negative codeLang takes them all
+    QString qs(QStringLiteral("SELECT %1,%2 FROM %3 WHERE (%4=?)")
+                   .arg(fieldName.value(Id), fieldName.value(InfoValue), tableName.value(Info), fieldName.value(InfoKey)));
+    QVariantList values;
+    values << int(info);
+    if (codeLang >= 0) {
+        qs += QStringLiteral(" AND (%1=?)").arg(fieldName.value(Lang));
+        values << codeLang;
+    }
     QSqlQuery query(*this);
-    if (!execBound(query, qs, QVariantList() << int(info) << codeLang))
+    if (!execBound(query, qs, values))
         return ret;
     else {
         while (query.next()) {
