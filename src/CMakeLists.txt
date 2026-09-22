@@ -13,6 +13,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/dumpdialog.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/familywidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterbar.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterdata.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/filterduplicate.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterlang.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterlicense.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filtersdialog.cpp
@@ -30,6 +31,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmaltcontext.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmaltselector.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmbaseshaper.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmdumpinfo.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmduplicates.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmencdata.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfloatingpreview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontcompareview.cpp
@@ -448,6 +450,7 @@ set_source_files_properties(
 	filterdata.cpp
 	filteritem.cpp
 	filtermeta.cpp
+	filterduplicate.cpp
 	filterlang.cpp
 	filterlicense.cpp
 	filterpanose.cpp
@@ -459,6 +462,7 @@ set_source_files_properties(
 	fmcolorpainter.cpp
 	fmconfig.cpp
 	fmdumpinfo.cpp
+	fmduplicates.cpp
 	fmencdata.cpp
 	fmfontcompareview.cpp
 	fmfontdb.cpp

@@ -583,6 +583,26 @@ opinion: read the text on the <guilabel>Info</guilabel> page before
 relying on it.</para>
 </sect1>
 
+<sect1 id="search-duplicates">
+<title>Finding duplicates</title>
+<para>Every collection that has grown for a few years holds the same
+font more than once. The <guilabel>Duplicates</guilabel> section of the
+sidebar finds them, in two kinds that are worth telling apart.</para>
+<para><guilabel>Identical files</guilabel> are copies: the files are
+byte for byte the same, so whichever of them you drop, nothing is
+lost. <guilabel>Same font, other file</guilabel> are files that declare
+one family, one style and one version but differ in their bytes — the
+same design in another build, hinted differently or carrying another
+set of tables. Which of those to keep is a decision, and the
+<guilabel>Info</guilabel> page of each is where to make it.</para>
+<para>The first time a kind is picked &fontmatrix; reads the font
+files, which takes a moment; the answer is then kept until the
+collection changes. Only files of exactly the same length are ever
+read, so a collection of thousands costs a few dozen reads. Nothing is
+written to the database, and no font is removed for you: the filter
+narrows the list, and you decide what goes.</para>
+</sect1>
+
 <sect1 id="search-bitmap">
 <title>Searching using bitmap samples</title>
 <para>If you have an enormous fonts collection, you can search for a
