@@ -15,6 +15,7 @@
 #include "fmconfig.h"
 #include "fmfontdb.h"
 #include "fmfontextract.h"
+#include "fmhyphenator.h"
 #include "fmlayout.h"
 #include "fmmatchraster.h"
 #include "fmpaths.h"
@@ -23,7 +24,6 @@
 #include "fontcomparewidget.h"
 #include "fontitem.h"
 #include "fontmatrix_debug.h"
-#include "hyphenate/fmhyphenator.h"
 #include "importedfontsdialog.h"
 #include "importtags.h"
 #include "mainviewwidget.h"
@@ -250,24 +250,29 @@ void typotek::initMatrix()
     showToltalFilteredFonts();
 
     if (!hyphenator) {
-        QString dP(FMConfig::value(QStringLiteral("Sample/HyphenationDict"), "hyph.dic").toString());
-        if (!dP.isEmpty() && QFileInfo::exists(dP)) {
-            hyphenator = new FMHyphenator();
-            if (!hyphenator->loadDict(dP,
-                                      FMConfig::value(QStringLiteral("Sample/HyphLeft"), 2).toInt(),
-                                      FMConfig::value(QStringLiteral("Sample/HyphRight"), 3).toInt())) {
-                // Dict file exists but failed to load — clear so the user can reconfigure
-                FMConfig::remove(QStringLiteral("Sample/HyphenationDict"));
-                FMConfig::remove(QStringLiteral("Sample/HyphLeft"));
-                FMConfig::remove(QStringLiteral("Sample/HyphRight"));
-            }
-        } else {
-            // No dict configured or file missing — create hyphenator anyway for prefs access
-            hyphenator = new FMHyphenator();
-            // Remove any stale empty-string value so the default applies next launch
-            if (dP.isEmpty())
-                FMConfig::remove(QStringLiteral("Sample/HyphenationDict"));
+        hyphenator = new FMHyphenator();
+        // A dictionary chosen in Preferences comes first; otherwise the one the system
+        // has for the interface language, which is also the language of the default sample.
+        QString dP(FMConfig::value(QStringLiteral("Sample/HyphenationDict"), QString()).toString());
+        if (!dP.isEmpty() && !QFileInfo::exists(dP)) {
+            qCWarning(FONTMATRIX_LOG) << "The hyphenation dictionary of the preferences is gone:" << dP;
+            FMConfig::remove(QStringLiteral("Sample/HyphenationDict"));
+            dP.clear();
         }
+        if (dP.isEmpty())
+            dP = FMPaths::HyphenationDictionary();
+        if (!dP.isEmpty()) {
+            if (hyphenator->loadDict(dP,
+                                     FMConfig::value(QStringLiteral("Sample/HyphLeft"), 2).toInt(),
+                                     FMConfig::value(QStringLiteral("Sample/HyphRight"), 3).toInt()))
+                qCDebug(FONTMATRIX_LOG) << "Hyphenation dictionary:" << dP;
+            else
+                qCWarning(FONTMATRIX_LOG) << "Cannot load the hyphenation dictionary" << dP;
+        } else
+            qCDebug(FONTMATRIX_LOG) << "No hyphenation dictionary for" << QLocale::system().name() << "in"
+                                    << QStandardPaths::locateAll(QStandardPaths::GenericDataLocation,
+                                                                 QStringLiteral("hyphen"),
+                                                                 QStandardPaths::LocateDirectory);
     }
 }
 

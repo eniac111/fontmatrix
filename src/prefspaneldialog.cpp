@@ -5,9 +5,9 @@
 */
 
 #include "prefspaneldialog.h"
+#include "fmhyphenator.h"
 #include "fmpaths.h"
 #include "fontmatrix_debug.h"
-#include "hyphenate/fmhyphenator.h"
 #include "shortcuts.h"
 #include "typotek.h"
 

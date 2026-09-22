@@ -35,18 +35,5 @@ precedence = "closest"
 SPDX-FileCopyrightText = ["The Scribus Team", "2008-2026 The Fontmatrix contributors"]
 SPDX-License-Identifier = "GPL-2.0-or-later"
 
-# Embedded libhnj (libhyphen): its own tri-licence, see src/hyphenate/COPYING
-[[annotations]]
-path = ["src/hyphenate/hyphen.c", "src/hyphenate/hyphen.h", "src/hyphenate/hnjalloc.c", "src/hyphenate/hnjalloc.h",
-        "src/hyphenate/AUTHORS", "src/hyphenate/COPYING", "src/hyphenate/COPYING.LGPL"]
-precedence = "closest"
-SPDX-FileCopyrightText = [
-    "1998 Raph Levien",
-    "2001 ALTLinux, Moscow",
-    "2001 Peter Novodvorsky <nidd@cs.msu.su>",
-    "2006-2008 László Németh",
-]
-SPDX-License-Identifier = "GPL-2.0-or-later OR LGPL-2.1-or-later OR MPL-1.1"
-
 # samples/ is NOT listed on purpose: texts of other authors (Wikipedia, Schiller, Cervantes,
 # Proust, Gogol, ...), see samples/CREDITS. They need their own licences, not this project's.

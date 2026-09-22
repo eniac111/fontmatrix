@@ -33,6 +33,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmfloatingpreview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontcompareview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontdb.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontextract.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmhyphenator.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontstrings.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfreetypelib.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmglyphhighlight.cpp
@@ -232,7 +233,6 @@ ${QT_QT_INCLUDE_DIR}
 ${FREETYPE_INCLUDE_DIRS}
 ${ICU_INCLUDE_DIR}
 ${M17N_INCLUDE_DIR}
-${HYPHENATE_INCLUDE_DIR}
 )
 # only when the module found it: "LIBPODOFO_INCLUDE_DIR-NOTFOUND" is not a directory
 if(PODOFO AND LIBPODOFO_INCLUDE_DIR)
@@ -249,7 +249,7 @@ IF(UNIX AND NOT APPLE)
 	${PODOFO_SRCS}
 	)
 
-	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz hyphenate
+	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz Hyphen::Hyphen
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	$<TARGET_NAME_IF_EXISTS:Fontconfig::Fontconfig>
@@ -352,7 +352,7 @@ IF(APPLE)
 	${PODOFO_SRCS}
 	)
 
-	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz hyphenate
+	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz Hyphen::Hyphen
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	${SHAPERS_LIBRARIES}
@@ -432,7 +432,7 @@ IF(WIN32)
 	fontmatrix.rc
 	)
 
-	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz hyphenate
+	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz Hyphen::Hyphen
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
 	${SHAPERS_LIBRARIES}

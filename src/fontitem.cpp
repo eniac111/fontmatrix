@@ -12,12 +12,12 @@
 #include "fmfontstrings.h"
 #include "fmfreetypelib.h"
 #include "fmglyphsview.h"
+#include "fmhyphenator.h"
 #include "fmkernfeat.h"
 #include "fmotf.h"
 #include "fmuniblocks.h"
 #include "fontmatrix_debug.h"
 #include "glyphtosvghelper.h"
-#include "hyphenate/fmhyphenator.h"
 #include "typotek.h"
 
 #include <KLocalizedString>
