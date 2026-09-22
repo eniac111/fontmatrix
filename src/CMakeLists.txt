@@ -13,6 +13,8 @@ ${CMAKE_CURRENT_SOURCE_DIR}/dumpdialog.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/familywidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterbar.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterdata.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/filterlang.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/filterlicense.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filtersdialog.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filtersdialogitem.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filteritem.cpp
@@ -34,6 +36,8 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmfontcompareview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontdb.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontextract.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmhyphenator.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmlangcoverage.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmlicense.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmshaper.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/harfbuzzqtshaper.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontstrings.cpp
@@ -443,6 +447,8 @@ set_source_files_properties(
 	filterdata.cpp
 	filteritem.cpp
 	filtermeta.cpp
+	filterlang.cpp
+	filterlicense.cpp
 	filterpanose.cpp
 	filtertag.cpp
 	floatingwidget.cpp
@@ -457,6 +463,8 @@ set_source_files_properties(
 	fmfontdb.cpp
 	fmglyphsview.cpp
 	fmkernfeat.cpp
+	fmlangcoverage.cpp
+	fmlicense.cpp
 	fmlayoptwidget.cpp
 	fmnamelist.cpp
 	fmotf.cpp

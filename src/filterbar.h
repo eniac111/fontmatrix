@@ -131,6 +131,11 @@ private:
 
     QStringListModel *mModel = nullptr;
     QStringList mList;
+    /// the languages and the licences of the collection, read when their section is first opened
+    void fillLanguages();
+    void fillLicenses();
+    bool languagesFilled = false;
+    bool licensesFilled = false;
 
 Q_SIGNALS:
     void initSearch(int, QString);
@@ -156,11 +161,18 @@ private Q_SLOTS:
     void slotToggleMeta(bool t);
     void slotTogglePano(bool t);
     void slotToggleFilter(bool t);
+    void slotToggleLanguages(bool t);
+    void slotToggleLicense(bool t);
+
+    void slotLangFilter(int index);
+    void slotLicenseFilter(int index);
 
 public Q_SLOTS:
     void slotClearFilter();
     /// applies the filters again, or shows every font when there is none: for fonts added to the database
     void refilter();
+    /// the languages and the licences are read again, the fonts of the database having changed
+    void invalidateCoverage();
     void slotSaveFilter();
     void slotSaveFilter(const QString &fname);
 };

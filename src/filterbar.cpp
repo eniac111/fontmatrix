@@ -6,12 +6,16 @@
 
 #include "filterbar.h"
 #include "filteritem.h"
+#include "filterlang.h"
+#include "filterlicense.h"
 #include "filtermeta.h"
 #include "filterpanose.h"
 #include "filtersdialog.h"
 #include "filtersdialogitem.h"
 #include "filtertag.h"
 #include "fmfontdb.h"
+#include "fmlangcoverage.h"
+#include "fmlicense.h"
 #include "fmpaths.h"
 #include "fontmatrix_debug.h"
 #include "mainviewwidget.h"
@@ -242,6 +246,16 @@ FilterBar::FilterBar(QWidget *parent)
     connect(ui->panoseWidget, &PanoseWidget::filterChanged, this, &FilterBar::slotPanoFilter);
     connect(FMFontDb::DB(), &FMFontDb::tagsChanged, tagListModel, &TagListModel::tagsDBChanged);
 
+    // the languages a font can set are fontconfig's answer: without it the section has nothing to say
+    ui->languagesBox->setVisible(FMLangCoverage::isAvailable());
+    ui->languagesArrow->setVisible(FMLangCoverage::isAvailable());
+    ui->line_5->setVisible(FMLangCoverage::isAvailable());
+
+    connect(ui->languagesCombo, &QComboBox::activated, this, &FilterBar::slotLangFilter);
+    connect(ui->licenseCombo, &QComboBox::activated, this, &FilterBar::slotLicenseFilter);
+    connect(ui->languagesArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotToggleLanguages);
+    connect(ui->licenseArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotToggleLicense);
+
     connect(ui->tagsArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotToggleTags);
     connect(ui->metadataArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotToggleMeta);
     connect(ui->panoseArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotTogglePano);
@@ -251,6 +265,8 @@ FilterBar::FilterBar(QWidget *parent)
     ui->metadataArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/MetaOpen"), false).toBool());
     ui->panoseArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/PanoseOpen"), false).toBool());
     ui->filtersArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/FiltersOpen"), true).toBool());
+    ui->languagesArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/LanguagesOpen"), false).toBool());
+    ui->licenseArrow->changeOpen(FMConfig::value(QStringLiteral("FilterBar/LicenseOpen"), false).toBool());
 }
 
 FilterBar::~FilterBar()
@@ -259,6 +275,8 @@ FilterBar::~FilterBar()
     FMConfig::setValue(QStringLiteral("FilterBar/MetaOpen"), ui->metadataArrow->isOpen());
     FMConfig::setValue(QStringLiteral("FilterBar/PanoseOpen"), ui->panoseArrow->isOpen());
     FMConfig::setValue(QStringLiteral("FilterBar/FiltersOpen"), ui->filtersArrow->isOpen());
+    FMConfig::setValue(QStringLiteral("FilterBar/LanguagesOpen"), ui->languagesArrow->isOpen());
+    FMConfig::setValue(QStringLiteral("FilterBar/LicenseOpen"), ui->licenseArrow->isOpen());
     delete ui;
 }
 
@@ -296,6 +314,19 @@ void FilterBar::metaFilter()
 
     ui->metadataLineEdit->clear();
     processFilters();
+}
+
+void FilterBar::invalidateCoverage()
+{
+    // fonts were added or removed: the languages and the licences are read again
+    FMLangCoverage::invalidate();
+    FMLicense::invalidate();
+    languagesFilled = false;
+    licensesFilled = false;
+    if (ui->languagesArrow->isOpen())
+        fillLanguages();
+    if (ui->licenseArrow->isOpen())
+        fillLicenses();
 }
 
 void FilterBar::refilter()
@@ -418,6 +449,10 @@ void FilterBar::loadFilters()
                         f = new FilterPanose;
                     } else if (type == QString("Tag")) {
                         f = new FilterTag;
+                    } else if (type == QString("Lang")) {
+                        f = new FilterLang;
+                    } else if (type == QString("License")) {
+                        f = new FilterLicense;
                     }
                     if (!f)
                         continue;
@@ -591,6 +626,10 @@ void FilterBar::slotLoadFilter(const QString &fname)
                     f = new FilterPanose;
                 } else if (type == QString("Tag")) {
                     f = new FilterTag;
+                } else if (type == QString("Lang")) {
+                    f = new FilterLang;
+                } else if (type == QString("License")) {
+                    f = new FilterLicense;
                 }
                 if (!f)
                     continue;
@@ -661,6 +700,79 @@ void FilterBar::slotToggleFilter(bool t)
         ui->filtersBox->show();
     else
         ui->filtersBox->hide();
+}
+
+void FilterBar::slotToggleLanguages(bool t)
+{
+    // the section is not there at all when nothing can tell the coverage
+    if (t && FMLangCoverage::isAvailable()) {
+        fillLanguages();
+        ui->languagesBox->show();
+    } else {
+        ui->languagesBox->hide();
+    }
+}
+
+void FilterBar::slotToggleLicense(bool t)
+{
+    if (t) {
+        fillLicenses();
+        ui->licenseBox->show();
+    } else {
+        ui->licenseBox->hide();
+    }
+}
+
+void FilterBar::fillLanguages()
+{
+    if (languagesFilled || !FMLangCoverage::isAvailable())
+        return;
+    languagesFilled = true;
+    ui->languagesCombo->clear();
+    ui->languagesCombo->addItem(i18nc("@item:inlistbox no language picked yet, in the list of the languages a font can set", "Select language"), QString());
+    const QStringList languages(FMLangCoverage::languages());
+    for (const QString &language : languages) {
+        ui->languagesCombo->addItem(FMLangCoverage::name(language), language);
+        const QString native(FMLangCoverage::nativeName(language));
+        if (!native.isEmpty())
+            ui->languagesCombo->setItemData(ui->languagesCombo->count() - 1, native, Qt::ToolTipRole);
+    }
+}
+
+void FilterBar::fillLicenses()
+{
+    if (licensesFilled)
+        return;
+    licensesFilled = true;
+    ui->licenseCombo->clear();
+    ui->licenseCombo->addItem(i18nc("@item:inlistbox no licence picked yet, in the list of the licences of the fonts", "Select license"), -1);
+    const QList<FMLicense::Family> families(FMLicense::families());
+    for (const FMLicense::Family family : families)
+        ui->licenseCombo->addItem(FMLicense::name(family), int(family));
+}
+
+void FilterBar::slotLangFilter(int index)
+{
+    const QString language(ui->languagesCombo->itemData(index).toString());
+    if (language.isEmpty())
+        return;
+    auto fl(new FilterLang);
+    fl->setData(FilterData::Text, i18nc("@item a filter on the language a font can set", "Language: %1", FMLangCoverage::name(language)));
+    fl->setData(FilterLang::Language, language);
+    addFilterItem(fl);
+    ui->languagesCombo->setCurrentIndex(0);
+}
+
+void FilterBar::slotLicenseFilter(int index)
+{
+    const int family(ui->licenseCombo->itemData(index).toInt());
+    if (family < 0)
+        return;
+    auto fl(new FilterLicense);
+    fl->setData(FilterData::Text, i18nc("@item a filter on the licence of a font", "License: %1", FMLicense::name(static_cast<FMLicense::Family>(family))));
+    fl->setData(FilterLicense::License, family);
+    addFilterItem(fl);
+    ui->licenseCombo->setCurrentIndex(0);
 }
 
 #include "moc_filterbar.cpp"

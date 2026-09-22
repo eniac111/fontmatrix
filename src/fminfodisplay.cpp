@@ -9,6 +9,7 @@
 #include "fmencdata.h"
 #include "fmfontdb.h"
 #include "fmfontstrings.h"
+#include "fmlicense.h"
 #include "fontitem.h"
 #include "glyphtosvghelper.h"
 #include "typotek.h"
@@ -215,6 +216,8 @@ QString FMInfoDisplay::writeOrderedInfo(FontItem *font)
         // CBDT and sbix hold bitmaps, COLR layers of outlines with the colours of CPAL, SVG documents
         ret += modelItem.arg(i18nc("@label the tables a colour font has its colours in", "Color"), font->colorTables().join(QLatin1String(", ")));
     }
+    // what the licence fields of the name table below say, in one word
+    ret += modelItem.arg(i18nc("@label the licence of a font, recognised from its wording", "License"), FMLicense::name(FMLicense::of(font)));
 
     QStringList cmapStrings;
     for (const auto charsets = font->getCharsets(); const auto &c : charsets) {

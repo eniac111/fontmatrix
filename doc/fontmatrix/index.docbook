@@ -532,6 +532,42 @@ it non-destructively — see <xref
 linkend="additional-edit-panose"/>.</para>
 </sect1>
 
+<sect1 id="search-language">
+<title>Filtering by language</title>
+<para>&quot;Which of my fonts can set Bulgarian?&quot; is answered in the
+<guilabel>Languages</guilabel> section of the sidebar: pick a language
+and the list keeps the fonts that have every character a text in it
+needs. The languages are those of the fonts in the collection, so the
+list itself says what the collection can and cannot do.</para>
+<para>The knowledge is fontconfig's, the same as a
+<command>fc-list :lang=bg</command> on the command line: it holds one
+orthography per language and compares it with the characters of each
+font. The section is therefore only shown on systems that have
+fontconfig, which means Linux and the other Unices.</para>
+</sect1>
+
+<sect1 id="search-license">
+<title>Filtering by licence</title>
+<para>Whether a font may go into a client's work at all is a question
+of its licence, and an OpenType font carries the answer in its name
+table. The <guilabel>License</guilabel> section lists the licences the
+fonts of the collection are under, the commonest first, and filters on
+the one picked.</para>
+<para>The fields are free text that every foundry words its own way, so
+&fontmatrix; recognises the well-known licences — the SIL Open Font
+License, Apache, the GNU licences, MIT, BSD, the Creative Commons
+family, the Ubuntu font licence — by the sentences and addresses they
+are stated with. A font whose licence is none of them is listed as
+<guilabel>Another licence</guilabel>, one that reserves everything and
+grants nothing as <guilabel>All rights reserved</guilabel>, and one that
+says nothing at all as <guilabel>No licence information</guilabel>. The
+name of the licence is also shown on the <guilabel>Info</guilabel> page,
+above the text the font itself gives.</para>
+<para>A licence recognised from free text is a guide, not a legal
+opinion: read the text on the <guilabel>Info</guilabel> page before
+relying on it.</para>
+</sect1>
+
 <sect1 id="search-bitmap">
 <title>Searching using bitmap samples</title>
 <para>If you have an enormous fonts collection, you can search for a
