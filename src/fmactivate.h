@@ -27,7 +27,13 @@ class FMActivate : public QObject
         NO_UNLINK,
         ALREADY_UNACTIVE,
         MISSING_AFM,
-        ERROR
+        ERROR,
+        // Windows
+        NO_COPY,
+        NO_REGISTRY,
+        NO_FONT_RESOURCE,
+        SYSTEM_FONT,
+        UNSUPPORTED_FORMAT
     };
 
     QHash<Error, QString> errorStrings;
@@ -39,6 +45,17 @@ public:
     //		void activate(FontItem* fit , bool act );
     void activate(QList<FontItem *> fitList, bool act);
     QMap<QString, QString> errors();
+
+#ifdef _WIN32
+    /**
+     * Brings the database in line with the per-user font folder and the
+     * registry, once per start: a font whose copy or registry value has gone
+     * (removed in Settings > Fonts) is flagged inactive, a registry value that
+     * points to a file that has gone is deleted, and a copy that could not be
+     * deleted at deactivation because it was in use is deleted now.
+     */
+    void reconcileUserFonts();
+#endif
 
 Q_SIGNALS:
     void activationEvent(const QStringList &);

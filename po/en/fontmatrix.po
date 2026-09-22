@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/eniac111/fontmatrix/issues\n"
-"POT-Creation-Date: 2026-09-22 06:21+0300\n"
+"POT-Creation-Date: 2026-09-22 09:20+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,7 +38,7 @@ msgstr ""
 #. i18n: file: src/tagset.ui:231
 #. i18n: ectx: property (text), widget (QPushButton, closeButton)
 #: rc.cpp:9 rc.cpp:231 rc.cpp:276 rc.cpp:477 rc.cpp:636 rc.cpp:755
-#: src/typotek.cpp:2141
+#: src/typotek.cpp:2166
 #, kde-format
 msgctxt "@action:button"
 msgid "Close"
@@ -139,7 +139,7 @@ msgstr "Font Info"
 
 #. i18n: file: src/browserwidget.ui:76
 #. i18n: ectx: property (text), widget (QPushButton, importButton)
-#: rc.cpp:42 src/typotek.cpp:433
+#: rc.cpp:42 src/typotek.cpp:452
 #, fuzzy, kde-format
 #| msgid "&Import..."
 msgctxt "@action:button"
@@ -1606,7 +1606,7 @@ msgstr ""
 
 #. i18n: file: src/repair.ui:134
 #. i18n: ectx: property (text), widget (QPushButton, deactActNot)
-#: rc.cpp:657 src/typotek.cpp:1423
+#: rc.cpp:657 src/typotek.cpp:1448
 #, fuzzy, kde-format
 #| msgid "&Deactivate all"
 msgctxt "@action:button"
@@ -1632,7 +1632,7 @@ msgstr ""
 
 #. i18n: file: src/repair.ui:185
 #. i18n: ectx: property (text), widget (QPushButton, activateDeactLink)
-#: rc.cpp:669 src/fmfloatingpreview.cpp:55 src/typotek.cpp:1410
+#: rc.cpp:669 src/fmfloatingpreview.cpp:55 src/typotek.cpp:1435
 #, fuzzy, kde-format
 #| msgid "&Activate all"
 msgctxt "@action:button"
@@ -2053,7 +2053,7 @@ msgctxt "@info:progress"
 msgid "Copying files"
 msgstr "Font Size"
 
-#: src/dataexport.cpp:70 src/typotek.cpp:451 src/typotek.cpp:560
+#: src/dataexport.cpp:70 src/typotek.cpp:470 src/typotek.cpp:579
 #, kde-format
 msgctxt "@action:button"
 msgid "cancel"
@@ -2153,6 +2153,36 @@ msgstr ""
 #, kde-format
 msgctxt "activation"
 msgid "Error"
+msgstr ""
+
+#: src/fmactivate.cpp:43
+#, kde-format
+msgctxt "@info activation error"
+msgid "Unable to copy the font file into the user font folder"
+msgstr ""
+
+#: src/fmactivate.cpp:45
+#, kde-format
+msgctxt "@info activation error"
+msgid "Unable to register the font for this user"
+msgstr ""
+
+#: src/fmactivate.cpp:47
+#, kde-format
+msgctxt "@info activation error"
+msgid "The font is installed but could not be loaded for running applications"
+msgstr ""
+
+#: src/fmactivate.cpp:49
+#, kde-format
+msgctxt "@info activation error"
+msgid "The font is installed by the system and cannot be changed here"
+msgstr ""
+
+#: src/fmactivate.cpp:51
+#, kde-format
+msgctxt "@info activation error"
+msgid "Only TrueType and OpenType fonts can be activated for this user"
 msgstr ""
 
 #: src/fmfloatingpreview.cpp:62
@@ -5111,13 +5141,13 @@ msgstr ""
 "The program will keep running in the system tray. To terminate the program, "
 "choose <b>Exit</b> in the context menu of the system tray entry."
 
-#: src/typotek.cpp:383
+#: src/typotek.cpp:400
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Directory"
 msgstr "Add Directory"
 
-#: src/typotek.cpp:431
+#: src/typotek.cpp:450
 #, kde-format
 msgctxt "@info"
 msgid "Do you confirm you want to import %1 font?"
@@ -5125,109 +5155,109 @@ msgid_plural "Do you confirm you want to import %1 fonts?"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/typotek.cpp:432
+#: src/typotek.cpp:451
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Confirmation"
 msgstr "Font Information"
 
-#: src/typotek.cpp:451 src/typotek.cpp:560
+#: src/typotek.cpp:470 src/typotek.cpp:579
 #, fuzzy, kde-format
 #| msgid "&Import..."
 msgctxt "@info:progress"
 msgid "Importing font files... "
 msgstr "&Import..."
 
-#: src/typotek.cpp:461 src/typotek.cpp:565
+#: src/typotek.cpp:480 src/typotek.cpp:584
 #, fuzzy, kde-format
 #| msgid "&Import..."
 msgctxt "@info:progress"
 msgid "Import"
 msgstr "&Import..."
 
-#: src/typotek.cpp:484
+#: src/typotek.cpp:503
 #, kde-format
 msgctxt "@info"
 msgid "Cannot import this font because it is broken:"
 msgstr ""
 
-#: src/typotek.cpp:511 src/typotek.cpp:602
+#: src/typotek.cpp:530 src/typotek.cpp:621
 #, fuzzy, kde-format
 msgctxt "@info:status"
 msgid "Fonts imported: %1"
 msgstr "Font Editor"
 
-#: src/typotek.cpp:523
+#: src/typotek.cpp:542
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Files to Import"
 msgstr ""
 
-#: src/typotek.cpp:525
+#: src/typotek.cpp:544
 #, fuzzy, kde-format
 msgctxt "@item:inlistbox file type filter"
 msgid "Font Files"
 msgstr "Font Size"
 
-#: src/typotek.cpp:633
+#: src/typotek.cpp:652
 #, fuzzy, kde-format
 #| msgid "Import a directory"
 msgctxt "@action:inmenu"
 msgid "&Import Directory..."
 msgstr "Import a directory"
 
-#: src/typotek.cpp:635
+#: src/typotek.cpp:654
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import a directory"
 msgstr "Import a directory"
 
-#: src/typotek.cpp:641
+#: src/typotek.cpp:660
 #, fuzzy, kde-format
 #| msgid "&Import..."
 msgctxt "@action:inmenu"
 msgid "Import &Files..."
 msgstr "&Import..."
 
-#: src/typotek.cpp:643
+#: src/typotek.cpp:662
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Import Files"
 msgstr "Imported Fonts"
 
-#: src/typotek.cpp:647
+#: src/typotek.cpp:666
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Export &fonts"
 msgstr "Imported fonts"
 
-#: src/typotek.cpp:648
+#: src/typotek.cpp:667
 #, fuzzy, kde-format
 msgctxt "@info:status"
 msgid "Export a fontset"
 msgstr "Imported fonts"
 
-#: src/typotek.cpp:652
+#: src/typotek.cpp:671
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Export font book..."
 msgstr "Export font book..."
 
-#: src/typotek.cpp:653
+#: src/typotek.cpp:672
 #, fuzzy, kde-format
 #| msgid "Export a pdf that show selected fonts"
 msgctxt "@info:status"
 msgid "Export a PDF document that shows selected fonts"
 msgstr "Export a pdf that show selected fonts"
 
-#: src/typotek.cpp:657
+#: src/typotek.cpp:676
 #, fuzzy, kde-format
 #| msgid "Export font book..."
 msgctxt "@action:inmenu"
 msgid "Export font info for packaging..."
 msgstr "Export font book..."
 
-#: src/typotek.cpp:658
+#: src/typotek.cpp:677
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5239,43 +5269,43 @@ msgstr ""
 #. tagsetAct->setIcon ( QIcon ( ":/fontmatrix_tagseteditor_icon.png" ) );
 #. scuts->add(tagsetAct);
 #. connect ( tagsetAct,SIGNAL ( triggered( ) ),this,SLOT ( popupTagsetEditor() ) );
-#: src/typotek.cpp:666
+#: src/typotek.cpp:685
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Activate all current"
 msgstr "Activate all current"
 
-#: src/typotek.cpp:667
+#: src/typotek.cpp:686
 #, fuzzy, kde-format
 msgctxt "@info:status"
 msgid "Activate all currently visible fonts"
 msgstr "Activate all currents"
 
-#: src/typotek.cpp:671
+#: src/typotek.cpp:690
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Deactivate all current"
 msgstr "Deactivate all current"
 
-#: src/typotek.cpp:672
+#: src/typotek.cpp:691
 #, fuzzy, kde-format
 msgctxt "@info:status"
 msgid "Deactivate all currently visible fonts"
 msgstr "Deactivate all currents"
 
-#: src/typotek.cpp:676
+#: src/typotek.cpp:695
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Edit current font"
 msgstr "Edit current font"
 
-#: src/typotek.cpp:680
+#: src/typotek.cpp:699
 #, kde-format
 msgctxt "@info:status"
 msgid "Edit currently selected font in a font editor of your choice"
 msgstr ""
 
-#: src/typotek.cpp:684
+#: src/typotek.cpp:703
 #, fuzzy, kde-format
 #| msgid ""
 #| "You don't seem to have font editor installed. Path to font editor can be "
@@ -5288,238 +5318,244 @@ msgstr ""
 "You don't seem to have font editor installed. Path to font editor can be set "
 "in preferences."
 
-#: src/typotek.cpp:687
+#: src/typotek.cpp:706
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Filtered"
 msgstr "Remove"
 
-#: src/typotek.cpp:688
+#: src/typotek.cpp:707
 #, kde-format
 msgctxt "@info:status"
 msgid ""
 "Reload informations for filtered fonts from the font files they belong to"
 msgstr ""
 
-#: src/typotek.cpp:692
+#: src/typotek.cpp:711
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Selected"
 msgstr ""
 
-#: src/typotek.cpp:693
+#: src/typotek.cpp:712
 #, kde-format
 msgctxt "@info:status"
 msgid "Reload informations for selected font from the font file"
 msgstr ""
 
-#: src/typotek.cpp:697
+#: src/typotek.cpp:716
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Check Database"
 msgstr ""
 
-#: src/typotek.cpp:698
+#: src/typotek.cpp:717
 #, kde-format
 msgctxt "@info:status"
 msgid "Check Fontmatrix database for dead links to font files"
 msgstr ""
 
-#: src/typotek.cpp:705
+#: src/typotek.cpp:724
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Tag All Filtered..."
 msgstr ""
 
-#: src/typotek.cpp:706
+#: src/typotek.cpp:725
 #, fuzzy, kde-format
 msgctxt "@info:status"
 msgid "Tag all currently visible files"
 msgstr "Activate all currents"
 
-#: src/typotek.cpp:710
+#: src/typotek.cpp:729
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show TrueType tables"
 msgstr ""
 
-#: src/typotek.cpp:711
+#: src/typotek.cpp:730
 #, kde-format
 msgctxt "@info:status"
 msgid ""
 "View hexadecimal values of TrueType tables for currently selected font file"
 msgstr ""
 
-#: src/typotek.cpp:715
+#: src/typotek.cpp:734
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Edit PANOSE metadata"
 msgstr ""
 
-#: src/typotek.cpp:716
+#: src/typotek.cpp:735
 #, kde-format
 msgctxt "@info:status"
 msgid "Edit PANOSE metadata without saving changes to font files"
 msgstr ""
 
-#: src/typotek.cpp:720
+#: src/typotek.cpp:739
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Playground"
 msgstr ""
 
-#: src/typotek.cpp:722
+#: src/typotek.cpp:741
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show/Hide Playground"
 msgstr ""
 
-#: src/typotek.cpp:728
+#: src/typotek.cpp:747
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Compare"
 msgstr "Glyphs"
 
-#: src/typotek.cpp:730
+#: src/typotek.cpp:749
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Show/Hide Compare glyphs"
 msgstr "Glyphs"
 
-#: src/typotek.cpp:736
+#: src/typotek.cpp:755
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All"
 msgstr ""
 
-#: src/typotek.cpp:737
+#: src/typotek.cpp:756
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Close all floating windows"
 msgstr "Show all activated fonts"
 
-#: src/typotek.cpp:741
+#: src/typotek.cpp:760
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Show All"
 msgstr "View All"
 
-#: src/typotek.cpp:742
+#: src/typotek.cpp:761
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Show all floating windows"
 msgstr "Show all activated fonts"
 
-#: src/typotek.cpp:746
+#: src/typotek.cpp:765
 #, fuzzy, kde-format
 msgctxt "@action:inmenu"
 msgid "Hide All"
 msgstr "View All"
 
-#: src/typotek.cpp:747
+#: src/typotek.cpp:766
 #, fuzzy, kde-format
 msgctxt "@info:tooltip"
 msgid "Hide all floating windows"
 msgstr "Show all activated fonts"
 
-#: src/typotek.cpp:767
+#: src/typotek.cpp:786
 #, fuzzy, kde-format
 #| msgid "Export font book..."
 msgctxt "@action:inmenu"
 msgid "Extract fonts..."
 msgstr "Export font book..."
 
-#: src/typotek.cpp:768
+#: src/typotek.cpp:787
 #, kde-format
 msgctxt "@info:status"
 msgid "Extract fonts from documents like PDF to PFM file format"
 msgstr ""
 
-#: src/typotek.cpp:773
+#: src/typotek.cpp:792
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Find a font using raster sample..."
 msgstr ""
 
-#: src/typotek.cpp:774
+#: src/typotek.cpp:793
 #, kde-format
 msgctxt "@info:status"
 msgid "Find a font using a raster sample of a letter"
 msgstr ""
 
-#: src/typotek.cpp:778
+#: src/typotek.cpp:797
 #, fuzzy, kde-format
 #| msgid "Export font book..."
 msgctxt "@action:inmenu"
 msgid "Export font list as XeTeX..."
 msgstr "Export font book..."
 
-#: src/typotek.cpp:779
+#: src/typotek.cpp:798
 #, kde-format
 msgctxt "@info:status"
 msgid "Export the current filtered font list as a XeTeX source file"
 msgstr ""
 
-#: src/typotek.cpp:876
+#: src/typotek.cpp:895
 #, kde-format
 msgctxt "@action:button"
 msgid "Browse Directories"
 msgstr ""
 
-#: src/typotek.cpp:878
+#: src/typotek.cpp:897
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Toggle Files/Collection view"
 msgstr ""
 
-#: src/typotek.cpp:884
+#: src/typotek.cpp:903
 #, kde-format
 msgctxt "@info:progress"
 msgid "Load settings"
 msgstr ""
 
-#: src/typotek.cpp:1018
+#: src/typotek.cpp:1037
 #, kde-format
 msgctxt "@info:progress"
 msgid "Check for Fontmatrix own dir"
 msgstr ""
 
-#: src/typotek.cpp:1244
+#: src/typotek.cpp:1263
 #, fuzzy, kde-format
 msgctxt "@info:progress"
 msgid "Loading System Fonts"
 msgstr "Imported Fonts"
 
-#: src/typotek.cpp:1245
+#: src/typotek.cpp:1264
 #, fuzzy, kde-format
 msgctxt "@item:inlistbox name of the tag given to system fonts"
 msgid "System Fonts"
 msgstr "Imported Fonts"
 
-#: src/typotek.cpp:1275
+#: src/typotek.cpp:1294
 #, kde-format
 msgctxt "@info:progress"
 msgid "Adding"
 msgstr ""
 
-#: src/typotek.cpp:1276 src/typotek.cpp:1277
+#: src/typotek.cpp:1295 src/typotek.cpp:1296
 #, kde-format
 msgctxt "followed by a directory name"
 msgid "fonts from"
 msgstr ""
 
-#: src/typotek.cpp:1277
+#: src/typotek.cpp:1296
 #, kde-format
 msgid "Adding"
 msgstr ""
 
-#: src/typotek.cpp:1300
+#: src/typotek.cpp:1319
 #, fuzzy, kde-format
 msgctxt "@info:progress"
 msgid "system fonts added."
 msgstr "Imported Fonts"
 
-#: src/typotek.cpp:1340
+#: src/typotek.cpp:1331
+#, fuzzy, kde-format
+msgctxt "@info:progress"
+msgid "Checking the activated fonts"
+msgstr "Deactivate all currents"
+
+#: src/typotek.cpp:1365
 #, kde-format
 msgctxt "@info:progress"
 msgid "Reading the catalogue of %1 remote directory"
@@ -5527,7 +5563,7 @@ msgid_plural "Reading the catalogues of %1 remote directories"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/typotek.cpp:1382
+#: src/typotek.cpp:1407
 #, kde-format
 msgctxt "@info:status"
 msgid "%1 font added from the network"
@@ -5535,7 +5571,7 @@ msgid_plural "%1 fonts added from the network"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/typotek.cpp:1408
+#: src/typotek.cpp:1433
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5543,13 +5579,13 @@ msgid ""
 "it is time to cancel if it was not your intent"
 msgstr ""
 
-#: src/typotek.cpp:1409
+#: src/typotek.cpp:1434
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Activate Fonts"
 msgstr "Activate all currents"
 
-#: src/typotek.cpp:1421
+#: src/typotek.cpp:1446
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5557,62 +5593,62 @@ msgid ""
 "it is time to cancel if it was not your intent"
 msgstr ""
 
-#: src/typotek.cpp:1422
+#: src/typotek.cpp:1447
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Deactivate Fonts"
 msgstr "Deactivate all currents"
 
-#: src/typotek.cpp:1441
+#: src/typotek.cpp:1466
 #, kde-format
 msgctxt "@info"
 msgid ""
 "This will hide the menu bar completely. You can show it again by typing %1."
 msgstr ""
 
-#: src/typotek.cpp:1442
+#: src/typotek.cpp:1467
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 
-#: src/typotek.cpp:1452 src/typotek.cpp:2130
+#: src/typotek.cpp:1477 src/typotek.cpp:2155
 #, kde-format
 msgctxt "@info:status"
 msgid "There is no font selected"
 msgstr "There is no font selected"
 
-#: src/typotek.cpp:1497
+#: src/typotek.cpp:1522
 #, kde-format
 msgctxt "@info:status"
 msgid "Support of DragNDrop over http is sheduled but not yet effective"
 msgstr "Support of DragNDrop over http is sheduled but not yet effective"
 
-#: src/typotek.cpp:1516
+#: src/typotek.cpp:1541
 #, fuzzy, kde-format
 #| msgid "You bring something over me I canât handle"
 msgctxt "@info:status"
 msgid "You bring something over me I can’t handle"
 msgstr "You bring something over me I can't handle"
 
-#: src/typotek.cpp:1577
+#: src/typotek.cpp:1602
 #, fuzzy, kde-format
 msgctxt "@info default content of a new sample text"
 msgid "Edit me!"
 msgstr "Edit"
 
-#: src/typotek.cpp:1656
+#: src/typotek.cpp:1681
 #, kde-format
 msgid "default"
 msgstr ""
 
-#: src/typotek.cpp:1740
+#: src/typotek.cpp:1765
 #, kde-format
 msgctxt "@info:status"
 msgid "Try to run font editor with the selected font as argument"
 msgstr "Try to run font editor with the selected font as argument"
 
-#: src/typotek.cpp:1743
+#: src/typotek.cpp:1768
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5622,20 +5658,20 @@ msgstr ""
 "You don't seem to have font editor installed. Path to font editor can be set "
 "in preferences."
 
-#: src/typotek.cpp:2029
+#: src/typotek.cpp:2054
 #, fuzzy, kde-format
 #| msgid "Export font book..."
 msgctxt "@title:window"
 msgid "Export font list as XeTeX"
 msgstr "Export font book..."
 
-#: src/typotek.cpp:2031
+#: src/typotek.cpp:2056
 #, kde-format
 msgctxt "@item:inlistbox file type filter"
 msgid "TeX files (*.tex)"
 msgstr ""
 
-#: src/typotek.cpp:2213
+#: src/typotek.cpp:2238
 #, kde-format
 msgctxt "@info:status"
 msgid "Failed to reload %1 font"
@@ -5643,7 +5679,7 @@ msgid_plural "Failed to reload %1 fonts"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/typotek.cpp:2255
+#: src/typotek.cpp:2280
 #, kde-format
 msgctxt "number of filtererd fonts showed in status bar"
 msgid "Filtered Font: %1"
@@ -5651,14 +5687,14 @@ msgid_plural "Filtered Fonts: %1"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/typotek.cpp:2260
+#: src/typotek.cpp:2285
 #, fuzzy, kde-format
 #| msgid "Edit current font"
 msgctxt "followed by currently selected font name (in status bar)"
 msgid "Current Font"
 msgstr "Edit current font"
 
-#: src/typotek.cpp:2284
+#: src/typotek.cpp:2309
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -5667,7 +5703,7 @@ msgid ""
 "at <link>%1</link>."
 msgstr ""
 
-#: src/typotek.cpp:2287
+#: src/typotek.cpp:2312
 #, kde-format
 msgctxt "@title:window"
 msgid "Handbook Not Available"

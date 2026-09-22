@@ -413,6 +413,9 @@ IF(WIN32)
 	KF6::WidgetsAddons
 	KF6::StatusNotifierItem
 	KF6::DBusAddons
+	# font activation: the per-user font registry key and AddFontResource()
+	advapi32
+	gdi32
 	)
 
 	INSTALL(TARGETS fontmatrix
