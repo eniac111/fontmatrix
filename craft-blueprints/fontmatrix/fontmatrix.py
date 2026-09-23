@@ -40,6 +40,10 @@ class subinfo(info.infoclass):
         # package has no C runtime. Every upstream KDE blueprint declares it.
         self.runtimeDependencies["virtual/base"] = None
         self.buildDependencies["kde/frameworks/extra-cmake-modules"] = None
+        # meinproc6 turns the DocBook handbook into the HTML FMHandbookWindow reads,
+        # the only handbook there is on Windows (no KHelpCenter). Build time only:
+        # without it CMake skips doc/ and F1 says the handbook is not installed.
+        self.buildDependencies["kde/frameworks/tier2/kdoctools"] = None
 
         # qttools / qtdeclarative are NOT runtime deps. qtdeclarative pulls
         # libs/llvm (~1 GB of clang tools); we don't ship Linguist/Designer
