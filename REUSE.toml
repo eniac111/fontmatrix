@@ -45,6 +45,7 @@ path = [
     "samples/bg/Търновска конституция",   # Учредително народно събрание, 1879
     "samples/de/sample",                  # Friedrich Schiller, 1759–1805
     "samples/fr/Mamere",                  # Marcel Proust, 1871–1922
+    "samples/he/sample",                  # חיים נחמן ביאליק, 1873–1934
     "samples/ru/Гоголь",                  # Николай Гогол, 1809–1852
 ]
 precedence = "closest"
@@ -76,9 +77,9 @@ precedence = "closest"
 SPDX-FileCopyrightText = "NONE"
 SPDX-License-Identifier = "CC0-1.0"
 
-# Two files whose terms could not be established, see LICENSES/LicenseRef-UnverifiedSource.txt
+# Articles of Wikipedia under version 4.0 of the licence, the one it has used since 2023
 [[annotations]]
-path = ["samples/he/sample", "samples/udm/sample"]
+path = ["samples/udm/sample"]
 precedence = "closest"
-SPDX-FileCopyrightText = "NOASSERTION"
-SPDX-License-Identifier = "LicenseRef-UnverifiedSource"
+SPDX-FileCopyrightText = "The Wikipedia contributors"
+SPDX-License-Identifier = "CC-BY-SA-4.0"
