@@ -164,6 +164,8 @@ void FMVariationsWidget::applyCoordinates()
     m_updating = true;
     m_instances->setCurrentIndex(m_font->namedInstance() + 1);
     m_updating = false;
+    // what the user chose here is the font's look from now on, in the next session too
+    m_font->rememberVariation();
     Q_EMIT coordinatesChanged();
 }
 
@@ -176,6 +178,8 @@ void FMVariationsWidget::slotInstancePicked(int index)
         return;
     m_font->setVariationCoordinates(instances.at(index - 1).coords);
     showCoordinates(m_font->variationCoordinates());
+    // what the user chose here is the font's look from now on, in the next session too
+    m_font->rememberVariation();
     Q_EMIT coordinatesChanged();
 }
 
@@ -211,6 +215,8 @@ void FMVariationsWidget::slotReset()
     for (const FontVariationAxis &axis : axes)
         defaults << axis.def;
     showCoordinates(defaults);
+    // what the user chose here is the font's look from now on, in the next session too
+    m_font->rememberVariation();
     Q_EMIT coordinatesChanged();
 }
 

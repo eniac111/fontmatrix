@@ -529,6 +529,12 @@ public:
     void setVariationCoordinates(const QList<double> &coords);
     /// the named instance the coordinates shown are those of, -1 when they are not
     int namedInstance();
+    /**
+     * Keeps the coordinates shown now for the next session: the font is shown with
+     * them again, everywhere, the first time it is opened. The default of the font
+     * forgets them. What the user chose, not what a view sets for a moment.
+     */
+    void rememberVariation();
 
     [[nodiscard]] FT_Encoding getCurrentEncoding() const;
 

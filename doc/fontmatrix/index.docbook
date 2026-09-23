@@ -489,6 +489,8 @@ chart and the playground show the font at the chosen coordinates;
 designer chose. The <guilabel>Info</guilabel> page lists the axes and the
 named instances, and the font book shows every named instance as a
 style.</para>
+<para>The coordinates you choose are remembered for the next session, until
+<guibutton>Default</guibutton> is pressed.</para>
 </sect2>
 </sect1>
 

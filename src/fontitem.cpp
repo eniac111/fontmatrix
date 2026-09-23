@@ -10,6 +10,7 @@
 #include "fmbidi.h"
 #include "fmcolorglyphitem.h"
 #include "fmcolorpainter.h"
+#include "fmconfig.h"
 #include "fmencdata.h"
 #include "fmfontdb.h"
 #include "fmfontstrings.h"
@@ -2235,6 +2236,39 @@ void FontItem::readVariation()
         m_instances << instance;
     }
     FT_Done_MM_Var(FMFreetypeLib::lib(thread()), mm);
+
+    // the coordinates the font was last shown with, in a session before (rememberVariation())
+    const QString stored(FMConfig::value(QStringLiteral("Variations/") + m_path, QString()).toString());
+    if (m_coords.isEmpty() && !stored.isEmpty()) {
+        QHash<QString, double> byTag;
+        for (const QString &part : stored.split(QLatin1Char(','), Qt::SkipEmptyParts)) {
+            bool ok(false);
+            const double value(part.section(QLatin1Char('='), 1).toDouble(&ok));
+            if (ok)
+                byTag.insert(part.section(QLatin1Char('='), 0, 0), value);
+        }
+        // by tag, not by position: an axis the font no longer has is dropped, a new one is at its default
+        for (const FontVariationAxis &axis : std::as_const(m_axes))
+            m_coords << byTag.value(axis.tag, axis.def);
+    }
+}
+
+void FontItem::rememberVariation()
+{
+    if (!isVariable())
+        return;
+    const QString key(QStringLiteral("Variations/") + m_path);
+    bool atDefault(true);
+    for (int a(0); a < m_coords.size() && a < m_axes.size(); ++a)
+        atDefault = atDefault && qFuzzyCompare(1.0 + m_coords.at(a), 1.0 + m_axes.at(a).def);
+    if (atDefault) {
+        FMConfig::remove(key);
+        return;
+    }
+    QStringList parts;
+    for (int a(0); a < m_coords.size() && a < m_axes.size(); ++a)
+        parts << QStringLiteral("%1=%2").arg(m_axes.at(a).tag, QString::number(m_coords.at(a), 'g', 10));
+    FMConfig::setValue(key, parts.join(QLatin1Char(',')));
 }
 
 void FontItem::applyVariation()
