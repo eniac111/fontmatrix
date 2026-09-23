@@ -100,7 +100,8 @@ class FMPreviewModel : public QAbstractListModel
     Q_OBJECT
 public:
     enum PreviewItemRole {
-        PathRole = Qt::UserRole + 1
+        PathRole = Qt::UserRole + 1,
+        InstanceRole ///< the named instance of a variable font the row shows, -1 for the font itself
     };
 
     FMPreviewModel(QObject *pa, FMPreviewView *wPa, QList<FontItem *> db = QList<FontItem *>());
@@ -128,6 +129,14 @@ public:
         return familyMode;
     }
 
+    /// a variable font is shown as its named instances, one row each (the family view)
+    void setInstanceMode(bool i)
+    {
+        instanceMode = i;
+    }
+    /// the row of the font, at the named instance when it has rows for them
+    [[nodiscard]] QModelIndex indexOf(FontItem *font, int instance) const;
+
 private:
     FMPreviewView *m_view = nullptr;
     QList<FontItem *> base;
@@ -136,6 +145,12 @@ private:
     QString styleTooltipTags;
     QString styleTooltipPath;
     bool familyMode;
+    bool instanceMode = false;
+    struct Row {
+        FontItem *font = nullptr;
+        int instance = -1;
+    };
+    QList<Row> rows; ///< in instance mode, what each row shows
 
 public Q_SLOTS:
     void dataChanged();

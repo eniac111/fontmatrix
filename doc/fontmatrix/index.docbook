@@ -490,7 +490,10 @@ designer chose. The <guilabel>Info</guilabel> page lists the axes and the
 named instances, and the font book shows every named instance as a
 style.</para>
 <para>The coordinates you choose are remembered for the next session, until
-<guibutton>Default</guibutton> is pressed.</para>
+<guibutton>Default</guibutton> is pressed. In the view of a family, a variable
+font has one row for each of its named instances, drawn at that instance: a
+click on a row shows the font there, and choosing an instance in the sidebar
+selects its row.</para>
 </sect2>
 </sect1>
 

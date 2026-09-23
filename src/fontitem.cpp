@@ -2080,7 +2080,7 @@ QGraphicsPathItem *FontItem::hasCodepointLoaded(int code)
     return nullptr;
 }
 
-QPixmap FontItem::oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor bg_color, int size_w, int size_f)
+QPixmap FontItem::oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor bg_color, int size_w, int size_f, const QList<double> &coords)
 {
     if (m_remote && !remoteCached) {
         // what the directory gave, or nothing: the model then shows the name
@@ -2097,6 +2097,10 @@ QPixmap FontItem::oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor 
     //	}
     if (!ensureFace())
         return QPixmap();
+    // only for this drawing: the font keeps the coordinates it is shown with
+    const bool otherCoords(!coords.isEmpty() && !m_axes.isEmpty());
+    if (otherCoords)
+        applyVariation(coords);
     double theSize = (size_f == 0) ? typotek::getInstance()->getPreviewSize() : size_f;
     double pt2px = typotek::getInstance()->getDpiX() / 72.0;
     double theHeight = theSize * 1.3 * pt2px;
@@ -2148,6 +2152,8 @@ QPixmap FontItem::oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor 
     }
 
     apainter.end();
+    if (otherCoords)
+        applyVariation();
     releaseFace();
 
     return linePixmap;
@@ -2278,15 +2284,20 @@ void FontItem::rememberVariation()
 
 void FontItem::applyVariation()
 {
+    applyVariation(m_coords);
+}
+
+void FontItem::applyVariation(const QList<double> &coords)
+{
     if (!m_face || m_axes.isEmpty())
         return;
-    if (m_coords.isEmpty()) {
+    if (coords.isEmpty()) {
         // back to the default of the font
         FT_Set_Var_Design_Coordinates(m_face, 0, nullptr);
         return;
     }
     QVarLengthArray<FT_Fixed, 8> fixed;
-    for (const double c : m_coords)
+    for (const double c : coords)
         fixed.append(FT_Fixed(std::lround(c * 65536.0)));
     FT_Set_Var_Design_Coordinates(m_face, static_cast<FT_UInt>(fixed.size()), fixed.data());
 }

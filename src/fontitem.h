@@ -247,6 +247,8 @@ private:
     QList<double> m_coords; ///< the design coordinates shown, empty for the default
     void readVariation();
     void applyVariation();
+    /// sets these coordinates on the open face, empty for the default of the font
+    void applyVariation(const QList<double> &coords);
     QString sfntName(unsigned int nameId);
 
     QList<int> getAlternates(int ccode);
@@ -414,7 +416,9 @@ public:
     QString activationAFMName();
 
     // 		QIcon oneLinePreviewIcon ( QString oneline );
-    QPixmap oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor bg_color, int size_w = 0, int fsize = 0);
+    /// the line drawn with the font, at `coords` when they are given (a named instance of a
+    /// variable font) and else at the coordinates the font is shown with
+    QPixmap oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor bg_color, int size_w = 0, int fsize = 0, const QList<double> &coords = {});
     void clearPreview();
 
     [[nodiscard]] bool isActivated() const;
