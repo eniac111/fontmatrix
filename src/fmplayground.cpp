@@ -202,7 +202,7 @@ void FMPlayGround::displayGlyphs(const QString &spec, FontItem *fontI, double fo
         //		}
         glyph->setPen(Qt::NoPen);
         scene()->addItem(glyph);
-        glyph->setPos(pen.x() + (g.xoffset), pen.y() + (g.yoffset));
+        glyph->setPos(pen.x() + (g.xoffset), pen.y() - (g.yoffset));
         //		if ( tp->inLine() == TextProgression::INLINE_LTR )
         pen.rx() += g.xadvance;
         //		else if ( tp->inLine() == TextProgression::INLINE_TTB )

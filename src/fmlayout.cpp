@@ -801,7 +801,7 @@ void FMLayout::doDraw()
                     theScene->addItem(glyph);
                     glyph->setZValue(100.0);
                     glyph->setPos(pen.x() + (refGlyph[i].xoffset * pixelAdjustX) + glyph->data(GLYPH_DATA_BITMAPLEFT).toDouble() * scale,
-                                  pen.y() + (refGlyph[i].yoffset * pixelAdjustY) - glyph->data(GLYPH_DATA_BITMAPTOP).toDouble());
+                                  pen.y() - (refGlyph[i].yoffset * pixelAdjustY) - glyph->data(GLYPH_DATA_BITMAPTOP).toDouble());
                 } else {
                     //					refGlyph[i].dump();
                     auto mgi(reinterpret_cast<MetaGlyphItem *>(glyph));
@@ -810,7 +810,7 @@ void FMLayout::doDraw()
                     Q_EMIT drawPixmapForMe(refGlyph[i].glyph,
                                            fontSize,
                                            pen.x() + (refGlyph[i].xoffset * pixelAdjustX) + mgi->metaData(GLYPH_DATA_BITMAPLEFT).toDouble() * scale,
-                                           pen.y() + (refGlyph[i].yoffset * pixelAdjustY) - mgi->metaData(GLYPH_DATA_BITMAPTOP).toDouble());
+                                           pen.y() - (refGlyph[i].yoffset * pixelAdjustY) - mgi->metaData(GLYPH_DATA_BITMAPTOP).toDouble());
                 }
                 /*************************************************/
 
@@ -840,7 +840,7 @@ void FMLayout::doDraw()
                     glyph->setBrush(Qt::blue);
                 // end visual debug
 #endif
-                glyph->setPos(pen.x() + (refGlyph[i].xoffset), pen.y() + (refGlyph[i].yoffset));
+                glyph->setPos(pen.x() + (refGlyph[i].xoffset), pen.y() - (refGlyph[i].yoffset));
                 glyph->setZValue(100.0);
                 /*******************************************/
 

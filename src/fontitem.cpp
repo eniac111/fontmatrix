@@ -1182,7 +1182,7 @@ double FontItem::renderLine(OTFSet set, QGraphicsScene *scene, QString spec, QPo
             glyph->setData(GLYPH_DATA_GLYPH, "glyph");
             glyph->setData(GLYPH_DATA_FONTNAME, fancyName());
             glyph->setPos(pen.x() + (refGlyph[i].xoffset * pixelAdjustX) + glyph->data(GLYPH_DATA_BITMAPLEFT).toDouble() * scalefactor,
-                          pen.y() + (refGlyph[i].yoffset * pixelAdjustY) - glyph->data(GLYPH_DATA_BITMAPTOP).toInt());
+                          pen.y() - (refGlyph[i].yoffset * pixelAdjustY) - glyph->data(GLYPH_DATA_BITMAPTOP).toInt());
             /*************************************************/
 
             if (m_progression == PROGRESSION_LTR)

@@ -225,6 +225,7 @@ GlyphList FMOtf::shapeBuffer(hb_buffer_t *buffer, hb_font_t *font, const QString
         gl.log = infos[i].cluster;
         gl.xadvance = positions[i].x_advance;
         gl.xoffset = positions[i].x_offset;
+        // up is positive, as in the font: a scene, whose y goes down, subtracts it
         gl.yoffset = positions[i].y_offset;
         // The advance of vertical progressions. It is FreeType's, which makes
         // one up for a font without vertical metrics.
