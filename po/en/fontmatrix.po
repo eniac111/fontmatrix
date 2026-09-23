@@ -80,20 +80,18 @@ msgstr "View Activated"
 #. i18n: file: src/activationwidget.ui:20
 #. i18n: ectx: property (text), widget (QPushButton, activateAll)
 #: rc.cpp:24
-#, fuzzy, kde-format
-#| msgid "&Activate all"
+#, kde-format
 msgctxt "@action:button"
 msgid "Activate All"
-msgstr "&Activate all"
+msgstr "Activate all"
 
 #. i18n: file: src/activationwidget.ui:27
 #. i18n: ectx: property (text), widget (QPushButton, deactivateAll)
 #: rc.cpp:27
-#, fuzzy, kde-format
-#| msgid "&Deactivate all"
+#, kde-format
 msgctxt "@action:button"
 msgid "Deactivate All"
-msgstr "&Deactivate all"
+msgstr "Deactivate all"
 
 #. i18n: file: src/bookexport.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, BookExportDialog)
@@ -140,11 +138,10 @@ msgstr "Font Info"
 #. i18n: file: src/browserwidget.ui:76
 #. i18n: ectx: property (text), widget (QPushButton, importButton)
 #: rc.cpp:42 src/typotek.cpp:453
-#, fuzzy, kde-format
-#| msgid "&Import..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Import"
-msgstr "&Import..."
+msgstr "Import"
 
 #. i18n: file: src/browserwidget.ui:86
 #. i18n: ectx: property (text), widget (QToolButton, chartButton)
@@ -1022,11 +1019,10 @@ msgstr ""
 #. i18n: file: src/prefs_panel.ui:667
 #. i18n: ectx: property (text), widget (QPushButton, commitSample)
 #: rc.cpp:393 rc.cpp:618
-#, fuzzy, kde-format
-#| msgid "&Save"
+#, kde-format
 msgctxt "@action:button"
 msgid "Save"
-msgstr "&Save"
+msgstr "Save"
 
 #. i18n: file: src/mainview.ui:195
 #. i18n: ectx: property (toolTip), widget (QPushButton, clearButton)
@@ -5225,8 +5221,7 @@ msgid "Print Playground"
 msgstr ""
 
 #: src/prefspaneldialog.cpp:37
-#, fuzzy, kde-format
-#| msgid "Preferences"
+#, kde-format
 msgctxt "@title:window"
 msgid "Preferences"
 msgstr "Preferences"
@@ -5577,11 +5572,10 @@ msgid "Importing font files... "
 msgstr "&Import..."
 
 #: src/typotek.cpp:481 src/typotek.cpp:585
-#, fuzzy, kde-format
-#| msgid "&Import..."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Import"
-msgstr "&Import..."
+msgstr "Import"
 
 #: src/typotek.cpp:504
 #, kde-format

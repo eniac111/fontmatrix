@@ -81,20 +81,18 @@ msgstr "Toon geäctiveerd"
 #. i18n: file: src/activationwidget.ui:20
 #. i18n: ectx: property (text), widget (QPushButton, activateAll)
 #: rc.cpp:24
-#, fuzzy, kde-format
-#| msgid "&Activate all"
+#, kde-format
 msgctxt "@action:button"
 msgid "Activate All"
-msgstr "&Activeer alles"
+msgstr "Activeer alles"
 
 #. i18n: file: src/activationwidget.ui:27
 #. i18n: ectx: property (text), widget (QPushButton, deactivateAll)
 #: rc.cpp:27
-#, fuzzy, kde-format
-#| msgid "&Deactivate all"
+#, kde-format
 msgctxt "@action:button"
 msgid "Deactivate All"
-msgstr "&Deactiveer alles"
+msgstr "Deactiveer alles"
 
 #. i18n: file: src/bookexport.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, BookExportDialog)
@@ -476,11 +474,10 @@ msgstr "Voeg Directory toe"
 #. i18n: file: src/filterbar.ui:143
 #. i18n: ectx: property (text), widget (OpenCloseArrow, tagsArrow)
 #: rc.cpp:164
-#, fuzzy, kde-format
-#| msgid "&Tags"
+#, kde-format
 msgctxt "@action:button"
 msgid "Tags"
-msgstr "&Labels"
+msgstr "Labels"
 
 #. i18n: file: src/filterbar.ui:273
 #. i18n: ectx: property (text), widget (OpenCloseArrow, metadataArrow)
@@ -1936,11 +1933,10 @@ msgstr "delete"
 #. i18n: file: src/tagswidget.ui:41
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: rc.cpp:797
-#, fuzzy, kde-format
-#| msgid "&Tags"
+#, kde-format
 msgctxt "@label"
 msgid "Tags"
-msgstr "&Labels"
+msgstr "Labels"
 
 #. i18n: file: src/tagswidget.ui:54
 #. i18n: ectx: property (toolTip), widget (QPushButton, newTagButton)
@@ -5348,8 +5344,7 @@ msgid "Print Playground"
 msgstr ""
 
 #: src/prefspaneldialog.cpp:37
-#, fuzzy, kde-format
-#| msgid "Preferences"
+#, kde-format
 msgctxt "@title:window"
 msgid "Preferences"
 msgstr "Voorkeuren"
