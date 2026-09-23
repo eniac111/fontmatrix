@@ -748,6 +748,12 @@ void typotek::createActions()
     scuts->add(editPanoseAct);
     connect(editPanoseAct, &QAction::triggered, this, &typotek::slotEditPanose);
 
+    // The playground and the comparison are palettes over the font list: fonts are picked
+    // in the main window while they are open. As tool windows of the main window they stay
+    // above it; as windows of their own they went behind it at the first click in the list.
+    PlayWidget::getInstance()->setParent(this, Qt::Tool);
+    FontCompareWidget::getInstance()->setParent(this, Qt::Tool);
+
     playAction = new QAction(i18nc("@action:inmenu", "Playground"), this);
     playAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_G));
     playAction->setToolTip(i18nc("@info:tooltip", "Show/Hide Playground"));
@@ -2266,7 +2272,7 @@ void typotek::slotReloadFiltered()
 
 void typotek::slotReloadSingle()
 {
-    FontItem *cf(theMainView->selectedFont());
+    FontItem *cf(fontForAction());
     if (cf) {
         QString curName(cf->path());
         QStringList t(cf->tags());

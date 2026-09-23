@@ -131,10 +131,6 @@ private:
     // must not touch them any more when Qt hides the closed window.
     bool m_closing = false;
 
-    // The font a menu action applies to; says so in the status bar when
-    // there is none.
-    FontItem *fontForAction();
-
     void checkOwnDir();
     void fillTagsList();
 
@@ -354,6 +350,9 @@ public:
     }
 
     [[nodiscard]] FMHyphenator *getHyphenator() const;
+    /// the font an action applies to — selected in the list or open; says so in the
+    /// status bar when there is none
+    FontItem *fontForAction();
     /// loads the hyphenation dictionary for the sample shown, or the one of the preferences
     void updateHyphenation();
     /// the language of a named sample, the interface language when it does not say

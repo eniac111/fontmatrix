@@ -34,6 +34,7 @@ PlayWidget::PlayWidget()
 PlayWidget::~PlayWidget()
 {
     delete ui;
+    instance = nullptr;
 }
 
 PlayWidget *PlayWidget::getInstance()
