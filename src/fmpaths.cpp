@@ -9,6 +9,7 @@
 
 #include <QApplication>
 #include <QDir>
+#include <QFile>
 #include <QFileInfo>
 #include <QStandardPaths>
 
@@ -61,6 +62,28 @@ QString FMPaths::HelpDir()
 #endif
     getThis()->FMPathsDB[QStringLiteral("HelpDir")] = hf;
     return hf;
+}
+
+QString FMPaths::HandbookFile()
+{
+    const QString dirsep(QDir::separator());
+    QString base;
+#ifdef PLATFORM_APPLE
+    base = QApplication::applicationDirPath() + dirsep + QStringLiteral("..") + dirsep + QStringLiteral("Resources") + dirsep + QStringLiteral("handbook")
+        + dirsep;
+#elif defined(_WIN32)
+    // ECM puts the application's data in <appdir>/data on Windows; see ResourcesDir().
+    base = QApplication::applicationDirPath() + dirsep + QStringLiteral("data") + dirsep + QStringLiteral("fontmatrix") + dirsep + QStringLiteral("handbook")
+        + dirsep;
+#else
+    base = QApplication::applicationDirPath() + dirsep + QStringLiteral("..") + dirsep + QStringLiteral("share") + dirsep + QStringLiteral("fontmatrix")
+        + dirsep + QStringLiteral("handbook") + dirsep;
+#endif
+    const QString dir(LocalizedDirPath(base));
+    if (dir.isEmpty())
+        return QString();
+    const QString file(dir + QStringLiteral("index.html"));
+    return QFile::exists(file) ? file : QString();
 }
 
 QString FMPaths::ResourcesDir()

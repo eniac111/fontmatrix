@@ -15,6 +15,7 @@
 #include "fmconfig.h"
 #include "fmfontdb.h"
 #include "fmfontextract.h"
+#include "fmhandbook.h"
 #include "fmhyphenator.h"
 #include "fmlayout.h"
 #include "fmmatchraster.h"
@@ -41,6 +42,7 @@
 
 #include <KLocalizedString>
 #include <QCloseEvent>
+#include <QDesktopServices>
 #include <QDir>
 #include <QDockWidget>
 #include <QFileDialog>
@@ -2294,17 +2296,22 @@ void typotek::setPanoseMatchTreshold(int theValue)
 
 void typotek::slotHelpContents()
 {
-    // The handbook is a DocBook document shown by KDE Help Center. Try the
-    // help: URL only where a handler can exist, as QDesktopServices::openUrl()
-    // reports no failure for an unhandled scheme.
-    if (KSandbox::isFlatpak() || !QStandardPaths::findExecutable(QStringLiteral("khelpcenter")).isEmpty()) {
+    // The handbook is a DocBook document shown by KDE Help Center where there is
+    // one. A sandbox never has it — and could not show it either, since nothing
+    // of the application is visible to the host — so there the same handbook,
+    // installed as HTML, is read in a window of our own.
+    if (!KSandbox::isFlatpak() && !QStandardPaths::findExecutable(QStringLiteral("khelpcenter")).isEmpty()) {
         KHelpClient::invokeHelp();
+        return;
+    }
+    if (!FMPaths::HandbookFile().isEmpty()) {
+        FMHandbookWindow::showHandbook(this);
         return;
     }
     KMessageBox::information(this,
                              xi18nc("@info",
-                                    "The Fontmatrix handbook is displayed by <application>KDE Help Center</application>, which is not installed on this "
-                                    "system.<nl/>The project page is at <link>%1</link>.",
+                                    "The Fontmatrix handbook could not be opened: neither <application>KDE Help Center</application> nor a copy to read in a "
+                                    "browser is installed.<nl/>The project page is at <link>%1</link>.",
                                     KAboutData::applicationData().homepage()),
                              i18nc("@title:window", "Handbook Not Available"));
 }

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/eniac111/fontmatrix/issues\n"
-"POT-Creation-Date: 2026-09-23 01:04+0300\n"
+"POT-Creation-Date: 2026-09-23 02:16+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,7 +38,7 @@ msgstr "Hlášení chyb při zapnutí nebo vypnutí písem"
 #. i18n: file: src/tagset.ui:231
 #. i18n: ectx: property (text), widget (QPushButton, closeButton)
 #: rc.cpp:9 rc.cpp:249 rc.cpp:294 rc.cpp:495 rc.cpp:669 rc.cpp:794
-#: src/typotek.cpp:2163
+#: src/typotek.cpp:2165
 #, kde-format
 msgctxt "@action:button"
 msgid "Close"
@@ -136,7 +136,7 @@ msgstr "Informace"
 
 #. i18n: file: src/browserwidget.ui:76
 #. i18n: ectx: property (text), widget (QPushButton, importButton)
-#: rc.cpp:42 src/typotek.cpp:451
+#: rc.cpp:42 src/typotek.cpp:453
 #, kde-format
 msgctxt "@action:button"
 msgid "Import"
@@ -1717,7 +1717,7 @@ msgstr "Odkázat znovu"
 
 #. i18n: file: src/repair.ui:134
 #. i18n: ectx: property (text), widget (QPushButton, deactActNot)
-#: rc.cpp:690 src/typotek.cpp:1413
+#: rc.cpp:690 src/typotek.cpp:1415
 #, kde-format
 msgctxt "@action:button"
 msgid "Deactivate"
@@ -1741,7 +1741,7 @@ msgstr "Zrušit odkaz"
 
 #. i18n: file: src/repair.ui:185
 #. i18n: ectx: property (text), widget (QPushButton, activateDeactLink)
-#: rc.cpp:702 src/fmfloatingpreview.cpp:55 src/typotek.cpp:1400
+#: rc.cpp:702 src/fmfloatingpreview.cpp:55 src/typotek.cpp:1402
 #, kde-format
 msgctxt "@action:button"
 msgid "Activate"
@@ -2179,7 +2179,7 @@ msgctxt "@info:progress"
 msgid "Copying files"
 msgstr "Kopírují se soubory"
 
-#: src/dataexport.cpp:70 src/typotek.cpp:469 src/typotek.cpp:578
+#: src/dataexport.cpp:70 src/typotek.cpp:471 src/typotek.cpp:580
 #, kde-format
 msgctxt "@action:button"
 msgid "cancel"
@@ -4092,6 +4092,46 @@ msgctxt "@label font embedding permission"
 msgid "Bitmap Only"
 msgstr "Pouze bitmapa"
 
+# Nápověda k programu Fontmatrix
+#: src/fmhandbook.cpp:44
+#, fuzzy, kde-format
+#| msgid "Fontmatrix Help"
+msgctxt "@title:window"
+msgid "Fontmatrix Handbook"
+msgstr "Fontmatrix Help"
+
+#: src/fmhandbook.cpp:57
+#, kde-format
+msgctxt "@action:intoolbar"
+msgid "Back"
+msgstr ""
+
+#: src/fmhandbook.cpp:58
+#, kde-format
+msgctxt "@action:intoolbar"
+msgid "Forward"
+msgstr ""
+
+#: src/fmhandbook.cpp:59
+#, fuzzy, kde-format
+#| msgid "&Contents"
+msgctxt "@action:intoolbar go to the table of contents"
+msgid "Contents"
+msgstr "&Obsah"
+
+#: src/fmhandbook.cpp:61
+#, fuzzy, kde-format
+#| msgid "Help Browser"
+msgctxt "@action:intoolbar"
+msgid "Open in Browser"
+msgstr "Prohlížeč nápovědy"
+
+#: src/fmhandbook.cpp:62
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Reads the same handbook in the web browser of the desktop."
+msgstr ""
+
 #: src/fminfodisplay.cpp:109
 #, fuzzy, kde-format
 msgctxt "@title:group the axes of a variable font"
@@ -4334,13 +4374,25 @@ msgctxt ""
 msgid "%1: from %2 to %4, %3 by default"
 msgstr ""
 
-#: src/fontbook.cpp:88
+#: src/fontbook.cpp:89
 #, kde-format
 msgctxt "@title:window"
 msgid "Print Fontbook"
 msgstr "Vytisknout knihu písem"
 
-#: src/fontbook.cpp:478
+#: src/fontbook.cpp:101
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The font book could not be written to <filename>%1</filename>."
+msgstr ""
+
+#: src/fontbook.cpp:102
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Font Book Not Written"
+msgstr "Font Book Options "
+
+#: src/fontbook.cpp:492
 #, kde-format
 msgctxt "@label"
 msgid "Unicode coverage"
@@ -5566,7 +5618,7 @@ msgctxt "@title:window"
 msgid "Save File"
 msgstr "Uložit soubor"
 
-#: src/typotek.cpp:319
+#: src/typotek.cpp:321
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -5577,13 +5629,13 @@ msgstr ""
 "zvolte <b>Ukončit</b> v nabídce souvisejících činností vyvolané z oznamovací "
 "části panelu."
 
-#: src/typotek.cpp:399
+#: src/typotek.cpp:401
 #, kde-format
 msgctxt "@title:window"
 msgid "Add Directory"
 msgstr "Přidat adresář"
 
-#: src/typotek.cpp:449
+#: src/typotek.cpp:451
 #, fuzzy, kde-format
 #| msgid "Do you confirm you want to import these %1 fonts?"
 msgctxt "@info"
@@ -5593,104 +5645,104 @@ msgstr[0] "Potvrzujete, že chcete zavést těchto %1 písem?"
 msgstr[1] "Potvrzujete, že chcete zavést těchto %1 písem?"
 msgstr[2] "Potvrzujete, že chcete zavést těchto %1 písem?"
 
-#: src/typotek.cpp:450
+#: src/typotek.cpp:452
 #, fuzzy, kde-format
 #| msgid "confirmation"
 msgctxt "@title:window"
 msgid "Confirmation"
 msgstr "Potvrzení"
 
-#: src/typotek.cpp:469 src/typotek.cpp:578
+#: src/typotek.cpp:471 src/typotek.cpp:580
 #, kde-format
 msgctxt "@info:progress"
 msgid "Importing font files... "
 msgstr "Zavádějí se soubory s písmy... "
 
-#: src/typotek.cpp:479 src/typotek.cpp:583
+#: src/typotek.cpp:481 src/typotek.cpp:585
 #, kde-format
 msgctxt "@info:progress"
 msgid "Import"
 msgstr "Zavést"
 
-#: src/typotek.cpp:502
+#: src/typotek.cpp:504
 #, kde-format
 msgctxt "@info"
 msgid "Cannot import this font because it is broken:"
 msgstr "Toto písmo nelze zavést, protože je rozbité:"
 
-#: src/typotek.cpp:529 src/typotek.cpp:620
+#: src/typotek.cpp:531 src/typotek.cpp:622
 #, kde-format
 msgctxt "@info:status"
 msgid "Fonts imported: %1"
 msgstr "Zavedená písma: %1"
 
-#: src/typotek.cpp:541
+#: src/typotek.cpp:543
 #, kde-format
 msgctxt "@title:window"
 msgid "Select Files to Import"
 msgstr "Vybrat soubory k zavedení"
 
-#: src/typotek.cpp:543
+#: src/typotek.cpp:545
 #, kde-format
 msgctxt "@item:inlistbox file type filter"
 msgid "Font Files"
 msgstr "Soubory s písmy"
 
-#: src/typotek.cpp:651
+#: src/typotek.cpp:653
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "&Import Directory..."
 msgstr "&Zavést adresář..."
 
-#: src/typotek.cpp:653
+#: src/typotek.cpp:655
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import a directory"
 msgstr "Zavést adresář"
 
-#: src/typotek.cpp:659
+#: src/typotek.cpp:661
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Import &Files..."
 msgstr "Zavést &soubory..."
 
-#: src/typotek.cpp:661
+#: src/typotek.cpp:663
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Import Files"
 msgstr "Zavést soubory"
 
-#: src/typotek.cpp:665
+#: src/typotek.cpp:667
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Export &fonts"
 msgstr "Vyvést &písma"
 
-#: src/typotek.cpp:666
+#: src/typotek.cpp:668
 #, kde-format
 msgctxt "@info:status"
 msgid "Export a fontset"
 msgstr "Vyvést sadu písem"
 
-#: src/typotek.cpp:670
+#: src/typotek.cpp:672
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Export font book..."
 msgstr "Vyvést knihu písem..."
 
-#: src/typotek.cpp:671
+#: src/typotek.cpp:673
 #, kde-format
 msgctxt "@info:status"
 msgid "Export a PDF document that shows selected fonts"
 msgstr "Vyvést dokument PDF, který ukazuje vybraná písma"
 
-#: src/typotek.cpp:675
+#: src/typotek.cpp:677
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Export font info for packaging..."
 msgstr "Vyvést informace o písmu pro balení..."
 
-#: src/typotek.cpp:676
+#: src/typotek.cpp:678
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5704,92 +5756,92 @@ msgstr ""
 #. tagsetAct->setIcon ( QIcon ( ":/fontmatrix_tagseteditor_icon.png" ) );
 #. scuts->add(tagsetAct);
 #. connect ( tagsetAct,SIGNAL ( triggered( ) ),this,SLOT ( popupTagsetEditor() ) );
-#: src/typotek.cpp:684
+#: src/typotek.cpp:686
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Activate all current"
 msgstr "Zapnout všechna nynější"
 
-#: src/typotek.cpp:685
+#: src/typotek.cpp:687
 #, kde-format
 msgctxt "@info:status"
 msgid "Activate all currently visible fonts"
 msgstr "Zapnout všechna nyní viditelná písma"
 
-#: src/typotek.cpp:689
+#: src/typotek.cpp:691
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Deactivate all current"
 msgstr "Vypnout všechna nynější"
 
-#: src/typotek.cpp:690
+#: src/typotek.cpp:692
 #, kde-format
 msgctxt "@info:status"
 msgid "Deactivate all currently visible fonts"
 msgstr "Vypnout všechna nyní viditelná písma"
 
-#: src/typotek.cpp:694
+#: src/typotek.cpp:696
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Edit current font"
 msgstr "Upravit nynější písmo"
 
-#: src/typotek.cpp:699
+#: src/typotek.cpp:701
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Filtered"
 msgstr "Nahrát znovu vyfiltrované"
 
-#: src/typotek.cpp:700
+#: src/typotek.cpp:702
 #, kde-format
 msgctxt "@info:status"
 msgid ""
 "Reload informations for filtered fonts from the font files they belong to"
 msgstr "Nahrát znovu informace pro vyfiltrovaná písma z jejich souborů písem"
 
-#: src/typotek.cpp:704
+#: src/typotek.cpp:706
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Reload Selected"
 msgstr "Nahrát znovu vybrané"
 
-#: src/typotek.cpp:705
+#: src/typotek.cpp:707
 #, kde-format
 msgctxt "@info:status"
 msgid "Reload informations for selected font from the font file"
 msgstr "Nahrát znovu informace k vybranému písmu z jeho souboru"
 
-#: src/typotek.cpp:709
+#: src/typotek.cpp:711
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Check Database"
 msgstr "Prověřit databázi"
 
-#: src/typotek.cpp:710
+#: src/typotek.cpp:712
 #, kde-format
 msgctxt "@info:status"
 msgid "Check Fontmatrix database for dead links to font files"
 msgstr "Prověřit databázi Fontmatrixu na mrtvé odkazy k souborům písem"
 
-#: src/typotek.cpp:717
+#: src/typotek.cpp:719
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Tag All Filtered..."
 msgstr "Označit vše vyfiltrované..."
 
-#: src/typotek.cpp:718
+#: src/typotek.cpp:720
 #, kde-format
 msgctxt "@info:status"
 msgid "Tag all currently visible files"
 msgstr "Označit všechny nyní viditelné soubory"
 
-#: src/typotek.cpp:722
+#: src/typotek.cpp:724
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show TrueType tables"
 msgstr "Ukázat tabulky TrueType"
 
-#: src/typotek.cpp:723
+#: src/typotek.cpp:725
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -5798,181 +5850,181 @@ msgstr ""
 "Zobrazit šestnáctkové hodnoty tabulek TrueType nyní vybraného souboru s "
 "písmem"
 
-#: src/typotek.cpp:727
+#: src/typotek.cpp:729
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Edit PANOSE metadata"
 msgstr "Upravit údaje Panose"
 
-#: src/typotek.cpp:728
+#: src/typotek.cpp:730
 #, kde-format
 msgctxt "@info:status"
 msgid "Edit PANOSE metadata without saving changes to font files"
 msgstr "Upravit údaje Panose bez uložení změn do souborů s písmy"
 
-#: src/typotek.cpp:732
+#: src/typotek.cpp:734
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Playground"
 msgstr "Hřiště"
 
-#: src/typotek.cpp:734
+#: src/typotek.cpp:736
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show/Hide Playground"
 msgstr "Ukázat/Skrýt hřiště"
 
-#: src/typotek.cpp:740
+#: src/typotek.cpp:742
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Compare"
 msgstr "Porovnání"
 
-#: src/typotek.cpp:742
+#: src/typotek.cpp:744
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show/Hide Compare glyphs"
 msgstr "Ukázat/Skrýt porovnání glyfů"
 
-#: src/typotek.cpp:748
+#: src/typotek.cpp:750
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Close All"
 msgstr "Zavřít vše"
 
-#: src/typotek.cpp:749
+#: src/typotek.cpp:751
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Close all floating windows"
 msgstr "Zavřít všechna plovoucí okna"
 
-#: src/typotek.cpp:753
+#: src/typotek.cpp:755
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Show All"
 msgstr "Ukázat vše"
 
-#: src/typotek.cpp:754
+#: src/typotek.cpp:756
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Show all floating windows"
 msgstr "Ukázat všechna plovoucí okna"
 
-#: src/typotek.cpp:758
+#: src/typotek.cpp:760
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Hide All"
 msgstr "Skrýt vše"
 
-#: src/typotek.cpp:759
+#: src/typotek.cpp:761
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Hide all floating windows"
 msgstr "Skrýt všechna plovoucí okna"
 
-#: src/typotek.cpp:779
+#: src/typotek.cpp:781
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Extract fonts..."
 msgstr "Vytáhnout písma..."
 
-#: src/typotek.cpp:780
+#: src/typotek.cpp:782
 #, kde-format
 msgctxt "@info:status"
 msgid "Extract fonts from documents like PDF to PFM file format"
 msgstr "Vytáhnout písma z dokumentů jako PDF do souborového formátu PFM"
 
-#: src/typotek.cpp:785
+#: src/typotek.cpp:787
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Find a font using raster sample..."
 msgstr "Najít písmo pomocí ukázky rastru jeho obrazu..."
 
-#: src/typotek.cpp:786
+#: src/typotek.cpp:788
 #, kde-format
 msgctxt "@info:status"
 msgid "Find a font using a raster sample of a letter"
 msgstr "Najít písmo pomocí ukázky rastru obrazu jeho písmene"
 
-#: src/typotek.cpp:790
+#: src/typotek.cpp:792
 #, fuzzy, kde-format
 #| msgid "Export font book..."
 msgctxt "@action:inmenu"
 msgid "Export font list as XeTeX..."
 msgstr "Vyvést knihu písem..."
 
-#: src/typotek.cpp:791
+#: src/typotek.cpp:793
 #, kde-format
 msgctxt "@info:status"
 msgid "Export the current filtered font list as a XeTeX source file"
 msgstr ""
 
-#: src/typotek.cpp:888
+#: src/typotek.cpp:890
 #, kde-format
 msgctxt "@action:button"
 msgid "Browse Directories"
 msgstr "Procházet adresáře"
 
-#: src/typotek.cpp:890
+#: src/typotek.cpp:892
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Toggle Files/Collection view"
 msgstr "Přepnout pohled soubory/sbírka"
 
-#: src/typotek.cpp:896
+#: src/typotek.cpp:898
 #, kde-format
 msgctxt "@info:progress"
 msgid "Load settings"
 msgstr "Nahrát nastavení"
 
-#: src/typotek.cpp:1030
+#: src/typotek.cpp:1032
 #, kde-format
 msgctxt "@info:progress"
 msgid "Check for Fontmatrix own dir"
 msgstr "Prověřit vlastní adresář Fontmatrixu"
 
-#: src/typotek.cpp:1218
+#: src/typotek.cpp:1220
 #, kde-format
 msgctxt "@info:progress"
 msgid "Loading System Fonts"
 msgstr "Nahrává se systémové písmo"
 
-#: src/typotek.cpp:1219
+#: src/typotek.cpp:1221
 #, kde-format
 msgctxt "@item:inlistbox name of the tag given to system fonts"
 msgid "System Fonts"
 msgstr "Systémová písma"
 
-#: src/typotek.cpp:1252
+#: src/typotek.cpp:1254
 #, kde-format
 msgctxt "@info:progress"
 msgid "Adding"
 msgstr "Přidávají se"
 
-#: src/typotek.cpp:1253 src/typotek.cpp:1254
+#: src/typotek.cpp:1255 src/typotek.cpp:1256
 #, kde-format
 msgctxt "followed by a directory name"
 msgid "fonts from"
 msgstr "Písma z"
 
-#: src/typotek.cpp:1254
+#: src/typotek.cpp:1256
 #, kde-format
 msgid "Adding"
 msgstr "Přidávají se"
 
-#: src/typotek.cpp:1277
+#: src/typotek.cpp:1279
 #, kde-format
 msgctxt "@info:progress"
 msgid "system fonts added."
 msgstr "Systémová písma přidána."
 
-#: src/typotek.cpp:1289 src/typotek.cpp:1292
+#: src/typotek.cpp:1291 src/typotek.cpp:1294
 #, fuzzy, kde-format
 msgctxt "@info:progress"
 msgid "Checking the activated fonts"
 msgstr "Show all activated fonts"
 
-#: src/typotek.cpp:1330
+#: src/typotek.cpp:1332
 #, kde-format
 msgctxt "@info:progress"
 msgid "Reading the catalogue of %1 remote directory"
@@ -5981,7 +6033,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: src/typotek.cpp:1372
+#: src/typotek.cpp:1374
 #, fuzzy, kde-format
 msgctxt "@info:status"
 msgid "%1 font added from the network"
@@ -5990,7 +6042,7 @@ msgstr[0] "Popisy písem ze sítě"
 msgstr[1] "Popisy písem ze sítě"
 msgstr[2] "Popisy písem ze sítě"
 
-#: src/typotek.cpp:1398
+#: src/typotek.cpp:1400
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -6001,14 +6053,14 @@ msgstr ""
 "Teď je čas na zrušení této akce, pokud jste tedy její provedení neměl v "
 "úmyslu"
 
-#: src/typotek.cpp:1399
+#: src/typotek.cpp:1401
 #, fuzzy, kde-format
 #| msgid "Activation"
 msgctxt "@title:window"
 msgid "Activate Fonts"
 msgstr "Zapnutí"
 
-#: src/typotek.cpp:1411
+#: src/typotek.cpp:1413
 #, kde-format
 msgctxt "@info"
 msgid ""
@@ -6019,77 +6071,77 @@ msgstr ""
 "Teď je čas na zrušení této akce, pokud jste tedy její provedení neměl v "
 "úmyslu"
 
-#: src/typotek.cpp:1412
+#: src/typotek.cpp:1414
 #, fuzzy, kde-format
 #| msgid "Deactivate"
 msgctxt "@title:window"
 msgid "Deactivate Fonts"
 msgstr "Vypnout"
 
-#: src/typotek.cpp:1431
+#: src/typotek.cpp:1433
 #, kde-format
 msgctxt "@info"
 msgid ""
 "This will hide the menu bar completely. You can show it again by typing %1."
 msgstr ""
 
-#: src/typotek.cpp:1432
+#: src/typotek.cpp:1434
 #, kde-format
 msgctxt "@title:window"
 msgid "Hide menu bar"
 msgstr ""
 
-#: src/typotek.cpp:1448
+#: src/typotek.cpp:1450
 #, kde-format
 msgctxt "@info:status"
 msgid "This font has not been downloaded yet"
 msgstr ""
 
-#: src/typotek.cpp:1456
+#: src/typotek.cpp:1458
 #, kde-format
 msgctxt "@info:status"
 msgid "The desktop could not be asked to open this font"
 msgstr ""
 
-#: src/typotek.cpp:1501
+#: src/typotek.cpp:1503
 #, kde-format
 msgctxt "@info:status"
 msgid "Support of DragNDrop over http is sheduled but not yet effective"
 msgstr ""
 "Podpora pro \"táhni a pusť\" přes http je naplánována, ale dosud není účinná"
 
-#: src/typotek.cpp:1520
+#: src/typotek.cpp:1522
 #, fuzzy, kde-format
 #| msgid "You bring something over me I canât handle"
 msgctxt "@info:status"
 msgid "You bring something over me I can’t handle"
 msgstr "Dal jste mi něco, s čím si nedovedu poradit"
 
-#: src/typotek.cpp:1581
+#: src/typotek.cpp:1583
 #, kde-format
 msgctxt "@info default content of a new sample text"
 msgid "Edit me!"
 msgstr "Uprav mě!"
 
-#: src/typotek.cpp:1660
+#: src/typotek.cpp:1662
 #, kde-format
 msgid "default"
 msgstr "Výchozí"
 
-#: src/typotek.cpp:1759
+#: src/typotek.cpp:1761
 #, kde-format
 msgctxt "@info:status"
 msgid ""
 "Open the selected font in the application the desktop asks you to choose"
 msgstr ""
 
-#: src/typotek.cpp:1762
+#: src/typotek.cpp:1764
 #, kde-format
 msgctxt "@info:status"
 msgid "Edit currently selected font in a font editor of your choice"
 msgstr "Upravit nyní vybrané písmo v editoru písem dle vaší volby"
 
-#: src/typotek.cpp:1766
+#: src/typotek.cpp:1768
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -6099,26 +6151,26 @@ msgstr ""
 "Zdá se, že nemáte nainstalován editor písem. Cestu k editoru písem lze "
 "nastavit v dialogu Nastavení."
 
-#: src/typotek.cpp:2051
+#: src/typotek.cpp:2053
 #, fuzzy, kde-format
 #| msgid "Export a fontset"
 msgctxt "@title:window"
 msgid "Export font list as XeTeX"
 msgstr "Vyvést sadu písem"
 
-#: src/typotek.cpp:2053
+#: src/typotek.cpp:2055
 #, kde-format
 msgctxt "@item:inlistbox file type filter"
 msgid "TeX files (*.tex)"
 msgstr ""
 
-#: src/typotek.cpp:2152
+#: src/typotek.cpp:2154
 #, kde-format
 msgctxt "@info:status"
 msgid "There is no font selected"
 msgstr "Žádné písmo nebylo vybráno"
 
-#: src/typotek.cpp:2235
+#: src/typotek.cpp:2237
 #, kde-format
 msgctxt "@info:status"
 msgid "Failed to reload %1 font"
@@ -6127,7 +6179,7 @@ msgstr[0] "Nepodařilo se nahrát znovu jedno písmo"
 msgstr[1] "Nepodařilo se nahrát znovu %1 písma"
 msgstr[2] "Nepodařilo se nahrát znovu %1 písem"
 
-#: src/typotek.cpp:2277
+#: src/typotek.cpp:2279
 #, kde-format
 msgctxt "number of filtererd fonts showed in status bar"
 msgid "Filtered Font: %1"
@@ -6136,22 +6188,22 @@ msgstr[0] "Vyfiltrované písmo: %1"
 msgstr[1] "Vyfiltrovaná písma: %1"
 msgstr[2] "Vyfiltrovaných písem: %1"
 
-#: src/typotek.cpp:2282
+#: src/typotek.cpp:2284
 #, kde-format
 msgctxt "followed by currently selected font name (in status bar)"
 msgid "Current Font"
 msgstr "Nynější písmo"
 
-#: src/typotek.cpp:2306
+#: src/typotek.cpp:2313
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
-"The Fontmatrix handbook is displayed by <application>KDE Help Center</"
-"application>, which is not installed on this system.<nl/>The project page is "
-"at <link>%1</link>."
+"The Fontmatrix handbook could not be opened: neither <application>KDE Help "
+"Center</application> nor a copy to read in a browser is installed.<nl/>The "
+"project page is at <link>%1</link>."
 msgstr ""
 
-#: src/typotek.cpp:2309
+#: src/typotek.cpp:2316
 #, kde-format
 msgctxt "@title:window"
 msgid "Handbook Not Available"
@@ -9020,10 +9072,6 @@ msgstr ""
 #~ msgid "Running"
 #~ msgstr "Běží"
 
-# Nápověda k programu Fontmatrix
-#~ msgid "Fontmatrix Help"
-#~ msgstr "Fontmatrix Help"
-
 #~ msgid "Fontmatrix Online Help"
 #~ msgstr "Nápověda pro program Fontmatrix na internetu"
 
@@ -9074,9 +9122,6 @@ msgstr ""
 #~ "<h2><p>Promiňte, ale není nainstalován žádný návod!</p><p>Spojte se, "
 #~ "prosím, se svým poskytovatelem balíčků nebo s družstvem Fontmatrix, pokud "
 #~ "si program sestavujete sám</p></h2>"
-
-#~ msgid "&Contents"
-#~ msgstr "&Obsah"
 
 #~ msgid "Se&arch"
 #~ msgstr "&Hledat"
@@ -9217,9 +9262,6 @@ msgstr ""
 
 #~ msgid "Information Style"
 #~ msgstr "Styl informací"
-
-#~ msgid "Help Browser"
-#~ msgstr "Prohlížeč nápovědy"
 
 #~ msgid "Extra options:"
 #~ msgstr "Další volby:"
@@ -9399,11 +9441,6 @@ msgstr ""
 #~ msgctxt "BookExportDialog|"
 #~ msgid "Sample text"
 #~ msgstr "Sample text"
-
-#, fuzzy
-#~ msgctxt "BookExportDialog|"
-#~ msgid "Font Book Options "
-#~ msgstr "Font Book Options "
 
 #, fuzzy
 #~ msgctxt "BookExportDialog|"

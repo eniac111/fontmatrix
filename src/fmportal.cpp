@@ -54,9 +54,12 @@ bool FMPortal::isAvailable()
     return available;
 }
 
-bool FMPortal::openWith(const QString &path, QWidget *parent)
+namespace
 {
-    if (!isAvailable())
+/// OpenURI.OpenFile with the file itself, which is what lets a sandboxed path be opened
+bool openFile(const QString &path, bool ask, bool writable, QWidget *parent)
+{
+    if (!FMPortal::isAvailable())
         return false;
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly)) {
@@ -65,9 +68,8 @@ bool FMPortal::openWith(const QString &path, QWidget *parent)
     }
     QDBusMessage message(QDBusMessage::createMethodCall(portalService, portalPath, openUriInterface, QLatin1String("OpenFile")));
     QVariantMap options;
-    // the chooser of the desktop, and the file writable, so that an editor can save it
-    options.insert(QStringLiteral("ask"), true);
-    options.insert(QStringLiteral("writable"), true);
+    options.insert(QStringLiteral("ask"), ask);
+    options.insert(QStringLiteral("writable"), writable);
     message << parentWindowHandle(parent) << QVariant::fromValue(QDBusUnixFileDescriptor(file.handle())) << options;
 
     const QDBusMessage reply(QDBusConnection::sessionBus().call(message, QDBus::Block, 5000));
@@ -78,6 +80,18 @@ bool FMPortal::openWith(const QString &path, QWidget *parent)
     qCDebug(FONTMATRIX_LOG) << path << "handed to the desktop";
     return true;
 }
+}
+
+bool FMPortal::openWith(const QString &path, QWidget *parent)
+{
+    // the chooser of the desktop, and the file writable, so that an editor can save it
+    return openFile(path, true, true, parent);
+}
+
+bool FMPortal::openRead(const QString &path, QWidget *parent)
+{
+    return openFile(path, false, false, parent);
+}
 
 #else // no D-Bus desktop: Windows and macOS have their own ways of opening a file
 
@@ -87,6 +101,11 @@ bool FMPortal::isAvailable()
 }
 
 bool FMPortal::openWith(const QString &, QWidget *)
+{
+    return false;
+}
+
+bool FMPortal::openRead(const QString &, QWidget *)
 {
     return false;
 }
