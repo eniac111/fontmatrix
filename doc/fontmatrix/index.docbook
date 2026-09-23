@@ -603,6 +603,16 @@ written to the database, and no font is removed for you: the filter
 narrows the list, and you decide what goes.</para>
 </sect1>
 
+<sect1 id="search-technology">
+<title>Variable and colour fonts</title>
+<para>The <guilabel>Font Technology</guilabel> section of the sidebar narrows
+the list to the <guilabel>Variable fonts</guilabel>, whose design moves along
+axes such as weight or width, or to the <guilabel>Colour fonts</guilabel>, whose
+glyphs carry their own colours. The first time a kind is picked
+&fontmatrix; opens each font once to find out; the answer is then kept until
+the collection changes.</para>
+</sect1>
+
 <sect1 id="search-bitmap">
 <title>Searching using bitmap samples</title>
 <para>If you have an enormous fonts collection, you can search for a

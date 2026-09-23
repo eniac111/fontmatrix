@@ -14,6 +14,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/familywidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterbar.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterdata.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterduplicate.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/filterkind.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterlang.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterlicense.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filtersdialog.cpp
@@ -37,6 +38,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmencdata.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfloatingpreview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontcompareview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontdb.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmfontkinds.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontextract.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmhandbook.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmhyphenator.cpp
@@ -456,6 +458,7 @@ set_source_files_properties(
 	filteritem.cpp
 	filtermeta.cpp
 	filterduplicate.cpp
+	filterkind.cpp
 	filterlang.cpp
 	filterlicense.cpp
 	filterpanose.cpp
@@ -472,6 +475,7 @@ set_source_files_properties(
 	fmencdata.cpp
 	fmfontcompareview.cpp
 	fmfontdb.cpp
+	fmfontkinds.cpp
 	fmglyphsview.cpp
 	fmhandbook.cpp
 	fmkernfeat.cpp
