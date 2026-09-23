@@ -39,6 +39,7 @@ public:
     TagsWidget *tagWidget();
     QString family;
     QString curVariant;
+    int curInstance = -1; ///< the named instance of curVariant chosen in the list, -1 for none
 
 protected:
     void changeEvent(QEvent *e) override;
@@ -54,6 +55,8 @@ private:
     FloatingWidget *activation = nullptr;
 
     unsigned int currentIndex;
+    QMetaObject::Connection variationConnection; ///< the list follows the instance the font is shown at
+    void followVariation();
     unsigned int currentPage;
     QString uniBlock;
 

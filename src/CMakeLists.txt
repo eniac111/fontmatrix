@@ -14,6 +14,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/familywidget.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterbar.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterdata.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterduplicate.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/filterkind.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterlang.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filterlicense.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/filtersdialog.cpp
@@ -37,12 +38,14 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmencdata.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfloatingpreview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontcompareview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontdb.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmfontkinds.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontextract.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmhandbook.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmhyphenator.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmlangcoverage.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmlicense.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmshaper.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmsvgglyphs.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/harfbuzzqtshaper.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontstrings.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfreetypelib.cpp
@@ -242,6 +245,7 @@ IF(UNIX AND NOT APPLE)
 	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz Hyphen::Hyphen
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
+	ZLIB::ZLIB
 	$<TARGET_NAME_IF_EXISTS:Fontconfig::Fontconfig>
 	${PODOFO_LINK_LIBS}
 	KF6::CoreAddons
@@ -344,6 +348,7 @@ IF(APPLE)
 	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz Hyphen::Hyphen
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
+	ZLIB::ZLIB
 	${PODOFO_LINK_LIBS}
 	"-framework ApplicationServices"
 	KF6::CoreAddons
@@ -399,6 +404,7 @@ INSTALL(TARGETS ${PROGNAME}
 SET(APPLE_LIBS
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
+	ZLIB::ZLIB
 	${PODOFO_LINK_LIBS}
 )
 SET(APPLE_DIRS "${QT_PLUGINS_DIR}/sqldrivers")
@@ -422,6 +428,7 @@ IF(WIN32)
 	target_link_libraries(fontmatrix HarfBuzz::HarfBuzz Hyphen::Hyphen
 	${QT_LIBRARIES}
 	${FREETYPE_LIBRARIES}
+	ZLIB::ZLIB
 	${PODOFO_LINK_LIBS}
 	KF6::CoreAddons
 	KF6::I18n
@@ -456,6 +463,7 @@ set_source_files_properties(
 	filteritem.cpp
 	filtermeta.cpp
 	filterduplicate.cpp
+	filterkind.cpp
 	filterlang.cpp
 	filterlicense.cpp
 	filterpanose.cpp
@@ -472,6 +480,7 @@ set_source_files_properties(
 	fmencdata.cpp
 	fmfontcompareview.cpp
 	fmfontdb.cpp
+	fmfontkinds.cpp
 	fmglyphsview.cpp
 	fmhandbook.cpp
 	fmkernfeat.cpp
@@ -485,6 +494,7 @@ set_source_files_properties(
 	fmportal.cpp
 	fmplayground.cpp
 	fmshaper.cpp
+	fmsvgglyphs.cpp
 	fmshaper_own.cpp
 	fmuniblocks.cpp
 	fmutils.cpp

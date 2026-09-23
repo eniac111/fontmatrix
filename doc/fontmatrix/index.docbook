@@ -489,6 +489,11 @@ chart and the playground show the font at the chosen coordinates;
 designer chose. The <guilabel>Info</guilabel> page lists the axes and the
 named instances, and the font book shows every named instance as a
 style.</para>
+<para>The coordinates you choose are remembered for the next session, until
+<guibutton>Default</guibutton> is pressed. In the view of a family, a variable
+font has one row for each of its named instances, drawn at that instance: a
+click on a row shows the font there, and choosing an instance in the sidebar
+selects its row.</para>
 </sect2>
 </sect1>
 
@@ -497,9 +502,9 @@ style.</para>
 <para>In <guilabel>Glyphs</guilabel> mode &fontmatrix; displays a
 chart of glyphs present in the currently selected font, grouped into
 Unicode blocks with coverage percentages.</para>
-<para>The glyphs of a colour font (emoji and the like, whether bitmaps
-or layered outlines with gradients) are shown in their colours here, in
-the sample and in the previews.</para>
+<para>The glyphs of a colour font (emoji and the like, whether bitmaps,
+layered outlines with gradients or SVG pictures) are shown in their colours
+here, in the sample and in the previews.</para>
 <para>Clicking on a glyph displays a larger version with metrics and
 category. Switch to <guilabel>View all mapped glyphs</guilabel> and
 type in the search field to find a glyph by name.</para>
@@ -601,6 +606,16 @@ collection changes. Only files of exactly the same length are ever
 read, so a collection of thousands costs a few dozen reads. Nothing is
 written to the database, and no font is removed for you: the filter
 narrows the list, and you decide what goes.</para>
+</sect1>
+
+<sect1 id="search-technology">
+<title>Variable and colour fonts</title>
+<para>The <guilabel>Font Technology</guilabel> section of the sidebar narrows
+the list to the <guilabel>Variable fonts</guilabel>, whose design moves along
+axes such as weight or width, or to the <guilabel>Colour fonts</guilabel>, whose
+glyphs carry their own colours. The first time a kind is picked
+&fontmatrix; opens each font once to find out; the answer is then kept until
+the collection changes.</para>
 </sect1>
 
 <sect1 id="search-bitmap">

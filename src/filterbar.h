@@ -135,9 +135,11 @@ private:
     void fillLanguages();
     void fillLicenses();
     void fillDuplicates();
+    void fillKinds();
     bool languagesFilled = false;
     bool licensesFilled = false;
     bool duplicatesFilled = false;
+    bool kindsFilled = false;
 
 Q_SIGNALS:
     void initSearch(int, QString);
@@ -162,10 +164,12 @@ private Q_SLOTS:
     void slotToggleLanguages(bool t);
     void slotToggleLicense(bool t);
     void slotToggleDuplicates(bool t);
+    void slotToggleKinds(bool t);
 
     void slotLangFilter(int index);
     void slotLicenseFilter(int index);
     void slotDuplicateFilter(int index);
+    void slotKindFilter(int index);
 
 private:
     void filtersDialog();

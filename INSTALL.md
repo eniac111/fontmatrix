@@ -33,6 +33,7 @@ Download and run the MSI — Qt and FreeType runtime DLLs are bundled.
 | HarfBuzz | ≥ 2.6.8 | built with FreeType support; Qt 6 depends on it already. COLR version 1 glyphs (gradients) are painted with 7.0 or later, older ones show their base glyph |
 | libhyphen | | hyphenation of the sample texts (hunspell's `hyphen`); the KDE Flatpak runtime has it, Craft builds it from `craft-blueprints/libs/hyphen` |
 | FreeType2 | ≥ 2.10 | variable fonts (the axis flags of 2.8.1) and colour fonts (the COLR layers of 2.10) |
+| zlib | | the SVG glyphs of OpenType-SVG colour fonts may be gzip-compressed; FreeType depends on it already |
 | Gettext | | `msgfmt`, to compile the translations |
 | Fontconfig | | optional, Linux; it lists the system fonts and answers which languages a font can set (the *Languages* filter, hidden without it). Activation itself needs no library: a copy in `~/.local/share/fonts/fontmatrix`, a rejects file in `~/.config/fontconfig/conf.d` |
 | KF6 Auth (KAuth) with its polkit backend | ≥ 6.12 | optional, Linux: activating fonts for all users of the computer. Builds `fontmatrix_helper`, run as root by KAuth over the system bus, with its D-Bus policy and service files and the polkit action `org.fontmatrix.*`. They have to be installed where the host reads them (`/usr/share/dbus-1/system.d`, `/usr/share/dbus-1/system-services`, `/usr/share/polkit-1/actions`, `/usr/lib/kf6/kauth`), i.e. a package with prefix `/usr`; otherwise the choice stays hidden. A Flatpak cannot install them and passes `-DCMAKE_DISABLE_FIND_PACKAGE_KF6Auth=ON` |
@@ -51,7 +52,7 @@ On a distribution that has the versions above (Arch Linux is what CI uses):
 ```bash
 sudo pacman -S --needed base-devel cmake ninja extra-cmake-modules gettext \
   qt6-base qt6-svg kcoreaddons ki18n kconfig kxmlgui kconfigwidgets kwidgetsaddons \
-  kstatusnotifieritem kdbusaddons kcrash kiconthemes freetype2 harfbuzz hyphen podofo fontconfig
+  kstatusnotifieritem kdbusaddons kcrash kiconthemes freetype2 harfbuzz zlib hyphen podofo fontconfig
 ```
 
 On Debian 13 and Ubuntu 25.04:
@@ -61,7 +62,7 @@ sudo apt install g++ cmake ninja-build pkg-config gettext extra-cmake-modules \
   qt6-base-dev qt6-svg-dev libkf6coreaddons-dev libkf6i18n-dev libkf6config-dev \
   libkf6xmlgui-dev libkf6configwidgets-dev libkf6widgetsaddons-dev \
   libkf6statusnotifieritem-dev libkf6dbusaddons-dev libkf6crash-dev libkf6iconthemes-dev \
-  libfreetype-dev libharfbuzz-dev libhyphen-dev libfontconfig-dev
+  libfreetype-dev libharfbuzz-dev zlib1g-dev libhyphen-dev libfontconfig-dev
 ```
 
 Both ship PoDoFo 0.9.8, which is too old: Fontmatrix is built there without *Tools → Extract

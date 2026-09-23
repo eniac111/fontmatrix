@@ -43,6 +43,7 @@ FamilyWidget::FamilyWidget(QWidget *parent)
 
     previewModel = new FMPreviewModel(this, ui->familyPreview);
     previewModel->setSpecString(QStringLiteral("<variant>"));
+    previewModel->setInstanceMode(true);
     ui->familyPreview->setModel(previewModel);
 
     connect(ui->returnListButton, &QPushButton::clicked, this, &FamilyWidget::backToList);
@@ -129,8 +130,16 @@ void FamilyWidget::setFamily(const QString &f)
         ui->tagsWidget->prepare(fl);
         previewModel->resetBase(fl);
         if (!fl.isEmpty()) {
-            ui->familyPreview->setCurrentIndex(previewModel->index(0));
-            curVariant = fl.first()->path();
+            // a variable font is on the row of the instance it is shown at, if any
+            FontItem *first(fl.first());
+            curInstance = first->namedInstance();
+            const QModelIndex row(previewModel->indexOf(first, curInstance));
+            if (row.isValid())
+                ui->familyPreview->setCurrentIndex(row);
+            else
+                ui->familyPreview->clearSelection();
+            curVariant = first->path();
+            followVariation();
             Q_EMIT fontSelected(curVariant);
         }
         delete sample;
@@ -153,13 +162,23 @@ void FamilyWidget::slotPreviewUpdate()
 void FamilyWidget::slotPreviewSelected(const QModelIndex &index)
 {
     QString fid(index.data(FMPreviewModel::PathRole).toString());
-    if (fid != curVariant) {
+    const int instance(index.data(FMPreviewModel::InstanceRole).toInt());
+    if (fid != curVariant || instance != curInstance) {
+        if (instance >= 0) {
+            // the row of a named instance: the font is shown there from now on
+            if (FontItem *font = FMFontDb::DB()->Font(fid)) {
+                font->setVariationCoordinates(font->namedInstances().value(instance).coords);
+                font->rememberVariation();
+            }
+        }
+        curInstance = instance;
+        curVariant = fid;
+        followVariation();
         if (chart != nullptr)
             uniBlock = reinterpret_cast<ChartWidget *>(chart)->currentBlock();
         delete sample;
         delete chart;
         sample = chart = nullptr;
-        curVariant = fid;
         currentIndex = index.row();
         switch (currentPage) {
         case FAMILY_VIEW_INFO:
@@ -177,6 +196,23 @@ void FamilyWidget::slotPreviewSelected(const QModelIndex &index)
 
         Q_EMIT fontSelected(curVariant);
     }
+}
+
+void FamilyWidget::followVariation()
+{
+    disconnect(variationConnection);
+    FontItem *font(FMFontDb::DB()->Font(curVariant));
+    if (!font || !font->isVariable())
+        return;
+    // an instance chosen in the variations panel is chosen in the list too
+    variationConnection = connect(font, &FontItem::variationChanged, this, [this, font]() {
+        curInstance = font->namedInstance();
+        const QModelIndex row(previewModel->indexOf(font, curInstance));
+        if (row.isValid())
+            ui->familyPreview->setCurrentIndex(row);
+        else
+            ui->familyPreview->clearSelection();
+    });
 }
 
 void FamilyWidget::slotShowSample()

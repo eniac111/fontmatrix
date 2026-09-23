@@ -31,6 +31,7 @@
 #include "fmsharestruct.h"
 
 struct hb_font_t;
+class FMSvgGlyphs;
 class QGraphicsPixmapItem;
 class QGraphicsScene;
 class QGraphicsRectItem;
@@ -233,6 +234,8 @@ private:
     QGraphicsPathItem *colorItem(int index, double scalefactor);
     /// COLR version 1: the HarfBuzz font that paints, while the face is open
     hb_font_t *m_paintFont = nullptr;
+    /// OpenType-SVG: the documents of the glyphs, while the face is open
+    FMSvgGlyphs *m_svgGlyphs = nullptr;
     /// the glyph painted at the size set, in place of what FreeType rendered; false when it has no paint
     bool paintedGlyph(int index, QImage &img, double &left, double &top);
 
@@ -244,6 +247,8 @@ private:
     QList<double> m_coords; ///< the design coordinates shown, empty for the default
     void readVariation();
     void applyVariation();
+    /// sets these coordinates on the open face, empty for the default of the font
+    void applyVariation(const QList<double> &coords);
     QString sfntName(unsigned int nameId);
 
     QList<int> getAlternates(int ccode);
@@ -411,7 +416,9 @@ public:
     QString activationAFMName();
 
     // 		QIcon oneLinePreviewIcon ( QString oneline );
-    QPixmap oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor bg_color, int size_w = 0, int fsize = 0);
+    /// the line drawn with the font, at `coords` when they are given (a named instance of a
+    /// variable font) and else at the coordinates the font is shown with
+    QPixmap oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor bg_color, int size_w = 0, int fsize = 0, const QList<double> &coords = {});
     void clearPreview();
 
     [[nodiscard]] bool isActivated() const;
@@ -529,6 +536,12 @@ public:
     void setVariationCoordinates(const QList<double> &coords);
     /// the named instance the coordinates shown are those of, -1 when they are not
     int namedInstance();
+    /**
+     * Keeps the coordinates shown now for the next session: the font is shown with
+     * them again, everywhere, the first time it is opened. The default of the font
+     * forgets them. What the user chose, not what a view sets for a moment.
+     */
+    void rememberVariation();
 
     [[nodiscard]] FT_Encoding getCurrentEncoding() const;
 

@@ -192,7 +192,16 @@ QVariant FMPreviewModel::data(const QModelIndex &index, int role) const
     int row = index.row();
     // 	qDebug()<<"D"<<row;
     FontItem *fit;
-    if (base.isEmpty())
+    FontNamedInstance instance;
+    int instanceIndex(-1);
+    if (instanceMode && !rows.isEmpty()) {
+        if (row >= rows.size())
+            return QVariant();
+        fit = rows.at(row).font;
+        instanceIndex = rows.at(row).instance;
+        if (fit && instanceIndex >= 0)
+            instance = fit->namedInstances().value(instanceIndex);
+    } else if (base.isEmpty())
         fit = FMFontDb::DB()->getFilteredFonts(true).at(row);
     else
         fit = base.at(row);
@@ -206,16 +215,24 @@ QVariant FMPreviewModel::data(const QModelIndex &index, int role) const
 
     if (role == Qt::DisplayRole) {
         if (typotek::getInstance()->getPreviewSubtitled())
-            return fit->fancyName();
+            return instanceIndex >= 0 ? QString(fit->family() + QLatin1Char(' ') + instance.name) : fit->fancyName();
         else
             return QVariant();
     } else if (role == Qt::DecorationRole) {
         QString word;
-        if (specString.isEmpty())
+        if (instanceIndex >= 0) {
+            // the style is the one of the instance, not the one of the file
+            word = typotek::getInstance()->word(nullptr);
+            if (word.isEmpty())
+                word = specString;
+            word.replace(QLatin1String("<variant>"), instance.name);
+            word.replace(QLatin1String("<name>"), QString(fit->family() + QLatin1Char(' ') + instance.name));
+            word.replace(QLatin1String("<family>"), fit->family());
+        } else if (specString.isEmpty())
             word = typotek::getInstance()->word(fit);
         else
             word = typotek::getInstance()->word(fit, specString);
-        QPixmap im(fit->oneLinePreviewPixmap(word, fgColor, bgColor, width));
+        QPixmap im(fit->oneLinePreviewPixmap(word, fgColor, bgColor, width, 0, instance.coords));
         auto pie(new FMPreviewIconEngine);
         if (!familyMode)
             pie->setActivation(fit->isActivated() ? FMPreviewIconEngine::Activated : FMPreviewIconEngine::NotActivated);
@@ -275,6 +292,8 @@ QVariant FMPreviewModel::data(const QModelIndex &index, int role) const
         }
     } else if (role == PathRole) {
         return fit->path();
+    } else if (role == InstanceRole) {
+        return instanceIndex;
     }
 
     // fall back
@@ -291,7 +310,9 @@ int FMPreviewModel::rowCount(const QModelIndex &parent) const
     if (parent.isValid() || !typotek::getInstance()->getTheMainView())
         return 0;
     int cl(0);
-    if (base.isEmpty())
+    if (instanceMode && !rows.isEmpty())
+        cl = rows.size();
+    else if (base.isEmpty())
         cl = FMFontDb::DB()->getFilteredFonts(true).size();
     else
         cl = base.size();
@@ -309,7 +330,30 @@ void FMPreviewModel::dataChanged()
 void FMPreviewModel::resetBase(QList<FontItem *> db)
 {
     base = db;
+    rows.clear();
+    if (instanceMode) {
+        for (FontItem *font : std::as_const(base)) {
+            const int instances(font && font->isVariable() ? int(font->namedInstances().size()) : 0);
+            if (instances == 0)
+                rows << Row{font, -1};
+            for (int i(0); i < instances; ++i)
+                rows << Row{font, i};
+        }
+    }
     dataChanged();
+}
+
+QModelIndex FMPreviewModel::indexOf(FontItem *font, int instance) const
+{
+    if (!instanceMode || rows.isEmpty()) {
+        const int row(base.indexOf(font));
+        return row < 0 ? QModelIndex() : index(row);
+    }
+    for (int row(0); row < rows.size(); ++row) {
+        if (rows.at(row).font == font && rows.at(row).instance == instance)
+            return index(row);
+    }
+    return QModelIndex();
 }
 
 QList<FontItem *> FMPreviewModel::getBase()

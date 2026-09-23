@@ -10,6 +10,7 @@
 #include "fmbidi.h"
 #include "fmcolorglyphitem.h"
 #include "fmcolorpainter.h"
+#include "fmconfig.h"
 #include "fmencdata.h"
 #include "fmfontdb.h"
 #include "fmfontstrings.h"
@@ -18,6 +19,7 @@
 #include "fmhyphenator.h"
 #include "fmkernfeat.h"
 #include "fmotf.h"
+#include "fmsvgglyphs.h"
 #include "fmuniblocks.h"
 #include "fontmatrix_debug.h"
 #include "glyphtosvghelper.h"
@@ -471,8 +473,10 @@ bool FontItem::ensureFace()
     }
     m_faceSeen = true;
     m_hasColor = FT_HAS_COLOR(m_face);
-    if (m_hasColor)
+    if (m_hasColor) {
         m_paintFont = FMColorPainter::paintFont(m_face);
+        m_svgGlyphs = FMSvgGlyphs::create(m_face);
+    }
     if (m_face->units_per_EM == 0 && m_headUnitsPerEm <= 0.0) {
         // a bitmap-only font: FreeType has no scale for it, its head table has the units
         if (auto *head = static_cast<TT_Header *>(FT_Get_Sfnt_Table(m_face, FT_SFNT_HEAD)))
@@ -506,6 +510,8 @@ void FontItem::releaseFace()
                 hb_font_destroy(m_paintFont);
                 m_paintFont = nullptr;
             }
+            delete m_svgGlyphs;
+            m_svgGlyphs = nullptr;
             FT_Done_Face(m_face);
             m_face = nullptr;
             --fm_num_face_opened;
@@ -2074,7 +2080,7 @@ QGraphicsPathItem *FontItem::hasCodepointLoaded(int code)
     return nullptr;
 }
 
-QPixmap FontItem::oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor bg_color, int size_w, int size_f)
+QPixmap FontItem::oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor bg_color, int size_w, int size_f, const QList<double> &coords)
 {
     if (m_remote && !remoteCached) {
         // what the directory gave, or nothing: the model then shows the name
@@ -2091,6 +2097,10 @@ QPixmap FontItem::oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor 
     //	}
     if (!ensureFace())
         return QPixmap();
+    // only for this drawing: the font keeps the coordinates it is shown with
+    const bool otherCoords(!coords.isEmpty() && !m_axes.isEmpty());
+    if (otherCoords)
+        applyVariation(coords);
     double theSize = (size_f == 0) ? typotek::getInstance()->getPreviewSize() : size_f;
     double pt2px = typotek::getInstance()->getDpiX() / 72.0;
     double theHeight = theSize * 1.3 * pt2px;
@@ -2142,6 +2152,8 @@ QPixmap FontItem::oneLinePreviewPixmap(QString oneline, QColor fg_color, QColor 
     }
 
     apainter.end();
+    if (otherCoords)
+        applyVariation();
     releaseFace();
 
     return linePixmap;
@@ -2235,19 +2247,57 @@ void FontItem::readVariation()
         m_instances << instance;
     }
     FT_Done_MM_Var(FMFreetypeLib::lib(thread()), mm);
+
+    // the coordinates the font was last shown with, in a session before (rememberVariation())
+    const QString stored(FMConfig::value(QStringLiteral("Variations/") + m_path, QString()).toString());
+    if (m_coords.isEmpty() && !stored.isEmpty()) {
+        QHash<QString, double> byTag;
+        for (const QString &part : stored.split(QLatin1Char(','), Qt::SkipEmptyParts)) {
+            bool ok(false);
+            const double value(part.section(QLatin1Char('='), 1).toDouble(&ok));
+            if (ok)
+                byTag.insert(part.section(QLatin1Char('='), 0, 0), value);
+        }
+        // by tag, not by position: an axis the font no longer has is dropped, a new one is at its default
+        for (const FontVariationAxis &axis : std::as_const(m_axes))
+            m_coords << byTag.value(axis.tag, axis.def);
+    }
+}
+
+void FontItem::rememberVariation()
+{
+    if (!isVariable())
+        return;
+    const QString key(QStringLiteral("Variations/") + m_path);
+    bool atDefault(true);
+    for (int a(0); a < m_coords.size() && a < m_axes.size(); ++a)
+        atDefault = atDefault && qFuzzyCompare(1.0 + m_coords.at(a), 1.0 + m_axes.at(a).def);
+    if (atDefault) {
+        FMConfig::remove(key);
+        return;
+    }
+    QStringList parts;
+    for (int a(0); a < m_coords.size() && a < m_axes.size(); ++a)
+        parts << QStringLiteral("%1=%2").arg(m_axes.at(a).tag, QString::number(m_coords.at(a), 'g', 10));
+    FMConfig::setValue(key, parts.join(QLatin1Char(',')));
 }
 
 void FontItem::applyVariation()
 {
+    applyVariation(m_coords);
+}
+
+void FontItem::applyVariation(const QList<double> &coords)
+{
     if (!m_face || m_axes.isEmpty())
         return;
-    if (m_coords.isEmpty()) {
+    if (coords.isEmpty()) {
         // back to the default of the font
         FT_Set_Var_Design_Coordinates(m_face, 0, nullptr);
         return;
     }
     QVarLengthArray<FT_Fixed, 8> fixed;
-    for (const double c : m_coords)
+    for (const double c : coords)
         fixed.append(FT_Fixed(std::lround(c * 65536.0)));
     FT_Set_Var_Design_Coordinates(m_face, static_cast<FT_UInt>(fixed.size()), fixed.data());
 }
@@ -3267,7 +3317,9 @@ bool FontItem::setPixelSize(double pixels)
 
 FT_Int32 FontItem::loadFlags(FT_Int32 flags) const
 {
-    return m_hasColor ? (flags | FT_LOAD_COLOR) : flags;
+    // An SVG glyph is drawn here (FMSvgGlyphs), not by FreeType, which would want rendering
+    // hooks and fails the load without them: its outline gives the metrics and the fallback.
+    return (m_hasColor && !m_svgGlyphs) ? (flags | FT_LOAD_COLOR) : flags;
 }
 
 void FontItem::metricsToUnits()
@@ -3321,9 +3373,14 @@ double FontItem::bitmapAdvance() const
 
 bool FontItem::paintedGlyph(int index, QImage &img, double &left, double &top)
 {
-    if (!m_paintFont || !m_face->size || index < 0)
+    if (!m_face || !m_face->size || index < 0)
         return false;
     const double ppem = m_face->size->metrics.y_ppem * m_bitmapScale;
+    // OpenType-SVG first: where a font has it, it is the richest of its pictures
+    if (m_svgGlyphs && m_svgGlyphs->hasGlyph(unsigned(index)))
+        return m_svgGlyphs->paint(unsigned(index), ppem, img, left, top);
+    if (!m_paintFont)
+        return false;
     QImage painted;
     double paintedLeft = 0.0;
     double paintedTop = 0.0;
@@ -3361,6 +3418,20 @@ QGraphicsPathItem *FontItem::colorItem(int index, double scalefactor)
 {
     if (!m_hasColor || !m_face)
         return nullptr;
+
+    // OpenType-SVG: drawn by Qt SVG, as sharp as COLR version 1 below
+    if (m_svgGlyphs && m_svgGlyphs->hasGlyph(unsigned(index))) {
+        const double ppem = qBound(64.0, scalefactor * unitsPerEm() * 4.0, 1024.0);
+        QImage img;
+        double left = 0.0;
+        double top = 0.0;
+        if (m_svgGlyphs->paint(unsigned(index), ppem, img, left, top)) {
+            const double perPixel = scalefactor * unitsPerEm() / ppem;
+            auto *item = new FMColorGlyphItem;
+            item->setImage(img, QRectF(left * perPixel, -top * perPixel, img.width() * perPixel, img.height() * perPixel));
+            return item;
+        }
+    }
 
     // COLR version 1: painted, sharp enough for the size the item is scaled to
     if (m_paintFont && FMColorPainter::hasPaint(m_paintFont, FT_UInt(index))) {

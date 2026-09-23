@@ -87,7 +87,7 @@ jobs:
             qt6-base qt6-svg \
             kcoreaddons ki18n kconfig kxmlgui kconfigwidgets kwidgetsaddons \
             kstatusnotifieritem kdbusaddons kcrash kiconthemes \
-            freetype2 harfbuzz hyphen podofo fontconfig dbus gettext ttf-dejavu
+            freetype2 harfbuzz zlib hyphen podofo fontconfig dbus gettext ttf-dejavu
 
       - uses: actions/checkout@v6
 
