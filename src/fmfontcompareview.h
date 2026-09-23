@@ -88,7 +88,7 @@ public:
     static QMap<QString, QPen> pens;
     static QMap<QString, QBrush> brushes;
 
-public Q_SLOTS:
+public:
     void updateGlyphs();
 
 protected:

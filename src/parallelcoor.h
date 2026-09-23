@@ -164,7 +164,7 @@ public:
     void setCurrentField(const QString &theValue);
     [[nodiscard]] QString getCurrentField() const;
 
-public Q_SLOTS:
+public:
     void updateGraphic();
 
 protected:
@@ -231,7 +231,7 @@ private:
 
     QSize controlSize;
 
-private Q_SLOTS:
+private:
     void slotSaveColors();
 
 public:

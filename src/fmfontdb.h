@@ -105,6 +105,10 @@ public:
     QList<FontDBResult> getInfo(const QList<FontItem *> &fonts, InfoItem info, int codeLang = 0);
 
 public Q_SLOTS:
+
+    bool Remove(const QString &id);
+
+public:
     FontItem *Font(const QString &id, bool noTemporary = false);
     /**
      * Records a font item that was built outside (a remote font, known from a
@@ -116,18 +120,15 @@ public Q_SLOTS:
     bool Knows(const QString &id);
     /// after tags were given to many fonts with addTag(): the tag list is rebuilt once
     void announceTagsChanged();
-
     QList<FontItem *> AllFonts();
     QStringList AllFontNames();
     QList<FontItem *> FamilySet(const QString &family);
     // 		FontItem* FirstFont();
     // 		FontItem* NextFont();
-
     QList<FontItem *> Fonts(const QVariant &pattern, FMFontDb::Field field);
     // codeLang is the language id of the name records, any of them by default
     QList<FontItem *> Fonts(const QVariant &pattern, FMFontDb::InfoItem info, int codeLang = -1);
     int FontCount();
-
     // Sorted and without duplicates
     QStringList getTags();
     void addTagToDB(const QString &t);
@@ -137,10 +138,7 @@ public Q_SLOTS:
     void addTag(const QStringList &idlist, const QString &t);
     void removeTag(const QString &id, const QString &t);
     void setTags(const QString &id, const QStringList &tl);
-
-    bool Remove(const QString &id);
     bool insertTemporaryFont(const QString &path);
-
     void clearFilteredFonts();
     void filterAllFonts();
     QList<FontItem *> getFilteredFonts(bool familyOnly = false);

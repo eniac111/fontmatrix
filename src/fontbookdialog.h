@@ -51,10 +51,12 @@ private Q_SLOTS:
     void slotAccept();
     void slotCancel();
     void slotFileDialog();
+    void slotPreviewTemplate(const QString &key);
+
+private:
     // 		void slotPageSize(int index);
     // 		void slotPreview();
     void slotLoadTemplate(const QString &theTemplate);
-    void slotPreviewTemplate(const QString &key);
     // 	signals:
     // 		void updateView();
 private:

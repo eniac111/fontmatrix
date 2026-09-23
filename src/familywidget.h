@@ -65,7 +65,6 @@ Q_SIGNALS:
     void familyStateChanged();
 
 private Q_SLOTS:
-    void slotPreviewUpdate();
     void slotPreviewUpdateSize(int);
     void slotPreviewSelected(const QModelIndex &index);
     void slotShowInfo();
@@ -74,8 +73,11 @@ private Q_SLOTS:
     void slotShowActivation();
     void slotDetachSample();
     void slotDetachChart();
-    //    void slotDetachActivation();
     void slotStateChange();
+
+private:
+    void slotPreviewUpdate();
+    //    void slotDetachActivation();
 };
 
 #endif // FAMILYWIDGET_H

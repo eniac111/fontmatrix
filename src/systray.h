@@ -29,13 +29,15 @@ public:
     bool tagsConfirmation();
 
 public Q_SLOTS:
-    void show();
     void hide();
+    void updateTagMenu(const QStringList &nameOfFontWhichCausedThisUpdate);
+
+public:
+    void show();
     void slotSetVisible(bool isVisible);
     void slotSetActivateAll(bool isVisible);
     void newTag(QString);
     void deleteTag(const QString &name);
-    void updateTagMenu(const QStringList &nameOfFontWhichCausedThisUpdate);
     void requireAllConfirmation(bool doRequire);
     void requireTagsConfirmation(bool doRequire);
 

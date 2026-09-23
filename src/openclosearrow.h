@@ -34,7 +34,7 @@ protected:
 Q_SIGNALS:
     void openChanged(bool);
 
-public Q_SLOTS:
+public:
     void changeOpen(bool t);
 };
 

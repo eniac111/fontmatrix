@@ -149,12 +149,8 @@ private Q_SLOTS:
     void metaFilter();
     void metaSelectField(int idx);
 
-    void filtersDialog();
-
     void slotLoadFilter(const QString &fname);
     void slotRemoveFilter(const QString &fname);
-
-    void slotRemoveFilterItem(bool process = true);
 
     void slotTagSelect(const QModelIndex &index);
     void slotTagEdit(const QModelIndex &index);
@@ -171,14 +167,20 @@ private Q_SLOTS:
     void slotLicenseFilter(int index);
     void slotDuplicateFilter(int index);
 
+private:
+    void filtersDialog();
+    void slotRemoveFilterItem(bool process = true);
+
 public Q_SLOTS:
     void slotClearFilter();
+    void slotSaveFilter();
+    void slotSaveFilter(const QString &fname);
+
+public:
     /// applies the filters again, or shows every font when there is none: for fonts added to the database
     void refilter();
     /// the languages and the licences are read again, the fonts of the database having changed
     void invalidateCoverage();
-    void slotSaveFilter();
-    void slotSaveFilter(const QString &fname);
 };
 
 #endif // FILTERBAR_H

@@ -73,7 +73,6 @@ private:
     void setSelected(const QString &actionText);
 
 private Q_SLOTS:
-    void applySampleText();
 
     void addSampleName();
     void deleteSampleName();
@@ -102,7 +101,6 @@ private Q_SLOTS:
     void slotSystemWide(bool checked);
 
     void slotShowImportedFonts(bool show);
-    // 		void slotFamilyNotPreferred(bool state);
     void slotSplashScreen(bool state);
 
     void slotChangeShortcut();
@@ -110,6 +108,10 @@ private Q_SLOTS:
     void slotActionSelected(const QModelIndex &mi);
 
     void slotDictDialog();
+
+private:
+    void applySampleText();
+    // 		void slotFamilyNotPreferred(bool state);
 };
 
 #endif

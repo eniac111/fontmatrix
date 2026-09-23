@@ -77,14 +77,15 @@ private:
 
 public Q_SLOTS:
     void slotFontDbChanged();
-    void slotOrderingChanged(QString s);
     bool slotFontSelectedByName(const QString &fname);
     void slotPreviewUpdateSize(int w);
     void slotShowFamily(const QModelIndex &familyIdx);
     void slotQuitFamily();
-
-    void slotDesactivateAll();
     void slotActivateAll();
+
+public:
+    void slotOrderingChanged(QString s);
+    void slotDesactivateAll();
     void slotRemoveCurrentItem();
 
 private Q_SLOTS:
