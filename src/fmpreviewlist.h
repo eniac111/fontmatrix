@@ -86,6 +86,8 @@ private:
 
 public Q_SLOTS:
     void updateLayout();
+
+public:
     void setCurrentFont(const QString &name);
 
 Q_SIGNALS:

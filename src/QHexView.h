@@ -52,6 +52,8 @@ public Q_SLOTS:
     void setShowAsciiDump(bool);
     void setShowHexDump(bool);
     void setShowComments(bool);
+
+public:
     // void setLineColor(QColor);
     // void setAddressColor(QColor);
     void setWordWidth(int);
@@ -92,12 +94,14 @@ public:
     QMenu *createStandardContextMenu();
 
 public Q_SLOTS:
+    void mnuSetFont();
+    void mnuCopy();
+
+public:
     void clear();
     void selectAll();
     void deselect();
     [[nodiscard]] bool hasSelectedText() const;
-    void mnuSetFont();
-    void mnuCopy();
 
 private:
     void updateScrollbars();

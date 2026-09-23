@@ -46,8 +46,6 @@ protected:
 
 private Q_SLOTS:
     void browseImage();
-    void loadImage();
-    void grabScreen();
     void enterGrabMode(bool);
     void zoomChanged(int);
     void addImage(const QString &text);
@@ -62,6 +60,10 @@ private Q_SLOTS:
 
     void recordCurrentRect(QRect);
     void recordCurrentColor(QRgb);
+
+private:
+    void loadImage();
+    void grabScreen();
 };
 
 #endif // FMMATCHRASTER_H

@@ -151,12 +151,7 @@ private Q_SLOTS:
     void slotView();
     void doRender();
     void drawPixmap(int index, double fontsize, double x, double y);
-    void drawBaseline(double y);
     void clearFTScene();
-    void endLayout();
-    //    void slotChangeViewPage(QAbstractButton* );
-    //    void slotHintChanged(int);
-    //    void slotChangeViewPageSetting(bool);
     void slotUpdateSView();
     void slotZoom(int z);
     void slotUpdateRView();
@@ -165,9 +160,6 @@ private Q_SLOTS:
     void slotFeatureChanged();
     void slotDefaultOTF();
     void slotResetOTF();
-    void slotChangeScript();
-    void slotProgressionChanged();
-    void slotWantShape();
     void slotFileChanged(const QString &);
     void slotReload();
     void slotScriptChange();
@@ -186,6 +178,16 @@ private Q_SLOTS:
     void slotDoPrinting();
 
     void saveState();
+
+private:
+    void drawBaseline(double y);
+    void endLayout();
+    //    void slotChangeViewPage(QAbstractButton* );
+    //    void slotHintChanged(int);
+    //    void slotChangeViewPageSetting(bool);
+    void slotChangeScript();
+    void slotProgressionChanged();
+    void slotWantShape();
 
 Q_SIGNALS:
     void stopLayout();

@@ -64,8 +64,6 @@ private:
 private Q_SLOTS:
     void slotFolderItemclicked(QModelIndex mIdx);
     void slotFolderPressed(QModelIndex mIdx);
-    void slotFolderAddToWatcher(QModelIndex mIdx);
-    void slotFolderRemoveFromWatcher(QModelIndex mIdx);
     void slotFolderRefresh(const QString &dirPath);
 
     void slotShowInfo();
@@ -78,6 +76,10 @@ private Q_SLOTS:
     void slotDetachSample();
 
     void slotFolderViewContextMenu(const QPoint &);
+
+private:
+    void slotFolderAddToWatcher(QModelIndex mIdx);
+    void slotFolderRemoveFromWatcher(QModelIndex mIdx);
 
 Q_SIGNALS:
     void folderSelectFont(QString);

@@ -204,7 +204,7 @@ public: // accessors
         persistentScene = p;
     }
 
-private Q_SLOTS:
+private:
     /// Put lines on stage
     void doDraw();
     void endOfRun();

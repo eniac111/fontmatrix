@@ -19,7 +19,7 @@ class FMNameList : public QTreeWidget
 public:
     explicit FMNameList(QWidget *parent);
     ~FMNameList() override;
-public Q_SLOTS:
+
     void slotNextFamily();
     void slotPreviousFamily();
     void slotNextFont();

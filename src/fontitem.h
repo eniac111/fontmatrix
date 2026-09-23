@@ -298,7 +298,7 @@ Q_SIGNALS:
     /// the coordinates of a variable font moved: what shows the font has to render it again
     void variationChanged();
 
-public Q_SLOTS:
+public:
     QString renderSVG(const QString &s, const double &size);
     int countCoverage(int begin_code, int end_code);
     bool hasCharcode(int cc);

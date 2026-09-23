@@ -64,8 +64,6 @@ private Q_SLOTS:
     void slotRepair();
     void slotTagAll();
     void slotDockAreaChanged(Qt::DockWidgetArea area);
-    //	void slotSwitchLayOptVisible();
-    //	void slotUpdateLayOptStatus();
     void slotShowTTTables();
     void slotEditPanose();
     void slotDumpInfo();
@@ -78,18 +76,17 @@ private Q_SLOTS:
     void slotMatchRaster();
     void slotHelpContents();
 
+private:
+    //	void slotSwitchLayOptVisible();
+    //	void slotUpdateLayOptStatus();
+
 public Q_SLOTS:
-    void open(QString path = QString(), bool recursive = true, bool announce = true, bool collect = false);
     void importFiles();
-    void openList(QStringList files);
     void slotCloseToSystray(bool isEnabled);
     void slotSystrayStart(bool isEnabled);
     void slotUseInitialTags(bool isEnabled);
     void setImportedFontsHidden(bool hidden);
-    bool showImportedFonts();
     void slotPrefsPanelDefault();
-    void slotPrefsPanel(PrefsPanelDialog::PAGE page);
-    void relayStartingStepIn(QString s);
     void showToltalFilteredFonts();
     void updateFloatingStatus();
     void closeAllFloatings();
@@ -103,6 +100,13 @@ public Q_SLOTS:
 
     // QWidget::show() and hide() are not virtual, both end up here
     void setVisible(bool visible) override;
+
+public:
+    void open(QString path = QString(), bool recursive = true, bool announce = true, bool collect = false);
+    void openList(QStringList files);
+    bool showImportedFonts();
+    void slotPrefsPanel(PrefsPanelDialog::PAGE page);
+    void relayStartingStepIn(QString s);
 
 Q_SIGNALS:
     void relayStartingStepOut(QString, int, QColor);
