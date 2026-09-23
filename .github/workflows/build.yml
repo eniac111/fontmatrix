@@ -86,7 +86,7 @@ jobs:
             base-devel git cmake ninja extra-cmake-modules \
             qt6-base qt6-svg \
             kcoreaddons ki18n kconfig kxmlgui kconfigwidgets kwidgetsaddons \
-            kstatusnotifieritem kdbusaddons kiconthemes \
+            kstatusnotifieritem kdbusaddons kcrash kiconthemes \
             freetype2 harfbuzz hyphen podofo fontconfig dbus gettext ttf-dejavu
 
       - uses: actions/checkout@v6

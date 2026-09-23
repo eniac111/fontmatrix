@@ -88,6 +88,7 @@ find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     WidgetsAddons
     StatusNotifierItem
     DBusAddons
+    Crash
 )
 # KDocTools is optional — if absent, the handbook is skipped but the app still builds.
 find_package(KF6DocTools ${KF_MIN_VERSION})
