@@ -46,6 +46,8 @@ public:
 
 private:
     static QByteArray digest(const QString &path);
+    /// whether the files are all byte for byte the same: identical files, not another build
+    static bool sameBytes(const QList<FontItem *> &fonts);
     static QList<QList<FontItem *>> identicalFiles();
     static QList<QList<FontItem *>> sameFont();
 

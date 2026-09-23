@@ -71,6 +71,28 @@ QList<QList<FontItem *>> FMDuplicates::identicalFiles()
     return ret;
 }
 
+bool FMDuplicates::sameBytes(const QList<FontItem *> &fonts)
+{
+    // a length first, which costs nothing; only files of one length are read
+    qint64 size(-1);
+    for (FontItem *fit : fonts) {
+        if (fit->isRemote() && !fit->isCached())
+            return false;
+        const qint64 s(QFileInfo(fit->localPath()).size());
+        if (size >= 0 && s != size)
+            return false;
+        size = s;
+    }
+    QByteArray first;
+    for (FontItem *fit : fonts) {
+        const QByteArray sum(digest(fit->localPath()));
+        if (sum.isEmpty() || (!first.isEmpty() && sum != first))
+            return false;
+        first = sum;
+    }
+    return true;
+}
+
 QList<QList<FontItem *>> FMDuplicates::sameFont()
 {
     // what the font says it is: one family, one style, one version. The version
@@ -91,7 +113,7 @@ QList<QList<FontItem *>> FMDuplicates::sameFont()
 
     QList<QList<FontItem *>> ret;
     for (auto it = byFont.constBegin(); it != byFont.constEnd(); ++it) {
-        if (it.value().size() > 1)
+        if (it.value().size() > 1 && !sameBytes(it.value()))
             ret << it.value();
     }
     qCDebug(FONTMATRIX_LOG) << "duplicates:" << ret.size() << "groups of one family, style and version";

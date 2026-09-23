@@ -38,6 +38,13 @@ bool openWith(const QString &path, QWidget *parent = nullptr);
  * opened. False when there is no portal or it refused.
  */
 bool openRead(const QString &path, QWidget *parent = nullptr);
+
+/**
+ * Moves the file to the trash of the desktop (the Trash portal). Inside a
+ * sandbox Qt's own QFile::moveToTrash() would use a trash of the sandbox,
+ * where nobody looks for it. False when there is no portal or it failed.
+ */
+bool trash(const QString &path);
 }
 
 #endif

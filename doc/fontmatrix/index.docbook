@@ -606,6 +606,21 @@ collection changes. Only files of exactly the same length are ever
 read, so a collection of thousands costs a few dozen reads. Nothing is
 written to the database, and no font is removed for you: the filter
 narrows the list, and you decide what goes.</para>
+<para><menuchoice><guimenu>Tools</guimenu><guimenuitem>Duplicates...</guimenuitem></menuchoice>,
+or <guibutton>Show Groups...</guibutton> in the sidebar, shows the same fonts
+group by group, each file with its folder, size, version and whether it is
+activated. <guibutton>Show in List</guibutton> selects a file's font in the main
+list, <guibutton>Open Folder</guibutton> opens the folder it is in, and
+<guibutton>Tick the Extra Copies</guibutton> ticks every identical file but one
+in each group, keeping the activated one where there is one.</para>
+<para>The ticked files can then be moved to the trash with
+<guibutton>Move to Trash</guibutton>, which you can undo from the trash of your
+desktop, or only removed from the collection with
+<guibutton>Remove from Collection</guibutton>, which leaves the files where they
+are. One file of every group always stays, and an activated font is deactivated
+before it goes. A system font comes back into the collection at the next start
+as long as its file is there, so it can be moved to the trash, where its folder
+allows it, but not only removed; a font of a remote directory can be neither.</para>
 </sect1>
 
 <sect1 id="search-technology">

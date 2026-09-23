@@ -93,6 +93,26 @@ bool FMPortal::openRead(const QString &path, QWidget *parent)
     return openFile(path, false, false, parent);
 }
 
+bool FMPortal::trash(const QString &path)
+{
+    if (!FMPortal::isAvailable())
+        return false;
+    QFile file(path);
+    if (!file.open(QIODevice::ReadOnly)) {
+        qCWarning(FONTMATRIX_LOG) << "cannot open" << path << "to trash it";
+        return false;
+    }
+    QDBusMessage message(QDBusMessage::createMethodCall(portalService, portalPath, QLatin1String("org.freedesktop.portal.Trash"), QLatin1String("TrashFile")));
+    message << QVariant::fromValue(QDBusUnixFileDescriptor(file.handle()));
+    const QDBusReply<uint> reply(QDBusConnection::sessionBus().call(message, QDBus::Block, 5000));
+    // 1 is success, 0 failure
+    if (!reply.isValid() || reply.value() != 1) {
+        qCWarning(FONTMATRIX_LOG) << "the portal did not trash" << path << ":" << reply.error().message();
+        return false;
+    }
+    return true;
+}
+
 #else // no D-Bus desktop: Windows and macOS have their own ways of opening a file
 
 bool FMPortal::isAvailable()
@@ -106,6 +126,11 @@ bool FMPortal::openWith(const QString &, QWidget *)
 }
 
 bool FMPortal::openRead(const QString &, QWidget *)
+{
+    return false;
+}
+
+bool FMPortal::trash(const QString &)
 {
     return false;
 }
