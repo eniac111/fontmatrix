@@ -82,20 +82,18 @@ msgstr "Переглянути активовані"
 #. i18n: file: src/activationwidget.ui:20
 #. i18n: ectx: property (text), widget (QPushButton, activateAll)
 #: rc.cpp:24
-#, fuzzy, kde-format
-#| msgid "&Activate all"
+#, kde-format
 msgctxt "@action:button"
 msgid "Activate All"
-msgstr "&Активувати всі"
+msgstr "Активувати всі"
 
 #. i18n: file: src/activationwidget.ui:27
 #. i18n: ectx: property (text), widget (QPushButton, deactivateAll)
 #: rc.cpp:27
-#, fuzzy, kde-format
-#| msgid "&Deactivate all"
+#, kde-format
 msgctxt "@action:button"
 msgid "Deactivate All"
-msgstr "&Деактивувати всі"
+msgstr "Деактивувати всі"
 
 #. i18n: file: src/bookexport.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, BookExportDialog)
@@ -1034,11 +1032,10 @@ msgstr ""
 #. i18n: file: src/prefs_panel.ui:667
 #. i18n: ectx: property (text), widget (QPushButton, commitSample)
 #: rc.cpp:393 rc.cpp:618
-#, fuzzy, kde-format
-#| msgid "&Save"
+#, kde-format
 msgctxt "@action:button"
 msgid "Save"
-msgstr "&Зберегти"
+msgstr "Зберегти"
 
 #. i18n: file: src/mainview.ui:195
 #. i18n: ectx: property (toolTip), widget (QPushButton, clearButton)
@@ -1171,8 +1168,7 @@ msgstr ""
 #. i18n: file: src/matchraster.ui:336
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
 #: rc.cpp:447
-#, fuzzy, kde-format
-#| msgid "Cancel"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Cancel"
 msgstr "Скасувати"
@@ -5354,8 +5350,7 @@ msgid "Print Playground"
 msgstr ""
 
 #: src/prefspaneldialog.cpp:37
-#, fuzzy, kde-format
-#| msgid "Preferences"
+#, kde-format
 msgctxt "@title:window"
 msgid "Preferences"
 msgstr "Уподобання"

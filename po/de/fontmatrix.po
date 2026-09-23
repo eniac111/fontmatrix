@@ -81,20 +81,18 @@ msgstr "Aktivieren"
 #. i18n: file: src/activationwidget.ui:20
 #. i18n: ectx: property (text), widget (QPushButton, activateAll)
 #: rc.cpp:24
-#, fuzzy, kde-format
-#| msgid "&Activate all"
+#, kde-format
 msgctxt "@action:button"
 msgid "Activate All"
-msgstr "&Alle aktivieren"
+msgstr "Alle aktivieren"
 
 #. i18n: file: src/activationwidget.ui:27
 #. i18n: ectx: property (text), widget (QPushButton, deactivateAll)
 #: rc.cpp:27
-#, fuzzy, kde-format
-#| msgid "&Deactivate all"
+#, kde-format
 msgctxt "@action:button"
 msgid "Deactivate All"
-msgstr "Alle &deaktivieren"
+msgstr "Alle deaktivieren"
 
 #. i18n: file: src/bookexport.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, BookExportDialog)
@@ -1025,11 +1023,10 @@ msgstr ""
 #. i18n: file: src/prefs_panel.ui:667
 #. i18n: ectx: property (text), widget (QPushButton, commitSample)
 #: rc.cpp:393 rc.cpp:618
-#, fuzzy, kde-format
-#| msgid "&Save"
+#, kde-format
 msgctxt "@action:button"
 msgid "Save"
-msgstr "&Speichern"
+msgstr "Speichern"
 
 #. i18n: file: src/mainview.ui:195
 #. i18n: ectx: property (toolTip), widget (QPushButton, clearButton)
@@ -1162,8 +1159,7 @@ msgstr ""
 #. i18n: file: src/matchraster.ui:336
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
 #: rc.cpp:447
-#, fuzzy, kde-format
-#| msgid "Cancel"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Cancel"
 msgstr "Abbrechen"
@@ -3720,8 +3716,7 @@ msgid "Cyrillic"
 msgstr "008Kyrillisch"
 
 #: src/fmfontstrings.cpp:412
-#, fuzzy, kde-format
-#| msgid "default"
+#, kde-format
 msgctxt "@item:inlistbox OpenType script"
 msgid "Default"
 msgstr "Grundeinstellung"
@@ -4369,8 +4364,7 @@ msgid "Instance:"
 msgstr "Distances"
 
 #: src/fmvariationswidget.cpp:42
-#, fuzzy, kde-format
-#| msgid "default"
+#, kde-format
 msgctxt "@action:button back to the default coordinates of a variable font"
 msgid "Default"
 msgstr "Grundeinstellung"
@@ -4468,12 +4462,10 @@ msgid "Downloading a Font"
 msgstr "Herunterladen"
 
 #: src/fontitem.cpp:3006
-#, fuzzy, kde-format
-#| msgctxt "@info:progress"
-#| msgid "Downloading %1."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Downloading %1"
-msgstr "Lade %1 herunter."
+msgstr "Lade %1 herunter"
 
 #: src/importedfontsdialog.cpp:23
 #, kde-format
@@ -5299,8 +5291,7 @@ msgid "Print Playground"
 msgstr "Spielwiese"
 
 #: src/prefspaneldialog.cpp:37
-#, fuzzy, kde-format
-#| msgid "Preferences"
+#, kde-format
 msgctxt "@title:window"
 msgid "Preferences"
 msgstr "Einstellungen"
@@ -5516,11 +5507,10 @@ msgid "Select hyphenation dictionary"
 msgstr "Font-Editor auswählen"
 
 #: src/remotedir.cpp:54
-#, fuzzy, kde-format
-#| msgid "Downloading %1."
+#, kde-format
 msgctxt "@info:status"
 msgid "Downloading %1"
-msgstr "Lade %1 herunter."
+msgstr "Lade %1 herunter"
 
 #: src/remotedir.cpp:131
 #, fuzzy, kde-format
@@ -5712,8 +5702,7 @@ msgid "Import Files"
 msgstr "Importierte Schriften"
 
 #: src/typotek.cpp:667
-#, fuzzy, kde-format
-#| msgid "Export &Fonts"
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Export &fonts"
 msgstr "&Schriften exportieren"

@@ -1020,8 +1020,7 @@ msgstr ""
 #. i18n: file: src/prefs_panel.ui:667
 #. i18n: ectx: property (text), widget (QPushButton, commitSample)
 #: rc.cpp:393 rc.cpp:618
-#, fuzzy, kde-format
-#| msgid "&Save"
+#, kde-format
 msgctxt "@action:button"
 msgid "Save"
 msgstr "保存"
@@ -1157,8 +1156,7 @@ msgstr ""
 #. i18n: file: src/matchraster.ui:336
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
 #: rc.cpp:447
-#, fuzzy, kde-format
-#| msgid "Cancel"
+#, kde-format
 msgctxt "@action:button"
 msgid "&Cancel"
 msgstr "取消"
@@ -4129,8 +4127,7 @@ msgid "Unicode Ranges"
 msgstr ""
 
 #: src/fminfodisplay.cpp:212
-#, fuzzy, kde-format
-#| msgid "&File"
+#, kde-format
 msgctxt "@label"
 msgid "File"
 msgstr "文件"
@@ -4415,12 +4412,10 @@ msgid "Downloading a Font"
 msgstr "下栽"
 
 #: src/fontitem.cpp:3006
-#, fuzzy, kde-format
-#| msgctxt "@info:progress"
-#| msgid "Downloading %1."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Downloading %1"
-msgstr "下栽 %1."
+msgstr "下载 %1"
 
 #: src/importedfontsdialog.cpp:23
 #, kde-format
@@ -5246,8 +5241,7 @@ msgid "Print Playground"
 msgstr ""
 
 #: src/prefspaneldialog.cpp:37
-#, fuzzy, kde-format
-#| msgid "Preferences"
+#, kde-format
 msgctxt "@title:window"
 msgid "Preferences"
 msgstr "偏好设置"
@@ -5337,8 +5331,7 @@ msgid "A sample named \"%1\" already exists."
 msgstr ""
 
 #: src/prefspaneldialog.cpp:283
-#, fuzzy, kde-format
-#| msgid "Sample text"
+#, kde-format
 msgctxt "A default sample text inserted when creating a new sample"
 msgid "Sample Text"
 msgstr "样本文"
@@ -5464,11 +5457,10 @@ msgid "Select hyphenation dictionary"
 msgstr ""
 
 #: src/remotedir.cpp:54
-#, fuzzy, kde-format
-#| msgid "Downloading %1."
+#, kde-format
 msgctxt "@info:status"
 msgid "Downloading %1"
-msgstr "下栽 %1."
+msgstr "下载 %1"
 
 #: src/remotedir.cpp:131
 #, kde-format

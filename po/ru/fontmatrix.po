@@ -13,11 +13,10 @@ msgstr ""
 #. i18n: file: src/activationreportdialog.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, ActivationReportDialog)
 #: rc.cpp:3
-#, fuzzy, kde-format
-#| msgid "Activation"
+#, kde-format
 msgctxt "@title:window"
 msgid "Activation Report"
-msgstr "Активация"
+msgstr "Отчет об активации"
 
 #. i18n: file: src/activationreportdialog.ui:19
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -167,7 +166,7 @@ msgstr "Образец"
 #. i18n: file: src/chartwidget.ui:34
 #. i18n: ectx: property (toolTip), widget (QLabel, unicodeCoverageStat)
 #: rc.cpp:51
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Coverage of Unicode Interval"
 msgstr "Охват блока Unicode"
@@ -175,7 +174,7 @@ msgstr "Охват блока Unicode"
 #. i18n: file: src/chartwidget.ui:37
 #. i18n: ectx: property (text), widget (QLabel, unicodeCoverageStat)
 #: rc.cpp:54
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@label"
 msgid "Block:"
 msgstr "Блок:"
@@ -183,37 +182,34 @@ msgstr "Блок:"
 #. i18n: file: src/chartwidget.ui:79
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: rc.cpp:57
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@label"
 msgid "Search:"
-msgstr "Искать:"
+msgstr "Поиск:"
 
 #. i18n: file: src/chartwidget.ui:91
 #. i18n: ectx: property (toolTip), widget (QLineEdit, charSearchLine)
 #: rc.cpp:60
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "Search a character by its codepoint (expressed in hexadecimal \n"
 "and prefixed with \"U+\", \"u+\" or \"+\") or a glyph by its name.\n"
 "Press enter after editing to run the search."
-msgstr ""
-"Поиск глифа по его коду (шестнадцатиричное значение\n"
-"с префиксом в виде  \"U+\", \"u+\" или \"+\") или названию.\n"
-"Нажатие клавиши ввода запускает поиск."
+msgstr "Поиск символа по его коду (шестнадцатеричное значение \nс префиксом \"U+\", \"u+\" или \"+\") или глифа по его имени.\nЧтобы начать поиск, нажмите Enter после ввода."
 
 #. i18n: file: src/chartwidget.ui:115
 #. i18n: ectx: property (statusTip), widget (FMGlyphsView, abcView)
 #: rc.cpp:65
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info:status"
 msgid "Clicking on a glyph will show details about it"
-msgstr "Щелкните по символу для подробного просмотра"
+msgstr "Щелчок по глифу покажет подробные сведения о нём"
 
 #. i18n: file: src/chartwidget.ui:136
 #. i18n: ectx: property (toolTip), widget (QToolButton, clipboardCheck)
 #: rc.cpp:68
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Set Mode \"Copy Character to Clipboard\""
 msgstr "Включить режим копирования символов в буфер обмена"
@@ -221,7 +217,7 @@ msgstr "Включить режим копирования символов в �
 #. i18n: file: src/chartwidget.ui:139
 #. i18n: ectx: property (text), widget (QToolButton, clipboardCheck)
 #: rc.cpp:71
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action:button"
 msgid "Copy Mode"
 msgstr "Режим копирования"
@@ -525,11 +521,10 @@ msgstr ""
 #. i18n: file: src/filterbar.ui:517
 #. i18n: ectx: property (text), widget (OpenCloseArrow, licenseArrow)
 #: rc.cpp:185
-#, fuzzy, kde-format
-#| msgid "License Info URL"
+#, kde-format
 msgctxt "@action:button"
 msgid "License"
-msgstr "URL текста лицензии"
+msgstr "Лицензия"
 
 #. i18n: file: src/filterbar.ui:548
 #. i18n: ectx: property (toolTip), widget (QComboBox, licenseCombo)
@@ -577,18 +572,7 @@ msgstr "X"
 #. i18n: file: src/filteritem.ui:110
 #. i18n: ectx: property (toolTip), widget (QToolButton, andButton)
 #: rc.cpp:203
-#, fuzzy, kde-format
-#| msgid ""
-#| "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-#| "REC-html40/strict.dtd\">\n"
-#| "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
-#| "css\">\n"
-#| "p, li { white-space: pre-wrap; }\n"
-#| "</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; "
-#| "font-weight:400; font-style:normal;\">\n"
-#| "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-#| "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
-#| "\"></p></body></html>"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid ""
 "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
@@ -606,17 +590,7 @@ msgid ""
 "right:0px; -qt-block-indent:0; text-indent:0px;\">If set, the filter will "
 "<span style=\" font-weight:600;\">intersect</span> with the previous filters."
 "</p></td></tr></table></body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/"
-"css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
-"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></"
-"p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n<table style=\"-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;\">\n<tr>\n<td style=\"border: none;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Если включено, фильтр будет <span style=\" font-weight:600;\">пересекаться</span> с предыдущими фильтрами.</p></td></tr></table></body></html>"
 
 #. i18n: file: src/filteritem.ui:142
 #. i18n: ectx: property (toolTip), widget (QToolButton, noButton)
@@ -1591,8 +1565,7 @@ msgstr "Каталог со шрифтами"
 #. i18n: file: src/prefs_panel.ui:750
 #. i18n: ectx: property (title), widget (QGroupBox, remoteDirsBox)
 #: rc.cpp:627
-#, fuzzy, kde-format
-#| msgid "Remote directories"
+#, kde-format
 msgctxt "@title:group"
 msgid "Remote Directories"
 msgstr "Удаленные каталоги"
@@ -1621,9 +1594,7 @@ msgstr ""
 #. i18n: file: src/prefs_panel.ui:803
 #. i18n: ectx: property (title), widget (QGroupBox, activationScopeBox)
 #: rc.cpp:642
-#, fuzzy, kde-format
-#| msgctxt "@action:button"
-#| msgid "Activation"
+#, kde-format
 msgctxt "@title:group"
 msgid "Activation"
 msgstr "Активация"
@@ -1667,8 +1638,7 @@ msgstr "Изменить"
 #. i18n: file: src/progressbarduo.ui:14
 #. i18n: ectx: property (windowTitle), widget (QDialog, ProgressBarDuo)
 #: rc.cpp:660
-#, fuzzy, kde-format
-#| msgid "Export Font Book"
+#, kde-format
 msgctxt "@title:window"
 msgid "Exporting Font Book"
 msgstr "Создание каталога шрифтов"
@@ -1778,20 +1748,18 @@ msgstr "OpenType"
 #. i18n: file: src/sampletoolbar.ui:75
 #. i18n: ectx: property (toolTip), widget (QToolButton, variationsButton)
 #: rc.cpp:723
-#, fuzzy, kde-format
-#| msgid "Show complete collection of available fonts"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "The axes of a variable font"
-msgstr "Показать всю коллекцию шрифтов"
+msgstr "Оси вариативного шрифта"
 
 #. i18n: file: src/sampletoolbar.ui:78
 #. i18n: ectx: property (text), widget (QToolButton, variationsButton)
 #: rc.cpp:726
-#, fuzzy, kde-format
-#| msgid "Fractions"
+#, kde-format
 msgctxt "@action:button"
 msgid "Variations"
-msgstr "Дроби"
+msgstr "Вариации"
 
 #. i18n: file: src/sampletoolbar.ui:99
 #. i18n: ectx: property (toolTip), widget (QComboBox, languageCombo)
@@ -2145,25 +2113,25 @@ msgid "Import File"
 msgstr "Импортировать файл"
 
 #: src/chartwidget.cpp:47
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "Un-Mapped Glyphs"
 msgstr "Несвязанные глифы"
 
 #: src/chartwidget.cpp:48
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox"
 msgid "View all mapped glyphs"
 msgstr "Все связанные глифы"
 
 #: src/chartwidget.cpp:144 src/chartwidget.cpp:221
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@label"
 msgid "Block (%1):"
 msgstr "Блок (%1):"
 
 #: src/chartwidget.cpp:432
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Print Chart"
 msgstr "Печать таблицы символов"
@@ -2211,11 +2179,10 @@ msgid "Activated"
 msgstr "Активированные"
 
 #: src/filterbar.cpp:533
-#, fuzzy, kde-format
-#| msgid "Fontmatrix - Tags"
+#, kde-format
 msgctxt "@title:window"
 msgid "Fontmatrix - edit tag"
-msgstr "Fontmatrix — Метки"
+msgstr "Fontmatrix — Правка метки"
 
 #: src/filterbar.cpp:534
 #, kde-format
@@ -2236,8 +2203,7 @@ msgid "Filter name:"
 msgstr "Название фильтра:"
 
 #: src/filterbar.cpp:757
-#, fuzzy, kde-format
-#| msgid "Select language"
+#, kde-format
 msgctxt ""
 "@item:inlistbox no language picked yet, in the list of the languages a font "
 "can set"
@@ -2245,21 +2211,19 @@ msgid "Select language"
 msgstr "Выберите язык"
 
 #: src/filterbar.cpp:773
-#, fuzzy, kde-format
-#| msgid "Select Style"
+#, kde-format
 msgctxt ""
 "@item:inlistbox no licence picked yet, in the list of the licences of the "
 "fonts"
 msgid "Select license"
-msgstr "Выберите стиль:"
+msgstr "Выберите лицензию"
 
 #: src/filterbar.cpp:785
-#, fuzzy, kde-format
-#| msgid "&Select Dir"
+#, kde-format
 msgctxt ""
 "@item:inlistbox nothing picked yet, in the list of the kinds of duplicate"
 msgid "Select kind"
-msgstr "&Выбрать каталог"
+msgstr "Выберите тип"
 
 #: src/filterbar.cpp:787
 #, kde-format
@@ -2331,11 +2295,10 @@ msgid "Font already activated"
 msgstr "Шрифт уже активирован"
 
 #: src/fmactivate.cpp:34
-#, fuzzy, kde-format
-#| msgid "Reload informations for selected font from the font file"
+#, kde-format
 msgctxt "@info activation error"
 msgid "Unable to remove the font from the user font folder"
-msgstr "Повторно загрузить информацию о текущем выбранном шрифте из его файла"
+msgstr "Не удалось удалить шрифт из пользовательской папки шрифтов"
 
 #: src/fmactivate.cpp:36
 #, kde-format
@@ -2344,12 +2307,10 @@ msgid "Font already de-activated"
 msgstr "Шрифт уже деактивирован"
 
 #: src/fmactivate.cpp:38
-#, fuzzy, kde-format
-#| msgctxt "@info activation error"
-#| msgid "Cannot link or copy the metrics file"
+#, kde-format
 msgctxt "@info activation error"
 msgid "Cannot copy the metrics file"
-msgstr "Не удалось связать или скопировать файл метрик"
+msgstr "Не удалось скопировать файл метрик"
 
 #: src/fmactivate.cpp:40
 #, kde-format
@@ -3347,11 +3308,10 @@ msgid "Grid-fitting/Scan-conversion"
 msgstr "Вписывание в пиксельную сетку"
 
 #: src/fmfontstrings.cpp:323
-#, fuzzy, kde-format
-#| msgid "Horizontal metrics"
+#, kde-format
 msgctxt "@item:intable TrueType table"
 msgid "Horizontal device metrics"
-msgstr "Горизонтальные метрики"
+msgstr "Горизонтальные метрики устройства"
 
 #: src/fmfontstrings.cpp:324
 #, kde-format
@@ -3372,11 +3332,10 @@ msgid "PCL 5 data"
 msgstr "Данные PCL5"
 
 #: src/fmfontstrings.cpp:327
-#, fuzzy, kde-format
-#| msgid "Vertical Metrics"
+#, kde-format
 msgctxt "@item:intable TrueType table"
 msgid "Vertical device metrics"
-msgstr "Вертикальные метрики"
+msgstr "Вертикальные метрики устройства"
 
 #: src/fmfontstrings.cpp:328
 #, kde-format
@@ -3443,12 +3402,12 @@ msgstr ""
 "редактировать и сохранять изменения."
 
 #: src/fmfontstrings.cpp:354
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info font embedding permission"
 msgid ""
 "This font may not be subsetted prior to embedding. Other embedding "
 "restrictions specified in bits 0-3 and 9 also apply."
-msgstr "Подмножество глифов этого шрифта нельзя встраивать в документы."
+msgstr "Этот шрифт нельзя преобразовывать в подмножество перед встраиванием. Также действуют прочие ограничения на встраивание, заданные в битах 0-3 и 9."
 
 #: src/fmfontstrings.cpp:357
 #, kde-format
@@ -3461,11 +3420,10 @@ msgid ""
 msgstr ""
 
 #: src/fmfontstrings.cpp:363
-#, fuzzy, kde-format
-#| msgid "Mark Positioning"
+#, kde-format
 msgctxt "@item:intable Unicode general category"
 msgid "Mark, NonSpacing"
-msgstr "Размещение значка"
+msgstr "Знаки, без интервала"
 
 #: src/fmfontstrings.cpp:364
 #, kde-format
@@ -3474,24 +3432,22 @@ msgid "Mark, SpacingCombining"
 msgstr ""
 
 #: src/fmfontstrings.cpp:365
-#, fuzzy, kde-format
-#| msgid "Mark Positioning"
+#, kde-format
 msgctxt "@item:intable Unicode general category"
 msgid "Mark, Enclosing"
-msgstr "Размещение значка"
+msgstr "Знаки, охватывающие"
 
 #: src/fmfontstrings.cpp:366
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:intable Unicode general category"
 msgid "Number, DecimalDigit"
 msgstr "Числа, десятичные"
 
 #: src/fmfontstrings.cpp:367
-#, fuzzy, kde-format
-#| msgid "Number, Other"
+#, kde-format
 msgctxt "@item:intable Unicode general category"
 msgid "Number, Letter"
-msgstr "Числа, прочие"
+msgstr "Числа, буквенные"
 
 #: src/fmfontstrings.cpp:368
 #, kde-format
@@ -3518,11 +3474,10 @@ msgid "Separator, Paragraph"
 msgstr "Разделители, абзацы"
 
 #: src/fmfontstrings.cpp:372
-#, fuzzy, kde-format
-#| msgid "Controls"
+#, kde-format
 msgctxt "@item:intable Unicode general category"
 msgid "Other, Control"
-msgstr "Рычаги"
+msgstr "Прочие, управляющие"
 
 #: src/fmfontstrings.cpp:373
 #, kde-format
@@ -3531,16 +3486,16 @@ msgid "Other, Format"
 msgstr ""
 
 #: src/fmfontstrings.cpp:374
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:intable Unicode general category"
 msgid "Other, Surrogate"
-msgstr "Заменители в верхнем регистре"
+msgstr "Прочие, суррогаты"
 
 #: src/fmfontstrings.cpp:375
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:intable Unicode general category"
 msgid "Other, PrivateUse"
-msgstr "Область пользователя"
+msgstr "Прочие, для частного использования"
 
 #: src/fmfontstrings.cpp:376
 #, kde-format
@@ -3693,10 +3648,10 @@ msgid "Buhid"
 msgstr "Бухид"
 
 #: src/fmfontstrings.cpp:405
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox OpenType script"
 msgid "Byzantine Music"
-msgstr "Визайнтийская нотная грамота"
+msgstr "Византийские музыкальные символы"
 
 #: src/fmfontstrings.cpp:406
 #, kde-format
@@ -3711,7 +3666,7 @@ msgid "Cherokee"
 msgstr "Чероки"
 
 #: src/fmfontstrings.cpp:408
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox OpenType script"
 msgid "CJK Ideographic"
 msgstr "CJK, объединенные идеограммы"
@@ -3825,11 +3780,10 @@ msgid "Hiragana and Katakana"
 msgstr "Хирагана и катакана"
 
 #: src/fmfontstrings.cpp:427
-#, fuzzy, kde-format
-#| msgid "Balinese"
+#, kde-format
 msgctxt "@item:inlistbox OpenType script"
 msgid "Javanese"
-msgstr "Балинезийский"
+msgstr "Яванский"
 
 #: src/fmfontstrings.cpp:428
 #, kde-format
@@ -3838,7 +3792,7 @@ msgid "Kannada"
 msgstr "Каннада"
 
 #: src/fmfontstrings.cpp:429
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox OpenType script"
 msgid "Kharosthi"
 msgstr "Кхароштхи"
@@ -3868,7 +3822,7 @@ msgid "Limbu"
 msgstr "Лимбу"
 
 #: src/fmfontstrings.cpp:434
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox OpenType script"
 msgid "Linear B"
 msgstr "Линейное слоговое письмо Б"
@@ -3922,10 +3876,10 @@ msgid "Old Italic"
 msgstr "Этрусский"
 
 #: src/fmfontstrings.cpp:443
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox OpenType script"
 msgid "Old Persian Cuneiform"
-msgstr "Древнеперсидский"
+msgstr "Древнеперсидская клинопись"
 
 #: src/fmfontstrings.cpp:444
 #, kde-format
@@ -4006,11 +3960,10 @@ msgid "Tai Le"
 msgstr "Тайский Ле"
 
 #: src/fmfontstrings.cpp:457
-#, fuzzy, kde-format
-#| msgid "Tai Le"
+#, kde-format
 msgctxt "@item:inlistbox OpenType script"
 msgid "Tai Lu"
-msgstr "Тайский Ле"
+msgstr "Тай Лы"
 
 #: src/fmfontstrings.cpp:458
 #, kde-format
@@ -4049,10 +4002,10 @@ msgid "Tifinagh"
 msgstr "Тифинаг"
 
 #: src/fmfontstrings.cpp:464
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox OpenType script"
 msgid "Ugaritic Cuneiform"
-msgstr "Клинопись"
+msgstr "Угаритская клинопись"
 
 #: src/fmfontstrings.cpp:465
 #, kde-format
@@ -4097,11 +4050,10 @@ msgid "Bitmap Only"
 msgstr "Только растр"
 
 #: src/fmhandbook.cpp:44
-#, fuzzy, kde-format
-#| msgid "Fontmatrix Help"
+#, kde-format
 msgctxt "@title:window"
 msgid "Fontmatrix Handbook"
-msgstr "Справка по Fontmatrix"
+msgstr "Руководство по Fontmatrix"
 
 #: src/fmhandbook.cpp:57
 #, kde-format
@@ -4116,18 +4068,16 @@ msgid "Forward"
 msgstr ""
 
 #: src/fmhandbook.cpp:59
-#, fuzzy, kde-format
-#| msgid "&Contents"
+#, kde-format
 msgctxt "@action:intoolbar go to the table of contents"
 msgid "Contents"
-msgstr "&Содержание"
+msgstr "Содержание"
 
 #: src/fmhandbook.cpp:61
-#, fuzzy, kde-format
-#| msgid "Help Browser"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Open in Browser"
-msgstr "Браузер по справке"
+msgstr "Открыть в браузере"
 
 #: src/fmhandbook.cpp:62
 #, kde-format
@@ -4136,11 +4086,10 @@ msgid "Reads the same handbook in the web browser of the desktop."
 msgstr ""
 
 #: src/fminfodisplay.cpp:109
-#, fuzzy, kde-format
-#| msgid "Fractions"
+#, kde-format
 msgctxt "@title:group the axes of a variable font"
 msgid "Variation Axes"
-msgstr "Дроби"
+msgstr "Оси вариаций"
 
 #: src/fminfodisplay.cpp:115
 #, kde-format
@@ -4187,11 +4136,10 @@ msgid "Color"
 msgstr ""
 
 #: src/fminfodisplay.cpp:220
-#, fuzzy, kde-format
-#| msgid "License Info URL"
+#, kde-format
 msgctxt "@label the licence of a font, recognised from its wording"
 msgid "License"
-msgstr "URL текста лицензии"
+msgstr "Лицензия"
 
 #: src/fminfodisplay.cpp:232
 #, kde-format
@@ -4200,10 +4148,10 @@ msgid "Charmaps List"
 msgstr "Список кодировок"
 
 #: src/fmlicense.cpp:146
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox a font that says nothing about its licence"
 msgid "No licence information"
-msgstr "Сводка"
+msgstr "Нет сведений о лицензии"
 
 #: src/fmlicense.cpp:148
 #, kde-format
@@ -4342,15 +4290,13 @@ msgid "%1 (variable: %2)"
 msgstr ""
 
 #: src/fmvariationswidget.cpp:29
-#, fuzzy, kde-format
-#| msgid "Distances"
+#, kde-format
 msgctxt "@label the named instances of a variable font"
 msgid "Instance:"
-msgstr "Расстояния"
+msgstr "Экземпляр:"
 
 #: src/fmvariationswidget.cpp:42
-#, fuzzy, kde-format
-#| msgid "Default"
+#, kde-format
 msgctxt "@action:button back to the default coordinates of a variable font"
 msgid "Default"
 msgstr "По умолчанию"
@@ -4371,11 +4317,10 @@ msgid "%1: from %2 to %4, %3 by default"
 msgstr ""
 
 #: src/fontbook.cpp:89
-#, fuzzy, kde-format
-#| msgid "Export Font Book"
+#, kde-format
 msgctxt "@title:window"
 msgid "Print Fontbook"
-msgstr "Создание каталога шрифтов"
+msgstr "Печать каталога шрифтов"
 
 #: src/fontbook.cpp:101
 #, kde-kuit-format
@@ -4426,11 +4371,7 @@ msgid "codepoint is U+"
 msgstr ""
 
 #: src/fontitem.cpp:2134
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "FontItem|when doing the font preview, used to denote a font that can not "
-#| "displayed its name"
-#| msgid "(%1)"
+#, kde-format
 msgctxt ""
 "when doing the font preview, used to denote a font that can not displayed "
 "its name"
@@ -4438,28 +4379,24 @@ msgid "(%1)"
 msgstr "(%1)"
 
 #: src/fontitem.cpp:2225
-#, fuzzy, kde-format
-#| msgid "Distances"
+#, kde-format
 msgctxt ""
 "@item:inlistbox a named instance of a variable font that has no name, with "
 "its number"
 msgid "Instance %1"
-msgstr "Расстояния"
+msgstr "Экземпляр %1"
 
 #: src/fontitem.cpp:3005
-#, fuzzy, kde-format
-#| msgid "Downloading"
+#, kde-format
 msgctxt "@title:window"
 msgid "Downloading a Font"
-msgstr "Скачивается"
+msgstr "Скачивание шрифта"
 
 #: src/fontitem.cpp:3006
-#, fuzzy, kde-format
-#| msgctxt "@info:progress"
-#| msgid "Downloading %1."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Downloading %1"
-msgstr "Скачивается %1."
+msgstr "Скачивается %1"
 
 #: src/importedfontsdialog.cpp:23
 #, kde-format
@@ -4499,11 +4436,10 @@ msgid "Do you want to continue?"
 msgstr "Вы хотите продолжить?"
 
 #: src/mainviewwidget.cpp:1149
-#, fuzzy, kde-format
-#| msgid "Remove Filter"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Font"
-msgstr "Удалить фильтры"
+msgstr "Удалить шрифт"
 
 #: src/opentypetags.h:17
 #, kde-format
@@ -4512,18 +4448,16 @@ msgid "Access All Alternates"
 msgstr "Все альтернативные варианты"
 
 #: src/opentypetags.h:18
-#, fuzzy, kde-format
-#| msgid "Isolated Forms"
+#, kde-format
 msgctxt "@item:intable OpenType feature"
 msgid "Above-Base Forms"
-msgstr "Изолированные формы"
+msgstr "Формы над основой"
 
 #: src/opentypetags.h:19
-#, fuzzy, kde-format
-#| msgid "Mark Positioning"
+#, kde-format
 msgctxt "@item:intable OpenType feature"
 msgid "Above-Base Mark Positioning"
-msgstr "Размещение значка"
+msgstr "Размещение значков над основой"
 
 #: src/opentypetags.h:20
 #, kde-format
@@ -4544,17 +4478,16 @@ msgid "Akhands"
 msgstr ""
 
 #: src/opentypetags.h:23
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:intable OpenType feature"
 msgid "Below-Base Forms"
-msgstr "Поиск шрифтов"
+msgstr "Формы под основой"
 
 #: src/opentypetags.h:24
-#, fuzzy, kde-format
-#| msgid "Mark Positioning"
+#, kde-format
 msgctxt "@item:intable OpenType feature"
 msgid "Below-Base Mark Positioning"
-msgstr "Размещение значка"
+msgstr "Размещение значков под основой"
 
 #: src/opentypetags.h:25
 #, kde-format
@@ -4623,11 +4556,10 @@ msgid "Cursive Positioning"
 msgstr "Курсивное размещение"
 
 #: src/opentypetags.h:36
-#, fuzzy, kde-format
-#| msgid "Default font size:"
+#, kde-format
 msgctxt "@item:intable OpenType feature"
 msgid "Default Processing"
-msgstr "Кегль шрифта по умолчанию:"
+msgstr "Обработка по умолчанию"
 
 #: src/opentypetags.h:37
 #, kde-format
@@ -4696,11 +4628,10 @@ msgid "Half Forms"
 msgstr "Половинные формы согласных"
 
 #: src/opentypetags.h:48
-#, fuzzy, kde-format
-#| msgid "Half Forms"
+#, kde-format
 msgctxt "@item:intable OpenType feature"
 msgid "Halant Forms"
-msgstr "Половинные формы согласных"
+msgstr "Формы с халантом"
 
 #: src/opentypetags.h:49
 #, kde-format
@@ -4877,10 +4808,10 @@ msgid "NLC Kanji Forms"
 msgstr "Формы кандзи по NLC"
 
 #: src/opentypetags.h:78
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:intable OpenType feature"
 msgid "Nukta Forms"
-msgstr "Формы чисел"
+msgstr "Формы с нуктой"
 
 #: src/opentypetags.h:79
 #, kde-format
@@ -4931,11 +4862,10 @@ msgid "Proportional Figures"
 msgstr "Пропорциональные цифры"
 
 #: src/opentypetags.h:87
-#, fuzzy, kde-format
-#| msgid "Medial Forms"
+#, kde-format
 msgctxt "@item:intable OpenType feature"
 msgid "Pre-base Forms"
-msgstr "Срединные формы"
+msgstr "Формы перед основой"
 
 #: src/opentypetags.h:88
 #, kde-format
@@ -4944,18 +4874,16 @@ msgid "Pre-base Substitutions"
 msgstr ""
 
 #: src/opentypetags.h:89
-#, fuzzy, kde-format
-#| msgid "Isolated Forms"
+#, kde-format
 msgctxt "@item:intable OpenType feature"
 msgid "Post-base Forms"
-msgstr "Изолированные формы"
+msgstr "Формы после основы"
 
 #: src/opentypetags.h:90
-#, fuzzy, kde-format
-#| msgid "Mark Positioning via Substitution"
+#, kde-format
 msgctxt "@item:intable OpenType feature"
 msgid "Post-base Substitutions"
-msgstr "Размещение значка через подстановку"
+msgstr "Подстановки после основы"
 
 #: src/opentypetags.h:91
 #, kde-format
@@ -4976,11 +4904,10 @@ msgid "Randomize"
 msgstr "Случайный выбор альтернативных форм"
 
 #: src/opentypetags.h:94
-#, fuzzy, kde-format
-#| msgid "Half Forms"
+#, kde-format
 msgctxt "@item:intable OpenType feature"
 msgid "Rakar Forms"
-msgstr "Половинные формы согласных"
+msgstr "Формы ракар"
 
 #: src/opentypetags.h:95
 #, kde-format
@@ -4989,11 +4916,10 @@ msgid "Required Ligatures"
 msgstr "Необходимые лигатуры"
 
 #: src/opentypetags.h:96
-#, fuzzy, kde-format
-#| msgid "Form"
+#, kde-format
 msgctxt "@item:intable OpenType feature"
 msgid "Reph Form"
-msgstr "Form"
+msgstr "Форма реф"
 
 #: src/opentypetags.h:97
 #, kde-format
@@ -5230,10 +5156,10 @@ msgid "Alternate Vertical Metrics"
 msgstr "Альтернативные вертикальные метрики"
 
 #: src/opentypetags.h:136
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:intable OpenType feature"
 msgid "Vattu Variants"
-msgstr "Малые варианты форм"
+msgstr "Варианты ватту"
 
 #: src/opentypetags.h:137
 #, kde-format
@@ -5296,8 +5222,7 @@ msgid "Print Playground"
 msgstr "Печать содержимого песочницы"
 
 #: src/prefspaneldialog.cpp:37
-#, fuzzy, kde-format
-#| msgid "Preferences"
+#, kde-format
 msgctxt "@title:window"
 msgid "Preferences"
 msgstr "Параметры"
@@ -5333,8 +5258,7 @@ msgid "Samples collection"
 msgstr "Образцы текста"
 
 #: src/prefspaneldialog.cpp:58
-#, fuzzy, kde-format
-#| msgid "Files & Folders"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Files & Folders"
 msgstr "Файлы и папки"
@@ -5384,48 +5308,28 @@ msgid "Please enter a name for the new sample."
 msgstr ""
 
 #: src/prefspaneldialog.cpp:277
-#, fuzzy, kde-format
-#| msgid "The file %1 already exists"
+#, kde-format
 msgctxt "@info:status validation"
 msgid "A sample named \"%1\" already exists."
-msgstr "Файл %1 уже существует"
+msgstr "Образец с именем «%1» уже существует."
 
 #: src/prefspaneldialog.cpp:283
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "PrefsPanelDialog|A default sample text inserted when creating a new sample"
-#| msgid "Sample Text"
+#, kde-format
 msgctxt "A default sample text inserted when creating a new sample"
 msgid "Sample Text"
-msgstr ""
-"Образец текста\n"
-"\n"
-"Sample text\n"
-"\n"
-"Ein Textbeispiel"
+msgstr "Образец текста\n\nSample text\n\nEin Textbeispiel"
 
 #: src/prefspaneldialog.cpp:296
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "PrefsPanelDialog|the name of a sample text will be append to the string"
-#| msgid "Do you confirm that you want to remove:"
+#, kde-format
 msgctxt "the name of a sample text will be append to the string"
 msgid "Do you confirm that you want to remove:"
 msgstr "Вы действительно хотите удалить:"
 
 #: src/prefspaneldialog.cpp:300
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "PrefsPanelDialog|A default sample text inserted when creating a new sample"
-#| msgid "Sample Text"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Sample Text"
-msgstr ""
-"Образец текста\n"
-"\n"
-"Sample text\n"
-"\n"
-"Ein Textbeispiel"
+msgstr "Удалить образец текста"
 
 #: src/prefspaneldialog.cpp:384
 #, kde-format
@@ -5504,11 +5408,10 @@ msgid "Replace"
 msgstr "Заменить"
 
 #: src/prefspaneldialog.cpp:632
-#, fuzzy, kde-format
-#| msgid "Designer"
+#, kde-format
 msgctxt "@action:button"
 msgid "Reassign"
-msgstr "Дизайнер"
+msgstr "Переназначить"
 
 #: src/prefspaneldialog.cpp:666
 #, kde-format
@@ -5535,22 +5438,19 @@ msgid "Select hyphenation dictionary"
 msgstr "Выберите словарь переносов"
 
 #: src/remotedir.cpp:54
-#, fuzzy, kde-format
-#| msgid "Downloading %1."
+#, kde-format
 msgctxt "@info:status"
 msgid "Downloading %1"
-msgstr "Скачивается %1."
+msgstr "Скачивается %1"
 
 #: src/remotedir.cpp:131
-#, fuzzy, kde-format
-#| msgctxt "@info:status"
-#| msgid "font descriptions imported from network"
+#, kde-format
 msgctxt "@info:status"
 msgid "%1 font description from the network"
 msgid_plural "%1 font descriptions from the network"
-msgstr[0] "Взятые из сети описания шрифтов"
-msgstr[1] "Взятые из сети описания шрифтов"
-msgstr[2] "Взятые из сети описания шрифтов"
+msgstr[0] "%1 описание шрифта из сети"
+msgstr[1] "%1 описания шрифтов из сети"
+msgstr[2] "%1 описаний шрифтов из сети"
 
 #: src/sampletoolbar.cpp:103
 #, kde-format
@@ -5571,11 +5471,10 @@ msgid "Print Sample"
 msgstr "Печать образца текста"
 
 #: src/samplewidget.cpp:895
-#, fuzzy, kde-format
-#| msgid "Sample"
+#, kde-format
 msgctxt "@item:inlistbox default name of a new sample text"
 msgid "New Sample"
-msgstr "Образец"
+msgstr "Новый образец"
 
 #: src/systray.cpp:217
 #, kde-format
@@ -5667,7 +5566,7 @@ msgstr[1] "Вы действительно хотите импортироват
 msgstr[2] "Вы действительно хотите импортировать %1 шрифтов?"
 
 #: src/typotek.cpp:452
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirmation"
 msgstr "Подтверждение"
@@ -5968,11 +5867,10 @@ msgid "Find a font using a raster sample of a letter"
 msgstr "Найти шрифты по растровому образцу одного символа"
 
 #: src/typotek.cpp:792
-#, fuzzy, kde-format
-#| msgid "Export font book..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Export font list as XeTeX..."
-msgstr "Создать каталог шрифтов..."
+msgstr "Экспортировать список шрифтов в XeTeX..."
 
 #: src/typotek.cpp:793
 #, kde-format
@@ -6040,11 +5938,10 @@ msgid "system fonts added."
 msgstr "системных шрифтов добавлено."
 
 #: src/typotek.cpp:1291 src/typotek.cpp:1294
-#, fuzzy, kde-format
-#| msgid "Deactivate"
+#, kde-format
 msgctxt "@info:progress"
 msgid "Checking the activated fonts"
-msgstr "Деактивировать"
+msgstr "Проверка активированных шрифтов"
 
 #: src/typotek.cpp:1332
 #, kde-format
@@ -6056,15 +5953,13 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: src/typotek.cpp:1374
-#, fuzzy, kde-format
-#| msgctxt "@info:status"
-#| msgid "font descriptions imported from network"
+#, kde-format
 msgctxt "@info:status"
 msgid "%1 font added from the network"
 msgid_plural "%1 fonts added from the network"
-msgstr[0] "Взятые из сети описания шрифтов"
-msgstr[1] "Взятые из сети описания шрифтов"
-msgstr[2] "Взятые из сети описания шрифтов"
+msgstr[0] "%1 шрифт добавлен из сети"
+msgstr[1] "%1 шрифта добавлено из сети"
+msgstr[2] "%1 шрифтов добавлено из сети"
 
 #: src/typotek.cpp:1400
 #, kde-format
@@ -6077,11 +5972,10 @@ msgstr ""
 "отменить активацию, если вы это нечаянно затеяли."
 
 #: src/typotek.cpp:1401
-#, fuzzy, kde-format
-#| msgid "Activation"
+#, kde-format
 msgctxt "@title:window"
 msgid "Activate Fonts"
-msgstr "Активация"
+msgstr "Активировать шрифты"
 
 #: src/typotek.cpp:1413
 #, kde-format
@@ -6094,11 +5988,10 @@ msgstr ""
 "если вы это нечаянно затеяли."
 
 #: src/typotek.cpp:1414
-#, fuzzy, kde-format
-#| msgid "Deactivate"
+#, kde-format
 msgctxt "@title:window"
 msgid "Deactivate Fonts"
-msgstr "Деактивировать"
+msgstr "Деактивировать шрифты"
 
 #: src/typotek.cpp:1433
 #, kde-format
@@ -6132,18 +6025,16 @@ msgid "Support of DragNDrop over http is sheduled but not yet effective"
 msgstr "Поддержка перетаскивания с http запланирована, но пока не реализована"
 
 #: src/typotek.cpp:1522
-#, fuzzy, kde-format
-#| msgid "You bring something over me I canât handle"
+#, kde-format
 msgctxt "@info:status"
 msgid "You bring something over me I can’t handle"
 msgstr "Программа не умеет обрабатывать данные такого типа"
 
 #: src/typotek.cpp:1583
-#, fuzzy, kde-format
-#| msgid "Edit/Embed"
+#, kde-format
 msgctxt "@info default content of a new sample text"
 msgid "Edit me!"
-msgstr "Встраивание и правка документов"
+msgstr "Измените этот текст!"
 
 #: src/typotek.cpp:1662
 #, kde-format
@@ -6174,11 +6065,10 @@ msgstr ""
 "к нему в диалоге настройки программы."
 
 #: src/typotek.cpp:2053
-#, fuzzy, kde-format
-#| msgid "Export a fontset"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export font list as XeTeX"
-msgstr "Экспортировать набор шрифтов"
+msgstr "Экспорт списка шрифтов в XeTeX"
 
 #: src/typotek.cpp:2055
 #, kde-format

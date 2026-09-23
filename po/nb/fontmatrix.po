@@ -95,11 +95,10 @@ msgstr "&Deaktiver alle viste fonter"
 #. i18n: file: src/bookexport.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, BookExportDialog)
 #: rc.cpp:30
-#, fuzzy, kde-format
-#| msgid "Export font book..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Export Font Book"
-msgstr "Eksporter fontbok..."
+msgstr "Eksporter fontbok"
 
 #. i18n: file: src/bookexport.ui:45
 #. i18n: ectx: property (text), widget (QLabel, label)

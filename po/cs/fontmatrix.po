@@ -12,10 +12,10 @@ msgstr ""
 #. i18n: file: src/activationreportdialog.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, ActivationReportDialog)
 #: rc.cpp:3
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Activation Report"
-msgstr "Událost aktivace"
+msgstr "Hlášení o zapnutí"
 
 #. i18n: file: src/activationreportdialog.ui:19
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -525,11 +525,10 @@ msgstr ""
 #. i18n: file: src/filterbar.ui:517
 #. i18n: ectx: property (text), widget (OpenCloseArrow, licenseArrow)
 #: rc.cpp:185
-#, fuzzy, kde-format
-#| msgid "License Info URL"
+#, kde-format
 msgctxt "@action:button"
 msgid "License"
-msgstr "Adresa informací o licenčním ujednání"
+msgstr "Licence"
 
 #. i18n: file: src/filterbar.ui:548
 #. i18n: ectx: property (toolTip), widget (QComboBox, licenseCombo)
@@ -1022,11 +1021,10 @@ msgstr "Rychlé hledání:"
 #. i18n: file: src/mainview.ui:185
 #. i18n: ectx: property (toolTip), widget (QPushButton, saveButton)
 #: rc.cpp:390
-#, fuzzy, kde-format
-#| msgid "Apply this filter to the list"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Save this filter for later use"
-msgstr "Použít tento filtr na seznam"
+msgstr "Uložit tento filtr pro pozdější použití"
 
 #. i18n: file: src/mainview.ui:188
 #. i18n: ectx: property (text), widget (QPushButton, saveButton)
@@ -1049,8 +1047,7 @@ msgstr ""
 #. i18n: file: src/mainview.ui:198
 #. i18n: ectx: property (text), widget (QPushButton, clearButton)
 #: rc.cpp:399
-#, fuzzy, kde-format
-#| msgid "clear"
+#, kde-format
 msgctxt "@action:button"
 msgid "Clear"
 msgstr "Vyprázdnit"
@@ -1588,8 +1585,7 @@ msgstr "Složka s předlohami"
 #. i18n: file: src/prefs_panel.ui:750
 #. i18n: ectx: property (title), widget (QGroupBox, remoteDirsBox)
 #: rc.cpp:627
-#, fuzzy, kde-format
-#| msgid "Remote directories"
+#, kde-format
 msgctxt "@title:group"
 msgid "Remote Directories"
 msgstr "Vzdálené adresáře"
@@ -1618,8 +1614,7 @@ msgstr ""
 #. i18n: file: src/prefs_panel.ui:803
 #. i18n: ectx: property (title), widget (QGroupBox, activationScopeBox)
 #: rc.cpp:642
-#, fuzzy, kde-format
-#| msgid "Activation"
+#, kde-format
 msgctxt "@title:group"
 msgid "Activation"
 msgstr "Zapnutí"
@@ -1663,11 +1658,10 @@ msgstr "Změnit"
 #. i18n: file: src/progressbarduo.ui:14
 #. i18n: ectx: property (windowTitle), widget (QDialog, ProgressBarDuo)
 #: rc.cpp:660
-#, fuzzy, kde-format
-#| msgid "Export Font Book"
+#, kde-format
 msgctxt "@title:window"
 msgid "Exporting Font Book"
-msgstr "Exportovat knihu písem"
+msgstr "Vyvádí se kniha písem"
 
 #. i18n: file: src/repair.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, repairDialog)
@@ -1774,20 +1768,18 @@ msgstr "OpenType"
 #. i18n: file: src/sampletoolbar.ui:75
 #. i18n: ectx: property (toolTip), widget (QToolButton, variationsButton)
 #: rc.cpp:723
-#, fuzzy, kde-format
-#| msgid "Show complete collection of available fonts"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "The axes of a variable font"
-msgstr "Ukázat celou sbírku dostupných písem"
+msgstr "Osy proměnného písma"
 
 #. i18n: file: src/sampletoolbar.ui:78
 #. i18n: ectx: property (text), widget (QToolButton, variationsButton)
 #: rc.cpp:726
-#, fuzzy, kde-format
-#| msgid "Fractions"
+#, kde-format
 msgctxt "@action:button"
 msgid "Variations"
-msgstr "Zlomky"
+msgstr "Variace"
 
 #. i18n: file: src/sampletoolbar.ui:99
 #. i18n: ectx: property (toolTip), widget (QComboBox, languageCombo)
@@ -2234,8 +2226,7 @@ msgid "Filter name:"
 msgstr "Název filtru:"
 
 #: src/filterbar.cpp:757
-#, fuzzy, kde-format
-#| msgid "Select language"
+#, kde-format
 msgctxt ""
 "@item:inlistbox no language picked yet, in the list of the languages a font "
 "can set"
@@ -2243,21 +2234,19 @@ msgid "Select language"
 msgstr "Vybrat jazyk"
 
 #: src/filterbar.cpp:773
-#, fuzzy, kde-format
-#| msgid "Select Style"
+#, kde-format
 msgctxt ""
 "@item:inlistbox no licence picked yet, in the list of the licences of the "
 "fonts"
 msgid "Select license"
-msgstr "Vybrat styl"
+msgstr "Vybrat licenci"
 
 #: src/filterbar.cpp:785
-#, fuzzy, kde-format
-#| msgid "&Select Dir"
+#, kde-format
 msgctxt ""
 "@item:inlistbox nothing picked yet, in the list of the kinds of duplicate"
 msgid "Select kind"
-msgstr "Vybrat &adresář"
+msgstr "Vybrat druh"
 
 #: src/filterbar.cpp:787
 #, kde-format
@@ -2329,11 +2318,10 @@ msgid "Font already activated"
 msgstr "Písmo je již zapnuto"
 
 #: src/fmactivate.cpp:34
-#, fuzzy, kde-format
-#| msgid "Reload informations for selected font from the font file"
+#, kde-format
 msgctxt "@info activation error"
 msgid "Unable to remove the font from the user font folder"
-msgstr "Nahrát znovu informace k vybranému písmu z jeho souboru"
+msgstr "Nelze odstranit písmo ze složky písem uživatele"
 
 #: src/fmactivate.cpp:36
 #, kde-format
@@ -2342,12 +2330,10 @@ msgid "Font already de-activated"
 msgstr "Písmo je již vypnuto"
 
 #: src/fmactivate.cpp:38
-#, fuzzy, kde-format
-#| msgctxt "@info activation error"
-#| msgid "Cannot link or copy the metrics file"
+#, kde-format
 msgctxt "@info activation error"
 msgid "Cannot copy the metrics file"
-msgstr "Nelze udělat odkaz nebo kopírovat soubor s metrikou"
+msgstr "Nelze kopírovat soubor s metrikou"
 
 #: src/fmactivate.cpp:40
 #, kde-format
@@ -4094,11 +4080,10 @@ msgstr "Pouze bitmapa"
 
 # Nápověda k programu Fontmatrix
 #: src/fmhandbook.cpp:44
-#, fuzzy, kde-format
-#| msgid "Fontmatrix Help"
+#, kde-format
 msgctxt "@title:window"
 msgid "Fontmatrix Handbook"
-msgstr "Fontmatrix Help"
+msgstr "Příručka k Fontmatrixu"
 
 #: src/fmhandbook.cpp:57
 #, kde-format
@@ -4113,18 +4098,16 @@ msgid "Forward"
 msgstr ""
 
 #: src/fmhandbook.cpp:59
-#, fuzzy, kde-format
-#| msgid "&Contents"
+#, kde-format
 msgctxt "@action:intoolbar go to the table of contents"
 msgid "Contents"
-msgstr "&Obsah"
+msgstr "Obsah"
 
 #: src/fmhandbook.cpp:61
-#, fuzzy, kde-format
-#| msgid "Help Browser"
+#, kde-format
 msgctxt "@action:intoolbar"
 msgid "Open in Browser"
-msgstr "Prohlížeč nápovědy"
+msgstr "Otevřít v prohlížeči"
 
 #: src/fmhandbook.cpp:62
 #, kde-format
@@ -4133,10 +4116,10 @@ msgid "Reads the same handbook in the web browser of the desktop."
 msgstr ""
 
 #: src/fminfodisplay.cpp:109
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:group the axes of a variable font"
 msgid "Variation Axes"
-msgstr "Voliče obměn"
+msgstr "Osy variací"
 
 #: src/fminfodisplay.cpp:115
 #, kde-format
@@ -4147,10 +4130,10 @@ msgid "%1 (%2): from %3 to %4, %5 by default"
 msgstr ""
 
 #: src/fminfodisplay.cpp:125
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:group the named instances of a variable font"
 msgid "Named Instances"
-msgstr "Named sample texts"
+msgstr "Pojmenované instance"
 
 #: src/fminfodisplay.cpp:141
 #, kde-format
@@ -4183,11 +4166,10 @@ msgid "Color"
 msgstr ""
 
 #: src/fminfodisplay.cpp:220
-#, fuzzy, kde-format
-#| msgid "License Info URL"
+#, kde-format
 msgctxt "@label the licence of a font, recognised from its wording"
 msgid "License"
-msgstr "Adresa informací o licenčním ujednání"
+msgstr "Licence"
 
 #: src/fminfodisplay.cpp:232
 #, kde-format
@@ -4196,10 +4178,10 @@ msgid "Charmaps List"
 msgstr "Seznam zobrazení znaků"
 
 #: src/fmlicense.cpp:146
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox a font that says nothing about its licence"
 msgid "No licence information"
-msgstr "Informace o písmu"
+msgstr "Žádné informace o licenci"
 
 #: src/fmlicense.cpp:148
 #, kde-format
@@ -4286,10 +4268,10 @@ msgid "Free of charge"
 msgstr ""
 
 #: src/fmlicense.cpp:176
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inlistbox font licence: all rights reserved, nothing granted"
 msgid "All rights reserved"
-msgstr "\"Výchozí\" je zamluveno"
+msgstr "Všechna práva vyhrazena"
 
 #: src/fmmatchraster.cpp:135
 #, kde-format
@@ -4346,15 +4328,13 @@ msgid "%1 (variable: %2)"
 msgstr ""
 
 #: src/fmvariationswidget.cpp:29
-#, fuzzy, kde-format
-#| msgid "Distances"
+#, kde-format
 msgctxt "@label the named instances of a variable font"
 msgid "Instance:"
-msgstr "Vzdálenosti"
+msgstr "Instance:"
 
 #: src/fmvariationswidget.cpp:42
-#, fuzzy, kde-format
-#| msgid "Default"
+#, kde-format
 msgctxt "@action:button back to the default coordinates of a variable font"
 msgid "Default"
 msgstr "Výchozí"
@@ -4387,10 +4367,10 @@ msgid "The font book could not be written to <filename>%1</filename>."
 msgstr ""
 
 #: src/fontbook.cpp:102
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Font Book Not Written"
-msgstr "Font Book Options "
+msgstr "Kniha písem nebyla zapsána"
 
 #: src/fontbook.cpp:492
 #, kde-format
@@ -4429,11 +4409,7 @@ msgid "codepoint is U+"
 msgstr "Kód je U+"
 
 #: src/fontitem.cpp:2134
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "FontItem|when doing the font preview, used to denote a font that can not "
-#| "displayed its name"
-#| msgid "(%1)"
+#, kde-format
 msgctxt ""
 "when doing the font preview, used to denote a font that can not displayed "
 "its name"
@@ -4441,28 +4417,24 @@ msgid "(%1)"
 msgstr "(%1)"
 
 #: src/fontitem.cpp:2225
-#, fuzzy, kde-format
-#| msgid "Distances"
+#, kde-format
 msgctxt ""
 "@item:inlistbox a named instance of a variable font that has no name, with "
 "its number"
 msgid "Instance %1"
-msgstr "Vzdálenosti"
+msgstr "Instance %1"
 
 #: src/fontitem.cpp:3005
-#, fuzzy, kde-format
-#| msgid "Downloading"
+#, kde-format
 msgctxt "@title:window"
 msgid "Downloading a Font"
-msgstr "Stahuje se"
+msgstr "Stahuje se písmo"
 
 #: src/fontitem.cpp:3006
-#, fuzzy, kde-format
-#| msgctxt "@info:progress"
-#| msgid "Downloading %1."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Downloading %1"
-msgstr "Stahuje se %1."
+msgstr "Stahuje se %1"
 
 #: src/importedfontsdialog.cpp:23
 #, kde-format
@@ -4502,11 +4474,10 @@ msgid "Do you want to continue?"
 msgstr "Chcete pokračovat?"
 
 #: src/mainviewwidget.cpp:1149
-#, fuzzy, kde-format
-#| msgid "Remove Filter"
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Font"
-msgstr "Odstranit filtr"
+msgstr "Odstranit písmo"
 
 #: src/opentypetags.h:17
 #, kde-format
@@ -5289,8 +5260,7 @@ msgid "Print Playground"
 msgstr "Vytisknout hřiště"
 
 #: src/prefspaneldialog.cpp:37
-#, fuzzy, kde-format
-#| msgid "Preferences"
+#, kde-format
 msgctxt "@title:window"
 msgid "Preferences"
 msgstr "Nastavení"
@@ -5326,8 +5296,7 @@ msgid "Samples collection"
 msgstr "Sbírka ukázek"
 
 #: src/prefspaneldialog.cpp:58
-#, fuzzy, kde-format
-#| msgid "Files & Folders"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Files & Folders"
 msgstr "Soubory a složky"
@@ -5377,35 +5346,28 @@ msgid "Please enter a name for the new sample."
 msgstr ""
 
 #: src/prefspaneldialog.cpp:277
-#, fuzzy, kde-format
-#| msgid "The file %1 already exists"
+#, kde-format
 msgctxt "@info:status validation"
 msgid "A sample named \"%1\" already exists."
-msgstr "Soubor %1 již existuje"
+msgstr "Ukázka s názvem \"%1\" již existuje."
 
 #: src/prefspaneldialog.cpp:283
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "PrefsPanelDialog|A default sample text inserted when creating a new sample"
-#| msgid "Sample Text"
+#, kde-format
 msgctxt "A default sample text inserted when creating a new sample"
 msgid "Sample Text"
 msgstr "Ukázkový text"
 
 #: src/prefspaneldialog.cpp:296
-#, fuzzy, kde-format
-#| msgctxt ""
-#| "PrefsPanelDialog|the name of a sample text will be append to the string"
-#| msgid "Do you confirm that you want to remove:"
+#, kde-format
 msgctxt "the name of a sample text will be append to the string"
 msgid "Do you confirm that you want to remove:"
 msgstr "Potvrzujete, že chcete odstranit:"
 
 #: src/prefspaneldialog.cpp:300
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Remove Sample Text"
-msgstr "Pojmenovaný ukázkový text"
+msgstr "Odstranit ukázkový text"
 
 #: src/prefspaneldialog.cpp:384
 #, kde-format
@@ -5484,11 +5446,10 @@ msgid "Replace"
 msgstr "Nahradit"
 
 #: src/prefspaneldialog.cpp:632
-#, fuzzy, kde-format
-#| msgid "Designer"
+#, kde-format
 msgctxt "@action:button"
 msgid "Reassign"
-msgstr "Návrhář"
+msgstr "Znovu přiřadit"
 
 #: src/prefspaneldialog.cpp:666
 #, kde-format
@@ -5515,20 +5476,19 @@ msgid "Select hyphenation dictionary"
 msgstr "Vybrat slovník dělení slov"
 
 #: src/remotedir.cpp:54
-#, fuzzy, kde-format
-#| msgid "Downloading %1."
+#, kde-format
 msgctxt "@info:status"
 msgid "Downloading %1"
-msgstr "Stahuje se %1."
+msgstr "Stahuje se %1"
 
 #: src/remotedir.cpp:131
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info:status"
 msgid "%1 font description from the network"
 msgid_plural "%1 font descriptions from the network"
-msgstr[0] "Popisy písem ze sítě"
-msgstr[1] "Popisy písem ze sítě"
-msgstr[2] "Popisy písem ze sítě"
+msgstr[0] "%1 popis písma ze sítě"
+msgstr[1] "%1 popisy písem ze sítě"
+msgstr[2] "%1 popisů písem ze sítě"
 
 #: src/sampletoolbar.cpp:103
 #, kde-format
@@ -5636,18 +5596,16 @@ msgid "Add Directory"
 msgstr "Přidat adresář"
 
 #: src/typotek.cpp:451
-#, fuzzy, kde-format
-#| msgid "Do you confirm you want to import these %1 fonts?"
+#, kde-format
 msgctxt "@info"
 msgid "Do you confirm you want to import %1 font?"
 msgid_plural "Do you confirm you want to import %1 fonts?"
-msgstr[0] "Potvrzujete, že chcete zavést těchto %1 písem?"
-msgstr[1] "Potvrzujete, že chcete zavést těchto %1 písem?"
-msgstr[2] "Potvrzujete, že chcete zavést těchto %1 písem?"
+msgstr[0] "Opravdu chcete zavést %1 písmo?"
+msgstr[1] "Opravdu chcete zavést %1 písma?"
+msgstr[2] "Opravdu chcete zavést %1 písem?"
 
 #: src/typotek.cpp:452
-#, fuzzy, kde-format
-#| msgid "confirmation"
+#, kde-format
 msgctxt "@title:window"
 msgid "Confirmation"
 msgstr "Potvrzení"
@@ -5947,11 +5905,10 @@ msgid "Find a font using a raster sample of a letter"
 msgstr "Najít písmo pomocí ukázky rastru obrazu jeho písmene"
 
 #: src/typotek.cpp:792
-#, fuzzy, kde-format
-#| msgid "Export font book..."
+#, kde-format
 msgctxt "@action:inmenu"
 msgid "Export font list as XeTeX..."
-msgstr "Vyvést knihu písem..."
+msgstr "Vyvést seznam písem jako XeTeX..."
 
 #: src/typotek.cpp:793
 #, kde-format
@@ -6019,10 +5976,10 @@ msgid "system fonts added."
 msgstr "Systémová písma přidána."
 
 #: src/typotek.cpp:1291 src/typotek.cpp:1294
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info:progress"
 msgid "Checking the activated fonts"
-msgstr "Show all activated fonts"
+msgstr "Kontrolují se zapnutá písma"
 
 #: src/typotek.cpp:1332
 #, kde-format
@@ -6034,13 +5991,13 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: src/typotek.cpp:1374
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info:status"
 msgid "%1 font added from the network"
 msgid_plural "%1 fonts added from the network"
-msgstr[0] "Popisy písem ze sítě"
-msgstr[1] "Popisy písem ze sítě"
-msgstr[2] "Popisy písem ze sítě"
+msgstr[0] "%1 písmo přidáno ze sítě"
+msgstr[1] "%1 písma přidána ze sítě"
+msgstr[2] "%1 písem přidáno ze sítě"
 
 #: src/typotek.cpp:1400
 #, kde-format
@@ -6054,11 +6011,10 @@ msgstr ""
 "úmyslu"
 
 #: src/typotek.cpp:1401
-#, fuzzy, kde-format
-#| msgid "Activation"
+#, kde-format
 msgctxt "@title:window"
 msgid "Activate Fonts"
-msgstr "Zapnutí"
+msgstr "Zapnout písma"
 
 #: src/typotek.cpp:1413
 #, kde-format
@@ -6072,11 +6028,10 @@ msgstr ""
 "úmyslu"
 
 #: src/typotek.cpp:1414
-#, fuzzy, kde-format
-#| msgid "Deactivate"
+#, kde-format
 msgctxt "@title:window"
 msgid "Deactivate Fonts"
-msgstr "Vypnout"
+msgstr "Vypnout písma"
 
 #: src/typotek.cpp:1433
 #, kde-format
@@ -6111,8 +6066,7 @@ msgstr ""
 "Podpora pro \"táhni a pusť\" přes http je naplánována, ale dosud není účinná"
 
 #: src/typotek.cpp:1522
-#, fuzzy, kde-format
-#| msgid "You bring something over me I canât handle"
+#, kde-format
 msgctxt "@info:status"
 msgid "You bring something over me I can’t handle"
 msgstr "Dal jste mi něco, s čím si nedovedu poradit"
@@ -6152,11 +6106,10 @@ msgstr ""
 "nastavit v dialogu Nastavení."
 
 #: src/typotek.cpp:2053
-#, fuzzy, kde-format
-#| msgid "Export a fontset"
+#, kde-format
 msgctxt "@title:window"
 msgid "Export font list as XeTeX"
-msgstr "Vyvést sadu písem"
+msgstr "Vyvést seznam písem jako XeTeX"
 
 #: src/typotek.cpp:2055
 #, kde-format

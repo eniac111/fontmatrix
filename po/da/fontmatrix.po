@@ -95,11 +95,10 @@ msgstr "Deaktiver alle valgte"
 #. i18n: file: src/bookexport.ui:13
 #. i18n: ectx: property (windowTitle), widget (QDialog, BookExportDialog)
 #: rc.cpp:30
-#, fuzzy, kde-format
-#| msgid "Export font book..."
+#, kde-format
 msgctxt "@title:window"
 msgid "Export Font Book"
-msgstr "Eksporter Fontbog..."
+msgstr "Eksporter Fontbog"
 
 #. i18n: file: src/bookexport.ui:45
 #. i18n: ectx: property (text), widget (QLabel, label)
@@ -138,11 +137,10 @@ msgstr "Skrifttypeinformation"
 #. i18n: file: src/browserwidget.ui:76
 #. i18n: ectx: property (text), widget (QPushButton, importButton)
 #: rc.cpp:42 src/typotek.cpp:453
-#, fuzzy, kde-format
-#| msgid "&Import..."
+#, kde-format
 msgctxt "@action:button"
 msgid "Import"
-msgstr "Importer..."
+msgstr "Importer"
 
 #. i18n: file: src/browserwidget.ui:86
 #. i18n: ectx: property (text), widget (QToolButton, chartButton)
@@ -1012,11 +1010,10 @@ msgstr ""
 #. i18n: file: src/prefs_panel.ui:667
 #. i18n: ectx: property (text), widget (QPushButton, commitSample)
 #: rc.cpp:393 rc.cpp:618
-#, fuzzy, kde-format
-#| msgid "&Save"
+#, kde-format
 msgctxt "@action:button"
 msgid "Save"
-msgstr "&Gem"
+msgstr "Gem"
 
 #. i18n: file: src/mainview.ui:195
 #. i18n: ectx: property (toolTip), widget (QPushButton, clearButton)
@@ -5554,11 +5551,10 @@ msgid "Importing font files... "
 msgstr "Importer..."
 
 #: src/typotek.cpp:481 src/typotek.cpp:585
-#, fuzzy, kde-format
-#| msgid "&Import..."
+#, kde-format
 msgctxt "@info:progress"
 msgid "Import"
-msgstr "Importer..."
+msgstr "Importer"
 
 #: src/typotek.cpp:504
 #, kde-format
