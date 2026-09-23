@@ -28,7 +28,7 @@ Download and run the MSI — Qt and FreeType runtime DLLs are bundled.
 | CMake | ≥ 3.16 | |
 | C++ compiler | C++20 | GCC / Clang / MSVC 2022 |
 | Qt 6 | ≥ 6.8 | Core, Widgets, Svg, SvgWidgets, Sql, Xml, PrintSupport, Network |
-| KDE Frameworks 6 and extra-cmake-modules | ≥ 6.12 | CoreAddons, I18n, Config, XmlGui, ConfigWidgets, WidgetsAddons, StatusNotifierItem, DBusAddons; DocTools is optional (handbook) |
+| KDE Frameworks 6 and extra-cmake-modules | ≥ 6.12 | CoreAddons, I18n, Config, XmlGui, ConfigWidgets, WidgetsAddons, StatusNotifierItem, DBusAddons, Crash; DocTools is optional (handbook) |
 | PoDoFo | ≥ 0.10 | optional: *Tools → Extract fonts* (the fonts embedded in a PDF file). Without it, or with 0.9, whose API is another one, the application is built without that entry |
 | HarfBuzz | ≥ 2.6.8 | built with FreeType support; Qt 6 depends on it already. COLR version 1 glyphs (gradients) are painted with 7.0 or later, older ones show their base glyph |
 | libhyphen | | hyphenation of the sample texts (hunspell's `hyphen`); the KDE Flatpak runtime has it, Craft builds it from `craft-blueprints/libs/hyphen` |
@@ -51,7 +51,7 @@ On a distribution that has the versions above (Arch Linux is what CI uses):
 ```bash
 sudo pacman -S --needed base-devel cmake ninja extra-cmake-modules gettext \
   qt6-base qt6-svg kcoreaddons ki18n kconfig kxmlgui kconfigwidgets kwidgetsaddons \
-  kstatusnotifieritem kdbusaddons kiconthemes freetype2 harfbuzz hyphen podofo fontconfig
+  kstatusnotifieritem kdbusaddons kcrash kiconthemes freetype2 harfbuzz hyphen podofo fontconfig
 ```
 
 On Debian 13 and Ubuntu 25.04:
@@ -60,7 +60,7 @@ On Debian 13 and Ubuntu 25.04:
 sudo apt install g++ cmake ninja-build pkg-config gettext extra-cmake-modules \
   qt6-base-dev qt6-svg-dev libkf6coreaddons-dev libkf6i18n-dev libkf6config-dev \
   libkf6xmlgui-dev libkf6configwidgets-dev libkf6widgetsaddons-dev \
-  libkf6statusnotifieritem-dev libkf6dbusaddons-dev libkf6iconthemes-dev \
+  libkf6statusnotifieritem-dev libkf6dbusaddons-dev libkf6crash-dev libkf6iconthemes-dev \
   libfreetype-dev libharfbuzz-dev libhyphen-dev libfontconfig-dev
 ```
 

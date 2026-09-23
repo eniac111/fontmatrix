@@ -19,6 +19,7 @@
 
 #include <KAboutData>
 #include <KConfigGroup>
+#include <KCrash>
 #include <KDBusService>
 #include <KLocalizedString>
 #include <KSharedConfig>
@@ -149,6 +150,9 @@ int main(int argc, char *argv[])
                         QString(),
                         QStringLiteral("https://github.com/fontmatrix/fontmatrix"));
     KAboutData::setApplicationData(aboutData);
+    // after KAboutData, which is what the crash handler reports the crash for:
+    // DrKonqi where it is installed, a plain backtrace on the console elsewhere
+    KCrash::initialize();
 
     QCommandLineParser parser;
     aboutData.setupCommandLine(&parser);
