@@ -253,31 +253,48 @@ void typotek::initMatrix()
 
     showToltalFilteredFonts();
 
-    if (!hyphenator) {
+    updateHyphenation();
+}
+
+void typotek::updateHyphenation()
+{
+    if (!hyphenator)
         hyphenator = new FMHyphenator();
-        // A dictionary chosen in Preferences comes first; otherwise the one the system
-        // has for the interface language, which is also the language of the default sample.
-        QString dP(FMConfig::value(QStringLiteral("Sample/HyphenationDict"), QString()).toString());
-        if (!dP.isEmpty() && !QFileInfo::exists(dP)) {
-            qCWarning(FONTMATRIX_LOG) << "The hyphenation dictionary of the preferences is gone:" << dP;
-            FMConfig::remove(QStringLiteral("Sample/HyphenationDict"));
-            dP.clear();
-        }
-        if (dP.isEmpty())
-            dP = FMPaths::HyphenationDictionary();
-        if (!dP.isEmpty()) {
-            if (hyphenator->loadDict(dP,
-                                     FMConfig::value(QStringLiteral("Sample/HyphLeft"), 2).toInt(),
-                                     FMConfig::value(QStringLiteral("Sample/HyphRight"), 3).toInt()))
-                qCDebug(FONTMATRIX_LOG) << "Hyphenation dictionary:" << dP;
-            else
-                qCWarning(FONTMATRIX_LOG) << "Cannot load the hyphenation dictionary" << dP;
-        } else
-            qCDebug(FONTMATRIX_LOG) << "No hyphenation dictionary for" << QLocale::system().name() << "in"
-                                    << QStandardPaths::locateAll(QStandardPaths::GenericDataLocation,
-                                                                 QStringLiteral("hyphen"),
-                                                                 QStandardPaths::LocateDirectory);
+    // A dictionary chosen in Preferences comes first; otherwise the one the system has
+    // for the language of the sample shown, and none at all when it has none: a text
+    // hyphenated by the rules of another language is worse than one left whole.
+    QString dP(FMConfig::value(QStringLiteral("Sample/HyphenationDict"), QString()).toString());
+    if (!dP.isEmpty() && !QFileInfo::exists(dP)) {
+        qCWarning(FONTMATRIX_LOG) << "The hyphenation dictionary of the preferences is gone:" << dP;
+        FMConfig::remove(QStringLiteral("Sample/HyphenationDict"));
+        dP.clear();
     }
+    const QLocale language(namedSampleLocale(currentNamedSample));
+    if (dP.isEmpty())
+        dP = FMPaths::HyphenationDictionary(language);
+    if (dP.isEmpty()) {
+        if (!hyphenator->dictPath().isEmpty())
+            qCDebug(FONTMATRIX_LOG) << "No hyphenation dictionary for" << language.name() << "- the sample is not hyphenated";
+        hyphenator->unload();
+        return;
+    }
+    if (dP == hyphenator->dictPath())
+        return;
+    if (hyphenator->loadDict(dP, FMConfig::value(QStringLiteral("Sample/HyphLeft"), 2).toInt(), FMConfig::value(QStringLiteral("Sample/HyphRight"), 3).toInt()))
+        qCDebug(FONTMATRIX_LOG) << "Hyphenation dictionary for" << language.name() << ":" << dP;
+    else
+        qCWarning(FONTMATRIX_LOG) << "Cannot load the hyphenation dictionary" << dP;
+}
+
+QLocale typotek::namedSampleLocale(const QString &name)
+{
+    // "Bulgarian::Българският език" names its language; a sample of the user's own does
+    // not, and is taken to be in the language of the interface
+    const QString group(name.section(QStringLiteral("::"), 0, 0));
+    if (group.isEmpty() || group == QLatin1String("User") || !dataLoader)
+        return QLocale::system();
+    const QLocale locale(dataLoader->sampleLocale(group));
+    return locale.language() == QLocale::C ? QLocale::system() : locale;
 }
 
 void typotek::installDock(const QString &id, const QString &name, QWidget *w, const QString &tip)
@@ -1583,8 +1600,10 @@ QString typotek::namedSample(QString name)
         return i18nc("@info default content of a new sample text", "Edit me!");
     if (cn.isEmpty())
         cn = currentNamedSample;
-    else
+    else if (cn != currentNamedSample) {
         currentNamedSample = cn;
+        updateHyphenation();
+    }
 
     if (!dataLoader)
         dataLoader = new DataLoader();
@@ -1666,8 +1685,8 @@ QString typotek::defaultSampleName()
     else {
         const QMap<QString, QMap<QString, QString>> &ss(dataLoader->systemSamples());
         // DataLoader names the groups with QLocale::languageToString(), "German"
-        // and not "de". A directory that is not a locale ends up in "C", which
-        // is therefore not a match for a C locale.
+        // and not "de"; a directory Qt has no language for keeps its own name,
+        // so a C locale matches no group.
         const auto groupOf = [](const QLocale &loc) {
             return QLocale::languageToString(loc.language());
         };

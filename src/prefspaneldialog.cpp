@@ -249,7 +249,14 @@ void PrefsPanelDialog::applySampleText()
     typotek::getInstance()->changeFontSizeSettings(fontSizeSpin->value(), interLineSpin->value());
     typotek::getInstance()->forwardUpdateView();
     FMHyphenator *hyphenator = typotek::getInstance()->getHyphenator();
-    if (hyphenator->loadDict(dictEdit->text(), leftBox->value(), rightBox->value())) {
+    if (dictEdit->text().isEmpty()) {
+        // no dictionary of one's own: each sample is hyphenated in its language
+        FMConfig::remove(QStringLiteral("Sample/HyphenationDict"));
+        FMConfig::setValue(QStringLiteral("Sample/HyphLeft"), leftBox->value());
+        FMConfig::setValue(QStringLiteral("Sample/HyphRight"), rightBox->value());
+        hyphenator->unload();
+        typotek::getInstance()->updateHyphenation();
+    } else if (hyphenator->loadDict(dictEdit->text(), leftBox->value(), rightBox->value())) {
         FMConfig::setValue(QStringLiteral("Sample/HyphenationDict"), dictEdit->text());
         FMConfig::setValue(QStringLiteral("Sample/HyphLeft"), leftBox->value());
         FMConfig::setValue(QStringLiteral("Sample/HyphRight"), rightBox->value());
@@ -262,6 +269,8 @@ void PrefsPanelDialog::applySampleText()
         FMConfig::setValue(QStringLiteral("Sample/HyphenationDict"), QLatin1String(""));
         FMConfig::setValue(QStringLiteral("Sample/HyphLeft"), 2);
         FMConfig::setValue(QStringLiteral("Sample/HyphRight"), 3);
+        // the failed load dropped the dictionary in use: back to the sample's own
+        typotek::getInstance()->updateHyphenation();
     }
 }
 

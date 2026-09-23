@@ -7,6 +7,7 @@
 #ifndef DATALOADER_H
 #define DATALOADER_H
 
+#include <QLocale>
 #include <QMap>
 #include <QString>
 
@@ -17,6 +18,8 @@ class DataLoader
 {
     QMap<QString, QMap<QString, QString>> sm;
     QMap<QString, QString> pm;
+    /// the language of each group of system samples, which the group only names
+    QMap<QString, QLocale> lm;
 
     void load();
 
@@ -35,6 +38,11 @@ public:
     [[nodiscard]] const QMap<QString, QString> &userSamples() const
     {
         return pm;
+    }
+    /// the language of a group of system samples ("Bulgarian"); C when the group is not one
+    [[nodiscard]] QLocale sampleLocale(const QString &group) const
+    {
+        return lm.value(group, QLocale::c());
     }
 };
 
