@@ -612,6 +612,16 @@
           </property>
          </widget>
         </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="duplicatesGroupsButton">
+          <property name="toolTip">
+           <string comment="@info:tooltip">Each font with its files side by side, and a way to remove the extra ones</string>
+          </property>
+          <property name="text">
+           <string comment="@action:button">Show Groups...</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </item>

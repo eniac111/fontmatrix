@@ -34,6 +34,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmbaseshaper.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmbidi.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmdumpinfo.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmduplicates.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmduplicatesdialog.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmencdata.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfloatingpreview.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmfontcompareview.cpp
@@ -477,6 +478,7 @@ set_source_files_properties(
 	fmconfig.cpp
 	fmdumpinfo.cpp
 	fmduplicates.cpp
+	fmduplicatesdialog.cpp
 	fmencdata.cpp
 	fmfontcompareview.cpp
 	fmfontdb.cpp

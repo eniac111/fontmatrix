@@ -260,6 +260,7 @@ FilterBar::FilterBar(QWidget *parent)
     connect(ui->licenseCombo, &QComboBox::activated, this, &FilterBar::slotLicenseFilter);
     connect(ui->duplicatesCombo, &QComboBox::activated, this, &FilterBar::slotDuplicateFilter);
     connect(ui->duplicatesArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotToggleDuplicates);
+    connect(ui->duplicatesGroupsButton, &QPushButton::clicked, typotek::getInstance(), &typotek::slotShowDuplicates);
     connect(ui->kindCombo, &QComboBox::activated, this, &FilterBar::slotKindFilter);
     connect(ui->kindArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotToggleKinds);
     connect(ui->languagesArrow, &OpenCloseArrow::openChanged, this, &FilterBar::slotToggleLanguages);

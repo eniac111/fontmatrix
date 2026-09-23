@@ -14,6 +14,7 @@
 #include <QLabel>
 #include <QLocale>
 #include <QMap>
+#include <QPointer>
 #include <QStringList>
 #include <QThread>
 #include <QTime>
@@ -34,6 +35,7 @@ class FMHyphenator;
 class QProgressBar;
 class DataLoader;
 class FloatingWidget;
+class FMDuplicatesDialog;
 class QStackedWidget;
 
 class typotek : public KXmlGuiWindow
@@ -103,6 +105,8 @@ public Q_SLOTS:
     void setVisible(bool visible) override;
 
 public:
+    /// Tools > Duplicates, also opened from the Duplicates section of the filters
+    void slotShowDuplicates();
     void open(QString path = QString(), bool recursive = true, bool announce = true, bool collect = false);
     void openList(QStringList files);
     bool showImportedFonts();
@@ -130,6 +134,7 @@ private:
     // Set by closeEvent() once the panels are being torn down; setVisible()
     // must not touch them any more when Qt hides the closed window.
     bool m_closing = false;
+    QPointer<FMDuplicatesDialog> m_duplicates; ///< Tools > Duplicates, while it is open
 
     void checkOwnDir();
     void fillTagsList();
@@ -155,6 +160,7 @@ private:
     QAction *exportXeTeXAct = nullptr;
     QAction *extractFontAction = nullptr;
     QAction *matchRasterAct = nullptr;
+    QAction *duplicatesAct = nullptr;
 
     QAction *playAction = nullptr;
     QAction *compareAction = nullptr;

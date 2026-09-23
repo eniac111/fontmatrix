@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="fontmatrix" version="5" translationDomain="fontmatrix">
+<gui name="fontmatrix" version="6" translationDomain="fontmatrix">
   <MenuBar>
     <Menu name="file" noMerge="1">
       <text>&amp;File</text>
@@ -34,6 +34,7 @@
     <Menu name="tools" noMerge="1">
       <text>&amp;Tools</text>
       <Action name="tools_extract_font"/>
+      <Action name="tools_duplicates"/>
       <Action name="tools_match_raster"/>
       <Action name="tools_export_xetex"/>
       <Action name="tools_repair"/>

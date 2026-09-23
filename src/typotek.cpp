@@ -13,6 +13,7 @@
 #include "floatingwidgetsregister.h"
 #include "fmactivate.h"
 #include "fmconfig.h"
+#include "fmduplicatesdialog.h"
 #include "fmfontdb.h"
 #include "fmfontextract.h"
 #include "fmhandbook.h"
@@ -807,6 +808,11 @@ void typotek::createActions()
     connect(extractFontAction, &QAction::triggered, this, &typotek::slotExtractFont);
 #endif
 
+    duplicatesAct = new QAction(i18nc("@action:inmenu", "Duplicates..."), this);
+    duplicatesAct->setStatusTip(i18nc("@info:status", "The fonts the collection holds more than once, and a way to remove the extra files"));
+    scuts->add(duplicatesAct);
+    connect(duplicatesAct, &QAction::triggered, this, &typotek::slotShowDuplicates);
+
     matchRasterAct = new QAction(i18nc("@action:inmenu", "Find a font using raster sample..."), this); // FIXME find a name for it
     matchRasterAct->setStatusTip(i18nc("@info:status", "Find a font using a raster sample of a letter"));
     scuts->add(matchRasterAct);
@@ -846,6 +852,7 @@ void typotek::createActions()
 #ifdef HAVE_PODOFO
     ac->addAction(QStringLiteral("tools_extract_font"), extractFontAction);
 #endif
+    ac->addAction(QStringLiteral("tools_duplicates"), duplicatesAct);
     ac->addAction(QStringLiteral("tools_match_raster"), matchRasterAct);
     ac->addAction(QStringLiteral("tools_export_xetex"), exportXeTeXAct);
     ac->addAction(QStringLiteral("tools_repair"), repairAct);
@@ -868,6 +875,7 @@ void typotek::createActions()
 #endif
     exportXeTeXAct->setIcon(QIcon::fromTheme(QStringLiteral("document-export")));
     repairAct->setIcon(QIcon::fromTheme(QStringLiteral("tools-check-spelling")));
+    duplicatesAct->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
     showTTTAct->setIcon(QIcon::fromTheme(QStringLiteral("document-properties")));
     tagAll->setIcon(QIcon::fromTheme(QStringLiteral("tag")));
     fonteditorAct->setIcon(QIcon::fromTheme(QStringLiteral("document-edit")));
@@ -2290,6 +2298,16 @@ void typotek::slotExtractFont()
 {
     FMFontExtract ex(this);
     ex.exec();
+}
+
+void typotek::slotShowDuplicates()
+{
+    // one window, not modal: "Show in List" is for looking at the main list beside it
+    if (!m_duplicates)
+        m_duplicates = new FMDuplicatesDialog(this);
+    m_duplicates->show();
+    m_duplicates->raise();
+    m_duplicates->activateWindow();
 }
 
 void typotek::slotMatchRaster()
