@@ -124,6 +124,10 @@ private: // data
     FontItem *theFont = nullptr;
     QList<GlyphList> paragraphs;
     QList<GlyphList> lines;
+    /// how far from the left margin a line starts: the short last line of a right-to-left paragraph
+    QMap<int, double> lineIndent;
+    /// the direction of the paragraph being laid out, from its first strong character
+    bool rightToLeftParagraph = false;
     QRectF theRect; // Not really argued now, will come soon
     QGraphicsRectItem *rules = nullptr;
     FMLayOptWidget *optionsWidget = nullptr;

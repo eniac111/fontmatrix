@@ -7,6 +7,7 @@
 #include "fontitem.h"
 #include "fmaltcontext.h"
 #include "fmbaseshaper.h"
+#include "fmbidi.h"
 #include "fmcolorglyphitem.h"
 #include "fmcolorpainter.h"
 #include "fmencdata.h"
@@ -1082,6 +1083,9 @@ double FontItem::renderLine(OTFSet set, QGraphicsScene *scene, QString spec, QPo
     double pWidth = lineWidth;
     const double distance = 20;
     QList<RenderedGlyph> refGlyph = otf->procstring(spec, set);
+    // drawn left to right: a right-to-left line is turned into that order first
+    markCharacters(refGlyph, spec);
+    FMBidi::toVisualOrder(refGlyph, FMBidi::isRightToLeft(refGlyph));
     // 	qDebug() << "Get line "<<spec;
     delete otf;
     otf = nullptr;
@@ -1310,6 +1314,9 @@ double FontItem::renderLine(QString script, QGraphicsScene *scene, QString spec,
 
     GlyphList refGlyph(shaperfactory->doShape(spec));
     delete shaperfactory;
+    // drawn left to right: a right-to-left line is turned into that order first
+    markCharacters(refGlyph, spec);
+    FMBidi::toVisualOrder(refGlyph, FMBidi::isRightToLeft(refGlyph));
 
     double sizz = fsize;
     double scalefactor = sizz / unitsPerEm();
@@ -3490,6 +3497,8 @@ GlyphList FontItem::glyphs(QString spec, double fsize)
             rg.glyph = glyph->data(GLYPH_DATA_GLYPH).toInt();
             rg.log = i; // We are in a 1/1 relation
             rg.lChar = (*sIt).at(i).unicode();
+            if (QChar::hasMirrored(rg.lChar))
+                rg.mirrorGlyph = int(FT_Get_Char_Index(m_face, QChar::mirroredChar(char32_t(rg.lChar))));
             rg.xadvance = glyph->data(GLYPH_DATA_HADVANCE).toDouble() * scalefactor;
             rg.yadvance = glyph->data(GLYPH_DATA_VADVANCE).toDouble() * scalefactor;
             rg.xoffset = 0;
@@ -3550,6 +3559,17 @@ GlyphList FontItem::glyphs(QString spec, double fsize)
     return ret;
 }
 
+void FontItem::markCharacters(GlyphList &glyphs, const QString &word)
+{
+    for (RenderedGlyph &g : glyphs) {
+        // log is the index of the character in the word: HarfBuzz gives one cluster per character
+        if (g.log >= 0 && g.log < word.size())
+            g.lChar = word.at(g.log).unicode();
+        if (g.lChar && QChar::hasMirrored(g.lChar))
+            g.mirrorGlyph = int(FT_Get_Char_Index(m_face, QChar::mirroredChar(char32_t(g.lChar))));
+    }
+}
+
 GlyphList FontItem::shapeWords(const QString &spec, double fsize, const std::function<GlyphList(const QString &)> &shapeWord)
 {
     FMHyphenator *hyph = typotek::getInstance()->getHyphenator();
@@ -3587,6 +3607,7 @@ GlyphList FontItem::shapeWords(const QString &spec, double fsize, const std::fun
             hl = hyph->hyphenate(*sIt);
         }
         GlyphList ret(scaled(shapeWord(*sIt)));
+        markCharacters(ret, *sIt);
         for (int i(0); i < ret.size(); ++i) {
             // the breaks are keyed by character, which is log, not by glyph
             const auto brk(hl.constFind(ret[i].log));
@@ -3594,7 +3615,9 @@ GlyphList FontItem::shapeWords(const QString &spec, double fsize, const std::fun
                 ret[i].isBreak = true;
                 const QString addOnFirst(brk.value().first.endsWith("-") ? "" : "-");
                 ret[i].hyphen.first = scaled(shapeWord(brk.value().first + addOnFirst));
+                markCharacters(ret[i].hyphen.first, brk.value().first + addOnFirst);
                 ret[i].hyphen.second = scaled(shapeWord(brk.value().second));
+                markCharacters(ret[i].hyphen.second, brk.value().second);
             }
         }
         Gret << ret;
@@ -3664,6 +3687,7 @@ GlyphList FontItem::glyphs(QString spec, double fsize, QString script)
         }
 
         GlyphList ret(shaperfactory->doShape(*sIt));
+        markCharacters(ret, *sIt);
 
         for (int i(0); i < ret.size(); ++i) {
             ret[i].xadvance *= scalefactor;
@@ -3678,6 +3702,7 @@ GlyphList FontItem::glyphs(QString spec, double fsize, QString script)
                 addOnFirst = hl[i].first.endsWith("-") ? "" : "-";
 
                 ret[i].hyphen.first = shaperfactory->doShape(hl[ret[i].log].first + addOnFirst);
+                markCharacters(ret[i].hyphen.first, hl[ret[i].log].first + addOnFirst);
                 for (int f(0); f < ret[i].hyphen.first.size(); ++f) {
                     ret[i].hyphen.first[f].xadvance *= scalefactor;
                     ret[i].hyphen.first[f].yadvance *= scalefactor;
@@ -3686,6 +3711,7 @@ GlyphList FontItem::glyphs(QString spec, double fsize, QString script)
                 }
 
                 ret[i].hyphen.second = shaperfactory->doShape(hl[ret[i].log].second + addOnSecond);
+                markCharacters(ret[i].hyphen.second, hl[ret[i].log].second + addOnSecond);
                 for (int f(0); f < ret[i].hyphen.second.size(); ++f) {
                     ret[i].hyphen.second[f].xadvance *= scalefactor;
                     ret[i].hyphen.second[f].yadvance *= scalefactor;

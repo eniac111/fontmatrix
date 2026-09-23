@@ -202,6 +202,9 @@ private:
 
     bool ensureFace();
     void releaseFace();
+    /// what the bidi algorithm needs of a shaped glyph: its character, and the glyph of
+    /// the mirrored character for a bracket; the face must be open
+    void markCharacters(GlyphList &glyphs, const QString &word);
     void encodeFace();
 
     // colour fonts, and bitmap-only fonts (CBDT, sbix), which FreeType cannot scale

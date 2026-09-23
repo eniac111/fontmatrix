@@ -5,6 +5,7 @@
 */
 
 #include "fmlayout.h"
+#include "fmbidi.h"
 #include "fmlayoptwidget.h"
 #include "fontitem.h"
 #include "shortcuts.h"
@@ -371,6 +372,7 @@ void FMLayout::run()
             theString = paragraphs[i];
             if (theString.isEmpty())
                 continue;
+            rightToLeftParagraph = FMBidi::isRightToLeft(theString);
             // 			node = new Node ( 0 );
             doGraph();
             clearCaches();
@@ -438,6 +440,7 @@ void FMLayout::doLayout(const QList<GlyphList> &spec, double fs, FontItem *font)
         // 		qDebug()<<"LAYOUT 1";
         justRedraw = false;
         lines.clear();
+        lineIndent.clear();
         //		typotek::getInstance()->startProgressJob( paragraphs.count() + ( theRect.height() / fs*1.20 ) );// layout AND draw
     }
     lastOrigine = origine;
@@ -722,7 +725,15 @@ void FMLayout::doLines()
                     lg[wsIds[wi]].xadvance += shareLost;
                 }
             }
+        } else if (rightToLeftParagraph && !verticalLayout) {
+            // the last line is not justified: in a right-to-left paragraph it ends at the right margin
+            lineIndent.insert(lI, diff);
         }
+
+        // Broken in the order the text is written in, the line is drawn left to right:
+        // Hebrew or Arabic turned around, a number or a Latin word in it turned back.
+        if (!verticalLayout)
+            FMBidi::toVisualOrder(lg, rightToLeftParagraph);
     }
     // 	qDebug() <<"doneLines:"<< lines.count() ;
 }
@@ -764,6 +775,10 @@ void FMLayout::doDraw()
         ++drawnLines;
         clearCaches();
         GlyphList refGlyph(lines.at(lIdx));
+        if (tp->inLine() == TextProgression::INLINE_LTR) {
+            const double indent(lineIndent.value(lIdx));
+            pen.rx() += deviceIndy ? indent : indent * pixelAdjustX;
+        }
         //		emit drawBaselineForMe(pen.y());
         if (!deviceIndy) {
             for (int i = 0; i < refGlyph.count(); ++i) {

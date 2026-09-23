@@ -51,6 +51,9 @@ struct RenderedGlyph {
     // 	unsigned short hyphenKey;
     bool isBreak;
     QPair<QList<RenderedGlyph>, QList<RenderedGlyph>> hyphen;
+    /// the glyph of the mirrored character ("(" for ")"), drawn instead when the
+    /// bidi algorithm puts this one in a right-to-left run; 0 when there is none
+    int mirrorGlyph = 0;
 
     RenderedGlyph()
         : glyph(0)
