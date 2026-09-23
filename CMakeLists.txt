@@ -195,6 +195,15 @@ ELSE (FREETYPE_FOUND)
 ENDIF(FREETYPE_FOUND)
 #>> FreeType2
 
+# The documents of OpenType-SVG colour glyphs are gzip-compressed (FMSvgGlyphs); zlib is
+# underneath Qt and FreeType on every platform already.
+find_package(ZLIB REQUIRED)
+set_package_properties(ZLIB PROPERTIES
+    DESCRIPTION "Compression library"
+    URL "https://zlib.net"
+    TYPE REQUIRED
+    PURPOSE "The glyphs of OpenType-SVG colour fonts, which are stored compressed")
+
 
 # Optional: without it the fonts are managed, but not switched on and off for other programs.
 # CMake's own module (3.14) and its imported target; a missing Fontconfig used to end up as

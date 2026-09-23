@@ -19,6 +19,7 @@
 #include "fmhyphenator.h"
 #include "fmkernfeat.h"
 #include "fmotf.h"
+#include "fmsvgglyphs.h"
 #include "fmuniblocks.h"
 #include "fontmatrix_debug.h"
 #include "glyphtosvghelper.h"
@@ -472,8 +473,10 @@ bool FontItem::ensureFace()
     }
     m_faceSeen = true;
     m_hasColor = FT_HAS_COLOR(m_face);
-    if (m_hasColor)
+    if (m_hasColor) {
         m_paintFont = FMColorPainter::paintFont(m_face);
+        m_svgGlyphs = FMSvgGlyphs::create(m_face);
+    }
     if (m_face->units_per_EM == 0 && m_headUnitsPerEm <= 0.0) {
         // a bitmap-only font: FreeType has no scale for it, its head table has the units
         if (auto *head = static_cast<TT_Header *>(FT_Get_Sfnt_Table(m_face, FT_SFNT_HEAD)))
@@ -507,6 +510,8 @@ void FontItem::releaseFace()
                 hb_font_destroy(m_paintFont);
                 m_paintFont = nullptr;
             }
+            delete m_svgGlyphs;
+            m_svgGlyphs = nullptr;
             FT_Done_Face(m_face);
             m_face = nullptr;
             --fm_num_face_opened;
@@ -3301,7 +3306,9 @@ bool FontItem::setPixelSize(double pixels)
 
 FT_Int32 FontItem::loadFlags(FT_Int32 flags) const
 {
-    return m_hasColor ? (flags | FT_LOAD_COLOR) : flags;
+    // An SVG glyph is drawn here (FMSvgGlyphs), not by FreeType, which would want rendering
+    // hooks and fails the load without them: its outline gives the metrics and the fallback.
+    return (m_hasColor && !m_svgGlyphs) ? (flags | FT_LOAD_COLOR) : flags;
 }
 
 void FontItem::metricsToUnits()
@@ -3355,9 +3362,14 @@ double FontItem::bitmapAdvance() const
 
 bool FontItem::paintedGlyph(int index, QImage &img, double &left, double &top)
 {
-    if (!m_paintFont || !m_face->size || index < 0)
+    if (!m_face || !m_face->size || index < 0)
         return false;
     const double ppem = m_face->size->metrics.y_ppem * m_bitmapScale;
+    // OpenType-SVG first: where a font has it, it is the richest of its pictures
+    if (m_svgGlyphs && m_svgGlyphs->hasGlyph(unsigned(index)))
+        return m_svgGlyphs->paint(unsigned(index), ppem, img, left, top);
+    if (!m_paintFont)
+        return false;
     QImage painted;
     double paintedLeft = 0.0;
     double paintedTop = 0.0;
@@ -3395,6 +3407,20 @@ QGraphicsPathItem *FontItem::colorItem(int index, double scalefactor)
 {
     if (!m_hasColor || !m_face)
         return nullptr;
+
+    // OpenType-SVG: drawn by Qt SVG, as sharp as COLR version 1 below
+    if (m_svgGlyphs && m_svgGlyphs->hasGlyph(unsigned(index))) {
+        const double ppem = qBound(64.0, scalefactor * unitsPerEm() * 4.0, 1024.0);
+        QImage img;
+        double left = 0.0;
+        double top = 0.0;
+        if (m_svgGlyphs->paint(unsigned(index), ppem, img, left, top)) {
+            const double perPixel = scalefactor * unitsPerEm() / ppem;
+            auto *item = new FMColorGlyphItem;
+            item->setImage(img, QRectF(left * perPixel, -top * perPixel, img.width() * perPixel, img.height() * perPixel));
+            return item;
+        }
+    }
 
     // COLR version 1: painted, sharp enough for the size the item is scaled to
     if (m_paintFont && FMColorPainter::hasPaint(m_paintFont, FT_UInt(index))) {

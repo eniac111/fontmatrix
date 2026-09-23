@@ -499,9 +499,9 @@ style.</para>
 <para>In <guilabel>Glyphs</guilabel> mode &fontmatrix; displays a
 chart of glyphs present in the currently selected font, grouped into
 Unicode blocks with coverage percentages.</para>
-<para>The glyphs of a colour font (emoji and the like, whether bitmaps
-or layered outlines with gradients) are shown in their colours here, in
-the sample and in the previews.</para>
+<para>The glyphs of a colour font (emoji and the like, whether bitmaps,
+layered outlines with gradients or SVG pictures) are shown in their colours
+here, in the sample and in the previews.</para>
 <para>Clicking on a glyph displays a larger version with metrics and
 category. Switch to <guilabel>View all mapped glyphs</guilabel> and
 type in the search field to find a glyph by name.</para>

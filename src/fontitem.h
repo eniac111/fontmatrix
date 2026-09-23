@@ -31,6 +31,7 @@
 #include "fmsharestruct.h"
 
 struct hb_font_t;
+class FMSvgGlyphs;
 class QGraphicsPixmapItem;
 class QGraphicsScene;
 class QGraphicsRectItem;
@@ -233,6 +234,8 @@ private:
     QGraphicsPathItem *colorItem(int index, double scalefactor);
     /// COLR version 1: the HarfBuzz font that paints, while the face is open
     hb_font_t *m_paintFont = nullptr;
+    /// OpenType-SVG: the documents of the glyphs, while the face is open
+    FMSvgGlyphs *m_svgGlyphs = nullptr;
     /// the glyph painted at the size set, in place of what FreeType rendered; false when it has no paint
     bool paintedGlyph(int index, QImage &img, double &left, double &top);
 

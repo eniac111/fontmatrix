@@ -73,6 +73,8 @@ class subinfo(info.infoclass):
         self.runtimeDependencies["libs/harfbuzz"] = None
         self.runtimeDependencies["libs/podofo"] = None
         self.runtimeDependencies["libs/hyphen"] = None
+        # the gzip-compressed documents of OpenType-SVG fonts
+        self.runtimeDependencies["libs/zlib"] = None
 
 
 class Package(CMakePackageBase):
