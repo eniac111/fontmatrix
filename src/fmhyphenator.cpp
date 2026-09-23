@@ -60,6 +60,14 @@ bool FMHyphenator::loadDict(const QString &dictPath, int leftMin, int rightMin)
     return true;
 }
 
+void FMHyphenator::unload()
+{
+    if (dict)
+        hnj_hyphen_free(dict);
+    dict = nullptr;
+    currentDictPath.clear();
+}
+
 FMHyphenator::~FMHyphenator()
 {
     if (dict)

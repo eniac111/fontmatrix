@@ -28,6 +28,12 @@ public:
 
     bool loadDict(const QString &dictPath, int leftMin = 2, int rightMin = 3);
     HyphList hyphenate(const QString &word) const;
+    /// no dictionary: words are left whole
+    void unload();
+    [[nodiscard]] QString dictPath() const
+    {
+        return currentDictPath;
+    }
 
 private:
     QString currentDictPath;

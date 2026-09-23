@@ -25,6 +25,7 @@ void DataLoader::load()
 {
     sm.clear();
     pm.clear();
+    lm.clear();
 
     // System samples — skip silently if the directory is absent (e.g. not yet installed)
     QDir samplesDir(FMPaths::ResourcesDir() + QLatin1String("Samples"));
@@ -32,7 +33,10 @@ void DataLoader::load()
         for (const auto entries = samplesDir.entryList(QDir::NoDotAndDotDot | QDir::AllDirs); const auto &ld : entries) {
             QDir lang(samplesDir.absoluteFilePath(ld));
             QLocale locale(ld);
-            QString loclang(QLocale::languageToString(locale.language()));
+            // Qt does not know every language of the samples (Udmurt): such a group keeps
+            // the name of its directory rather than being called "C"
+            const QString loclang(locale.language() == QLocale::C ? ld : QLocale::languageToString(locale.language()));
+            lm.insert(loclang, locale);
             for (const auto entriesList = lang.entryList(QDir::NoDotAndDotDot | QDir::NoSymLinks | QDir::Files); const auto &st : entriesList) {
                 QFile fp(lang.absoluteFilePath(st));
                 if (fp.open(QIODevice::ReadOnly)) {

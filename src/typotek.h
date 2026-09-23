@@ -12,6 +12,7 @@
 #include <QDir>
 #include <QFile>
 #include <QLabel>
+#include <QLocale>
 #include <QMap>
 #include <QStringList>
 #include <QThread>
@@ -353,6 +354,10 @@ public:
     }
 
     [[nodiscard]] FMHyphenator *getHyphenator() const;
+    /// loads the hyphenation dictionary for the sample shown, or the one of the preferences
+    void updateHyphenation();
+    /// the language of a named sample, the interface language when it does not say
+    QLocale namedSampleLocale(const QString &name);
 
     void setDefaultOTFScript(const QString &theValue);
     [[nodiscard]] QString getDefaultOTFScript() const;
