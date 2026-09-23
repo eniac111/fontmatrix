@@ -30,6 +30,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/fmactivationreport.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmaltcontext.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmaltselector.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmbaseshaper.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/fmbidi.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmdumpinfo.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmduplicates.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/fmencdata.cpp
@@ -462,6 +463,7 @@ set_source_files_properties(
 	floatingwidget.cpp
 	fmaltselector.cpp
 	fmbaseshaper.cpp
+	fmbidi.cpp
 	fmcolorglyphitem.cpp
 	fmcolorpainter.cpp
 	fmconfig.cpp

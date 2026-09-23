@@ -12,6 +12,8 @@
 #include <QSet>
 #include <QVarLengthArray>
 
+#include <algorithm>
+
 #include FT_MULTIPLE_MASTERS_H
 
 QList<int> FMOtf::altGlyphs;
@@ -198,7 +200,12 @@ GlyphList FMOtf::shapeBuffer(hb_buffer_t *buffer, hb_font_t *font, const QString
         // 'DFLT' gives no script, and HarfBuzz then takes the DFLT table
         hb_buffer_set_script(buffer, hb_ot_tag_to_script(tagOf(script)));
     }
-    hb_buffer_set_direction(buffer, ltr ? HB_DIRECTION_LTR : HB_DIRECTION_RTL);
+    // Right-to-left text is shaped right to left, so that its marks are positioned
+    // for that direction; `ltr` asks for the direction of the script, not for LTR.
+    hb_direction_t direction(ltr ? hb_script_get_horizontal_direction(hb_buffer_get_script(buffer)) : HB_DIRECTION_RTL);
+    if (direction != HB_DIRECTION_RTL)
+        direction = HB_DIRECTION_LTR;
+    hb_buffer_set_direction(buffer, direction);
     // Not guessed from the locale: it would pick the forms of one language
     hb_buffer_set_language(buffer, isDefaultLanguage(lang) ? HB_LANGUAGE_INVALID : hb_ot_tag_to_language(tagOf(lang)));
     // A mark keeps the index of its own character
@@ -225,6 +232,12 @@ GlyphList FMOtf::shapeBuffer(hb_buffer_t *buffer, hb_font_t *font, const QString
             gl.yadvance = _face->glyph->metrics.vertAdvance;
         renderedString << gl;
         lastGlyphs << infos[i].codepoint;
+    }
+    // HarfBuzz gives right-to-left text in the order it is drawn; back to the order it
+    // is written in, which the layout turns around again line by line (FMBidi)
+    if (direction == HB_DIRECTION_RTL) {
+        std::reverse(renderedString.begin(), renderedString.end());
+        std::reverse(lastGlyphs.begin(), lastGlyphs.end());
     }
     return renderedString;
 }
