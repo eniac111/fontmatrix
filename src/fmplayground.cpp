@@ -215,7 +215,7 @@ void FMPlayGround::displayGlyphs(const QString &spec, FontItem *fontI, double fo
 void FMPlayGround::updateLine()
 {
     CursorTimer->stop();
-    FontItem *fi(typotek::getInstance()->getTheMainView()->selectedFont());
+    FontItem *fi(typotek::getInstance()->getTheMainView()->selectedOrCurrentFont());
     if (fi) {
         for (auto *item : std::as_const(curLine))
             delete item;
@@ -236,7 +236,7 @@ void FMPlayGround::closeLine()
         curString.clear();
         git->setFlags(QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable);
         git->setCursor(QCursor(Qt::OpenHandCursor));
-        FontItem *fi(typotek::getInstance()->getTheMainView()->selectedFont());
+        FontItem *fi(typotek::getInstance()->getTheMainView()->selectedOrCurrentFont());
         if (fi)
             git->setToolTip(QStringLiteral("<strong>%1</strong><br/><em>%2<em/>").arg(fi->fancyName(), fi->path()));
         glyphLines << git;

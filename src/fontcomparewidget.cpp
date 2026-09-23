@@ -34,7 +34,10 @@ FontCompareWidget::FontCompareWidget(QWidget *parent)
     doconnect();
 }
 
-FontCompareWidget::~FontCompareWidget() = default;
+FontCompareWidget::~FontCompareWidget()
+{
+    instance = nullptr;
+}
 
 FontCompareWidget *FontCompareWidget::getInstance()
 {
@@ -122,7 +125,8 @@ void FontCompareWidget::resetElements()
 
 void FontCompareWidget::addFont()
 {
-    FontItem *f(typotek::getInstance()->getSelectedFont());
+    // the font selected in the list or the one open; the status bar says when there is none
+    FontItem *f(typotek::getInstance()->fontForAction());
     if (!f)
         return;
     dodisconnect();
@@ -259,13 +263,19 @@ void FontCompareWidget::characterChange(int v)
         // 		nc = curcode;
     } else if (v == 0) // someone  asked for first char, just avoid a white space!
     {
+        // nor a control character: many fonts map U+0000 or U+000D first, which
+        // have no outline, and the view then shows an empty frame
+        const auto invisible = [f](uint code) {
+            return f->legitimateNonPathChars.contains(code) || !QChar::isPrint(code) || QChar::isSpace(code);
+        };
+        const int count(f->countChars());
         do {
             compareCharSelect->setValue(v);
             compareCharBox->setCurrentIndex(v);
             curcode = f->nextChar(f->firstChar(), v);
             ++v;
 
-        } while (f->legitimateNonPathChars.contains(curcode));
+        } while (invisible(curcode) && v < count);
         --v;
     } else {
         curcode = f->nextChar(f->firstChar(), v);
