@@ -1,5 +1,8 @@
 # Fontmatrix
 
+## Changes in this fork was merged to the upstream project. The repository is currently archived.
+
+
 ![Fontmatrix showing a font family with its sample text](doc/screenshots/family.png)
 
 Fontmatrix is a font management application for Linux and Windows.
